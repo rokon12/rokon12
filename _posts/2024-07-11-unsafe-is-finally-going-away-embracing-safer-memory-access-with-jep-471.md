@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:48.415552'
 featured_image: '/images/gemini-generated-image-9cppb89cppb89cpp.jpeg'
 ---
 
-![](/images/gemini-generated-image-9cppb89cppb89cpp.jpeg)
+<img src="/images/gemini-generated-image-9cppb89cppb89cpp.jpeg" alt="" />
 
 Unsafe is Finally Going Away: Embracing Safer Memory Access with JEP 471
 ========================================================================

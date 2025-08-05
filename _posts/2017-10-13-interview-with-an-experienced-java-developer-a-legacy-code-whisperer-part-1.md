@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:23:50.010361'
 featured_image: '/images/interviews.jpeg'
 ---
 
-![](/images/interviews.jpeg)
+<img src="/images/interviews.jpeg" alt="" />
 
 Interview with an experienced Java developer -- a legacy code whisperer -- Part -1
 ==================================================================================

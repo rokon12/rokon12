@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:54.213355'
 featured_image: '/images/1704519735509.png'
 ---
 
-![](/images/1704519735509.png)
+<img src="/images/1704519735509.png" alt="" />
 
 Homecoming Chronicles: Navigating Parenting, Flights, and New Beginnings
 ========================================================================

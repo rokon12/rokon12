@@ -56,7 +56,7 @@ So the takeaway is, a thread goes through a multiple-stage of its life.
 * **Timed waiting state**: this is the same as the waiting state, only it waits for a given period. And then it goes to runnel state again. Usually, when put a thread in sleep, it goes to the timed waiting state. However, there is a difference between sleep and waiting. In the sleeping state, the thread doesn't release the lock but the waiting state does. We can discuss this sort of difference later.
 * **Terminated state**: When a thread is done with its work, mainly work leaves from the run method, the thread goes to the terminated state.
 
-![](/images/thread-lifecycle-700x379.png)
+<img src="/images/thread-lifecycle-700x379.png" alt="" />
 
 Now that we know the lifecycle of a thread, we can put a thread into a waiting state. In java, any object can be used as a lock, and each object has a wait method associated with it.
 

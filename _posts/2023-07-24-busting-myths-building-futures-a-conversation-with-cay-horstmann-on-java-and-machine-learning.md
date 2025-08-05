@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:21:27.29175'
 featured_image: '/images/simon-martinelli-1.png'
 ---
 
-![](/images/simon-martinelli-1.png)
+<img src="/images/simon-martinelli-1.png" alt="" />
 
 Busting Myths, Building Futures: A Conversation with Cay Horstmann on Java and Machine Learning
 ===============================================================================================
 
-![](/images/cay-pfh-big-edited.jpg)
+<img src="/images/cay-pfh-big-edited.jpg" alt="" />
 
 <br />
 

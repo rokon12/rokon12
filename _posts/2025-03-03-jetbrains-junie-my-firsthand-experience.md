@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:36.915876'
 featured_image: '/images/gemini-generated-image-aczqicaczqicaczq.jpeg'
 ---
 
-![](/images/gemini-generated-image-aczqicaczqicaczq.jpeg)
+<img src="/images/gemini-generated-image-aczqicaczqicaczq.jpeg" alt="" />
 
 JetBrains Junie: My Firsthand Experience
 ========================================
@@ -33,7 +33,7 @@ Now, building a website from scratch is no small feat, especially for someone wh
 
 Of course, Junie didn't complete the whole thing in one go. It required multiple follow-ups, refinements, and tweaks. However, it did an excellent job laying out the structure, creating reusable components, and producing a functional website. What would have taken me a week or more to build manually, I completed in a single day.
 
-![](/images/screenshot-2025-03-03-at-7.42.31-am.png)
+<img src="/images/screenshot-2025-03-03-at-7.42.31-am.png" alt="" />
 
 That's a huge time saver.
 > Checkout the website: **<https://ramadan-facts.onrender.com/>**   
@@ -50,12 +50,12 @@ While I'm comfortable with backend development, frontend work is another story. 
 
 Again, Junie came to the rescue. It helped me craft a sleek UI using Jakarta Faces with some advanced CSS tricks. The result? A fully functional chatbot interface with dynamic configuration settings---all done in a fraction of the time it would have taken me otherwise.
 
-![](/images/screenshot-2025-03-03-at-7.08.21-am.png)
+<img src="/images/screenshot-2025-03-03-at-7.08.21-am.png" alt="" />
 
 Also, I wanted to update the README. Well, who wants to write it manually when you have Junie? So I gave it this instruction:
 > "Can you scan the repository, identify key components, and update the README, including setup instructions, usage details, and any relevant documentation? Also, include a screenshot from the images folder in the README."
 
-![](/images/screenshot-2025-03-03-at-7.13.43-am.png)
+<img src="/images/screenshot-2025-03-03-at-7.13.43-am.png" alt="" />
 
 It did an excellent job. Although I wanted all the screenshots, I asked to add one screenshot to the prompt, but it understood.
 > Checkout: <https://github.com/rokon12/llm-jakarta>

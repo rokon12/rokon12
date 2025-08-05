@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:22.018831'
 featured_image: '/images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg'
 ---
 
-![](/images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg)
+<img src="/images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg" alt="" />
 
 Java Sealed Classes in Action: Building Robust and Secure Applications
 ======================================================================

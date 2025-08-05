@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:17.677523'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 ---
 
-![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
+<img src="/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg" alt="" />
 
 How to Keep Up with the Ever-Evolving Tech Industry
 ===================================================

@@ -87,7 +87,7 @@ If a thread reads before another thread finishes its writing, that's where thing
 
 It starts with 1.1, after exacuting this line, the local variable becomes 100 + 100, which is 200. 2.1 starts immediately after it, so the first thread doesn't get a chance to update the value to the balance variable yet. Line 2.1, the thread read the value from the balance variable, subtract 100 from it and keep the result in the local variable, which is now 0. 2.2 update the value to the balance variable. And then, when 1.2 executes, the local variable here is 200, and it updates the balance variable with it.
 
-![](/images/threading-432x510.png)
+<img src="/images/threading-432x510.png" alt="" />
 
 And this is how it produces an incorrect result.
 

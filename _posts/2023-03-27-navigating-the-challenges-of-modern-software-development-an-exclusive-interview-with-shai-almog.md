@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:22:10.893851'
 featured_image: '/images/6.png'
 ---
 
-![](/images/6.png)
+<img src="/images/6.png" alt="" />
 
 Navigating the Challenges of Modern Software Development: An Exclusive Interview with Shai Almog
 ================================================================================================
 
-![](/images/shai-almog.jpg)
+<img src="/images/shai-almog.jpg" alt="" />
 
 Welcome to our exclusive interview with [Shai Almog](https://www.linkedin.com/in/shai-almog-81a42/), an accomplished entrepreneur, author, blogger, and Java expert with over two decades of experience in the software industry.
 

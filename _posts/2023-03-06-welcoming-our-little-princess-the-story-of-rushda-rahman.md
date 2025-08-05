@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:19.093536'
 featured_image: '/images/img-20230202-wa0000.jpg'
 ---
 
-![](/images/img-20230202-wa0000.jpg)
+<img src="/images/img-20230202-wa0000.jpg" alt="" />
 
 Welcoming Our Little Princess: The Story of Rushda Rahman
 =========================================================

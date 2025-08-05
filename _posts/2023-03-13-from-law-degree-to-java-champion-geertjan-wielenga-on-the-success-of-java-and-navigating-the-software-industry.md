@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:16.245005'
 featured_image: '/images/wielenga-1024x576-1.png'
 ---
 
-![](/images/wielenga-1024x576-1.png)
+<img src="/images/wielenga-1024x576-1.png" alt="" />
 
 From Law Degree to Java Champion: Geertjan Wielenga on the Success of Java and Navigating the Software Industry
 ===============================================================================================================

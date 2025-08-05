@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:23:05.923069'
 featured_image: '/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png'
 ---
 
-![](/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)
+<img src="/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png" alt="" />
 
 5 Things You Probably Didn't Know About Java Concurrency
 ========================================================

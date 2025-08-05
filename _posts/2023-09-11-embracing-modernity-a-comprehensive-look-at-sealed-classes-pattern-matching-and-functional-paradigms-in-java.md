@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:10.742818'
 featured_image: '/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg'
 ---
 
-![](/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg)
+<img src="/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg" alt="" />
 
 Embracing Modernity: A Comprehensive Look at Sealed Classes, Pattern Matching, and Functional Paradigms in Java
 ===============================================================================================================

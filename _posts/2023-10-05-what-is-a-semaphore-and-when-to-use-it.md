@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:00.003686'
 featured_image: '/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg'
 ---
 
-![](/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg)
+<img src="/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg" alt="" />
 
 What is a semaphore, and when to use it?
 ========================================

@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:25.851764'
 featured_image: '/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg'
 ---
 
-![](/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg)
+<img src="/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg" alt="" />
 
 Preparing for JDK 21: A Comprehensive Overview of Key Features and Enhancements
 ===============================================================================

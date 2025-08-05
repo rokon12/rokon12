@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:23:03.048091'
 featured_image: '/images/top-10-java-language-features-1.png'
 ---
 
-![](/images/top-10-java-language-features-1.png)
+<img src="/images/top-10-java-language-features-1.png" alt="" />
 
 Top 10 Java Language Features
 =============================

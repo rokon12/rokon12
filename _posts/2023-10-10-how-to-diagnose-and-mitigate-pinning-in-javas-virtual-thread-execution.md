@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:58.57755'
 featured_image: '/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png'
 ---
 
-![](/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png)
+<img src="/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png" alt="" />
 
 How to Diagnose and Mitigate Pinning in Java's Virtual Thread Execution
 =======================================================================

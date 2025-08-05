@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:50.358911'
 featured_image: '/images/monolith-to-microservice.jpeg'
 ---
 
-![](/images/monolith-to-microservice.jpeg)
+<img src="/images/monolith-to-microservice.jpeg" alt="" />
 
 Book Review: Monolith to Microservices (Part 2)
 ===============================================

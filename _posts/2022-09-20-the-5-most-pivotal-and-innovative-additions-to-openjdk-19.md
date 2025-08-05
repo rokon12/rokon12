@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:32.750331'
 featured_image: '/images/cafe-g56e2bcea6-1920.jpg'
 ---
 
-![](/images/cafe-g56e2bcea6-1920.jpg)
+<img src="/images/cafe-g56e2bcea6-1920.jpg" alt="" />
 
 The 5 Most Pivotal and Innovative Additions to OpenJDK 19
 =========================================================

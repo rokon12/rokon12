@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:21:12.185734'
 featured_image: '/images/simon-martinelli.png'
 ---
 
-![](/images/simon-martinelli.png)
+<img src="/images/simon-martinelli.png" alt="" />
 
 Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli
 ======================================================================
 
-![](/images/image-2.png)
+<img src="/images/image-2.png" alt="" />
 
 In a recent insightful interview, Simon Martinelli, an Oracle ACE associate and veteran Java developer, shares his career experiences, software development philosophies, and views on mentoring. With over two decades in the industry, Martinelli offers a perspective that combines the wisdom of experience with a focus on simplicity and constant learning.
 

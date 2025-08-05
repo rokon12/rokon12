@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:41.523258'
 featured_image: '/images/klara-and-sun.jpeg'
 ---
 
-![](/images/klara-and-sun.jpeg)
+<img src="/images/klara-and-sun.jpeg" alt="" />
 
 Book Review: Klara and the Sun
 ==============================

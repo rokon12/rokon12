@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:21:46.06274'
 featured_image: '/images/nicols.jpeg'
 ---
 
-![](/images/nicols.jpeg)
+<img src="/images/nicols.jpeg" alt="" />
 
 Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel
 ==========================================================================
 
-![](/images/nicols-510x510.jpeg)
+<img src="/images/nicols-510x510.jpeg" alt="" />
 
 In this enlightening interview, we explore the unique journey of Nicolas Fränkel, a seasoned professional in the software industry. From an architecture student to a passionate software developer, Nicolas shares his candid thoughts about the current state of software development and the potential impacts of AI.
 

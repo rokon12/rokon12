@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:23:34.489196'
 featured_image: '/images/dall-e-2023-10-11-03.28.56-graphical-representation-of-a-computers-cpu-and-memory.-threads-labeled-thread-1-and-thread-2-move-from-the-cpu-towards-the-memory-and-back-sh.png'
 ---
 
-![](/images/dall-e-2023-10-11-03.28.56-graphical-representation-of-a-computers-cpu-and-memory.-threads-labeled-thread-1-and-thread-2-move-from-the-cpu-towards-the-memory-and-back-sh.png)
+<img src="/images/dall-e-2023-10-11-03.28.56-graphical-representation-of-a-computers-cpu-and-memory.-threads-labeled-thread-1-and-thread-2-move-from-the-cpu-towards-the-memory-and-back-sh.png" alt="" />
 
 Java Thread Programming (Part 4)
 ================================

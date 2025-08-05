@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:23.476973'
 featured_image: '/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg'
 ---
 
-![](/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)
+<img src="/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg" alt="" />
 
 Optional in Java: A Swiss Army Knife for Handling Nulls and Improving Code Quality
 ==================================================================================

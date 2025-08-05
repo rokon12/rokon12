@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:15.051021'
 featured_image: '/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg'
 ---
 
-![](/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg)
+<img src="/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg" alt="" />
 
 Writing Testable Code: A Journey Through Consideration and Refactoring
 ======================================================================

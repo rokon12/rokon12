@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:01.735753'
 featured_image: '/images/r121.jpeg'
 ---
 
-![](/images/r121.jpeg)
+<img src="/images/r121.jpeg" alt="" />
 
 My Experience with the Apple Genius Bar: A Bumpy Ride to a Fixed MacBook Pro
 ============================================================================

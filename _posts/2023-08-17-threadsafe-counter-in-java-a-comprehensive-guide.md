@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:18.027071'
 featured_image: '/images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg'
 ---
 
-![](/images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg)
+<img src="/images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg" alt="" />
 
 Thread-Safe Counter in Java: A Comprehensive Guide
 ==================================================

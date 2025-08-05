@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:47.475664'
 featured_image: '/images/jakartaee-ambassadors-e1577035229941.png'
 ---
 
-![](/images/jakartaee-ambassadors-e1577035229941.png)
+<img src="/images/jakartaee-ambassadors-e1577035229941.png" alt="" />
 
 I joined the Jakarta Ambassadors program
 ========================================

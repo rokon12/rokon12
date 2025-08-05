@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:35.708041'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 ---
 
-![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
+<img src="/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg" alt="" />
 
 Java Bytecode Simplified: Journey to the Wonderland (Part 2)
 ============================================================

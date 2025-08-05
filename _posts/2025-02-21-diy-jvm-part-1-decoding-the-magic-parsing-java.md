@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:38.346627'
 featured_image: '/images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp'
 ---
 
-![](/images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp)
+<img src="/images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp" alt="" />
 
 DIY JVM Part 1: Decoding the Magic -- Parsing Java
 ==================================================
@@ -35,7 +35,7 @@ When you compile a Java program, it produces a .class file---essentially a binar
 
 For example, if we take a hexdump of a .class file, it will look like this:
 
-![](/images/screenshot-2025-02-21-at-12.55.41-am.png)
+<img src="/images/screenshot-2025-02-21-at-12.55.41-am.png" alt="" />
 
 As you can see, it is just a stream of bytes, and the first 4 bytes are the magic number, cafe babe.
 

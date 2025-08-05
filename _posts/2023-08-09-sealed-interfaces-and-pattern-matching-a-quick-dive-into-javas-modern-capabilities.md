@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:21.465398'
 featured_image: '/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg'
 ---
 
-![](/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg)
+<img src="/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg" alt="" />
 
 Sealed Interfaces and Pattern Matching: A Quick Dive into Java's Modern Capabilities
 ====================================================================================

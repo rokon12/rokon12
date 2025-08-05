@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:01.430822'
 featured_image: '/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
 ---
 
-![](/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
+<img src="/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg" alt="" />
 
 What is CyclicBarrier and When to Use It in Java?
 =================================================

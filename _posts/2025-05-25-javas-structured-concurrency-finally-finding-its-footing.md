@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:27.502625'
 featured_image: '/images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png'
 ---
 
-![](/images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png)
+<img src="/images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png" alt="" />
 
 Java's Structured Concurrency: Finally Finding Its Footing
 ==========================================================

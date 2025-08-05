@@ -10,7 +10,7 @@ featured_image: '/images/jekov.jpeg'
 Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II
 =====================================================================================
 
-![](/images/jekov.jpeg)
+<img src="/images/jekov.jpeg" alt="" />
 
 Welcome back to the second installment of our in-depth conversation with Jakob Jenkov, a leading figure in the world of Java. If you joined us for[Part I](https://foojay.io/today/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-i/), you'll recall the insightful discussions around the evolving landscape of Java and its continuous improvements. Today, we delve even deeper into the subject. Jakob will share his thoughts on the challenges of modern software development, the impacts of artificial intelligence on developers, and much more. Get ready for another fascinating exploration into the depths of Java with Jakob Jenkov!
 

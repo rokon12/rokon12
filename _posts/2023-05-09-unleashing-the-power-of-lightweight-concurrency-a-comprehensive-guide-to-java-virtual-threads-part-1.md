@@ -32,7 +32,7 @@ In a server application, a thread is assigned to each incoming request. This app
 Virtual threads are an alternative implementation of Java threads that store their stack frames in Java's garbage-collected heap rather than in monolithic blocks of memory allocated by the OS. It starts out at only a few hundred bytes and expands and shrinks automatically.
 
 The operating system only knows about platform threads, which remain in the scheduling unit. To run code in a virtual thread, the Java runtime arranges for it to run by mounting it on a traditional thread called a "carrier thread."
-![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQF0JIUt4d-4mw/article-inline_image-shrink_1000_1488/0/1682839413602?e=1689206400&v=beta&t=IO3LpntQIKePutaBXki2RSH95DNn6eXkcKBmFn6trLg) Internals of Virtual Threads
+<img src="https://media.licdn.com/dms/image/D5612AQF0JIUt4d-4mw/article-inline_image-shrink_1000_1488/0/1682839413602?e=1689206400&v=beta&t=IO3LpntQIKePutaBXki2RSH95DNn6eXkcKBmFn6trLg" alt="No alt text provided for this image" /> Internals of Virtual Threads
 
 When code running in a virtual thread would otherwise block for IO, locking, or other resource availability, it can be unmounted from the carrier thread, and any modified stack frames copied back to the heap, which frees the carrier thread to run something else.
 

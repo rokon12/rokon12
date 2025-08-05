@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:22:12.353819'
 featured_image: '/images/7.png'
 ---
 
-![](/images/7.png)
+<img src="/images/7.png" alt="" />
 
 From Assembler to Chat-GPT: Steve Poole on the Shifting Landscape of Programming
 ================================================================================
 
-![](/images/image-4-921x1024.png)
+<img src="/images/image-4-921x1024.png" alt="" />
 
 Welcome to our exclusive interview with [Steve Poole](https://www.linkedin.com/in/noregressions/), a seasoned Java developer, leader, and evangelist with a lot of experience in the tech industry.
 
@@ -182,7 +182,7 @@ Eventually, they realized that the problem was the monitoring system itself; it 
 For weeks and weeks, we tried different things to capture the problem until someone realized that the Windows machine was running a 3D screen saver. Which, of course, was terminated every time you signed in! The cause had been in front of our noses for weeks.
 
 Unfortunately, we just made assumptions before we'd even started about the problem -- rather than stepping back and understanding the situation, we just allowed a rogue screen saver to eat all the CPU right in front of us! That taught me a great deal about how to really diagnose problems and avoid pre-emptive guessing and assumptions.  
-![](/images/3750862963-a-group-of-developers-gathered-around-a-computer-laughing-as-they-discover-the-cause-of-their-netwo.png)
+<img src="/images/3750862963-a-group-of-developers-gathered-around-a-computer-laughing-as-they-discover-the-cause-of-their-netwo.png" alt="" />
 
 **Editor's note:** *Steve's anecdote emphasizes the importance of thorough diagnosis and avoiding assumptions when tackling problems. This lesson highlights the need to step back, understand the situation, and remain open to possibilities, which is applicable across various problem-solving contexts.*
 

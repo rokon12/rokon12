@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:02.858513'
 featured_image: '/images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg'
 ---
 
-![](/images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg)
+<img src="/images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg" alt="" />
 
 What is CountDownLatch and How to Use It?
 =========================================

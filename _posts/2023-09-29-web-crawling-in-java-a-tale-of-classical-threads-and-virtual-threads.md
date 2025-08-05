@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:05.405686'
 featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 ---
 
-![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
+<img src="/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg" alt="" />
 
 Web Crawling in Java: A Tale of Classical Threads and Virtual Threads
 =====================================================================

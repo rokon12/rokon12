@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:49.849292'
 featured_image: '/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp'
 ---
 
-![](/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp)
+<img src="/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp" alt="" />
 
 Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455
 ============================================================================================

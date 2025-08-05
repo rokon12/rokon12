@@ -10,7 +10,7 @@ featured_image: '/images/michael-redlich.jpg'
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich
 ================================================================================================
 
-![](/images/michael-redlich.jpg)
+<img src="/images/michael-redlich.jpg" alt="" />
 
 In this interview, we had the pleasure of speaking with Michael P. Redlich, a seasoned software developer with over 30 years of experience in the field.
 

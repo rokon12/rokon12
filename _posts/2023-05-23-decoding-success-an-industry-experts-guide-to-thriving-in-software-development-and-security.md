@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:21:51.91846'
 featured_image: '/images/erik.jpeg'
 ---
 
-![](/images/erik.jpeg)
+<img src="/images/erik.jpeg" alt="" />
 
 Decoding Success: An Industry Expert's Guide to Thriving in Software Development and Security
 =============================================================================================
 
-![](/images/erik.jpeg)
+<img src="/images/erik.jpeg" alt="" />
 
 In today's fast-paced tech world, understanding the intricacies of software development and product management is key to success.
 

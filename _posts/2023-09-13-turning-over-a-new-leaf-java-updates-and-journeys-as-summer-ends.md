@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:09.321153'
 featured_image: '/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png'
 ---
 
-![](/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png)
+<img src="/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png" alt="" />
 
 Turning Over a New Leaf: Java Updates and Journeys as Summer Ends
 =================================================================

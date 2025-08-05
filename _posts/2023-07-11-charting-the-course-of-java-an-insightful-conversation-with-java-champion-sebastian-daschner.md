@@ -7,12 +7,12 @@ date_scraped: '2025-08-05T14:21:30.212486'
 featured_image: '/images/sebastian-daschner.png'
 ---
 
-![](/images/sebastian-daschner.png)
+<img src="/images/sebastian-daschner.png" alt="" />
 
 Charting the Course of Java: An Insightful Conversation with Java Champion, Sebastian Daschner
 ==============================================================================================
 
-![](/images/sebastian.jpeg)
+<img src="/images/sebastian.jpeg" alt="" />
 
 In this insightful interview, renowned Java Champion, Oracle Developer Champion, and JavaOne Rockstar, Sebastian Daschner, shares his journey in the field of Java enterprise software development.
 

@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:22:44.502299'
 featured_image: '/images/java-newsletters-1.png'
 ---
 
-![](/images/java-newsletters-1.png)
+<img src="/images/java-newsletters-1.png" alt="" />
 
 Weekly Java Newsletter -- Issue #2
 ==================================

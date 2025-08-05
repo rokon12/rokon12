@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:21:40.516589'
 featured_image: '/images/erik.jpeg'
 ---
 
-![](/images/erik.jpeg)
+<img src="/images/erik.jpeg" alt="" />
 
 Exploring Java 21's Intriguing Additions: Unveiling New Features (Part 1)
 =========================================================================

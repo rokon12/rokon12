@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T14:20:52.756548'
 featured_image: '/images/gemini-generated-image-2.jpeg'
 ---
 
-![](/images/gemini-generated-image-2.jpeg)
+<img src="/images/gemini-generated-image-2.jpeg" alt="" />
 
 Records for Cleaner and More Expressive Parameterized Tests in JUnit 5
 ======================================================================
