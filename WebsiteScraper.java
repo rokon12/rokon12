@@ -352,11 +352,11 @@ public class WebsiteScraper {
                                 }
                                 
                                 // Update all references to this image
-                                img.attr("src", "images/" + imgName);
+                                img.attr("src", "/images/" + imgName);
                                 for (Element contentImg : content.select("img")) {
                                     String contentImgUrl = contentImg.attr("src");
                                     if (contentImgUrl.contains(imgUrl.replace("https://", "").replace("http://", ""))) {
-                                        contentImg.attr("src", "images/" + imgName);
+                                        contentImg.attr("src", "/images/" + imgName);
                                     }
                                 }
                                 
@@ -431,7 +431,7 @@ public class WebsiteScraper {
                                 if (imageName.contains("?")) {
                                     imageName = imageName.substring(0, imageName.indexOf('?'));
                                 }
-                                featuredImage = "images/" + imageName;
+                                featuredImage = "/images/" + imageName;
                             }
                         }
 
@@ -440,6 +440,7 @@ public class WebsiteScraper {
 
                         // Prepare metadata
                         String fullContent = "---\n" +
+                                             "layout: post\n" +
                                              "title: '" + title + "'\n" +
                                              "original_url: '" + url + "'\n" +
                                              "date_published: '" + publishDate + "'\n" +
