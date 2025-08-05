@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Preparing for JDK 21: A Comprehensive Overview of Key Features and Enhancements'
 original_url: 'https://bazlur.ca/2023/08/02/preparing-for-jdk-21-a-comprehensive-overview-of-key-features-and-enhancements/'
 date_published: '2023-08-02T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:25.851764'
-featured_image: 'images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg'
+featured_image: '/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg'
 ---
 
-![](images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg)
+![](/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg)
 
 Preparing for JDK 21: A Comprehensive Overview of Key Features and Enhancements
 ===============================================================================

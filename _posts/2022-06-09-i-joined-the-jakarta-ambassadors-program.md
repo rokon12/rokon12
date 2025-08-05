@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'I joined the Jakarta Ambassadors program'
 original_url: 'https://bazlur.ca/2022/06/09/i-joined-the-jakarta-ambassadors-program/'
 date_published: '2022-06-09T00:00:00+00:00'
 date_scraped: '2025-08-05T14:22:47.475664'
-featured_image: 'images/jakartaee-ambassadors-e1577035229941.png'
+featured_image: '/images/jakartaee-ambassadors-e1577035229941.png'
 ---
 
-![](images/jakartaee-ambassadors-e1577035229941.png)
+![](/images/jakartaee-ambassadors-e1577035229941.png)
 
 I joined the Jakarta Ambassadors program
 ========================================

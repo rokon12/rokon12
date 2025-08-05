@@ -1,17 +1,18 @@
 ---
+layout: post
 title: 'Resilience in Coding: Miro Wengner on Thriving in the Software Industry'
 original_url: 'https://bazlur.ca/2023/05/31/resilience-in-coding-miro-wengner-on-thriving-in-the-software-industry/'
 date_published: '2023-05-31T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:47.504839'
-featured_image: 'images/miro.jpeg'
+featured_image: '/images/miro.jpeg'
 ---
 
-![](images/miro.jpeg)
+![](/images/miro.jpeg)
 
 Resilience in Coding: Miro Wengner on Thriving in the Software Industry
 =======================================================================
 
-![](images/miro.jpeg)
+![](/images/miro.jpeg)
 
 In this insightful discussion, we sit down with Miro Wengner, an accomplished software engineer with a deep-rooted affinity for Java. Miro shares his professional journey, highlights the significant challenges in the field, and reflects on the key moments that shaped his career.
 

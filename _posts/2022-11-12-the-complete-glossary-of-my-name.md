@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'The complete glossary of my name'
 original_url: 'https://bazlur.ca/2022/11/12/the-complete-glossary-of-my-name/'
 date_published: '2022-11-12T00:00:00+00:00'

@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'My Committer Profile and Interview with the Eclipse Foundation'
 original_url: 'https://bazlur.ca/2023/04/10/my-committer-profile-interview-with-the-eclipse-foundation/'
 date_published: '2023-04-10T00:00:00+00:00'
 date_scraped: '2025-08-05T14:22:05.185138'
-featured_image: 'images/screen-shot-2023-04-10-at-6.11.44-am.png'
+featured_image: '/images/screen-shot-2023-04-10-at-6.11.44-am.png'
 ---
 
-![](images/screen-shot-2023-04-10-at-6.11.44-am.png)
+![](/images/screen-shot-2023-04-10-at-6.11.44-am.png)
 
 My Committer Profile and Interview with the Eclipse Foundation
 ==============================================================

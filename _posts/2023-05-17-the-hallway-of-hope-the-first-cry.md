@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'The Hallway of Hope: The First Cry'
 original_url: 'https://bazlur.ca/2023/05/17/the-hallway-of-hope-the-first-cry/'
 date_published: '2023-05-17T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:53.37864'
-featured_image: 'images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg'
+featured_image: '/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg'
 ---
 
-![](images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)
+![](/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)
 
 The Hallway of Hope: The First Cry
 ==================================

@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization'
 original_url: 'https://bazlur.ca/2025/02/14/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization/'
 date_published: '2025-02-14T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:41.218824'
-featured_image: 'images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg'
+featured_image: '/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg'
 ---
 
-![](images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg)
+![](/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg)
 
 SummarizingTokenWindowChatMemory: Enhancing LLM's Conversations with Efficient Summarization
 ============================================================================================
@@ -345,7 +346,7 @@ To test its functionality, I created a simple chatbot that suggests recipes. The
 
 The source code is here: <https://github.com/rokon12/chefbot>
 
-![](images/screenshot-2025-02-14-at-1.04.29-am.png)  
+![](/images/screenshot-2025-02-14-at-1.04.29-am.png)  
 
 *** ** * ** ***
 

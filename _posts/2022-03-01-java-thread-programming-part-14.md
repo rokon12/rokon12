@@ -1,9 +1,10 @@
 ---
+layout: post
 title: 'Java Thread Programming (Part 14)'
 original_url: 'https://bazlur.ca/2022/03/01/java-thread-programming-part-14/'
 date_published: '2022-03-01T00:00:00+00:00'
 date_scraped: '2025-08-05T14:23:13.015119'
-featured_image: 'images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png'
+featured_image: '/images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png'
 ---
 
 Java Thread Programming (Part 14)
@@ -103,7 +104,7 @@ With the above code, how many tasks will be created?
 
 The recursion tree will look like this.
 
-![](images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png)
+![](/images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png)
 
 We count that we will have 15 tasks. The top task, which is 5, will create two new tasks and wait for them to finish.
 

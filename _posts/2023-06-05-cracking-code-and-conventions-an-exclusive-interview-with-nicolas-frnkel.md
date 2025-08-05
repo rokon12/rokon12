@@ -1,17 +1,18 @@
 ---
+layout: post
 title: 'Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel'
 original_url: 'https://bazlur.ca/2023/06/05/cracking-code-and-conventions-an-exclusive-interview-with-nicolas-frankel/'
 date_published: '2023-06-05T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:46.06274'
-featured_image: 'images/nicols.jpeg'
+featured_image: '/images/nicols.jpeg'
 ---
 
-![](images/nicols.jpeg)
+![](/images/nicols.jpeg)
 
 Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel
 ==========================================================================
 
-![](images/nicols-510x510.jpeg)
+![](/images/nicols-510x510.jpeg)
 
 In this enlightening interview, we explore the unique journey of Nicolas Fränkel, a seasoned professional in the software industry. From an architecture student to a passionate software developer, Nicolas shares his candid thoughts about the current state of software development and the potential impacts of AI.
 

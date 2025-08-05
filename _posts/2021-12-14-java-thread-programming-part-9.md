@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Java Thread Programming (Part 9)'
 original_url: 'https://bazlur.ca/2021/12/14/java-thread-programming-part-9/'
 date_published: '2021-12-14T00:00:00+00:00'

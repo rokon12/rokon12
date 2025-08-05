@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Accessing Native C Functions from Java Using OpenJDK’s JEP 454: Foreign Function & Memory API'
 original_url: 'https://bazlur.ca/2023/10/16/accessing-native-c-functions-from-java-using-openjdks-jep-454-foreign-function-memory-api/'
 date_published: '2023-10-16T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:57.132044'
-featured_image: 'images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png'
+featured_image: '/images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png'
 ---
 
-![](images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png)
+![](/images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png)
 
 Accessing Native C Functions from Java Using OpenJDK's JEP 454: Foreign Function \& Memory API
 ==============================================================================================

@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked'
 original_url: 'https://bazlur.ca/2023/09/20/exploring-the-impact-of-stack-size-on-jvm-thread-creation-a-myth-debunked/'
 date_published: '2023-09-20T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:07.888695'
-featured_image: 'images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
+featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 ---
 
-![](images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
+![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
 
 Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked
 ==========================================================================
@@ -87,7 +88,7 @@ Exception in thread "main" java.lang.OutOfMemoryError: unable to create native t
 ```
 
 In case you want to use IntelliJ IDEA, you can configure the stack size, check the following image:
-![](images/screenshot-2023-09-10-at-10.48.08-pm-1-1024x700.png)
+![](/images/screenshot-2023-09-10-at-10.48.08-pm-1-1024x700.png)
 
 ### **1 GB Stack Size**
 

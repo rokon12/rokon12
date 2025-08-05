@@ -1,17 +1,18 @@
 ---
+layout: post
 title: 'Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana'
 original_url: 'https://bazlur.ca/2023/04/03/unlocking-the-secrets-to-a-successful-software-engineering-career-an-interview-with-otavio-santana/'
 date_published: '2023-04-03T00:00:00+00:00'
 date_scraped: '2025-08-05T14:22:06.622369'
-featured_image: 'images/4.png'
+featured_image: '/images/4.png'
 ---
 
-![](images/4.png)
+![](/images/4.png)
 
 Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana
 ===================================================================================================
 
-![](images/otavio-edited.webp)
+![](/images/otavio-edited.webp)
 
 In this exclusive interview, we had the pleasure of speaking with [Otavio Santana](https://www.linkedin.com/in/otaviojava/), a Java Champion and passionate software engineer and architect dedicated to empowering fellow engineers to deliver efficient, scalable software on the Cloud.
 

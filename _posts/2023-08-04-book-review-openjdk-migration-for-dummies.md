@@ -1,9 +1,10 @@
 ---
+layout: post
 title: 'Book Review: “OpenJDK Migration for Dummies”'
 original_url: 'https://bazlur.ca/2023/08/04/book-review-openjdk-migration-for-dummies/'
 date_published: '2023-08-04T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:24.412887'
-featured_image: 'images/dummies-373x510.png'
+featured_image: '/images/dummies-373x510.png'
 ---
 
 Book Review: "OpenJDK Migration for Dummies"
@@ -13,7 +14,7 @@ Book Review: "OpenJDK Migration for Dummies"
 
 "OpenJDK Migration for Dummies" by[Simon Ritter](https://www.linkedin.com/in/siritter/) offers a fresh perspective, breaking down these challenges into digestible segments. ([Get it for free here.](https://www.azul.com/openjdk-migration-for-dummies/))
 
-[![](images/dummies-373x510.png)](https://www.azul.com/openjdk-migration-for-dummies/)
+[![](/images/dummies-373x510.png)](https://www.azul.com/openjdk-migration-for-dummies/)
 
 The book directly speaks to my core expertise in Java, providing clarity and guidance.
 

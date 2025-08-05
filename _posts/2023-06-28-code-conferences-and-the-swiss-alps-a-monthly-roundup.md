@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Code, Conferences, and the Swiss Alps: A Monthly Roundup'
 original_url: 'https://bazlur.ca/2023/06/28/code-conferences-and-the-swiss-alps-a-monthly-roundup/'
 date_published: '2023-06-28T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:39.083789'
-featured_image: 'images/1687906864391.jpeg'
+featured_image: '/images/1687906864391.jpeg'
 ---
 
-![](images/1687906864391.jpeg)
+![](/images/1687906864391.jpeg)
 
 Code, Conferences, and the Swiss Alps: A Monthly Roundup
 ========================================================
@@ -14,7 +15,7 @@ Code, Conferences, and the Swiss Alps: A Monthly Roundup
 Apologies for the slight delay in delivering this month's newsletter. The breathtaking allure of the Swiss Alps can make one lose track of time, and that's precisely what happened to me last week during my travels.{#ember241}
 
 I had the honour of being a speaker at [JCon 2023](https://sched.co/1LgSj), a conference held in Cologne, Germany. The event was a resounding success and gave me an unexpected surprise. I finally had the chance to meet my long-time mentor, [Bruno Souza](https://www.linkedin.com/in/brjavaman?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAAFPQsBWOMYdNqXsvhAxcjYibZPkgh8zA0), in person. We had previously discussed whether he would attend the conference, but he initially indicated he wouldn't. Imagine my surprise when I saw him delivering a keynote session!{#ember243}  
-![](images/pxl-20230622-091632248.jpg)
+![](/images/pxl-20230622-091632248.jpg)
 
 Accompanying me on this trip were my wife and our 5-month-old baby. Post-conference, we took the opportunity to explore Switzerland for three days. The splendour of Switzerland is globally recognized, and my words can hardly do it justice. But let's get back to the purpose of this newsletter.{#ember246}
 

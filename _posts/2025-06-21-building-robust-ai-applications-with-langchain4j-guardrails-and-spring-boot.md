@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Building Robust AI Applications with LangChain4j Guardrails and Spring Boot'
 original_url: 'https://bazlur.ca/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/'
 date_published: '2025-06-21T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:24.498188'
-featured_image: 'images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png'
+featured_image: '/images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png'
 ---
 
-![](images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png)
+![](/images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png)
 
 Building Robust AI Applications with LangChain4j Guardrails and Spring Boot
 ===========================================================================
@@ -799,7 +800,7 @@ open http://localhost:8080
 
 It will provide an interface similar to the one above, and you can then try out the example shown on the right side of the panel.
 
-![](images/screenshot-2025-06-21-at-12.17.07-pm.png)
+![](/images/screenshot-2025-06-21-at-12.17.07-pm.png)
 
 Conclusion
 ----------

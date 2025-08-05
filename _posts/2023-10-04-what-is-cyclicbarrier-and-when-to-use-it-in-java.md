@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'What is CyclicBarrier and When to Use It in Java?'
 original_url: 'https://bazlur.ca/2023/10/04/what-is-cyclicbarrier-and-when-to-use-it-in-java/'
 date_published: '2023-10-04T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:01.430822'
-featured_image: 'images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
+featured_image: '/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
 ---
 
-![](images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
+![](/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
 
 What is CyclicBarrier and When to Use It in Java?
 =================================================

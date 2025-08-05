@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Unsafe is Finally Going Away: Embracing Safer Memory Access with JEP 471'
 original_url: 'https://bazlur.ca/2024/07/11/unsafe-is-finally-going-away-embracing-safer-memory-access-with-jep-471/'
 date_published: '2024-07-11T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:48.415552'
-featured_image: 'images/gemini-generated-image-9cppb89cppb89cpp.jpeg'
+featured_image: '/images/gemini-generated-image-9cppb89cppb89cpp.jpeg'
 ---
 
-![](images/gemini-generated-image-9cppb89cppb89cpp.jpeg)
+![](/images/gemini-generated-image-9cppb89cppb89cpp.jpeg)
 
 Unsafe is Finally Going Away: Embracing Safer Memory Access with JEP 471
 ========================================================================

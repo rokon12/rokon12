@@ -1,17 +1,18 @@
 ---
+layout: post
 title: 'Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli'
 original_url: 'https://bazlur.ca/2023/09/01/unlocking-java-wisdom-a-conversation-with-oracle-ace-simon-martinelli/'
 date_published: '2023-09-01T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:12.185734'
-featured_image: 'images/simon-martinelli.png'
+featured_image: '/images/simon-martinelli.png'
 ---
 
-![](images/simon-martinelli.png)
+![](/images/simon-martinelli.png)
 
 Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli
 ======================================================================
 
-![](images/image-2.png)
+![](/images/image-2.png)
 
 In a recent insightful interview, Simon Martinelli, an Oracle ACE associate and veteran Java developer, shares his career experiences, software development philosophies, and views on mentoring. With over two decades in the industry, Martinelli offers a perspective that combines the wisdom of experience with a focus on simplicity and constant learning.
 

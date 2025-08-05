@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Competing for the Crown: A Friendly Debate on the Future of Java and Kotlin on Foojay.io Today'
 original_url: 'https://bazlur.ca/2023/03/29/competing-for-the-crown-a-friendly-debate-on-the-future-of-java-and-kotlin-on-foojay-io-today/'
 date_published: '2023-03-29T00:00:00+00:00'

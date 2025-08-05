@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Web Crawling in Java: A Tale of Classical Threads and Virtual Threads'
 original_url: 'https://bazlur.ca/2023/09/29/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads/'
 date_published: '2023-09-29T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:05.405686'
-featured_image: 'images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
+featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 ---
 
-![](images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
+![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
 
 Web Crawling in Java: A Tale of Classical Threads and Virtual Threads
 =====================================================================

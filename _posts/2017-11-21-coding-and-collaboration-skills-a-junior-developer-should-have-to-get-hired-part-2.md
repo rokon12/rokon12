@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Coding and collaboration skills a junior developer should have to get hired – Part 2'
 original_url: 'https://bazlur.ca/2017/11/21/interview-with-bruno-souza-coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired/'
 date_published: '2017-11-21T00:00:00+00:00'

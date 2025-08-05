@@ -1,4 +1,5 @@
 ---
+layout: post
 title: '5 ways to improve your communication skills'
 original_url: 'https://bazlur.ca/2022/08/06/5-ways-to-improve-your-communication-skills/'
 date_published: '2022-08-06T00:00:00+00:00'

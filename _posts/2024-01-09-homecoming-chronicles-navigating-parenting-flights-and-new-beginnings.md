@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Homecoming Chronicles: Navigating Parenting, Flights, and New Beginnings'
 original_url: 'https://bazlur.ca/2024/01/09/homecoming-chronicles-navigating-parenting-flights-and-new-beginnings/'
 date_published: '2024-01-09T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:54.213355'
-featured_image: 'images/1704519735509.png'
+featured_image: '/images/1704519735509.png'
 ---
 
-![](images/1704519735509.png)
+![](/images/1704519735509.png)
 
 Homecoming Chronicles: Navigating Parenting, Flights, and New Beginnings
 ========================================================================

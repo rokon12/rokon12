@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'The Speed Test: Comparing Map.of() and new HashMap<>() in Java'
 original_url: 'https://bazlur.ca/2023/03/16/speed-test-comparing-map-of-new-hashmap/'
 date_published: '2023-03-16T00:00:00+00:00'

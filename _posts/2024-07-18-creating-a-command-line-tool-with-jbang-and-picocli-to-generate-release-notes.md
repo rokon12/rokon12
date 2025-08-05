@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes'
 original_url: 'https://bazlur.ca/2024/07/18/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes/'
 date_published: '2024-07-18T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:46.9844'
-featured_image: 'images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp'
+featured_image: '/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp'
 ---
 
-![](images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp)
+![](/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp)
 
 Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes
 =============================================================================
@@ -53,7 +54,7 @@ To open it in your IDE, you can use:
 
 This creates a sandbox environment and sets up a Gradle project for you. You can then open it on your favourite IDE.
 
-![](images/screenshot-2024-07-18-at-10.18.19-pm.png)
+![](/images/screenshot-2024-07-18-at-10.18.19-pm.png)
 
 ### **Step 3: Add Dependencies**
 
@@ -385,7 +386,7 @@ Usage: release_notes [-f=<outputFile>] [-o=<outputFormat>] -r=<repo>
 
 It will print on the terminal if we don't want to save it in any file.
 
-![](images/screenshot-2024-07-18-at-9.46.00-pm.png)
+![](/images/screenshot-2024-07-18-at-9.46.00-pm.png)
 
 That's it.
 

@@ -1,19 +1,20 @@
 ---
+layout: post
 title: 'Java Thread Programming (Part 15)'
 original_url: 'https://bazlur.ca/2022/08/31/java-thread-programming-part-15/'
 date_published: '2022-08-31T00:00:00+00:00'
 date_scraped: '2025-08-05T14:22:34.234566'
-featured_image: 'images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg'
+featured_image: '/images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg'
 ---
 
-![](images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg)
+![](/images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg)
 
 Java Thread Programming (Part 15)
 =================================
 
 This article will discuss how we do asynchronous method invocation with [Callable](https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/Callable.html) and [Future](https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/Future.html) with a practical example.
 
-![](images/playground.java-700x227.png)
+![](/images/playground.java-700x227.png)
 
 Look at the code snippet. It doesn't have anything yet, but [as we learned about Java threading](/2022/03/01/java-thread-programming-part-14/), we know anything we put here will run on the main thread unless we spawn a new thread from here.
 
@@ -101,7 +102,7 @@ private static Credit calculateCreditForPerson3(ExecutorService pool)
 
 To know how the future works, read part 12 of this threading series: ​​<https://foojay.io/today/java-thread-programming-part-12/>.
 
-![](images/aysnchronos-programming-1024x447.png)
+![](/images/aysnchronos-programming-1024x447.png)
 
 The code exactly does the same thing, but it is much cleaner and better. The basic idea is that the second and third methods are being executed independently and separately in other threads.
 

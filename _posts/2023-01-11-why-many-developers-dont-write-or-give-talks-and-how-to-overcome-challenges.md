@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Why Many Developers Don’t Write or Give Talks and How to Overcome Challenges'
 original_url: 'https://bazlur.ca/2023/01/11/why-many-developers-dont-write-or-give-talks-and-how-to-overcome-challenges/'
 date_published: '2023-01-11T00:00:00+00:00'

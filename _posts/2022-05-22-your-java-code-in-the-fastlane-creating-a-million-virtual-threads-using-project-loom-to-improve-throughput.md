@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput'
 original_url: 'https://bazlur.ca/2022/05/22/your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput/'
 date_published: '2022-05-22T00:00:00+00:00'

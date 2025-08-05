@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'The Java Landscape: A Month with Vaadin, OpenJDK Insights, and Java Enhancements'
 original_url: 'https://bazlur.ca/2023/08/07/the-java-landscape-a-month-with-vaadin-openjdk-insights-and-java-enhancements/'
 date_published: '2023-08-07T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:22.891861'
-featured_image: 'images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png'
+featured_image: '/images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png'
 ---
 
-![](images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png)
+![](/images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png)
 
 The Java Landscape: A Month with Vaadin, OpenJDK Insights, and Java Enhancements
 ================================================================================

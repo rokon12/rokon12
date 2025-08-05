@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Announcing “Java Unscripted: An Asynchronous Exploration of Excellence”'
 original_url: 'https://bazlur.ca/2023/05/16/announcing-java-unscripted-an-asynchronous-exploration-of-excellence/'
 date_published: '2023-05-16T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:54.840652'
-featured_image: 'images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg'
+featured_image: '/images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg'
 ---
 
-![](images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg)
+![](/images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg)
 
 Announcing "Java Unscripted: An Asynchronous Exploration of Excellence"
 =======================================================================
@@ -44,7 +45,7 @@ The interviews will be conducted asynchronously via **email** or **Slack** , wit
 
 ### **We'd be thrilled to have you if you're interested in contributing to this series. Please fill out this Google Form to provide some basic information and preferences for the interview process:[Interview Participation Form](https://forms.gle/DsC9hN424sCPicgM8)**
 
-![](images/image-847x1024.png)
+![](/images/image-847x1024.png)
 
 We eagerly look forward to hearing from you.   
 

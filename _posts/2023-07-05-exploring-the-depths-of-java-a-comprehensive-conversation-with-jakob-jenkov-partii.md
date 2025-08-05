@@ -1,15 +1,16 @@
 ---
+layout: post
 title: 'Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II'
 original_url: 'https://bazlur.ca/2023/07/05/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-ii/'
 date_published: '2023-07-05T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:36.178984'
-featured_image: 'images/jekov.jpeg'
+featured_image: '/images/jekov.jpeg'
 ---
 
 Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II
 =====================================================================================
 
-![](images/jekov.jpeg)
+![](/images/jekov.jpeg)
 
 Welcome back to the second installment of our in-depth conversation with Jakob Jenkov, a leading figure in the world of Java. If you joined us for[Part I](https://foojay.io/today/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-i/), you'll recall the insightful discussions around the evolving landscape of Java and its continuous improvements. Today, we delve even deeper into the subject. Jakob will share his thoughts on the challenges of modern software development, the impacts of artificial intelligence on developers, and much more. Get ready for another fascinating exploration into the depths of Java with Jakob Jenkov!
 

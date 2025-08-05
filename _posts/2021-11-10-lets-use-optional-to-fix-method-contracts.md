@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Let’s Use Optional to Fix Method Contracts'
 original_url: 'https://bazlur.ca/2021/11/10/lets-use-optional-to-fix-method-contracts/'
 date_published: '2021-11-10T00:00:00+00:00'

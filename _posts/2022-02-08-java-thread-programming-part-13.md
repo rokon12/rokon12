@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Java Thread Programming (Part 13)'
 original_url: 'https://bazlur.ca/2022/02/08/java-thread-programming-part-13/'
 date_published: '2022-02-08T00:00:00+00:00'

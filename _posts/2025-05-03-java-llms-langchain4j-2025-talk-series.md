@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Java + LLMs  + LangChain4j — 2025 Talk Series'
 original_url: 'https://bazlur.ca/2025/05/03/java-llms-langchain4j-2025-talk-series/'
 date_published: '2025-05-03T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:30.93088'
-featured_image: 'images/screenshot-2025-05-03-at-5.49.41-am.png'
+featured_image: '/images/screenshot-2025-05-03-at-5.49.41-am.png'
 ---
 
-![](images/screenshot-2025-05-03-at-5.49.41-am.png)
+![](/images/screenshot-2025-05-03-at-5.49.41-am.png)
 
 Java + LLMs  + LangChain4j --- 2025 Talk Series
 ===============================================

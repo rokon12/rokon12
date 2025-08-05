@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'How to run the Java Incubator Module from the Command Line and IntelliJ IDEA'
 original_url: 'https://bazlur.ca/2022/05/10/how-to-run-the-java-incubator-module-from-the-command-line-and-intellij-idea/'
 date_published: '2022-05-10T00:00:00+00:00'
 date_scraped: '2025-08-05T14:22:56.165504'
-featured_image: 'images/idea-overview-5-1-2x.webp'
+featured_image: '/images/idea-overview-5-1-2x.webp'
 ---
 
-![](images/idea-overview-5-1-2x.webp)
+![](/images/idea-overview-5-1-2x.webp)
 
 How to run the Java Incubator Module from the Command Line and IntelliJ IDEA
 ============================================================================
@@ -86,7 +87,7 @@ Then I thought why not do it with my favourite IDE, IntelliJ IDEA.
 Here are the steps: --
 
 First, we need to go preference, and then **Build, Execution, Deployment** and then Select Java Compiler.
-![](images/screen-shot-2022-05-09-at-11.43.12-pm-1024x917.png)
+![](/images/screen-shot-2022-05-09-at-11.43.12-pm-1024x917.png)
 
 At the bottom, there is a box named the additional command line parameter. Add the following line there-
 
@@ -95,12 +96,12 @@ At the bottom, there is a box named the additional command line parameter. Add t
 ```
 
 And then go to the run configuration. Select the modify options and Mark the Add VM options.
-![](images/screen-shot-2022-05-08-at-5.04.39-am-1024x722.png)
+![](/images/screen-shot-2022-05-08-at-5.04.39-am-1024x722.png)
 
 We need to add **--add-modules jdk.incubator.concurrent** there as well.
 
 Similarly, way we can add other incubator modules as well, such as ***jdk.incubator.foreign***
-![](images/screen-shot-2022-05-09-at-11.43.35-pm-1024x751.png)
+![](/images/screen-shot-2022-05-09-at-11.43.35-pm-1024x751.png)
 
 That's it.
 

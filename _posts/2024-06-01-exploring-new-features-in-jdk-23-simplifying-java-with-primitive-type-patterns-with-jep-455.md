@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455'
 original_url: 'https://bazlur.ca/2024/06/01/exploring-new-features-in-jdk-23-simplifying-java-with-primitive-type-patterns-with-jep-455/'
 date_published: '2024-06-01T00:00:00+00:00'
 date_scraped: '2025-08-05T14:20:49.849292'
-featured_image: 'images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp'
+featured_image: '/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp'
 ---
 
-![](images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp)
+![](/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp)
 
 Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455
 ============================================================================================

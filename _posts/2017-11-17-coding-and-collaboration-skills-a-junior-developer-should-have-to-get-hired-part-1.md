@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 'Coding and collaboration skills a junior developer should have to get hired – Part 1'
 original_url: 'https://bazlur.ca/2017/11/17/coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired-part-1/'
 date_published: '2017-11-17T00:00:00+00:00'

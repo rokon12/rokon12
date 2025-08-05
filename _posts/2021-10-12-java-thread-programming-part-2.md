@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 'Java Thread Programming (Part 2)'
 original_url: 'https://bazlur.ca/2021/10/12/java-thread-programming-part-2/'
 date_published: '2021-10-12T00:00:00+00:00'
 date_scraped: '2025-08-05T14:23:37.914564'
-featured_image: 'images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png'
+featured_image: '/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png'
 ---
 
-![](images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png)
+![](/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png)
 
 Java Thread Programming (Part 2)
 ================================
@@ -89,7 +90,7 @@ Let's walk through the code first. In the above code, a `ServerSocket` starts at
 
 We can use telnet to connect the server and use this server.
 
-![](images/screen-shot-2021-09-30-at-9.30.24-pm-635x510.png)
+![](/images/screen-shot-2021-09-30-at-9.30.24-pm-635x510.png)
 
 The only problem with this is it can handle only one client at a time. So if we try to connect another client, it will respond only when the other connected client gets disconnected.
 
@@ -119,7 +120,7 @@ public class MultiThreadedServer {
 
 Now, we can connect multiple clients at once, and serve them all simultaneously:
 
-![](images/screen-shot-2021-09-30-at-10.06.47-pm-700x289.png)
+![](/images/screen-shot-2021-09-30-at-10.06.47-pm-700x289.png)
 
 Now that we understand the benefits of using threads in Java, we will dig a bit deeper into using threads in the following articles in this series.
 

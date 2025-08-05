@@ -1,15 +1,16 @@
 ---
+layout: post
 title: 'Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich'
 original_url: 'https://bazlur.ca/2023/05/15/discovering-the-secrets-to-success-an-exclusive-interview-with-java-champion-michael-p-redlich/'
 date_published: '2023-05-15T00:00:00+00:00'
 date_scraped: '2025-08-05T14:21:56.280018'
-featured_image: 'images/michael-redlich.jpg'
+featured_image: '/images/michael-redlich.jpg'
 ---
 
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich
 ================================================================================================
 
-![](images/michael-redlich.jpg)
+![](/images/michael-redlich.jpg)
 
 In this interview, we had the pleasure of speaking with Michael P. Redlich, a seasoned software developer with over 30 years of experience in the field.
 
