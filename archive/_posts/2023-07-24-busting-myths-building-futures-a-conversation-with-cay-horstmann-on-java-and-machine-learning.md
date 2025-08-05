@@ -2,9 +2,8 @@
 title: 'Busting Myths, Building Futures: A Conversation with Cay Horstmann on Java and Machine Learning'
 original_url: 'https://bazlur.ca/2023/07/24/busting-myths-building-futures-a-conversation-with-cay-horstmann-on-java-and-machine-learning/'
 date_published: '2023-07-24T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:29.03583781'
-tags: ['interview', 'java', 'career']
-featured_image: images/simon-martinelli-1.png
+date_scraped: '2025-08-05T14:11:41.048825'
+featured_image: 'images/simon-martinelli-1.png'
 ---
 
 ![](images/simon-martinelli-1.png)
@@ -219,10 +218,4 @@ His perspectives provide valuable insights for anyone navigating the ever-evolvi
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'Java + LLMs  + LangChain4j — 2025 Talk Series'
 original_url: 'https://bazlur.ca/2025/05/03/java-llms-langchain4j-2025-talk-series/'
 date_published: '2025-05-03T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:17.438606813'
-tags: ['ai', 'java']
-featured_image: images/screenshot-2025-05-03-at-5.49.41-am.png
+date_scraped: '2025-08-05T14:10:44.468736'
+featured_image: 'images/screenshot-2025-05-03-at-5.49.41-am.png'
 ---
 
 ![](images/screenshot-2025-05-03-at-5.49.41-am.png)
@@ -45,10 +44,4 @@ We're excited to keep refining these ideas and would love your feedback---see yo
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

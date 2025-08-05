@@ -2,9 +2,8 @@
 title: 'Java, Friends, and Cold Weather: My Adventure at ConFoo Conference'
 original_url: 'https://bazlur.ca/2023/02/27/java-friends-and-cold-weather-my-adventure-at-confoo-conference/'
 date_published: '2023-02-27T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:33.009432188'
-tags: ['personal', 'java']
-featured_image: images/image-3.png
+date_scraped: '2025-08-05T14:12:34.80859'
+featured_image: 'images/image-3.png'
 ---
 
 ![](images/image-3.png)
@@ -35,10 +34,4 @@ My flight was delayed several times due to the weather, and I was exhausted when
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

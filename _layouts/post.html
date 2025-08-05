@@ -52,6 +52,24 @@ layout: default
             {% include toc.html %}
         </div>
 
+        {% comment %} Newsletter Subscription CTA {% endcomment %}
+        <div class="newsletter-cta">
+            <div class="newsletter-content">
+                <h3>📬 Stay Updated with My Newsletter</h3>
+                <p>Want to keep in touch and learn more about:</p>
+                <ul>
+                    <li>☕ Java & all the new features coming along</li>
+                    <li>🧵 Concurrency & Virtual Threads</li>
+                    <li>🧠 LLMs, LangChain4j & AI Integration</li>
+                    <li>🚀 Quarkus, Spring & Jakarta EE</li>
+                </ul>
+                <p>Subscribe to my newsletter for regular updates, tips, and insights delivered straight to your inbox!</p>
+                <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="newsletter-button">
+                    Subscribe Now →
+                </a>
+            </div>
+        </div>
+
         <footer class="post-footer">
             {% if page.tags and page.tags.size > 0 %}
             <div class="post-tags-footer">

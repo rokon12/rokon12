@@ -2,8 +2,7 @@
 title: 'The Speed Test: Comparing Map.of() and new HashMap<>() in Java'
 original_url: 'https://bazlur.ca/2023/03/16/speed-test-comparing-map-of-new-hashmap/'
 date_published: '2023-03-16T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:09.417709881'
-tags: ['java', 'programming']
+date_scraped: '2025-08-05T14:12:29.060836'
 ---
 
 The Speed Test: Comparing Map.of() and new HashMap\<\>() in Java
@@ -211,10 +210,4 @@ Developers should consider using Map.of() when creating small maps in Java to ta
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

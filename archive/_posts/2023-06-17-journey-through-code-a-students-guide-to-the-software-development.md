@@ -2,9 +2,8 @@
 title: 'Journey through Code: A Student’s Guide to the Software Development'
 original_url: 'https://bazlur.ca/2023/06/17/journey-through-code-a-students-guide-to-the-software-development/'
 date_published: '2023-06-17T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:56.000628118'
-tags: ['career', 'programming', 'tutorial']
-featured_image: images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg
+date_scraped: '2025-08-05T14:11:55.723947'
+featured_image: 'images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg'
 ---
 
 ![](images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg)
@@ -38,10 +37,4 @@ In summary, focus on honing your skills and expertise in one language, coupled w
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

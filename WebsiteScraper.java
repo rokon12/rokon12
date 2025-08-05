@@ -22,7 +22,7 @@ import java.util.HashSet;
 
 public class WebsiteScraper {
     private static final String WEBSITE_URL = "https://bazlur.ca";
-    private static final String OUTPUT_DIR = "archive/_posts";
+    private static final String OUTPUT_DIR = "_posts";
     private static final String RECORD_FILE = "record.json";
     private static final String PROGRESS_FILE = "scraper_progress.json";
     private static final int MAX_ARTICLES = Integer.MAX_VALUE; // Limit for testing
@@ -317,7 +317,7 @@ public class WebsiteScraper {
                                     imgName = "image-" + System.currentTimeMillis() + ".jpg";
                                 }
                                 
-                                String imgPath = "archive/images/" + imgName;
+                                String imgPath = "images/" + imgName;
                                 File imgFile = new File(imgPath);
                                 
                                 // Skip if already exists
@@ -331,7 +331,7 @@ public class WebsiteScraper {
                                     continue;
                                 }
 
-                                Files.createDirectories(Paths.get("archive", "images"));
+                                Files.createDirectories(Paths.get("images"));
 
                                 log("Downloading image: " + imgUrl + " -> " + imgName);
                                 sleep(REQUEST_DELAY_MS / 2); // Shorter delay for images

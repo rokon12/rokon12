@@ -2,9 +2,8 @@
 title: 'Accessing Native C Functions from Java Using OpenJDK’s JEP 454: Foreign Function & Memory API'
 original_url: 'https://bazlur.ca/2023/10/16/accessing-native-c-functions-from-java-using-openjdks-jep-454-foreign-function-memory-api/'
 date_published: '2023-10-16T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:26.326853547'
-tags: ['java', 'tutorial']
-featured_image: images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png
+date_scraped: '2025-08-05T14:11:10.616737'
+featured_image: 'images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png'
 ---
 
 ![](images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png)
@@ -94,10 +93,4 @@ OpenJDK's JEP 454 offers a promising alternative to JNI for interacting with nat
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

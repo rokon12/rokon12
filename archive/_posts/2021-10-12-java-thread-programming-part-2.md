@@ -2,9 +2,8 @@
 title: 'Java Thread Programming (Part 2)'
 original_url: 'https://bazlur.ca/2021/10/12/java-thread-programming-part-2/'
 date_published: '2021-10-12T00:00:00+00:00'
-date_scraped: '2025-02-15T11:31:09.193400398'
-tags: ['concurrency', 'java', 'tutorial']
-featured_image: images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png
+date_scraped: '2025-08-05T14:13:52.506132'
+featured_image: 'images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png'
 ---
 
 ![](images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png)
@@ -172,10 +171,4 @@ That's it for today!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

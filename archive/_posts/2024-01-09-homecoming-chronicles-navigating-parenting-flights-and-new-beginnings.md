@@ -2,9 +2,8 @@
 title: 'Homecoming Chronicles: Navigating Parenting, Flights, and New Beginnings'
 original_url: 'https://bazlur.ca/2024/01/09/homecoming-chronicles-navigating-parenting-flights-and-new-beginnings/'
 date_published: '2024-01-09T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:20.76120587'
-tags: ['personal']
-featured_image: images/1704519735509.png
+date_scraped: '2025-08-05T14:11:07.680569'
+featured_image: 'images/1704519735509.png'
 ---
 
 ![](images/1704519735509.png)
@@ -54,10 +53,4 @@ Until then, happy reading! And thank you for being a part of this journey with m
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

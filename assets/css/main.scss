@@ -2836,6 +2836,149 @@ body {
   }
 }
 
+// Newsletter CTA Styles
+.newsletter-cta {
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.newsletter-content {
+  background: linear-gradient(135deg, rgba($primary-color, 0.05) 0%, rgba($secondary-color, 0.05) 100%);
+  border: 2px solid rgba($primary-color, 0.2);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba($primary-color, 0.05) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+  }
+  
+  p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: $text-color;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+    
+    li {
+      padding: 0.75rem 1.25rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: $bg-dark;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+      }
+    }
+  }
+  
+  .newsletter-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    color: white;
+    border-radius: 9999px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+    position: relative;
+    z-index: 1;
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($primary-color, 0.4);
+      color: white;
+      
+      &::after {
+        transform: translateX(5px);
+      }
+    }
+    
+    &::after {
+      content: ' →';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+// Mobile responsive adjustments for newsletter CTA
+@media (max-width: 768px) {
+  .newsletter-content {
+    padding: 2rem;
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+    
+    ul {
+      grid-template-columns: 1fr;
+      
+      li {
+        font-size: 0.9rem;
+        padding: 0.625rem 1rem;
+      }
+    }
+    
+    .newsletter-button {
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+    }
+  }
+}
+
 [data-theme="synthwave"] {
   --bg-primary: #2b213a;
   --bg-secondary: #3e2d5c;

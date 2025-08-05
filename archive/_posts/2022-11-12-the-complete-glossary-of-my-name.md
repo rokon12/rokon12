@@ -2,8 +2,7 @@
 title: 'The complete glossary of my name'
 original_url: 'https://bazlur.ca/2022/11/12/the-complete-glossary-of-my-name/'
 date_published: '2022-11-12T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:47.940700986'
-tags: ['programming']
+date_scraped: '2025-08-05T14:12:44.110354'
 ---
 
 The complete glossary of my name
@@ -25,10 +24,4 @@ So, there you have it: a complete glossary of terms relating to my name.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'What is a semaphore, and when to use it?'
 original_url: 'https://bazlur.ca/2023/10/05/what-is-a-semaphore-and-when-to-use-it/'
 date_published: '2023-10-05T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:33.872565937'
-tags: ['concurrency', 'java', 'tutorial']
-featured_image: images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg
+date_scraped: '2025-08-05T14:11:13.516734'
+featured_image: 'images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg'
 ---
 
 ![](images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg)
@@ -94,10 +93,4 @@ In conclusion, Java's Semaphore class offers a robust and straightforward mechan
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'Book Review: “OpenJDK Migration for Dummies”'
 original_url: 'https://bazlur.ca/2023/08/04/book-review-openjdk-migration-for-dummies/'
 date_published: '2023-08-04T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:21.190830026'
-tags: ['book-review']
-featured_image: images/dummies-373x510.png
+date_scraped: '2025-08-05T14:11:38.186591'
+featured_image: 'images/dummies-373x510.png'
 ---
 
 Book Review: "OpenJDK Migration for Dummies"
@@ -131,10 +130,3 @@ I found it very insightful in many areas, while potential readers should assess 
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

@@ -2,9 +2,8 @@
 title: 'JetBrains Junie: My Firsthand Experience'
 original_url: 'https://bazlur.ca/2025/03/03/jetbrains-junie-my-firsthand-experience/'
 date_published: '2025-03-03T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:42.830591141'
-tags: ['personal', 'tools']
-featured_image: images/gemini-generated-image-aczqicaczqicaczq.jpeg
+date_scraped: '2025-08-05T14:10:50.299721'
+featured_image: 'images/gemini-generated-image-aczqicaczqicaczq.jpeg'
 ---
 
 ![](images/gemini-generated-image-aczqicaczqicaczq.jpeg)
@@ -74,10 +73,4 @@ A huge thank you to JetBrains for allowing me to access Junie EAP. Those who are
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

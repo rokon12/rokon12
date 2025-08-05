@@ -2,8 +2,7 @@
 title: 'Dive into the OpenJDK: Top 10 Reads on Foojay.io'
 original_url: 'https://bazlur.ca/2023/07/19/dive-into-the-openjdk-top-10-reads-on-foojay-io/'
 date_published: '2023-07-19T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:31.118602099'
-tags: ['java']
+date_scraped: '2025-08-05T14:11:42.477504'
 ---
 
 Dive into the OpenJDK: Top 10 Reads on Foojay.io
@@ -38,10 +37,3 @@ Note that, you're not just getting updates---you're joining a network of softwar
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

@@ -2,9 +2,8 @@
 title: 'Java Thread Programming (Part 5)'
 original_url: 'https://bazlur.ca/2021/11/02/java-thread-programming-part-5/'
 date_published: '2021-11-02T00:00:00+00:00'
-date_scraped: '2025-02-15T11:30:56.235709222'
-tags: ['concurrency', 'java', 'tutorial']
-featured_image: images/threading-432x510.png
+date_scraped: '2025-08-05T14:13:47.516613'
+featured_image: 'images/threading-432x510.png'
 ---
 
 Java Thread Programming (Part 5)
@@ -171,10 +170,4 @@ That's all for today!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

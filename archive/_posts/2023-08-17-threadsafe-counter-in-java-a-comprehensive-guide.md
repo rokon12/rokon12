@@ -2,9 +2,8 @@
 title: 'Thread-Safe Counter in Java: A Comprehensive Guide'
 original_url: 'https://bazlur.ca/2023/08/17/thread-safe-counter-in-java-a-comprehensive-guide/'
 date_published: '2023-08-17T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:07.46506737'
-tags: ['concurrency', 'java', 'tutorial']
-featured_image: images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg
+date_scraped: '2025-08-05T14:11:31.895627'
+featured_image: 'images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg'
 ---
 
 ![](images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg)
@@ -284,10 +283,4 @@ It's worth noting that achieving accurate results through benchmarking can be ch
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

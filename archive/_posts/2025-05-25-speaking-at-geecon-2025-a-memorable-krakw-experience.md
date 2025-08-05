@@ -2,9 +2,8 @@
 title: 'Speaking at GeeCON 2025: A Memorable Kraków Experience'
 original_url: 'https://bazlur.ca/2025/05/25/speaking-at-geecon-2025-krakow-experience/'
 date_published: '2025-05-25T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:07.476903596'
-tags: ['personal', 'career']
-featured_image: images/dscf8739-scaled.jpg
+date_scraped: '2025-08-05T14:10:38.801164'
+featured_image: 'images/dscf8739-scaled.jpg'
 ---
 
 ![](images/dscf8739-scaled.jpg)
@@ -54,10 +53,4 @@ I look forward to the possibility of catching up with some of you again at a fut
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

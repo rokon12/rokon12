@@ -2,9 +2,8 @@
 title: 'Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich'
 original_url: 'https://bazlur.ca/2023/05/15/discovering-the-secrets-to-success-an-exclusive-interview-with-java-champion-michael-p-redlich/'
 date_published: '2023-05-15T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:33.280289097'
-tags: ['interview', 'career', 'java']
-featured_image: images/michael-redlich.jpg
+date_scraped: '2025-08-05T14:12:10.320166'
+featured_image: 'images/michael-redlich.jpg'
 ---
 
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich
@@ -163,10 +162,4 @@ Overall, this interview is an excellent resource for anyone looking to navigate 
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'Decoding Success: An Industry Expert’s Guide to Thriving in Software Development and Security'
 original_url: 'https://bazlur.ca/2023/05/23/decoding-success-an-industry-experts-guide-to-thriving-in-software-development-and-security/'
 date_published: '2023-05-23T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:23.318752294'
-tags: ['programming']
-featured_image: images/erik.jpeg
+date_scraped: '2025-08-05T14:12:05.996636'
+featured_image: 'images/erik.jpeg'
 ---
 
 ![](images/erik.jpeg)
@@ -151,10 +150,3 @@ From our enriching conversation with Erik, we glean that the software industry i
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

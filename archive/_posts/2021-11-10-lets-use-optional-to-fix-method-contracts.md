@@ -2,8 +2,7 @@
 title: 'Let’s Use Optional to Fix Method Contracts'
 original_url: 'https://bazlur.ca/2021/11/10/lets-use-optional-to-fix-method-contracts/'
 date_published: '2021-11-10T00:00:00+00:00'
-date_scraped: '2025-02-15T11:30:53.132539901'
-tags: ['programming']
+date_scraped: '2025-08-05T14:13:46.074486'
 ---
 
 Let's Use Optional to Fix Method Contracts
@@ -50,10 +49,3 @@ The bottom line is, we should fix our method contract and use optional rather th
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

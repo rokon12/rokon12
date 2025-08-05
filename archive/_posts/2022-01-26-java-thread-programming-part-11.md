@@ -2,9 +2,8 @@
 title: 'Java Thread Programming (Part 11)'
 original_url: 'https://bazlur.ca/2022/01/26/java-thread-programming-part-11/'
 date_published: '2022-01-26T00:00:00+00:00'
-date_scraped: '2025-02-15T11:30:38.125505302'
-tags: ['concurrency', 'java', 'tutorial']
-featured_image: images/thread-pool-700x370.png
+date_scraped: '2025-08-05T14:13:34.19897'
+featured_image: 'images/thread-pool-700x370.png'
 ---
 
 Java Thread Programming (Part 11)
@@ -119,10 +118,3 @@ I hope this clears up the purpose of the executor framework, and in the followin
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

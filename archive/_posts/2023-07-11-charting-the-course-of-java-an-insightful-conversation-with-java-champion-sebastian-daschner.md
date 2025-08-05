@@ -2,9 +2,8 @@
 title: 'Charting the Course of Java: An Insightful Conversation with Java Champion, Sebastian Daschner'
 original_url: 'https://bazlur.ca/2023/07/11/charting-the-course-of-java-an-insightful-conversation-with-java-champion-sebastian-daschner/'
 date_published: '2023-07-11T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:35.77450129'
-tags: ['interview', 'java', 'career']
-featured_image: images/sebastian-daschner.png
+date_scraped: '2025-08-05T14:11:43.913844'
+featured_image: 'images/sebastian-daschner.png'
 ---
 
 ![](images/sebastian-daschner.png)
@@ -139,10 +138,4 @@ Through this interview, we understand that, truly, these are exciting times to b
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

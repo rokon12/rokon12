@@ -2,9 +2,8 @@
 title: 'Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-I'
 original_url: 'https://bazlur.ca/2023/06/29/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-i/'
 date_published: '2023-06-29T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:46.33812158'
-tags: ['interview', 'java', 'career']
-featured_image: images/jekov.jpeg
+date_scraped: '2025-08-05T14:11:51.421126'
+featured_image: 'images/jekov.jpeg'
 ---
 
 Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-I
@@ -130,10 +129,4 @@ That concludes Part One of our in-depth conversation with Java expert and AWS so
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

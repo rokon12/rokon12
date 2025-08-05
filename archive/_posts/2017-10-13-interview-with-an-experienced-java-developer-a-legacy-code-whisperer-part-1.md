@@ -2,9 +2,8 @@
 title: 'Interview with an experienced Java developer – a legacy code whisperer – Part -1'
 original_url: 'https://bazlur.ca/2017/10/13/interview-with-an-experienced-java-developer-a-legacy-code-whisperer-part-1/'
 date_published: '2017-10-13T00:00:00+00:00'
-date_scraped: '2025-02-15T11:31:31.026450186'
-tags: ['interview', 'career', 'java']
-featured_image: images/interviews.jpeg
+date_scraped: '2025-08-05T14:14:04.540578'
+featured_image: 'images/interviews.jpeg'
 ---
 
 ![](images/interviews.jpeg)
@@ -65,10 +64,3 @@ Bazlur Rahman: ***I'm sure you are doing great; ultimately, what we write today,
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

@@ -2,9 +2,8 @@
 title: 'Announcing “Java Unscripted: An Asynchronous Exploration of Excellence”'
 original_url: 'https://bazlur.ca/2023/05/16/announcing-java-unscripted-an-asynchronous-exploration-of-excellence/'
 date_published: '2023-05-16T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:30.413278183'
-tags: ['java', 'programming']
-featured_image: images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg
+date_scraped: '2025-08-05T14:12:08.889235'
+featured_image: 'images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg'
 ---
 
 ![](images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg)
@@ -61,10 +60,4 @@ We thank you in advance for your time and contribution to this community initiat
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

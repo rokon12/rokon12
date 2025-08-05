@@ -2,9 +2,8 @@
 title: 'Java Sealed Classes in Action: Building Robust and Secure Applications'
 original_url: 'https://bazlur.ca/2023/02/20/java-sealed-classes-in-action-building-robust-and-secure-applications/'
 date_published: '2023-02-20T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:36.401587137'
-tags: ['java', 'tutorial']
-featured_image: images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg
+date_scraped: '2025-08-05T14:12:36.262811'
+featured_image: 'images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg'
 ---
 
 ![](images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg)
@@ -640,10 +639,4 @@ By mastering Java-sealed classes, you can take your programming skills to the ne
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'The Evolution of Java: Challenging Stereotypes and Embracing Modernity'
 original_url: 'https://bazlur.ca/2023/07/07/the-evolution-of-java-challenging-stereotypes-and-embracing-modernity/'
 date_published: '2023-07-07T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:40.8107578'
-tags: ['java', 'programming']
-featured_image: images/19d24567-abd1-47f8-ab6d-1a8f05cd3801.jpeg
+date_scraped: '2025-08-05T14:11:48.482828'
+featured_image: 'images/19d24567-abd1-47f8-ab6d-1a8f05cd3801.jpeg'
 ---
 
 ![](images/19d24567-abd1-47f8-ab6d-1a8f05cd3801.jpeg)
@@ -214,10 +213,3 @@ The stereotypes have been challenged, and Java stands tall, embracing modernity.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

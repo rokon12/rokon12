@@ -2,9 +2,8 @@
 title: 'Preparing for JDK 21: A Comprehensive Overview of Key Features and Enhancements'
 original_url: 'https://bazlur.ca/2023/08/02/preparing-for-jdk-21-a-comprehensive-overview-of-key-features-and-enhancements/'
 date_published: '2023-08-02T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:23.836534082'
-tags: ['java']
-featured_image: images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg
+date_scraped: '2025-08-05T14:11:39.609831'
+featured_image: 'images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg'
 ---
 
 ![](images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg)
@@ -113,10 +112,4 @@ Stay tuned to learn more about these exciting changes as we explore them in futu
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

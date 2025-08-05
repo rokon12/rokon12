@@ -2,9 +2,8 @@
 title: 'The Hallway of Hope: The First Cry'
 original_url: 'https://bazlur.ca/2023/05/17/the-hallway-of-hope-the-first-cry/'
 date_published: '2023-05-17T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:26.421881644'
-tags: ['programming']
-featured_image: images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg
+date_scraped: '2025-08-05T14:12:07.45314'
+featured_image: 'images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg'
 ---
 
 ![](images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)
@@ -22,8 +21,8 @@ As a first-time father, navigating the unfamiliar terrain of a foreign healthcar
 My wife has been in excruciating pain for three days. The intensity of the pain is ever-increasing. Initially, the bouts of pain were spaced about 12-13 minutes apart. Now, they're down to five minutes. We called the hospital's triage, but they couldn't provide much help. They suggested she stay home, take Tylenol, and soak in a hot bath, which she's doing. While submerged in the water, she reminds me of a human submarine. Inside her is our baby, and she's enveloped in water. I used to joke with her, "Let's go to the swimming pool; you can be a human submarine." That never happened, primarily due to it being winter. Even if it weren't, we probably wouldn't go. We're a laid-back couple who enjoy the comforts of home. The term "couch potato" fits us rather well.  
 I work from home and rarely need to venture outside. Although she's still a student pursuing her Ph.D., she manages to accomplish everything from the comfort of her couch. We order food and shop online. At most, we venture to Loblaw, our local grocery store, when we need supplies. Conveniently, it's located just across the street from our building, so the trip takes about as long as descending from our 16th-floor apartment.  
 Anyway, I am moving away from the topic.  
-I've never witnessed such severe pain in my entire life. My respect for women, particularly my mother, has grown exponentially after this experience. The pain a woman endures during pregnancy and labor is indescribable, and I won't even attempt to convey it. Tears of pain fall from my wife's eyes every five minutes, and I'm powerless to alleviate her suffering. I used to tell her that as a mother, she gets all the prizes---first, second, and third. I, as the father, merely receive the participant's prize, which feels like nothing in comparison. As stated in our hadith tradition:  
-Book 32, Number 6181: Abu Huraira reported that a person asked: "Allah's Messenger, who amongst the people is most deserving of my good treatment?" He replied: "Your mother, then your mother, then your mother, then your father, then your nearest relatives in order of proximity."  
+I've never witnessed such severe pain in my entire life. My respect for women, particularly my mother and wife, has grown exponentially after this experience. The pain a woman endures during pregnancy and labor is indescribable, and I won't even attempt to convey it. Tears of pain fall from my wife's eyes every five minutes, and I'm powerless to alleviate her suffering. I used to tell her that as a mother, she gets all the prizes---first, second, and third. I, as the father, merely receive the participant's prize, which feels like nothing in comparison. As stated in our hadith tradition:  
+Abu Huraira (R.A) reported that a person asked: "Allah's Messenger (May peace and blessings be upon him), who amongst the people is most deserving of my good treatment?" He replied: "Your mother, then your mother, then your mother, then your father, then your nearest relatives in order of proximity." -- [Book 32, Number 6181](https://hadithcollection.com/sahihmuslim/sahih-muslim-book-32-virtues-good-manners-and-joining-of-the-ties-of-relationship/sahih-muslim-book-032-hadith-number-6181):  
 Now I understand that, as a man, I play a minor role in this process. I don't experience any of the pain or struggle. The participant's prize feels more than sufficient.  
 I believe every man should witness this pain to respect the women in their lives truely.  
 Tabassum, my wife, is a strong woman with an incredibly high pain threshold. She seldom cries out in pain. At least, I've never seen her do so.  
@@ -43,7 +42,9 @@ Back home, our parents, unfamiliar with the healthcare system here, continuously
 Their incessant calls and messages often start with the same question, "When are you taking her to the hospital?" I understand their concern. They're not here to witness what's happening firsthand. They concluded that childbirth in Bangladesh is easier since one can quickly go to a hospital for a C-section without enduring much pain. However, that process is not without pain and complications. My wife's current ordeal with labor pain is a different experience altogether.  
 Perhaps this is why some men in Bangladesh fail to give women the respect they deserve. This notion may seem controversial, but it holds some truth. However, I'm not in the right state of mind to delve deeper into this topic.  
 Throughout her pregnancy, my wife has experienced three types of pain. The first was the mild discomfort of morning sickness as the baby started to grow. I can't fully grasp how she felt during this time, but she seemed to manage reasonably well. The second type of pain she endured was Braxton-Hicks contractions, which started at the beginning of her third trimester.  
-Braxton-Hicks contractions were the second type of pain my wife experienced. These contractions tighten the abdomen intermittently, making the belly noticeably hard. However, as my wife shared, this pain was relatively manageable. The pain is intensifying progressively, and the intervals between contractions are shortening. She has been sleepless for the past 36 hours, her eyes struggling to remain open. Whenever she does manage to close her eyes, the searing pain causes her body to convulse uncontrollably, and tears streak down her face. It's unimaginable how anyone could try to sleep while enduring such intense pain every six minutes.  
+Braxton-Hicks contractions tighten the abdomen intermittently, making the belly noticeably hard. However, as my wife shared, this pain was relatively manageable.
+
+The pain she having now is intensifying progressively, and the intervals between contractions are shortening. She has been sleepless for the past 36 hours, her eyes struggling to remain open. Whenever she does manage to close her eyes, the searing pain causes her body to convulse uncontrollably, and tears streak down her face. It's unimaginable how anyone could try to sleep while enduring such intense pain every six minutes.  
 Yet, the worst is still to come. Labor pain is significantly more intense than this. Amidst this pain, she will have to find the strength to push. She hasn't been able to eat anything. This morning, I ordered an egg sandwich---two eggs nestled between an English muffin. It seemed like a decent breakfast. But she couldn't keep it down, vomiting immediately. I didn't sleep last night, either. When I finally laid down on the sofa and closed my eyes, I lost track of time and woke up two hours later. She was in the bathtub, submerged in hot water. I had missed her attempt at eating and throwing up.  
 We had to go for an ultrasound around noon, so there wasn't much time for her to eat anything. The ultrasound didn't reveal any immediate concerns, so we came back home. We had shrimp and biriyani in the fridge, her favorite. I asked if she wanted to try some, and she agreed. She managed to have three or four spoonfuls, but then she couldn't eat any more. I'm worried about her deteriorating health and energy levels, as it could potentially affect her ability to give birth. Despite my repeated suggestions for her to eat something, she consistently declines. It's not that she's unaware of the importance of eating, but she simply can't muster the appetite.  
 In the evening, she only ate a banana. I went to the grocery store and bought her strawberry milk, chocolate milk, yogurt, and more bananas, but she didn't want any of it.  
@@ -81,29 +82,26 @@ She's being given oxytocin to stimulate contractions. I've just had a quick snac
 **7:00 AM**  
 I managed to doze off and apparently snored. Her cervix has now dilated to 5 cm. The baby is being monitored closely due to the meconium. They've stopped the oxytocin to ensure the baby remains comfortable.  
 **7:10 AM**  
-I just had a conversation with Tinni Apu. She has a theory that this part of the world deliberately makes the birthing process difficult to discourage population growth. On the other hand, she believes that in Bangladesh, doctors strive to expedite the birthing process to ensure a healthy baby, often resorting to induction medication at a very early stage.  
-I'm not sure if I should believe her. But honestly, I'm not sure what to believe anymore. Allah is all-powerful. I put my trust in Him.  
+I just had a conversation with Tinni Apu, Tabassum's cousin. She is a doctor herself. She has a theory that this part of the world deliberately makes the birthing process difficult to discourage population growth. On the other hand, she believes that in Bangladesh, doctors strive to expedite the birthing process to ensure a healthy baby, often resorting to induction medication at a very early stage.  
+I'm not sure if I should believe her. But honestly, I'm not sure what to believe at this point.
+
+Allah is all-powerful. I put my trust in Him.  
 **7:40 AM**  
-My mother-in-law is anxious: "What's happening now? The baby is inside, ingesting its own waste. The baby is in an unhygienic state. I don't understand if the Canadian doctors can't comprehend this simple thing." I don't know what to do. I'm just sitting here, feeling helpless.  
+My mother-in-law is anxious: "What's happening now? The baby is inside, ingesting its own waste. The baby is in an unhygienic state. I don't understand why the Canadian doctors can't comprehend this simple thing." I don't know what to do. I'm just sitting here, feeling helpless.  
 **9:42 AM**  
-I had a comforting conversation with Khaled sir. He reassured me that the situation here is better than in Bangladesh. I shouldn't worry because the doctors and nurses are doing their best.  
+I had a comforting conversation with Khaled, sir. He is a professor at the University of Dhaka, our teacher, with whom we have a friendly relationship since university, and we practically consider him as a part of our family, our guardian. He reassured me that the situation here is better than in Bangladesh. I shouldn't worry because the doctors and nurses are doing their best.  
 I sought out some breakfast, ending up with a cup of coffee and a muffin. I'll try to get some rest now, although I'm not sure if I can.  
 **11:22 AM**  
 Two doctors came to visit her; they were very helpful.  
 The baby's heartbeat is stable.  
-**12:03 PM**  
+**12:03 PM
+<br />**
+
 The doctor has decided to proceed with a C-section. There's no point in delaying it any further. We had a quick discussion with the doctor, asking for an expert opinion. I told the doctor to do what was best for the baby and my wife, emphasizing that they were the experts here. The doctor recommended the surgery.  
-**12:22 PM**  
-I'm in the hallway, waiting to hear the baby's first cry.  
-If a C-section was necessary, why did she have to endure so much pain? Maybe it's a learning experience. Only Allah knows.  
+**12:22 PM** I'm in the hallway, waiting to hear the baby's first cry.  
+If a C-section was necessary, why did she have to endure so much pain? Only Allah knows.  
 I'm waiting for the nurse to call me into the operating theater, eagerly anticipating the sound of the baby's first cry.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

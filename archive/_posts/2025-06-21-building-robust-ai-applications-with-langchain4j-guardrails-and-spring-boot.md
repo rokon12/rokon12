@@ -2,9 +2,8 @@
 title: 'Building Robust AI Applications with LangChain4j Guardrails and Spring Boot'
 original_url: 'https://bazlur.ca/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/'
 date_published: '2025-06-21T00:00:00+00:00'
-date_scraped: '2025-06-22T00:46:44.523888982'
-tags: ['ai', 'spring', 'java', 'tutorial']
-featured_image: images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png
+date_scraped: '2025-08-05T14:10:37.354393'
+featured_image: 'images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png'
 ---
 
 ![](images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png)
@@ -445,6 +444,207 @@ public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
 
 > **ProTip:** Hallucination detection can be computationally expensive. Consider using it selectively for critical responses or implementing caching for repeated content.
 
+Testing Your Guardrails
+-----------------------
+
+Before integrating guardrails into your AI services, it's crucial to thoroughly test them. Here's a comprehensive test suite for the ContentSafetyInputGuardrail:
+
+```
+package ca.bazlur.guardrailsdemo.guardrail;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.guardrail.GuardrailResult;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import static dev.langchain4j.test.guardrail.GuardrailAssertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+class ContentSafetyInputGuardrailTest {
+private ContentSafetyInputGuardrail guardrail;
+@BeforeEach
+void setUp() {
+guardrail = new ContentSafetyInputGuardrail(100); // 📏 Configurable max length for testing
+}
+@Test
+void shouldAcceptValidInput() {
+// ✅ Test normal, safe input
+var result = guardrail.validate(UserMessage.from("Hello, I need help with my account settings"));
+assertThat(result)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+}
+@Test
+void shouldRejectEmptyInput() {
+// 🚫 Empty strings should throw exception
+assertThrows(IllegalArgumentException.class, () -> {
+guardrail.validate(UserMessage.from(""));
+});
+}
+@Test
+void shouldRejectBlankInput() {
+// 🚫 Whitespace-only input should also be rejected
+assertThrows(IllegalArgumentException.class, () -> {
+guardrail.validate(UserMessage.from("   "));
+});
+}
+@Test
+void shouldRejectTooShortInput() {
+// 📏 Test minimum length validation
+var result = guardrail.validate(UserMessage.from("Hi"));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message is too short. Please provide more details.");
+}
+@Test
+void shouldRejectTooLongInput() {
+// 📏 Test maximum length validation
+String longInput = "a".repeat(101);
+var result = guardrail.validate(UserMessage.from(longInput));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message is too long. Please keep it under 100 characters.");
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"hack the system",
+"how to exploit vulnerability",
+"bypass security",
+"crack the password",
+"install malware",
+"phishing techniques",
+"cr@ck the password"  // 🎭 Also contains prohibited word "password"
+})
+void shouldRejectProhibitedWords(String input) {
+// 🚫 Test detection of prohibited security-related terms
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"h4ck the system",      // 4 substitution
+"how to h@ck",          // @ substitution
+"byp@ss security",      // @ substitution
+"m@lw@re installation"  // Multiple substitutions
+})
+void shouldRejectObfuscatedPatterns(String input) {
+// 🎭 Test detection of character substitution attempts
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains potentially harmful content patterns.");
+}
+@Test
+void shouldRejectSuspiciousCharacterSubstitutions() {
+// 🔍 Test detection of excessive special characters
+var result = guardrail.validate(UserMessage.from("H3!!0 @#$%^ &*()_ +"));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains suspicious character substitutions.");
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"Can you help me with my login issue?",
+"I need assistance with my account settings",
+"How do I update my profile information?",
+"What are the steps to contact support?"
+})
+void shouldAcceptVariousValidInputs(String input) {
+// ✅ Test various legitimate support queries
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"how to hack the system",
+"teach me to exploit",
+"show me how to bypass",
+"HOW TO HACK",           // All caps
+"Teach Me To EXPLOIT",   // Mixed case
+"Show ME how TO bypass"  // Random capitalization
+})
+void shouldRejectInstructionalPatterns(String input) {
+// 🎯 Test detection of instruction-style malicious requests
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+}
+@Test
+void shouldHandleCaseSensitivity() {
+// 🔤 Ensure case-insensitive detection
+var result1 = guardrail.validate(UserMessage.from("HACK the System"));
+var result2 = guardrail.validate(UserMessage.from("ExPlOiT vulnerability"));
+var result3 = guardrail.validate(UserMessage.from("ByPaSs security"));
+assertThat(result1)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+assertThat(result2)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+assertThat(result3)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+}
+@Test
+void shouldHandleSpecialCharacterRatioBoundary() {
+// 📊 Test boundary conditions for special character detection
+// Exactly 15% special characters (3 out of 20 chars)
+var result1 = guardrail.validate(UserMessage.from("Hello@World#Test$ing"));
+assertThat(result1)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+// Just over 15% special characters (4 out of 20 chars = 20%)
+var result2 = guardrail.validate(UserMessage.from("Hello@World#Test$ing%"));
+assertThat(result2)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains suspicious character substitutions.");
+}
+@Test
+void shouldHandleLengthBoundaries() {
+// 📏 Test exact boundary conditions
+// Exactly 5 characters (minimum allowed)
+var result1 = guardrail.validate(UserMessage.from("Hello"));
+assertThat(result1)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+// 4 characters (too short)
+var result2 = guardrail.validate(UserMessage.from("Help"));
+assertThat(result2)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message is too short. Please provide more details.");
+// Exactly max length
+var result3 = guardrail.validate(UserMessage.from("a".repeat(100)));
+assertThat(result3)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+}
+}
+```
+
+> 💡 **Testing Best Practices for Guardrails:**
+>
+> * Test boundary conditions (minimum/maximum values)
+> * Use parameterized tests for similar scenarios
+> * Test both positive and negative cases
+> * Verify exact error messages for better debugging
+> * Test case sensitivity and special character handling
+> * Use the `GuardrailAssertions` utility for cleaner test code
+>
 Creating AI Services with Guardrails
 ------------------------------------
 
@@ -506,50 +706,41 @@ Now that we have everything set up, let's create our REST endpoint so that we ca
 
 ```
 package ca.bazlur.guardrailsdemo;
-
 import dev.langchain4j.guardrail.InputGuardrailException;
 import dev.langchain4j.guardrail.OutputGuardrailException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @Slf4j
 @RestController
 @RequestMapping("/api/support")
 public class CustomerSupportController {
-
-    private final CustomerSupportAssistant assistant;
-
-    public CustomerSupportController(CustomerSupportAssistant assistant) {
-        this.assistant = assistant;
-    }
-
-    @PostMapping("/chat")
-    public ResponseEntity<ChatResponse> chat(@RequestBody ChatRequest request) {
-        try {
-            // 🚀 All guardrails are applied automatically
-            String response = assistant.chat(request.message());
-            return ResponseEntity.ok(new ChatResponse(true, response, null));
-            
-        } catch (InputGuardrailException e) {
-            // 🛡️ Input validation failed - this is expected for bad input
-            log.info("Invalid input {}", e.getMessage());
-            return ResponseEntity.badRequest()
-                    .body(new ChatResponse(false, null, "Invalid input: " + e.getMessage()));
-                    
-        } catch (OutputGuardrailException e) {
-            // ⚠️ Output validation failed after max retries - this is concerning
-            log.info("Invalid output {}", e.getMessage());
-            return ResponseEntity.internalServerError()
-                    .body(new ChatResponse(false, null, "Unable to generate appropriate response"));
-        }
-    }
+private final CustomerSupportAssistant assistant;
+public CustomerSupportController(CustomerSupportAssistant assistant) {
+this.assistant = assistant;
 }
-
+@PostMapping("/chat")
+public ResponseEntity<ChatResponse> chat(@RequestBody ChatRequest request) {
+try {
+// 🚀 All guardrails are applied automatically
+String response = assistant.chat(request.message());
+return ResponseEntity.ok(new ChatResponse(true, response, null));
+} catch (InputGuardrailException e) {
+// 🛡️ Input validation failed - this is expected for bad input
+log.info("Invalid input {}", e.getMessage());
+return ResponseEntity.badRequest()
+.body(new ChatResponse(false, null, "Invalid input: " + e.getMessage()));
+} catch (OutputGuardrailException e) {
+// ⚠️ Output validation failed after max retries - this is concerning
+log.info("Invalid output {}", e.getMessage());
+return ResponseEntity.internalServerError()
+.body(new ChatResponse(false, null, "Unable to generate appropriate response"));
+}
+}
+}
 // 📦 DTOs with records for immutability
 record ChatRequest(String message) {
 }
-
 record ChatResponse(boolean success, String response, String error) {
 }
 ```
@@ -559,13 +750,11 @@ Create a main method and run the application:
 ```
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 @SpringBootApplication
 public class GuardrailsDemoApplication {
-
- public static void main(String[] args) {
-   SpringApplication.run(GuardrailsDemoApplication.class, args);
- }
+public static void main(String[] args) {
+SpringApplication.run(GuardrailsDemoApplication.class, args);
+}
 }
 ```
 
@@ -582,9 +771,9 @@ Expected response:
 
 ```
 {
-  "success": false,
-  "response": null,
-  "error": "Invalid input: The guardrail ca.bazlur.guardrailsdemo.guardrail.ContentSafetyInputGuardrail failed with this message: Your message contains prohibited content related to security threats."
+"success": false,
+"response": null,
+"error": "Invalid input: The guardrail ca.bazlur.guardrailsdemo.guardrail.ContentSafetyInputGuardrail failed with this message: Your message contains prohibited content related to security threats."
 }
 ```
 
@@ -595,16 +784,11 @@ Demo
 # Clone the project
 git clone git@github.com:rokon12/guardrails-demo.git
 cd guardrails-demo
-
 # Set your OpenAI API key
 export OPENAI_API_KEY=your-api-key-here
-
-
 ./gradlew clean bootRun
 # Access the application
-
 open http://localhost:8080
-
 ```
 
 > <br />
@@ -627,6 +811,7 @@ The examples provided here serve as a starting point. Adapt and extend them base
 **📚 Additional Resources**
 
 * [LangChain4j Official Documentation](https://docs.langchain4j.dev/)
+* [LangChain4j Guardrails](https://docs.langchain4j.dev/tutorials/guardrails)
 * [Spring Boot AI Integration Guide](https://spring.io/guides/gs/spring-boot-ai/)
 * [OWASP LLM Security Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 * [AI Safety Best Practices](https://www.anthropic.com/safety)
@@ -635,10 +820,4 @@ Happy coding, and remember: with great AI power comes great responsibility! 🚀
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

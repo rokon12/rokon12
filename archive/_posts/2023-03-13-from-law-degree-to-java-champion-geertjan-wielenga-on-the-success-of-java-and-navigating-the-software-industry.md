@@ -2,9 +2,8 @@
 title: 'From Law Degree to Java Champion: Geertjan Wielenga on the Success of Java and Navigating the Software Industry'
 original_url: 'https://bazlur.ca/2023/03/13/from-law-degree-to-java-champion-geertjan-wielenga-on-the-success-of-java-and-navigating-the-software-industry/'
 date_published: '2023-03-13T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:12.727580571'
-tags: ['personal', 'career']
-featured_image: images/wielenga-1024x576-1.png
+date_scraped: '2025-08-05T14:12:30.504421'
+featured_image: 'images/wielenga-1024x576-1.png'
 ---
 
 ![](images/wielenga-1024x576-1.png)
@@ -160,10 +159,4 @@ Overall, this interview gives valuable information about how to get ahead in the
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

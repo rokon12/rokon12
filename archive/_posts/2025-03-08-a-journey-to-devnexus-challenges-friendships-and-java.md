@@ -2,9 +2,8 @@
 title: 'A Journey to DevNexus: Challenges, Friendships, and Java'
 original_url: 'https://bazlur.ca/2025/03/08/a-journey-to-devnexus-challenges-friendships-and-java/'
 date_published: '2025-03-08T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:37.091988544'
-tags: ['personal', 'java']
-featured_image: images/482058307-10232003967115777-7301803814855188745-n.jpg
+date_scraped: '2025-08-05T14:10:48.845943'
+featured_image: 'images/482058307-10232003967115777-7301803814855188745-n.jpg'
 ---
 
 ![](images/482058307-10232003967115777-7301803814855188745-n.jpg)
@@ -96,10 +95,4 @@ By 2 AM, I was finally back home in Toronto, greeted by my lovely wife, Tabassum
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

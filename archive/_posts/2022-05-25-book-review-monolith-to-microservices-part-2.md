@@ -2,9 +2,8 @@
 title: 'Book Review: Monolith to Microservices (Part 2)'
 original_url: 'https://bazlur.ca/2022/05/25/book-review-monolith-to-microservices-part-2/'
 date_published: '2022-05-25T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:39.640198224'
-tags: ['book-review']
-featured_image: images/monolith-to-microservice.jpeg
+date_scraped: '2025-08-05T14:13:04.308356'
+featured_image: 'images/monolith-to-microservice.jpeg'
 ---
 
 ![](images/monolith-to-microservice.jpeg)
@@ -115,10 +114,4 @@ That's for today, I will write about the next chapter in the following article.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

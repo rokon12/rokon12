@@ -2,8 +2,7 @@
 title: 'Compact Strings: Reclaim 25% of Java Heap Memory & Lower Your Cloud Bills'
 original_url: 'https://bazlur.ca/2021/09/24/compact-strings-reclaim-25-of-java-heap-memory-lower-your-cloud-bills/'
 date_published: '2021-09-24T00:00:00+00:00'
-date_scraped: '2025-02-15T11:31:18.101908844'
-tags: ['java', 'performance', 'cloud']
+date_scraped: '2025-08-05T14:13:57.328227'
 ---
 
 Compact Strings: Reclaim 25% of Java Heap Memory \& Lower Your Cloud Bills
@@ -39,10 +38,4 @@ If you want to disable it, use the `-XX:-CompactStrings` flag.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

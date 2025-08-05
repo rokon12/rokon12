@@ -2,9 +2,8 @@
 title: 'I joined the Jakarta Ambassadors program'
 original_url: 'https://bazlur.ca/2022/06/09/i-joined-the-jakarta-ambassadors-program/'
 date_published: '2022-06-09T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:32.984691775'
-tags: ['jakarta', 'career']
-featured_image: images/jakartaee-ambassadors-e1577035229941.png
+date_scraped: '2025-08-05T14:13:01.398825'
+featured_image: 'images/jakartaee-ambassadors-e1577035229941.png'
 ---
 
 ![](images/jakartaee-ambassadors-e1577035229941.png)
@@ -19,10 +18,4 @@ I have been doing spring for pretty much all my career. However, I always have h
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'A Journey of the Heart: Visiting Madinah and Makkah'
 original_url: 'https://bazlur.ca/2025/01/07/a-journey-of-the-heart-visiting-madinah-and-makkah/'
 date_published: '2025-01-07T00:00:00+00:00'
-date_scraped: '2025-02-15T11:24:33.88814616'
-tags: ['personal']
-featured_image: images/img-2263-effects-scaled.jpg
+date_scraped: '2025-08-05T14:10:56.104349'
+featured_image: 'images/img-2263-effects-scaled.jpg'
 ---
 
 ![](images/img-2263-effects-scaled.jpg)
@@ -56,10 +55,4 @@ This journey reminded me of life's true essence: humility, gratitude, and devoti
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

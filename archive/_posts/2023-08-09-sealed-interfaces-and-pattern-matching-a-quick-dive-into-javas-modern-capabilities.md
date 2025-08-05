@@ -2,9 +2,8 @@
 title: 'Sealed Interfaces and Pattern Matching: A Quick Dive into Java’s Modern Capabilities'
 original_url: 'https://bazlur.ca/2023/08/09/sealed-interfaces-and-pattern-matching-a-quick-dive-into-javas-modern-capabilities/'
 date_published: '2023-08-09T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:14.16843723'
-tags: ['java', 'tutorial']
-featured_image: images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg
+date_scraped: '2025-08-05T14:11:35.292483'
+featured_image: 'images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg'
 ---
 
 ![](images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg)
@@ -72,10 +71,4 @@ In the example above, we are checking the type of shape object, and depending on
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'Java Bytecode Simplified: Journey to the Wonderland (Part 2)'
 original_url: 'https://bazlur.ca/2022/08/16/java-bytecode-simplified-journey-to-the-wonderland-part-2/'
 date_published: '2022-08-16T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:09.414838838'
-tags: ['java', 'tutorial', 'performance']
-featured_image: images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg
+date_scraped: '2025-08-05T14:12:49.882039'
+featured_image: 'images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 ---
 
 ![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
@@ -260,10 +259,4 @@ This is all for today. Next, we will discuss the bytecode catalogue and the fami
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama'
 original_url: 'https://bazlur.ca/2025/04/06/building-formpilot-my-journey-creating-an-ai-powered-form-filler-with-rag-langchain4j-and-ollama/'
 date_published: '2025-04-06T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:29.245002935'
-tags: ['ai', 'java', 'tutorial', 'tools']
-featured_image: images/chatgpt-image-apr-6-2025-06-10-38-pm.png
+date_scraped: '2025-08-05T14:10:47.412419'
+featured_image: 'images/chatgpt-image-apr-6-2025-06-10-38-pm.png'
 ---
 
 ![](images/chatgpt-image-apr-6-2025-06-10-38-pm.png)
@@ -763,10 +762,4 @@ Happy (and smarter) form filling!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

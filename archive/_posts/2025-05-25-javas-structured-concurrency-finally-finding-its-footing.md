@@ -2,9 +2,8 @@
 title: 'Java’s Structured Concurrency: Finally Finding Its Footing'
 original_url: 'https://bazlur.ca/2025/05/25/javas-structured-concurrency-finally-finding-its-footing/'
 date_published: '2025-05-25T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:10.341798485'
-tags: ['concurrency', 'java']
-featured_image: images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png
+date_scraped: '2025-08-05T14:10:40.258324'
+featured_image: 'images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png'
 ---
 
 ![](images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png)
@@ -465,10 +464,4 @@ These changes represent a significant maturation of the structured concurrency A
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'Exploring New Features in JDK 23: A Sneak Peek'
 original_url: 'https://bazlur.ca/2024/06/01/exploring-new-features-in-jdk-23-a-sneak-peek/'
 date_published: '2024-06-01T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:14.343343318'
-tags: ['java']
-featured_image: images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp
+date_scraped: '2025-08-05T14:11:04.803692'
+featured_image: 'images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp'
 ---
 
 ![](images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp)
@@ -60,10 +59,3 @@ More about this can be found here: <https://www.infoq.com/news/2024/05/jep477-im
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

@@ -2,9 +2,8 @@
 title: 'Optional in Java: A Swiss Army Knife for Handling Nulls and Improving Code Quality'
 original_url: 'https://bazlur.ca/2023/02/01/optional-in-java-a-swiss-army-knife-for-handling-nulls-and-improving-code-quality/'
 date_published: '2023-02-01T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:39.280863274'
-tags: ['java', 'tutorial', 'programming']
-featured_image: images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg
+date_scraped: '2025-08-05T14:12:37.738114'
+featured_image: 'images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg'
 ---
 
 ![](images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)
@@ -298,10 +297,4 @@ I hope you enjoyed the article; until next time, stay happy!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

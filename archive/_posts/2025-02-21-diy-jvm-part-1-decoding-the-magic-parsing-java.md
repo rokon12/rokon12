@@ -2,9 +2,8 @@
 title: 'DIY JVM Part 1: Decoding the Magic – Parsing Java'
 original_url: 'https://bazlur.ca/2025/02/21/diy-jvm-part-1-decoding-the-magic-parsing-java/'
 date_published: '2025-02-21T00:00:00+00:00'
-date_scraped: '2025-06-18T01:15:48.115349287'
-tags: ['java', 'tutorial']
-featured_image: images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp
+date_scraped: '2025-08-05T14:10:51.727763'
+featured_image: 'images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp'
 ---
 
 ![](images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp)
@@ -363,10 +362,4 @@ Next time, we'll get our hands dirty with more features. Stay tuned!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

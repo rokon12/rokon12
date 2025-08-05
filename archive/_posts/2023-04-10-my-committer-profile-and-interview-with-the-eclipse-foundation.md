@@ -2,9 +2,8 @@
 title: 'My Committer Profile and Interview with the Eclipse Foundation'
 original_url: 'https://bazlur.ca/2023/04/10/my-committer-profile-interview-with-the-eclipse-foundation/'
 date_published: '2023-04-10T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:48.532813076'
-tags: ['interview', 'career', 'java']
-featured_image: images/screen-shot-2023-04-10-at-6.11.44-am.png
+date_scraped: '2025-08-05T14:12:19.219645'
+featured_image: 'images/screen-shot-2023-04-10-at-6.11.44-am.png'
 ---
 
 ![](images/screen-shot-2023-04-10-at-6.11.44-am.png)
@@ -20,10 +19,3 @@ I invite you to read the full interview on the [Eclipse Foundation website](http
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

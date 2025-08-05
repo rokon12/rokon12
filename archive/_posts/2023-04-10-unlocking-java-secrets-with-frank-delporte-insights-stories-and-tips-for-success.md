@@ -2,9 +2,8 @@
 title: 'Unlocking Java Secrets with Frank Delporte: Insights, Stories, and Tips for Success'
 original_url: 'https://bazlur.ca/2023/04/10/unlocking-java-secrets-with-frank-delporte-insights-stories-and-tips-for-success/'
 date_published: '2023-04-10T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:44.83211919'
-tags: ['java', 'programming']
-featured_image: images/5.png
+date_scraped: '2025-08-05T14:12:17.780489'
+featured_image: 'images/5.png'
 ---
 
 ![](images/5.png)
@@ -208,10 +207,4 @@ We hope that our readers have found this interview both enlightening and motivat
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

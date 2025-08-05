@@ -2,9 +2,8 @@
 title: 'The 5 Most Pivotal and Innovative Additions to OpenJDK 19'
 original_url: 'https://bazlur.ca/2022/09/20/the-5-most-pivotal-and-innovative-additions-to-openjdk-19/'
 date_published: '2022-09-20T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:02.154620269'
-tags: ['java']
-featured_image: images/cafe-g56e2bcea6-1920.jpg
+date_scraped: '2025-08-05T14:12:46.992023'
+featured_image: 'images/cafe-g56e2bcea6-1920.jpg'
 ---
 
 ![](images/cafe-g56e2bcea6-1920.jpg)
@@ -214,10 +213,4 @@ Finally, if you liked this article and want to read more like it in the future, 
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

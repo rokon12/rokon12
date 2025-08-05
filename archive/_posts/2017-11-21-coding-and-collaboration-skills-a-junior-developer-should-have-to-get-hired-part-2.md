@@ -2,8 +2,7 @@
 title: 'Coding and collaboration skills a junior developer should have to get hired – Part 2'
 original_url: 'https://bazlur.ca/2017/11/21/interview-with-bruno-souza-coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired/'
 date_published: '2017-11-21T00:00:00+00:00'
-date_scraped: '2025-02-15T11:31:19.996088347'
-tags: ['career', 'programming']
+date_scraped: '2025-08-05T14:13:58.751099'
 ---
 
 Coding and collaboration skills a junior developer should have to get hired -- Part 2
@@ -47,10 +46,4 @@ Stay tuned.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

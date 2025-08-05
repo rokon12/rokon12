@@ -2,9 +2,8 @@
 title: 'How to Enable Java Preview Features and Run Code from IntelliJ IDEA'
 original_url: 'https://bazlur.ca/2022/05/08/how-to-run-project-loom-from-intellij-idea/'
 date_published: '2022-05-08T00:00:00+00:00'
-date_scraped: '2025-02-15T11:30:01.632161243'
-tags: ['java', 'tools', 'tutorial']
-featured_image: images/idea-overview-5-1-2x.webp
+date_scraped: '2025-08-05T14:13:12.721876'
+featured_image: 'images/idea-overview-5-1-2x.webp'
 ---
 
 ![](images/idea-overview-5-1-2x.webp)
@@ -64,10 +63,4 @@ Now you can run the project loom from IntelliJ IDEA.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

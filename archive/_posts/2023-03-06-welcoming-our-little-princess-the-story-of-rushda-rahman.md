@@ -2,9 +2,8 @@
 title: 'Welcoming Our Little Princess: The Story of Rushda Rahman'
 original_url: 'https://bazlur.ca/2023/03/06/welcoming-our-little-princess-the-story-of-rushda-rahman/'
 date_published: '2023-03-06T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:18.618784984'
-tags: ['personal']
-featured_image: images/img-20230202-wa0000.jpg
+date_scraped: '2025-08-05T14:12:33.357709'
+featured_image: 'images/img-20230202-wa0000.jpg'
 ---
 
 ![](images/img-20230202-wa0000.jpg)
@@ -32,10 +31,4 @@ Choosing a name for our daughter was a significant decision, and we are proud to
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

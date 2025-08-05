@@ -2,9 +2,8 @@
 title: 'Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli'
 original_url: 'https://bazlur.ca/2023/09/01/unlocking-java-wisdom-a-conversation-with-oracle-ace-simon-martinelli/'
 date_published: '2023-09-01T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:59.021645566'
-tags: ['interview', 'java', 'career']
-featured_image: images/simon-martinelli.png
+date_scraped: '2025-08-05T14:11:25.899214'
+featured_image: 'images/simon-martinelli.png'
 ---
 
 ![](images/simon-martinelli.png)
@@ -143,10 +142,4 @@ The wisdom shared by Simon Martinelli is not just a reflection of his own journe
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

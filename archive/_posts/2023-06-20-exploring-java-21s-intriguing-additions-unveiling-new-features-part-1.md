@@ -2,9 +2,8 @@
 title: 'Exploring Java 21’s Intriguing Additions: Unveiling New Features (Part 1)'
 original_url: 'https://bazlur.ca/2023/06/20/exploring-java-21s-intriguing-additions-unveiling-new-features-part-1/'
 date_published: '2023-06-20T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:53.329708671'
-tags: ['java', 'programming']
-featured_image: images/erik.jpeg
+date_scraped: '2025-08-05T14:11:54.305677'
+featured_image: 'images/erik.jpeg'
 ---
 
 ![](images/erik.jpeg)
@@ -130,10 +129,4 @@ Nonetheless, Java 21 introduces various exciting language and collections framew
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

@@ -2,9 +2,8 @@
 title: 'What is CyclicBarrier and When to Use It in Java?'
 original_url: 'https://bazlur.ca/2023/10/04/what-is-cyclicbarrier-and-when-to-use-it-in-java/'
 date_published: '2023-10-04T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:36.901497055'
-tags: ['concurrency', 'java', 'tutorial']
-featured_image: images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg
+date_scraped: '2025-08-05T14:11:14.981917'
+featured_image: 'images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
 ---
 
 ![](images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
@@ -103,10 +102,4 @@ In the code, we have reused CyclicBarrier in multiple steps.{#ember2837}
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

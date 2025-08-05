@@ -2,9 +2,8 @@
 title: 'Navigating the Challenges of Modern Software Development: An Exclusive Interview with Shai Almog'
 original_url: 'https://bazlur.ca/2023/03/27/navigating-the-challenges-of-modern-software-development-an-exclusive-interview-with-shai-almog/'
 date_published: '2023-03-27T00:00:00+00:00'
-date_scraped: '2025-02-15T11:28:01.101705309'
-tags: ['interview', 'career', 'java']
-featured_image: images/6.png
+date_scraped: '2025-08-05T14:12:25.03589'
+featured_image: 'images/6.png'
 ---
 
 ![](images/6.png)
@@ -233,10 +232,4 @@ We hope that Shai's journey and wisdom have inspired you to continue learning, g
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

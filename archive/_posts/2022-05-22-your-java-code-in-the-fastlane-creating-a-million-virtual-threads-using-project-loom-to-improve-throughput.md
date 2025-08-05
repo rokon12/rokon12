@@ -2,8 +2,7 @@
 title: 'Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput'
 original_url: 'https://bazlur.ca/2022/05/22/your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput/'
 date_published: '2022-05-22T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:41.892917026'
-tags: ['concurrency', 'java', 'performance']
+date_scraped: '2025-08-05T14:13:05.735758'
 ---
 
 Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput
@@ -21,10 +20,3 @@ This talk will explore what virtual threads are, how they are implemented, how t
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

@@ -2,9 +2,8 @@
 title: 'Weekly Java Newsletter – Issue #2'
 original_url: 'https://bazlur.ca/2022/07/01/weekly-java-newsletter-issue-2/'
 date_published: '2022-07-01T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:24.526644407'
-tags: ['java', 'programming']
-featured_image: images/java-newsletters-1.png
+date_scraped: '2025-08-05T14:12:58.460064'
+featured_image: 'images/java-newsletters-1.png'
 ---
 
 ![](images/java-newsletters-1.png)
@@ -47,10 +46,3 @@ By the way, don't forget to check out my latest Twitter thread.
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

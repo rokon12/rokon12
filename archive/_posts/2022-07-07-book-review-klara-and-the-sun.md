@@ -2,9 +2,8 @@
 title: 'Book Review: Klara and the Sun'
 original_url: 'https://bazlur.ca/2022/07/07/book-review-klara-and-the-sun/'
 date_published: '2022-07-07T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:19.908574916'
-tags: ['book-review']
-featured_image: images/klara-and-sun.jpeg
+date_scraped: '2025-08-05T14:12:55.581263'
+featured_image: 'images/klara-and-sun.jpeg'
 ---
 
 ![](images/klara-and-sun.jpeg)
@@ -24,10 +23,4 @@ Book Review: Klara and the Sun
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

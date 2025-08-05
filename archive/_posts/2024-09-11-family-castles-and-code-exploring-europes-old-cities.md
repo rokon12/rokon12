@@ -2,9 +2,8 @@
 title: 'Family, Castles, and Code: Exploring Europe’s Old Cities'
 original_url: 'https://bazlur.ca/2024/09/11/family-castles-and-code-exploring-europes-old-cities/'
 date_published: '2024-09-11T00:00:00+00:00'
-date_scraped: '2025-02-15T11:24:58.026810907'
-tags: ['personal']
-featured_image: images/53987206804-87983e572b-k-1.jpg
+date_scraped: '2025-08-05T14:10:59.078639'
+featured_image: 'images/53987206804-87983e572b-k-1.jpg'
 ---
 
 ![](images/53987206804-87983e572b-k-1.jpg)
@@ -44,10 +43,4 @@ Overall, this trip was a mix of personal and professional highlights, from reuni
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

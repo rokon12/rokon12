@@ -2,9 +2,8 @@
 title: 'Exploring File Storage Solutions in Spring Boot: Database, Local Systems, Cloud Services, and Beyond'
 original_url: 'https://bazlur.ca/2023/08/17/exploring-file-storage-solutions-in-spring-boot-database-local-systems-cloud-services-and-beyond/'
 date_published: '2023-08-17T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:10.327704349'
-tags: ['spring', 'java', 'tutorial']
-featured_image: images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg
+date_scraped: '2025-08-05T14:11:33.311575'
+featured_image: 'images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg'
 ---
 
 ![](images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg)
@@ -225,10 +224,4 @@ Happy coding!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

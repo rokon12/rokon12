@@ -2,9 +2,8 @@
 title: 'Weekly Java Newsletter – Issue #3'
 original_url: 'https://bazlur.ca/2022/07/11/weekly-java-newsletter-issue-3/'
 date_published: '2022-07-11T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:16.705107874'
-tags: ['java', 'programming']
-featured_image: images/java-newsletters-1.png
+date_scraped: '2025-08-05T14:12:54.152275'
+featured_image: 'images/java-newsletters-1.png'
 ---
 
 ![](images/java-newsletters-1.png)
@@ -40,10 +39,4 @@ Registration: <https://www.eventbrite.com/e/your-java-code-in-the-fast-lane-usin
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

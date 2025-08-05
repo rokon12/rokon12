@@ -2,9 +2,8 @@
 title: '5 Things You Probably Didn’t Know About Java Concurrency'
 original_url: 'https://bazlur.ca/2022/03/25/5-things-you-probably-didnt-know-about-java-concurrency/'
 date_published: '2022-03-25T00:00:00+00:00'
-date_scraped: '2025-02-15T11:30:17.813052772'
-tags: ['java', 'programming']
-featured_image: images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png
+date_scraped: '2025-08-05T14:13:20.180626'
+featured_image: 'images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png'
 ---
 
 ![](images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)
@@ -246,10 +245,4 @@ java --source 18 --enable-preview Main.java
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

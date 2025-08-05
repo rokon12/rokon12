@@ -2,8 +2,7 @@
 title: '5 ways to improve your communication skills'
 original_url: 'https://bazlur.ca/2022/08/06/5-ways-to-improve-your-communication-skills/'
 date_published: '2022-08-06T00:00:00+00:00'
-date_scraped: '2025-02-15T11:29:11.370380957'
-tags: ['career', 'programming']
+date_scraped: '2025-08-05T14:12:51.318432'
 ---
 
 5 ways to improve your communication skills
@@ -81,10 +80,3 @@ In combustion, these would make you a better software developer and help you in 
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

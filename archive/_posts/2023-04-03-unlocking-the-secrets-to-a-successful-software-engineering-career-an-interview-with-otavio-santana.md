@@ -2,9 +2,8 @@
 title: 'Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana'
 original_url: 'https://bazlur.ca/2023/04/03/unlocking-the-secrets-to-a-successful-software-engineering-career-an-interview-with-otavio-santana/'
 date_published: '2023-04-03T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:52.767519183'
-tags: ['interview', 'career', 'java']
-featured_image: images/4.png
+date_scraped: '2025-08-05T14:12:20.667434'
+featured_image: 'images/4.png'
 ---
 
 ![](images/4.png)
@@ -212,10 +211,3 @@ His passion for learning and sharing knowledge is evident throughout the convers
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

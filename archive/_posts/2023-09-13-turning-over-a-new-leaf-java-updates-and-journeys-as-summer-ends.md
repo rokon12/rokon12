@@ -2,9 +2,8 @@
 title: 'Turning Over a New Leaf: Java Updates and Journeys as Summer Ends'
 original_url: 'https://bazlur.ca/2023/09/13/turning-over-a-new-leaf-java-updates-and-journeys-as-summer-ends/'
 date_published: '2023-09-13T00:00:00+00:00'
-date_scraped: '2025-02-15T11:25:51.10579717'
-tags: ['java', 'programming']
-featured_image: images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png
+date_scraped: '2025-08-05T14:11:23.034098'
+featured_image: 'images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png'
 ---
 
 ![](images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png)
@@ -53,10 +52,4 @@ Until then, happy reading! And thank you for being a part of this journey with m
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

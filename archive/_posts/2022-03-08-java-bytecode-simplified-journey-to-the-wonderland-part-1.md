@@ -2,9 +2,8 @@
 title: 'Java Bytecode Simplified: Journey to the Wonderland (Part 1)'
 original_url: 'https://bazlur.ca/2022/03/08/java-bytecode-simplified-journey-to-the-wonderland-part-1/'
 date_published: '2022-03-08T00:00:00+00:00'
-date_scraped: '2025-02-15T11:30:25.275906192'
-tags: ['java', 'tutorial', 'performance']
-featured_image: images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg
+date_scraped: '2025-08-05T14:13:25.94557'
+featured_image: 'images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 ---
 
 ![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
@@ -165,10 +164,4 @@ Happy coding!
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

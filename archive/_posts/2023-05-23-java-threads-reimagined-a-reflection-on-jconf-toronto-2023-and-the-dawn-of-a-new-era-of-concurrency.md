@@ -2,9 +2,8 @@
 title: 'Java Threads Reimagined: A Reflection on JConf Toronto 2023 and the Dawn of a New Era of Concurrency'
 original_url: 'https://bazlur.ca/2023/05/23/java-threads-reimagined-a-reflection-on-jconf-toronto-2023-and-the-dawn-of-a-new-era-of-concurrency/'
 date_published: '2023-05-23T00:00:00+00:00'
-date_scraped: '2025-02-15T11:27:17.255439241'
-tags: ['java', 'programming']
-featured_image: images/pxl-20230503-140737421-scaled.jpg
+date_scraped: '2025-08-05T14:12:03.128543'
+featured_image: 'images/pxl-20230503-140737421-scaled.jpg'
 ---
 
 ![](images/pxl-20230503-140737421-scaled.jpg)
@@ -64,10 +63,4 @@ In conclusion, JConf Toronto 2023 was a confluence of minds and ideas, weaving t
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}

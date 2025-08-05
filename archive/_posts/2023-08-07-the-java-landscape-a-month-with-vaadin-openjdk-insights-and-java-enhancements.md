@@ -2,9 +2,8 @@
 title: 'The Java Landscape: A Month with Vaadin, OpenJDK Insights, and Java Enhancements'
 original_url: 'https://bazlur.ca/2023/08/07/the-java-landscape-a-month-with-vaadin-openjdk-insights-and-java-enhancements/'
 date_published: '2023-08-07T00:00:00+00:00'
-date_scraped: '2025-02-15T11:26:18.14893152'
-tags: ['java']
-featured_image: images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png
+date_scraped: '2025-08-05T14:11:36.741504'
+featured_image: 'images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png'
 ---
 
 ![](images/dall-e-2023-08-05-04.37.03-a-visual-representation-of-a-java-developer-at-his-computer-embarking-on-a-new-project.-the-developer-is-finding-a-treasure-chest-representing-the-va.png)
@@ -71,10 +70,3 @@ I hope this compilation will keep you engaged for a while. Rest assured, I'll be
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE

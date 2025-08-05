@@ -2,9 +2,8 @@
 title: 'Java Tips # 01 – Writing Shebang Scripts in Pure Java'
 original_url: 'https://bazlur.ca/2024/10/27/java-tips-01-writing-shebang-scripts-in-pure-java/'
 date_published: '2024-10-27T00:00:00+00:00'
-date_scraped: '2025-02-15T11:24:36.910884904'
-tags: ['java', 'tools', 'tutorial']
-featured_image: images/dall-e-2024-10-27-02.06.37-a-feature-photo-illustrating-the-concept-of-writing-a-java-cli-shebang-script.-the-image-shows-a-terminal-window-with-java-code-being-executed-in-a-sh.webp
+date_scraped: '2025-08-05T14:10:57.634713'
+featured_image: 'images/dall-e-2024-10-27-02.06.37-a-feature-photo-illustrating-the-concept-of-writing-a-java-cli-shebang-script.-the-image-shows-a-terminal-window-with-java-code-being-executed-in-a-sh.webp'
 ---
 
 ![](images/dall-e-2024-10-27-02.06.37-a-feature-photo-illustrating-the-concept-of-writing-a-java-cli-shebang-script.-the-image-shows-a-terminal-window-with-java-code-being-executed-in-a-sh.webp)
@@ -169,10 +168,4 @@ Now, you can invoke it from any directory just by typing `hello` in your termina
 
 *** ** * ** ***
 
----
-
-📬 **Stay Updated**: Subscribe to my newsletter at [bazlur.substack.com](https://bazlur.substack.com/) for more articles on:
-- ☕ Java & all the new features coming along
-- 🧵 Concurrency & Virtual Threads
-- 🧠 LLMs, LangChain4j & AI Integration
-- 🚀 Quarkus, Spring & Jakarta EE
+Type your email... {#subscribe-email}
