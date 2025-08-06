@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/05/19/im-now-officially-a-java-champion/'
 date_published: '2022-05-19T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:21.151727'
 featured_image: '/images/jc-program-logo.png'
-tags: [articles, java, newsletter, jakarta ee, jakarta ee 10, java champion, microservice, monolithic versus microservices, monolithic vs microservices, jdk19, jep425, virtual thread, incubator, intellij idea, jep, structured concurrency, project loom]
+tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
 ![](images/jc-program-logo.png)

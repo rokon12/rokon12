@@ -4,7 +4,7 @@ title: 'Your Java Code in the Fastlane: Creating a Million Virtual Threads Using
 original_url: 'https://bazlur.ca/2022/05/22/your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput/'
 date_published: '2022-05-22T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:19.709672'
-tags: [articles, java, newsletter, jakarta ee, jakarta ee 10, java champion, microservice, monolithic versus microservices, monolithic vs microservices, jdk19, jep425, virtual thread, incubator, intellij idea, jep, structured concurrency, project loom]
+tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
 Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput

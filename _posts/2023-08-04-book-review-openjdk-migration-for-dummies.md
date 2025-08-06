@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/08/04/book-review-openjdk-migration-for-du
 date_published: '2023-08-04T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:51.592233'
 featured_image: '/images/dummies-373x510.png'
-tags: [amazon s3, azure blob storage, blobs, block storage, cloud storage, content delivery network cdn, database storage, distributed file systems, file storage, local file systems, managed file storage services, object storage, spring boot, code practices, interface, java, java language features, object oriented programming, pattern matching 2, programming tutorial, sealed classes, software development, subclasses, newsletter, beginner friendly, cryptography, jdk 21, jep, jep 430, jep 439, jep 440, jep 441, jep 443, jep 444, jep 445, jep 451, jep 452, jep 453, openjdk, programming, record classes, string templates, structured concurrency, unnamed patterns, virtual threads 2, z garbage collector, cay horstmann, computer science 2, core java, data science, effective learning, java community, java education, java for beginners, java in education, javascript, machine learning, programming language, python, teaching java, writing process, apis, bld, coding, event driven, foojay io, intellij idea, java articles, java build system, java development, java insights, java tutorials, javafx, learning java, mobile apps, project panama, raspberry pi, restful, technology, cloud native technologies, continuous learning, developer advocacy, developer productivity, enterprise java, it consultant, javaone rockstar, jcp, oracle developer champion, quarkus, sebastian daschner, software industry]
+tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 ---
 
 Book Review: "OpenJDK Migration for Dummies"

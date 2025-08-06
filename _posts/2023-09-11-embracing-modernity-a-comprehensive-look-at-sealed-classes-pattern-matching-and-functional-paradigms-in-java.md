@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/09/11/embracing-modernity-a-comprehensive-
 date_published: '2023-09-11T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:37.927734'
 featured_image: '/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg'
-tags: [c programming, code integration, foreign function memory api, java, jep 454, jni, native libraries, openjdk, project panama, software development, carrier threads, code optimization, concurrent programming, httpclient, jsoup, jvm flags, native methods, performance tuning, pinning, reentrantlock, scalability, synchronization, virtual threads 2, web crawler, atomicinteger, bestpractices, codeexamples, concurrency, databaseconnections, jdk21, junit, programmingtips, resourcemanagement, semaphore, softwareengineering, threading, virtualthreads, cyclicbarrier, multithreading, programming, threadsynchronization, countdownlatch, learning thread programming, classical threads, jdk 21, multi threading, performance optimization, sdkman 2, throughput, web crawling, experiment, jvm, memory management, native threads, operating system, outofmemoryerror, stack size, thread creation, virtual memory, newsletter, career advice, community involvement, java development, mentoring, oracle ace, programming philosophy, simon martinelli, software architecture, software industry trends, technology evaluation]
+tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
 ![](images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg)

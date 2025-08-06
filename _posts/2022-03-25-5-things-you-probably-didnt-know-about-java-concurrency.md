@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/03/25/5-things-you-probably-didnt-know-abo
 date_published: '2022-03-25T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:34.46606'
 featured_image: '/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png'
-tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
+tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
 ---
 
 ![](images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)

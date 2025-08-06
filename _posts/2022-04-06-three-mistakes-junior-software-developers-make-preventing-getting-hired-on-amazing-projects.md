@@ -4,7 +4,7 @@ title: 'Three Mistakes Junior Software Developers Make Preventing Getting Hired 
 original_url: 'https://bazlur.ca/2022/04/06/three-mistakes-junior-software-developers-make-preventing-getting-hired-on-amazing-projects/'
 date_published: '2022-04-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:32.413795'
-tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
+tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
 ---
 
 Three Mistakes Junior Software Developers Make Preventing Getting Hired On Amazing Projects

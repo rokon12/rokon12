@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/05/25/book-review-monolith-to-microservice
 date_published: '2022-05-25T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:18.245527'
 featured_image: '/images/monolith-to-microservice.jpeg'
-tags: [articles, java, newsletter, jakarta ee, jakarta ee 10, java champion, microservice, monolithic versus microservices, monolithic vs microservices, jdk19, jep425, virtual thread, incubator, intellij idea, jep, structured concurrency, project loom]
+tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
 ![](images/monolith-to-microservice.jpeg)

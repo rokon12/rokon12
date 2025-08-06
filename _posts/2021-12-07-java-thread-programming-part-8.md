@@ -4,7 +4,7 @@ title: 'Java Thread Programming (Part 8)'
 original_url: 'https://bazlur.ca/2021/12/07/java-thread-programming-part-8/'
 date_published: '2021-12-07T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:53.991666'
-tags: [concurrency, concurrent collections, consumer, java, learning thread programming, pattern, producer, producer consumer pattern, threads, thread safety, atomicinteger, threadpool, notify, notifyall, thread, thread lifecycle, wait, method, optional, critical section, lock, mutex, mutual exclusion, race condition, synchronized, data race, thread programming, volatile, core java]
+tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
 ---
 
 Java Thread Programming (Part 8)

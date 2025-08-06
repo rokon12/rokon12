@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/10/14/tour-de-morocco/'
 date_published: '2022-10-14T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:59.208737'
 featured_image: '/images/devoxxma.jpeg'
-tags: [conference, devoxx, devoxxma, morocco, talks, trip reports, java, java19, record patterns, structured concurrency, virtual thread, callable, executors, future, learning thread programming, thread, thread programming, bytecode, communication, developers, skills, concurrency, newsletter, project loom, article, books, fiction, review]
+tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 ---
 
 ![](images/devoxxma.jpeg)

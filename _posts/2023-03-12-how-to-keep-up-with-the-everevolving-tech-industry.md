@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/03/12/how-to-keep-up-with-the-ever-evolvin
 date_published: '2023-03-12T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:45.47413'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
-tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
+tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
 ![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)

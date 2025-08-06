@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/07/11/weekly-java-newsletter-issue-3/'
 date_published: '2022-07-11T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:07.971426'
 featured_image: '/images/java-newsletters-1.png'
-tags: [conference, devoxx, devoxxma, morocco, talks, trip reports, java, java19, record patterns, structured concurrency, virtual thread, callable, executors, future, learning thread programming, thread, thread programming, bytecode, communication, developers, skills, concurrency, newsletter, project loom, article, books, fiction, review]
+tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 ---
 
 ![](images/java-newsletters-1.png)

@@ -4,7 +4,7 @@ title: 'Let’s Use Optional to Fix Method Contracts'
 original_url: 'https://bazlur.ca/2021/11/10/lets-use-optional-to-fix-method-contracts/'
 date_published: '2021-11-10T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:59.956493'
-tags: [concurrency, concurrent collections, consumer, java, learning thread programming, pattern, producer, producer consumer pattern, threads, thread safety, atomicinteger, threadpool, notify, notifyall, thread, thread lifecycle, wait, method, optional, critical section, lock, mutex, mutual exclusion, race condition, synchronized, data race, thread programming, volatile, core java]
+tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
 ---
 
 Let's Use Optional to Fix Method Contracts

@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/02/27/java-friends-and-cold-weather-my-adv
 date_published: '2023-02-27T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:48.371719'
 featured_image: '/images/image-3.png'
-tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
+tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
 ![](images/image-3.png)

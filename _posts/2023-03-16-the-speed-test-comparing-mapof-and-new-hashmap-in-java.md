@@ -4,7 +4,7 @@ title: 'The Speed Test: Comparing Map.of() and new HashMap<>() in Java'
 original_url: 'https://bazlur.ca/2023/03/16/speed-test-comparing-map-of-new-hashmap/'
 date_published: '2023-03-16T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:42.605213'
-tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
+tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
 The Speed Test: Comparing Map.of() and new HashMap\<\>() in Java

@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/03/08/java-bytecode-simplified-journey-to-
 date_published: '2022-03-08T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:40.016326'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
-tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
+tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
 ---
 
 ![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
