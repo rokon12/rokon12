@@ -10,7 +10,7 @@ title: Test Related Posts
     
     <h2>Current Implementation</h2>
     <ul>
-        <li>✅ Limited to 3 posts in line 49: <code>{% for post in sorted_posts limit: 3 %}</code></li>
+        <li>✅ Limited to 3 posts in line 49: <code>{% raw %}{% for post in sorted_posts limit: 3 %}{% endraw %}</code></li>
         <li>✅ Also limited in fallback (line 97): <code>limit: 3</code></li>
         <li>✅ Checks maximum 30 posts for performance</li>
         <li>✅ Requires minimum shared tags (1-2 depending on total tags)</li>
@@ -33,9 +33,9 @@ title: Test Related Posts
     
     <h2>Want to Change the Limit?</h2>
     <p>To show 5 posts instead of 3, change:</p>
-    <pre><code>{% for post in sorted_posts limit: 3 %}</code></pre>
+    <pre><code>{% raw %}{% for post in sorted_posts limit: 3 %}{% endraw %}</code></pre>
     <p>to:</p>
-    <pre><code>{% for post in sorted_posts limit: 5 %}</code></pre>
+    <pre><code>{% raw %}{% for post in sorted_posts limit: 5 %}{% endraw %}</code></pre>
     
     <p>And also update the fallback section similarly.</p>
 </div>
