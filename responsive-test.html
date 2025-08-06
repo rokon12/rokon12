@@ -1,0 +1,116 @@
+---
+layout: default
+title: Responsive Design Test
+---
+
+<div class="wrapper">
+    <h1>Responsive Design Test Page</h1>
+    
+    <p>This page demonstrates the responsive features implemented on the website. Resize your browser window or use mobile device emulation to test.</p>
+    
+    <h2>Responsive Features Implemented</h2>
+    
+    <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+        <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px;">
+            <h3>📱 Mobile Navigation</h3>
+            <ul>
+                <li>Hamburger menu for screens &lt; 768px</li>
+                <li>Full-screen mobile menu with smooth animations</li>
+                <li>Click outside to close functionality</li>
+                <li>Sticky header on mobile</li>
+            </ul>
+        </div>
+        
+        <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px;">
+            <h3>📐 Responsive Grid</h3>
+            <ul>
+                <li>3 columns on desktop (&gt; 1200px)</li>
+                <li>2 columns on tablet (768px - 1200px)</li>
+                <li>1 column on mobile (&lt; 768px)</li>
+                <li>Flexible gap spacing</li>
+            </ul>
+        </div>
+        
+        <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px;">
+            <h3>📝 Content Optimization</h3>
+            <ul>
+                <li>Responsive typography scaling</li>
+                <li>Full-width images on mobile</li>
+                <li>Horizontal scroll for tables</li>
+                <li>Optimized code block display</li>
+            </ul>
+        </div>
+        
+        <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px;">
+            <h3>🎨 UI Components</h3>
+            <ul>
+                <li>Responsive CTAs and buttons</li>
+                <li>Mobile-optimized social links</li>
+                <li>Touch-friendly tap targets</li>
+                <li>Responsive footer layout</li>
+            </ul>
+        </div>
+    </div>
+    
+    <h2>Breakpoints</h2>
+    <table style="width: 100%; margin: 2rem 0;">
+        <thead>
+            <tr>
+                <th>Breakpoint</th>
+                <th>Device</th>
+                <th>Key Changes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>&lt; 768px</strong></td>
+                <td>Mobile</td>
+                <td>Mobile menu, single column, full-width images</td>
+            </tr>
+            <tr>
+                <td><strong>768px - 1199px</strong></td>
+                <td>Tablet</td>
+                <td>2-column grid, hidden TOC, medium typography</td>
+            </tr>
+            <tr>
+                <td><strong>≥ 1200px</strong></td>
+                <td>Desktop</td>
+                <td>3-column grid, visible TOC, full navigation</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Mobile-First Approach</h2>
+    <p>The website follows a mobile-first design philosophy:</p>
+    <ul>
+        <li>Base styles optimized for mobile devices</li>
+        <li>Progressive enhancement for larger screens</li>
+        <li>Performance optimized for slower connections</li>
+        <li>Touch-friendly interface elements</li>
+    </ul>
+    
+    <h2>Test Checklist</h2>
+    <div style="background: #f0f0f0; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
+        <p>Use this checklist to verify responsive behavior:</p>
+        <ul style="list-style: none; padding: 0;">
+            <li>✅ Navigation collapses to hamburger menu on mobile</li>
+            <li>✅ Post grid adjusts from 3 → 2 → 1 columns</li>
+            <li>✅ Images scale properly without overflow</li>
+            <li>✅ Tables scroll horizontally on small screens</li>
+            <li>✅ Typography scales appropriately</li>
+            <li>✅ CTAs stack vertically on mobile</li>
+            <li>✅ Footer content centers on mobile</li>
+            <li>✅ Search bar remains accessible</li>
+            <li>✅ Social links remain clickable</li>
+            <li>✅ Code blocks are readable on all sizes</li>
+        </ul>
+    </div>
+    
+    <div class="hide-mobile" style="background: #e3f2fd; padding: 1rem; margin: 2rem 0; border-radius: 8px;">
+        <p><strong>Desktop Only:</strong> This message is only visible on desktop (screens wider than 768px)</p>
+    </div>
+    
+    <div class="show-mobile" style="background: #fff3e0; padding: 1rem; margin: 2rem 0; border-radius: 8px; display: none;">
+        <p><strong>Mobile Only:</strong> This message is only visible on mobile (screens narrower than 768px)</p>
+    </div>
+</div>

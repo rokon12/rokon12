@@ -3226,3 +3226,385 @@ img {
     }
   }
 }
+
+// ===============================================
+// Comprehensive Responsive Design
+// ===============================================
+
+// Mobile Menu Button
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+  
+  .hamburger {
+    display: block;
+    width: 24px;
+    height: 20px;
+    position: relative;
+    
+    span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: $text-color;
+      border-radius: 3px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+      
+      &:nth-child(1) {
+        top: 0px;
+      }
+      
+      &:nth-child(2) {
+        top: 8px;
+      }
+      
+      &:nth-child(3) {
+        top: 16px;
+      }
+    }
+  }
+  
+  &[aria-expanded="true"] .hamburger {
+    span:nth-child(1) {
+      top: 8px;
+      transform: rotate(135deg);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+    
+    span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-135deg);
+    }
+  }
+}
+
+// Responsive Header & Navigation
+@media (max-width: 768px) {
+  .site-header {
+    position: fixed;
+    width: 100%;
+  }
+  
+  .header-wrapper {
+    padding: 0 1rem;
+  }
+  
+  .site-nav {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: $bg-color;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    
+    &.is-active {
+      display: flex;
+    }
+    
+    .nav-link {
+      width: 100%;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba($text-color, 0.1);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  .page-content {
+    padding-top: 60px;
+  }
+}
+
+// Responsive Typography
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .post-title {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+  
+  .ascii-banner {
+    font-size: 0.5rem;
+    overflow-x: auto;
+  }
+}
+
+// Responsive Wrapper
+.wrapper {
+  @media (max-width: 1200px) {
+    padding: 0 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+}
+
+// Responsive Post Grid
+.post-grid {
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+// Responsive Post Cards
+@media (max-width: 768px) {
+  .post-card {
+    flex-direction: column;
+    
+    .post-card-image {
+      width: 100%;
+      height: 200px;
+    }
+    
+    .post-card-content {
+      padding: 1.5rem;
+    }
+    
+    .post-card-title {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Responsive Post Content
+@media (max-width: 768px) {
+  .post-content {
+    font-size: 1rem;
+    
+    img {
+      margin: 1rem -1rem;
+      width: calc(100% + 2rem);
+      max-width: none;
+      border-radius: 0;
+    }
+    
+    pre {
+      margin: 1rem -1rem;
+      border-radius: 0;
+    }
+    
+    blockquote {
+      margin: 1rem 0;
+      padding: 1rem;
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
+// Responsive Table of Contents
+@media (max-width: 1199px) {
+  .toc-container {
+    display: none;
+  }
+  
+  .post-wrapper-with-toc {
+    justify-content: center;
+    
+    .post-container {
+      max-width: 100%;
+    }
+  }
+}
+
+// Responsive Newsletter CTA
+@media (max-width: 768px) {
+  .newsletter-cta {
+    padding: 1.5rem;
+    margin: 1.5rem -1rem;
+    border-radius: 0;
+    
+    .newsletter-content {
+      h3 {
+        font-size: 1.25rem;
+      }
+      
+      ul {
+        padding-left: 1.5rem;
+      }
+    }
+    
+    .newsletter-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  .social-follow-cta {
+    padding: 1.5rem;
+    margin: 1.5rem -1rem;
+    border-radius: 0;
+    
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Responsive Footer
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 2rem 1rem;
+    
+    .footer-content {
+      text-align: center;
+      
+      p {
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// Responsive Search
+@media (max-width: 768px) {
+  .search-section {
+    padding: 1.5rem 0;
+    
+    .search-container {
+      padding: 0 1rem;
+    }
+    
+    .quick-search-input {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+}
+
+// Responsive Tags
+@media (max-width: 768px) {
+  .tag-cloud {
+    gap: 0.5rem;
+    
+    .tag-link {
+      font-size: 0.875rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  
+  .tags-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Responsive Pagination
+@media (max-width: 768px) {
+  .pagination {
+    font-size: 0.875rem;
+    
+    a, span {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+// Responsive Post Navigation
+@media (max-width: 768px) {
+  .post-nav {
+    flex-direction: column;
+    gap: 1rem;
+    
+    a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+// Responsive Utilities
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .show-mobile {
+    display: block !important;
+  }
+}
+
+// Responsive Tables
+@media (max-width: 768px) {
+  table {
+    font-size: 0.875rem;
+    
+    th, td {
+      padding: 0.5rem;
+    }
+  }
+}
+
+// Responsive Code Blocks
+@media (max-width: 768px) {
+  pre[class*="language-"] {
+    font-size: 0.875rem;
+    padding: 1rem;
+  }
+}
+
+// Responsive Share Buttons
+@media (max-width: 768px) {
+  .share-buttons {
+    .share-button {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Responsive Related Posts
+@media (max-width: 768px) {
+  .related-posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
