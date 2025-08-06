@@ -8,7 +8,7 @@ featured_image: '/images/r121.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 ---
 
-![](images/r121.jpeg)
+![](/images/r121.jpeg)
 
 My Experience with the Apple Genius Bar: A Bumpy Ride to a Fixed MacBook Pro
 ============================================================================

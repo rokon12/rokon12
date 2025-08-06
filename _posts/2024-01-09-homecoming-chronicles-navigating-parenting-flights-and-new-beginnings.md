@@ -8,7 +8,7 @@ featured_image: '/images/1704519735509.png'
 tags: [java programming, java 11, java 21, java cli, java code]
 ---
 
-![](images/1704519735509.png)
+![](/images/1704519735509.png)
 
 Homecoming Chronicles: Navigating Parenting, Flights, and New Beginnings
 ========================================================================

@@ -8,7 +8,7 @@ featured_image: '/images/monolith-to-microservice.jpeg'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
-![](images/monolith-to-microservice.jpeg)
+![](/images/monolith-to-microservice.jpeg)
 
 Book Review: Monolith to Microservices (Part 1)
 ===============================================

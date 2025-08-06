@@ -8,7 +8,7 @@ featured_image: '/images/screen-shot-2023-04-10-at-6.11.44-am.png'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 ---
 
-![](images/screen-shot-2023-04-10-at-6.11.44-am.png)
+![](/images/screen-shot-2023-04-10-at-6.11.44-am.png)
 
 My Committer Profile and Interview with the Eclipse Foundation
 ==============================================================

@@ -8,7 +8,7 @@ featured_image: '/images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagr
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png)
+![](/images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png)
 
 Accessing Native C Functions from Java Using OpenJDK's JEP 454: Foreign Function \& Memory API
 ==============================================================================================

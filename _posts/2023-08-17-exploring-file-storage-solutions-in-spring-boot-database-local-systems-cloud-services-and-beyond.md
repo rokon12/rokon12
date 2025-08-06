@@ -8,7 +8,7 @@ featured_image: '/images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 ---
 
-![](images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg)
+![](/images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg)
 
 Exploring File Storage Solutions in Spring Boot: Database, Local Systems, Cloud Services, and Beyond
 ====================================================================================================

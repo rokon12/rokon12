@@ -8,12 +8,12 @@ featured_image: '/images/simon-martinelli-1.png'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 ---
 
-![](images/simon-martinelli-1.png)
+![](/images/simon-martinelli-1.png)
 
 Busting Myths, Building Futures: A Conversation with Cay Horstmann on Java and Machine Learning
 ===============================================================================================
 
-![](images/cay-pfh-big-edited.jpg)
+![](/images/cay-pfh-big-edited.jpg)
 
 <br />
 

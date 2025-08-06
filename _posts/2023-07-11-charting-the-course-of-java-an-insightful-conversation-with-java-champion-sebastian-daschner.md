@@ -8,12 +8,12 @@ featured_image: '/images/sebastian-daschner.png'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 ---
 
-![](images/sebastian-daschner.png)
+![](/images/sebastian-daschner.png)
 
 Charting the Course of Java: An Insightful Conversation with Java Champion, Sebastian Daschner
 ==============================================================================================
 
-![](images/sebastian.jpeg)
+![](/images/sebastian.jpeg)
 
 In this insightful interview, renowned Java Champion, Oracle Developer Champion, and JavaOne Rockstar, Sebastian Daschner, shares his journey in the field of Java enterprise software development.
 

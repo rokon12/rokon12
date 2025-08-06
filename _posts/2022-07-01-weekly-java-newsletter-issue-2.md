@@ -8,7 +8,7 @@ featured_image: '/images/java-newsletters-1.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
-![](images/java-newsletters-1.png)
+![](/images/java-newsletters-1.png)
 
 Weekly Java Newsletter -- Issue #2
 ==================================

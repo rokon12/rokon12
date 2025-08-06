@@ -21,7 +21,7 @@ Now, the question is, still, should we be concerned about any apparent decline? 
 
 I asked these questions to many Java developers and there were many and varied answers. For example, Brazilian Java champion [Bruno Souza](https://twitter.com/brjavaman) states that the main reasons for him to stick with Java are:
 
-![](images/screen-shot-2022-03-10-at-9.07.04-am-679x510.png)
+![](/images/screen-shot-2022-03-10-at-9.07.04-am-679x510.png)
 
 While many others mentioned similar ideas, Java Champion [Geertjan Wielenga](https://twitter.com/GeertjanW) has shared that he's stayed with Java, amongst other reasons, because that's where his friends are found. Indeed, that's an excellent reason for sticking with a community and thus with Java itself.
 

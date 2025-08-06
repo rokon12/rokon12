@@ -11,7 +11,7 @@ tags: [java concurrency, java programming, virtual threads 2, future of java, ja
 Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-I
 ====================================================================================
 
-![](images/jekov.jpeg)
+![](/images/jekov.jpeg)
 
 Welcome to the first part of our deep dive with Jakob Jenkov, a seasoned software developer and AWS solution architect, whose love for coding began with a Commodore 128 in the late '80s. Over the past decades, Jenkov has navigated the world of programming, with a particular emphasis on Java, making significant contributions to the community through his professional work and informative content on jenkov.com.
 

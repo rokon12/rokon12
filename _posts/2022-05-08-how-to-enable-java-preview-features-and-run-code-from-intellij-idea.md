@@ -8,7 +8,7 @@ featured_image: '/images/idea-overview-5-1-2x.webp'
 tags: [intellij idea, preview features, virtual threads, project loom, java tooling]
 ---
 
-![](images/idea-overview-5-1-2x.webp)
+![](/images/idea-overview-5-1-2x.webp)
 
 How to Enable Java Preview Features and Run Code from IntelliJ IDEA
 ===================================================================
@@ -37,13 +37,13 @@ However, it needed a bit of [yak shaving](https://en.wiktionary.org/wiki/yak_sha
 
 Then I figured, maybe, perhaps an IDE could help me here. So I opened my favourite IDE, which happens to be [IntelliJ IDEA](https://www.jetbrains.com/idea/). I created a project and set up the JDK using the following window-
 
-![](images/screen-shot-2022-05-08-at-4.59.40-am.png)
+![](/images/screen-shot-2022-05-08-at-4.59.40-am.png)
 
 Then when I tried to run, it didn't allow me to run the code since the virtual thread was still in preview. Here are the steps I had to go through in IntelliJ IDEA.
 
 First, you need to go preference, and then **Build, Execution, Deployment** and then Select Java Compiler.
 
-![](images/screen-shot-2022-05-08-at-5.03.41-am.png)
+![](/images/screen-shot-2022-05-08-at-5.03.41-am.png)
 
 At the bottom, there is a box named the additional command line parameter. Add the following line there-
 
@@ -53,11 +53,11 @@ At the bottom, there is a box named the additional command line parameter. Add t
 
 And then go to the run configuration. Select the modify options and Mark the Add VM options.
 
-![](images/screen-shot-2022-05-08-at-5.04.39-am.png)
+![](/images/screen-shot-2022-05-08-at-5.04.39-am.png)
 
 You need to add `--enable-preview `there as well.
 
-![](images/screen-shot-2022-05-08-at-5.11.43-am.png)
+![](/images/screen-shot-2022-05-08-at-5.11.43-am.png)
 
 That's it.
 

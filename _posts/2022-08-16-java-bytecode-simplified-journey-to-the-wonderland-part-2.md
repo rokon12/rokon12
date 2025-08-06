@@ -8,7 +8,7 @@ featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 ---
 
-![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
+![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
 
 Java Bytecode Simplified: Journey to the Wonderland (Part 2)
 ============================================================

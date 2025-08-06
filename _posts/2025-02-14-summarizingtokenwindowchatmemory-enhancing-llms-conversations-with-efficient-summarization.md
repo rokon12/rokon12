@@ -8,7 +8,7 @@ featured_image: '/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
 ---
 
-![](images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg)
+![](/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg)
 
 SummarizingTokenWindowChatMemory: Enhancing LLM's Conversations with Efficient Summarization
 ============================================================================================
@@ -347,7 +347,7 @@ To test its functionality, I created a simple chatbot that suggests recipes. The
 
 The source code is here: <https://github.com/rokon12/chefbot>
 
-![](images/screenshot-2025-02-14-at-1.04.29-am.png)  
+![](/images/screenshot-2025-02-14-at-1.04.29-am.png)  
 
 *** ** * ** ***
 

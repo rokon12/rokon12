@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T22:22:58.075273'
 featured_image: '/images/screenshot-2025-05-03-at-5.49.41-am.png'
 ---
 
-![](images/screenshot-2025-05-03-at-5.49.41-am.png)
+![](/images/screenshot-2025-05-03-at-5.49.41-am.png)
 
 Java + LLMs  + LangChain4j --- 2025 Talk Series
 ===============================================

@@ -8,7 +8,7 @@ featured_image: '/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png)
+![](/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png)
 
 Turning Over a New Leaf: Java Updates and Journeys as Summer Ends
 =================================================================

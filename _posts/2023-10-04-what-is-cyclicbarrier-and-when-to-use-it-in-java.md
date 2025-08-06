@@ -8,7 +8,7 @@ featured_image: '/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
+![](/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
 
 What is CyclicBarrier and When to Use It in Java?
 =================================================

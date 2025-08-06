@@ -8,7 +8,7 @@ featured_image: '/images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illust
 tags: [java programming, java 11, java 21, java cli, java code]
 ---
 
-![](images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp)
+![](/images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp)
 
 Exploring New Features in JDK 23: A Sneak Peek
 ==============================================

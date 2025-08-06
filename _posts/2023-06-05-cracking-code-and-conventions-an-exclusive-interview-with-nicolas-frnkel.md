@@ -8,12 +8,12 @@ featured_image: '/images/nicols.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 ---
 
-![](images/nicols.jpeg)
+![](/images/nicols.jpeg)
 
 Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel
 ==========================================================================
 
-![](images/nicols-510x510.jpeg)
+![](/images/nicols-510x510.jpeg)
 
 In this enlightening interview, we explore the unique journey of Nicolas Fränkel, a seasoned professional in the software industry. From an architecture student to a passionate software developer, Nicolas shares his candid thoughts about the current state of software development and the potential impacts of AI.
 

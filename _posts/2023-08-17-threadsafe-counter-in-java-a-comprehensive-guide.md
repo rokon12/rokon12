@@ -8,7 +8,7 @@ featured_image: '/images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg'
 tags: [java concurrency, thread safety, atomic operations, synchronization, varhandle]
 ---
 
-![](images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg)
+![](/images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg)
 
 Thread-Safe Counter in Java: A Comprehensive Guide
 ==================================================

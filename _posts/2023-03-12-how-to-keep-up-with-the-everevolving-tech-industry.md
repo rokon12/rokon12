@@ -8,7 +8,7 @@ featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
-![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
+![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
 
 How to Keep Up with the Ever-Evolving Tech Industry
 ===================================================

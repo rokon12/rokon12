@@ -8,7 +8,7 @@ featured_image: '/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-be
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png)
+![](/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png)
 
 How to Diagnose and Mitigate Pinning in Java's Virtual Thread Execution
 =======================================================================

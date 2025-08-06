@@ -8,12 +8,12 @@ featured_image: '/images/5.png'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 ---
 
-![](images/5.png)
+![](/images/5.png)
 
 Unlocking Java Secrets with Frank Delporte: Insights, Stories, and Tips for Success
 ===================================================================================
 
-![](images/frank-7-xs.jpg)
+![](/images/frank-7-xs.jpg)
 
 Welcome to our exclusive interview with [Frank Delporte](https://www.linkedin.com/in/frankdelporte/), a Senior Technical Writer at Azul, Java Champion, and a passionate advocate for all things related to Java and Java on [Raspberry Pi](https://www.raspberrypi.org/).
 
@@ -124,7 +124,7 @@ So we went from a massive desk with many dedicated devices and screens to a sing
 I was one of the first users in Belgium of the Media 100, such a computer-based editing system, and visited several companies to demonstrate how it could speed up the editing process and generate better end results.
 
 Going from analog copies with quality loss, to lossless digital video, was only one of the significant improvements.
-[![](images/editing-film.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-film.jpg?ssl=1) [![](images/editing-video-analogue.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-analogue.jpg?ssl=1) [![](images/editing-video-media100.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-media100.jpg?ssl=1)
+[![](/images/editing-film.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-film.jpg?ssl=1) [![](/images/editing-video-analogue.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-analogue.jpg?ssl=1) [![](/images/editing-video-media100.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-media100.jpg?ssl=1)
 
 Soon after, my clients wanted to distribute their company movie to (potential) customers easily and attractively. That's when Macromedia Director and Flash became my new working tools as they allowed me to combine slides, video, and coding on DVD and CD-Rom. The logical next step was to put the same content online. You may remember the annoying "Skip Intro" Flash animations that were used on many websites for some years, and yes, I have to admit, I also created those... Everyone sought new ways to convert static boring text pages into more appealing content. We probably made a lot of wrong decisions at that time, but don't we still? Anyhow, soon I needed a database to create dynamic and easily updatable websites and started using Access Database for it -- bad idea -- and SQL Server.
 

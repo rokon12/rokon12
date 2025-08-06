@@ -15,7 +15,7 @@ Book Review: "OpenJDK Migration for Dummies"
 
 "OpenJDK Migration for Dummies" by[Simon Ritter](https://www.linkedin.com/in/siritter/) offers a fresh perspective, breaking down these challenges into digestible segments. ([Get it for free here.](https://www.azul.com/openjdk-migration-for-dummies/))
 
-[![](images/dummies-373x510.png)](https://www.azul.com/openjdk-migration-for-dummies/)
+[![](/images/dummies-373x510.png)](https://www.azul.com/openjdk-migration-for-dummies/)
 
 The book directly speaks to my core expertise in Java, providing clarity and guidance.
 

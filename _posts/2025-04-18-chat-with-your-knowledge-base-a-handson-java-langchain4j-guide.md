@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T22:22:59.55067'
 featured_image: '/images/chatgpt-image-apr-18-2025-02-34-23-am.png'
 ---
 
-![](images/chatgpt-image-apr-18-2025-02-34-23-am.png)
+![](/images/chatgpt-image-apr-18-2025-02-34-23-am.png)
 
 Chat with Your Knowledge Base: A Hands-On Java \& LangChain4j Guide
 ===================================================================
@@ -447,7 +447,7 @@ Once running, you should see the ingestion messages followed by the "Assistant: 
 
 Observe how the assistant's answers are derived from the information you provided in the text files, demonstrating the RAG process in action.
 
-![](images/screenshot-2025-04-18-at-2.46.48-am.png)
+![](/images/screenshot-2025-04-18-at-2.46.48-am.png)
 
 **Conclusion**
 --------------

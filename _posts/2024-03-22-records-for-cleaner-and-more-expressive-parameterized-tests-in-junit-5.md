@@ -8,7 +8,7 @@ featured_image: '/images/gemini-generated-image-2.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
 ---
 
-![](images/gemini-generated-image-2.jpeg)
+![](/images/gemini-generated-image-2.jpeg)
 
 Records for Cleaner and More Expressive Parameterized Tests in JUnit 5
 ======================================================================

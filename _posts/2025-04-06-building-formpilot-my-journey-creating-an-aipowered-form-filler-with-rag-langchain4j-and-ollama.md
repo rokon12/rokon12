@@ -7,7 +7,7 @@ date_scraped: '2025-08-05T22:23:01.007487'
 featured_image: '/images/chatgpt-image-apr-6-2025-06-10-38-pm.png'
 ---
 
-![](images/chatgpt-image-apr-6-2025-06-10-38-pm.png)
+![](/images/chatgpt-image-apr-6-2025-06-10-38-pm.png)
 
 Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama
 ===================================================================================================
@@ -109,7 +109,7 @@ Ollama enables you to run open-source large language models (LLMs) directly on y
 ollama list
 ```
 
-### ![](images/screenshot-2025-04-05-at-9.48.13-pm.png)
+### ![](/images/screenshot-2025-04-05-at-9.48.13-pm.png)
 
 ### **Part 2: Creating the Spring Boot Project via Spring Initializr**
 
@@ -423,7 +423,7 @@ I structured the extension with three main parts:
 
 1. **Content Script (content.js)** : Injected into web pages to interact with the DOM (find forms, fill fields).
 2. **Background Script (background.js or Service Worker)** : Acts as a central hub, handling communication with the backend server and managing the extension state.
-3. **Popup UI (popup.html and popup.js)** : Provides a simple interface for the user (e.g., a button to trigger form filling).![](images/screenshot-2025-04-06-at-6.50.38-pm.png)
+3. **Popup UI (popup.html and popup.js)** : Provides a simple interface for the user (e.g., a button to trigger form filling).![](/images/screenshot-2025-04-06-at-6.50.38-pm.png)
 
 The most challenging part was reliably detecting form fields and extracting useful metadata, especially labels, as HTML forms vary widely in structure. I implemented several strategies in content.js:
 
@@ -661,7 +661,7 @@ Then visit http://localhost:8000/demo/demo-form.html in your browser.
 * Click the extension icon in your Chrome toolbar
 * Right-click on the page and select "Smart Form Filler" from the context menu, then choose "Fill Forms"
 
-![](images/screenshot-2025-04-06-at-6.38.24-pm.png)
+![](/images/screenshot-2025-04-06-at-6.38.24-pm.png)
 
 **Testing with a Demo Form**
 ----------------------------

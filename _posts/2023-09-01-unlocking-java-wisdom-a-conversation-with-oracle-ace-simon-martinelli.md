@@ -8,12 +8,12 @@ featured_image: '/images/simon-martinelli.png'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/simon-martinelli.png)
+![](/images/simon-martinelli.png)
 
 Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli
 ======================================================================
 
-![](images/image-2.png)
+![](/images/image-2.png)
 
 In a recent insightful interview, Simon Martinelli, an Oracle ACE associate and veteran Java developer, shares his career experiences, software development philosophies, and views on mentoring. With over two decades in the industry, Martinelli offers a perspective that combines the wisdom of experience with a focus on simplicity and constant learning.
 

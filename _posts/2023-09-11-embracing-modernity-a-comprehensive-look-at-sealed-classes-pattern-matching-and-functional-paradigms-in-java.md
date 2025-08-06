@@ -8,7 +8,7 @@ featured_image: '/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg)
+![](/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg)
 
 Embracing Modernity: A Comprehensive Look at Sealed Classes, Pattern Matching, and Functional Paradigms in Java
 ===============================================================================================================

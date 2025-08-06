@@ -8,12 +8,12 @@ featured_image: '/images/erik.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 ---
 
-![](images/erik.jpeg)
+![](/images/erik.jpeg)
 
 Decoding Success: An Industry Expert's Guide to Thriving in Software Development and Security
 =============================================================================================
 
-![](images/erik.jpeg)
+![](/images/erik.jpeg)
 
 In today's fast-paced tech world, understanding the intricacies of software development and product management is key to success.
 

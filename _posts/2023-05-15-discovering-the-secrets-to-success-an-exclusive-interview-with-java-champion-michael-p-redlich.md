@@ -11,7 +11,7 @@ tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich
 ================================================================================================
 
-![](images/michael-redlich.jpg)
+![](/images/michael-redlich.jpg)
 
 In this interview, we had the pleasure of speaking with Michael P. Redlich, a seasoned software developer with over 30 years of experience in the field.
 

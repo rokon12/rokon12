@@ -8,7 +8,7 @@ featured_image: '/images/19d24567-abd1-47f8-ab6d-1a8f05cd3801.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 ---
 
-![](images/19d24567-abd1-47f8-ab6d-1a8f05cd3801.jpeg)
+![](/images/19d24567-abd1-47f8-ab6d-1a8f05cd3801.jpeg)
 
 The Evolution of Java: Challenging Stereotypes and Embracing Modernity
 ======================================================================

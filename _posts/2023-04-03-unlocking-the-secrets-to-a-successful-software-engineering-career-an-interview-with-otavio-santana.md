@@ -8,12 +8,12 @@ featured_image: '/images/4.png'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 ---
 
-![](images/4.png)
+![](/images/4.png)
 
 Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana
 ===================================================================================================
 
-![](images/otavio-edited.webp)
+![](/images/otavio-edited.webp)
 
 In this exclusive interview, we had the pleasure of speaking with [Otavio Santana](https://www.linkedin.com/in/otaviojava/), a Java Champion and passionate software engineer and architect dedicated to empowering fellow engineers to deliver efficient, scalable software on the Cloud.
 

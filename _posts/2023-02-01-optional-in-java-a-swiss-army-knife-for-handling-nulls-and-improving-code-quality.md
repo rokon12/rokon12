@@ -8,7 +8,7 @@ featured_image: '/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
-![](images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)
+![](/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)
 
 Optional in Java: A Swiss Army Knife for Handling Nulls and Improving Code Quality
 ==================================================================================

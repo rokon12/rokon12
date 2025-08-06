@@ -8,12 +8,12 @@ featured_image: '/images/6.png'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
-![](images/6.png)
+![](/images/6.png)
 
 Navigating the Challenges of Modern Software Development: An Exclusive Interview with Shai Almog
 ================================================================================================
 
-![](images/shai-almog.jpg)
+![](/images/shai-almog.jpg)
 
 Welcome to our exclusive interview with [Shai Almog](https://www.linkedin.com/in/shai-almog-81a42/), an accomplished entrepreneur, author, blogger, and Java expert with over two decades of experience in the software industry.
 

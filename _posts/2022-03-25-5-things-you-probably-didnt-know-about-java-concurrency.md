@@ -8,7 +8,7 @@ featured_image: '/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-he
 tags: [java concurrency, thread ordering, volatile keyword, completablefuture, lock free programming]
 ---
 
-![](images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)
+![](/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)
 
 5 Things You Probably Didn't Know About Java Concurrency
 ========================================================

@@ -8,7 +8,7 @@ featured_image: '/images/cafe-g56e2bcea6-1920.jpg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 ---
 
-![](images/cafe-g56e2bcea6-1920.jpg)
+![](/images/cafe-g56e2bcea6-1920.jpg)
 
 The 5 Most Pivotal and Innovative Additions to OpenJDK 19
 =========================================================

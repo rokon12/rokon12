@@ -105,7 +105,7 @@ With the above code, how many tasks will be created?
 
 The recursion tree will look like this.
 
-![](images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png)
+![](/images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png)
 
 We count that we will have 15 tasks. The top task, which is 5, will create two new tasks and wait for them to finish.
 

@@ -8,7 +8,7 @@ featured_image: '/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg'
 tags: [testing best practices, junit 5, test driven development, refactoring, code quality]
 ---
 
-![](images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg)
+![](/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg)
 
 Writing Testable Code: A Journey Through Consideration and Refactoring
 ======================================================================

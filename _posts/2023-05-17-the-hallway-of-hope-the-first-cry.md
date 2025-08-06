@@ -8,7 +8,7 @@ featured_image: '/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 ---
 
-![](images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)
+![](/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)
 
 The Hallway of Hope: The First Cry
 ==================================

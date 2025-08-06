@@ -8,14 +8,14 @@ featured_image: '/images/jc-program-logo.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
-![](images/jc-program-logo.png)
+![](/images/jc-program-logo.png)
 
 I'm now officially a Java Champion
 ==================================
 
 A day couldn't be sweeter than this. Alhamdulillah!  
 After 10 years of working on the Java platform, I'm now officially a **Java Champion**.  
-![](images/jc.jpeg)  
+![](/images/jc.jpeg)  
 Reference:  
 <https://twitter.com/Java_Champions/status/1523728715368509440>  
 <https://github.com/aalmiray/java-champions/blob/master/README.adoc>  

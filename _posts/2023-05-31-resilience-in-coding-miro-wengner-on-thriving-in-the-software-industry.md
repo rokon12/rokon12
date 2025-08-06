@@ -8,12 +8,12 @@ featured_image: '/images/miro.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 ---
 
-![](images/miro.jpeg)
+![](/images/miro.jpeg)
 
 Resilience in Coding: Miro Wengner on Thriving in the Software Industry
 =======================================================================
 
-![](images/miro.jpeg)
+![](/images/miro.jpeg)
 
 In this insightful discussion, we sit down with Miro Wengner, an accomplished software engineer with a deep-rooted affinity for Java. Miro shares his professional journey, highlights the significant challenges in the field, and reflects on the key moments that shaped his career.
 

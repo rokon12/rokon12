@@ -8,7 +8,7 @@ featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
+![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
 
 Web Crawling in Java: A Tale of Classical Threads and Virtual Threads
 =====================================================================

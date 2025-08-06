@@ -8,7 +8,7 @@ featured_image: '/images/gemini-generated-image-9cppb89cppb89cpp.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
 ---
 
-![](images/gemini-generated-image-9cppb89cppb89cpp.jpeg)
+![](/images/gemini-generated-image-9cppb89cppb89cpp.jpeg)
 
 Unsafe is Finally Going Away: Embracing Safer Memory Access with JEP 471
 ========================================================================

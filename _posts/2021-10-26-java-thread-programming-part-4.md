@@ -8,7 +8,7 @@ featured_image: '/images/dall-e-2023-10-11-03.28.56-graphical-representation-of-
 tags: [java threads, volatile keyword, thread safety, memory visibility, data race]
 ---
 
-![](images/dall-e-2023-10-11-03.28.56-graphical-representation-of-a-computers-cpu-and-memory.-threads-labeled-thread-1-and-thread-2-move-from-the-cpu-towards-the-memory-and-back-sh.png)
+![](/images/dall-e-2023-10-11-03.28.56-graphical-representation-of-a-computers-cpu-and-memory.-threads-labeled-thread-1-and-thread-2-move-from-the-cpu-towards-the-memory-and-back-sh.png)
 
 Java Thread Programming (Part 4)
 ================================

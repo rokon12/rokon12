@@ -8,7 +8,7 @@ featured_image: '/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg'
 tags: [sealed classes, pattern matching, java 17, modern java, interface design]
 ---
 
-![](images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg)
+![](/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg)
 
 Sealed Interfaces and Pattern Matching: A Quick Dive into Java's Modern Capabilities
 ====================================================================================

@@ -8,7 +8,7 @@ featured_image: '/images/img-20230202-wa0000.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
-![](images/img-20230202-wa0000.jpg)
+![](/images/img-20230202-wa0000.jpg)
 
 Welcoming Our Little Princess: The Story of Rushda Rahman
 =========================================================

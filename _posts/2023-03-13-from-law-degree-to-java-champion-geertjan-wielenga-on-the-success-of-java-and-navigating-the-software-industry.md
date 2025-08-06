@@ -8,7 +8,7 @@ featured_image: '/images/wielenga-1024x576-1.png'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 ---
 
-![](images/wielenga-1024x576-1.png)
+![](/images/wielenga-1024x576-1.png)
 
 From Law Degree to Java Champion: Geertjan Wielenga on the Success of Java and Navigating the Software Industry
 ===============================================================================================================

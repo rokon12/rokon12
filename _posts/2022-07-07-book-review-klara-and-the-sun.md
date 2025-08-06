@@ -8,7 +8,7 @@ featured_image: '/images/klara-and-sun.jpeg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 ---
 
-![](images/klara-and-sun.jpeg)
+![](/images/klara-and-sun.jpeg)
 
 Book Review: Klara and the Sun
 ==============================

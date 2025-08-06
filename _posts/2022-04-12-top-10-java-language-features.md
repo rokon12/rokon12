@@ -8,7 +8,7 @@ featured_image: '/images/top-10-java-language-features-1.png'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
 ---
 
-![](images/top-10-java-language-features-1.png)
+![](/images/top-10-java-language-features-1.png)
 
 Top 10 Java Language Features
 =============================

@@ -8,12 +8,12 @@ featured_image: '/images/chris.png'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 ---
 
-![](images/chris.png)
+![](/images/chris.png)
 
 Breaking the Code: How Chris Newland is Changing the Game in JVM Performance!
 =============================================================================
 
-![](images/chris.png)
+![](/images/chris.png)
 
 We're excited to introduce you to Chris Newland, an industry veteran and dedicated JVM performance specialist.
 

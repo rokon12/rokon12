@@ -8,7 +8,7 @@ featured_image: '/images/jakartaee-ambassadors-e1577035229941.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 ---
 
-![](images/jakartaee-ambassadors-e1577035229941.png)
+![](/images/jakartaee-ambassadors-e1577035229941.png)
 
 I joined the Jakarta Ambassadors program
 ========================================

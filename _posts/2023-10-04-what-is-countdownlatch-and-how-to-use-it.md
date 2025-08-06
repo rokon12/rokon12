@@ -8,7 +8,7 @@ featured_image: '/images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 ---
 
-![](images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg)
+![](/images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg)
 
 What is CountDownLatch and How to Use It?
 =========================================
