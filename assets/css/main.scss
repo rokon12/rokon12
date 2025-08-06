@@ -3124,3 +3124,105 @@ img {
     text-transform: uppercase;
   }
 }
+
+// Social Follow CTA
+.social-follow-cta {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: $bg-dark;
+  }
+  
+  p {
+    color: $text-color;
+    margin-bottom: 1.5rem;
+  }
+  
+  .social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: white;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    &.linkedin {
+      background: #0077B5;
+      
+      &:hover {
+        background: #005885;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 119, 181, 0.4);
+      }
+    }
+    
+    &.twitter {
+      background: #1DA1F2;
+      
+      &:hover {
+        background: #1a8cd8;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(29, 161, 242, 0.4);
+      }
+    }
+    
+    &.bluesky {
+      background: #00A8E8;
+      
+      &:hover {
+        background: #0086ba;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 168, 232, 0.4);
+      }
+    }
+    
+    &.github {
+      background: #333;
+      
+      &:hover {
+        background: #24292e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+    }
+    
+    &.infoq {
+      background: #0066CC;
+      
+      &:hover {
+        background: #0052a3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .social-links-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
