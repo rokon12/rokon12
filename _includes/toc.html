@@ -1,9 +1,9 @@
 {% comment %}
 Table of Contents (TOC) include
-Generates a sticky sidebar TOC from h2 and h3 headings in the post content
+Generates a sticky sidebar TOC from h2, h3, and h4 headings in the post content
 {% endcomment %}
 
-<nav class="toc" id="toc">
+<nav class="toc" id="toc" style="display: none;">
   <div class="toc-header">
     <span class="toc-title">Table of Contents</span>
     <button class="toc-toggle" id="toc-toggle" aria-label="Toggle table of contents">
@@ -21,132 +21,139 @@ Generates a sticky sidebar TOC from h2 and h3 headings in the post content
 </nav>
 
 <script>
-(function() {
-  // Wait for DOM and content to be fully loaded
-  function initTOC() {
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
     var contentElement = document.querySelector('.post-content');
     var tocWrapper = document.getElementById('toc-sidebar-wrapper');
     var toc = document.getElementById('toc');
     var tocList = document.getElementById('toc-list');
     
-    if (!contentElement || !toc || !tocList) {
-      console.log('TOC: Required elements not found');
+    if (!contentElement) {
+      console.log('TOC: No content element found');
       return;
     }
     
-    // Find all h2 and h3 headings
-    var headings = contentElement.querySelectorAll('h2, h3');
+    // Find all h2, h3, and h4 headings in the content
+    var headings = contentElement.querySelectorAll('h2, h3, h4');
     console.log('TOC: Found ' + headings.length + ' headings');
     
-    // Hide TOC wrapper if no headings or less than 2
-    if (headings.length < 2) {
+    // Show TOC if we have at least 2 headings
+    if (headings.length >= 2) {
+      toc.style.display = 'block';
+      
+      // Build TOC
+      headings.forEach(function(heading, index) {
+        var text = heading.textContent || heading.innerText || '';
+        text = text.trim();
+        
+        if (!text) return;
+        
+        // Generate ID if not present
+        if (!heading.id) {
+          var id = text
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+          
+          if (!id) id = 'heading-' + index;
+          
+          // Ensure unique ID
+          var baseId = id;
+          var counter = 1;
+          while (document.getElementById(id)) {
+            id = baseId + '-' + counter;
+            counter++;
+          }
+          
+          heading.id = id;
+        }
+        
+        // Create TOC item
+        var li = document.createElement('li');
+        li.className = 'toc-item toc-level-' + heading.tagName.toLowerCase();
+        
+        var a = document.createElement('a');
+        a.href = '#' + heading.id;
+        a.className = 'toc-link';
+        a.setAttribute('data-target', heading.id);
+        a.textContent = text;
+        
+        // Click handler for smooth scrolling
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetElement = document.getElementById(heading.id);
+          if (targetElement) {
+            var yOffset = -100;
+            var y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({
+              top: y,
+              behavior: 'smooth'
+            });
+            
+            // Close mobile TOC
+            if (window.innerWidth <= 1199) {
+              toc.classList.remove('toc-expanded');
+            }
+          }
+        });
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+      
+      // Mobile toggle
+      var tocToggle = document.getElementById('toc-toggle');
+      if (tocToggle) {
+        tocToggle.addEventListener('click', function() {
+          toc.classList.toggle('toc-expanded');
+        });
+      }
+      
+      // Highlight current section on scroll
+      var tocLinks = tocList.querySelectorAll('.toc-link');
+      
+      function highlightCurrentSection() {
+        var scrollPos = window.scrollY + 120;
+        var currentSection = null;
+        
+        headings.forEach(function(heading) {
+          var rect = heading.getBoundingClientRect();
+          var absoluteTop = rect.top + window.scrollY;
+          if (absoluteTop <= scrollPos) {
+            currentSection = heading.id;
+          }
+        });
+        
+        tocLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (currentSection && link.getAttribute('data-target') === currentSection) {
+            link.classList.add('active');
+          }
+        });
+      }
+      
+      // Throttled scroll handler
+      var scrollTimer = null;
+      window.addEventListener('scroll', function() {
+        if (scrollTimer) {
+          clearTimeout(scrollTimer);
+        }
+        scrollTimer = setTimeout(function() {
+          highlightCurrentSection();
+        }, 50);
+      });
+      
+      // Initial highlight
+      highlightCurrentSection();
+      
+    } else {
+      // Hide TOC sidebar if not enough headings
       if (tocWrapper) {
         tocWrapper.style.display = 'none';
       }
-      if (toc) {
-        toc.style.display = 'none';
-      }
-      return;
     }
-    
-    // Clear existing TOC items
-    tocList.innerHTML = '';
-    
-    // Build TOC
-    headings.forEach(function(heading, index) {
-      var text = heading.textContent.trim();
-      if (!text) return;
-      
-      // Generate or use existing ID
-      if (!heading.id) {
-        var id = 'heading-' + index;
-        heading.id = id;
-      }
-      
-      // Create TOC item
-      var li = document.createElement('li');
-      li.className = 'toc-item toc-level-' + heading.tagName.toLowerCase();
-      
-      var a = document.createElement('a');
-      a.href = '#' + heading.id;
-      a.className = 'toc-link';
-      a.setAttribute('data-target', heading.id);
-      a.textContent = text;
-      
-      // Smooth scroll on click
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.getElementById(heading.id);
-        if (target) {
-          var yOffset = -100;
-          var y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({
-            top: y,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile TOC
-          if (window.innerWidth <= 1199) {
-            toc.classList.remove('toc-expanded');
-          }
-        }
-      });
-      
-      li.appendChild(a);
-      tocList.appendChild(li);
-    });
-    
-    // Mobile toggle functionality
-    var tocToggle = document.getElementById('toc-toggle');
-    if (tocToggle) {
-      tocToggle.addEventListener('click', function() {
-        toc.classList.toggle('toc-expanded');
-      });
-    }
-    
-    // Highlight current section on scroll
-    var tocLinks = tocList.querySelectorAll('.toc-link');
-    
-    function highlightCurrentSection() {
-      var scrollPos = window.scrollY + 120;
-      var currentSection = null;
-      
-      headings.forEach(function(heading) {
-        if (heading.getBoundingClientRect().top + window.scrollY <= scrollPos) {
-          currentSection = heading.id;
-        }
-      });
-      
-      tocLinks.forEach(function(link) {
-        link.classList.remove('active');
-        if (currentSection && link.getAttribute('data-target') === currentSection) {
-          link.classList.add('active');
-        }
-      });
-    }
-    
-    // Throttled scroll handler
-    var isScrolling = false;
-    window.addEventListener('scroll', function() {
-      if (!isScrolling) {
-        window.requestAnimationFrame(function() {
-          highlightCurrentSection();
-          isScrolling = false;
-        });
-        isScrolling = true;
-      }
-    });
-    
-    // Initial highlight
-    highlightCurrentSection();
-  }
-  
-  // Try to initialize TOC when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTOC);
-  } else {
-    // DOM already loaded, initialize after a small delay to ensure content is rendered
-    setTimeout(initTOC, 100);
-  }
-})();
+  }, 200); // Small delay to ensure content is rendered
+});
 </script>
