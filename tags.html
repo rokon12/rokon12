@@ -1,0 +1,275 @@
+---
+layout: default
+title: All Tags
+permalink: /tags/
+---
+
+<div class="tags-page">
+    <div class="wrapper">
+        <div class="tags-header">
+            <h1 class="page-title">🏷️ All Tags</h1>
+            <p class="page-description">Browse articles by topic</p>
+        </div>
+
+        <div class="tags-cloud">
+            {% assign all_tags = "" | split: "" %}
+            {% for post in site.posts %}
+                {% if post.tags %}
+                    {% for tag in post.tags %}
+                        {% assign all_tags = all_tags | push: tag %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% assign unique_tags = all_tags | uniq | sort %}
+            
+            {% if unique_tags.size > 0 %}
+                {% for tag in unique_tags %}
+                    {% assign tag_posts = site.posts | where: "tags", tag %}
+                    <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" 
+                       class="tag-cloud-item" 
+                       data-count="{{ tag_posts.size }}">
+                        <span class="tag-name">{{ tag }}</span>
+                        <span class="tag-count">{{ tag_posts.size }}</span>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <p class="no-tags-message">No tags have been defined for the posts yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="tags-list">
+            {% if unique_tags.size > 0 %}
+                <h2>Tags by Article Count</h2>
+                {% assign tags_with_counts = "" | split: "" %}
+                
+                {% for tag in unique_tags %}
+                    {% assign tag_posts = site.posts | where: "tags", tag %}
+                    {% assign tag_with_count = tag | append: '::' | append: tag_posts.size %}
+                    {% assign tags_with_counts = tags_with_counts | push: tag_with_count %}
+                {% endfor %}
+                
+                {% assign sorted_tags = tags_with_counts | sort | reverse %}
+                
+                {% for tag_data in sorted_tags %}
+                    {% assign tag_parts = tag_data | split: '::' %}
+                    {% assign tag = tag_parts[0] %}
+                    {% assign count = tag_parts[1] %}
+                    {% assign tag_posts = site.posts | where: "tags", tag %}
+                    
+                    <div class="tag-section">
+                        <h3 class="tag-section-title">
+                            <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}">
+                                {{ tag }} <span class="tag-article-count">({{ tag_posts.size }} articles)</span>
+                            </a>
+                        </h3>
+                        <ul class="tag-articles-preview">
+                            {% for post in tag_posts limit: 3 %}
+                            <li>
+                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                                <span class="article-date">{{ post.date_published | date: "%B %d, %Y" }}</span>
+                            </li>
+                            {% endfor %}
+                            {% if tag_posts.size > 3 %}
+                            <li class="view-all">
+                                <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}">
+                                    View all {{ tag_posts.size }} articles →
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.tags-page {
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+.tags-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #1a202c;
+}
+
+.page-description {
+    font-size: 1.25rem;
+    color: #718096;
+}
+
+.tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.tag-cloud-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    text-decoration: none;
+    color: #4a5568;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+}
+
+.tag-cloud-item[data-count="1"] { font-size: 0.875rem; }
+.tag-cloud-item[data-count="2"] { font-size: 0.9375rem; }
+.tag-cloud-item[data-count="3"] { font-size: 1rem; }
+.tag-cloud-item[data-count="4"] { font-size: 1.0625rem; }
+.tag-cloud-item[data-count="5"] { font-size: 1.125rem; }
+.tag-cloud-item[data-count="6"] { font-size: 1.1875rem; }
+.tag-cloud-item[data-count="7"] { font-size: 1.25rem; }
+.tag-cloud-item[data-count="8"] { font-size: 1.3125rem; }
+.tag-cloud-item[data-count="9"] { font-size: 1.375rem; }
+.tag-cloud-item[data-count="10"] { font-size: 1.4375rem; }
+
+.tag-cloud-item:hover {
+    background: #6495ED;
+    color: white;
+    border-color: #6495ED;
+    transform: translateY(-2px);
+}
+
+.tag-count {
+    background: #e2e8f0;
+    color: #4a5568;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tag-cloud-item:hover .tag-count {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.tags-list {
+    margin-top: 3rem;
+}
+
+.tags-list h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #1a202c;
+}
+
+.tag-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.tag-section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.tag-section-title a {
+    color: #1a202c;
+    text-decoration: none;
+}
+
+.tag-section-title a:hover {
+    color: #6495ED;
+}
+
+.tag-article-count {
+    color: #718096;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.tag-articles-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tag-articles-preview li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f7fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag-articles-preview li:last-child {
+    border-bottom: none;
+}
+
+.tag-articles-preview a {
+    color: #4a5568;
+    text-decoration: none;
+    flex: 1;
+}
+
+.tag-articles-preview a:hover {
+    color: #6495ED;
+}
+
+.article-date {
+    color: #a0aec0;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+.view-all {
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.view-all a {
+    color: #6495ED;
+}
+
+.no-tags-message {
+    text-align: center;
+    color: #718096;
+    font-size: 1.125rem;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .tags-cloud {
+        padding: 1rem;
+    }
+    
+    .tag-articles-preview li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .article-date {
+        margin-left: 0;
+        margin-top: 0.25rem;
+    }
+}
+</style>
