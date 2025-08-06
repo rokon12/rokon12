@@ -1,7 +1,7 @@
 ---
 layout: null
 ---
-const CACHE_NAME = 'bazlur-blog-v1';
+const CACHE_NAME = 'bazlur-blog-v2';
 const urlsToCache = [
   '/',
   '/assets/css/main.css',
