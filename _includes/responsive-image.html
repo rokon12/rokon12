@@ -1,0 +1,16 @@
+{% comment %}
+  Usage: {% include responsive-image.html src="/images/example.jpg" alt="Description" %}
+  
+  For automatic optimization, consider using:
+  - Cloudinary: https://res.cloudinary.com/demo/image/upload/w_auto,c_scale,q_auto/
+  - Imgix: https://domain.imgix.net/image.jpg?auto=format&w=
+  - GitHub's image proxy: https://github.com/username/repo/blob/main/image.jpg?raw=true
+{% endcomment %}
+
+<picture>
+  <img src="{{ include.src }}" 
+       alt="{{ include.alt }}"
+       loading="lazy"
+       decoding="async"
+       class="blur-load">
+</picture>

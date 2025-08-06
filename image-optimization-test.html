@@ -1,0 +1,64 @@
+---
+layout: default
+title: Image Optimization Test
+---
+
+<div class="wrapper">
+    <h1>Image Optimization Test Page</h1>
+    
+    <p>This page demonstrates the image optimization features implemented:</p>
+    
+    <ul>
+        <li>✅ Lazy loading with Intersection Observer</li>
+        <li>✅ Progressive blur-to-clear loading effect</li>
+        <li>✅ Loading animations and placeholders</li>
+        <li>✅ Error handling with fallback images</li>
+        <li>✅ Responsive image sizing</li>
+        <li>✅ Performance optimizations (fetchpriority, decoding)</li>
+    </ul>
+    
+    <h2>Implementation Details</h2>
+    
+    <h3>1. Lazy Loading</h3>
+    <p>All images now use the Intersection Observer API to load only when they're about to enter the viewport. This significantly reduces initial page load time.</p>
+    
+    <h3>2. Loading States</h3>
+    <p>Images show a shimmer effect while loading, providing visual feedback to users.</p>
+    
+    <h3>3. Error Handling</h3>
+    <p>Failed images display a placeholder SVG with an error message.</p>
+    
+    <h3>4. Performance Features</h3>
+    <ul>
+        <li><code>loading="lazy"</code> attribute for native browser lazy loading</li>
+        <li><code>decoding="async"</code> for non-blocking image decoding</li>
+        <li><code>fetchpriority</code> hints for above-the-fold images</li>
+        <li>Responsive <code>sizes</code> attributes based on context</li>
+    </ul>
+    
+    <h3>5. CSS Enhancements</h3>
+    <p>Added smooth transitions, loading animations, and error states in the stylesheet.</p>
+    
+    <h3>6. Optional: Image Optimization Script</h3>
+    <p>Created <code>scripts/optimize-images.py</code> that can generate multiple sizes and WebP versions of images for better performance.</p>
+    
+    <h2>Usage</h2>
+    
+    <p>The optimization is automatic for all images on the site. For best results:</p>
+    <ol>
+        <li>Use descriptive alt text for all images</li>
+        <li>Consider running the optimization script for large images</li>
+        <li>Use appropriate image formats (WebP for photos, SVG for graphics)</li>
+    </ol>
+    
+    <div style="margin-top: 3rem; padding: 2rem; background: #f0f0f0; border-radius: 8px;">
+        <h3>Performance Impact</h3>
+        <p>These optimizations should significantly improve:</p>
+        <ul>
+            <li>Initial page load time</li>
+            <li>Time to interactive (TTI)</li>
+            <li>Cumulative Layout Shift (CLS)</li>
+            <li>Overall user experience on slower connections</li>
+        </ul>
+    </div>
+</div>

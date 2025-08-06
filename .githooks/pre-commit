@@ -1,0 +1,18 @@
+#!/bin/bash
+# Run image optimization before commit
+# Setup: git config core.hooksPath .githooks
+
+echo "Checking for new images..."
+NEW_IMAGES=$(git diff --cached --name-only --diff-filter=A | grep -E '\.(jpg|jpeg|png|gif)$')
+
+if [ ! -z "$NEW_IMAGES" ]; then
+    echo "Optimizing new images..."
+    python scripts/optimize-images.py
+    
+    # Add optimized versions
+    for img in $NEW_IMAGES; do
+        dir=$(dirname "$img")
+        base=$(basename "$img" | cut -d. -f1)
+        git add "$dir/$base-"* 2>/dev/null || true
+    done
+fi

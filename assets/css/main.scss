@@ -2206,7 +2206,7 @@ a {
   }
 }
 
-// Image loading states
+// Image loading states and optimization
 img {
   &.lazy-loading {
     filter: blur(5px);
@@ -2216,6 +2216,51 @@ img {
   &.lazy-loaded {
     filter: blur(0);
   }
+  
+  &.blur-load {
+    filter: blur(8px);
+    transition: filter 0.4s ease-out;
+    
+    &.loaded {
+      filter: blur(0);
+    }
+  }
+  
+  &.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  &.error {
+    background: #f3f4f6;
+    position: relative;
+    
+    &::after {
+      content: "Image failed to load";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Lazy loading placeholder
+img[loading="lazy"] {
+  background-color: #f9fafb;
+  min-height: 200px;
 }
 
 // Smooth page transitions
@@ -2977,5 +3022,105 @@ body {
   // Neon glow effect
   a, .tag-link {
     text-shadow: 0 0 10px var(--accent);
+  }
+}
+
+// Image Optimization Styles
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  
+  // Blur to clear effect
+  &.blur-load {
+    filter: blur(10px);
+    transition: filter 0.3s ease-out;
+    
+    &.loaded {
+      filter: blur(0);
+    }
+  }
+  
+  // Loading state
+  &.loading {
+    position: relative;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e0e0e0;
+      border-top: 3px solid #333;
+      border-radius: 50%;
+      animation: loading-spin 1s linear infinite;
+    }
+  }
+  
+  // Error state
+  &.error {
+    position: relative;
+    background: #f5f5f5;
+    
+    &::after {
+      content: '⚠️ Image failed to load';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #666;
+      font-size: 0.875rem;
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+}
+
+// Loading animations
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes loading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Post content images
+.post-content img,
+.post-card img {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin: 1.5rem 0;
+}
+
+// Placeholder for missing images
+.post-card-image.placeholder {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .placeholder-content {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }

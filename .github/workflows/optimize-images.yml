@@ -1,0 +1,34 @@
+name: Optimize Images
+
+on:
+  push:
+    paths:
+      - 'images/**'
+    branches:
+      - main
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    
+    - name: Install dependencies
+      run: pip install Pillow
+    
+    - name: Run image optimization
+      run: python scripts/optimize-images.py
+    
+    - name: Commit optimized images
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add images/
+        git diff --staged --quiet || git commit -m "Optimize images"
+        git push

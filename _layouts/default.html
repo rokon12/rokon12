@@ -88,24 +88,7 @@
             card.style.transitionDelay = `${index * 0.1}s`;
         });
 
-        // Lazy loading for images
-        const imageObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.classList.add('lazy-loading');
-                    img.onload = function() {
-                        img.classList.remove('lazy-loading');
-                        img.classList.add('lazy-loaded');
-                    };
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img').forEach(img => {
-            imageObserver.observe(img);
-        });
+        // Removed duplicate image observer - handled by image-optimization.js
     });
     </script>
     
@@ -119,6 +102,7 @@
     <!-- Terminal effects and nerdy features -->
     <script src="{{ site.baseurl }}/assets/js/terminal.js"></script>
     <script src="{{ site.baseurl }}/assets/js/prism-setup.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/image-optimization.js"></script>
     
     <!-- Reading progress bar for posts -->
     {% if page.layout == 'post' %}
