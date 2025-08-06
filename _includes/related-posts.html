@@ -46,7 +46,7 @@
     
     {% if sorted_posts.size > 0 %}
       <div class="related-posts-grid">
-        {% for post in sorted_posts limit: 3 %}
+        {% for post in sorted_posts limit: 5 %}
           <article class="related-post-card">
             <a href="{{ post.url | relative_url }}" class="related-post-link">
               <div class="related-post-content">
@@ -94,7 +94,7 @@
     </div>
     
     <div class="related-posts-grid">
-      {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | limit: 3 %}
+      {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | limit: 5 %}
       {% for post in recent_posts %}
         <article class="related-post-card">
           <a href="{{ post.url | relative_url }}" class="related-post-link">
