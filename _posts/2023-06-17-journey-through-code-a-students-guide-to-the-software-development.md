@@ -3,11 +3,12 @@ layout: post
 title: 'Journey through Code: A Student’s Guide to the Software Development'
 original_url: 'https://bazlur.ca/2023/06/17/journey-through-code-a-students-guide-to-the-software-development/'
 date_published: '2023-06-17T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:41.94364'
+date_scraped: '2025-08-05T22:24:09.321223'
 featured_image: '/images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg'
+tags: [future of java, java concurrency, java evolution, java features, java pattern matching, java performance, java records, java stereotypes, modern java, programming languages, sealed classes, software development, ai, aws, codinginsights, jakobjenkov, java, programming, softwaredevelopment, techinsights, techinterview, aws solution architect, cloud computing, cross platform support, data science, edge computing, graalvm, jakob jenkov, tornadovm, conference, jcon, newsletter, trip reports, character, collections, hashmap, hashset, indexof, java 21, newsequencedsetfrommap, repeat, sequencedcollection, sequencedmap, shuffle, splitwithdelimiters, stringbuffer, stringbuilder, unmodifiablesequencedcollection, unmodifiablesequencedmap, unmodifiablesequencedset, algorithms, career guidance, computer science, data structures, learning path, leetcode, problem solving, python, technology trends, ai in jvm, byte me, chris newland, jacoline, jitwatch, jvm, jvm performance specialist, jvm tools, open source tools, performance optimization, vmoptionsexplorer, ai in tech, career advice, coding, developer journey, future of coding, industry challenges, interview, nicolas frankel, tech industry, 80 20 rule, anti patterns, design patterns, developer roles, interviews, java programming, learning strategies, miro, miro wengner, professional growth, software industry, solid principles, concurrency, developer events, java champion, java community, jconf toronto 2023, keynote speakers, neal ford, networking, pratik patel, project loom, software architecture, venkat subramaniam, vincent mayers, virtual threads 2]
 ---
 
-<img src="/images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg" alt="" />
+![](images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg)
 
 Journey through Code: A Student's Guide to the Software Development
 ===================================================================

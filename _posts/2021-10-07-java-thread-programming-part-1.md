@@ -3,11 +3,12 @@ layout: post
 title: 'Java Thread Programming (Part 1)'
 original_url: 'https://bazlur.ca/2021/10/07/java-thread-programming-part-1/'
 date_published: '2021-10-07T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:41.359517'
+date_scraped: '2025-08-05T22:26:09.646454'
 featured_image: '/images/dall-e-2023-10-11-03.21.06-illustration-of-a-cross-section-view-of-a-multi-core-processor.-each-core-is-labeled-and-depicted-as-a-circular-unit.-sprouting-from-each-core-are-mul.png'
+tags: [core java, java, multi threading, thread, string, code reading skills, interview, skills, coding, coding skills, collaboration, collaboration skills, interviews]
 ---
 
-<img src="/images/dall-e-2023-10-11-03.21.06-illustration-of-a-cross-section-view-of-a-multi-core-processor.-each-core-is-labeled-and-depicted-as-a-circular-unit.-sprouting-from-each-core-are-mul.png" alt="" />
+![](images/dall-e-2023-10-11-03.21.06-illustration-of-a-cross-section-view-of-a-multi-core-processor.-each-core-is-labeled-and-depicted-as-a-circular-unit.-sprouting-from-each-core-are-mul.png)
 
 Java Thread Programming (Part 1)
 ================================

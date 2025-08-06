@@ -3,7 +3,8 @@ layout: post
 title: '7 Ways to Improve Your Code Reading Skills'
 original_url: 'https://bazlur.ca/2022/02/18/7-ways-to-improve-your-code-reading-skills/'
 date_published: '2022-02-18T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:14.487855'
+date_scraped: '2025-08-05T22:25:42.955817'
+tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
 ---
 
 7 Ways to Improve Your Code Reading Skills

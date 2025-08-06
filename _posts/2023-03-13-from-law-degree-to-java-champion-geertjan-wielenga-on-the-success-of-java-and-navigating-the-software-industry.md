@@ -3,11 +3,12 @@ layout: post
 title: 'From Law Degree to Java Champion: Geertjan Wielenga on the Success of Java and Navigating the Software Industry'
 original_url: 'https://bazlur.ca/2023/03/13/from-law-degree-to-java-champion-geertjan-wielenga-on-the-success-of-java-and-navigating-the-software-industry/'
 date_published: '2023-03-13T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:16.245005'
+date_scraped: '2025-08-05T22:24:44.052667'
 featured_image: '/images/wielenga-1024x576-1.png'
+tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
 ---
 
-<img src="/images/wielenga-1024x576-1.png" alt="" />
+![](images/wielenga-1024x576-1.png)
 
 From Law Degree to Java Champion: Geertjan Wielenga on the Success of Java and Navigating the Software Industry
 ===============================================================================================================

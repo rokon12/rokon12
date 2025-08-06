@@ -3,8 +3,9 @@ layout: post
 title: '7 Reasons Why, After 26 Years, Java Still Makes Sense!'
 original_url: 'https://bazlur.ca/2022/03/15/7-reasons-why-after-26-years-java-still-makes-sense/'
 date_published: '2022-03-15T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:09.516415'
+date_scraped: '2025-08-05T22:25:38.071155'
 featured_image: '/images/screen-shot-2022-03-10-at-9.07.04-am-679x510.png'
+tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
 ---
 
 7 Reasons Why, After 26 Years, Java Still Makes Sense!
@@ -20,7 +21,7 @@ Now, the question is, still, should we be concerned about any apparent decline? 
 
 I asked these questions to many Java developers and there were many and varied answers. For example, Brazilian Java champion [Bruno Souza](https://twitter.com/brjavaman) states that the main reasons for him to stick with Java are:
 
-<img src="/images/screen-shot-2022-03-10-at-9.07.04-am-679x510.png" alt="" />
+![](images/screen-shot-2022-03-10-at-9.07.04-am-679x510.png)
 
 While many others mentioned similar ideas, Java Champion [Geertjan Wielenga](https://twitter.com/GeertjanW) has shared that he's stayed with Java, amongst other reasons, because that's where his friends are found. Indeed, that's an excellent reason for sticking with a community and thus with Java itself.
 

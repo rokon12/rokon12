@@ -3,11 +3,11 @@ layout: post
 title: 'JetBrains Junie: My Firsthand Experience'
 original_url: 'https://bazlur.ca/2025/03/03/jetbrains-junie-my-firsthand-experience/'
 date_published: '2025-03-03T00:00:00+00:00'
-date_scraped: '2025-08-05T14:20:36.915876'
+date_scraped: '2025-08-05T22:23:03.872096'
 featured_image: '/images/gemini-generated-image-aczqicaczqicaczq.jpeg'
 ---
 
-<img src="/images/gemini-generated-image-aczqicaczqicaczq.jpeg" alt="" />
+![](images/gemini-generated-image-aczqicaczqicaczq.jpeg)
 
 JetBrains Junie: My Firsthand Experience
 ========================================
@@ -33,7 +33,7 @@ Now, building a website from scratch is no small feat, especially for someone wh
 
 Of course, Junie didn't complete the whole thing in one go. It required multiple follow-ups, refinements, and tweaks. However, it did an excellent job laying out the structure, creating reusable components, and producing a functional website. What would have taken me a week or more to build manually, I completed in a single day.
 
-<img src="/images/screenshot-2025-03-03-at-7.42.31-am.png" alt="" />
+![](images/screenshot-2025-03-03-at-7.42.31-am.png)
 
 That's a huge time saver.
 > Checkout the website: **<https://ramadan-facts.onrender.com/>**   
@@ -50,12 +50,12 @@ While I'm comfortable with backend development, frontend work is another story. 
 
 Again, Junie came to the rescue. It helped me craft a sleek UI using Jakarta Faces with some advanced CSS tricks. The result? A fully functional chatbot interface with dynamic configuration settings---all done in a fraction of the time it would have taken me otherwise.
 
-<img src="/images/screenshot-2025-03-03-at-7.08.21-am.png" alt="" />
+![](images/screenshot-2025-03-03-at-7.08.21-am.png)
 
 Also, I wanted to update the README. Well, who wants to write it manually when you have Junie? So I gave it this instruction:
 > "Can you scan the repository, identify key components, and update the README, including setup instructions, usage details, and any relevant documentation? Also, include a screenshot from the images folder in the README."
 
-<img src="/images/screenshot-2025-03-03-at-7.13.43-am.png" alt="" />
+![](images/screenshot-2025-03-03-at-7.13.43-am.png)
 
 It did an excellent job. Although I wanted all the screenshots, I asked to add one screenshot to the prompt, but it understood.
 > Checkout: <https://github.com/rokon12/llm-jakarta>

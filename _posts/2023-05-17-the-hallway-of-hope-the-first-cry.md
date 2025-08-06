@@ -3,11 +3,12 @@ layout: post
 title: 'The Hallway of Hope: The First Cry'
 original_url: 'https://bazlur.ca/2023/05/17/the-hallway-of-hope-the-first-cry/'
 date_published: '2023-05-17T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:53.37864'
+date_scraped: '2025-08-05T22:24:20.879399'
 featured_image: '/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg'
+tags: [anxiety, baby, c section, childbirth, contractions, cultural differences, decision making, emotions, epidural, faith, family, fatherhood, healthcare, helplessness, hospital experience, oxytocin, personal experience, pregnancy, prodromal labor, trust, universal healthcare, waiting, asynchronous interview, career guidance, coding, developer insights, industry experts, interviews, java, java unscripted, knowledge sharing, programming, software development, tech industry, technology, cloud computing, continuous learning, interview, java champion, michael p redlich, open source, success strategies, technology trends, concurrency, java 21, virtual thread, apple, macbook pro, repair, azul systems, foojay io, frank delporte, java beginners, java development, java tutorials, javafx, openjdk, raspberry pi, software industry stories, technical writing, career milestone, collaboration, committer, community, eclipse foundation, jakarta ee, open source projects, evolutionaryarchitecture, jakartaee, mentorship, nosql, opensource, otaviosantana, softwareengineering, techleadership]
 ---
 
-<img src="/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg" alt="" />
+![](images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)
 
 The Hallway of Hope: The First Cry
 ==================================

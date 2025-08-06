@@ -3,11 +3,12 @@ layout: post
 title: 'Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked'
 original_url: 'https://bazlur.ca/2023/09/20/exploring-the-impact-of-stack-size-on-jvm-thread-creation-a-myth-debunked/'
 date_published: '2023-09-20T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:07.888695'
+date_scraped: '2025-08-05T22:23:35.066921'
 featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
+tags: [c programming, code integration, foreign function memory api, java, jep 454, jni, native libraries, openjdk, project panama, software development, carrier threads, code optimization, concurrent programming, httpclient, jsoup, jvm flags, native methods, performance tuning, pinning, reentrantlock, scalability, synchronization, virtual threads 2, web crawler, atomicinteger, bestpractices, codeexamples, concurrency, databaseconnections, jdk21, junit, programmingtips, resourcemanagement, semaphore, softwareengineering, threading, virtualthreads, cyclicbarrier, multithreading, programming, threadsynchronization, countdownlatch, learning thread programming, classical threads, jdk 21, multi threading, performance optimization, sdkman 2, throughput, web crawling, experiment, jvm, memory management, native threads, operating system, outofmemoryerror, stack size, thread creation, virtual memory, newsletter, career advice, community involvement, java development, mentoring, oracle ace, programming philosophy, simon martinelli, software architecture, software industry trends, technology evaluation]
 ---
 
-<img src="/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg" alt="" />
+![](images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)
 
 Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked
 ==========================================================================
@@ -88,7 +89,7 @@ Exception in thread "main" java.lang.OutOfMemoryError: unable to create native t
 ```
 
 In case you want to use IntelliJ IDEA, you can configure the stack size, check the following image:
-<img src="/images/screenshot-2023-09-10-at-10.48.08-pm-1-1024x700.png" alt="" />
+![](images/screenshot-2023-09-10-at-10.48.08-pm-1-1024x700.png)
 
 ### **1 GB Stack Size**
 

@@ -3,16 +3,17 @@ layout: post
 title: 'Decoding Success: An Industry Expert’s Guide to Thriving in Software Development and Security'
 original_url: 'https://bazlur.ca/2023/05/23/decoding-success-an-industry-experts-guide-to-thriving-in-software-development-and-security/'
 date_published: '2023-05-23T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:51.91846'
+date_scraped: '2025-08-05T22:24:19.425751'
 featured_image: '/images/erik.jpeg'
+tags: [anxiety, baby, c section, childbirth, contractions, cultural differences, decision making, emotions, epidural, faith, family, fatherhood, healthcare, helplessness, hospital experience, oxytocin, personal experience, pregnancy, prodromal labor, trust, universal healthcare, waiting, asynchronous interview, career guidance, coding, developer insights, industry experts, interviews, java, java unscripted, knowledge sharing, programming, software development, tech industry, technology, cloud computing, continuous learning, interview, java champion, michael p redlich, open source, success strategies, technology trends, concurrency, java 21, virtual thread, apple, macbook pro, repair, azul systems, foojay io, frank delporte, java beginners, java development, java tutorials, javafx, openjdk, raspberry pi, software industry stories, technical writing, career milestone, collaboration, committer, community, eclipse foundation, jakarta ee, open source projects, evolutionaryarchitecture, jakartaee, mentorship, nosql, opensource, otaviosantana, softwareengineering, techleadership]
 ---
 
-<img src="/images/erik.jpeg" alt="" />
+![](images/erik.jpeg)
 
 Decoding Success: An Industry Expert's Guide to Thriving in Software Development and Security
 =============================================================================================
 
-<img src="/images/erik.jpeg" alt="" />
+![](images/erik.jpeg)
 
 In today's fast-paced tech world, understanding the intricacies of software development and product management is key to success.
 

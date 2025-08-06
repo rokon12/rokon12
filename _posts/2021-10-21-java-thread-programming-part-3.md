@@ -3,9 +3,9 @@ layout: post
 title: 'Java Thread Programming (Part 3)'
 original_url: 'https://bazlur.ca/2021/10/21/java-thread-programming-part-3/'
 date_published: '2021-10-21T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:36.458897'
+date_scraped: '2025-08-05T22:26:04.756079'
 featured_image: '/images/cache-678x510.png'
-tags: [java, concurrency, threading, volatile, cpu-cache]
+tags: [concurrency, concurrent collections, consumer, java, learning thread programming, pattern, producer, producer consumer pattern, threads, thread safety, atomicinteger, threadpool, notify, notifyall, thread, thread lifecycle, wait, method, optional, critical section, lock, mutex, mutual exclusion, race condition, synchronized, data race, thread programming, volatile, core java]
 ---
 
 Java Thread Programming (Part 3)
@@ -94,7 +94,7 @@ We know the modern computer has multiple CPUs in it. Nonetheless, we cannot guar
 
 When a CPU executes a code, it reads data from the main memory. However, modern CPUs have various caches for faster access to memory. There are three types of cache associated with each CPU. They are L1 Cache, L2 Cache, and L3 Cache.
 
-<img src="/images/cache-678x510.png" alt="" />
+![](images/cache-678x510.png)
 
 When starting the first thread, the CPU it runs may cache the running variable and keeps it running. But, on the other hand, when the second thread runs and changes the variable on a different CPU, it won't be visible to the first thread. Thus the problem of the third case would occur.
 

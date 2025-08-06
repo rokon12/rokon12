@@ -3,8 +3,9 @@ layout: post
 title: 'Java Thread Programming (Part 12)'
 original_url: 'https://bazlur.ca/2022/02/01/java-thread-programming-part-12/'
 date_published: '2022-02-01T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:18.366201'
+date_scraped: '2025-08-05T22:25:46.836369'
 featured_image: '/images/threadpool-vs-main-threads-700x421.png'
+tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
 ---
 
 Java Thread Programming (Part 12)
@@ -149,7 +150,7 @@ public interface Future<V> {
 
 However, we usually use the get() and isDone() methods for most of the use cases. The idea is that when we submit a task through Callable, it immediately returns a Future. The Future will hold the result when it's done, not immediately. That means, when we get the reference of the future, the work may not be done yet. We can check that using the isDone() method. We get the result using the get() method. We have to keep in mind that the get() method is blocking operation. The get() method is called from the thread and will be blocked until the result is computed.
 
-<img src="/images/threadpool-vs-main-threads-700x421.png" alt="" />
+![](images/threadpool-vs-main-threads-700x421.png)
 
 If you look at the image, the main thread executes the green parts. A worker thread from the **ThreadPool** runs the area with pink colour. It turns out we call the get() method from the main thread. Thus, the main thread will be blocked until we get the result.
 

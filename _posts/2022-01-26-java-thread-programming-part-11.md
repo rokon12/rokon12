@@ -3,8 +3,9 @@ layout: post
 title: 'Java Thread Programming (Part 11)'
 original_url: 'https://bazlur.ca/2022/01/26/java-thread-programming-part-11/'
 date_published: '2022-01-26T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:19.808573'
+date_scraped: '2025-08-05T22:25:48.266542'
 featured_image: '/images/thread-pool-700x370.png'
+tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
 ---
 
 Java Thread Programming (Part 11)
@@ -58,7 +59,7 @@ As a result, the thread scheduler has to be super busy to provide a time slice t
 
 To solve all of the problems above, Java introduced a technique called, ThreadPool. In a ThreadPool, we will create several threads when the application starts (we can create on-demand as well), and they will be waiting in Queue; when a request comes into the server, a thread will be picked from the pool, and given the task to the thread, once the thread is done with the job, the thread will return to the pool. The idea is that we will have a limited number of threads, and we will reuse them.
 
-<img src="/images/thread-pool-700x370.png" alt="" />
+![](images/thread-pool-700x370.png)
 
 In our [7th article of the series](https://foojay.io/today/java-thread-programming-part-7/ "7th article of the series"), we created a thread pool of our own, that wasn't production-ready. However, in JDK, we have classes that help us to instantiate a production-ready thread pool. Let's discuss that.
 

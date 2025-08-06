@@ -3,11 +3,12 @@ layout: post
 title: 'Java Bytecode Simplified: Journey to the Wonderland (Part 1)'
 original_url: 'https://bazlur.ca/2022/03/08/java-bytecode-simplified-journey-to-the-wonderland-part-1/'
 date_published: '2022-03-08T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:11.547374'
+date_scraped: '2025-08-05T22:25:40.016326'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
+tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
 ---
 
-<img src="/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg" alt="" />
+![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
 
 Java Bytecode Simplified: Journey to the Wonderland (Part 1)
 ============================================================
@@ -86,11 +87,11 @@ We know the JVM interprets byte code, and it is a stack machine. It has an opera
 
 If we want to evaluate this using the following images:
 
-<img src="/images/page-272-700x250.png" alt="" />
+![](images/page-272-700x250.png)
 
 Firstly, we will push 1 and 2 to the stack. And then, we will pop these two, add them, and put them in the stack again. The same thing is done in JVM by two instructions: **iconst_\<\>** and **iadd**.
 
-<img src="/images/page-273-700x239.png" alt="" />
+![](images/page-273-700x239.png)
 
 *iconst_1* and *iconst_2* , these two opcodes push 1 and 2 to the stack, and `iadd` opcode pops them from the stack and puts them back after adding them. The *iconst_1* and *iconst_2*are two special opcodes for loading 1 and 2 as they are constant.
 

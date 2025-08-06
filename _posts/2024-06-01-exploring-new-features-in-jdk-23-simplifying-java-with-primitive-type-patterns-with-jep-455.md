@@ -3,11 +3,12 @@ layout: post
 title: 'Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455'
 original_url: 'https://bazlur.ca/2024/06/01/exploring-new-features-in-jdk-23-simplifying-java-with-primitive-type-patterns-with-jep-455/'
 date_published: '2024-06-01T00:00:00+00:00'
-date_scraped: '2025-08-05T14:20:49.849292'
+date_scraped: '2025-08-05T22:23:16.845679'
 featured_image: '/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp'
+tags: [ai, chat memory, chatbots, java, langchain4j, llm, summarization, token management, devotion, gratitude, humility, islamic pilgrimage, madinah, makkah, messenger muhammad %ef%b7%ba, rawda, sacred cities, spiritual journey, umrah, unity, bash alternative, cli script, command line, dark mode, developer tools, java 11, java 21, java cli, java code, java development, java execution, java features, java scripting, java shebang, java shell script, java tips, java tricks, java tutorial, shebang, terminal script, architecture, bicycle friendly, big ben, buckingham palace, city exploration, conference, copenhagen, cultural experiences, developer festivals, europe, family bonding, family reunion, frederiksborg castle, helsingborg, here are some recommended tags for your trip report london, history, karnan castle, nyhavn, old cities, personal journey, prime meridian, professional highlights, scandinavia, tivoli gardens, travel, travel blog, automation, cli, devops, github, jbang, picocli, releasenotes, tutorial, foreign function memory api, jep 471, memory management, security, sun misc unsafe, varhandle, code efficiency, code readability, coding best practices, core java, java enhancements, java programming, jep 455, modern java, order processing, primitive type, programming tips, software development, sure here are some tags for your article java, switch expressions, switch pattern, switch statement, jep, main, println, clarity, cleaner code, error handling, expressiveness, java records, junit 5, maintainability, parameterized testing, test cases, type safety, baby, dhaka, homecoming, new job]
 ---
 
-<img src="/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp" alt="" />
+![](images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp)
 
 Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455
 ============================================================================================

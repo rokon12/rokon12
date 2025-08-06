@@ -3,16 +3,17 @@ layout: post
 title: 'Unlocking Java Secrets with Frank Delporte: Insights, Stories, and Tips for Success'
 original_url: 'https://bazlur.ca/2023/04/10/unlocking-java-secrets-with-frank-delporte-insights-stories-and-tips-for-success/'
 date_published: '2023-04-10T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:03.738241'
+date_scraped: '2025-08-05T22:24:31.299307'
 featured_image: '/images/5.png'
+tags: [anxiety, baby, c section, childbirth, contractions, cultural differences, decision making, emotions, epidural, faith, family, fatherhood, healthcare, helplessness, hospital experience, oxytocin, personal experience, pregnancy, prodromal labor, trust, universal healthcare, waiting, asynchronous interview, career guidance, coding, developer insights, industry experts, interviews, java, java unscripted, knowledge sharing, programming, software development, tech industry, technology, cloud computing, continuous learning, interview, java champion, michael p redlich, open source, success strategies, technology trends, concurrency, java 21, virtual thread, apple, macbook pro, repair, azul systems, foojay io, frank delporte, java beginners, java development, java tutorials, javafx, openjdk, raspberry pi, software industry stories, technical writing, career milestone, collaboration, committer, community, eclipse foundation, jakarta ee, open source projects, evolutionaryarchitecture, jakartaee, mentorship, nosql, opensource, otaviosantana, softwareengineering, techleadership]
 ---
 
-<img src="/images/5.png" alt="" />
+![](images/5.png)
 
 Unlocking Java Secrets with Frank Delporte: Insights, Stories, and Tips for Success
 ===================================================================================
 
-<img src="/images/frank-7-xs.jpg" alt="" />
+![](images/frank-7-xs.jpg)
 
 Welcome to our exclusive interview with [Frank Delporte](https://www.linkedin.com/in/frankdelporte/), a Senior Technical Writer at Azul, Java Champion, and a passionate advocate for all things related to Java and Java on [Raspberry Pi](https://www.raspberrypi.org/).
 
@@ -123,7 +124,7 @@ So we went from a massive desk with many dedicated devices and screens to a sing
 I was one of the first users in Belgium of the Media 100, such a computer-based editing system, and visited several companies to demonstrate how it could speed up the editing process and generate better end results.
 
 Going from analog copies with quality loss, to lossless digital video, was only one of the significant improvements.
-[<img src="/images/editing-film.jpg" alt="" />](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-film.jpg?ssl=1) [<img src="/images/editing-video-analogue.jpg" alt="" />](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-analogue.jpg?ssl=1) [<img src="/images/editing-video-media100.jpg" alt="" />](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-media100.jpg?ssl=1)
+[![](images/editing-film.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-film.jpg?ssl=1) [![](images/editing-video-analogue.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-analogue.jpg?ssl=1) [![](images/editing-video-media100.jpg)](https://i0.wp.com/foojay.io/wp-content/uploads/2023/04/editing-video-media100.jpg?ssl=1)
 
 Soon after, my clients wanted to distribute their company movie to (potential) customers easily and attractively. That's when Macromedia Director and Flash became my new working tools as they allowed me to combine slides, video, and coding on DVD and CD-Rom. The logical next step was to put the same content online. You may remember the annoying "Skip Intro" Flash animations that were used on many websites for some years, and yes, I have to admit, I also created those... Everyone sought new ways to convert static boring text pages into more appealing content. We probably made a lot of wrong decisions at that time, but don't we still? Anyhow, soon I needed a database to create dynamic and easily updatable websites and started using Access Database for it -- bad idea -- and SQL Server.
 

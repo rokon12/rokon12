@@ -3,11 +3,11 @@ layout: post
 title: 'A Journey to DevNexus: Challenges, Friendships, and Java'
 original_url: 'https://bazlur.ca/2025/03/08/a-journey-to-devnexus-challenges-friendships-and-java/'
 date_published: '2025-03-08T00:00:00+00:00'
-date_scraped: '2025-08-05T14:20:35.379657'
+date_scraped: '2025-08-05T22:23:02.44544'
 featured_image: '/images/482058307-10232003967115777-7301803814855188745-n.jpg'
 ---
 
-<img src="/images/482058307-10232003967115777-7301803814855188745-n.jpg" alt="" />
+![](images/482058307-10232003967115777-7301803814855188745-n.jpg)
 
 A Journey to DevNexus: Challenges, Friendships, and Java
 ========================================================
@@ -42,7 +42,7 @@ Walking into DevNexus felt incredible. It was even bigger than I had imagined, b
 
 One of the first people I met was Mike---[Michael Redlich](https://www.linkedin.com/in/michael-redlich-13a966/), InfoQ Java Queue Editor Lead. We had been working together remotely for a long time, but meeting face-to-face brought a different energy to our discussions. He is a very kind and cheerful person and got very excited seeing me in person.
 
-<img src="/images/482060541-10232003983436185-1689339836780441743-n.jpg" alt="" />
+![](images/482060541-10232003983436185-1689339836780441743-n.jpg)
 
 Then I met my co-speaker, [Shaaf](https://www.linkedin.com/in/shaaf/), a longtime friend. Although we talk almost daily, I was eagerly looking forward to meeting him again in person.
 
@@ -50,15 +50,15 @@ We sat at the speaker lounge and planned our session together.
 
 Although the pain in my chest was intense, practically unbearable, we decided to go ahead with our talk. Shaaf assured me that if I wasn't able to present, he would take over. Many thanks to him; he supported me all the way in these two days in the conference.
 
-<img src="/images/481778775-10232003985396234-4098633525676175712-n.jpg" alt="" />
+![](images/481778775-10232003985396234-4098633525676175712-n.jpg)
 
 The next day, I met the kind, brilliant [Geertjan Wielenga](https://www.linkedin.com/in/geertjanwielenga/), the community champion. We've known each other for several years now, and both contribute to Foojay. He gave me a tour of the entire conference, stopping by each booth. It was amusing to watch him introduce me to people---though many of whom I already knew online. Meeting them in person, however, was a completely different experience.
 
-<img src="/images/481826777-10232003995436485-8105262452812861320-n.jpg" alt="" />
+![](images/481826777-10232003995436485-8105262452812861320-n.jpg)
 
 Then there was [Bruno Souza](https://www.linkedin.com/in/brjavaman/), my mentor for a long time. The moment he saw me, he pulled me into a big hug and shouted, "*Bazlur! How are you, man? You finally made it!*" That moment alone made the trip feel worthwhile. Bruno is a very kind-hearted, incredibly warm, and exceptionally friendly person who always makes you feel special and valued. I just love him.
 
-<img src="/images/483917294-10232071615806952-8672895136015387568-n.jpg" alt="" />
+![](images/483917294-10232071615806952-8672895136015387568-n.jpg)
 
 I also met Scott Wierschem. We've known each other for over seven years, but this was our first time meeting in real life. And then there were Ondro, Simon Martinelli, Andres Almiray, Steve Poole, Kito Mann, Kenneth Kousen, Elder Moraes, Frank Greco, and many more---each an incredible contributor to the Java ecosystem. Meeting them was an absolute privilege.
 
@@ -69,7 +69,7 @@ The big moment for me was my talk: **"Java + LLMs: A Hands-on Guide to Building 
 
 The room was quite full, with a lot of happy attendees.
 
-<img src="/images/whatsapp-image-2025-03-08-at-4.19.37-am.jpeg" alt="" />
+![](images/whatsapp-image-2025-03-08-at-4.19.37-am.jpeg)
 
 We went through our presentation, showcasing live demos and explaining how Java developers can integrate LLMs into their applications. Shaaf and I did a great job engaging with the audience for an hour, or at least I'd like to think so.
 

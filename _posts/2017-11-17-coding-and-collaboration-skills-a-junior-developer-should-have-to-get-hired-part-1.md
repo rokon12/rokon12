@@ -3,7 +3,8 @@ layout: post
 title: 'Coding and collaboration skills a junior developer should have to get hired – Part 1'
 original_url: 'https://bazlur.ca/2017/11/17/coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired-part-1/'
 date_published: '2017-11-17T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:45.660688'
+date_scraped: '2025-08-05T22:26:14.010186'
+tags: [core java, java, multi threading, thread, string, code reading skills, interview, skills, coding, coding skills, collaboration, collaboration skills, interviews]
 ---
 
 Coding and collaboration skills a junior developer should have to get hired -- Part 1

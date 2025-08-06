@@ -3,16 +3,17 @@ layout: post
 title: 'Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel'
 original_url: 'https://bazlur.ca/2023/06/05/cracking-code-and-conventions-an-exclusive-interview-with-nicolas-frankel/'
 date_published: '2023-06-05T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:46.06274'
+date_scraped: '2025-08-05T22:24:13.663196'
 featured_image: '/images/nicols.jpeg'
+tags: [future of java, java concurrency, java evolution, java features, java pattern matching, java performance, java records, java stereotypes, modern java, programming languages, sealed classes, software development, ai, aws, codinginsights, jakobjenkov, java, programming, softwaredevelopment, techinsights, techinterview, aws solution architect, cloud computing, cross platform support, data science, edge computing, graalvm, jakob jenkov, tornadovm, conference, jcon, newsletter, trip reports, character, collections, hashmap, hashset, indexof, java 21, newsequencedsetfrommap, repeat, sequencedcollection, sequencedmap, shuffle, splitwithdelimiters, stringbuffer, stringbuilder, unmodifiablesequencedcollection, unmodifiablesequencedmap, unmodifiablesequencedset, algorithms, career guidance, computer science, data structures, learning path, leetcode, problem solving, python, technology trends, ai in jvm, byte me, chris newland, jacoline, jitwatch, jvm, jvm performance specialist, jvm tools, open source tools, performance optimization, vmoptionsexplorer, ai in tech, career advice, coding, developer journey, future of coding, industry challenges, interview, nicolas frankel, tech industry, 80 20 rule, anti patterns, design patterns, developer roles, interviews, java programming, learning strategies, miro, miro wengner, professional growth, software industry, solid principles, concurrency, developer events, java champion, java community, jconf toronto 2023, keynote speakers, neal ford, networking, pratik patel, project loom, software architecture, venkat subramaniam, vincent mayers, virtual threads 2]
 ---
 
-<img src="/images/nicols.jpeg" alt="" />
+![](images/nicols.jpeg)
 
 Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel
 ==========================================================================
 
-<img src="/images/nicols-510x510.jpeg" alt="" />
+![](images/nicols-510x510.jpeg)
 
 In this enlightening interview, we explore the unique journey of Nicolas Fränkel, a seasoned professional in the software industry. From an architecture student to a passionate software developer, Nicolas shares his candid thoughts about the current state of software development and the potential impacts of AI.
 

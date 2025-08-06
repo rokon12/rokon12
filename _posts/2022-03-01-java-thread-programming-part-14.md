@@ -3,8 +3,9 @@ layout: post
 title: 'Java Thread Programming (Part 14)'
 original_url: 'https://bazlur.ca/2022/03/01/java-thread-programming-part-14/'
 date_published: '2022-03-01T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:13.015119'
+date_scraped: '2025-08-05T22:25:41.485821'
 featured_image: '/images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png'
+tags: [completablefuture, core features, date, java, lambda, nullpointerexception, optional, records, stream, switch, time, top 10, var, coding, collaboration, jobs, skills, concurrency, thread, community, ecosystem, employment, innovation, interview, langauge, platform, popularity, stability, tioeb index, tooling, forkjoinpool, thread programming, trheadpool, code readability, code reading, code reading skills, code review, reading, source code, threadpool, consumer, executor framework, executors, learning thread programming, threads, pattern, producer, producer consumer pattern]
 ---
 
 Java Thread Programming (Part 14)
@@ -104,7 +105,7 @@ With the above code, how many tasks will be created?
 
 The recursion tree will look like this.
 
-<img src="/images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png" alt="" />
+![](images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png)
 
 We count that we will have 15 tasks. The top task, which is 5, will create two new tasks and wait for them to finish.
 

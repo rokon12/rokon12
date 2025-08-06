@@ -3,16 +3,17 @@ layout: post
 title: 'Navigating the Challenges of Modern Software Development: An Exclusive Interview with Shai Almog'
 original_url: 'https://bazlur.ca/2023/03/27/navigating-the-challenges-of-modern-software-development-an-exclusive-interview-with-shai-almog/'
 date_published: '2023-03-27T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:10.893851'
+date_scraped: '2025-08-05T22:24:38.596446'
 featured_image: '/images/6.png'
+tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
 ---
 
-<img src="/images/6.png" alt="" />
+![](images/6.png)
 
 Navigating the Challenges of Modern Software Development: An Exclusive Interview with Shai Almog
 ================================================================================================
 
-<img src="/images/shai-almog.jpg" alt="" />
+![](images/shai-almog.jpg)
 
 Welcome to our exclusive interview with [Shai Almog](https://www.linkedin.com/in/shai-almog-81a42/), an accomplished entrepreneur, author, blogger, and Java expert with over two decades of experience in the software industry.
 

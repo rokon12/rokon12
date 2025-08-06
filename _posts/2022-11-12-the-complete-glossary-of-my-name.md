@@ -3,7 +3,8 @@ layout: post
 title: 'The complete glossary of my name'
 original_url: 'https://bazlur.ca/2022/11/12/the-complete-glossary-of-my-name/'
 date_published: '2022-11-12T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:29.788481'
+date_scraped: '2025-08-05T22:24:57.779568'
+tags: [conference, devoxx, devoxxma, morocco, talks, trip reports, java, java19, record patterns, structured concurrency, virtual thread, callable, executors, future, learning thread programming, thread, thread programming, bytecode, communication, developers, skills, concurrency, newsletter, project loom, article, books, fiction, review]
 ---
 
 The complete glossary of my name

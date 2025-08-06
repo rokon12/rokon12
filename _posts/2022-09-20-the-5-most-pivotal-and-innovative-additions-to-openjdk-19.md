@@ -3,11 +3,12 @@ layout: post
 title: 'The 5 Most Pivotal and Innovative Additions to OpenJDK 19'
 original_url: 'https://bazlur.ca/2022/09/20/the-5-most-pivotal-and-innovative-additions-to-openjdk-19/'
 date_published: '2022-09-20T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:32.750331'
+date_scraped: '2025-08-05T22:25:00.637146'
 featured_image: '/images/cafe-g56e2bcea6-1920.jpg'
+tags: [conference, devoxx, devoxxma, morocco, talks, trip reports, java, java19, record patterns, structured concurrency, virtual thread, callable, executors, future, learning thread programming, thread, thread programming, bytecode, communication, developers, skills, concurrency, newsletter, project loom, article, books, fiction, review]
 ---
 
-<img src="/images/cafe-g56e2bcea6-1920.jpg" alt="" />
+![](images/cafe-g56e2bcea6-1920.jpg)
 
 The 5 Most Pivotal and Innovative Additions to OpenJDK 19
 =========================================================

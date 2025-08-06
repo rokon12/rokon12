@@ -3,11 +3,12 @@ layout: post
 title: 'What is CyclicBarrier and When to Use It in Java?'
 original_url: 'https://bazlur.ca/2023/10/04/what-is-cyclicbarrier-and-when-to-use-it-in-java/'
 date_published: '2023-10-04T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:01.430822'
+date_scraped: '2025-08-05T22:23:28.416371'
 featured_image: '/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
+tags: [c programming, code integration, foreign function memory api, java, jep 454, jni, native libraries, openjdk, project panama, software development, carrier threads, code optimization, concurrent programming, httpclient, jsoup, jvm flags, native methods, performance tuning, pinning, reentrantlock, scalability, synchronization, virtual threads 2, web crawler, atomicinteger, bestpractices, codeexamples, concurrency, databaseconnections, jdk21, junit, programmingtips, resourcemanagement, semaphore, softwareengineering, threading, virtualthreads, cyclicbarrier, multithreading, programming, threadsynchronization, countdownlatch, learning thread programming, classical threads, jdk 21, multi threading, performance optimization, sdkman 2, throughput, web crawling, experiment, jvm, memory management, native threads, operating system, outofmemoryerror, stack size, thread creation, virtual memory, newsletter, career advice, community involvement, java development, mentoring, oracle ace, programming philosophy, simon martinelli, software architecture, software industry trends, technology evaluation]
 ---
 
-<img src="/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg" alt="" />
+![](images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)
 
 What is CyclicBarrier and When to Use It in Java?
 =================================================

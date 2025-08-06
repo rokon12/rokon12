@@ -3,11 +3,12 @@ layout: post
 title: 'Optional in Java: A Swiss Army Knife for Handling Nulls and Improving Code Quality'
 original_url: 'https://bazlur.ca/2023/02/01/optional-in-java-a-swiss-army-knife-for-handling-nulls-and-improving-code-quality/'
 date_published: '2023-02-01T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:23.476973'
+date_scraped: '2025-08-05T22:24:51.355615'
 featured_image: '/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg'
+tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
 ---
 
-<img src="/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg" alt="" />
+![](images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)
 
 Optional in Java: A Swiss Army Knife for Handling Nulls and Improving Code Quality
 ==================================================================================

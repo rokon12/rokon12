@@ -3,11 +3,12 @@ layout: post
 title: 'Interview with an experienced Java developer – a legacy code whisperer – Part -1'
 original_url: 'https://bazlur.ca/2017/10/13/interview-with-an-experienced-java-developer-a-legacy-code-whisperer-part-1/'
 date_published: '2017-10-13T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:50.010361'
+date_scraped: '2025-08-05T22:26:18.37305'
 featured_image: '/images/interviews.jpeg'
+tags: [core java, java, multi threading, thread, string, code reading skills, interview, skills, coding, coding skills, collaboration, collaboration skills, interviews]
 ---
 
-<img src="/images/interviews.jpeg" alt="" />
+![](images/interviews.jpeg)
 
 Interview with an experienced Java developer -- a legacy code whisperer -- Part -1
 ==================================================================================

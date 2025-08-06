@@ -3,16 +3,17 @@ layout: post
 title: 'Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana'
 original_url: 'https://bazlur.ca/2023/04/03/unlocking-the-secrets-to-a-successful-software-engineering-career-an-interview-with-otavio-santana/'
 date_published: '2023-04-03T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:06.622369'
+date_scraped: '2025-08-05T22:24:34.176988'
 featured_image: '/images/4.png'
+tags: [anxiety, baby, c section, childbirth, contractions, cultural differences, decision making, emotions, epidural, faith, family, fatherhood, healthcare, helplessness, hospital experience, oxytocin, personal experience, pregnancy, prodromal labor, trust, universal healthcare, waiting, asynchronous interview, career guidance, coding, developer insights, industry experts, interviews, java, java unscripted, knowledge sharing, programming, software development, tech industry, technology, cloud computing, continuous learning, interview, java champion, michael p redlich, open source, success strategies, technology trends, concurrency, java 21, virtual thread, apple, macbook pro, repair, azul systems, foojay io, frank delporte, java beginners, java development, java tutorials, javafx, openjdk, raspberry pi, software industry stories, technical writing, career milestone, collaboration, committer, community, eclipse foundation, jakarta ee, open source projects, evolutionaryarchitecture, jakartaee, mentorship, nosql, opensource, otaviosantana, softwareengineering, techleadership]
 ---
 
-<img src="/images/4.png" alt="" />
+![](images/4.png)
 
 Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana
 ===================================================================================================
 
-<img src="/images/otavio-edited.webp" alt="" />
+![](images/otavio-edited.webp)
 
 In this exclusive interview, we had the pleasure of speaking with [Otavio Santana](https://www.linkedin.com/in/otaviojava/), a Java Champion and passionate software engineer and architect dedicated to empowering fellow engineers to deliver efficient, scalable software on the Cloud.
 

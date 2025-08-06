@@ -3,8 +3,9 @@ layout: post
 title: 'Java Thread Programming (Part 6)'
 original_url: 'https://bazlur.ca/2021/11/16/java-thread-programming-part-6/'
 date_published: '2021-11-16T00:00:00+00:00'
-date_scraped: '2025-08-05T14:23:29.617076'
+date_scraped: '2025-08-05T22:25:57.909081'
 featured_image: '/images/thread-lifecycle-700x379.png'
+tags: [concurrency, concurrent collections, consumer, java, learning thread programming, pattern, producer, producer consumer pattern, threads, thread safety, atomicinteger, threadpool, notify, notifyall, thread, thread lifecycle, wait, method, optional, critical section, lock, mutex, mutual exclusion, race condition, synchronized, data race, thread programming, volatile, core java]
 ---
 
 Java Thread Programming (Part 6)
@@ -56,7 +57,7 @@ So the takeaway is, a thread goes through a multiple-stage of its life.
 * **Timed waiting state**: this is the same as the waiting state, only it waits for a given period. And then it goes to runnel state again. Usually, when put a thread in sleep, it goes to the timed waiting state. However, there is a difference between sleep and waiting. In the sleeping state, the thread doesn't release the lock but the waiting state does. We can discuss this sort of difference later.
 * **Terminated state**: When a thread is done with its work, mainly work leaves from the run method, the thread goes to the terminated state.
 
-<img src="/images/thread-lifecycle-700x379.png" alt="" />
+![](images/thread-lifecycle-700x379.png)
 
 Now that we know the lifecycle of a thread, we can put a thread into a waiting state. In java, any object can be used as a lock, and each object has a wait method associated with it.
 

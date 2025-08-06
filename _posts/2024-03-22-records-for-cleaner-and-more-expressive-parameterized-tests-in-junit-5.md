@@ -3,11 +3,12 @@ layout: post
 title: 'Records for Cleaner and More Expressive Parameterized Tests in JUnit 5'
 original_url: 'https://bazlur.ca/2024/03/22/records-for-cleaner-and-more-expressive-parameterized-tests-in-junit-5/'
 date_published: '2024-03-22T00:00:00+00:00'
-date_scraped: '2025-08-05T14:20:52.756548'
+date_scraped: '2025-08-05T22:23:19.76441'
 featured_image: '/images/gemini-generated-image-2.jpeg'
+tags: [ai, chat memory, chatbots, java, langchain4j, llm, summarization, token management, devotion, gratitude, humility, islamic pilgrimage, madinah, makkah, messenger muhammad %ef%b7%ba, rawda, sacred cities, spiritual journey, umrah, unity, bash alternative, cli script, command line, dark mode, developer tools, java 11, java 21, java cli, java code, java development, java execution, java features, java scripting, java shebang, java shell script, java tips, java tricks, java tutorial, shebang, terminal script, architecture, bicycle friendly, big ben, buckingham palace, city exploration, conference, copenhagen, cultural experiences, developer festivals, europe, family bonding, family reunion, frederiksborg castle, helsingborg, here are some recommended tags for your trip report london, history, karnan castle, nyhavn, old cities, personal journey, prime meridian, professional highlights, scandinavia, tivoli gardens, travel, travel blog, automation, cli, devops, github, jbang, picocli, releasenotes, tutorial, foreign function memory api, jep 471, memory management, security, sun misc unsafe, varhandle, code efficiency, code readability, coding best practices, core java, java enhancements, java programming, jep 455, modern java, order processing, primitive type, programming tips, software development, sure here are some tags for your article java, switch expressions, switch pattern, switch statement, jep, main, println, clarity, cleaner code, error handling, expressiveness, java records, junit 5, maintainability, parameterized testing, test cases, type safety, baby, dhaka, homecoming, new job]
 ---
 
-<img src="/images/gemini-generated-image-2.jpeg" alt="" />
+![](images/gemini-generated-image-2.jpeg)
 
 Records for Cleaner and More Expressive Parameterized Tests in JUnit 5
 ======================================================================

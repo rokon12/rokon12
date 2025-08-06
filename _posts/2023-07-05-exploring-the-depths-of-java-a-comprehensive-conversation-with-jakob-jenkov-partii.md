@@ -3,14 +3,15 @@ layout: post
 title: 'Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II'
 original_url: 'https://bazlur.ca/2023/07/05/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-ii/'
 date_published: '2023-07-05T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:36.178984'
+date_scraped: '2025-08-05T22:24:03.475558'
 featured_image: '/images/jekov.jpeg'
+tags: [future of java, java concurrency, java evolution, java features, java pattern matching, java performance, java records, java stereotypes, modern java, programming languages, sealed classes, software development, ai, aws, codinginsights, jakobjenkov, java, programming, softwaredevelopment, techinsights, techinterview, aws solution architect, cloud computing, cross platform support, data science, edge computing, graalvm, jakob jenkov, tornadovm, conference, jcon, newsletter, trip reports, character, collections, hashmap, hashset, indexof, java 21, newsequencedsetfrommap, repeat, sequencedcollection, sequencedmap, shuffle, splitwithdelimiters, stringbuffer, stringbuilder, unmodifiablesequencedcollection, unmodifiablesequencedmap, unmodifiablesequencedset, algorithms, career guidance, computer science, data structures, learning path, leetcode, problem solving, python, technology trends, ai in jvm, byte me, chris newland, jacoline, jitwatch, jvm, jvm performance specialist, jvm tools, open source tools, performance optimization, vmoptionsexplorer, ai in tech, career advice, coding, developer journey, future of coding, industry challenges, interview, nicolas frankel, tech industry, 80 20 rule, anti patterns, design patterns, developer roles, interviews, java programming, learning strategies, miro, miro wengner, professional growth, software industry, solid principles, concurrency, developer events, java champion, java community, jconf toronto 2023, keynote speakers, neal ford, networking, pratik patel, project loom, software architecture, venkat subramaniam, vincent mayers, virtual threads 2]
 ---
 
 Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II
 =====================================================================================
 
-<img src="/images/jekov.jpeg" alt="" />
+![](images/jekov.jpeg)
 
 Welcome back to the second installment of our in-depth conversation with Jakob Jenkov, a leading figure in the world of Java. If you joined us for[Part I](https://foojay.io/today/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-i/), you'll recall the insightful discussions around the evolving landscape of Java and its continuous improvements. Today, we delve even deeper into the subject. Jakob will share his thoughts on the challenges of modern software development, the impacts of artificial intelligence on developers, and much more. Get ready for another fascinating exploration into the depths of Java with Jakob Jenkov!
 

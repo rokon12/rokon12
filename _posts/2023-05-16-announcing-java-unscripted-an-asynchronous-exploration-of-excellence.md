@@ -3,11 +3,12 @@ layout: post
 title: 'Announcing “Java Unscripted: An Asynchronous Exploration of Excellence”'
 original_url: 'https://bazlur.ca/2023/05/16/announcing-java-unscripted-an-asynchronous-exploration-of-excellence/'
 date_published: '2023-05-16T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:54.840652'
+date_scraped: '2025-08-05T22:24:22.327279'
 featured_image: '/images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg'
+tags: [anxiety, baby, c section, childbirth, contractions, cultural differences, decision making, emotions, epidural, faith, family, fatherhood, healthcare, helplessness, hospital experience, oxytocin, personal experience, pregnancy, prodromal labor, trust, universal healthcare, waiting, asynchronous interview, career guidance, coding, developer insights, industry experts, interviews, java, java unscripted, knowledge sharing, programming, software development, tech industry, technology, cloud computing, continuous learning, interview, java champion, michael p redlich, open source, success strategies, technology trends, concurrency, java 21, virtual thread, apple, macbook pro, repair, azul systems, foojay io, frank delporte, java beginners, java development, java tutorials, javafx, openjdk, raspberry pi, software industry stories, technical writing, career milestone, collaboration, committer, community, eclipse foundation, jakarta ee, open source projects, evolutionaryarchitecture, jakartaee, mentorship, nosql, opensource, otaviosantana, softwareengineering, techleadership]
 ---
 
-<img src="/images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg" alt="" />
+![](images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg)
 
 Announcing "Java Unscripted: An Asynchronous Exploration of Excellence"
 =======================================================================
@@ -45,7 +46,7 @@ The interviews will be conducted asynchronously via **email** or **Slack** , wit
 
 ### **We'd be thrilled to have you if you're interested in contributing to this series. Please fill out this Google Form to provide some basic information and preferences for the interview process:[Interview Participation Form](https://forms.gle/DsC9hN424sCPicgM8)**
 
-<img src="/images/image-847x1024.png" alt="" />
+![](images/image-847x1024.png)
 
 We eagerly look forward to hearing from you.   
 

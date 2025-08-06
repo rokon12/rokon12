@@ -3,11 +3,12 @@ layout: post
 title: 'Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes'
 original_url: 'https://bazlur.ca/2024/07/18/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes/'
 date_published: '2024-07-18T00:00:00+00:00'
-date_scraped: '2025-08-05T14:20:46.9844'
+date_scraped: '2025-08-05T22:23:13.942636'
 featured_image: '/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp'
+tags: [ai, chat memory, chatbots, java, langchain4j, llm, summarization, token management, devotion, gratitude, humility, islamic pilgrimage, madinah, makkah, messenger muhammad %ef%b7%ba, rawda, sacred cities, spiritual journey, umrah, unity, bash alternative, cli script, command line, dark mode, developer tools, java 11, java 21, java cli, java code, java development, java execution, java features, java scripting, java shebang, java shell script, java tips, java tricks, java tutorial, shebang, terminal script, architecture, bicycle friendly, big ben, buckingham palace, city exploration, conference, copenhagen, cultural experiences, developer festivals, europe, family bonding, family reunion, frederiksborg castle, helsingborg, here are some recommended tags for your trip report london, history, karnan castle, nyhavn, old cities, personal journey, prime meridian, professional highlights, scandinavia, tivoli gardens, travel, travel blog, automation, cli, devops, github, jbang, picocli, releasenotes, tutorial, foreign function memory api, jep 471, memory management, security, sun misc unsafe, varhandle, code efficiency, code readability, coding best practices, core java, java enhancements, java programming, jep 455, modern java, order processing, primitive type, programming tips, software development, sure here are some tags for your article java, switch expressions, switch pattern, switch statement, jep, main, println, clarity, cleaner code, error handling, expressiveness, java records, junit 5, maintainability, parameterized testing, test cases, type safety, baby, dhaka, homecoming, new job]
 ---
 
-<img src="/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp" alt="" />
+![](images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp)
 
 Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes
 =============================================================================
@@ -54,7 +55,7 @@ To open it in your IDE, you can use:
 
 This creates a sandbox environment and sets up a Gradle project for you. You can then open it on your favourite IDE.
 
-<img src="/images/screenshot-2024-07-18-at-10.18.19-pm.png" alt="" />
+![](images/screenshot-2024-07-18-at-10.18.19-pm.png)
 
 ### **Step 3: Add Dependencies**
 
@@ -386,7 +387,7 @@ Usage: release_notes [-f=<outputFile>] [-o=<outputFormat>] -r=<repo>
 
 It will print on the terminal if we don't want to save it in any file.
 
-<img src="/images/screenshot-2024-07-18-at-9.46.00-pm.png" alt="" />
+![](images/screenshot-2024-07-18-at-9.46.00-pm.png)
 
 That's it.
 

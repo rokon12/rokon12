@@ -3,14 +3,15 @@ layout: post
 title: 'Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich'
 original_url: 'https://bazlur.ca/2023/05/15/discovering-the-secrets-to-success-an-exclusive-interview-with-java-champion-michael-p-redlich/'
 date_published: '2023-05-15T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:56.280018'
+date_scraped: '2025-08-05T22:24:23.772793'
 featured_image: '/images/michael-redlich.jpg'
+tags: [anxiety, baby, c section, childbirth, contractions, cultural differences, decision making, emotions, epidural, faith, family, fatherhood, healthcare, helplessness, hospital experience, oxytocin, personal experience, pregnancy, prodromal labor, trust, universal healthcare, waiting, asynchronous interview, career guidance, coding, developer insights, industry experts, interviews, java, java unscripted, knowledge sharing, programming, software development, tech industry, technology, cloud computing, continuous learning, interview, java champion, michael p redlich, open source, success strategies, technology trends, concurrency, java 21, virtual thread, apple, macbook pro, repair, azul systems, foojay io, frank delporte, java beginners, java development, java tutorials, javafx, openjdk, raspberry pi, software industry stories, technical writing, career milestone, collaboration, committer, community, eclipse foundation, jakarta ee, open source projects, evolutionaryarchitecture, jakartaee, mentorship, nosql, opensource, otaviosantana, softwareengineering, techleadership]
 ---
 
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich
 ================================================================================================
 
-<img src="/images/michael-redlich.jpg" alt="" />
+![](images/michael-redlich.jpg)
 
 In this interview, we had the pleasure of speaking with Michael P. Redlich, a seasoned software developer with over 30 years of experience in the field.
 

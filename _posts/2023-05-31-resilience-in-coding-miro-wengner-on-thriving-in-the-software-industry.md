@@ -3,16 +3,17 @@ layout: post
 title: 'Resilience in Coding: Miro Wengner on Thriving in the Software Industry'
 original_url: 'https://bazlur.ca/2023/05/31/resilience-in-coding-miro-wengner-on-thriving-in-the-software-industry/'
 date_published: '2023-05-31T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:47.504839'
+date_scraped: '2025-08-05T22:24:15.108778'
 featured_image: '/images/miro.jpeg'
+tags: [future of java, java concurrency, java evolution, java features, java pattern matching, java performance, java records, java stereotypes, modern java, programming languages, sealed classes, software development, ai, aws, codinginsights, jakobjenkov, java, programming, softwaredevelopment, techinsights, techinterview, aws solution architect, cloud computing, cross platform support, data science, edge computing, graalvm, jakob jenkov, tornadovm, conference, jcon, newsletter, trip reports, character, collections, hashmap, hashset, indexof, java 21, newsequencedsetfrommap, repeat, sequencedcollection, sequencedmap, shuffle, splitwithdelimiters, stringbuffer, stringbuilder, unmodifiablesequencedcollection, unmodifiablesequencedmap, unmodifiablesequencedset, algorithms, career guidance, computer science, data structures, learning path, leetcode, problem solving, python, technology trends, ai in jvm, byte me, chris newland, jacoline, jitwatch, jvm, jvm performance specialist, jvm tools, open source tools, performance optimization, vmoptionsexplorer, ai in tech, career advice, coding, developer journey, future of coding, industry challenges, interview, nicolas frankel, tech industry, 80 20 rule, anti patterns, design patterns, developer roles, interviews, java programming, learning strategies, miro, miro wengner, professional growth, software industry, solid principles, concurrency, developer events, java champion, java community, jconf toronto 2023, keynote speakers, neal ford, networking, pratik patel, project loom, software architecture, venkat subramaniam, vincent mayers, virtual threads 2]
 ---
 
-<img src="/images/miro.jpeg" alt="" />
+![](images/miro.jpeg)
 
 Resilience in Coding: Miro Wengner on Thriving in the Software Industry
 =======================================================================
 
-<img src="/images/miro.jpeg" alt="" />
+![](images/miro.jpeg)
 
 In this insightful discussion, we sit down with Miro Wengner, an accomplished software engineer with a deep-rooted affinity for Java. Miro shares his professional journey, highlights the significant challenges in the field, and reflects on the key moments that shaped his career.
 

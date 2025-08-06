@@ -3,11 +3,12 @@ layout: post
 title: 'Java Bytecode Simplified: Journey to the Wonderland (Part 2)'
 original_url: 'https://bazlur.ca/2022/08/16/java-bytecode-simplified-journey-to-the-wonderland-part-2/'
 date_published: '2022-08-16T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:35.708041'
+date_scraped: '2025-08-05T22:25:03.567519'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
+tags: [conference, devoxx, devoxxma, morocco, talks, trip reports, java, java19, record patterns, structured concurrency, virtual thread, callable, executors, future, learning thread programming, thread, thread programming, bytecode, communication, developers, skills, concurrency, newsletter, project loom, article, books, fiction, review]
 ---
 
-<img src="/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg" alt="" />
+![](images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)
 
 Java Bytecode Simplified: Journey to the Wonderland (Part 2)
 ============================================================

@@ -3,11 +3,12 @@ layout: post
 title: 'Welcoming Our Little Princess: The Story of Rushda Rahman'
 original_url: 'https://bazlur.ca/2023/03/06/welcoming-our-little-princess-the-story-of-rushda-rahman/'
 date_published: '2023-03-06T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:19.093536'
+date_scraped: '2025-08-05T22:24:46.931941'
 featured_image: '/images/img-20230202-wa0000.jpg'
+tags: [developer advice, entrepreneur, impostor syndrome, innovation, interview, java expert, mentorship, overcoming challenges, programming journey, software industry, adaptability, agile, architecture, career, collaboration, development, devops, engineering, java, jvm, leadership, learning, openjdk, performance, programming, software, technology, careers, community, developers, continuous learning, industry trends, knowledge acquisition, learning strategies, mentoring, networking, professional development, skill development, software engineering, tech industry, canada, conference, confoo, montreal, trip reports, optional, asm, bytecbuddy, bytecode, javaassist, javagent]
 ---
 
-<img src="/images/img-20230202-wa0000.jpg" alt="" />
+![](images/img-20230202-wa0000.jpg)
 
 Welcoming Our Little Princess: The Story of Rushda Rahman
 =========================================================

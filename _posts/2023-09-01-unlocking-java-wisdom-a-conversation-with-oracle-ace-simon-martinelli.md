@@ -3,16 +3,17 @@ layout: post
 title: 'Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli'
 original_url: 'https://bazlur.ca/2023/09/01/unlocking-java-wisdom-a-conversation-with-oracle-ace-simon-martinelli/'
 date_published: '2023-09-01T00:00:00+00:00'
-date_scraped: '2025-08-05T14:21:12.185734'
+date_scraped: '2025-08-05T22:23:39.371144'
 featured_image: '/images/simon-martinelli.png'
+tags: [c programming, code integration, foreign function memory api, java, jep 454, jni, native libraries, openjdk, project panama, software development, carrier threads, code optimization, concurrent programming, httpclient, jsoup, jvm flags, native methods, performance tuning, pinning, reentrantlock, scalability, synchronization, virtual threads 2, web crawler, atomicinteger, bestpractices, codeexamples, concurrency, databaseconnections, jdk21, junit, programmingtips, resourcemanagement, semaphore, softwareengineering, threading, virtualthreads, cyclicbarrier, multithreading, programming, threadsynchronization, countdownlatch, learning thread programming, classical threads, jdk 21, multi threading, performance optimization, sdkman 2, throughput, web crawling, experiment, jvm, memory management, native threads, operating system, outofmemoryerror, stack size, thread creation, virtual memory, newsletter, career advice, community involvement, java development, mentoring, oracle ace, programming philosophy, simon martinelli, software architecture, software industry trends, technology evaluation]
 ---
 
-<img src="/images/simon-martinelli.png" alt="" />
+![](images/simon-martinelli.png)
 
 Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli
 ======================================================================
 
-<img src="/images/image-2.png" alt="" />
+![](images/image-2.png)
 
 In a recent insightful interview, Simon Martinelli, an Oracle ACE associate and veteran Java developer, shares his career experiences, software development philosophies, and views on mentoring. With over two decades in the industry, Martinelli offers a perspective that combines the wisdom of experience with a focus on simplicity and constant learning.
 

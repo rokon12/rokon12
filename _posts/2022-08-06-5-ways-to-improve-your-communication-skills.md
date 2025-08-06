@@ -3,7 +3,8 @@ layout: post
 title: '5 ways to improve your communication skills'
 original_url: 'https://bazlur.ca/2022/08/06/5-ways-to-improve-your-communication-skills/'
 date_published: '2022-08-06T00:00:00+00:00'
-date_scraped: '2025-08-05T14:22:37.232498'
+date_scraped: '2025-08-05T22:25:05.073298'
+tags: [conference, devoxx, devoxxma, morocco, talks, trip reports, java, java19, record patterns, structured concurrency, virtual thread, callable, executors, future, learning thread programming, thread, thread programming, bytecode, communication, developers, skills, concurrency, newsletter, project loom, article, books, fiction, review]
 ---
 
 5 ways to improve your communication skills
