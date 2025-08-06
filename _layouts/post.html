@@ -44,12 +44,17 @@ layout: default
         {% endif %}
 
         <div class="post-container">
+            {% comment %} Table of Contents - positioned as sticky sidebar {% endcomment %}
+            {% assign content_for_toc = content %}
+            {% if content_for_toc contains '<h2' or content_for_toc contains '<h3' %}
+            <aside class="toc-sidebar">
+                {% include toc.html %}
+            </aside>
+            {% endif %}
+            
             <div class="post-content e-content" itemprop="articleBody">
                 {{ content }}
             </div>
-            
-            {% comment %} Table of Contents {% endcomment %}
-            {% include toc.html %}
         </div>
 
         {% comment %} Newsletter Subscription CTA {% endcomment %}
