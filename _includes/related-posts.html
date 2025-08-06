@@ -10,11 +10,17 @@
   </h2>
   
   {% if page.tags and page.tags.size > 0 %}
-    {% comment %} Tag-based related posts {% endcomment %}
+    {% comment %} Tag-based related posts with better scoring {% endcomment %}
     {% assign related_posts = site.posts | where_exp: "post", "post.url != page.url" %}
     {% assign scored_posts = "" | split: "" %}
+    {% assign max_posts_to_check = 30 %}
+    {% assign posts_checked = 0 %}
     
-    {% for post in related_posts limit: 50 %}
+    {% for post in related_posts %}
+      {% if posts_checked >= max_posts_to_check %}
+        {% break %}
+      {% endif %}
+      
       {% assign shared_tags = 0 %}
       {% for tag in post.tags %}
         {% if page.tags contains tag %}
@@ -22,17 +28,25 @@
         {% endif %}
       {% endfor %}
       
-      {% if shared_tags > 0 %}
+      {% comment %} Only include posts with at least 2 shared tags or 1 if page has few tags {% endcomment %}
+      {% assign min_shared_tags = 1 %}
+      {% if page.tags.size > 3 %}
+        {% assign min_shared_tags = 2 %}
+      {% endif %}
+      
+      {% if shared_tags >= min_shared_tags %}
         {% assign scored_posts = scored_posts | push: post %}
       {% endif %}
+      
+      {% assign posts_checked = posts_checked | plus: 1 %}
     {% endfor %}
     
-    {% comment %} Sort by number of shared tags (manual sort since Jekyll doesn't have native sort by custom value) {% endcomment %}
-    {% assign sorted_posts = scored_posts %}
+    {% comment %} Take the most recent posts from those with shared tags {% endcomment %}
+    {% assign sorted_posts = scored_posts | sort: "date" | reverse %}
     
     {% if sorted_posts.size > 0 %}
       <div class="related-posts-grid">
-        {% for post in sorted_posts limit: 4 %}
+        {% for post in sorted_posts limit: 3 %}
           <article class="related-post-card">
             <a href="{{ post.url | relative_url }}" class="related-post-link">
               <div class="related-post-content">
@@ -80,7 +94,7 @@
     </div>
     
     <div class="related-posts-grid">
-      {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | limit: 4 %}
+      {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | limit: 3 %}
       {% for post in recent_posts %}
         <article class="related-post-card">
           <a href="{{ post.url | relative_url }}" class="related-post-link">
