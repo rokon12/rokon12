@@ -69,7 +69,7 @@ layout: default
             <article class="featured-card">
                 {% if post.featured_image %}
                 <div class="featured-image">
-                    <img src="{{ post.featured_image }}" alt="{{ post.title | escape }}" loading="lazy">
+                    <img src="{{ post.featured_image }}" alt="{{ post.title | escape }}" loading="lazy" decoding="async">
                 </div>
                 {% endif %}
                 <div class="featured-content">
@@ -100,7 +100,7 @@ layout: default
                 <a href="{{ post.url | relative_url }}" class="post-card-image">
                     <img src="{{ post.featured_image }}" 
                          alt="{{ post.title | escape }}" 
-                         loading="lazy">
+                         loading="lazy" decoding="async">
                 </a>
                 {% else %}
                 <div class="post-card-image placeholder">

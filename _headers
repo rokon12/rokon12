@@ -1,0 +1,42 @@
+/*
+  Cache-Control: public, max-age=7200
+
+/*.css
+  Cache-Control: public, max-age=604800
+  Content-Type: text/css
+
+/*.js
+  Cache-Control: public, max-age=604800
+  Content-Type: application/javascript
+
+/*.jpg
+  Cache-Control: public, max-age=31536000
+  Content-Type: image/jpeg
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000
+  Content-Type: image/jpeg
+
+/*.png
+  Cache-Control: public, max-age=31536000
+  Content-Type: image/png
+
+/*.gif
+  Cache-Control: public, max-age=31536000
+  Content-Type: image/gif
+
+/*.svg
+  Cache-Control: public, max-age=31536000
+  Content-Type: image/svg+xml
+
+/*.woff
+  Cache-Control: public, max-age=31536000
+
+/*.woff2
+  Cache-Control: public, max-age=31536000
+
+/*.ttf
+  Cache-Control: public, max-age=31536000
+
+/*.eot
+  Cache-Control: public, max-age=31536000

@@ -90,3 +90,21 @@ social:
 
 # Google Analytics (if you have one)
 # google_analytics: UA-XXXXXXXXX-X
+
+# Performance optimizations
+sass:
+  style: compressed
+  
+# HTML compression
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+# Asset optimization
+assets:
+  compression: true
+  gzip: true
