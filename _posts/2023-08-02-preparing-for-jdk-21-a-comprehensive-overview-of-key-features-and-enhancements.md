@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/08/02/preparing-for-jdk-21-a-comprehensive
 date_published: '2023-08-02T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:53.080064'
 featured_image: '/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg'
-tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
+tags: [java 21, virtual threads, pattern matching, string templates, jdk enhancements]
 ---
 
 ![](images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg)

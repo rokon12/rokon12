@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/10/05/what-is-a-semaphore-and-when-to-use-
 date_published: '2023-10-05T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:26.968058'
 featured_image: '/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg'
-tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
+tags: [java concurrency, semaphore, virtual threads, thread programming, synchronization]
 ---
 
 ![](images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg)

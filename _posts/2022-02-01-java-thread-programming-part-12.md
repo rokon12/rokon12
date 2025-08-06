@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/02/01/java-thread-programming-part-12/'
 date_published: '2022-02-01T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:46.836369'
 featured_image: '/images/threadpool-vs-main-threads-700x421.png'
-tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+tags: [java threads, executor framework, thread pool, scheduled executor, concurrent programming]
 ---
 
 Java Thread Programming (Part 12)

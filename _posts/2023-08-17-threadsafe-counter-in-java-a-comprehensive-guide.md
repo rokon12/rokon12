@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/08/17/thread-safe-counter-in-java-a-compre
 date_published: '2023-08-17T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:45.237998'
 featured_image: '/images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg'
-tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
+tags: [java concurrency, thread safety, atomic operations, synchronization, varhandle]
 ---
 
 ![](images/4738b5a0-8697-4b56-aa36-d13fcb47dd8a.jpeg)

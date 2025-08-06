@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/03/25/5-things-you-probably-didnt-know-abo
 date_published: '2022-03-25T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:34.46606'
 featured_image: '/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png'
-tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+tags: [java concurrency, thread ordering, volatile keyword, completablefuture, lock free programming]
 ---
 
 ![](images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)

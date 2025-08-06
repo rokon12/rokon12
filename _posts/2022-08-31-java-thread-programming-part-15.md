@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/08/31/java-thread-programming-part-15/'
 date_published: '2022-08-31T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:02.105525'
 featured_image: '/images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg'
-tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+tags: [java threads, callable future, asynchronous programming, executorservice, java 19]
 ---
 
 ![](images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg)

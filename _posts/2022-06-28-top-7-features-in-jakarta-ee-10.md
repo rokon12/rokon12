@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2022/06/28/top-7-features-in-jakarta-ee-10/'
 date_published: '2022-06-28T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:13.877876'
 featured_image: '/images/jakartaee-landscape.jpeg'
-tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
+tags: [jakarta ee 10, enterprise java, cdi lite, rest client, jakarta security]
 ---
 
 ![](images/jakartaee-landscape.jpeg)

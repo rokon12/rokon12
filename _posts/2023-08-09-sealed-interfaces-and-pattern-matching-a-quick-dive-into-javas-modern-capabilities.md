@@ -5,7 +5,7 @@ original_url: 'https://bazlur.ca/2023/08/09/sealed-interfaces-and-pattern-matchi
 date_published: '2023-08-09T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:48.693199'
 featured_image: '/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg'
-tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
+tags: [sealed classes, pattern matching, java 17, modern java, interface design]
 ---
 
 ![](images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg)
