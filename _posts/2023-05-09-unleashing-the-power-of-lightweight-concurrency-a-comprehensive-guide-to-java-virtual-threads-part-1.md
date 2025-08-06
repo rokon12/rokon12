@@ -53,7 +53,7 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor())
     });
 }
 
-```
+```java
 
 The JDK can now run up to 10,000 concurrent virtual threads on a small number of operating system (OS) threads, as little as one, to execute the simple code above that involves sleeping for one second.
 
@@ -79,7 +79,7 @@ Once you have SDKMAN installed, you can list available JDK versions, including e
 sdk list java
 sdk install java <version>
 
-```
+```java
 
 Replace \<version\> with the specific version you'd like to install, such as the early access build of JDK 21 that includes virtual thread support.
 
@@ -96,7 +96,7 @@ Thread.startVirtualThread(() ->
    System.out.println("Hello world!");
 });
 
-```
+```java
 
 You don't need to start the thread; it automatically starts and executes.
 
@@ -111,7 +111,7 @@ var thread = Thread.startVirtualThread(() ->
 
 thread.join();
 
-```
+```java
 
 *** ** * ** ***
 
@@ -126,7 +126,7 @@ var started =Thread.ofVirtual().start(() ->
    System.out.println("Hello world!");
 });
 
-```
+```java
 
 To create an **unstarted** thread, you can use the following:
 
@@ -137,7 +137,7 @@ var unstarted = Thread.ofVirtual().unstarted(() ->
    System.out.println("Hello world!");
 });
 
-```
+```java
 
 *** ** * ** ***
 

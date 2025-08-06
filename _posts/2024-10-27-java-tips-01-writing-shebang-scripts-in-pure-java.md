@@ -21,7 +21,7 @@ I'll assume Java is already installed on your machine. To confirm, open your ter
 
 You should see something like this:
 
-```
+```java
 java --version
 java 21.0.1 2023-10-17 LTS
 Java(TM) SE Runtime Environment (build 21.0.1+12-LTS-29)
@@ -36,13 +36,13 @@ In one of my previous articles, I explained how to build CLI applications with [
 
 First, create a new file called `hello.java`:
 
-```
+```java
 touch hello.java
 ```
 
 Then, paste the following code into the file:  
 
-```
+```java
 #!/usr/bin/java --source 21
 
 import java.time.LocalDate;
@@ -110,7 +110,7 @@ Notice the first line: `#!/usr/bin/java --source 21`. This is the crucial part o
 
 You can remove the `.java` extension if you want; that's also fine. Just keep the file named `hello`. To rename the file, use the following command:  
 
-```
+```java
 mv hello.java hello
 ```
 
@@ -118,19 +118,19 @@ mv hello.java hello
 
 Now, to make this script executable, run the following command:
 
-```
+```java
 chmod +x ./hello
 ```
 
 That's it! You can now run it with:
 
-```
+```java
 ./hello
 ```
 
 Here's what you should see when you run it:  
 
-```
+```java
 ./hello
 Welcome to the Java CLI. Type 'help' for a list of commands or 'exit' to quit.
 Command> help

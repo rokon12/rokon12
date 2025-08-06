@@ -21,7 +21,7 @@ While running only 4 at a time, the rest of them will be waiting. Thus, even tho
 
 Let's do an experiment and see how many threads we can create:
 
-```
+```java
 package com.bazlur.threads;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -57,7 +57,7 @@ Let's do an exercise about creating a thread pool-
 
 In this exercise, we will use all of the knowledge that we have learned from the previous article so far.
 
-```
+```java
 package com.bazlur.threads;
 
 public interface ThreadPool {
@@ -71,7 +71,7 @@ So the idea is for there to be a ThreadPool class that we would instantiate with
 
 So let's implement the above interface.
 
-```
+```java
 package com.bazlur.threads;
 
 import java.util.LinkedList;
@@ -144,7 +144,7 @@ That's it. We have got a ThreadPool of our own. One thing to keep in mind is tha
 
 Let's now use our own ThreadPool:
 
-```
+```java
 package com.bazlur.threads;
 
 public class Playground {

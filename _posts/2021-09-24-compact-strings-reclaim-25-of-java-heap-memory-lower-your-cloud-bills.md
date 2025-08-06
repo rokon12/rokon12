@@ -20,7 +20,7 @@ Nevertheless, a String object in Java is also immutable, which means the String 
 
 In Java 8 and pre-Java 8, a char array is used in a String. A char takes two bytes of memory. That means that to store one character, you need 16 bits of memory. For example, if you write "Hello" you'd need an object of an array, and that would have 5 characters.
 
-```
+```java
 The total size of a String 
 = size of array object itself + size of 5 characters + array holds an integer for its length 
 = 8 bytes for array object header + 5 * 2bytes + 4 bytes 

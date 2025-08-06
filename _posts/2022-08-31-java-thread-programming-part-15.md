@@ -23,7 +23,7 @@ Now consider a case where you work as a banker, and you need to calculate how mu
 
 To calculate the credit, you need to calculate that person's assets and liabilities. And then, you want to do some other tasks and pass the assets and liabilities to the credit score calculator. So let's put these thoughts into code:
 
-```
+```java
 private static Credit calculateCreditForPerson(Long personId) {
      var person = getPerson(personId);
      var assets = getAssets(person);
@@ -42,7 +42,7 @@ We have five methods over here. If all of them take around 200 milliseconds each
 
 The solution is to pass those method executions into different threads. Of course, we can create a new thread for each method directly through the new operator, but we need to get the result from the thread.
 
-```
+```javascript
 AtomicReference person = new AtomicReference<>();
 new Thread(() -> {
     var p = getPerson(personId);
@@ -54,7 +54,7 @@ We could do something like the above. We are essentially sharing the state betwe
 
 But over here, we are spawning a new thread. So each time we execute the code, we have to create multiple threads. Creating threads is an expensive operation. We should not create them on an ad-hoc basis. We should use ThreadPool instead, which we will do later. Let's see the whole code.
 
-```
+```java
 private static Credit calculateCreditForPerson(Long personId) throws InterruptedException {
     var person = getPerson(personId);
     var assetRef = new AtomicReference();
@@ -88,7 +88,7 @@ The code above works and takes less time, but it is very hard to understand and 
 
 Let's not create a thread for each method by ourselves; rather, we should use executors. That's best practice. Let's do that.
 
-```
+```java
 private static Credit calculateCreditForPerson3(ExecutorService pool)
         throws ExecutionException, InterruptedException {
     var person = getPerson(1L);
@@ -115,7 +115,7 @@ So we have learned how we can write asynchronous methods using [Executors](https
 
 [CompletableFuture](https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/CompletableFuture.html) is another way to deal with asynchronicity in Java, and it is considered to be a much better way. This is how the above code can be written:
 
-```
+```java
 private static Credit calculateCreditForPerson(Long personId) throws ExecutionException, InterruptedException {
    return CompletableFuture.supplyAsync(() -> getPerson(personId))
            .thenComposeAsync(person -> {

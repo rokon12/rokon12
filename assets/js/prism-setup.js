@@ -1,29 +1,61 @@
 // Prism.js setup for enhanced syntax highlighting
 document.addEventListener('DOMContentLoaded', function() {
-    // Add language class to code blocks without one
-    document.querySelectorAll('pre code').forEach(function(block) {
+    // Process all code blocks
+    document.querySelectorAll('pre').forEach(function(pre) {
+        // Check if pre has a code child
+        let code = pre.querySelector('code');
+        
+        if (!code) {
+            // If no code element, wrap content in code element
+            code = document.createElement('code');
+            code.innerHTML = pre.innerHTML;
+            pre.innerHTML = '';
+            pre.appendChild(code);
+        }
+        
         // Check if the code block already has a language class
-        if (!block.className || !block.className.includes('language-')) {
+        if (!code.className || !code.className.includes('language-')) {
+            // Also check if pre has highlighter-rouge class (Jekyll default)
+            if (pre.className.includes('highlighter-rouge')) {
+                // Remove highlighter-rouge class
+                pre.className = pre.className.replace('highlighter-rouge', '');
+            }
+            
             // Try to detect Java code by looking for common Java keywords
-            const code = block.textContent;
-            if (code.includes('public class') || code.includes('import java') || 
-                code.includes('public static void') || code.includes('private ') ||
-                code.includes('extends ') || code.includes('implements ')) {
-                block.className = 'language-java';
-            } else if (code.includes('function') || code.includes('const ') || 
-                       code.includes('let ') || code.includes('var ')) {
-                block.className = 'language-javascript';
-            } else if (code.includes('def ') || code.includes('import ') && code.includes('from ')) {
-                block.className = 'language-python';
-            } else if (code.includes('SELECT ') || code.includes('FROM ') || 
-                       code.includes('WHERE ')) {
-                block.className = 'language-sql';
+            const content = code.textContent;
+            if (content.includes('public class') || content.includes('import java') || 
+                content.includes('public static void') || content.includes('private ') ||
+                content.includes('extends ') || content.includes('implements ')) {
+                code.className = 'language-java';
+                pre.className = 'language-java';
+            } else if (content.includes('function') || content.includes('const ') || 
+                       content.includes('let ') || content.includes('var ')) {
+                code.className = 'language-javascript';
+                pre.className = 'language-javascript';
+            } else if (content.includes('def ') || content.includes('import ') && content.includes('from ')) {
+                code.className = 'language-python';
+                pre.className = 'language-python';
+            } else if (content.includes('SELECT ') || content.includes('FROM ') || 
+                       content.includes('WHERE ')) {
+                code.className = 'language-sql';
+                pre.className = 'language-sql';
             } else {
                 // Default to Java for your blog
-                block.className = 'language-java';
+                code.className = 'language-java';
+                pre.className = 'language-java';
             }
         }
+        
+        // Ensure pre also has the language class
+        if (code.className && !pre.className.includes('language-')) {
+            pre.className = code.className;
+        }
     });
+    
+    // Manually highlight all code blocks since we disabled automatic highlighting
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+    }
 
     // Add copy button to code blocks
     document.querySelectorAll('pre').forEach(function(pre) {

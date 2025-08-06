@@ -56,7 +56,7 @@ Let's go ahead and run the previous program with this flag enabled.
 
 Upon doing so, you'll observe certain outputs that shed light on the issue at hand.
 
-```
+```java
  Task :Crawler.main()
 Thread[#421,ForkJoinPool-1-worker-51,5,CarrierThreads]
     java.base/java.lang.VirtualThread$VThreadContinuation.onPinned(VirtualThread.java:185)
@@ -100,7 +100,7 @@ This line indicates that our virtual thread is, in fact, getting pinned to carri
 
 To remedy this, consider refactoring your application to work without the jsoup library. By avoiding the use of \`synchronized\` blocks or native code, we're likely to see a significant performance improvement.
 
-```
+```java
 package ca.bazlur.virtualthreads;
 
 import java.io.IOException;

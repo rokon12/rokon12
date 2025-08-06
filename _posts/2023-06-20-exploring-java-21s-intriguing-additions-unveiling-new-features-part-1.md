@@ -30,7 +30,7 @@ Character Enhancements:
 
 Example:
 
-```
+```java
 boolean isEmoji = Character.isEmoji(9203);
 System.out.println(isEmoji);
 ```
@@ -51,7 +51,7 @@ Java 21 enhances the `StringBuffer` and `StringBuilder` classes with the `repeat
 
 Example:
 
-```
+```javascript
 var buffer = new StringBuffer();
 buffer.repeat(9203, 5);
 System.out.println(buffer);
@@ -76,7 +76,7 @@ Java 21 introduces two new methods in the `String` class, namely `indexOf(String
 
 Java 21 also enhances the `String` class with a `splitWithDelimiters(String regex, int limit)` method. This method splits a string based on a given regular expression and returns both the strings and the matching delimiters. For example:
 
-```
+```javascript
 var booAndFoo = "boo:::and::foo";
 String[] splits = booAndFoo.splitWithDelimiters(":+", 3);
 System.out.println("splits = " + Arrays.toString(splits));

@@ -24,7 +24,7 @@ Before we dive into the different implementations, let's define a Counter interf
 
 This interface will provide a standard way to interact with the counters, regardless of their underlying implementation.
 
-```
+```java
 public sealed interface Counter{
 
     void increment();
@@ -39,7 +39,7 @@ public sealed interface Counter{
 
 Consider a simple counter implemented in Java:
 
-```
+```java
 public class SimpleCounter implements Counter{
 
     private int count = 0;
@@ -74,7 +74,7 @@ By declaring a method synchronized, we ensure that only one thread can execute i
 
 Here's how we can make our counter thread-safe using synchronization:
 
-```
+```java
 public class SynchronizedCounter implements Counter{
 
     private int count = 0;
@@ -101,7 +101,7 @@ Now, even if multiple threads call increment() simultaneously, each call will be
 
 While synchronization is simple and effective, it doesn't provide flexibility in handling lock acquisition and release. Java's ReentrantLock gives us more control and can lead to more efficient concurrent code. Here's our counter using a [ReentrantLock](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html):
 
-```
+```java
 package ca.bazlur;
 
 import java.util.concurrent.locks.*;
@@ -138,7 +138,7 @@ Java provides some advanced tools for handling concurrency. Unsafe and VarHandle
 
 Here's how we can use Unsafe to implement our counter:
 
-```
+```java
 import sun.misc.Unsafe;
 
 public class UnsafeCounter implements Counter {
@@ -186,7 +186,7 @@ public class UnsafeCounter implements Counter {
 
 And here's the counter using VarHandle:
 
-```
+```java
 package ca.bazlur;
 
 import java.lang.invoke.MethodHandles;
@@ -225,7 +225,7 @@ While the above methods are effective, they can be complex and hard to manage. J
 
 This class provides methods for atomically incrementing a value, which is safe to use even in a multi-threaded environment:
 
-```
+```java
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AtomicCounter implements Counter{
@@ -249,7 +249,7 @@ public class AtomicCounter implements Counter{
 
 Another example uses LongAdder, which is considered much more performant than AtomicInteger.
 
-```
+```java
 package ca.bazlur;
 
 import java.util.concurrent.atomic.*;

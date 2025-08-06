@@ -25,7 +25,7 @@ Let's start with an example:
 
 Assume a thread is waiting to count the vote in a Polling station (Ideally, it's a service, just assume a real one for the sake of example). This thread will start counting votes when all votes are completed. The code could look like this:
 
-```
+```java
 while (true) {
   synchronized (lock) {
     if (votingComplete) {
@@ -63,7 +63,7 @@ Now that we know the lifecycle of a thread, we can put a thread into a waiting s
 
 In a synchronized block, if we call this wait method, the thread executing the code will go into a waiting state. The head will remain in this state until a signal is passed to it.
 
-```
+```java
 synchronized (lock) {
   while (!votingComplete) {
     lock.wait();
@@ -74,14 +74,14 @@ synchronized (lock) {
 
 We can send a signal to a thread using two methods of the lock object:
 
-```
+```java
 notify()
 notifyAll();
 ```
 
 If we have only one thread in a waiting state, then we can call notify() method, and if we have multiple threads waiting, then we call notifyAll();
 
-```
+```java
 synchronized (lock) {
   votingComplete = true;
   lock.notify();
@@ -93,7 +93,7 @@ We have to keep two things in mind while using `wait()` \& `notify()`:
 * This `wait()`, `notify()`, `notifyAll()` method can be called only inside a synchronized block. If we call them outside synchronized block, then Weill gets IllagalMontorStateException.
 * When we call the wait() motioned based on a condition, we must call it inside a loop. The reason is that the thread does not necessarily wake up due to notify signals. There might be some other reasons, and the condition is not yet met. This is called spurious wakeups. If the condition is not met yet, we should put the thread again in the waiting state.
 
-```
+```java
 while (!conditionMet){
   lock.wait();
 }
@@ -103,7 +103,7 @@ Let's see a class example called producer-consumer.
 
 The idea is one thread will produce data from input. We call it Producer. It can only produce a limited amount of data, and then it puts into a buffer. The buffer is a shared data structure between threads. The other threads can consume the data from the buffer. They are called consumers. Initially, the buffer is empty, and the Producer can only produce as long as the buffer isn't full. On the other hand, the Consumer can take data as long the buffer isn't empty.
 
-```
+```java
 package com.bazlur;
 
 import java.util.LinkedList;
@@ -167,7 +167,7 @@ Similarly, when the queue is empty, the consumer thread must be waiting until we
 
 Let's use it in code:
 
-```
+```java
 package com.bazlur;
 
 import java.util.Random;
@@ -222,7 +222,7 @@ public class ProducerConsumerExample {
 
 Sample output:
 
-```
+```java
 Thread[Producer # 2,5,main]: Adding item: 547252719
 Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
 Thread[Producer # 2,5,main]: Resumed!
@@ -278,7 +278,7 @@ Thread[Consumer # 2,5,main]: Resumed.
 ......
 ```
 
-```
+```java
 
 ```
 

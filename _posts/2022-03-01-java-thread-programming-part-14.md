@@ -17,7 +17,7 @@ Let's think about an example:
 
 We all know how to compute the Fibonacci series. The simple code is given below-
 
-```
+```java
 public static long fib(int n) {
   if (n < 2) {
     return n;
@@ -33,7 +33,7 @@ The above code is single-threaded and sequential, which is fine for our usual us
 
 Let's do that.
 
-```
+```java
 package ca.bazlur;
 
 import java.util.concurrent.ExecutionException;
@@ -73,7 +73,7 @@ First, we created a thread pool with the number of available processors in my ma
 
 To find how many processors are available on a computer, we can use the following method --
 
-```
+```java
 Runtime.getRuntime().availableProcessors()
 ```
 

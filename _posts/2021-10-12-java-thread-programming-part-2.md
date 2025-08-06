@@ -21,7 +21,7 @@ Let's assume we are going to build a web server. For the sake of the example, le
 
 OK, enough talk, let's see the code!
 
-```
+```java
 package com.bazlur;
 
 import java.io.BufferedReader;
@@ -101,7 +101,7 @@ We can solve this problem quite quickly, if we turn this single-threaded program
 
 Yes, that's the trick. Let's do it:
 
-```
+```java
 public class MultiThreadedServer {
   private final MostFrequentWordService mostFrequentWordService = new MostFrequentWordService();
 
@@ -127,7 +127,7 @@ Now that we understand the benefits of using threads in Java, we will dig a bit 
 
 And in case you are interested in how I wrote the "MostFrequentWordService", here it is:
 
-```
+```java
 package com.bazlur;
 
 import org.jsoup.Jsoup;

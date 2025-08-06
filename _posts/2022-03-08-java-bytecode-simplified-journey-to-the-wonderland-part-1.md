@@ -31,7 +31,7 @@ Each Bytecode is 1 byte long, and that's why it is called Bytecode. We know ther
 
 First, we will write a simple Java program and then compile it to see what Java compiler emits:
 
-```
+```java
 public class Calculator {
 
   public int add(int a, int b) {
@@ -44,7 +44,7 @@ That's the simplest Java program we could ever write. It's a class with a public
 
 Let's compile it.
 
-```
+```java
 javac Calculator.java
 ```
 
@@ -52,13 +52,13 @@ The above command will produce a class file named "Calculator. class". This file
 
 However, an excellent Java command-line tool called "javap" allows us to read this bytecode from a class file. Let's read them as follows:
 
-```
+```java
 javap -c Calculator
 ```
 
 We will get the following output if we run the above command in our terminal.
 
-```
+```java
 Compiled from "Calculator.java"
 public class Calculator {
   public Calculator();
@@ -113,7 +113,7 @@ In the above table, we have a method which takes two integers arguments and then
 
 Now, look at the following method:
 
-```
+```java
 public int add() {
     return 1 + 2;
 }
@@ -121,7 +121,7 @@ public int add() {
 
 However, here is a caveat. If you write the above method, then compile it and try **javap** to read it, you will find something like this --
 
-```
+```java
 0: iconst_3
 1: ireturn
 ```
@@ -134,7 +134,7 @@ That's a brief introduction to how Java bytecode and how it looks and works. We 
 
 But before closing the article, I can't resist sharing a simple piece of Java code that can read a class file, convert it into a series of bytes, and print it out for you so you can see it the way the JVM sees it.
 
-```
+```java
 package ca.bazlur;
 
 import java.io.IOException;

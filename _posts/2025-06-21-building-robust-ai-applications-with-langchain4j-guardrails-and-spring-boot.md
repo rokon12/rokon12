@@ -45,7 +45,7 @@ Let's start by creating a Spring Boot application with the necessary dependencie
 > 4. Generate and import into your IDE
 5. Add LangChain4j dependencies manually to your `pom.xml` or `build.gradle`  
 
-```
+```java
 <dependencies>
     <!-- Spring Boot Essentials -->
     <dependency>
@@ -90,7 +90,7 @@ Let's start by creating a Spring Boot application with the necessary dependencie
 
 Configure your application:
 
-```
+```java
 # application.yml
 langchain4j:
   open-ai:
@@ -123,7 +123,7 @@ Input guardrails shield your application from malicious, inappropriate, or out-o
 
 ### Content Safety Input Guardrail
 
-```
+```java
 @Component
 public class ContentSafetyInputGuardrail implements InputGuardrail {
 
@@ -178,7 +178,7 @@ public class ContentSafetyInputGuardrail implements InputGuardrail {
 
 This guardrail uses conversation history to make intelligent decisions:
 
-```
+```java
 @Component
 @Slf4j
 public class ContextAwareInputGuardrail implements InputGuardrail {
@@ -257,7 +257,7 @@ public class ContextAwareInputGuardrail implements InputGuardrail {
 
 This guardrail not only validates but also improves input quality:
 
-```
+```java
 @Component
 public class IntelligentInputSanitizerGuardrail implements InputGuardrail {
     
@@ -341,7 +341,7 @@ Output guardrails ensure that LLM responses meet your quality standards and busi
 
 ### Professional Tone Output Guardrail
 
-```
+```java
 @Component
 public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
 
@@ -393,7 +393,7 @@ public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
 
 ### Hallucination Detection Guardrail
 
-```
+```java
 @Component
 public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
 
@@ -450,7 +450,7 @@ Testing Your Guardrails
 
 Before integrating guardrails into your AI services, it's crucial to thoroughly test them. Here's a comprehensive test suite for the ContentSafetyInputGuardrail:
 
-```
+```java
 package ca.bazlur.guardrailsdemo.guardrail;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.guardrail.GuardrailResult;
@@ -651,7 +651,7 @@ Creating AI Services with Guardrails
 
 Now let's combine our guardrails into comprehensive AI services.
 
-```
+```java
 @Component
 public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
 
@@ -705,7 +705,7 @@ public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
 
 Now that we have everything set up, let's create our REST endpoint so that we can invoke it:
 
-```
+```java
 package ca.bazlur.guardrailsdemo;
 import dev.langchain4j.guardrail.InputGuardrailException;
 import dev.langchain4j.guardrail.OutputGuardrailException;
@@ -748,7 +748,7 @@ record ChatResponse(boolean success, String response, String error) {
 
 Create a main method and run the application:
 
-```
+```java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
@@ -761,7 +761,7 @@ SpringApplication.run(GuardrailsDemoApplication.class, args);
 
 Once application is running try curl:  
 
-```
+```java
 # 🧪 Test with a malicious input
 curl -X POST http://localhost:8080/api/support/chat \
 -H "Content-Type: application/json" \
@@ -770,7 +770,7 @@ curl -X POST http://localhost:8080/api/support/chat \
 
 Expected response:
 
-```
+```java
 {
 "success": false,
 "response": null,
@@ -781,7 +781,7 @@ Expected response:
 Demo
 ----
 
-```
+```java
 # Clone the project
 git clone git@github.com:rokon12/guardrails-demo.git
 cd guardrails-demo

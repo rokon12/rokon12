@@ -26,7 +26,7 @@ Consider a simple expression evaluator capable of handling the following:
 
 Here's a possible implementation using records:
 
-```
+```java
 public sealed interface Expression {
 
    record Constant(int value) implements Expression { }
@@ -43,7 +43,7 @@ public sealed interface Expression {
 
 And the expression evaluator:   
 
-```
+```java
 public class ExpressionEvaluator {
    public int evaluate(Expression expression) {
        return switch (expression) {
@@ -66,7 +66,7 @@ public class ExpressionEvaluator {
 
 Let's first look at how a parameterized test for this evaluator might be structured using the traditional [**ArgumentsSource**](https://junit.org/junit5/docs/5.10.2/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsSource.html) method. This will give us a baseline to understand how records can streamline our tests.
 
-```
+```java
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -113,13 +113,13 @@ Now, let's see how we can improve the clarity and maintainability of our tests b
 
 **The TestCase Record:**
 
-```
+```java
 record TestCase(String description, Expression expression, TestOutcome expectedOutcome) {}
 ```
 
 **Sealed TestOutcome:**
 
-```
+```java
 sealed interface TestOutcome {
 
     record Success(int value) implements TestOutcome {}
@@ -132,7 +132,7 @@ sealed interface TestOutcome {
 
 **Refactored Tests**   
 
-```
+```java
 private static Stream<TestCase> provideExpressionsForEvaluate() {
     return Stream.of(
             new TestCase("Valid constant", new Constant(5), new Success(5)),

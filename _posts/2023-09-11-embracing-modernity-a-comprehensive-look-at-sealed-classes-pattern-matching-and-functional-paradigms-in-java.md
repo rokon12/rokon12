@@ -53,7 +53,7 @@ The claim that pattern matching with switch promotes dubious coding practices in
 
 **Sealed Classes**
 
-```
+```java
 public sealed interface Shape permits Circle, Rectangle, Square {
 }
 
@@ -86,7 +86,7 @@ non-sealed class Square implements Shape {
 
 **Pattern Matching and Switch Statements**
 
-```
+```java
 public static String getShapeDescription(Shape shape){
    return switch (shape) {
        case Circle circle -> "Circle with radius " + circle.getRadius();
@@ -112,7 +112,7 @@ The functional paradigm emphasizes immutability, first-class functions, and decl
 
 #### **Code Example: Functional Approach**
 
-```
+```java
 public sealed interface Shape permits Circle, Rectangle, Square { }
 record Circle(double radius) implements Shape { }
 record Rectangle(double length, double width) implements Shape { }

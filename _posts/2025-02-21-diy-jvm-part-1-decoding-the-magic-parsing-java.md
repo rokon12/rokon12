@@ -49,7 +49,7 @@ Before diving into the implementation, let's quickly touch on some fundamental C
 
 In C, preprocessor directives (which begin with #) are handled before actual compilation. Common ones include:
 
-```
+```java
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,7 +65,7 @@ In C, preprocessor directives (which begin with #) are handled before actual com
 
 To keep things clean, we'll separate our code into header files **(****.h** **)** and source files **(****.c** **)**. Our header file (**diyjvm.h** ) will contain:
 
-```
+```python
 typedef struct {
     uint32_t magic;
     uint16_t minor_version;
@@ -88,7 +88,7 @@ We define data structures using struct and union keywords in C. It's like class,
 
 It will also define constants like:
 
-```
+```java
 #define JAVA_MAGIC 0xCAFEBABE
 #define MAX_STRING_LENGTH 65535
 
@@ -108,14 +108,14 @@ It will also define constants like:
 
 And function prototypes:
 
-```
+```javascript
 ClassFile *read_class_file(const char *filename);
 void free_class_file(ClassFile *cf);
 ```
 
 To make debugging easier, we use the following macro:
 
-```
+```java
 #define DEBUG_PRINT(fmt, ...)                                \
     do {                                                     \
         if (debug_mode) {                                    \
@@ -134,7 +134,7 @@ Another important part of C is that once you allocate memory, it's your responsi
 
 A macro like this helps handle free memory:
 
-```
+```java
 #define SAFE_FREE(p)            \
     do {                        \
         if ((p) != NULL) {      \
@@ -150,7 +150,7 @@ One critical aspect of parsing Java class files in C is handling endianness. Jav
 
 To handle this, I need to write some function as follows:
 
-```
+```java
 static uint32_t read_u4(FILE *fp, bool *ok) {
     uint32_t value = 0;
     if (!safe_fread(&value, 4, 1, fp)) {
@@ -178,7 +178,7 @@ The `read_class_file` function is responsible for reading a Java class file and 
 
 Parts of this function are here:
 
-```
+```javascript
 ClassFile *read_class_file(const char *filename) {
     DEBUG_PRINT("Opening class file: %s\n", filename);
 
@@ -256,7 +256,7 @@ ClassFile *read_class_file(const char *filename) {
 
 Our project follows a simple layout:
 
-```
+```java
 diyjvm/
 ├── include/
 │   └── diyjvm.h
@@ -278,19 +278,19 @@ The GitHub repository can be found here: <https://github.com/rokon12/diyjvm/>
 
 To compile the program:
 
-```
+```java
 gcc -DDEBUG -Wall -Wextra -I./include src/main.c -o diyjvm
 ```
 
 Then, to run it:
 
-```
+```java
 ./diyjvm test/HelloWorld.class
 ```
 
 This should print something like:
 
-```
+```java
 Class file: test/HelloWorld.class
 Magic: 0xCAFEBABE
 Version: 65.0
@@ -300,13 +300,13 @@ Methods: 2
 
 For debugging:
 
-```
+```java
 ./diyjvm -d test/HelloWorld.class
 ```
 
 This will output more detailed logs about how the file is being parsed.  
 
-```
+```java
 [DEBUG] Initializing diyJVM...
 [DEBUG] Opening class file: test/HelloWorld.class
 [DEBUG] Read magic number: 0xCAFEBABE

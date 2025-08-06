@@ -45,7 +45,7 @@ If we turn the program that we discussed [in the last article](https://foojay.io
 
 Since we already discussed the above problem in our previous article, the execution order would be:
 
-```
+```java
 Execution order 1 # 1.1, 2.1, 1.2, 2.2
 Execution order 2 # 1.1, 2.1, 2.2, 1.2
 Execution order 3 # 1.1, 2.1, 2.2
@@ -63,34 +63,34 @@ What can be the possible output of this program?
 
 The possible execution order could be:
 
-```
+```java
 Execution order 1 # 1.1, 1.2. 1.3, 2.1, 2.2, 2.3 
 Execution order 2 # 2.1, 2.2, 2.3, 1.1, 1.2. 1.3
 ```
 
 If the first execution order succeeds, then the output would be:
 
-```
+```java
 Thread1: 0
 Thread2: 2
 ```
 
 And if the second execution order succeeds, then the output would be:
 
-```
+```java
 Thread1: 1
 Thread2: 0
 ```
 
 However, apart from the above two, there is another possible execution order:
 
-```
+```java
 Execution order 3:  1.1, 2.1, 1.2, 2.2, 1.3, 2.3
 ```
 
 If the above execution order succeeds, then the output would be:
 
-```
+```java
 Thread1: 0
 Thread2: 0
 ```
@@ -106,27 +106,27 @@ So far, we have have three execution orders, and it seems only the three outputs
 
 However, in reality, we can have the following output as well:
 
-```
+```java
 Thread1: 1
 Thread2: 1
 ```
 
 ...or...
 
-```
+```java
 Thread1: 2
 Thread2: 2
 ```
 
 These outputs may not seem logical, however, they are possible. And the execution order could be:
 
-```
+```java
 Execution order 4: 2.1, 1.1, 1.2, 2.1, 1.3, 2.3
 ```
 
 ...or...
 
-```
+```java
 Execution order 5: 1.2, 2.1,2.2, 1.1, 1.3, 2.3
 ```
 
@@ -153,7 +153,7 @@ Here, `S1` and `S2` are the references of the same Object.
 
 If the second thread runs first, what would be the output of thread 2?
 
-```
+```java
 Thread2: 3
 ```
 
@@ -161,37 +161,37 @@ The reason is, in `2.3` we have set `L6.X = 3`. However, if execution order is d
 
 Now let's look at the first thread. What would be the output?
 
-```
+```java
 Thread1: 000
 ```
 
 In this case, `1.2`, `1.4`, and `1.5` must have run before `2.2`. if `2.2` executes first, then the output would be:
 
-```
+```java
 Thread1: 333
 ```
 
 If `1.2` execute before `2.2` and then `1.4` and 1.5 execute, the output would be:
 
-```
+```java
 Thread1: 033
 ```
 
 If `1.2` and `1.4` executes before `2.2` and then `1.5` executes, the output would be:
 
-```
+```java
 Thread1: 003
 ```
 
 Now, look at the following output:
 
-```
+```java
 Thread1: 030
 ```
 
 Do you think the above output is possible? The reason is if `1.2` executes first and then `2.2` executes, and then it doesn't matter whatever the execution order for the rest of the exception, the output should be:
 
-```
+```java
 Thread1: 033
 ```
 

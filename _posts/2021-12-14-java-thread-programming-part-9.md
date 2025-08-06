@@ -18,7 +18,7 @@ Today in this article, we will continue the discussion and share a few more thre
 
 One of the most important data structures that Java provides are collections. We depend on them heavily in our day-to-day coding. Not all collection implementations available in java.util package are thread-safe, but a few of them are:
 
-```
+```java
 java.util.Vector
 java.util.Stack
 java.util.HashTable
@@ -28,7 +28,7 @@ Every method in these classes has synchronized keywords associated with them. Al
 
 Apart from these classes, we can transform any collections available in java.util package, using the following factory methods available in java.util.Collections:
 
-```
+```java
 static <T> Collection<T> synchronizedCollection(Collection<T> c); 
 static <T> Set<T> synchronizedSet(Set<T> s);
 static <T> List<T> synchronizedList(List<T> list); 
@@ -39,7 +39,7 @@ static <K,V> SortedMap<K, V> synchronizedSortedMap(SortedMap<K,V> m);
 
 These methods return synchronized collections. Example:
 
-```
+```javascript
 var ints = new ArrayList<Integer>();
 var synchronizedList = Collections.synchronizedList(ints);
 ```
@@ -52,7 +52,7 @@ An example of compound operation could be -- while iterating over a collection a
 
 Look at the following code:
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.Vector;
@@ -76,7 +76,7 @@ In the first method (getLast()) has two statements in it. The first statement fi
 
 Now, if we synchronize these two methods, would that help?
 
-```
+```java
 import java.util.Vector;
 
 public class ListHelper {
@@ -96,7 +96,7 @@ Even though it sounds like the above code will solve the issue, but it doesn't. 
 
 However, since the Vector class itself has its own lock, other threads ( aside from A and B) can acquire that lock and execute any compound operations. The reason is, the lock of ListHelper isn't preventing doing so. We can only fix this problem if we can use one lock, and when a thread acquires that lock, no other operation can be done from any other threads on this Vector class.
 
-```
+```java
 import java.util.Vector;
 
 public class ListHelper {
@@ -120,7 +120,7 @@ The above class exactly does that. It synchronizes over the list object itself. 
 
 Although I have used the Vector class in the above example, we no longer use Vector in our day-to-day coding. It is considered a legacy collection. In that case, we may be tempted to use our regular collection classes and the factory method to synchronize them, which we introduced earlier. For example:
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.ArrayList;
@@ -152,7 +152,7 @@ public class SynchronizedCollectionDemo {
 
 There is another standard way to iterate over a collection.
 
-```
+```java
 for (Integer number : synchronizedNumbers) {
   processIt(number);
 }

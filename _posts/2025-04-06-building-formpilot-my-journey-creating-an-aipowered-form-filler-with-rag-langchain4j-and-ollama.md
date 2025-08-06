@@ -105,7 +105,7 @@ Ollama enables you to run open-source large language models (LLMs) directly on y
   * You can exit the chat prompt by typing /bye. The model is now downloaded and available for use by applications like your Spring Boot backend.
   * To see all locally downloaded models, use:
 
-```
+```java
 ollama list
 ```
 
@@ -149,7 +149,7 @@ For FormPilot, I wanted the system to be able to fill forms with personalized in
 
 Here's how I implemented RAG in the RAGConfig class:
 
-```
+```java
 package ca.bazlur.formpilot.config;
 
 import dev.langchain4j.data.segment.TextSegment;
@@ -262,7 +262,7 @@ One of the most elegant aspects of FormPilot is how it uses LangChain4j's **@AiS
 
 Here's the FormAssistant interface:
 
-```
+```java
 package ca.bazlur.formpilot.service;
 
 import ca.bazlur.formpilot.model.FormField;
@@ -323,7 +323,7 @@ public interface FormAssistant {
 
 Define the FormField record/class (e.g., in the model package)
 
-```
+```java
 package ca.bazlur.formpilot.model;
 
 import lombok.AllArgsConstructor;
@@ -382,7 +382,7 @@ Configuring LangChain4j to use your local Ollama instance is straightforward usi
 
 Add the following properties:
 
-```
+```java
 # LangChain4j Configuration for Ollama
 
 # Base URL for the Ollama API (default port is 11434)
@@ -435,7 +435,7 @@ The most challenging part was reliably detecting form fields and extracting usef
 
 Here's a simplified snippet illustrating field data extraction:
 
-```
+```javascript
 // content.js (Simplified Example)
 function findFormsAndFields() {
   const forms = document.querySelectorAll('form');
@@ -617,19 +617,19 @@ Check out the chrome-extension: <https://github.com/rokon12/form-pilot/tree/main
 
 Build the Spring Boot application:
 
-```
+```java
 ./gradlew build
 ```
 
 Run the Spring Boot application:
 
-```
+```java
 ./gradlew bootRun
 ```
 
 The server will start on port `8080`. You can verify it's running by visiting:
 
-```
+```java
 http://localhost:8080/api/form/health
 ```
 
@@ -649,7 +649,7 @@ A demo form is included in this project to help you test the Smart Form Filler e
 
 # If you have Python installed
 
-```
+```java
 python -m http.server
 ```
 

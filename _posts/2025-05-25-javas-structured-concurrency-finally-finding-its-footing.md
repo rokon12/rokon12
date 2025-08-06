@@ -22,7 +22,7 @@ When I first started working with structured concurrency back in its incubation 
 
 Before diving into the changes, let's establish what structured concurrency is trying to solve. In traditional concurrent programming, we often end up with scattered task management:
 
-```
+```java
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -97,7 +97,7 @@ Structured concurrency aims to resolve these challenges.
 
 The most obvious tweak in JEP 505 is that you no longer call new StructuredTaskScope<>(). You open() one instead:
 
-```
+```javascript
 try (var scope = StructuredTaskScope.open()) {
     // ...
 }
@@ -107,7 +107,7 @@ The zero-argument open() returns a scope that waits for all subtasks to succeed 
 
 Now let's rewrite the previous example with the new API:
 
-```
+```javascript
 public static String getUserInfoTraditional(String userId) throws Exception {
   try (var scope = StructuredTaskScope.open()) {
     StructuredTaskScope.Subtask<String> task1 = scope.fork(() -> fetchUserData(userId));
@@ -139,7 +139,7 @@ A Joiner intercepts completion events and decides (1) whether to cancel siblings
 
 **"First one wins" (aka racing a set of replicas)**
 
-```
+```javascript
 try (var scope = StructuredTaskScope.open(
          Joiner.<String>anySuccessfulResultOrThrow())) {
 
@@ -150,7 +150,7 @@ try (var scope = StructuredTaskScope.open(
 
 **"All must succeed and I want their results"**
 
-```
+```javascript
 try (var scope = StructuredTaskScope.open(
          Joiner.<Result>allSuccessfulOrThrow())) {
     tasks.forEach(scope::fork);
@@ -166,7 +166,7 @@ These little helpers make common patterns---"race", "gather", "wait-for-all"---p
 
 Sometimes you need a custom policy. Suppose I want to collect every successful subtask but ignore failures:
 
-```
+```java
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.StructuredTaskScope;
@@ -211,7 +211,7 @@ class MyCollectingJoiner<T> implements StructuredTaskScope.Joiner<T, Stream<T>> 
 
 The interface is tiny---onFork, onComplete, and result()---yet powerful enough for most custom logic. To run this, we need JDK 25, and we can execute it from the CLI using the following command:  
 
-```
+```java
 java --enable-preview CollectingJoiner.java.
 ```
 
@@ -221,7 +221,7 @@ Cancellation rules did not change in spirit, but the API got stricter. If the ow
 
 Need a deadline? Pass a configuration lambda:
 
-```
+```javascript
 try (var scope = StructuredTaskScope.open(
          Joiner.<String>anySuccessfulResultOrThrow(),
          cfg -> cfg.withTimeout(Duration.ofSeconds(2)))) {
@@ -233,7 +233,7 @@ If the timeout fires, the scope cancels, and join() throws TimeoutException. In 
 
 You can also swap the default virtual-thread factory for one that sets names or thread-locals:
 
-```
+```javascript
 ThreadFactory tagged = Thread.ofVirtual().name("api-%d").factory();
 
 try (var scope = StructuredTaskScope.open(
@@ -263,7 +263,7 @@ Thread dumps now include the scope tree, so tools can show parent--child relatio
 
 A classic e-commerce endpoint where a single HTTP request must aggregate product core data, real-time inventory, and a personalized price. Each sub-service is invoked in parallel inside a `StructuredTaskScope` that enforces an all-or-nothing policy: any failure or exceeding the one-second deadline cancels the whole group and surfaces an error to the caller. The scope's timeout, custom thread names, and allSuccessfulOrThrow() joiner encapsulate what is often a complex web of CompletableFuture wiring in three declarative lines.
 
-```
+```java
 import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.StructuredTaskScope;
@@ -318,7 +318,7 @@ public class ThreeSixtyProductView {
 
 Large binaries are hosted on several CDN mirrors. Latency varies, so we fire requests to every mirror simultaneously and use Joiner.anySuccessfulResultOrThrow() to stream the first successful InputStream, cancelling the rest. Bandwidth and connection slots are freed instantly, and users perceive the fastest possible download without manual cancellation plumbing.
 
-```
+```java
 import java.io.*;
 import java.net.URI;
 import java.nio.file.*;
@@ -362,7 +362,7 @@ public class MirrorDownloaderDemo {
 
 A media pipeline step receives a directory of images. An outer scope iterates through the files, while an inner scope, for each image, fans out three resize tasks (small, medium, and large). The inner scope fails fast; if any resize fails, that image is skipped, but the outer batch continues unaffected. Nested scopes separate per-item consistency from batch-level throughput with minimal code.
 
-```
+```java
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.concurrent.StructuredTaskScope;
@@ -411,7 +411,7 @@ public class ThumbnailBatchDemo {
 
 A trading UI demands a quote within 30 ms. A custom joiner captures the first successful price from the primary market feed, with a scope-level timeout of 30 ms. If the feed stalls, scope.join() returns empty and the service instantly falls back to yesterday's cached closing price. Callers always receive a value on time, and timeout logic lives in one declarative line.
 
-```
+```java
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.StructuredTaskScope;

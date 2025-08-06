@@ -33,7 +33,7 @@ Code Example: Atomic Counter
 
 To illustrate the transition, let's consider the **AtomicCounter** class, a simple thread-safe counter often implemented using **sun.misc.Unsafe** :  
 
-```
+```java
 import sun.misc.Unsafe;
 
 public class AtomicCounter {
@@ -84,7 +84,7 @@ public class AtomicCounter {
 
 While the above code is accessible in the earlier JDK version, from now on, the following version using VarHandle is advised.   
 
-```
+```java
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 

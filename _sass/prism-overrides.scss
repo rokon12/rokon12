@@ -1,8 +1,20 @@
 // Prism.js theme overrides to match site design
 
+// Handle Jekyll's highlight wrapper
+.highlight {
+  margin: 0;
+  background: transparent;
+  
+  pre {
+    margin: 0;
+  }
+}
+
 // Override Prism Tomorrow Night theme colors
 code[class*="language-"],
-pre[class*="language-"] {
+pre[class*="language-"],
+.highlight pre,
+.highlight code {
   color: #c9d1d9;
   background: #0d1117;
   font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
@@ -19,12 +31,35 @@ pre[class*="language-"] {
 }
 
 // Code blocks
-pre[class*="language-"] {
+pre[class*="language-"],
+pre:has(code),
+.highlight pre {
   padding: 1.5rem;
   margin: 2rem 0;
   overflow: auto;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background: #0d1117;
+}
+
+// All pre and code elements (fallback)
+pre {
+  background: #0d1117;
+  color: #c9d1d9;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
 }
 
 // Inline code

@@ -20,7 +20,7 @@ Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked
 
 The experiment utilized the following Java program, which continuously creates threads and counts them using an [AtomicInteger](https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/concurrent/atomic/AtomicInteger.html).
 
-```
+```java
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
@@ -61,7 +61,7 @@ The initial test was conducted using the default stack size of 2048 KB. Approxim
 
 Number of threads created so far: 16300
 
-```
+```java
 Number of threads created so far: 16300
 [3.566s][warning][os,thread] Failed to start thread "Unknown thread" - pthread_create failed (EAGAIN) for attributes: stacksize: 2048k, guardsize: 16k, detached.
 [3.566s][warning][os,thread] Failed to start the native thread for java.lang.Thread "Thread-16354"
@@ -80,7 +80,7 @@ The program yielded a similar result---16,300 threads---before the OutOfMemoryEr
 
 Number of threads created so far: 16300
 
-```
+```java
 Number of threads created so far: 16300
 [3.995s][warning][os,thread] Failed to start thread "Unknown thread" - pthread_create failed (EAGAIN) for attributes: stacksize: 10240k, guardsize: 16k, detached.
 [3.995s][warning][os,thread] Failed to start the native thread for java.lang.Thread "Thread-16354"
@@ -101,7 +101,7 @@ Remarkably, the program again maxed out at approximately 16,300 threads, reinfor
 
 Number of threads created so far: 16300
 
-```
+```java
 Number of threads created so far: 16200
 Number of threads created so far: 16300
 [3.497s][warning][os,thread] Failed to start thread "Unknown thread" - pthread_create failed (EAGAIN) for attributes: stacksize: 1048576k, guardsize: 16k, detached.

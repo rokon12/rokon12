@@ -25,19 +25,19 @@ If you don't already have JBang installed, you can install it by following these
 
 #### **On macOS**
 
-```
+```java
 brew install jbangdev/tap/jbang
 ```
 
 #### **On Linux**
 
-```
+```java
 curl -Ls https://sh.jbang.dev | bash -s - app setup
 ```
 
 After installing JBang, you can verify the installation by running:
 
-```
+```java
 jbang --version
 ```
 
@@ -61,7 +61,7 @@ This creates a sandbox environment and sets up a Gradle project for you. You can
 
 JBang's **`//DEPS`** directive makes dependency management a breeze.
 
-```
+```java
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 
 //JAVA 21+
@@ -81,7 +81,7 @@ When working with JBang, you can easily add dependencies to your script using th
 
 Let's combine Logback with colourized output for those who love visual feedback. This involves setting up a custom appender to enhance your logging experience.
 
-```
+```java
 private static void configureLogback() {
    LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
 
@@ -133,7 +133,7 @@ static class PicoCLIColorizedAppender extends ConsoleAppender<ILoggingEvent> {
 
 For this, I need a custom appender.
 
-```
+```java
 static class PicoCLIColorizedAppender extends ConsoleAppender<ILoggingEvent> {
    @Override
    protected void append(ILoggingEvent event) {
@@ -167,7 +167,7 @@ static class PicoCLIColorizedAppender extends ConsoleAppender<ILoggingEvent> {
 
 Next, we configure the `ObjectMapper` for JSON serialization and deserialization:
 
-```
+```java
 public class release_notes {
 
    static final ObjectMapper objectMapper = new ObjectMapper()
@@ -184,7 +184,7 @@ public class release_notes {
 
 We'll leverage Feign to create a GitHub client, making API interactions smooth. This involves defining an interface (`GitHubClient`) and implementing functions to fetch project details and commits.
 
-```
+```java
 public class release_notes {
     static GitHubClient gitHubClient = Feign.builder()
         .decoder(new JacksonDecoder(objectMapper))
@@ -227,7 +227,7 @@ record Author(String email, Instant date) {}
 
 Note that we called a method getApiToken() when creating the client. We need to implement this.
 
-```
+```java
 static String apiTokenCache;
 
 static String getApiToken() {
@@ -275,7 +275,7 @@ This code fetches your GitHub API token securely. It first checks if a cached to
 
 Now, the heart of the tool: PicoCLI takes over command-line argument parsing and execution of the core logic. We'll define options for GitHub user, repository, commit range, output format, and more.
 
-```
+```java
 @Slf4j
 @CommandLine.Command(name = "release_notes", mixinStandardHelpOptions = true)
 class ReleaseNoteCommand implements Callable<Integer> {
@@ -343,7 +343,7 @@ This Java code defines a command-line tool (`ReleaseNoteCommand`) for generating
 
 Finally, implement the main method to execute the command:
 
-```
+```java
 import picocli.CommandLine;
 
 import static java.lang.System.exit;
@@ -369,7 +369,7 @@ This will generate an HTML file in your root directory.
 
 It also prints excellent help functionality. For example-
 
-```
+```java
 ./release_notes.java
 Missing required options: '--user=<user>', '--repo=<repo>', '--since=<sinceCommit>', '--until=<untilCommit>'
 Usage: release_notes [-f=<outputFile>] [-o=<outputFormat>] -r=<repo>

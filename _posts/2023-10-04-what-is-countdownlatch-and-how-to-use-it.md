@@ -26,7 +26,7 @@ A CountDownLatch is initialized with a given count, representing the number of a
 
 The primary methods are await() for waiting and countDown() for decrementing the count.{#ember53}
 
-```
+```java
 package ca.bazlur.concurrency101;
 
 import com.sun.net.httpserver.HttpExchange;

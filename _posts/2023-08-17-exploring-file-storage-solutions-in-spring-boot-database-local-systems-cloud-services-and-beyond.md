@@ -31,7 +31,7 @@ That being said, if you're building a small-scale application or have specific r
 
 To begin, we create an Entity class. This class represents the data that we will store in the database. An example Document entity with fields name, type, and data might look like this:  
 
-```
+```java
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +60,7 @@ In this class, **@Lob** denotes that the data attribute should be stored as a **
 
 The equivalent MySQL table for the Document entity class would look something like this:  
 
-```
+```java
 create table files.document
 (
     id   bigint auto_increment
@@ -85,14 +85,14 @@ Please ensure that your MySQL database can indeed support that maximum size. If 
 
 Next, we create a Repository interface extending JpaRepository. This gives us a variety of standard methods for CRUD operations that we can use with our Document entities.
 
-```
+```java
 public interface DocumentRepository extends JpaRepository<Document, Long> {
 }
 ```
 
 ### Step 4: Service Class
 
-```
+```java
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -110,7 +110,7 @@ public class FileUploadService {
 
 ### Step 4: Controller Class
 
-```
+```java
 @Slf4j
 @RestController
 @RequestMapping("/files")
@@ -144,7 +144,7 @@ You can write your files to your server's local file system. While this can be v
 
 <br />
 
-```
+```java
 public void saveFileInFileSystem(MultipartFile file) throws IOException {
     log.info("Uploading file to local file system: {}", file.getOriginalFilename());
 
@@ -162,7 +162,7 @@ public void saveFileInFileSystem(MultipartFile file) throws IOException {
 
 ##### Now run the application and do curl:
 
-```
+```java
 curl -X POST -H 'Content-Type: multipart/form-data' -F 'file=@/home/uses/uploads/_cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg http://localhost:8080/files/upload
 ```
 
@@ -170,7 +170,7 @@ curl -X POST -H 'Content-Type: multipart/form-data' -F 'file=@/home/uses/uploads
 
 Services like Amazon S3, Google Cloud Storage, and Azure Blob Storage are built for storing and retrieving any amount of data from anywhere. These services provide durability, security, and performance for your applications. Here's an example of how you might upload a file to Amazon S3 using the AWS SDK for Java:
 
-```
+```javascript
 public void uploadFileToS3(MultipartFile multipartFile) throws IOException {
     log.info("Uploading file to s3: {}", multipartFile.getOriginalFilename());
     var s3Client = getS3Client();

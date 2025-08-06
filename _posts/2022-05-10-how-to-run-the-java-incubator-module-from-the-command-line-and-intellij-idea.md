@@ -19,7 +19,7 @@ Also, if you are interested in how the incubator module works, please read: [JEP
 
 I downloaded the [early access build](https://jdk.java.net/loom/) and wrote the following very simple program that demonstrates structure concurrency.
 
-```
+```java
 import jdk.incubator.concurrent.StructuredTaskScope;
 
 import java.util.Random;
@@ -57,7 +57,7 @@ public class Main {
 
 I tried to run the command line using the [source code launcher](https://openjdk.java.net/jeps/330) but end up getting the following error-
 
-```
+```java
 $ java Main.java 
 
 Main.java:1: error: package jdk.incubator.concurrent is not visible
@@ -70,7 +70,7 @@ error: compilation failed
 
 The reason is that the features are being developed under the incubator module which isn't visible. If we want to use the module, we need to explicitly add a module while you run it. Let's fix it.
 
-```
+```java
 $ java --add-modules jdk.incubator.concurrent Main.java
 
 WARNING: Using incubator modules: jdk.incubator.concurrent
@@ -92,7 +92,7 @@ First, we need to go preference, and then **Build, Execution, Deployment** and t
 
 At the bottom, there is a box named the additional command line parameter. Add the following line there-
 
-```
+```java
 --add-modules jdk.incubator.concurrent
 ```
 

@@ -28,7 +28,7 @@ Let's explore a practical example demonstrating how JEP 455 can be applied. We'l
 
 What I did here was create a file named OrderService.java and then put the following code.
 
-```
+```javascript
 void main() {
     var user = new User(12345L, true);  //loggedIn user
     startProcessing(OrderStatus.NEW, switch (user.loggedIn()) {

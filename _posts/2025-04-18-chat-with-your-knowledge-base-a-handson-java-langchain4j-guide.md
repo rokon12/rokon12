@@ -79,7 +79,7 @@ Before we start coding, make sure you have the following installed:
 
 Create a new Maven project in your IDE. Open the pom.xml file and add the necessary LangChain4j dependencies.
 
-```
+```java
 <dependency>
     <groupId>dev.langchain4j</groupId>
     <artifactId>langchain4j</artifactId>
@@ -108,7 +108,7 @@ We need some raw data to feed our RAG system. Create a directory named src/main/
 
 **src/main/resources/components.txt** :
 
-```
+```java
 Component ID: PUMP-001. Type: Centrifugal Pump. Status: Running. Connected to: VALVE-001, PIPE-002. Location: Sector A.
 Component ID: VALVE-001. Type: Gate Valve. Status: Open. Connected to: PUMP-001, TANK-A. Location: Sector A.
 Component ID: SENSOR-T1. Type: Temperature Sensor. Monitors: PUMP-001 Casing. Reading: 65C. Unit: Celsius. Location: Sector A.
@@ -118,7 +118,7 @@ Component ID: MOTOR-001. Type: Electric Motor. Status: Running. Drives: PUMP-001
 
 **src/main/resources/knowledge.txt** :
 
-```
+```javascript
 Fault ID: F001. Description: High Temperature on PUMP-001. Possible Causes: Low lubrication, bearing wear, blocked outlet VALVE-001. Recommended Action: Check lubrication levels and bearing condition.
 Event ID: E001. Description: Pressure drop in PIPE-002 below 100 PSI. Related Components: PUMP-001, VALVE-001, SENSOR-P1. Possible Causes: Leak in PIPE-002, PUMP-001 failure, VALVE-001 partially closed.
 Rule ID: R001. Condition: If SENSOR-T1 reading > 80C. Action: Generate HIGH_TEMP_ALERT for PUMP-001. Priority: High.
@@ -142,7 +142,7 @@ Create a new Java class, KnowledgeBaseIngestor.java:
 
 package com.example; // Use your package name  
 
-```
+```java
 package ca.bazlur.util;
 
 import ca.bazlur.service.KnowledgeBaseService;
@@ -290,7 +290,7 @@ Now we create the main application class that will handle user interaction. It w
 
 Create a new Java class, KnowledgeAssistant.java:
 
-```
+```java
 package ca.bazlur.util;
 
 import dev.langchain4j.data.segment.TextSegment;

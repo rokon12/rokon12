@@ -17,7 +17,7 @@ How to Enable Java Preview Features and Run Code from IntelliJ IDEA
 
 The following snippet was pretty much my first program written for testing virtual threads.
 
-```
+```java
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Thread.startVirtualThread(() -> {
@@ -29,7 +29,7 @@ public class Main {
 
 It is so simple that I could just run it in the command line using the [source code launcher](https://openjdk.java.net/jeps/330) :
 
-```
+```java
 java --enable-preview --release 19 Main.java
 ```
 
@@ -47,7 +47,7 @@ First, you need to go preference, and then **Build, Execution, Deployment** and 
 
 At the bottom, there is a box named the additional command line parameter. Add the following line there-
 
-```
+```java
 --enable-preview
 ```
 

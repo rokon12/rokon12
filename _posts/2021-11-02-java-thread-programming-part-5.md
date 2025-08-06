@@ -17,7 +17,7 @@ By now, we know that threads share memory space so that multiple threads can rea
 
 In the following code, we will try to simulate a bank account. We will keep debiting and crediting the same amount from two different threads from an account. The idea is, if we debit and credit the same amount multiple times, the net result should remain the same.
 
-```
+```java
 package com.bazlur;
 
 public class BankAccount {
@@ -67,7 +67,7 @@ Let's put our program into a symbol and pseudocode table-
 
 So we have several execution orders here. However, only the following execution order would maintain the accuracy of the calculation.
 
-```
+```java
 Execution Order: 1.1, 1.2. 2.1, 2.2
 Execution Order 2: 2.1, 2.2, 1.1, 1.2
 ```
@@ -76,7 +76,7 @@ But we can not guaranty that the execution order would only be the these two.
 
 What if the execution order is the following:
 
-```
+```java
 Execution Oder: 1.1, 2.1, 2.2, 1.2
 ```
 
@@ -101,7 +101,7 @@ Achieving this mutual exclusion in Java is pretty straightforward. The trick is 
 
 When a thread acquires the lock object, no other thread will be able to use this lock. Once a thread unlocks the lock, other threads than the original thread can acquire it again. That means the critical section of the code will now be executed automatically.
 
-```
+```java
 package com.bazlur;
 
 public class BankAccount {
@@ -144,7 +144,7 @@ if you run the main method again, the output would be consistent.
 
 The other way is that every Java object has an intrinsic lock in it. It is called "monitor lock" as well. If we add the synchronized keyword in the method signature, it uses the intrinsic lock. Example:
 
-```
+```java
 package com.bazlur;
 
 public class Counter {

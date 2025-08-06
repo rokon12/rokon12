@@ -17,7 +17,7 @@ In Java's concurrency API, CyclicBarrier is another kind of synchronizer, simila
 
 In this scenario, a CyclicBarrier can be used to ensure that all steps are synchronized across different threads. Below is a more detailed example illustrating this concept.
 
-```
+```java
 package ca.bazlur.concurrency101;
 
 import java.util.Random;
@@ -77,7 +77,7 @@ record PortfolioTask(String portfolioName,
 
 Output of the code:
 
-```
+```java
 Portfolio 1 is gathering data...
 Portfolio 3 is gathering data...
 Portfolio 2 is gathering data...

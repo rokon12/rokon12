@@ -39,7 +39,7 @@ In a departure from the traditional '***public static void main(String\[\] args)
 
 This new addition allows the classic "Hello, World!" program to be simplified to:
 
-```
+```java
 class HelloWorld { 
     void main() { 
         System.out.println("Hello, World!");
@@ -49,7 +49,7 @@ class HelloWorld {
 
 We can further make the class declaration implicit. This further simplifies the "Hello, World!" program to:
 
-```
+```java
 void main() {
     System.out.println("Hello, World!");
 }
@@ -61,7 +61,7 @@ If you are interested in reading more, read my news item published on infoQ: [Br
 
 With Records, Java provides a compact syntax for declaring classes which are supposed to be dumb data holders. This reduces the boilerplate code developers have to write, making the language learner more efficient. Consider the following class:
 
-```
+```java
 import java.util.Objects;
 
 public final class User {
@@ -118,7 +118,7 @@ public final class User {
 
 This whole code can be written in one line with Record.
 
-```
+```java
 public record User(Long id, String firstName, String lastName) {}
 ```
 
@@ -136,7 +136,7 @@ The inclusion of these features ushers in a new level of expressiveness in the l
 
 For example, Unnamed pattern variables can be beneficial in switch statements where the same action is executed for multiple cases, and the variables are not used. Consider the following code:
 
-```
+```java
 switch (b) {
     case Box(RedBall _), Box(BlueBall _) -> processBox(b);
     case Box(GreenBall _) -> stopProcessing();
@@ -152,7 +152,7 @@ Java developers can now enhance the language's string literals and text blocks w
 
 The aim of this new feature is to simplify the writing of Java programs, improve the readability of expressions that mix text and expressions, and enhance the security of Java programs that compose strings from user-provided values. Consider the following example:
 
-```
+```java
 String name    = "Joan Smith";
 String phone   = "555-123-4567";
 String address = "1 Maple Drive, Anytown";
@@ -168,7 +168,7 @@ String json = STR."""
 
 This produces the following output.
 
-```
+```java
 | """
 | {
 |     "name":    "Joan Smith",

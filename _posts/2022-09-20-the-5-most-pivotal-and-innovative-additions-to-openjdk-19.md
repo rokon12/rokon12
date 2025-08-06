@@ -23,7 +23,7 @@ Many features intrigue my interest, but there are five in particular that I can'
 
 Under the umbrella of Project Loom, JEP 425 introduces virtual threads, which aim to dramatically reduce the effort of writing, maintaining, and observing high-throughput concurrent applications on the Java platform. This is a [preview feature](https://openjdk.java.net/jeps/12). Consider the following example:
 
-```
+```java
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         var vThread = Thread.startVirtualThread(() -> {
@@ -61,7 +61,7 @@ If you want to know more about it, please, head over the my GitHub repository: <
 
 Structured Concurrency allows you to treat multiple tasks running on different threads as an atomic operation, making multithreaded programming easier. As a result, error handling and cancellation will be simplified, reliability will increase, and observability will be boosted. Let's see an example:
 
-```
+```javascript
 Response handle() throws ExecutionException, InterruptedException {
    try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
        Future<String> user = scope.fork(() -> findUser());
@@ -98,7 +98,7 @@ The [jshell](https://docs.oracle.com/javase/9/jshell/introduction-jshell.htm#JSH
 
 Pattern Machining (Third Preview) is to add a pattern for switch expressions and statements to the Java programming language. For concise and safe expression of complex data-oriented queries, it allows testing against multiple patterns, each with a distinct action. Consider the following example-
 
-```
+```java
 package ca.bazlur;
 
 public class PatternMatching {
@@ -128,7 +128,7 @@ This is also a preview feature, requiring developers to add `--enable-preview`.
 
 By utilizing the Foreign Function and Memory API, Java applications can talk to and use data that is not built into the JRE. Without the hassle and security concerns of the JNI, Java programs can now access native memory, invoke native functions, and process native data. Example-
 
-```
+```java
 Linker linker = Linker.nativeLinker();
 SymbolLookup stdlib = linker.defaultLookup();
 MethodHandle radixSort = linker.downcallHandle(
@@ -143,7 +143,7 @@ The purpose of Record Patterns is to enrich the language with record patterns th
 
 Let's consider the following example-
 
-```
+```java
 package ca.bazlur;
 
 import java.util.stream.Stream;

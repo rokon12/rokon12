@@ -35,7 +35,7 @@ Code
 
 Let's begin by running a piece of code.
 
-```
+```java
 package com.bazlur.threads;
 
 public class FoojayPlayground {
@@ -65,7 +65,7 @@ Now the question gets to be, what would be the output?
 
 Outwardly it seems the output would be following:
 
-```
+```java
 I love
 Foojay.io
 ```
@@ -74,14 +74,14 @@ Well, that's only one case because if you run the above code several times, you 
 
 **Case 1.**The first thread will continue running the loop. In contrast, the second thread will change the variable and immediately print "I love". Since the variable now changed, the loop breaks, and it prints "Foojay.io", so that the output is:
 
-```
+```java
 I love
 Foojay.io
 ```
 
 **Case 2.**The second thread will run first and change the variable and then immediately in the first thread, the loop will break and print the "Foojay.io". And the second thread will print "I love". Thus the output is:
 
-```
+```java
 Foojay.io
 I love
 ```
@@ -100,7 +100,7 @@ When starting the first thread, the CPU it runs may cache the running variable a
 
 We cannot tell whether this would be the case because it all depends on the operating system and having multiple CPUs in a computer. Despite this, we can prevent the CPU from caching, by using "volatile" in the variable. This will instruct the CPU not to cache the variable and, instead, it will read it from the main memory:
 
-```
+```java
 public class FoojayPlayground {
    private static volatile boolean running = false;
    ...

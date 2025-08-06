@@ -39,7 +39,7 @@ Although it is pretty much the same as [ExecutorService](https://docs.oracle.com
 
 To configure the thread pool, we had a vendor-specific setting. Now it can be defined with just annotations. This is a more standard way of configuring the thread pool.
 
-```
+```java
 package ca.bazlur;
 
 import static jakarta.enterprise.concurrent.ContextServiceDefinition.APPLICATION;
@@ -91,7 +91,7 @@ Also, in EJB, we can't specify the thread pool. It used to use the app server's 
 
 comes with [Jakarta EE Concurrency 3.0](https://jakarta.ee/specifications/concurrency/3.0/), which doesn't require using EJB, and we can specify the thread pool. It can be used with any CDI bean. Each asynchronous method execution corresponds to a managed `java.util.concurrent.CompletableFuture` instance that is backed by a `jakarta.enterprise.concurrent.ManagedExecutorService` as its default asynchronous execution facility.
 
-```
+```java
 package ca.bazlur;
 
 import jakarta.enterprise.concurrent.Asynchronous;
@@ -148,7 +148,7 @@ That's why, for years, developers needed either Servlets or a vendor-specific RE
 
 With the Jakarta REST 3.1, we no longer have to deal with such an issue, and it adds full support for multipart form data, which is standard.
 
-```
+```java
 package ca.bazlur;
 
 import jakarta.ws.rs.Consumes;
@@ -190,7 +190,7 @@ The OpenID Connect protocol powers this kind of authentication. With [Jakarta Se
 
 Life is much simpler now; specify the required properties, such as Provider URI, clientId, clientSecret, redirect URI, etc.
 
-```
+```java
 @OpenIdAuthenticationDefinition(
        providerURI = "https://sample-openid-server.com",
        clientId = "87068hgfg5675htfv6mrucov57bknst.apps.sample.com",
@@ -210,7 +210,7 @@ public class SecurityConfig {
 
 [Jakarta Persistence 3.1](https://jakarta.ee/specifications/persistence/3.1/) brings `java.util.UUID` is to be used as a basic type of field, which is very convenient for entity IDs for the cloud environment since many databases don't automatically generate UUID.
 
-```
+```java
 package ca.bazlur;
 
 import jakarta.persistence.Entity;

@@ -14,7 +14,7 @@ The term thread safety is a frequently and commonly pronounced word among Java d
 
 The idea is, when writing a piece of code, it usually contains method and data. If we write a class, it may hold some data in terms of state. For example, if we want to write a Counter class, we will have a variable inside the counter class that holds the current count.
 
-```
+```java
 package ca.bazlur.playground;
 
 public class Counter {
@@ -40,7 +40,7 @@ The answer can be tricky. First of all, we have to define what we mean by thread
 
 So what is the answer to the question? Is it thread-safe? Let's figure it out.
 
-```
+```java
 package ca.bazlur.playground;
 
 public class CounterDemo {
@@ -93,7 +93,7 @@ Let's do the synchronization in the counter class.
 
 I use locking around the shared variable count while it's accessed or written, then the problem goes away.
 
-```
+```java
 package ca.bazlur.playground;
 
 public class Counter {
@@ -132,7 +132,7 @@ Today, since we have used counterexample in the above, let's discuss a similar c
 
 We can use this class if we ever need a counter that will run in a multithreaded environment. This is class thread-safe and performant as well. It has many methods that can serve our most needs. Example:
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.concurrent.atomic.AtomicInteger;

@@ -40,7 +40,7 @@ The core idea behind **SummarizingTokenWindowChatMemory** is straightforward:
 
 Let's look at the code:
 
-```
+```java
 package ca.bazlur.chefbot.ai;
 
 import dev.langchain4j.data.message.ChatMessage;
@@ -238,7 +238,7 @@ Now, let's work on the **Sumerizer**.
 
 At its core, **OpenAILLMSummarizer** implements the Summarizer interface:
 
-```
+```java
 import dev.langchain4j.data.message.ChatMessage;
 
 import java.util.List;
@@ -254,7 +254,7 @@ This provides a contract for any summarization strategy.
 
 The main implementation, **OpenAILLMSummarizer** , is responsible for processing chat history and condensing it into a summary:
 
-```
+```java
 package ca.bazlur.chefbot.ai;
 
 import dev.langchain4j.data.message.AiMessage;
@@ -306,7 +306,7 @@ public class OpenAILLMSummarizer implements Summarizer {
 
 The **SummarizerAssistant** provides an AI-driven summarization method:
 
-```
+```java
 interface SummarizerAssistant {
 
     @dev.langchain4j.service.UserMessage("""

@@ -20,7 +20,7 @@ In that implementation, we used a buffer, and when Buffer is full, we put the pr
 
 The `BlockingQueue` is an interface, and it has my implementation. They are:
 
-```
+```java
 java.util.concurrent.ArrayBlockingQueue
 java.util.concurrent.DelayQueue
 java.util.concurrent.LinkedBlockingQueue
@@ -33,7 +33,7 @@ Etc.
 
 `BlockingQueue` can be bounded and unbounded:
 
-```
+```java
 BlockingQueue<Integer> queue = new LinkedBlockingDeque<>();
 ```
 
@@ -41,7 +41,7 @@ The above Queue is unbounded. Therefore, it usually will not block any thread if
 
 We can, however, create a bounded queue using one of its constructors:
 
-```
+```java
 BlockingQueue<Integer> queue = new LinkedBlockingDeque<>(10);
 ```
 
@@ -49,7 +49,7 @@ Now it will only be able to hold ten items at a time. If a thread wants to put m
 
 Let's use this `BlockingQueue` and implement our producer/consumer pattern. Previously we wrote a class named Buffer. We will do the same here except using BlockingQueue:
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.concurrent.BlockingQueue;
@@ -85,7 +85,7 @@ This class is now pretty simple, with no locking, no low-level thread constructs
 
 Let's use it now:
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.Random;

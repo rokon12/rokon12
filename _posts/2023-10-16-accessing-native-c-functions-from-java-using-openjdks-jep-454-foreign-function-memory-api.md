@@ -32,7 +32,7 @@ JEP 454 is designed to be highly performant and includes various safety checks t
 
 First, let's create a C program that contains a simple function to add two integers. The code for this is as follows:
 
-```
+```java
 #include <stdio.h>
 
 int add(int a, int b) {
@@ -42,7 +42,7 @@ int add(int a, int b) {
 
 After writing the code, save it in a file named addition.c. To compile this into a shared library, navigate to the directory where the file is located and run the following command:
 
-```
+```java
 gcc -shared -o libaddition.so -fPIC addition.c
 ```
 
@@ -52,7 +52,7 @@ This command compiles the C code into a shared library named `libaddition.so`, r
 
 Next, let's write a Java program that uses the Foreign Function \& Memory API to call the `add` function from our C library. The Java code is as follows:
 
-```
+```java
 import java.lang.foreign.*;
 import java.nio.file.Path;
 

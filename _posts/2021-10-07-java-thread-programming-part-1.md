@@ -41,7 +41,7 @@ Do all Java programs have a thread associated with them?
 
 The answer is yes. Java was designed to have threads from the very beginning. If we just start a "hello world" program in the main method, it will be executed through a thread, which is called the "main Thread". Let's see an example:
 
-```
+```java
 package com.bazlur;
 
 public class HelloWorld {
@@ -56,7 +56,7 @@ public class HelloWorld {
 
 If we run the above program, then we will get the following output in the console:
 
-```
+```java
 This program is running on: Thread[main,5,main]
 Hello world
 ```
@@ -73,7 +73,7 @@ The code that writes in the main method executes by means of the main Thread. Ho
 
 Let's start by extending the Thread class.
 
-```
+```java
 package com.bazlur;
 
 public class MyThread extends Thread {
@@ -89,7 +89,7 @@ In the above code, we have created a class, `MyThread`, extending the `Thread` c
 
 To use this Thread, we have to create an instance and then call its `start()` method:
 
-```
+```java
 package com.bazlur;
 
 public class Playground {
@@ -108,7 +108,7 @@ Here, you have to keep in mind, when starting a thread, you must call the `start
 
 The above code will result following output:
 
-```
+```java
 Creating a new thread from : Thread[main,5,main]
 Leaving from: Thread[main,5,main]
 Executing code from: Thread[Thread-0,5,main]
@@ -124,7 +124,7 @@ So, the steps are:
 
 The other way is to have an implementation of the `Runnable` interface. For example:
 
-```
+```java
 package com.bazlur;
 
 public class MyRunnable implements Runnable{
@@ -140,7 +140,7 @@ In the above class, we have implemented the runnable interface, and put our desi
 
 The next steps is to create an instance of java.lang.Thread. We will put an instance of the MyRunnable class as an argument to the constructor of the java.lang.Thread. Then we call the start method:
 
-```
+```java
 package com.bazlur;
 
 public class Playground {
@@ -157,7 +157,7 @@ public class Playground {
 
 The above code will result following output:
 
-```
+```java
 Creating a new thread from : Thread[main,5,main]
 Leaving from: Thread[main,5,main]
 Executing code using Runnable from: Thread[Thread-0,5,main]
@@ -176,7 +176,7 @@ That's it.
 
 Alternatively, you can use an anonymous inner class, and put this as an argument of the Thread's constructor. Example:
 
-```
+```javascript
 var thread = new Thread(new Runnable() {
 @Override
  public void run() {
@@ -189,7 +189,7 @@ thread.start();
 
 Or, even, you can use lambda expression, since the `Runnable` interface has a SAM (single abstract method). Example:
 
-```
+```javascript
 var thread = new Thread(() -> {
  System.out.println("Executing code using Runnable from: " + Thread.currentThread());
  System.out.println("Hello world");

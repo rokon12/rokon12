@@ -23,7 +23,7 @@ The Executors is a factory class, and it has a few static methods ( factory meth
 
 **Executors.newScheduledThredPool(int corePoolSize):** sometimes, we want to keep a task repeating or schedule on a particular time. This ThreadPool allows us to do that. It takes an argument about the number of worker threads it will keep running, even if the ThreadPool is idle. This factory method returns an instance of ***ScheduledExecutorService***, which has a few extra methods that we can use to schedule a job. For example --
 
-```
+```java
 import static java.time.temporal.ChronoField.HOUR_OF_DAY;
 import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
 import static java.time.temporal.ChronoField.SECOND_OF_MINUTE;
@@ -70,7 +70,7 @@ We have already seen that we can just put a runnable and then submit it to the p
 
 The interface looks like this.
 
-```
+```java
 public interface Callable {
 
     V call() throws Exception;
@@ -84,7 +84,7 @@ It is also a functional interface like Runnable; the only difference is that it 
 
 Let's see an example --
 
-```
+```java
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -131,7 +131,7 @@ But look, it returns the result wrapped with another interface, Future. Let's ta
 
 It has several methods:
 
-```
+```java
 public interface Future<V> {
 
     boolean cancel(boolean mayInterruptIfRunning);

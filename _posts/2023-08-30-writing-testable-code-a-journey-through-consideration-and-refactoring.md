@@ -25,7 +25,7 @@ The initial implementation might include a method that builds the S3 client, cho
 
 Let's see an example:
 
-```
+```java
 public AmazonS3 getAmazonS3Client(
         final String s3AccessKeyId, final String secretAccessKey, final Regions region) {
     final AWSCredentialsProvider credentialsProvider;
@@ -62,7 +62,7 @@ This refactoring process involved several steps:
 
 Here's the refactored code:
 
-```
+```java
 interface AmazonS3ClientFactory {
     AmazonS3 getAmazonS3Client(String s3AccessKeyId, String secretAccessKey, Regions region);
 }
@@ -109,7 +109,7 @@ With the code refactored, we can now write unit tests that cover all code paths 
 
 This test ensures that the factory for creating an S3 client with static credentials works correctly.
 
-```
+```javascript
 @Test
 public void shouldUseAWSStaticCredentialsProvider_whenKeysProvided() {
   var factory = new AgentAttackEventS3Operations.AWSStaticCredentialsProviderS3ClientFactory();
@@ -123,7 +123,7 @@ public void shouldUseAWSStaticCredentialsProvider_whenKeysProvided() {
 
 This test ensures that the factory for creating an S3 client with the default credentials provider works correctly.
 
-```
+```javascript
 @Test
 public void shouldUseDefaultAWSCredentialsProvider_whenKeysNotProvided() {
   var factory =
@@ -138,7 +138,7 @@ public void shouldUseDefaultAWSCredentialsProvider_whenKeysNotProvided() {
 
 These tests ensure that the correct factory is used based on the presence or absence of access keys.
 
-```
+```java
 @Test
 public void shouldUseAWSStaticCredentials_whenKeysNotEmpty() {
   s3Operations.getAmazonS3Client(S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, REGION);

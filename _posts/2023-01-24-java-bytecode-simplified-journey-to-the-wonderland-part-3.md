@@ -18,7 +18,7 @@ Changing Java bytecode is often done to add new features to a Java program that 
 
 **[Javaassist](https://www.javassist.org/)** is one of the tools that can be leveraged to inject bytecode. Look at the following class.
 
-```
+```java
 package ca.bazlur;
 
 public class Greetings {
@@ -31,7 +31,7 @@ public class Greetings {
 
 Let's say we have this class and would like to add a method to it but through bytecode manipulation.
 
-```
+```java
 package ca.bazlur;
 
 import java.io.IOException;
@@ -82,7 +82,7 @@ public class BytecodeInjector {
 
 In this code, we had a class called `Greetings`. We wanted to add a new method. To do that, we had to read the original class into a byte array, import it into a `ClassPool`, and then modify it by adding a new method. Then, the modified class is written back to a byte array and loaded into the JVM using a custom `ClassLoader`. Finally, the new method is invoked on an instance of the modified class.
 
-```
+```java
 package ca.bazlur;
 
 public class MyClassLoader extends ClassLoader {
@@ -94,7 +94,7 @@ public class MyClassLoader extends ClassLoader {
 
 If we run the above class, we will see that the functionality has been added to the Greetings class and also executed. It will print:
 
-```
+```java
 Hello, world!
 ```
 
@@ -104,7 +104,7 @@ Let's assume we want to know how much time a method takes to execute. We can mak
 
 Let's use bytebuddy to build a simple agent that will instrument every class and calculate the time it takes for each method to execute.
 
-```
+```java
 package ca.bazlur;
 
 import java.lang.instrument.Instrumentation;
@@ -127,7 +127,7 @@ public class MyAgent {
 
 And the `TimerAdvice`class is here:
 
-```
+```java
 package ca.bazlur;
 
 import net.bytebuddy.asm.Advice;
@@ -154,13 +154,13 @@ The full source code is available here: <https://github.com/rokon12/bytecode-tut
 
 Once we've built it and generated a jar, we can use it in the CLI by issuing the following command:
 
-```
+```java
 java -javaagent:myagent-1.0-SNAPSHOT.jar MyAwesomeJavaProgram
 ```
 
 The `MyAwesomeJavaProgram` looks like this:
 
-```
+```java
 public class MyAwesomeJavaProgram {
   public static void main(String[] args) {
     System.out.println(doCalculation());
@@ -178,7 +178,7 @@ public class MyAwesomeJavaProgram {
 
 Once we run it in the CLI, we will get the output as follows:
 
-```
+```java
 Entering to invoke : public static void MyAwesomeJavaProgram.main(java.lang.String[])
 Entering to invoke : public static int MyAwesomeJavaProgram.doCalculation()
 Method public static int MyAwesomeJavaProgram.doCalculation() took 41ms

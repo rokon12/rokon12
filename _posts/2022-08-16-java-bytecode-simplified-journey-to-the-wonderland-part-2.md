@@ -30,7 +30,7 @@ An intriguing aspect of `javap`, is that we do not need to deal with Java source
 
 Let's see an example:
 
-```
+```java
 package ca.bazlur;
 
 public class Lamp {
@@ -64,7 +64,7 @@ If we compile this code using `javac` we will get a class file, and then we can 
 
 We will get the following output.
 
-```
+```java
 Compiled from "Lamp.java"
 public class ca.bazlur.Lamp {
   public ca.bazlur.Lamp();
@@ -78,7 +78,7 @@ Note that it prints only the public, protected, and default methods. Abobe, it d
 
 `javap -p Lamp`
 
-```
+```java
 Compiled from "Lamp.java"
 public class ca.bazlur.Lamp {
   private boolean isOn;
@@ -94,7 +94,7 @@ Nonetheless, this only prints the names of the methods. We would be looking for 
 
 `javap -c Lamp`
 
-```
+```java
 Compiled from "Lamp.java"
 public class ca.bazlur.Lamp {
   public ca.bazlur.Lamp();
@@ -143,7 +143,7 @@ In addition to this, the code has other locations with numbers such as #1, #2, e
 
 `javap -v Lamp`
 
-```
+```java
 Classfile /bytecode-simplified/src/main/java/ca/bazlur/Lamp.class
   Last modified Aug. 11, 2022; size 1245 bytes
   SHA-256 checksum cf727468acdcc0b2dd0a6a858a313110e437e01a6625cf4e03f1f0fa41910dae
@@ -215,7 +215,7 @@ Bytecode starts with minor and major versions. This allows us to determine the v
 
 It can be considered a multidimensional array. In fact, in the JVM specification, the general format mentioned as follows:
 
-```
+```java
 cp_info {
     u1 tag;
     u1 info[];

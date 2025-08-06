@@ -42,7 +42,7 @@ It's worth noting that our benchmarks are limited to a small set of data, such a
 The benchmarking code
 ---------------------
 
-```
+```java
 package ca.bazlur;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -150,7 +150,7 @@ public class MapBenchmark {
 The results
 -----------
 
-```
+```java
 Benchmark                    Mode  Cnt   Score   Error  Units
 MapBenchmark.testGetHashMap  avgt   20  14.999 ± 0.433  ns/op
 MapBenchmark.testGetMapOf    avgt   20  16.327 ± 0.119  ns/op

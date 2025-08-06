@@ -89,7 +89,7 @@ Java has gotten a bad rap for a verbose "Hello World" program with a gratuitous 
 
 JEP 445 helps by allowing a non-static main:
 
-```
+```java
 class HelloWorld {
      void main() {
          System.out.println("Hello, World!");
@@ -99,7 +99,7 @@ class HelloWorld {
 
 You don't even need a class:
 
-```
+```java
 void main() {
      System.out.println("Hello, World!");
 }

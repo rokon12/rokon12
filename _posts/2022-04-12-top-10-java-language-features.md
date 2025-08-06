@@ -32,19 +32,19 @@ That's why Java 9 introduced a few very concise factory methods.
 
 **List:**
 
-```
+```java
 List countries = List.of("Bangladesh", "Canada", "United States", "Tuvalu");
 ```
 
 **Set:**
 
-```
+```java
  Set countries = Set.of("Bangladesh", "Canada", "United States", "Tuvalu");
 ```
 
 **Map:**
 
-```
+```java
 Map<String, Integer> countriesByPopulation = Map.of("Bangladesh", 164_689_383,
                                                             "Canada", 37_742_154,
                                                             "United States", 331_002_651,
@@ -62,7 +62,7 @@ Java 10 introduced type inference for local variables, which is super convenient
 
 Traditionally Java is a strongly typed language, and developers have to specify types twice while declaring and initializing an object. It seems tedious. Look at the following example-
 
-```
+```java
 Map<String, Map<String, Integer>> properties = new HashMap<>();
 ```
 
@@ -70,19 +70,19 @@ We specified the type of information on both sides in the above statement. If we
 
 The above code can now be written as follows-
 
-```
+```javascript
 var properties = new HashMap<String, Map<String, Integer>>();
 ```
 
 Now we have to write type once. The above code may not look a lot less. However, it makes a lot shorter when we call a method and store the result in a variable. Example:
 
-```
+```javascript
 var properties = getProperties();
 ```
 
 Similarly,
 
-```
+```javascript
  var countries = Set.of("Bangladesh", "Canada", "United States", "Tuvalu");
 ```
 
@@ -102,7 +102,7 @@ To tackle the issue, we use break statements which are pretty much boilerplate c
 
 We no longer need to add break statements; it solves the fall-through problem; on top of that, a switch statement can return a value, which means we can use it as an expression and assign it to a variable.
 
-```
+```java
 int day = 5;
 String result = switch (day) {
     case 1, 2, 3, 4, 5 -> "Weekday";
@@ -120,7 +120,7 @@ Although records are relatively new features in Java, released in Java 16, many 
 
 Often we need data career objects in our program to hold or pass values from one method to another, for example- a class to carry x, y and z coordinates which we would write as follows.
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.Objects;
@@ -176,7 +176,7 @@ public final class Point {
 
 The class seems super verbose and has little to do with our whole intention. This entire code can be replaced with the following code --
 
-```
+```java
 package ca.bazlur.playground;
 
 public record Point(int x, int y, int z) {
@@ -192,7 +192,7 @@ A method is a contract: we put thought into it when defining one. We specify par
 
 However, we often get null from a method instead of a value with the specified type. This is a violation. An invoker cannot know upfront unless it invokes it. To tackle this violation, the invoker usually tests the value with an if condition, whether this value is null or not. Example-
 
-```
+```java
 public class Playground {
 
     public static void main(String[] args) {
@@ -212,7 +212,7 @@ Look at the above code. The findName() method is supposed to return a String val
 
 On the other hand, if the method signature would specify the possibility of not being able to return the value, it would solve all the confusion. And that's where Optional comes into play.
 
-```
+```java
 import java.util.Optional;
 
 public class Playground {
@@ -256,7 +256,7 @@ However, the problem no longer exists because Java 8 brings an excellent API set
 
 These classes are designed to have all the methods that are commonly needed. e.g.
 
-```
+```java
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -274,7 +274,7 @@ public class Playground3 {
 
 Similarly, LocalTime has all the methods required for calculating time.
 
-```
+```java
 LocalTime time = LocalTime.of(20, 30);
 int hour = time.getHour(); 
 int minute = time.getMinute(); 
@@ -284,14 +284,14 @@ time = time.plusMinutes(3);
 
 We can combine both of them --
 
-```
+```java
 LocalDateTime dateTime1 = LocalDateTime.of(2022, Month.APRIL, 4, 20, 30);
 LocalDateTime dateTime2 = LocalDateTime.of(date, time);
 ```
 
 How we include timezone --
 
-```
+```java
 ZoneId zone = ZoneId.of("Canada/Eastern");
 LocalDate localDate = LocalDate.of(2022, Month.APRIL, 4);
 ZonedDateTime zonedDateTime = date.atStartOfDay(zone);
@@ -307,7 +307,7 @@ Helpful NullPointerException
 
 Every developer hates the Null Pointer Exception. It becomes challenging when StackTrace doesn't provide helpful information it. To demonstrate the problem, let's see an example:
 
-```
+```java
 package com.bazlur;
 
 public class Main {
@@ -351,7 +351,7 @@ class Name {
 
 Look at the main method of the above code. We can see that we will get a null pointer exception. If we run and compile the code with pre Java 14, we will get the following StackTrace:
 
-```
+```java
 Exception in thread "main" java.lang.NullPointerException
 at com.bazlur.Main.getLengthOfUsersName(Main.java:11)
 at com.bazlur.Main.main(Main.java:7)
@@ -361,7 +361,7 @@ This StackTrace is okay, but it has not much information about where and why thi
 
 However, in java 14 and onward, we get much more information in the StackTrace, which is super convenient. In java 14, we will get:
 
-```
+```java
 Exception in thread "main" java.lang.NullPointerException: Cannot invoke "ca.bazlur.playground.User.getName()" because "user" is null
 at ca.bazlur.playground.Main.getLengthOfUsersName(Main.java:12)
 at ca.bazlur.playground.Main.main(Main.java:8)
@@ -382,7 +382,7 @@ Let's assume we have to call three rest APIs and then combine the result. We can
 
 What if we could run them parallelly, as modern CPU has multicores in them, so they can easily handle three rest calls in three different CPUs. Using the CompletableFuture, we can easily accomplish that.
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.time.Duration;
@@ -455,7 +455,7 @@ The expressions are short and concise. It usually doesn't contain much boilerpla
 
 We want to list all the files from a directory with the .java extension.
 
-```
+```javascript
 var directory = new File("./src/main/java/ca/bazlur/playground");
 String[] list = directory.list(new FilenameFilter() {
     @Override
@@ -471,7 +471,7 @@ Essentially we are interested in this piece of logic, not the boilerplate around
 
 Lambda expression, in fact, allows us to remove all the boilerplate, and we can write the code that we care about. Example:
 
-```
+```javascript
 var directory = new File("./src/main/java/ca/bazlur/playground");
 String[] list = directory.list((dir, name) -> name.endsWith(“.java"));
 ```
@@ -495,7 +495,7 @@ With the invention of the Lambda expression and stream API, we can now write out
 
 We have a list of Books, and we want to find all the Java books' names comma-separated and sorted.
 
-```
+```java
 public static String getJavaBooks(List<Book> books) {
     return books.stream()
             .filter(book -> Objects.equals(book.language(), "Java"))
@@ -507,7 +507,7 @@ public static String getJavaBooks(List<Book> books) {
 
 The above code is simple, readable and concise. The alternative imperative code would be-
 
-```
+```javascript
 public static String getJavaBooksImperatively(List<Book> books) {
     var filteredBook = new ArrayList<Book>();
     for (Book book : books) {

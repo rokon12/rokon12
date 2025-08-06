@@ -16,7 +16,7 @@ We have been dealing with such violations all the time. We invoke a method with 
 
 Now the question is, how do we define such a contract in a method signature? Well, that's where Optional comes into play. Set your return type as Optional. Optional is a mystery box, a wrapping paper: it may or may not contain the value. When we specify that in a method signature, we assume that the box might be empty. Let's see an example:
 
-```
+```java
 public static Optional<Book> findBookByName(String name) {
   return books.stream()
           .filter(book -> book.title().equalsIgnoreCase(name))
@@ -26,7 +26,7 @@ public static Optional<Book> findBookByName(String name) {
 
 The method above specified Optional as a return type. It may return the book that I'm looking for or may not. I'm aware of this, and I can deal with it when I invoke it. For example:
 
-```
+```javascript
 var bookOpt = findBookByName("Java Programming");
 if (bookOpt.isPresent()) {
     var book = bookOpt.get();
@@ -39,7 +39,7 @@ if (bookOpt.isPresent()) {
 
 Or we can do the same thing with the functional construct, e.g:
 
-```
+```java
 findBookByName("Java Programming")
 .map(Book::releasedYear)
 .ifPresentOrElse((releasedYear)

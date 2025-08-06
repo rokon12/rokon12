@@ -30,7 +30,7 @@ The Java compiler may change the execution order to optimize it, if it can deter
 
 Look at the following code snippet:
 
-```
+```java
 package ca.bazlur.playground;
 import java.util.concurrent.Phaser;
 public class ExecutionOrderDemo {
@@ -67,14 +67,14 @@ The above code seems straightforward. We have two shared data ("sharedData1" and
 
 When we execute the code, we assume the output would be:
 
-```
+```java
 Thread 2: 3
 Thread 1: 0,0,0
 ```
 
 But if you run it a few times, you will see different outputs:
 
-```
+```java
 Thread 2: 3
 Thread 1: 3,0,3
 
@@ -104,7 +104,7 @@ Threads are limited.
 
 We can easily find out how many threads we can create on a particular machine by running the following:
 
-```
+```java
 package ca.bazlur.playground;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -169,7 +169,7 @@ However, in most typical scenarios, we usually have a mixed set of tasks. And th
 
 In "[Java Concurrency in Practice](https://www.amazon.ca/Java-Concurrency-Practice-Brian-Goetz/dp/0321349601)," Brian Goetz provided a formula that we can use in most cases.
 
-```
+```java
 Number of threads = Number of Available Cores * (1 + Wait time / Service time)
 ```
 
@@ -179,7 +179,7 @@ Service Time is the time of computation, e.g., processing the HTTP response, mar
 
 For example, an application calls an API and then processes it. If we have 8 processors on the application server, and then on average, the response time of the API is 100ms and the processing time of the response is 20ms, then the ideal size of thread would be:
 
-```
+```java
 N = 8 * ( 1 + 100/20)
   = 48
 ```
@@ -218,7 +218,7 @@ To continue with this idea, there is an initiative going on in Java called Proje
 
 For example, using the following code snippet, I was able to create 4.5 million threads on my machine, but you can do more, based on your own machine.
 
-```
+```java
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 public class Main {
@@ -241,7 +241,7 @@ To run this program, you need to have Java 18, [which can be downloaded here](ht
 
 You can run using the following command --
 
-```
+```java
 java --source 18 --enable-preview Main.java
 ```
 

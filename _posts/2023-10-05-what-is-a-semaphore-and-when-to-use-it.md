@@ -19,7 +19,7 @@ Let's assume a database that can only endure ten connections simultaneously. Wit
 
 Here is our MockDatabase class:
 
-```
+```java
 public class MockDatabase {
     public MockConnection getConnection() {
         try {
@@ -34,7 +34,7 @@ public class MockDatabase {
 
 To avoid overwhelming the database, we can employ a semaphore to limit concurrent access. Below is the modified MockDatabase class with a Semaphore:
 
-```
+```java
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -57,7 +57,7 @@ public class MockDatabase {
 
 To ensure that the semaphore is effectively limiting the database connections to ten, we can create a JUnit test. The test will utilize an AtomicInteger to count the maximum number of concurrent calls to the getConnection() method and verify that it never exceeds ten.
 
-```
+```java
 import org.junit.jupiter.api.Test;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;

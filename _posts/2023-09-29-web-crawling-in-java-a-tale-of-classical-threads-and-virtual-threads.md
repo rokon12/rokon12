@@ -39,7 +39,7 @@ It leverages both classical threads, using a fixed thread pool, and virtual thre
 
 The objective is to examine how each threading model impacts the performance of the web crawler.
 
-```
+```java
 package ca.bazlur;
 
 import java.io.IOException;
@@ -198,7 +198,7 @@ If you prefer to manage dependencies using a build tool, both Maven and Gradle o
 
 * **Add Dependency** : In your `pom.xml`, include the following dependency for JSoup version 1.16.1:` `
 
-```
+```java
 <dependencies>
      <dependency>
          <groupId>org.jsoup</groupId>

@@ -21,7 +21,7 @@ We did an experiment in the [7th article of the series](https://foojay.io/today/
 
 Let's do the same test again to determine how many threads we can create on a machine.
 
-```
+```java
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
@@ -45,7 +45,7 @@ The above program is a simple one. It creates threads in a loop and then parks t
 
 On my machine, I was able to create only 2020 threads with the following configurations.
 
-```
+```java
 Chip: Apple M1
 Memory 8GB
 OS: macOS Monterey
@@ -65,7 +65,7 @@ In our [7th article of the series](https://foojay.io/today/java-thread-programmi
 
 In Java, ThreadPool is realized through a framework called Executor. It has a special interface:
 
-```
+```java
 public interface Executor {
     void execute(Runnable command);
 }
@@ -81,7 +81,7 @@ This interface has several implementations. But to make it simple, we have a fac
 
 Let's see how we can use it:
 
-```
+```java
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

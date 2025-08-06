@@ -17,7 +17,7 @@ Exploring New Features in JDK 23: A Sneak Peek
 
 With JDK 23 on the horizon, I decided to dive into some of its new features by running the following code in the CLI:
 
-```
+```javascript
 void main() {
     println("Hello World");
 

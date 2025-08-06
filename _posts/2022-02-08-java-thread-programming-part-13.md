@@ -24,7 +24,7 @@ Using the Executors factory class, we can create our thread pool; however, all t
 
 Let's see an example:
 
-```
+```java
 package ca.bazlur;
 
 import java.util.concurrent.Executors;
@@ -91,7 +91,7 @@ In "[**Java Concurrency in Practice**](https://www.amazon.ca/Java-Concurrency-Pr
 
 For example- an application calls an API and then processes it. If we have 8 processors in the application server, and then on average, the response time of the API is 100ms and the processing time of the response is 20ms, then the ideal size of thread would be --
 
-```
+```java
 N = 8 * ( 1 + 100/20)
   = 48
 ```
