@@ -1,0 +1,344 @@
+---
+layout: default
+title: Speaking Engagements
+permalink: /conference/
+---
+
+<div class="speaking-page">
+    <div class="wrapper">
+        <div class="speaking-header">
+            <h1 class="page-title">🎤 Speaking Engagements</h1>
+            <p class="page-description">Conference talks, workshops, and presentations</p>
+        </div>
+
+        <div class="speaking-stats">
+            <div class="stat-card">
+                <span class="stat-number" id="total-talks">0</span>
+                <span class="stat-label">Total Talks</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="upcoming-talks">0</span>
+                <span class="stat-label">Upcoming</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="countries-count">0</span>
+                <span class="stat-label">Countries</span>
+            </div>
+        </div>
+
+        <div class="speaking-tabs">
+            <button class="tab-button active" data-tab="upcoming">Upcoming Events</button>
+            <button class="tab-button" data-tab="past">Past Events</button>
+        </div>
+
+        <div class="speaking-content">
+            <div id="upcoming" class="tab-content active">
+                <div class="events-grid" id="upcoming-events">
+                    <!-- Upcoming events will be loaded here -->
+                </div>
+            </div>
+            <div id="past" class="tab-content">
+                <div class="events-grid" id="past-events">
+                    <!-- Past events will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.speaking-page {
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+.speaking-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #1a202c;
+}
+
+.page-description {
+    font-size: 1.25rem;
+    color: #718096;
+}
+
+.speaking-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #6495ED;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.speaking-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+    color: #718096;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    color: #1a202c;
+}
+
+.tab-button.active {
+    color: #6495ED;
+    border-bottom-color: #6495ED;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.events-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.event-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.event-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #1a202c;
+}
+
+.event-date {
+    color: #718096;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.event-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4a5568;
+    font-size: 0.875rem;
+}
+
+.event-type {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #6495ED;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.event-type.workshop {
+    background: #9F7AEA;
+}
+
+.event-talk {
+    margin: 1rem 0;
+}
+
+.talk-title {
+    font-size: 1.125rem;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.event-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.event-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    color: #6495ED;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.event-link:hover {
+    background: #6495ED;
+    color: white;
+    border-color: #6495ED;
+}
+
+.no-events {
+    text-align: center;
+    padding: 3rem;
+    color: #718096;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .speaking-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load speaking data
+    fetch('/speaking.json')
+        .then(response => response.json())
+        .then(data => {
+            // Calculate stats
+            const totalTalks = data.length;
+            const upcomingTalks = data.filter(event => event.isUpcoming).length;
+            const countries = new Set(data.map(event => event.location.split(',').pop().trim())).size;
+            
+            // Update stats
+            document.getElementById('total-talks').textContent = totalTalks;
+            document.getElementById('upcoming-talks').textContent = upcomingTalks;
+            document.getElementById('countries-count').textContent = countries;
+            
+            // Separate events
+            const upcomingEvents = data.filter(event => event.isUpcoming)
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+            const pastEvents = data.filter(event => !event.isUpcoming)
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Render events
+            renderEvents(upcomingEvents, 'upcoming-events');
+            renderEvents(pastEvents, 'past-events');
+        })
+        .catch(error => console.error('Error loading speaking data:', error));
+    
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.dataset.tab;
+            
+            // Update active states
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            button.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
+    
+    function renderEvents(events, containerId) {
+        const container = document.getElementById(containerId);
+        
+        if (events.length === 0) {
+            container.innerHTML = '<div class="no-events">No events to display</div>';
+            return;
+        }
+        
+        container.innerHTML = events.map(event => `
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-info">
+                        <h3>${event.name}</h3>
+                        <div class="event-date">${event.date}</div>
+                        <div class="event-location">
+                            <span>${event.locationIcon}</span>
+                            <span>${event.location}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="event-type ${event.type}">${event.type}</span>
+                    </div>
+                </div>
+                
+                ${event.talkTitle ? `
+                <div class="event-talk">
+                    <span>${event.talkIcon}</span>
+                    <span class="talk-title">${event.talkTitle}</span>
+                </div>
+                ` : ''}
+                
+                ${event.links && event.links.length > 0 ? `
+                <div class="event-links">
+                    ${event.links.map(link => `
+                        <a href="${link.url}" target="_blank" rel="noopener" class="event-link">
+                            ${link.type === 'video' ? '🎥' : '🔗'} ${link.text}
+                        </a>
+                    `).join('')}
+                </div>
+                ` : ''}
+            </div>
+        `).join('');
+    }
+});
+</script>
