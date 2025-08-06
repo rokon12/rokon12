@@ -1,0 +1,314 @@
+// Prism.js theme overrides to match site design
+
+// Override Prism Tomorrow Night theme colors
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #c9d1d9;
+  background: #0d1117;
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+  hyphens: none;
+}
+
+// Code blocks
+pre[class*="language-"] {
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+// Inline code
+:not(pre) > code[class*="language-"] {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  white-space: normal;
+  background: #161b22;
+  color: #79c0ff;
+}
+
+// Selection
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
+  background: #3b4d66;
+}
+
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+  background: #3b4d66;
+}
+
+// Token colors matching GitHub Dark theme
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #8b949e;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #c9d1d9;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #79c0ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #a5d6ff;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #ff7b72;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #ff7b72;
+  font-weight: 600;
+}
+
+.token.function,
+.token.class-name {
+  color: #d2a8ff;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #ffa657;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+// Line numbers
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  letter-spacing: -1px;
+  border-right: 1px solid #30363d;
+  user-select: none;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #6e7681;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+// Toolbar and copy button
+div.code-toolbar {
+  position: relative;
+}
+
+div.code-toolbar > .toolbar {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item {
+  display: inline-block;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  color: #c9d1d9;
+  background: #21262d;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #30363d;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a:hover,
+div.code-toolbar > .toolbar > .toolbar-item > button:hover {
+  background: #30363d;
+  color: #f0f6fc;
+}
+
+// Code block wrapper for custom copy button
+.code-block-wrapper {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+  z-index: 10;
+}
+
+.code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: #30363d;
+  color: #f0f6fc;
+}
+
+.copy-button.copied {
+  background: #238636;
+  border-color: #2ea043;
+  color: #ffffff;
+}
+
+// Language labels
+pre[class*="language-"]:before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.25rem 0.75rem;
+  background: #161b22;
+  color: #7ee787;
+  font-size: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-transform: uppercase;
+  border-bottom-left-radius: 0.25rem;
+}
+
+// Specific language labels
+pre.language-java:before { content: "JAVA"; }
+pre.language-javascript:before { content: "JS"; }
+pre.language-typescript:before { content: "TS"; }
+pre.language-python:before { content: "PYTHON"; }
+pre.language-bash:before { content: "BASH"; }
+pre.language-shell:before { content: "SHELL"; }
+pre.language-sql:before { content: "SQL"; }
+pre.language-json:before { content: "JSON"; }
+pre.language-xml:before { content: "XML"; }
+pre.language-html:before { content: "HTML"; }
+pre.language-css:before { content: "CSS"; }
+pre.language-scss:before { content: "SCSS"; }
+pre.language-yaml:before { content: "YAML"; }
+pre.language-markdown:before { content: "MD"; }
+
+// Diff highlighting
+.token.deleted {
+  background: rgba(248, 81, 73, 0.1);
+  color: #f85149;
+}
+
+.token.inserted {
+  background: rgba(46, 160, 67, 0.1);
+  color: #3fb950;
+}
+
+// Special Java highlighting
+.language-java {
+  .token.keyword {
+    &.module,
+    &.package,
+    &.import,
+    &.class,
+    &.interface,
+    &.enum,
+    &.extends,
+    &.implements {
+      color: #ff7b72;
+      font-weight: 600;
+    }
+  }
+  
+  .token.annotation {
+    color: #ffa657;
+  }
+  
+  .token.class-name {
+    color: #f0883e;
+  }
+}

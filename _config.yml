@@ -12,6 +12,7 @@ baseurl: ""
 
 # Build settings
 markdown: kramdown
+highlighter: none
 kramdown:
   input: GFM
   hard_wrap: false
@@ -20,6 +21,9 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  syntax_highlighter: none
+  syntax_highlighter_opts:
+    disable: true
 
 # Theme - no theme (using custom layouts)
 # Explicitly set no theme for GitHub Pages
