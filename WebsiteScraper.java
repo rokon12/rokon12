@@ -435,6 +435,24 @@ public class WebsiteScraper {
                             }
                         }
 
+                        // Extract tags
+                        List<String> tags = new ArrayList<>();
+                        Elements tagLinks = doc.select("a[href*='/tag/']");
+                        for (Element tagLink : tagLinks) {
+                            String tagHref = tagLink.attr("href");
+                            if (tagHref.contains("/tag/")) {
+                                String tag = tagHref.substring(tagHref.lastIndexOf("/tag/") + 5);
+                                if (tag.endsWith("/")) {
+                                    tag = tag.substring(0, tag.length() - 1);
+                                }
+                                // Clean and normalize tag
+                                tag = tag.replace("-", " ");
+                                if (!tag.isEmpty() && !tags.contains(tag)) {
+                                    tags.add(tag);
+                                }
+                            }
+                        }
+
                         // Convert to markdown
                         String markdown = htmlToMarkdownConverter.convert(content.html());
 
@@ -446,6 +464,7 @@ public class WebsiteScraper {
                                              "date_published: '" + publishDate + "'\n" +
                                              "date_scraped: '" + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "'\n" +
                                              (featuredImage != null ? "featured_image: '" + featuredImage + "'\n" : "") +
+                                             (!tags.isEmpty() ? "tags: " + tags + "\n" : "") +
                                              "---\n\n" +
                                              markdown;
 

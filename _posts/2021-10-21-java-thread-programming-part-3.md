@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2021/10/21/java-thread-programming-part-3/'
 date_published: '2021-10-21T00:00:00+00:00'
 date_scraped: '2025-08-05T14:23:36.458897'
 featured_image: '/images/cache-678x510.png'
+tags: [java, concurrency, threading, volatile, cpu-cache]
 ---
 
 Java Thread Programming (Part 3)
