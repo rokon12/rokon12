@@ -76,7 +76,7 @@ layout: default
                     <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
                     <p class="featured-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
                     <div class="featured-meta">
-                        <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%B %-d, %Y" }}</time>
+                        <time datetime="{{ post.date }}">{{ post.date | date: "%B %-d, %Y" }}</time>
                         <a href="{{ post.url | relative_url }}" class="featured-link">Read more →</a>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ layout: default
                             <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
                         </h3>
                         <p class="post-card-meta">
-                            <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%B %-d, %Y" }}</time>
+                            <time datetime="{{ post.date }}">{{ post.date | date: "%B %-d, %Y" }}</time>
                         </p>
                     </div>
                     <div class="post-card-body">
