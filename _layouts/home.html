@@ -3,37 +3,95 @@ layout: default
 ---
 
 <!-- ASCII Art Banner -->
-<pre class="ascii-banner">
-╔═══════════════════════════════════════════════════════════════════════════════╗
-║  ____               _                  _             _     _                  ║
-║ | __ )  __ _ _____ | |_   _ _ __      / \   _ __ ___| |__ (_)_   _____        ║
-║ |  _ \ / _` |_  / || | | | | '__|    / _ \ | '__/ __| '_ \| \ \ / / _ \       ║
-║ | |_) | (_| |/ /| || | |_| | |      / ___ \| | | (__| | | | |\ V /  __/       ║
-║ |____/ \__,_/___|_| _|\__,_|_|     /_/   \_\_|  \___|_| |_|_| \_/ \___|       ║
-║                                                                               ║
-║                        > Java | Code | Life <                                 ║
-╚═══════════════════════════════════════════════════════════════════════════════╝
-</pre>
+<div class="banner-container">
+    <pre class="ascii-banner">
+╔════════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                    ║
+║   ____               _            _          _            _     _                  ║
+║  | __ )  __ _ _____ | |_   _ _ __( )___     / \   _ __ ___| |__ (_)_   _____       ║
+║  |  _ \ / _` |_  / || | | | | '__|// __|   / _ \ | '__/ __| '_ \| \ \ / / _ \      ║
+║  | |_) | (_| |/ /| || | |_| | |    \__ \  / ___ \| | | (__| | | | |\ V /  __/      ║
+║  |____/ \__,_/___|_| _|\__,_|_|    |___/ /_/   \_\_|  \___|_| |_|_| \_/ \___|      ║
+║                                                                                    ║
+║                          ╭────────────────────────────╮                            ║
+║                          │   > Java | Code | Life <   │                            ║
+║                          ╰────────────────────────────╯                            ║
+║                                                                                    ║
+╚════════════════════════════════════════════════════════════════════════════════════╝
+    </pre>
+    <div class="banner-subtitle">
+        <span class="typing-text">Welcome to my digital garden where code meets creativity</span>
+    </div>
+</div>
 
 <!-- Quick Search Section -->
-<div class="search-section">
-    <div class="search-container">
-        <form action="{{ site.baseurl }}/search/" method="get">
-            <input type="text" 
-                   name="q" 
-                   class="quick-search-input" 
-                   placeholder="Quick search... (press / to focus)"
-                   autocomplete="off">
-            <button type="submit" class="quick-search-button">
-                <span>Search</span>
-            </button>
-        </form>
+<div class="search-section enhanced">
+    <div class="search-wrapper">
+        <div class="search-container">
+            <div class="search-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+            </div>
+            <form action="{{ site.baseurl }}/search/" method="get">
+                <input type="text" 
+                       name="q" 
+                       class="quick-search-input" 
+                       placeholder="Search articles, tags, or topics... (press / to focus)"
+                       autocomplete="off">
+                <button type="submit" class="quick-search-button">
+                    <span>Search</span>
+                </button>
+            </form>
+        </div>
+        <div class="popular-tags">
+            <span class="tag-label">Popular:</span>
+            {% assign sorted_tags = site.tags | sort %}
+            {% for tag in sorted_tags limit: 5 %}
+                <a href="{{ '/tags/' | append: tag[0] | append: '/' | relative_url }}" class="popular-tag">{{ tag[0] }}</a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
 <div class="wrapper">
+    <!-- Featured Posts Section -->
+    {% assign featured_posts = site.posts | where: "featured", true | limit: 3 %}
+    {% if featured_posts.size > 0 %}
+    <section class="featured-posts">
+        <h2 class="section-header featured-header">
+            <span class="header-icon">⭐</span>
+            Featured Articles
+        </h2>
+        <div class="featured-grid">
+            {% for post in featured_posts %}
+            <article class="featured-card">
+                {% if post.featured_image %}
+                <div class="featured-image">
+                    <img src="{{ post.featured_image }}" alt="{{ post.title | escape }}" loading="lazy">
+                </div>
+                {% endif %}
+                <div class="featured-content">
+                    <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+                    <p class="featured-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                    <div class="featured-meta">
+                        <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%B %-d, %Y" }}</time>
+                        <a href="{{ post.url | relative_url }}" class="featured-link">Read more →</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Recent Posts Section -->
     <section class="recent-posts">
-        <h2 class="terminal-header" style="text-align: center; font-size: 2.5rem; margin: 3rem 0; font-family: 'JetBrains Mono', monospace;">Recent Articles</h2>
+        <h2 class="section-header">
+            <span class="header-icon">📝</span>
+            Recent Articles
+        </h2>
         
         <div class="post-grid">
             {% for post in site.posts limit:12 %}
