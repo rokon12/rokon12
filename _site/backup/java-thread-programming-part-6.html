@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2021/11/16/java-thread-programming-part-6/"><title>Java Thread Programming (Part 6) | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Java Thread Programming (Part 6)" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/java-thread-programming-part-6.html" /><meta property="og:url" content="http://localhost:4000/backup/java-thread-programming-part-6.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Java Thread Programming (Part 6)" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Java Thread Programming (Part 6)","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/java-thread-programming-part-6.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><h1 id="java-thread-programming-part-6">Java Thread Programming (Part 6)</h1><blockquote><p>Have you ever wondered what is the purpose of the “wait()”, “notify()”, “notifyAll()” methods that come with each Java object? Well, this article will explain that!</p></blockquote><p>In <a href="https://foojay.io/today/java-thread-programming-part-5/">the previous article</a>, we learned how to use shared variables in a multi-threaded context and ensure thread safety avoiding data race and race conditions. However, in programming, sometimes multiple threads require to coordinate with each other by sending signals. For example –</p><ul><li>For a thread, it’s not yet their turn to start work; rather it’s waiting for a signal to start.<li>A thread is working, but to complete its work, it needs more data; it can send a signal to the Producer to produce more data.<li>Another thread that are producing data can signal other thread that data is ready.</ul><p>Basically, there are many similar cases when we need to coordinate among multiple threads. Let’s discuss this in this article.</p><p>Let’s start with an example:</p><p>Assume a thread is waiting to count the vote in a Polling station (Ideally, it’s a service, just assume a real one for the sake of example). This thread will start counting votes when all votes are completed. The code could look like this:</p><pre><code>while (true) {
+  synchronized (lock) {
+    if (votingComplete) {
+      countVotes();
+      break;
+    } else {
+      // do nothing...simply wait here.
+    }
+  }
+}
+</code></pre><p>The above code looks just fine; it doesn’t seem to have any problem; it will produce the correct result. When the <code>Boolean</code> variable <code>votingComplete</code> becomes <code>true</code>, the voting count will start; otherwise, the thread that runs this piece of code will stay there and do nothing. The only problem is, we are running it under a while loop. This is essentially doing nothing but eating up the CPU cycle. This sort of situation is sometimes called busy waiting.</p><p>We can prevent this from happening. The thread can stay waiting without wasting CPU cycles. To understand that, we have to know a little about the thread’s life cycle. Let’s learn about it.</p><p>By now, we know that if a computer has one CPU, it can run only one thread at a point in time. If we have 8 CPUs in a computer, it will be able to run 8 threads at a point in time. Multiple threads are scheduled to be run one after one. How they are prioritized is highly depends on the scheduling algorithm that the operating system provides.</p><p>For example, if the scheduling algorithm is round-robin, then a thread gets a small window to run their code, and then context switch occurs, another thread gets a similar amount of time. If a thread can’t finish their work with the window, the current state of the threads are stored in the memory, and when it gets its chance again, it restores the store and starts again.</p><p>Each thread can have a priority between 1 to 10. 1 means minimum priority, and 10 is the maximum priority. Usually, all threads in java start with the normal priority, which is given 5 by default unless specified. Some thread schedulers sometimes take account of this priority, and some don’t. It really depends on OS.</p><p>So the takeaway is, a thread goes through a multiple-stage of its life.</p><ul><li><strong>New state</strong>: Each thread starts with a new state when we create its instance. It remains in this state until we call it the start method.<li><strong>Runnable state</strong>: When we call the start method of an instance of thread, it goes to the runnable state. At this point, the control of the thread goes to the threads scheduler. The thread scheduler then decides when this thread going to execute its code. Usually, thread scheduler gives a small window to run a thread, which is called quantum or time slice. When the thread executes its code, then it’s called running state. When it gets from runnable to running state, it depends on the operating system. The java virtual machine mainly relies on the host operating system. That’s why JVM cannot be different between these two states. That’s why we combine these two-state and call them a runnable state.<li><strong>Blocked state</strong>: In many cases, a thread cannot complete its work within the time slice given to it. For example- it may require I/O. Then OS usually blocks this thread for a while. The other example is that a thread is working on a critical section, but the other thread wants to go into it; since the lock is already occupied, it cannot reach that. When this happens, this state of the thread is called a blocked state. Then, when the I/O is done or gets the chance to acquire the lock of that critical section, it goes to the runnable state again.<li><strong>Waiting state</strong>: Sometimes, we want to keep a thread stopped for a while. For example, we want a thread to start after the other one finishes it works. We can do this using the wait method of the lock object. The thread goes to the runnable state once the condition is met.<li><strong>Timed waiting state</strong>: this is the same as the waiting state, only it waits for a given period. And then it goes to runnel state again. Usually, when put a thread in sleep, it goes to the timed waiting state. However, there is a difference between sleep and waiting. In the sleeping state, the thread doesn’t release the lock but the waiting state does. We can discuss this sort of difference later.<li><strong>Terminated state</strong>: When a thread is done with its work, mainly work leaves from the run method, the thread goes to the terminated state.</ul><p><img src="/backup/images/thread-lifecycle-700x379.png" alt="" /></p><p>Now that we know the lifecycle of a thread, we can put a thread into a waiting state. In java, any object can be used as a lock, and each object has a wait method associated with it.</p><p>In a synchronized block, if we call this wait method, the thread executing the code will go into a waiting state. The head will remain in this state until a signal is passed to it.</p><pre><code>synchronized (lock) {
+  while (!votingComplete) {
+    lock.wait();
+  }
+  countVotes();
+}
+</code></pre><p>We can send a signal to a thread using two methods of the lock object:</p><pre><code>notify()
+notifyAll();
+</code></pre><p>If we have only one thread in a waiting state, then we can call notify() method, and if we have multiple threads waiting, then we call notifyAll();</p><pre><code>synchronized (lock) {
+  votingComplete = true;
+  lock.notify();
+}
+</code></pre><p>We have to keep two things in mind while using <code>wait()</code> \&amp; <code>notify()</code>:</p><ul><li>This <code>wait()</code>, <code>notify()</code>, <code>notifyAll()</code> method can be called only inside a synchronized block. If we call them outside synchronized block, then Weill gets IllagalMontorStateException.<li>When we call the wait() motioned based on a condition, we must call it inside a loop. The reason is that the thread does not necessarily wake up due to notify signals. There might be some other reasons, and the condition is not yet met. This is called spurious wakeups. If the condition is not met yet, we should put the thread again in the waiting state.</ul><pre><code>while (!conditionMet){
+  lock.wait();
+}
+</code></pre><p>Let’s see a class example called producer-consumer.</p><p>The idea is one thread will produce data from input. We call it Producer. It can only produce a limited amount of data, and then it puts into a buffer. The buffer is a shared data structure between threads. The other threads can consume the data from the buffer. They are called consumers. Initially, the buffer is empty, and the Producer can only produce as long as the buffer isn’t full. On the other hand, the Consumer can take data as long the buffer isn’t empty.</p><pre><code>package com.bazlur;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Buffer {
+    private static final int MAX_SIZE = 10;
+    private final Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+    private final Object lock = new Object();
+
+    public void addItem(int item) {
+        synchronized (lock) {
+            while (queue.size() == MAX_SIZE) {
+                System.out.println(Thread.currentThread() + ": Buffer is full, let's wait");
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            System.out.println(Thread.currentThread() + ": Resumed!");
+            System.out.println(Thread.currentThread() + ": Adding item: " + item);
+
+            queue.add(item);
+            System.out.println(Thread.currentThread() + ": Item has been added, let's notify all consumers");
+            lock.notifyAll();
+
+        }
+    }
+
+    public Integer getItem() {
+        synchronized (lock) {
+            while (queue.isEmpty()) {
+                System.out.println(Thread.currentThread() + ": Buffer is empty, let's wait");
+
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            System.out.println(Thread.currentThread() + ": Resumed.");
+            System.out.println(Thread.currentThread() + ": Let's consume an item");
+            Integer item = queue.poll();
+
+            lock.notifyAll();
+
+            return item;
+        }
+    }
+}
+</code></pre><p>In the above program, we have used a <code>queue</code> for integers. For simplicity, let’s assume this queue can hold 10 sizes. In the <code>addItem()</code> method, when the queue size becomes 10, we call the <code>wait()</code> from the lock; as a result, the thread that is executing this <code>addItem()</code> method will go into a waiting state.</p><p>On the other hand, when <code>getItem()</code> is called from the consume thread, an item gets consumed from the queue. So in the queue, a space becomes free. So now the Producer can add a new item to it. But since the Producer is in a waiting state, we have to notify them by using <code>notifyAll()</code>.</p><p>Similarly, when the queue is empty, the consumer thread must be waiting until we get some data is produced in the buffer. That’s why in the getItem method if the queue is empty, we put that thread in the waiting state.</p><p>Let’s use it in code:</p><pre><code>package com.bazlur;
+
+import java.util.Random;
+
+public class ProducerConsumerExample {
+    static final Random random = new Random();
+
+    public static void main(String[] args) throws InterruptedException {
+        var buffer = new Buffer();
+
+        var producer1 = new Thread(() -&gt; {
+            while (true) {
+                buffer.addItem(getRandomItem());
+            }
+        });
+        producer1.setName("Producer # 1");
+
+        var producer2 = new Thread(() -&gt; {
+            while (true) {
+                buffer.addItem(getRandomItem());
+            }
+        });
+        producer2.setName("Producer # 2");
+
+        var consumer1 = new Thread(() -&gt; {
+            while (true) {
+                buffer.getItem();
+            }
+        });
+        consumer1.setName("Consumer # 1");
+
+        var consumer2 = new Thread(() -&gt; {
+            while (true) {
+                buffer.getItem();
+            }
+        });
+
+        consumer2.setName("Consumer # 2");
+
+        producer1.start();
+        producer2.start();
+
+        consumer1.start();
+        consumer2.start();
+    }
+
+    private static int getRandomItem() {
+        return random.nextInt();
+    }
+}
+</code></pre><p>Sample output:</p><pre><code>Thread[Producer # 2,5,main]: Adding item: 547252719
+Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
+Thread[Producer # 2,5,main]: Resumed!
+Thread[Producer # 2,5,main]: Adding item: 951373866
+Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
+Thread[Producer # 2,5,main]: Resumed!
+Thread[Producer # 2,5,main]: Adding item: -1764357796
+Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
+Thread[Producer # 2,5,main]: Buffer is full, let's wait
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Producer # 1,5,main]: Resumed!
+Thread[Producer # 1,5,main]: Adding item: 1395127827
+Thread[Producer # 1,5,main]: Item has been added, let's notify all consumers
+Thread[Producer # 1,5,main]: Buffer is full, let's wait
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Resumed.
+Thread[Consumer # 1,5,main]: Let's consume an item
+Thread[Consumer # 1,5,main]: Buffer is empty, let's wait
+Thread[Producer # 2,5,main]: Resumed!
+Thread[Producer # 2,5,main]: Adding item: 895456426
+Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
+Thread[Producer # 2,5,main]: Resumed!
+Thread[Producer # 2,5,main]: Adding item: 1165192158
+Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
+Thread[Producer # 2,5,main]: Resumed!
+Thread[Producer # 2,5,main]: Adding item: -2019336704
+Thread[Producer # 2,5,main]: Item has been added, let's notify all consumers
+Thread[Consumer # 2,5,main]: Resumed.
+Thread[Consumer # 2,5,main]: Let's consume an item
+Thread[Consumer # 2,5,main]: Resumed.
+Thread[Consumer # 2,5,main]: Let's consume an item
+Thread[Consumer # 2,5,main]: Resumed.
+.....
+.....
+......
+</code></pre><pre><code>
+</code></pre><p>That’s all for today!</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

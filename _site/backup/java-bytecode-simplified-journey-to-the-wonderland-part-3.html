@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2023/01/24/java-bytecode-simplified-journey-to-the-wonderland-part-3/"><title>Java Bytecode Simplified: Journey to the Wonderland (Part 3) | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Java Bytecode Simplified: Journey to the Wonderland (Part 3)" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/java-bytecode-simplified-journey-to-the-wonderland-part-3.html" /><meta property="og:url" content="http://localhost:4000/backup/java-bytecode-simplified-journey-to-the-wonderland-part-3.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Java Bytecode Simplified: Journey to the Wonderland (Part 3)" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Java Bytecode Simplified: Journey to the Wonderland (Part 3)","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/java-bytecode-simplified-journey-to-the-wonderland-part-3.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><h1 id="java-bytecode-simplified-journey-to-the-wonderland-part-3">Java Bytecode Simplified: Journey to the Wonderland (Part 3)</h1><p>Our <a href="https://foojay.io/today/java-bytecode-simplified-journey-to-the-wonderland-part-2/" title="previous article">previous article</a> unpacked Bytecode further and discussed ConstantPool, today I’ll go through several resources for working with it now.</p><p>Java bytecode is the Java Virtual Machine’s (JVM) intermediate representation of Java code. While Java bytecode is not meant to be human-readable, it may be edited and manipulated for several reasons. This article examines the tools and methods used to change and work with Java bytecode.</p><p>Changing Java bytecode is often done to add new features to a Java program that already exists. This can be done with a bytecode injector, a tool that lets you add bytecode to a Java class file that has already been compiled. Bytecode injectors are often used for logging or debugging information and for allowing runtime updates like A/B testing or feature flags.</p><p><strong><a href="https://www.javassist.org/">Javaassist</a></strong> is one of the tools that can be leveraged to inject bytecode. Look at the following class.</p><pre><code>package ca.bazlur;
+
+public class Greetings {
+
+  public void sayHello(String name) {
+    System.out.println("Hello " + name + "!");
+  }
+}
+</code></pre><p>Let’s say we have this class and would like to add a method to it but through bytecode manipulation.</p><pre><code>package ca.bazlur;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+
+public class BytecodeInjector {
+
+  public static void main(String[] args) throws IOException {
+
+    try (var resource = BytecodeInjector.class.getResourceAsStream("Greetings.class")) {
+      final var classBytes = resource.readAllBytes();
+
+      // Create a ClassPool and import the original class
+      ClassPool classPool = ClassPool.getDefault();
+      CtClass ctClass = classPool.makeClass(new java.io.ByteArrayInputStream(classBytes));
+
+      // Create a new method and add it to the class
+      CtMethod newMethod = CtMethod.make("""
+            public void printHelloWorld() {
+              System.out.println("Hello, world!");
+            }
+          """, ctClass);
+      ctClass.addMethod(newMethod);
+
+      // Write the modified class back to a byte array
+      byte[] modifiedClassBytes = ctClass.toBytecode();
+
+      // Load the modified class bytes into the JVM
+      MyClassLoader classLoader = new MyClassLoader();
+      Class&lt;?&gt; modifiedClass = classLoader.defineClass("ca.bazlur.Greetings", modifiedClassBytes);
+
+      // Invoke the new method on an instance of the modified class
+      Object obj = modifiedClass.newInstance();
+      Method method = modifiedClass.getMethod("printHelloWorld");
+      method.invoke(obj);
+    } catch (CannotCompileException | InvocationTargetException | InstantiationException |
+             IllegalAccessException | NoSuchMethodException e) {
+      throw new RuntimeException(e);
+    }
+  }
+}
+</code></pre><p>In this code, we had a class called <code>Greetings</code>. We wanted to add a new method. To do that, we had to read the original class into a byte array, import it into a <code>ClassPool</code>, and then modify it by adding a new method. Then, the modified class is written back to a byte array and loaded into the JVM using a custom <code>ClassLoader</code>. Finally, the new method is invoked on an instance of the modified class.</p><pre><code>package ca.bazlur;
+
+public class MyClassLoader extends ClassLoader {
+  public Class&lt;?&gt; defineClass(String name, byte[] bytes) {
+    return super.defineClass(name, bytes, 0, bytes.length);
+  }
+}
+</code></pre><p>If we run the above class, we will see that the functionality has been added to the Greetings class and also executed. It will print:</p><pre><code>Hello, world!
+</code></pre><p>There is also a program known as “<a href="https://bytebuddy.net/">Byte Buddy</a>” and we can make use of it to do a similar thing.</p><p>Let’s assume we want to know how much time a method takes to execute. We can make use of bytecode instrumentation. Bytecode instrumentation is another method for modifying Java bytecode. This is done by using a library or tool to change the bytecode of a Java class before the JVM loads it. This might be beneficial for adding performance monitoring or code profiling to an application.</p><p>Let’s use bytebuddy to build a simple agent that will instrument every class and calculate the time it takes for each method to execute.</p><pre><code>package ca.bazlur;
+
+import java.lang.instrument.Instrumentation;
+import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.asm.Advice;
+import net.bytebuddy.matcher.ElementMatchers;
+
+public class MyAgent {
+
+  public static void premain(String agentArgs, Instrumentation inst) {
+    new AgentBuilder.Default()
+        .type(ElementMatchers.any())
+        .transform((builder, typeDescription, classLoader, module) -&gt; builder
+            .method(ElementMatchers.any())
+            .intercept(Advice.to(TimerAdvice.class)))
+        .installOn(inst);
+  }
+}
+</code></pre><p>And the <code>TimerAdvice</code>class is here:</p><pre><code>package ca.bazlur;
+
+import net.bytebuddy.asm.Advice;
+
+public class TimerAdvice {
+
+  @Advice.OnMethodEnter
+  static long invokeBeforeEachMethod(
+      @Advice.Origin String method) {
+    System.out.println("Entering to invoke : " + method);
+    return System.currentTimeMillis();
+  }
+
+  @Advice.OnMethodExit
+  static void invokeWhileExitingEachMethod(@Advice.Origin String method,
+      @Advice.Enter long startTime) {
+    System.out.println(
+        "Method " + method + " took " + (System.currentTimeMillis() - startTime) + "ms");
+  }
+}
+</code></pre><p>The full source code is available here: <a href="https://github.com/rokon12/bytecode-tutorials">https://github.com/rokon12/bytecode-tutorials</a></p><p>Once we’ve built it and generated a jar, we can use it in the CLI by issuing the following command:</p><pre><code>java -javaagent:myagent-1.0-SNAPSHOT.jar MyAwesomeJavaProgram
+</code></pre><p>The <code>MyAwesomeJavaProgram</code> looks like this:</p><pre><code>public class MyAwesomeJavaProgram {
+  public static void main(String[] args) {
+    System.out.println(doCalculation());
+  }
+
+  public static int doCalculation() {
+    int result = 0;
+    for (int i = 0; i &lt; 100000000; i++) {
+      result += i;
+    }
+    return result;
+  }
+}
+</code></pre><p>Once we run it in the CLI, we will get the output as follows:</p><pre><code>Entering to invoke : public static void MyAwesomeJavaProgram.main(java.lang.String[])
+Entering to invoke : public static int MyAwesomeJavaProgram.doCalculation()
+Method public static int MyAwesomeJavaProgram.doCalculation() took 41ms
+887459712
+Method public static void MyAwesomeJavaProgram.main(java.lang.String[]) took 45ms
+</code></pre><p>Here are some libraries for manipulating Java bytecode:</p><ol><li><a href="https://asm.ow2.io/">ASM</a> – a fast, small, and efficient Java bytecode manipulation framework<li><a href="https://commons.apache.org/proper/commons-bcel/">BCEL</a> – a library for manipulating Java bytecode in the Apache Commons project<li><a href="https://www.javassist.org/">Javassist</a> – a bytecode manipulation library for Java<li><a href="https://bytebuddy.net/">Byte Buddy</a> – a library for generating and modifying Java bytecode<li><a href="https://www.benf.org/other/cfr/">CFR</a> – a bytecode decompiler for Java, written in Java</ol><p>Changes can be made to Java bytecode for obfuscation and other reasons. “Obfuscation” is the process of making code harder to understand and figure out how it works. This may be beneficial for preventing a program’s illegal usage or safeguarding intellectual property.</p><p>To make it harder to understand, Java bytecode can be obfuscated by changing the names of classes and methods or adding extra code.</p><p>There are various tools for obfuscating Java code available:</p><ol><li><strong><a href="https://github.com/Guardsquare/proguard">ProGuard</a></strong>: This is a free and open-source program for optimizing and obscuring Java code. It can get rid of code that isn’t needed, speed up code, and change the names of classes, fields, and functions to make them harder to understand.<li><strong><a href="https://www.preemptive.com/products/dasho/">DashO</a></strong>: A commercial obfuscation and optimization program that includes control flow obfuscation, string encryption, and watermarking.<li><strong><a href="https://www.zelix.com/">Zelix KlassMaster</a></strong>: A paid program that provides extensive obfuscation and protection capabilities, such as control flow obfuscation, string encryption, and class and member renaming.<li><strong><a href="https://allatori.com/">Allatori</a></strong>: is a commercial product that provides extensive obfuscation and security features such as control flow obfuscation, string encryption, and class and member renaming.<li><strong><a href="https://github.com/yWorks/yGuard">yGuard</a></strong>: is an open-source tool for optimizing and obscuring Java code. It can get rid of code that isn’t needed, speed up code, and change the names of classes, fields, and functions to make them harder to understand.</ol><p>In conclusion, Java bytecode can be updated and controlled for many reasons, such as adding new features, instrumenting code for performance monitoring or profiling, or obfuscating code to protect intellectual property.</p><p>But even though these methods may work sometimes, they must be used correctly and in accordance with the terms of any license applications.</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

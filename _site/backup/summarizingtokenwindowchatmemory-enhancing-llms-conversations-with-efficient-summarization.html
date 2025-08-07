@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2025/02/14/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization/"><title>SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization.html" /><meta property="og:url" content="http://localhost:4000/backup/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg" alt="" /></p><h1 id="summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization">SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization</h1><p>LLM chat models have become an integral part of many applications today. We are all experimenting and exploring the best ways to utilize them effectively. For Java developers, <strong>LangChain4j</strong> has been an incredible tool in this journey.</p><p>By design, most available APIs, such as ChatGPT and Gemini, operate in a <strong>fire-and-forget</strong> mode. They don’t retain previous interactions, meaning every request is treated as a completely new one. However, for a smooth and engaging conversation, maintaining context is crucial—otherwise, the interaction becomes disjointed and frustrating. The common solution is to pass previous messages along with each new prompt, allowing the LLM to infer context. This is where the <strong>chat memory</strong> concept comes in.</p><p>That said, every conversation has a <strong>context window</strong> , which limits the maximum number of tokens that can be processed. We can’t pass an unlimited number of tokens in a prompt. As conversations grow longer, they consume more resources, making it necessary to find efficient ways to manage and evict older messages.</p><p><strong>LangChain4j</strong> already provides two types of memory eviction policies:</p><ol><li><strong>MessageWindowChatMemory</strong> – This approach keeps track of a fixed number of recent messages, discarding the oldest ones when the limit is reached.<li><strong>TokenWindowChatMemory</strong> – Instead of counting messages, this method monitors the total number of tokens used and removes older messages when the token count exceeds a predefined threshold.</ol><p>These memory policies help optimize resource usage while ensuring conversations remain coherent and user-friendly.</p><p>While both approaches are effective, I wondered why not add a <strong>third approach</strong> —one that summarizes old messages rather <strong>than removing</strong> them. This idea led me to experiment and eventually implement <strong>SummarizingTokenWindowChatMemory</strong> .</p><h2 id="summarizingtokenwindowchatmemory"><strong>SummarizingTokenWindowChatMemory</strong></h2><p>The core idea behind <strong>SummarizingTokenWindowChatMemory</strong> is straightforward:</p><ol><li><strong>Monitor Chat Tokens:</strong> The system tracks the number of tokens used in a conversation.<li><strong>Trigger Summarization:</strong> The summarization process activates when the token count reaches a predefined threshold.<li><strong>Generate a Summary:</strong> Instead of storing full conversation logs, a summarizer condenses key information into a succinct, meaningful summary.<li><strong>Replace Old Messages:</strong> The summarized content replaces older messages, ensuring the conversation remains within token limits while maintaining continuity.</ol><p>Let’s look at the code:</p><pre><code>package ca.bazlur.chefbot.ai;
+
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.SystemMessage;
+import dev.langchain4j.internal.ValidationUtils;
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.model.Tokenizer;
+import dev.langchain4j.store.memory.chat.ChatMemoryStore;
+import dev.langchain4j.store.memory.chat.InMemoryChatMemoryStore;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Slf4j
+public class SummarizingTokenWindowChatMemory implements ChatMemory {
+
+    private final Object id;
+    private final int maxTokens;
+    private final Tokenizer tokenizer;
+    private final ChatMemoryStore store;
+    private final Summarizer summarizer;
+
+    private SummarizingTokenWindowChatMemory(Builder builder) {
+        this.id = ValidationUtils.ensureNotNull(builder.id, "id");
+        this.maxTokens = ValidationUtils.ensureGreaterThanZero(builder.maxTokens, "maxTokens");
+        this.tokenizer = ValidationUtils.ensureNotNull(builder.tokenizer, "tokenizer");
+        this.store = ValidationUtils.ensureNotNull(builder.store, "store");
+        this.summarizer = ValidationUtils.ensureNotNull(builder.summarizer, "summarizer");
+    }
+
+    @Override
+    public Object id() {
+        return id;
+    }
+
+    @Override
+    public void add(ChatMessage message) {
+        // Pull existing messages from store
+        List&lt;ChatMessage&gt; messages = new ArrayList&lt;&gt;(store.getMessages(id));
+
+        // If it's a system message, handle "replace existing system message" logic
+        if (message instanceof SystemMessage) {
+            Optional&lt;SystemMessage&gt; maybeSystem = findSystemMessage(messages);
+            if (maybeSystem.isPresent()) {
+                if (maybeSystem.get().equals(message)) {
+                    // Same system message, do nothing
+                    return;
+                } else {
+                    // Remove old system message so we can replace with new one
+                    messages.remove(maybeSystem.get());
+                }
+            }
+        }
+
+        // Add the new message
+        messages.add(message);
+
+        // Enforce capacity by summarizing older messages if needed
+        ensureSummarizedCapacity(messages);
+
+        // Update store
+        store.updateMessages(id, messages);
+    }
+
+    @Override
+    public List&lt;ChatMessage&gt; messages() {
+        // Return a copy of messages from store
+        List&lt;ChatMessage&gt; messages = new ArrayList&lt;&gt;(store.getMessages(id));
+
+        // (Optional) ensure capacity here again, if you want to guarantee it every time
+        ensureSummarizedCapacity(messages);
+        return messages;
+    }
+
+    @Override
+    public void clear() {
+        store.deleteMessages(id);
+    }
+
+    private void ensureSummarizedCapacity(List&lt;ChatMessage&gt; messages) {
+        int currentTokenCount = tokenizer.estimateTokenCountInMessages(messages);
+        if (currentTokenCount &lt;= maxTokens) {
+            return; // We are within capacity
+        }
+
+        // If we exceed tokens, let's summarize the older messages (except system msg &amp; possibly the newest).
+        // 1) Separate out the system message if present at index 0.
+        // 2) Summarize everything from startIndex...up to near the end,
+        //    leaving maybe the last user or assistant message "unsummarized" for context.
+        // 3) Insert the summary as a single message, then re-check capacity.
+
+        // First, handle any system message
+        Optional&lt;SystemMessage&gt; maybeSystem = findSystemMessage(messages);
+        maybeSystem.ifPresent(messages::remove);
+
+        // Now we can work with the non-system messages
+        int startIndex = 0;
+        int endIndex = messages.size() - 1; // Leave the last message for context
+
+        // Don't try to summarize if we have 2 or fewer messages
+        if (endIndex - startIndex &lt;= 1) {
+            // If we can't summarize, fall back to just removing oldest messages
+            removeOldestUntilFit(messages);
+            // Re-add system message if we had one
+            maybeSystem.ifPresent(messages::addFirst);
+            return;
+        }
+
+        // Get the messages to summarize (everything except maybe system &amp; last)
+        List&lt;ChatMessage&gt; toSummarize = new ArrayList&lt;&gt;(messages.subList(startIndex, endIndex));
+
+        // Generate the summary
+        String summary = summarizer.summarize(toSummarize);
+
+        // Replace the summarized messages with the summary
+        messages.subList(startIndex, endIndex).clear();
+        messages.add(startIndex, SystemMessage.from("Previous conversation summary: " + summary));
+
+        // Re-add system message if we had one
+        maybeSystem.ifPresent(messages::addFirst);
+
+        // If we're still over capacity, remove oldest messages (after any system message)
+        if (tokenizer.estimateTokenCountInMessages(messages) &gt; maxTokens) {
+            removeOldestUntilFit(messages);
+        }
+    }
+
+    private void removeOldestUntilFit(List&lt;ChatMessage&gt; messages) {
+        // Keep system message if present
+        Optional&lt;SystemMessage&gt; maybeSystem = findSystemMessage(messages);
+        maybeSystem.ifPresent(messages::remove);
+
+        // Remove oldest messages until we're under token limit
+        while (!messages.isEmpty() &amp;&amp; tokenizer.estimateTokenCountInMessages(messages) &gt; maxTokens) {
+            messages.removeFirst();
+        }
+
+        // Re-add system message if we had one
+        maybeSystem.ifPresent(messages::addFirst);
+    }
+
+    private Optional&lt;SystemMessage&gt; findSystemMessage(List&lt;ChatMessage&gt; messages) {
+        if (!messages.isEmpty() &amp;&amp; messages.getFirst() instanceof SystemMessage) {
+            return Optional.of((SystemMessage) messages.getFirst());
+        }
+        return Optional.empty();
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Object id;
+        private Integer maxTokens;
+        private Tokenizer tokenizer;
+        private ChatMemoryStore store = new InMemoryChatMemoryStore();
+        private Summarizer summarizer;
+
+        public Builder id(Object id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder maxTokens(Integer maxTokens, Tokenizer tokenizer) {
+            this.maxTokens = maxTokens;
+            this.tokenizer = tokenizer;
+            return this;
+        }
+
+        public Builder chatMemoryStore(ChatMemoryStore store) {
+            this.store = store;
+            return this;
+        }
+
+        public Builder summarizer(Summarizer summarizer) {
+            this.summarizer = summarizer;
+            return this;
+        }
+
+        public SummarizingTokenWindowChatMemory build() {
+            return new SummarizingTokenWindowChatMemory(this);
+        }
+    }
+}
+</code></pre><p>The <strong>SummarizingTokenWindowChatMemory</strong> class manages chat messages, ensuring they stay within a specified token limit by summarizing older messages when necessary. It uses an <a href="https://javadoc.io/doc/dev.langchain4j/langchain4j-open-ai/latest/dev/langchain4j/model/openai/OpenAiTokenizer.html"><strong>OpenAiTokenizer</strong></a> to estimate token counts and a <strong>Summarizer</strong> to generate summaries. The class also handles system messages separately, preserving them during summarization. The `Builder` class provides a convenient way to construct <strong>SummarizingTokenWindowChatMemory</strong> instances with the required dependencies.</p><p>Now, let’s work on the <strong>Sumerizer</strong>.</p><h3 id="the-summarizer-interface"><strong>The Summarizer Interface</strong></h3><p>At its core, <strong>OpenAILLMSummarizer</strong> implements the Summarizer interface:</p><pre><code>import dev.langchain4j.data.message.ChatMessage;
+
+import java.util.List;
+
+public interface Summarizer {
+    String summarize(List&lt;ChatMessage&gt; messages);
+}
+</code></pre><p>This provides a contract for any summarization strategy.</p><h3 id="summarization-logic"><strong>Summarization Logic</strong></h3><p>The main implementation, <strong>OpenAILLMSummarizer</strong> , is responsible for processing chat history and condensing it into a summary:</p><pre><code>package ca.bazlur.chefbot.ai;
+
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.SystemMessage;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.V;
+
+import java.util.List;
+
+public class OpenAILLMSummarizer implements Summarizer {
+
+    private final int desiredTokenLimit;
+    private final SummarizerAssistant assistant;
+
+    public OpenAILLMSummarizer(OpenAiChatModel openAiChatModel, int desiredTokenLimit) {
+        this.desiredTokenLimit = desiredTokenLimit;
+        assistant = AiServices.builder(SummarizerAssistant.class)
+                .chatLanguageModel(openAiChatModel)
+                .build();
+    }
+
+    @Override
+    public String summarize(List&lt;ChatMessage&gt; messages) {
+        StringBuilder promptBuilder = new StringBuilder("Summarize the following conversation: \n");
+        for (ChatMessage msg : messages) {
+            if (msg instanceof UserMessage) {
+                promptBuilder.append("User: ").append(((UserMessage) msg).contents()).append("\n");
+            } else if (msg instanceof AiMessage) {
+                promptBuilder.append("Assistant: ").append(((AiMessage) msg).text()).append("\n");
+            } else if (msg instanceof SystemMessage) {
+                promptBuilder.append("System: ").append(((SystemMessage) msg).text()).append("\n");
+            }
+        }
+
+        String summary = assistant.summarize(promptBuilder.toString(), desiredTokenLimit);
+        return summary.trim();
+    }
+
+}
+</code></pre><ul><li>Constructs a structured prompt containing key user, AI, and system messages.<li>Invokes the <strong>SummarizerAssistant</strong> , which interacts with OpenAI’s language model to generate the summary.</ul><h3 id="llm-summarization"><strong>LLM Summarization</strong></h3><p>The <strong>SummarizerAssistant</strong> provides an AI-driven summarization method:</p><pre><code>interface SummarizerAssistant {
+
+    @dev.langchain4j.service.UserMessage("""
+    You are a helpful assistant summarizing past conversation turns for a chatbot.
+
+    Your goal is to create a concise and informative summary of the provided conversation history, 
+    focusing on key information relevant to continuing the conversation.  
+    Pay close attention to user preferences, requests, and any decisions they have made.  
+    Also note any specific topics or tasks discussed.  Be sure to retain information that might be needed 
+    to fulfill a user request or provide a relevant response.
+
+    The summary should be under {desiredTokenLimit} tokens and written in a clear, natural language style.  
+    Avoid simply listing the turns.  Instead, synthesize the information into a coherent narrative.
+
+    Conversation History:
+    {message}
+    """)
+    String summarize(@V("message") String messages, @V("desiredTokenLimit") int desiredTokenLimit);
+}
+</code></pre><p>This mechanism:</p><ul><li>Calls an <strong>LLM model</strong> (e.g., OpenAI’s GPT) to generate concise summaries.<li>Ensures that the summarized conversation remains within a predefined token limit.</ul><h2 id="why-this-matters">Why This Matters</h2><p>The <strong>SummarizingTokenWindowChatMemory</strong> approach effectively manages long conversations while staying within the constraints of an LLM’s context window. The chatbot can retain essential details by summarizing older exchanges, ensuring coherence without exceeding token limits. This results in a more fluid and engaging user experience, where the chatbot can “remember” and refer back to past interactions naturally. Additionally, it optimizes efficiency by reducing the amount of text processed with each request, potentially leading to faster response times and lower costs. This makes it particularly valuable when maintaining conversational history, which is crucial for customer support, complex problem-solving, or multi-turn discussions.</p><p>That said, this approach isn’t without its challenges. The very nature of summarization means that some details—especially infrequent ones—might get lost in the process. This could occasionally impact the chatbot’s ability to deliver the most precise or personalized responses. Moreover, the summarization step itself adds computational overhead, and its effectiveness heavily depends on the prompt design and the capabilities of the underlying LLM. Another potential issue is <strong>contextual drift</strong> —over multiple rounds of summarization, the chatbot’s understanding of the conversation could gradually shift away from its original meaning. These trade-offs must be carefully weighed when deciding whether this approach is the right fit for a given application.</p><h2 id="conclusion">Conclusion</h2><p>To test its functionality, I created a simple chatbot that suggests recipes. The chatbot will ask you a few questions and recommend a recipe based on your responses. As the conversation progresses, the chatbot will start summarizing older messages to retain essential context while staying within the allowed token threshold if the token limit is exceeded.</p><p>The source code is here: <a href="https://github.com/rokon12/chefbot">https://github.com/rokon12/chefbot</a></p><p><img src="/backup/images/screenshot-2025-02-14-at-1.04.29-am.png" alt="" /></p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

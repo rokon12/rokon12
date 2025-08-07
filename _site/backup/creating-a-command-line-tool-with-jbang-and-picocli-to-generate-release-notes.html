@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2024/07/18/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes/"><title>Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes.html" /><meta property="og:url" content="http://localhost:4000/backup/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp" alt="" /></p><h1 id="creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes">Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes</h1><p>Lately, I have been playing with JBang and PicoCLI, and I am pretty amazed at what we can do with these tools. I needed to create a script that would go to a specified repository on GitHub, check the commit range, and verify if any tickets were associated with them. Additionally, I wanted to check if the ticket was accepted and if the commit was approved or not. The idea was to integrate this script along with the CI/CD pipeline.</p><p>While the traditional approach might involve using bash scripts or Python, as a Java developer, I feel more at home doing this in Java. This is where JBang comes into the picture. And since I want this to be a command-line tool, PicoCLI comes in handy.</p><p>In this article, I will show you how to create a script with <a href="https://www.jbang.dev/">JBang</a> and <a href="https://picocli.info/">PicoCLI</a> to generate release notes from GitHub commits.</p><h3 id="step-1-install-jbang"><strong>Step 1: Install JBang</strong></h3><p>If you don’t already have JBang installed, you can install it by following these steps:</p><h4 id="on-macos"><strong>On macOS</strong></h4><pre><code>brew install jbangdev/tap/jbang
+</code></pre><h4 id="on-linux"><strong>On Linux</strong></h4><pre><code>curl -Ls https://sh.jbang.dev | bash -s - app setup
+</code></pre><p>After installing JBang, you can verify the installation by running:</p><pre><code>jbang --version
+</code></pre><h3 id="step-2-initialize-your-jbang-script"><strong>Step 2: Initialize Your JBang Script</strong></h3><p>First, we need to initialize our JBang script. You can do this by running the following command:</p><p><strong><code>jbang init release-notes.java</code></strong></p><p>This will create a basic Java file. It starts with a shebang line. In Unix-like environments (macOS, Linux, etc.), the operating system tells the user how to execute the script when running it directly from the terminal. This special line tells your computer’s terminal to use JBang to run the script, making it behave like a standalone command. This special line ensures that even without explicitly calling JBang, your script will execute seamlessly, handling dependencies and running the Java code effortlessly.</p><p>To open it in your IDE, you can use:</p><p><code>jbang edit --sandbox release-notes.java</code></p><p>This creates a sandbox environment and sets up a Gradle project for you. You can then open it on your favourite IDE.</p><p><img src="/backup/images/screenshot-2024-07-18-at-10.18.19-pm.png" alt="" /></p><h3 id="step-3-add-dependencies"><strong>Step 3: Add Dependencies</strong></h3><p>JBang’s <strong><code>//DEPS</code></strong> directive makes dependency management a breeze.</p><pre><code>///usr/bin/env jbang "$0" "$@" ; exit $?
+
+//JAVA 21+
+//DEPS org.projectlombok:lombok:1.18.30
+//DEPS info.picocli:picocli:4.6.2
+//DEPS commons-io:commons-io:2.15.1
+//DEPS com.fasterxml.jackson.core:jackson-databind:2.16.1
+//DEPS com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.1
+//DEPS io.github.openfeign:feign-java11:11.8
+//DEPS io.github.openfeign:feign-jackson:11.8
+//DEPS ch.qos.logback:logback-classic:1.5.6
+</code></pre><p>When working with JBang, you can easily add dependencies to your script using the <code>//DEPS</code> directive. This format allows you to include external libraries directly in your script, simplifying the process of managing dependencies.</p><h3 id="step-4-set-up-logging"><strong>Step 4: Set Up Logging</strong></h3><p>Let’s combine Logback with colourized output for those who love visual feedback. This involves setting up a custom appender to enhance your logging experience.</p><pre><code>private static void configureLogback() {
+   LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+
+   PatternLayoutEncoder encoder = new PatternLayoutEncoder();
+   encoder.setContext(context);
+   encoder.setPattern("%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n");
+   encoder.start();
+
+   PicoCLIColorizedAppender appender = new PicoCLIColorizedAppender();
+   appender.setContext(context);
+   appender.setEncoder(encoder);
+   appender.start();
+
+   Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+   rootLogger.detachAndStopAllAppenders();
+   rootLogger.addAppender(appender);
+   rootLogger.setLevel(Level.DEBUG);
+}
+For this, I need a custom appender. 
+
+static class PicoCLIColorizedAppender extends ConsoleAppender&lt;ILoggingEvent&gt; {
+   @Override
+   protected void append(ILoggingEvent event) {
+       String formattedMessage = new String(encoder.encode(event));
+       String colorizedMessage = getColorizedMessage(event, formattedMessage);
+       System.out.print(colorizedMessage);
+   }
+
+   private String getColorizedMessage(ILoggingEvent event, String formattedMessage) {
+       String template = switch (event.getLevel().toInt()) {
+           case Level.DEBUG_INT -&gt; "@|blue %s|@"; // Blue for DEBUG
+           case Level.INFO_INT -&gt; "@|green %s|@"; // Green for INFO
+           case Level.WARN_INT -&gt; "@|yellow %s|@"; // Yellow for WARN
+           case Level.ERROR_INT -&gt; "@|red %s|@"; // Red for ERROR
+           default -&gt; "%s";
+       };
+       return CommandLine.Help.Ansi.AUTO.string(String.format(template, formattedMessage));
+   }
+
+   public Encoder&lt;ILoggingEvent&gt; getEncoder() {
+       return encoder;
+   }
+
+   public void setEncoder(Encoder&lt;ILoggingEvent&gt; encoder) {
+       this.encoder = encoder;
+   }
+}
+</code></pre><p>For this, I need a custom appender.</p><pre><code>static class PicoCLIColorizedAppender extends ConsoleAppender&lt;ILoggingEvent&gt; {
+   @Override
+   protected void append(ILoggingEvent event) {
+       String formattedMessage = new String(encoder.encode(event));
+       String colorizedMessage = getColorizedMessage(event, formattedMessage);
+       System.out.print(colorizedMessage);
+   }
+
+   private String getColorizedMessage(ILoggingEvent event, String formattedMessage) {
+       String template = switch (event.getLevel().toInt()) {
+           case Level.DEBUG_INT -&gt; "@|blue %s|@"; // Blue for DEBUG
+           case Level.INFO_INT -&gt; "@|green %s|@"; // Green for INFO
+           case Level.WARN_INT -&gt; "@|yellow %s|@"; // Yellow for WARN
+           case Level.ERROR_INT -&gt; "@|red %s|@"; // Red for ERROR
+           default -&gt; "%s";
+       };
+       return CommandLine.Help.Ansi.AUTO.string(String.format(template, formattedMessage));
+   }
+
+   public Encoder&lt;ILoggingEvent&gt; getEncoder() {
+       return encoder;
+   }
+
+   public void setEncoder(Encoder&lt;ILoggingEvent&gt; encoder) {
+       this.encoder = encoder;
+   }
+}
+</code></pre><h3 id="step-5-configure-objectmapper"><strong>Step 5: Configure ObjectMapper</strong></h3><p>Next, we configure the <code>ObjectMapper</code> for JSON serialization and deserialization:</p><pre><code>public class release_notes {
+
+   static final ObjectMapper objectMapper = new ObjectMapper()
+           .registerModule(new JavaTimeModule())
+           .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
+           .setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL)
+           .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+    //Other code.
+}
+</code></pre><h3 id="step-6-feign-tastic-github-client"><strong>Step 6: Feign-tastic GitHub Client</strong></h3><p>We’ll leverage Feign to create a GitHub client, making API interactions smooth. This involves defining an interface (<code>GitHubClient</code>) and implementing functions to fetch project details and commits.</p><pre><code>public class release_notes {
+    static GitHubClient gitHubClient = Feign.builder()
+        .decoder(new JacksonDecoder(objectMapper))
+        .encoder(new JacksonEncoder(objectMapper))
+        .requestInterceptor(request -&gt; request.header("Authorization", "Bearer " + getApiToken()))
+        .target(GitHubClient.class, "https://api.github.com");
+    
+    // Other code...
+}
+
+interface GitHubClient {
+    @RequestLine("GET /repos/{owner}/{repo}")
+    @Headers("Accept: application/vnd.github+json")
+    GithubProject getProject(@Param("owner") String owner, @Param("repo") String repo);
+
+    @RequestLine("GET /repos/{owner}/{repo}/commits?sha={sha}&amp;page={page}")
+    @Headers("Accept: application/vnd.github+json")
+    List&lt;Commit&gt; getCommitsPage(@Param("owner") String owner, @Param("repo") String repo, @Param("sha") String sha, @Param("page") int page);
+
+    default List&lt;Commit&gt; getCommits(String owner, String repo, String sha) {
+        return fetchAllPages(page -&gt; getCommitsPage(owner, repo, sha, page));
+    }
+
+    default &lt;T&gt; List&lt;T&gt; fetchAllPages(IntFunction&lt;List&lt;T&gt;&gt; pageFunction) {
+        List&lt;T&gt; allResults = new ArrayList&lt;&gt;();
+        List&lt;T&gt; curPageData;
+        for (int curPageNum = 1; (curPageData = pageFunction.apply(curPageNum)).size() &gt; 0; curPageNum++) {
+            allResults.addAll(curPageData);
+        }
+        return allResults;
+    }
+}
+
+// Records for GitHub responses
+record GithubProject(String defaultBranch, String name, String description, String htmlUrl, OffsetDateTime updatedAt) {}
+record Commit(String sha, CommitDetails commit, String htmlUrl) {}
+record CommitDetails(String message, Author author) {}
+record Author(String email, Instant date) {}
+</code></pre><p>Note that we called a method getApiToken() when creating the client. We need to implement this.</p><pre><code>static String apiTokenCache;
+
+static String getApiToken() {
+   if (apiTokenCache != null) {
+       return apiTokenCache;
+   }
+   try {
+       Process statusProcess = new ProcessBuilder("gh", "auth", "status", "-t")
+               .redirectOutput(PIPE)
+               .redirectError(PIPE)
+               .start();
+       String statusOutput = IOUtils.toString(statusProcess.getInputStream(), Charset.defaultCharset());
+       String statusError = IOUtils.toString(statusProcess.getErrorStream(), Charset.defaultCharset());
+
+       if (statusError.contains("You are not logged into any GitHub hosts.")) {
+           new ProcessBuilder("gh", "auth", "login")
+                   .inheritIO()
+                   .start()
+                   .waitFor();
+       } else if (!statusOutput.contains("Logged in to github.com account")) {
+           throw new GitHubCliProcessException("Unrecognized GitHub CLI auth status:\n" + statusOutput + statusError);
+       }
+
+       Matcher tokenMatcher = GH_CLI_STATUS_TOKEN_REGEX.matcher(statusOutput);
+       if (tokenMatcher.find()) {
+           apiTokenCache = tokenMatcher.group(1);
+           return apiTokenCache;
+       } else {
+           throw new GitHubCliProcessException("Unable to extract token from output: " + statusOutput);
+       }
+
+   } catch (IOException | InterruptedException e) {
+       if (e instanceof InterruptedException) {
+           Thread.currentThread().interrupt();
+       }
+       throw new GitHubCliProcessException("GitHub CLI process error: " + e.getMessage(), e);
+   }
+}
+</code></pre><p>This code fetches your GitHub API token securely. It first checks if a cached token exists. If not, it uses the “gh” command-line tool to get your authentication status. If you’re not logged in, it launches the “gh” login process. Once logged in, it extracts your API token from the “gh” output and caches it for future use. If there are any errors during this process, it throws an exception.</p><blockquote><p><em><strong>Important Note:</strong> This script relies on the GitHub CLI (<code>gh</code>). If you haven’t already installed it, you can find <a href="https://github.com/cli/cli?tab=readme-ov-file#installation">instructions</a> for your operating system.</em></p></blockquote><h3 id="step-7-create-the-command-line-application"><strong>Step 7: Create the Command Line Application</strong></h3><p>Now, the heart of the tool: PicoCLI takes over command-line argument parsing and execution of the core logic. We’ll define options for GitHub user, repository, commit range, output format, and more.</p><pre><code>@Slf4j
+@CommandLine.Command(name = "release_notes", mixinStandardHelpOptions = true)
+class ReleaseNoteCommand implements Callable&lt;Integer&gt; {
+   private enum OutputFormat {
+       MARKDOWN, HTML
+   }
+
+   @CommandLine.Option(names = {"-u", "--user"}, description = "GitHub user", required = true)
+   private String user;
+
+   @CommandLine.Option(names = {"-r", "--repo"}, description = "GitHub repository", required = true)
+   private String repo;
+
+   @CommandLine.Option(names = {"-s", "--since"}, description = "Since commit", required = true)
+   private String sinceCommit;
+
+   @CommandLine.Option(names = {"-ut", "--until"}, description = "Until commit", required = true)
+   private String untilCommit;
+
+   @CommandLine.Option(names = {"-f", "--file"}, description = "Output file for release notes (optional)")
+   private File outputFile;
+
+   @CommandLine.Option(names = {"-v", "--version"}, description = "Release version (optional)", defaultValue = "v1.0.0")
+   private String version;
+
+   @CommandLine.Option(names = {"-o", "--output-format"}, description = "Output format (default: MARKDOWN)", defaultValue = "MARKDOWN")
+   private OutputFormat outputFormat;
+
+   @Override
+   public Integer call() {
+       try {
+           GithubProject project = release_notes.gitHubClient.getProject(user, repo);
+
+           List&lt;Commit&gt; commits = getCommitsInRange(release_notes.gitHubClient, sinceCommit, untilCommit, user, repo);
+           String releaseNotes = generateReleaseNotes(commits, project, version, outputFormat);
+
+           File outputFileWithExtension;
+           if (outputFile != null) {
+               String extension = (outputFormat == OutputFormat.HTML) ? ".html" : ".md";
+               outputFileWithExtension = new File(outputFile.getAbsolutePath() + extension);
+               try (PrintWriter writer = new PrintWriter(outputFileWithExtension, StandardCharsets.UTF_8)) {
+                   writer.print(releaseNotes);
+                   log.info("Release notes saved to: {}", outputFileWithExtension.getAbsolutePath());
+               } catch (IOException e) {
+                   log.error("Error writing release notes to file: {}", e.getMessage(), e);
+                   return 1;
+               }
+           } else {
+               log.info(releaseNotes);
+           }
+
+       } catch (Exception e) {
+           log.error("Error fetching commits: {}", e.getMessage(), e);
+           return 1;
+       }
+       return 0;
+   }
+}
+</code></pre><p>This Java code defines a command-line tool (<code>ReleaseNoteCommand</code>) for generating release notes from a GitHub repository. It uses PicoCLI to handle command-line arguments, such as GitHub user, repository, commit range, output format, and optional version and output file. It fetches commit data using a <code>GitHubClient</code>, processes it to categorize changes (features, bug fixes, other), and then formats the information into either Markdown or HTML release notes. Finally, it either saves the release notes to a specified file or prints them to the console.</p><blockquote><p><em>(Note: Some methods used in this code, such as <code>getCommitsInRange</code>, <code>generateReleaseNotes</code>, and helper methods are not shown here but can be found in the complete code <a href="https://gist.github.com/rokon12/fd039cdcfa98920ea9e881bf18e33b0b">here</a>.)</em></p></blockquote><h3 id="step-8-running-the-show-main-method"><strong>Step 8: Running the Show: Main Method</strong></h3><p>Finally, implement the main method to execute the command:</p><pre><code>import picocli.CommandLine;
+
+import static java.lang.System.exit;
+
+public class release_notes {
+    public static void main(String... args) {
+        configureLogback();
+        int exitCode = new CommandLine(new GitHubCommitChecker()).execute(args);
+        exit(exitCode);
+    }
+
+    // Other methods...
+}
+</code></pre><p><strong>Your CLI Script is Ready!</strong></p><p>To put this creation to work, run it with the following command (adjusting the arguments to match your repository):</p><p><code>./release_notes.java -u rokon12 -r cargotracker -s 44e55ce -ut 50814d1 -f release -o HTML</code></p><p>This will generate an HTML file in your root directory.</p><p>It also prints excellent help functionality. For example-</p><pre><code>./release_notes.java
+Missing required options: '--user=&lt;user&gt;', '--repo=&lt;repo&gt;', '--since=&lt;sinceCommit&gt;', '--until=&lt;untilCommit&gt;'
+Usage: release_notes [-f=&lt;outputFile&gt;] [-o=&lt;outputFormat&gt;] -r=&lt;repo&gt;
+                     -s=&lt;sinceCommit&gt; -u=&lt;user&gt; -ut=&lt;untilCommit&gt; [-v=&lt;version&gt;]
+  -f, --file=&lt;outputFile&gt;   Output file for release notes (optional)
+  -o, --output-format=&lt;outputFormat&gt;
+                            Output format (default: MARKDOWN)
+  -r, --repo=&lt;repo&gt;         GitHub repository
+  -s, --since=&lt;sinceCommit&gt; Since commit
+  -u, --user=&lt;user&gt;         GitHub user
+      -ut, --until=&lt;untilCommit&gt;
+                            Until commit
+  -v, --version=&lt;version&gt;   Release version (optional)
+</code></pre><p>It will print on the terminal if we don’t want to save it in any file.</p><p><img src="/backup/images/screenshot-2024-07-18-at-9.46.00-pm.png" alt="" /></p><p>That’s it.</p><h3 id="conclusion"><strong>Conclusion</strong></h3><p>Congratulations! You’ve built a versatile release notes generator powered by JBang and PicoCLI. This tool, easily integrated into your CI/CD pipelines, empowers you to create detailed, informative release notes straight from GitHub while enjoying the comfort and familiarity of Java. Feel free to tailor it further to match your specific workflow.</p><p>Let me know if you’d like me to elaborate on any specific code section or aspect!</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

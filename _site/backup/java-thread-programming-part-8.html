@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2021/12/07/java-thread-programming-part-8/"><title>Java Thread Programming (Part 8) | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Java Thread Programming (Part 8)" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/java-thread-programming-part-8.html" /><meta property="og:url" content="http://localhost:4000/backup/java-thread-programming-part-8.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Java Thread Programming (Part 8)" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Java Thread Programming (Part 8)","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/java-thread-programming-part-8.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><h1 id="java-thread-programming-part-8">Java Thread Programming (Part 8)</h1><p>The term thread safety is a frequently and commonly pronounced word among Java developers. However, it is still one of the misunderstood terms as well. In this article, I will try to explain in a very simplified way what it is and how we can achieve it while we write our day-to-day code.</p><p>The idea is, when writing a piece of code, it usually contains method and data. If we write a class, it may hold some data in terms of state. For example, if we want to write a Counter class, we will have a variable inside the counter class that holds the current count.</p><pre><code>package ca.bazlur.playground;
+
+public class Counter {
+  private int count;
+
+  public int incrementAndGet() {
+    return ++count;
+  }
+
+  public int decrementAndGet() {
+    return --count;
+  }
+
+  public int getCount() {
+    return count;
+  }
+}
+</code></pre><p>Let’s assume the above code is the most straightforward implementation of our counter. It can increment and decrement a value. Now the question is, is the above code is thread-safe?</p><p>The answer can be tricky. First of all, we have to define what we mean by thread safety. There could be many formal definitions, but in simplest terms, thread safety is, if the above class is used in a multithreaded environment, no matter what happens with the thread scheduler or how the threads are getting executed, the program will produce a correct result. It means that if the method incrementAndGet() is called 100 times from different threads, the counter’s value has to be 100, not a different one. If this class guarantees this, then we can call this class a thread-safe class.</p><p>So what is the answer to the question? Is it thread-safe? Let’s figure it out.</p><pre><code>package ca.bazlur.playground;
+
+public class CounterDemo {
+  public static void main(String[] args) throws InterruptedException {
+    var counter = new Counter();
+
+    var t1 = new Thread(() -&gt; {
+      for (int i = 0; i &lt; 1000; i++) {
+        counter.incrementAndGet();
+      }
+    });
+
+    var t2 = new Thread(() -&gt; {
+      for (int i = 0; i &lt; 1000; i++) {
+        counter.incrementAndGet();
+      }
+    });
+
+    t1.start();
+    t2.start();
+
+    t1.join();
+    t2.join();
+
+    int count = counter.getCount();
+    System.out.println("count = " + count);
+  }
+}
+</code></pre><p>In the above code, we have created two threads, and each of them calls the incrementAndGet() method 1000 times. So the expected correctness of this program would be, the count variable will be 2000 when it finishes.</p><p>Unfortunately, that’s not the outcome we have found. Every time we run it, we get a different result. That means this class isn’t thread-safe. However, let’s run this code on a single-threaded environment. It, in fact, always provide a correct result, no matter how many times we run it.</p><p>So what have we found so far?</p><p>A simple code seems totally correct in a single-threaded environment but acts entirely differently in a multithreaded environment.</p><p>So how can we make it thread-safe?</p><p>There are three possible answers to the questions-</p><ul><li>The first one is not making it thread-safe at all. After all, who wants toil, right? This is only possible; if each thread uses its own counter, and no data is shared between multiple threads, we don’t have to make it thread-safe. While this may be possible in some cases, but not really a solution to the problem we are discussing here. So let’s see what we have in the next option.<li>Share the data, but not allow any thread to change them. So if we can make a class immutable, then all threads will just read the data, but if they cannot change it, we have a solution. Unfortunately, this may work for many cases, but clearly not a solution for the counter-class we have written here.<li>The third option is, doing proper synchronization.</ul><p>So the third option only makes sense for this case; however, the other two options are legitimate solutions in many cases. Perhaps we can discuss them some other time.</p><p>Let’s do the synchronization in the counter class.</p><p>I use locking around the shared variable count while it’s accessed or written, then the problem goes away.</p><pre><code>package ca.bazlur.playground;
+
+public class Counter {
+  private int count;
+  private final Object lock = new Object();
+
+  public int incrementAndGet() {
+    synchronized (lock) {
+      return ++count;
+    }
+  }
+
+  public int decrementAndGet() {
+    synchronized (lock) {
+      return --count;
+    }
+  }
+
+  public int getCount() {
+    synchronized (lock) {
+      return count;
+    }
+  }
+}
+</code></pre><p>So we fixed our problem using a locking mechanism. I have discussed different synchronization mechanisms and thread-related problems in previous articles of the series. You will get to know more if you read them.</p><p>Nonetheless, this seems, whenever we write a piece of code, we have to make sure its correctness. This could seem daunting for our day-to-day work. What if we have a set of the library already there built-in, and we can just use them for our purpose? The good news is that we have that set of library classes readily available in JDK. We can just use them without being involved in making sure of correctness.</p><p>In JDK, there is a package named java.util.concurrent. It has many classes which are thread-safe and easy to use.</p><p>Today, since we have used counterexample in the above, let’s discuss a similar class from the concurrent package.</p><p><strong>AtomicInteger:</strong></p><p>We can use this class if we ever need a counter that will run in a multithreaded environment. This is class thread-safe and performant as well. It has many methods that can serve our most needs. Example:</p><pre><code>package ca.bazlur.playground;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class AtomicIntegerDemo {
+  public static void main(String[] args) throws InterruptedException {
+    var counter = new AtomicInteger();
+
+    var t1 = new Thread(() -&gt; {
+      for (int i = 0; i &lt; 1000; i++) {
+        counter.incrementAndGet();
+      }
+    });
+
+    var t2 = new Thread(() -&gt; {
+      for (int i = 0; i &lt; 1000; i++) {
+        counter.incrementAndGet();
+      }
+    });
+
+    t1.start();
+    t2.start();
+
+    t1.join();
+    t2.join();
+
+    int count = counter.get();
+    System.out.println("count = " + count);
+  }
+}
+</code></pre><p>Similarly, if we need a large counter, we can use AtomicLong.</p><p>That’s all for today. In our next article, we will discuss a few more essential classes in our day-to-day coding, available in the concurrent packages.</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

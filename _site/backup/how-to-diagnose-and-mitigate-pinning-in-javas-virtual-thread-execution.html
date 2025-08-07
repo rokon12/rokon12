@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2023/10/10/how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution/"><title>How to Diagnose and Mitigate Pinning in Java’s Virtual Thread Execution | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="How to Diagnose and Mitigate Pinning in Java’s Virtual Thread Execution" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution.html" /><meta property="og:url" content="http://localhost:4000/backup/how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="How to Diagnose and Mitigate Pinning in Java’s Virtual Thread Execution" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"How to Diagnose and Mitigate Pinning in Java’s Virtual Thread Execution","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png" alt="" /></p><h1 id="how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution">How to Diagnose and Mitigate Pinning in Java’s Virtual Thread Execution</h1><p><strong>In <a href="/2023/09/29/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads/">our last article</a>, we highlighted the impressive performance gains achieved through the use of virtual threads. However, upon diving deeper into the code, we discovered an issue caused by the jsoup library: a phenomenon known as pinning. But before we delve into solutions, let’s take a moment to understand what pinning actually is.</strong></p><h2 id="what-is-pinning">What is Pinning?</h2><p>In the context of virtual threads, pinning refers to the condition where a virtual thread is “stuck” to its carrier thread (the platform thread on which it runs).</p><p>When a virtual thread is pinned, it cannot be unmounted from its carrier, effectively monopolizing that carrier thread for the duration of the pinning.</p><h3 id="when-does-pinning-occur"><strong>When Does Pinning Occur?</strong></h3><p>Pinning occurs in two main scenarios:</p><ol><li><strong>Synchronized Blocks or Methods</strong>: When a virtual thread enters a synchronized block or method, it becomes pinned to its carrier thread. This means that during the execution of that block or method, the carrier thread cannot be reused for other tasks.<li><strong>Native Methods or Foreign Functions</strong>: When a virtual thread executes a native method or a foreign function, it also becomes pinned.</ol><h3 id="why-is-pinning-a-limitation"><strong>Why is Pinning a Limitation?</strong></h3><p>The essence of virtual threads is their ability to be unmounted from carrier threads when they perform blocking operations, thereby freeing up the carrier threads for other tasks. Pinning negates this advantage in the following ways:</p><ol><li><strong>Reduced Throughput</strong>: Because a pinned virtual thread occupies its carrier thread, other virtual threads have to wait for free carrier threads, reducing the system’s overall throughput.<li><strong>Resource Inefficiency</strong>: Carrier threads are a finite resource tied to system capabilities. Having them blocked due to pinned virtual threads is an inefficient use of these resources.<li><strong>Scalability Concerns</strong>: If a significant portion of your virtual threads becomes pinned due to frequent use of synchronized blocks or native methods, you might run into scalability issues.</ol><h3 id="mitigating-pinning"><strong>Mitigating Pinning</strong></h3><p>To alleviate the effects of pinning, consider the following strategies:</p><ol><li><strong>Use ReentrantLocks</strong> : Instead of synchronized blocks or methods, use ReentrantLock from <code>java.util.concurrent.locks</code> as it allows the virtual thread to be unmounted when blocked.<li><strong>Code Review</strong> : Regularly review your code to identify and minimize the use of <code>synchronized</code> methods or blocks and native methods in the context of virtual threads.</ol><h2 id="monitoring-pinning">Monitoring Pinning</h2><p>So, you may be wondering, how do you diagnose this pinning issue in your own code? One way to get to the bottom of this problem is by utilizing specific JVM flags.</p><p>To identify pinning, you can use the JVM flag <code>-Djdk.tracePinnedThreads=full</code> when executing your program.</p><p>Let’s go ahead and run the previous program with this flag enabled.</p><p>Upon doing so, you’ll observe certain outputs that shed light on the issue at hand.</p><pre><code> Task :Crawler.main()
+Thread[#421,ForkJoinPool-1-worker-51,5,CarrierThreads]
+    java.base/java.lang.VirtualThread$VThreadContinuation.onPinned(VirtualThread.java:185)
+    java.base/jdk.internal.vm.Continuation.onPinned0(Continuation.java:393)
+    java.base/java.lang.VirtualThread.parkNanos(VirtualThread.java:631)
+    java.base/java.lang.System$2.parkVirtualThread(System.java:2648)
+    java.base/jdk.internal.misc.VirtualThreads.park(VirtualThreads.java:67)
+    java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:408)
+    java.base/sun.nio.ch.Poller.pollIndirect(Poller.java:137)
+    java.base/sun.nio.ch.Poller.poll(Poller.java:102)
+    java.base/sun.nio.ch.Poller.poll(Poller.java:87)
+    java.base/sun.nio.ch.NioSocketImpl.park(NioSocketImpl.java:175)
+    java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:280)
+    java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+    java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+    java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+    java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+    java.base/java.net.Socket$SocketInputStream.read(Socket.java:1093)
+    java.base/sun.security.ssl.SSLSocketInputRecord.deplete(SSLSocketInputRecord.java:509)
+    java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.readLockedDeplete(SSLSocketImpl.java:1216)
+    java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.deplete(SSLSocketImpl.java:1191)
+    java.base/sun.security.ssl.SSLSocketImpl.bruteForceCloseInput(SSLSocketImpl.java:808)
+    java.base/sun.security.ssl.SSLSocketImpl.duplexCloseOutput(SSLSocketImpl.java:664)
+    java.base/sun.security.ssl.SSLSocketImpl.close(SSLSocketImpl.java:584)
+    java.base/sun.net.www.http.HttpClient.closeServer(HttpClient.java:1139)
+    java.base/sun.net.www.protocol.https.HttpsClient.closeServer(HttpsClient.java:442)
+    java.base/sun.net.www.http.KeepAliveCache.put(KeepAliveCache.java:196)
+    java.base/sun.net.www.protocol.https.HttpsClient.putInKeepAliveCache(HttpsClient.java:679)
+    java.base/sun.net.www.http.HttpClient.finished(HttpClient.java:450)
+    java.base/sun.net.www.http.KeepAliveStream.close(KeepAliveStream.java:100)
+    java.base/sun.net.www.MeteredStream.justRead(MeteredStream.java:85)
+    java.base/sun.net.www.MeteredStream.read(MeteredStream.java:132)
+    java.base/java.io.FilterInputStream.read(FilterInputStream.java:119)
+</code></pre><p>If you scrutinize the stack trace, one line will likely grab your attention:</p><pre><code>java.base/java.lang.VirtualThread$VThreadContinuation.onPinned(VirtualThread.java:185)
+</code></pre><p>This line indicates that our virtual thread is, in fact, getting pinned to carrier threads. This isn’t ideal for our application’s performance. Upon closer inspection, you’ll find that this pinning issue arises due to the use of the jsoup library in our code. The culprit could be a `synchronized` block or perhaps some sort of native function call within the library.</p><p>To remedy this, consider refactoring your application to work without the jsoup library. By avoiding the use of `synchronized` blocks or native code, we’re likely to see a significant performance improvement.</p><pre><code>package ca.bazlur.virtualthreads;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Crawler2 implements Runnable {
+    private static final Pattern LINK_PATTERN = Pattern.compile("href\\s*=\\s*\"([^\"#]*?)\"", Pattern.CASE_INSENSITIVE);
+    private static final ReentrantLock QUEUE_LOCK = new ReentrantLock();
+    private static final Condition QUEUE_NOT_EMPTY = QUEUE_LOCK.newCondition();
+    private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder().build();
+    private static final int MAX_PAGES_TO_SEARCH = 100;
+    private final AtomicInteger pageCount;
+    private final ConcurrentMap&lt;String, Boolean&gt; visitedPages;
+    private final String url;
+    private final Queue&lt;String&gt; pageQueue;
+
+    public Crawler2(AtomicInteger pageCount, ConcurrentMap&lt;String, Boolean&gt; visitedPages, String url, Queue&lt;String&gt; pageQueue) {
+        this.pageCount = pageCount;
+        this.visitedPages = visitedPages;
+        this.url = url;
+        this.pageQueue = pageQueue;
+    }
+
+    @Override
+    public void run() {
+        if (!visitedPages.containsKey(url) &amp;&amp; pageCount.get() &lt; MAX_PAGES_TO_SEARCH) {
+            try {
+                List&lt;String&gt; links = extractLinks(url);
+                List&lt;String&gt; newUrls = links.stream()
+                        .filter(nextUrl -&gt; nextUrl.startsWith("http") &amp;&amp; !visitedPages.containsKey(nextUrl))
+                        .toList();
+
+                visitedPages.put(url, true);
+                pageCount.incrementAndGet();
+
+                if (!newUrls.isEmpty()) {
+                    pageQueue.addAll(newUrls);
+                    signalQueueNotEmpty();
+                }
+
+            } catch (IOException | InterruptedException e) {
+                System.err.printf("Error occurred while accessing URL '%s', the error: %s\n", url, e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static List&lt;String&gt; extractLinks(String url) throws IOException, InterruptedException {
+        String pageContent = getPageContent(url);
+        var links = new HashSet&lt;String&gt;();
+        Matcher matcher = LINK_PATTERN.matcher(pageContent);
+
+        while (matcher.find()) {
+            links.add(matcher.group(1));
+        }
+
+        return new ArrayList&lt;&gt;(links);
+    }
+
+    private static String getPageContent(String url) throws IOException, InterruptedException {
+        System.out.println("Visiting: " + url);
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
+        var response = HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return response.body();
+    }
+
+    private static void signalQueueNotEmpty() {
+        QUEUE_LOCK.lock();
+        try {
+            QUEUE_NOT_EMPTY.signalAll();
+        } finally {
+            QUEUE_LOCK.unlock();
+        }
+    }
+
+
+    //Classical Threads
+    //Pages crawled: 731
+    //Execution time: 9766ms
+    //Throughput: 74.85152570141307 pages/sec
+
+    //Virtual threads
+    //Pages crawled: 710
+    //Execution time: 3119ms
+    //Throughput: 227.63706316126962 pages/sec
+
+    public static void main(String[] args) {
+        final ConcurrentMap&lt;String, Boolean&gt; visitedPages = new ConcurrentHashMap&lt;&gt;();
+        final Queue&lt;String&gt; pageQueue = new LinkedBlockingDeque&lt;&gt;();
+        pageQueue.add("https://en.wikipedia.org/wiki/Main_Page");
+
+        long startTime = System.currentTimeMillis();
+        AtomicInteger pageCount = new AtomicInteger();
+
+        //try (var executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())) {
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            while (pageCount.get() &lt;= MAX_PAGES_TO_SEARCH) {
+                QUEUE_LOCK.lock();
+                try {
+                    while (pageQueue.isEmpty()) {
+                        QUEUE_NOT_EMPTY.await();
+                    }
+                    String polledUrl = pageQueue.poll();
+                    if (polledUrl != null &amp;&amp; !visitedPages.containsKey(polledUrl)) {
+                        executor.submit(new Crawler2(pageCount, visitedPages, polledUrl, pageQueue));
+                    }
+                } finally {
+                    QUEUE_LOCK.unlock();
+                }
+            }
+
+            executor.shutdown();
+            executor.awaitTermination(1, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Main thread interrupted!");
+        }
+
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+
+        System.out.println("\nPages crawled: " + visitedPages.size());
+        System.out.println("Execution time: " + totalTime + "ms");
+
+        double pagesPerSecond = (double) visitedPages.size() / (totalTime / 1000.0);
+        System.out.println("Throughput: " + pagesPerSecond + " pages/sec");
+    }
+}
+</code></pre><p>To fix the pinning issue, we switched from using the jsoup library to using HttpClient. HttpClient is built into Java and is available from version 11 onwards. The best part? It doesn’t have the pinning problem we saw with jsoup.</p><p>By making this change, we avoid the issues that were slowing down our program, likely making it run faster.</p><p>But be careful; this new approach isn’t perfect. You might run into an error that says:</p><p><code>Caused by: java.io.IOException: too many concurrent streams</code></p><p>I’ll talk more about what this error means in my next article.</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

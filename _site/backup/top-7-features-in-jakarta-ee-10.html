@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2022/06/28/top-7-features-in-jakarta-ee-10/"><title>Top 7 Features in Jakarta EE 10 | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Top 7 Features in Jakarta EE 10" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/top-7-features-in-jakarta-ee-10.html" /><meta property="og:url" content="http://localhost:4000/backup/top-7-features-in-jakarta-ee-10.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Top 7 Features in Jakarta EE 10" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Top 7 Features in Jakarta EE 10","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/top-7-features-in-jakarta-ee-10.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/jakartaee-landscape.jpeg" alt="" /></p><h1 id="top-7-features-in-jakarta-ee-10">Top 7 Features in Jakarta EE 10</h1><p>Java EE has been a dominant force behind all enterprise development in Java. Lately, it was renamed to <a href="https://jakarta.ee/">Jakarta EE</a>, while transitioning to the Eclipse Foundation.</p><p>This transition opened the door to open governance, open compatibility testing (the earlier <a href="https://en.wikipedia.org/wiki/Technology_Compatibility_Kit">Technology Compatibility Kit</a> was closed source), and of course, open-source contributions. That means no specific vendor has more influence than any other and it is a more distributed process now.</p><p>Jakarta EE is an integral part of the Java ecosystem. 25-35% of Java application runs on JakartaEE application servers. WildFly, JBoss EAP, Payara, WebSphere/Liberty, WebLogic etc., are some examples of these application servers. These application servers are developed and maintained by different vendors. However, as a technology, Jakarta EE remains vendor-neutral, meaning that the same application code should be able to be run by means of any of the application servers since all vendors adhere to <a href="https://jakarta.ee/specifications/">Jakarta EE specifications</a>.</p><p>70-80% of Java applications use Jakarta EE APIs one way or another, such as Tomcat, Hibernate, ActiveMQ, Jetty, CXF, Jersey, RESTEasy, Quarkus, Microprofile, and Spring. If we dig a little deeper, we will find Jakarta EE APIs behind Java applications. <img src="/backup/images/image-10-1024x416.png" alt="" /></p><p>Jakarta EE is a lively ecosystem. We have Jakarta EE, <a href="https://microprofile.io/">MicroProfile</a>, and <a href="https://helidon.io/">Helidon</a>. <a href="https://quarkus.io/">Quarkus</a>, introduced after <a href="https://micronaut.io/">Micronaut</a> and Helidon, remain a popular framework. Many applications are yet to migrate and that’s why Java EE 8 is still around. However, Jakarta EE 9 may be considered to be a foundation for innovation to drive new features in Jakarta EE 10, which will be released soon.</p><p>Jakarta EE 9 moves all relevant specifications <code>javax</code> to the Jakarta namespace. Unfortunately, that has caused some breaking changes, but the migration seems relatively easy. There are tools to do that. It also removes older deprecated technologies and moves Java 8 to Java 11.</p><p>Among the many features making their way to Jakarta EE 10, I will discuss the top 7, in no particular order.</p><ol><li><h2 id="managedexecutordefinition"><strong>@ManagedExecutorDefinition</strong></h2></ol><p>One of the most commonly used services in the Jakarta Concurrency API is the <a href="https://github.com/jakartaee/concurrency/blob/master/api/src/main/java/jakarta/enterprise/concurrent/ManagedExecutorService.java">ManagedExecutorService</a>.</p><p>It is used to create a thread pool in the Jakarta EE environment to spawn threads in a more manageable way.</p><p>Although it is pretty much the same as <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ExecutorService.html">ExecutorService</a>, we employ it in the Java SE environment.</p><p>To configure the thread pool, we had a vendor-specific setting. Now it can be defined with just annotations. This is a more standard way of configuring the thread pool.</p><pre><code>package ca.bazlur;
+
+import static jakarta.enterprise.concurrent.ContextServiceDefinition.APPLICATION;
+import static jakarta.enterprise.concurrent.ContextServiceDefinition.SECURITY;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.Asynchronous;
+import jakarta.enterprise.concurrent.ContextServiceDefinition;
+import jakarta.enterprise.concurrent.ManagedExecutorDefinition;
+import jakarta.enterprise.concurrent.ManagedExecutorService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.concurrent.CompletableFuture;
+
+@Named
+@ApplicationScoped
+@ManagedExecutorDefinition(
+    name = "java:module/concurrent/MyExecutor",
+    context = "java:module/concurrent/MyExecutorContext",
+    hungTaskThreshold = 120000,
+    maxAsync = 5)
+@ContextServiceDefinition(
+    name = "java:module/concurrent/MyExecutorContext",
+    propagated = {SECURITY, APPLICATION})
+public class WorkService {
+
+  @Resource(name = "java:app/concurrent/MyExecutorService")
+  private ManagedExecutorService executor;
+
+  @Asynchronous
+  public CompletableFuture&lt;Long&gt; hoursWorked(LocalDate from, LocalDate to) {
+    return CompletableFuture.supplyAsync(() -&gt; heavyAPICall(from, to), executor);
+  }
+
+  private static long heavyAPICall(LocalDate from, LocalDate to) {
+    return Duration.between(from, to).toMillis();
+  }
+}
+</code></pre><ol><li><h2 id="asynchronous">@Asynchronous</h2></ol><p>There is a similar annotation available in EJB. A method annotated with this annotation is supposed to run asynchronously. However, the EJB one is a bit out of date.</p><p>Also, in EJB, we can’t specify the thread pool. It used to use the app server’s default thread pool. Now the new annotation jakarta.enterprise.concurrent.Asynchronous</p><p>comes with <a href="https://jakarta.ee/specifications/concurrency/3.0/">Jakarta EE Concurrency 3.0</a>, which doesn’t require using EJB, and we can specify the thread pool. It can be used with any CDI bean. Each asynchronous method execution corresponds to a managed <code>java.util.concurrent.CompletableFuture</code> instance that is backed by a <code>jakarta.enterprise.concurrent.ManagedExecutorService</code> as its default asynchronous execution facility.</p><pre><code>package ca.bazlur;
+
+import jakarta.enterprise.concurrent.Asynchronous;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+
+@Named
+@ApplicationScoped
+public class PaymentService {
+
+  @Asynchronous(executor = "java:app/concurrent/MyExecutorService")
+  public CompletableFuture&lt;Confirmation&gt; processPayment(final Order order) {
+    try {
+      var status = processOrder(order);
+
+      return CompletableFuture.completedFuture(status);
+    } catch (PaymentException ex) {
+      throw new CompletionException(ex);
+    }
+  }
+
+  private Confirmation processOrder(Order order) {
+    return new Confirmation();
+  }
+}
+
+class PaymentException extends RuntimeException {
+}
+
+record Confirmation() {
+}
+
+record Order() {
+}
+</code></pre><ol><li><h2 id="bootstrap-api">Bootstrap API</h2></ol><p>If you are invoking a REST service outside of a Jakarta EE environment, e.g., unit tests, integration tests etc., this is good to have a standalone API to do that.</p><p>With this, you don’t need to run the entire container. Thus, it becomes very convenient.</p><p><img src="/backup/images/image-9-1024x497.png" alt="" /></p><ol><li><h2 id="multipartform-data">Multipart/Form-Data</h2></ol><p><a href="https://jakarta.ee/specifications/restful-ws/">Jakarta RESTful Web Service</a> is one of the popular features among developers to expose restful endpoint. However, it didn’t quite support multipart form data in a standard way.</p><p>That’s why, for years, developers needed either Servlets or a vendor-specific REST API to handle the multipart media type.</p><p>With the Jakarta REST 3.1, we no longer have to deal with such an issue, and it adds full support for multipart form data, which is standard.</p><pre><code>package ca.bazlur;
+
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.FormParam;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.EntityPart;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.io.InputStream;
+
+
+@Path("/job")
+public class FileResource {
+
+  @Path("/apply")
+  @POST
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  public Response applyForJob(
+      @FormParam("name") String name, @FormParam("recentPhoto") EntityPart photo,
+      @FormParam("resume") EntityPart resume) {
+    processApplication(name,
+        photo.getMediaType(), photo.getContent(), resume.getMediaType(), resume.getContent());
+    return Response.ok("Application received").build();
+  }
+
+  private void processApplication(String name, MediaType mediaType, InputStream content,
+      MediaType mediaType1, InputStream content1) {
+  }
+}
+</code></pre><ol><li><h2 id="openidauthenticationdefinition"><strong>@OpenIdAuthenticationDefinition</strong></h2></ol><p>Well, for many years, we have been using usernames and passwords for authenticating users in a web application. However, in modern applications, it has become widespread to log in using other services, e.g., Facebook, Google, Twitter, etc.</p><p>The OpenID Connect protocol powers this kind of authentication. With <a href="https://jakarta.ee/specifications/security/3.0/">Jakarta Security 3.0,</a> we now have a standard way to adhere to OpenID Connect by using just an annotation, which is @ OpenIdAuthenticationDefinition.</p><p>Life is much simpler now; specify the required properties, such as Provider URI, clientId, clientSecret, redirect URI, etc.</p><pre><code>@OpenIdAuthenticationDefinition(
+       providerURI = "https://sample-openid-server.com",
+       clientId = "87068hgfg5675htfv6mrucov57bknst.apps.sample.com",
+       clientSecret = "{my-secret}",
+       redirectURI = "${baseURL}/callback",
+       extraParameters = {
+            "testKey=testValue",
+            "testKey2=testValue2"
+       }
+)
+public class SecurityConfig {
+}
+</code></pre><ol><li><h2 id="uuid-key"><strong>UUID Key</strong></h2></ol><p><a href="https://jakarta.ee/specifications/persistence/3.1/">Jakarta Persistence 3.1</a> brings <code>java.util.UUID</code> is to be used as a basic type of field, which is very convenient for entity IDs for the cloud environment since many databases don’t automatically generate UUID.</p><pre><code>package ca.bazlur;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.util.UUID;
+
+@Entity
+public class User {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
+
+  private String username;
+  private String password;
+}
+</code></pre><p>Besides, it brings several functions to the query language and Criteria API. The new functions fall into three categories:</p><ul><li>Numeric functions (CEILING, EXP, FLOOR, LN, POWER, ROUND, SIGN)<li>Functions that return the current local date and time using <strong>java.time</strong> types (LOCAL DATE, LOCAL DATETIME, LOCAL TIME)<li>The EXTRACT function extracts a numeric part from a given date (YEAR, QUARTER, MONTH, WEEK, DAY, HOUR, MINUTE, SECOND)</ul><ol><li><h2 id="jakarta-faces-views-with-pure-java">Jakarta Faces Views with Pure Java</h2></ol><p><a href="https://jakarta.ee/specifications/faces/4.0/">Jakarta Faces 4.0</a> brings a new API to define the full view (HTML Pages) using only Java Code.</p><p>If you are particularly not interested in writing any kind of tagging language whatsoever, you can now write your UI code entirely in Java with the pure Java Faces view. I love it. <img src="/backup/images/image-8-1024x440.png" alt="" /></p><h2 id="conclusion">Conclusion</h2><p>Now a bit about Jakarta EE ambassadors.</p><p>We are an independent grassroots group of people committed to moving Jakarta EE forward through active community participation and advocacy.</p><p>If you want to join and contribute, find out more here: <a href="https://jakartaee-ambassadors.io/">https://jakartaee-ambassadors.io/.</a></p><p>The final release of the entire Jakarta 10 platform will be during the coming month. Find out more here <a href="https://eclipse-ee4j.github.io/jakartaee-platform/jakartaee10/JakartaEE10ReleasePlan">Jakarta EE 10 release plan</a>.</p><p>Finally, if you want to know more about what’s going on with Jakarta EE, please watch this <a href="https://www.youtube.com/watch?v=-ZE6CoH3uWQ">session</a> by <a href="https://www.linkedin.com/in/javareza/">Reza Rahman</a>!</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

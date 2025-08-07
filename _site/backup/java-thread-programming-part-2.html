@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2021/10/12/java-thread-programming-part-2/"><title>Java Thread Programming (Part 2) | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Java Thread Programming (Part 2)" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/java-thread-programming-part-2.html" /><meta property="og:url" content="http://localhost:4000/backup/java-thread-programming-part-2.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Java Thread Programming (Part 2)" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Java Thread Programming (Part 2)","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/java-thread-programming-part-2.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png" alt="" /></p><h1 id="java-thread-programming-part-2">Java Thread Programming (Part 2)</h1><p>In <a href="https://foojay.io/today/java-thread-programming-part-1/">our earlier article</a>, we explained the background to threading and how to create and start a thread.</p><p>In this article, let’s see an example where we can use Threads to our benefit.</p><p>Let’s assume we are going to build a web server. For the sake of the example, let’s constrain ourselves to one single use case, which is that the web server will listen to any client, and if it receives a URL, it will return the top five most frequently used words in that website.</p><p>OK, enough talk, let’s see the code!</p><pre><code>package com.bazlur;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URL;
+import java.util.stream.Collectors;
+
+public class SingleThreadedServer {
+  private final MostFrequentWordService mostFrequentWordService = new MostFrequentWordService();
+
+  public SingleThreadedServer(int port) throws IOException {
+    var serverSocket = new ServerSocket(port);
+    while (true) {
+      var socket = serverSocket.accept();
+      handle(socket);
+    }
+  }
+
+  private void handle(Socket socket) {
+    System.out.println("Client connected: " + socket);
+
+    try (var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         var out = new PrintWriter(socket.getOutputStream(), true)) {
+      String line;
+
+      while ((line = in.readLine()) != null) {
+        if (isValid(line)) {
+          var wordCount = mostFrequentWordService.mostFrequentWord(line)
+                  .stream()
+                  .map(counter -&gt; counter.word() + ": " + counter.count())
+                  .collect(Collectors.joining("\n"));
+          out.println(wordCount);
+        } else if (line.contains("quit")) {
+          out.println("Goodbye!");
+          socket.close();
+        } else {
+          out.println("Malformed URL");
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("Was unable to establish or communicate with client socket:" + e.getMessage());
+    }
+  }
+
+  private static boolean isValid(String stringURL) {
+    try {
+      new URL(stringURL);
+    } catch (MalformedURLException e) {
+      System.out.println("invalid url: " + stringURL);
+      return false;
+    }
+    return true;
+  }
+
+  public static void main(String[] args) throws IOException {
+    new SingleThreadedServer(2222);
+  }
+}
+</code></pre><p>Let’s walk through the code first. In the above code, a <code>ServerSocket</code> starts at a port and waits in a loop for the clients to connect. The <code>handle()</code> method is the most important one. It gets a Socket object and then talks to the client. If a client sends a valid URL, It calls a service, <code>MostFrequentWordService</code>, to get the most frequent words.</p><p>We can use telnet to connect the server and use this server.</p><p><img src="/backup/images/screen-shot-2021-09-30-at-9.30.24-pm-635x510.png" alt="" /></p><p>The only problem with this is it can handle only one client at a time. So if we try to connect another client, it will respond only when the other connected client gets disconnected.</p><p>That’s certainly a problem for a web server. A web server is supposed to connect with hundreds or thousands of clients simultaneously.</p><p>We can solve this problem quite quickly, if we turn this single-threaded program into a multi-threaded program. Recall the <code>handle()</code> method from the above code. Whenever a client connects, I can spawn a new thread and hand over the <code>handle()</code> method to that Thread:</p><p>Yes, that’s the trick. Let’s do it:</p><pre><code>public class MultiThreadedServer {
+  private final MostFrequentWordService mostFrequentWordService = new MostFrequentWordService();
+
+  public MultiThreadedServer(int port) throws IOException {
+    var serverSocket = new ServerSocket(port);
+    while (true) {
+      var socket = serverSocket.accept();
+
+      var thread = new Thread(() -&gt; handle(socket));
+      thread.start();
+    }
+  }
+
+  //rest of the code. 
+}
+</code></pre><p>Now, we can connect multiple clients at once, and serve them all simultaneously:</p><p><img src="/backup/images/screen-shot-2021-09-30-at-10.06.47-pm-700x289.png" alt="" /></p><p>Now that we understand the benefits of using threads in Java, we will dig a bit deeper into using threads in the following articles in this series.</p><p>And in case you are interested in how I wrote the “MostFrequentWordService”, here it is:</p><pre><code>package com.bazlur;
+
+import org.jsoup.Jsoup;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+record WordCount(String word, long count) {
+}
+
+public class MostFrequentWordService {
+  public List mostFrequentWord(String url) throws IOException {
+    var wordCount = Arrays.stream(getWords(url))
+            .filter(value -&gt; !value.isEmpty())
+            .filter(value -&gt; value.length() &gt; 3)
+            .map(String::toLowerCase)
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+    return wordCount.entrySet()
+            .stream()
+            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+            .limit(5)
+            .map(entry -&gt; new WordCount(entry.getKey(), entry.getValue()))
+            .collect(Collectors.toList());
+  }
+
+  private String[] getWords(String url) throws IOException {
+    var connect = Jsoup.connect(url);
+    var document = connect.get();
+    var content = document.body().text();
+
+    return content.split("[^a-zA-Z]");
+  }
+}
+</code></pre><p>That’s it for today!</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

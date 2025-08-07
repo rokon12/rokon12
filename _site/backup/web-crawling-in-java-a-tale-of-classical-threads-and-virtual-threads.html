@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2023/09/29/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads/"><title>Web Crawling in Java: A Tale of Classical Threads and Virtual Threads | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Web Crawling in Java: A Tale of Classical Threads and Virtual Threads" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads.html" /><meta property="og:url" content="http://localhost:4000/backup/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Web Crawling in Java: A Tale of Classical Threads and Virtual Threads" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Web Crawling in Java: A Tale of Classical Threads and Virtual Threads","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg" alt="" /></p><h1 id="web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads">Web Crawling in Java: A Tale of Classical Threads and Virtual Threads</h1><p>I<strong>n today’s fast-paced digital world, web crawling is a cornerstone technology behind search engines, data analysis tools, and various other applications.</strong></p><p><strong>Java, a language known for its robustness and scalability, offers intriguing ways to implement web crawling.</strong></p><p><strong>Yet, the thread model you choose can make a world of difference.</strong></p><p><strong>This article unfolds a compelling narrative around web crawling in Java, contrasting classical threads with their newer counterpart: virtual threads.</strong></p><h2 id="environment-setup"><strong>Environment Setup</strong></h2><p>Before diving into the code and its intricate comparisons, ensure you have JDK 21 installed on your system. If you’re using a Unix-based system, SDKMAN! It makes this simple. Just open your terminal and run <code>curl -s "https://get.sdkman.io" | bash</code> to install SDKMAN!, followed by <code>source "$HOME/.sdkman/bin/sdkman-init.sh"</code> to initialize it. Finally, install JDK 21 with <code>sdk install java 21.0.0-&lt;vendor&gt;</code>, replacing &lt;vendor&gt; with your preferred vendor (e.g., zulu, adopt).</p><p>Now that your environment is ready let’s move forward with our captivating tale of web crawling in Java.</p><p>By having JDK 21 at your disposal, you are now well-equipped to delve into the fascinating juxtaposition of classical and virtual threads in Java’s web-crawling landscape.</p><h2 id="the-code-overview"><strong>The Code Overview</strong></h2><p>The Java code in focus here serves as a skeletal web crawler, a program that starts at an initial URL and recursively follows links to gather data from various web pages.</p><p>It leverages both classical threads, using a fixed thread pool, and virtual threads.</p><p>The objective is to examine how each threading model impacts the performance of the web crawler.</p><pre><code>package ca.bazlur;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Queue;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class Crawler implements Runnable {
+    public static final ReentrantLock QUEUE_LOCK = new ReentrantLock();
+    public static final Condition QUEUE_NOT_EMPTY = QUEUE_LOCK.newCondition();
+    private static final int MAX_PAGES_TO_SEARCH = 100;
+    private final AtomicInteger count;
+    private final ConcurrentMap&lt;String, Boolean&gt; visited;
+    private final String url;
+    private final Queue&lt;String&gt; pageQueue;
+
+    public Crawler(AtomicInteger count, ConcurrentMap&lt;String, Boolean&gt; visited, String url,
+                   Queue&lt;String&gt; pageQueue) {
+        this.count = count;
+        this.visited = visited;
+        this.url = url;
+        this.pageQueue = pageQueue;
+    }
+
+    @Override
+    public void run() {
+        while (!visited.containsKey(url) &amp;&amp; count.get() &lt; MAX_PAGES_TO_SEARCH) {
+            try {
+                var connection = (HttpURLConnection) new URL(url).openConnection();
+                connection.setRequestMethod("HEAD");
+                connection.connect();
+                String contentType = connection.getContentType();
+
+                if (contentType != null &amp;&amp; (contentType.startsWith("text/") || contentType.contains("xml"))) {
+                    Document document = Jsoup.connect(url).get();
+                    Elements linksOnPage = document.select("a[href]");
+                    visited.put(url, true);
+                    count.incrementAndGet();
+
+                    for (Element link : linksOnPage) {
+                        String nextUrl = link.attr("abs:href");
+                        if (nextUrl.startsWith("http") &amp;&amp; !visited.containsKey(nextUrl)) {
+                            pageQueue.add(nextUrl);
+                        }
+                    }
+                    signalQueue();
+                }
+            } catch (IOException e) {
+                System.err.printf("Error occurred while accessing URL '%s', the error: %s\n", url, e.getMessage());
+            }
+        }
+    }
+
+    private static void signalQueue() {
+        QUEUE_LOCK.lock();
+        try {
+            QUEUE_NOT_EMPTY.signalAll();
+        } finally {
+            QUEUE_LOCK.unlock();
+        }
+    }
+
+    //Classical Threads
+    //Pages crawled: 101
+    //Execution time: 20910ms
+    //Throughput: 4.8302247728359635 pages/sec
+
+    //Virtual threads
+    //Pages crawled: 785
+    //Execution time: 29323ms
+    //Throughput: 26.77079425706783 pages/sec
+
+    public static void main(String[] args) {
+        final ConcurrentMap&lt;String, Boolean&gt; visited = new ConcurrentHashMap&lt;&gt;();
+        final Queue&lt;String&gt; pageQueue = new LinkedBlockingDeque&lt;&gt;();
+        pageQueue.add("https://foojay.io/");
+
+        long startTime = System.currentTimeMillis();
+        AtomicInteger pageCount = new AtomicInteger();
+
+ //       try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+       try (var executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())) {
+            while (pageCount.get() &lt; MAX_PAGES_TO_SEARCH) {
+                QUEUE_LOCK.lock();
+                while (pageQueue.isEmpty()) {
+                    QUEUE_NOT_EMPTY.await();
+                }
+                String poll = pageQueue.poll();
+                if (poll != null &amp;&amp; !visited.containsKey(poll)) {
+                    executor.submit(new Crawler(pageCount, visited, poll, pageQueue));
+                }
+                QUEUE_LOCK.unlock();
+            }
+
+            executor.shutdown();
+            executor.awaitTermination(1, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Main thread interrupted!");
+        }
+
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+
+        System.out.println("\nPages crawled: " + visited.size());
+        System.out.println("Execution time: " + totalTime + "ms");
+
+        double pagesPerSecond = (double) visited.size() / (totalTime / 1000.0);
+        System.out.println("Throughput: " + pagesPerSecond + " pages/sec");
+    }
+}
+</code></pre><h3 id="key-components">Key Components</h3><ul><li><strong>ConcurrentMap</strong> <strong>visited</strong> : Our trusty guide, marking the URLs we’ve visited.<li><strong>Queue</strong> <strong>pageQueue</strong> : The frontier, storing URLs awaiting exploration.<li><strong>AtomicInteger</strong> <strong>count</strong> : The diligent counter, keeping track of the number of pages visited.<li><strong>Crawler Class</strong> : The main protagonist embodies crawling logic.<li><strong>run()</strong> <strong>Method</strong> : The heart of the operation, orchestrating the fetching and parsing of web pages.</ul><h3 id="the-core-logic"><strong>The Core Logic</strong></h3><p>When the program starts, it initializes a shared visited map, a pageQueue, and an AtomicInteger count.</p><p>It then creates an executor service—either classical or virtual threads, based on the scenario—and enters a while loop.</p><p>Inside this loop, it picks URLs from the pageQueue and submits new Crawler tasks for execution.</p><p>Each Crawler task fetches the web page, parses the HTML to find links, and adds those new URLs to the pageQueue.</p><h2 id="running-the-code-execution-command-with-dependencies">Running the Code: Execution Command with Dependencies</h2><p>Before running your web crawler, it’s important to include its dependency: the jsoup library, specifically version 1.16.1, which is used for HTML parsing.</p><h3 id="command-line-execution">Command-Line Execution</h3><ol><li><strong>Compile the Java File</strong> : Navigate to the directory containing your <code>Crawler.java</code> file. To compile the code, include the <a href="https://jsoup.org/">jsoup library</a> in the classpath. If the jsoup JAR file is in the same directory, you can run:<code> javac -cp '.:jsoup-1.16.1.jar' Crawler.java</code><li><strong>Run the Compiled Class</strong> : When running the Java program, don’t forget to include the JSoup library in the classpath again:<code> java -cp '.:jsoup-1.16.1.jar' Crawler </code>Make sure you’ve replaced <code>jsoup-1.16.1.jar</code> with the correct version if you downloaded a different one.</ol><p>By following these steps, your Java web crawler will be up and running, fully equipped with the jsoup library for HTML parsing.</p><p>If you prefer to manage dependencies using a build tool, both Maven and Gradle offer straightforward ways to include the JSoup library. Below are the steps for each:</p><h3 id="using-maven">Using Maven</h3><ul><li><strong>Add Dependency</strong> : In your <code>pom.xml</code>, include the following dependency for JSoup version 1.16.1:<code> </code></ul><pre><code>&lt;dependencies&gt;
+     &lt;dependency&gt;
+         &lt;groupId&gt;org.jsoup&lt;/groupId&gt;
+         &lt;artifactId&gt;jsoup&lt;/artifactId&gt;
+         &lt;version&gt;1.16.1&lt;/version&gt;
+     &lt;/dependency&gt;
+ &lt;/dependencies&gt;
+</code></pre><ul><li><strong>Compile and Run</strong> : Navigate to your project directory and execute:<code> mvn compile exec:java -Dexec.mainClass="</code><code>Crawler</code><code>"</code> .</ul><h3 id="using-gradle">Using Gradle</h3><ul><li><strong>Add Dependency</strong> : In your file<code>build.gradle</code>, add the following dependency:<code> dependencies { implementation 'org.jsoup:jsoup:1.16.1' }</code></ul><ul><li><strong>Compile and Run</strong> : Navigate to your project directory and run:<code> gradle run</code></ul><p>Either of these build tools will automatically download the JSoup library and include it in your project’s classpath, making the compilation and execution process much smoother.</p><h2 id="a-comparative-analysis"><strong>A Comparative Analysis</strong></h2><h3 id="metrics-observed"><strong>Metrics Observed</strong></h3><p>With <strong>Virtual Threads</strong> :</p><ul><li>Pages crawled: 785<li>Execution time: 29,323 ms<li>Throughput: 26.77 pages/sec</ul><p>With <strong>Classical Threads</strong> :</p><ul><li>Pages crawled: 101<li>Execution time: 20,910 ms<li>Throughput: 4.83 pages/sec</ul><h3 id="the-revelation-virtual-threads-shine"><strong>The Revelation: Virtual Threads Shine</strong></h3><ol><li><strong>Throughput</strong> : Virtual threads deliver a throughput of 26.77 pages/sec, significantly higher than the 4.83 pages/sec achieved by classical threads. It’s akin to a sports car leaving a bicycle in the dust.<li><strong>Pages Crawled</strong> : Virtual threads manage to crawl a whopping 785 pages, compared to the modest 101 by classical threads. The difference is too vast to ignore.<li><strong>Resource Efficiency</strong> : Both virtual and classical threads in this example are backed by the same number of underlying physical threads, thanks to Java’s ForkJoinPool. This makes the comparison even more compelling, showing how much more you can achieve with the same resources when using virtual threads.</ol><h2 id="drawing-conclusions"><strong>Drawing Conclusions</strong></h2><p>The story told by this code and its performance metrics is one of stark contrast between classical and virtual threads. Virtual threads not only outperform classical threads in terms of throughput but also do so without requiring more underlying resources. It’s as if they’re performing a high-wire act while juggling, making the most of what they have.</p><p><strong>In essence, the choice of threading model isn’t merely a technical decision; it’s a strategic one that could redefine the efficiency and scalability of your applications. As our web crawler has demonstrated, opting for virtual threads can be akin to unlocking a hidden level of performance, propelling your Java applications into a new realm of efficiency.</strong></p><p><strong><em>NOTE: Keep in mind that the code I’ve shared here has an issue known as pinning. I’ll go into more detail about this in my next article.</em></strong></p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

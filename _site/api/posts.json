@@ -1,0 +1,923 @@
+[
+  
+    {
+      "title": "Building Robust AI Applications with LangChain4j Guardrails and Spring Boot",
+      "url": "http://localhost:4000/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/",
+      "date": "2025-06-21T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Speaking at GeeCON 2025: A Memorable Kraków Experience",
+      "url": "http://localhost:4000/2025/05/25/speaking-at-geecon-2025-a-memorable-krakw-experience/",
+      "date": "2025-05-25T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java’s Structured Concurrency: Finally Finding Its Footing",
+      "url": "http://localhost:4000/2025/05/25/javas-structured-concurrency-finally-finding-its-footing/",
+      "date": "2025-05-25T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java + LLMs  + LangChain4j — 2025 Talk Series",
+      "url": "http://localhost:4000/2025/05/03/java-llms-langchain4j-2025-talk-series/",
+      "date": "2025-05-03T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Chat with Your Knowledge Base: A Hands-On Java & LangChain4j Guide",
+      "url": "http://localhost:4000/2025/04/18/chat-with-your-knowledge-base-a-handson-java-langchain4j-guide/",
+      "date": "2025-04-18T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama",
+      "url": "http://localhost:4000/2025/04/06/building-formpilot-my-journey-creating-an-aipowered-form-filler-with-rag-langchain4j-and-ollama/",
+      "date": "2025-04-06T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "A Journey to DevNexus: Challenges, Friendships, and Java",
+      "url": "http://localhost:4000/2025/03/08/a-journey-to-devnexus-challenges-friendships-and-java/",
+      "date": "2025-03-08T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "JetBrains Junie: My Firsthand Experience",
+      "url": "http://localhost:4000/2025/03/03/jetbrains-junie-my-firsthand-experience/",
+      "date": "2025-03-03T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "DIY JVM Part 1: Decoding the Magic – Parsing Java",
+      "url": "http://localhost:4000/2025/02/21/diy-jvm-part-1-decoding-the-magic-parsing-java/",
+      "date": "2025-02-21T00:00:00+00:00",
+      "tags": [],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization",
+      "url": "http://localhost:4000/2025/02/14/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization/",
+      "date": "2025-02-14T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "A Journey of the Heart: Visiting Madinah and Makkah",
+      "url": "http://localhost:4000/2025/01/07/a-journey-of-the-heart-visiting-madinah-and-makkah/",
+      "date": "2025-01-07T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Tips # 01 – Writing Shebang Scripts in Pure Java",
+      "url": "http://localhost:4000/2024/10/27/java-tips-01-writing-shebang-scripts-in-pure-java/",
+      "date": "2024-10-27T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Family, Castles, and Code: Exploring Europe’s Old Cities",
+      "url": "http://localhost:4000/2024/09/11/family-castles-and-code-exploring-europes-old-cities/",
+      "date": "2024-09-11T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes",
+      "url": "http://localhost:4000/2024/07/18/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes/",
+      "date": "2024-07-18T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Unsafe is Finally Going Away: Embracing Safer Memory Access with JEP 471",
+      "url": "http://localhost:4000/2024/07/11/unsafe-is-finally-going-away-embracing-safer-memory-access-with-jep-471/",
+      "date": "2024-07-11T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455",
+      "url": "http://localhost:4000/2024/06/01/exploring-new-features-in-jdk-23-simplifying-java-with-primitive-type-patterns-with-jep-455/",
+      "date": "2024-06-01T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Exploring New Features in JDK 23: A Sneak Peek",
+      "url": "http://localhost:4000/2024/06/01/exploring-new-features-in-jdk-23-a-sneak-peek/",
+      "date": "2024-06-01T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Records for Cleaner and More Expressive Parameterized Tests in JUnit 5",
+      "url": "http://localhost:4000/2024/03/22/records-for-cleaner-and-more-expressive-parameterized-tests-in-junit-5/",
+      "date": "2024-03-22T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Homecoming Chronicles: Navigating Parenting, Flights, and New Beginnings",
+      "url": "http://localhost:4000/2024/01/09/homecoming-chronicles-navigating-parenting-flights-and-new-beginnings/",
+      "date": "2024-01-09T00:00:00+00:00",
+      "tags": ["java programming","java 11","java 21","java cli","java code"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Accessing Native C Functions from Java Using OpenJDK’s JEP 454: Foreign Function & Memory API",
+      "url": "http://localhost:4000/2023/10/16/accessing-native-c-functions-from-java-using-openjdks-jep-454-foreign-function-memory-api/",
+      "date": "2023-10-16T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "How to Diagnose and Mitigate Pinning in Java’s Virtual Thread Execution",
+      "url": "http://localhost:4000/2023/10/10/how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution/",
+      "date": "2023-10-10T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "What is a semaphore, and when to use it?",
+      "url": "http://localhost:4000/2023/10/05/what-is-a-semaphore-and-when-to-use-it/",
+      "date": "2023-10-05T00:00:00+00:00",
+      "tags": ["java concurrency","semaphore","virtual threads","thread programming","synchronization"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "What is CyclicBarrier and When to Use It in Java?",
+      "url": "http://localhost:4000/2023/10/04/what-is-cyclicbarrier-and-when-to-use-it-in-java/",
+      "date": "2023-10-04T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "What is CountDownLatch and How to Use It?",
+      "url": "http://localhost:4000/2023/10/04/what-is-countdownlatch-and-how-to-use-it/",
+      "date": "2023-10-04T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Web Crawling in Java: A Tale of Classical Threads and Virtual Threads",
+      "url": "http://localhost:4000/2023/09/29/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads/",
+      "date": "2023-09-29T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked",
+      "url": "http://localhost:4000/2023/09/20/exploring-the-impact-of-stack-size-on-jvm-thread-creation-a-myth-debunked/",
+      "date": "2023-09-20T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Turning Over a New Leaf: Java Updates and Journeys as Summer Ends",
+      "url": "http://localhost:4000/2023/09/13/turning-over-a-new-leaf-java-updates-and-journeys-as-summer-ends/",
+      "date": "2023-09-13T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Embracing Modernity: A Comprehensive Look at Sealed Classes, Pattern Matching, and Functional Paradigms in Java",
+      "url": "http://localhost:4000/2023/09/11/embracing-modernity-a-comprehensive-look-at-sealed-classes-pattern-matching-and-functional-paradigms-in-java/",
+      "date": "2023-09-11T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Unlocking Java Wisdom: A Conversation with Oracle ACE Simon Martinelli",
+      "url": "http://localhost:4000/2023/09/01/unlocking-java-wisdom-a-conversation-with-oracle-ace-simon-martinelli/",
+      "date": "2023-09-01T00:00:00+00:00",
+      "tags": ["virtual threads 2","learning thread programming","openjdk","c programming","carrier threads"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Writing Testable Code: A Journey Through Consideration and Refactoring",
+      "url": "http://localhost:4000/2023/08/30/writing-testable-code-a-journey-through-consideration-and-refactoring/",
+      "date": "2023-08-30T00:00:00+00:00",
+      "tags": ["testing best practices","junit 5","test driven development","refactoring","code quality"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Thread-Safe Counter in Java: A Comprehensive Guide",
+      "url": "http://localhost:4000/2023/08/17/threadsafe-counter-in-java-a-comprehensive-guide/",
+      "date": "2023-08-17T00:00:00+00:00",
+      "tags": ["java concurrency","thread safety","atomic operations","synchronization","varhandle"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Exploring File Storage Solutions in Spring Boot: Database, Local Systems, Cloud Services, and Beyond",
+      "url": "http://localhost:4000/2023/08/17/exploring-file-storage-solutions-in-spring-boot-database-local-systems-cloud-services-and-beyond/",
+      "date": "2023-08-17T00:00:00+00:00",
+      "tags": ["virtual threads 2","openjdk","spring boot","java language features","object oriented programming"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Sealed Interfaces and Pattern Matching: A Quick Dive into Java’s Modern Capabilities",
+      "url": "http://localhost:4000/2023/08/09/sealed-interfaces-and-pattern-matching-a-quick-dive-into-javas-modern-capabilities/",
+      "date": "2023-08-09T00:00:00+00:00",
+      "tags": ["sealed classes","pattern matching","java 17","modern java","interface design"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "The Java Landscape: A Month with Vaadin, OpenJDK Insights, and Java Enhancements",
+      "url": "http://localhost:4000/2023/08/07/the-java-landscape-a-month-with-vaadin-openjdk-insights-and-java-enhancements/",
+      "date": "2023-08-07T00:00:00+00:00",
+      "tags": ["virtual threads 2","openjdk","spring boot","java language features","object oriented programming"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Book Review: “OpenJDK Migration for Dummies”",
+      "url": "http://localhost:4000/2023/08/04/book-review-openjdk-migration-for-dummies/",
+      "date": "2023-08-04T00:00:00+00:00",
+      "tags": ["virtual threads 2","openjdk","spring boot","java language features","object oriented programming"],
+      "excerpt": "Book Review: “OpenJDK Migration for Dummies”\n\n"
+    },
+  
+    {
+      "title": "Preparing for JDK 21: A Comprehensive Overview of Key Features and Enhancements",
+      "url": "http://localhost:4000/2023/08/02/preparing-for-jdk-21-a-comprehensive-overview-of-key-features-and-enhancements/",
+      "date": "2023-08-02T00:00:00+00:00",
+      "tags": ["java 21","virtual threads","pattern matching","string templates","jdk enhancements"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Busting Myths, Building Futures: A Conversation with Cay Horstmann on Java and Machine Learning",
+      "url": "http://localhost:4000/2023/07/24/busting-myths-building-futures-a-conversation-with-cay-horstmann-on-java-and-machine-learning/",
+      "date": "2023-07-24T00:00:00+00:00",
+      "tags": ["virtual threads 2","openjdk","spring boot","java language features","object oriented programming"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Dive into the OpenJDK: Top 10 Reads on Foojay.io",
+      "url": "http://localhost:4000/2023/07/19/dive-into-the-openjdk-top-10-reads-on-foojayio/",
+      "date": "2023-07-19T00:00:00+00:00",
+      "tags": ["virtual threads 2","openjdk","spring boot","java language features","object oriented programming"],
+      "excerpt": "Dive into the OpenJDK: Top 10 Reads on Foojay.io\n\n"
+    },
+  
+    {
+      "title": "Charting the Course of Java: An Insightful Conversation with Java Champion, Sebastian Daschner",
+      "url": "http://localhost:4000/2023/07/11/charting-the-course-of-java-an-insightful-conversation-with-java-champion-sebastian-daschner/",
+      "date": "2023-07-11T00:00:00+00:00",
+      "tags": ["virtual threads 2","openjdk","spring boot","java language features","object oriented programming"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "The Evolution of Java: Challenging Stereotypes and Embracing Modernity",
+      "url": "http://localhost:4000/2023/07/07/the-evolution-of-java-challenging-stereotypes-and-embracing-modernity/",
+      "date": "2023-07-07T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II",
+      "url": "http://localhost:4000/2023/07/05/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-partii/",
+      "date": "2023-07-05T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-II\n\n"
+    },
+  
+    {
+      "title": "Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-I",
+      "url": "http://localhost:4000/2023/06/29/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-parti/",
+      "date": "2023-06-29T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-I\n\n"
+    },
+  
+    {
+      "title": "Code, Conferences, and the Swiss Alps: A Monthly Roundup",
+      "url": "http://localhost:4000/2023/06/28/code-conferences-and-the-swiss-alps-a-monthly-roundup/",
+      "date": "2023-06-28T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Exploring Java 21’s Intriguing Additions: Unveiling New Features (Part 1)",
+      "url": "http://localhost:4000/2023/06/20/exploring-java-21s-intriguing-additions-unveiling-new-features-part-1/",
+      "date": "2023-06-20T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Journey through Code: A Student’s Guide to the Software Development",
+      "url": "http://localhost:4000/2023/06/17/journey-through-code-a-students-guide-to-the-software-development/",
+      "date": "2023-06-17T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Breaking the Code: How Chris Newland is Changing the Game in JVM Performance!",
+      "url": "http://localhost:4000/2023/06/12/breaking-the-code-how-chris-newland-is-changing-the-game-in-jvm-performance/",
+      "date": "2023-06-12T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Cracking Code and Conventions: An Exclusive Interview with Nicolas Fränkel",
+      "url": "http://localhost:4000/2023/06/05/cracking-code-and-conventions-an-exclusive-interview-with-nicolas-frnkel/",
+      "date": "2023-06-05T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Resilience in Coding: Miro Wengner on Thriving in the Software Industry",
+      "url": "http://localhost:4000/2023/05/31/resilience-in-coding-miro-wengner-on-thriving-in-the-software-industry/",
+      "date": "2023-05-31T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Threads Reimagined: A Reflection on JConf Toronto 2023 and the Dawn of a New Era of Concurrency",
+      "url": "http://localhost:4000/2023/05/23/java-threads-reimagined-a-reflection-on-jconf-toronto-2023-and-the-dawn-of-a-new-era-of-concurrency/",
+      "date": "2023-05-23T00:00:00+00:00",
+      "tags": ["java concurrency","java programming","virtual threads 2","future of java","java evolution"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Decoding Success: An Industry Expert’s Guide to Thriving in Software Development and Security",
+      "url": "http://localhost:4000/2023/05/23/decoding-success-an-industry-experts-guide-to-thriving-in-software-development-and-security/",
+      "date": "2023-05-23T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "The Hallway of Hope: The First Cry",
+      "url": "http://localhost:4000/2023/05/17/the-hallway-of-hope-the-first-cry/",
+      "date": "2023-05-17T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Announcing “Java Unscripted: An Asynchronous Exploration of Excellence”",
+      "url": "http://localhost:4000/2023/05/16/announcing-java-unscripted-an-asynchronous-exploration-of-excellence/",
+      "date": "2023-05-16T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich",
+      "url": "http://localhost:4000/2023/05/15/discovering-the-secrets-to-success-an-exclusive-interview-with-java-champion-michael-p-redlich/",
+      "date": "2023-05-15T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich\n\n"
+    },
+  
+    {
+      "title": "Unleashing the Power of Lightweight Concurrency: A Comprehensive Guide to Java Virtual Threads (Part 1)",
+      "url": "http://localhost:4000/2023/05/09/unleashing-the-power-of-lightweight-concurrency-a-comprehensive-guide-to-java-virtual-threads-part-1/",
+      "date": "2023-05-09T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "Unleashing the Power of Lightweight Concurrency: A Comprehensive Guide to Java Virtual Threads (Part 1)\n\n"
+    },
+  
+    {
+      "title": "My Experience with the Apple Genius Bar: A Bumpy Ride to a Fixed MacBook Pro",
+      "url": "http://localhost:4000/2023/04/30/my-experience-with-the-apple-genius-bar-a-bumpy-ride-to-a-fixed-macbook-pro/",
+      "date": "2023-04-30T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Unlocking Java Secrets with Frank Delporte: Insights, Stories, and Tips for Success",
+      "url": "http://localhost:4000/2023/04/10/unlocking-java-secrets-with-frank-delporte-insights-stories-and-tips-for-success/",
+      "date": "2023-04-10T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "My Committer Profile and Interview with the Eclipse Foundation",
+      "url": "http://localhost:4000/2023/04/10/my-committer-profile-and-interview-with-the-eclipse-foundation/",
+      "date": "2023-04-10T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Unlocking the Secrets to a Successful Software Engineering Career: An Interview with Otavio Santana",
+      "url": "http://localhost:4000/2023/04/03/unlocking-the-secrets-to-a-successful-software-engineering-career-an-interview-with-otavio-santana/",
+      "date": "2023-04-03T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Competing for the Crown: A Friendly Debate on the Future of Java and Kotlin on Foojay.io Today",
+      "url": "http://localhost:4000/2023/03/29/competing-for-the-crown-a-friendly-debate-on-the-future-of-java-and-kotlin-on-foojayio-today/",
+      "date": "2023-03-29T00:00:00+00:00",
+      "tags": ["openjdk","java unscripted","java champion","java 21","virtual thread"],
+      "excerpt": "Competing for the Crown: A Friendly Debate on the Future of Java and Kotlin on Foojay.io Today\n\n"
+    },
+  
+    {
+      "title": "Navigating the Challenges of Modern Software Development: An Exclusive Interview with Shai Almog",
+      "url": "http://localhost:4000/2023/03/27/navigating-the-challenges-of-modern-software-development-an-exclusive-interview-with-shai-almog/",
+      "date": "2023-03-27T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "From Assembler to Chat-GPT: Steve Poole on the Shifting Landscape of Programming",
+      "url": "http://localhost:4000/2023/03/20/from-assembler-to-chatgpt-steve-poole-on-the-shifting-landscape-of-programming/",
+      "date": "2023-03-20T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "The Speed Test: Comparing Map.of() and new HashMap<>() in Java",
+      "url": "http://localhost:4000/2023/03/16/the-speed-test-comparing-mapof-and-new-hashmap-in-java/",
+      "date": "2023-03-16T00:00:00+00:00",
+      "tags": ["java collections","performance optimization","immutable collections","hashmap","benchmarking"],
+      "excerpt": "The Speed Test: Comparing Map.of() and new HashMap&lt;&gt;() in Java\n\n"
+    },
+  
+    {
+      "title": "From Law Degree to Java Champion: Geertjan Wielenga on the Success of Java and Navigating the Software Industry",
+      "url": "http://localhost:4000/2023/03/13/from-law-degree-to-java-champion-geertjan-wielenga-on-the-success-of-java-and-navigating-the-software-industry/",
+      "date": "2023-03-13T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "How to Keep Up with the Ever-Evolving Tech Industry",
+      "url": "http://localhost:4000/2023/03/12/how-to-keep-up-with-the-everevolving-tech-industry/",
+      "date": "2023-03-12T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Welcoming Our Little Princess: The Story of Rushda Rahman",
+      "url": "http://localhost:4000/2023/03/06/welcoming-our-little-princess-the-story-of-rushda-rahman/",
+      "date": "2023-03-06T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java, Friends, and Cold Weather: My Adventure at ConFoo Conference",
+      "url": "http://localhost:4000/2023/02/27/java-friends-and-cold-weather-my-adventure-at-confoo-conference/",
+      "date": "2023-02-27T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Sealed Classes in Action: Building Robust and Secure Applications",
+      "url": "http://localhost:4000/2023/02/20/java-sealed-classes-in-action-building-robust-and-secure-applications/",
+      "date": "2023-02-20T00:00:00+00:00",
+      "tags": ["sealed classes","java 15","design patterns","type safety","inheritance control"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Optional in Java: A Swiss Army Knife for Handling Nulls and Improving Code Quality",
+      "url": "http://localhost:4000/2023/02/01/optional-in-java-a-swiss-army-knife-for-handling-nulls-and-improving-code-quality/",
+      "date": "2023-02-01T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Bytecode Simplified: Journey to the Wonderland (Part 3)",
+      "url": "http://localhost:4000/2023/01/24/java-bytecode-simplified-journey-to-the-wonderland-part-3/",
+      "date": "2023-01-24T00:00:00+00:00",
+      "tags": ["openjdk","java expert","programming journey","javaassist","javagent"],
+      "excerpt": "Java Bytecode Simplified: Journey to the Wonderland (Part 3)\n\n"
+    },
+  
+    {
+      "title": "Why Many Developers Don’t Write or Give Talks and How to Overcome Challenges",
+      "url": "http://localhost:4000/2023/01/11/why-many-developers-dont-write-or-give-talks-and-how-to-overcome-challenges/",
+      "date": "2023-01-11T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "Why Many Developers Don’t Write or Give Talks and How to Overcome Challenges\n\n"
+    },
+  
+    {
+      "title": "The complete glossary of my name",
+      "url": "http://localhost:4000/2022/11/12/the-complete-glossary-of-my-name/",
+      "date": "2022-11-12T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "The complete glossary of my name\n\n"
+    },
+  
+    {
+      "title": "Tour de Morocco!",
+      "url": "http://localhost:4000/2022/10/14/tour-de-morocco/",
+      "date": "2022-10-14T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "The 5 Most Pivotal and Innovative Additions to OpenJDK 19",
+      "url": "http://localhost:4000/2022/09/20/the-5-most-pivotal-and-innovative-additions-to-openjdk-19/",
+      "date": "2022-09-20T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 15)",
+      "url": "http://localhost:4000/2022/08/31/java-thread-programming-part-15/",
+      "date": "2022-08-31T00:00:00+00:00",
+      "tags": ["java threads","callable future","asynchronous programming","executorservice","java 19"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Bytecode Simplified: Journey to the Wonderland (Part 2)",
+      "url": "http://localhost:4000/2022/08/16/java-bytecode-simplified-journey-to-the-wonderland-part-2/",
+      "date": "2022-08-16T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "5 ways to improve your communication skills",
+      "url": "http://localhost:4000/2022/08/06/5-ways-to-improve-your-communication-skills/",
+      "date": "2022-08-06T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "5 ways to improve your communication skills\n\n"
+    },
+  
+    {
+      "title": "Weekly Java Newsletter – Issue #3",
+      "url": "http://localhost:4000/2022/07/11/weekly-java-newsletter-issue-3/",
+      "date": "2022-07-11T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Book Review: Klara and the Sun",
+      "url": "http://localhost:4000/2022/07/07/book-review-klara-and-the-sun/",
+      "date": "2022-07-07T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","structured concurrency","virtual thread","java19"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Weekly Java Newsletter – Issue #2",
+      "url": "http://localhost:4000/2022/07/01/weekly-java-newsletter-issue-2/",
+      "date": "2022-07-01T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Top 7 Features in Jakarta EE 10",
+      "url": "http://localhost:4000/2022/06/28/top-7-features-in-jakarta-ee-10/",
+      "date": "2022-06-28T00:00:00+00:00",
+      "tags": ["jakarta ee 10","enterprise java","cdi lite","rest client","jakarta security"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "I joined the Jakarta Ambassadors program",
+      "url": "http://localhost:4000/2022/06/09/i-joined-the-jakarta-ambassadors-program/",
+      "date": "2022-06-09T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "In Bangladesh, I was featured in one of the country’s most widely read newspapers.",
+      "url": "http://localhost:4000/2022/06/08/in-bangladesh-i-was-featured-in-one-of-the-countrys-most-widely-read-newspapers/",
+      "date": "2022-06-08T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Book Review: Monolith to Microservices (Part 2)",
+      "url": "http://localhost:4000/2022/05/25/book-review-monolith-to-microservices-part-2/",
+      "date": "2022-05-25T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput",
+      "url": "http://localhost:4000/2022/05/22/your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput/",
+      "date": "2022-05-22T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput\n\n"
+    },
+  
+    {
+      "title": "I’m now officially a Java Champion",
+      "url": "http://localhost:4000/2022/05/19/im-now-officially-a-java-champion/",
+      "date": "2022-05-19T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Book Review: Monolith to Microservices (Part 1)",
+      "url": "http://localhost:4000/2022/05/18/book-review-monolith-to-microservices-part-1/",
+      "date": "2022-05-18T00:00:00+00:00",
+      "tags": ["jakarta ee","jakarta ee 10","java champion","virtual thread","structured concurrency"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "How to run the Java Incubator Module from the Command Line and IntelliJ IDEA",
+      "url": "http://localhost:4000/2022/05/10/how-to-run-the-java-incubator-module-from-the-command-line-and-intellij-idea/",
+      "date": "2022-05-10T00:00:00+00:00",
+      "tags": ["incubator modules","structured concurrency","virtual threads","java tooling","project loom"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "How to Enable Java Preview Features and Run Code from IntelliJ IDEA",
+      "url": "http://localhost:4000/2022/05/08/how-to-enable-java-preview-features-and-run-code-from-intellij-idea/",
+      "date": "2022-05-08T00:00:00+00:00",
+      "tags": ["intellij idea","preview features","virtual threads","project loom","java tooling"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Top 10 Java Language Features",
+      "url": "http://localhost:4000/2022/04/12/top-10-java-language-features/",
+      "date": "2022-04-12T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Three Mistakes Junior Software Developers Make Preventing Getting Hired On Amazing Projects",
+      "url": "http://localhost:4000/2022/04/06/three-mistakes-junior-software-developers-make-preventing-getting-hired-on-amazing-projects/",
+      "date": "2022-04-06T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "Three Mistakes Junior Software Developers Make Preventing Getting Hired On Amazing Projects\n\n"
+    },
+  
+    {
+      "title": "5 Things You Probably Didn’t Know About Java Concurrency",
+      "url": "http://localhost:4000/2022/03/25/5-things-you-probably-didnt-know-about-java-concurrency/",
+      "date": "2022-03-25T00:00:00+00:00",
+      "tags": ["java concurrency","thread ordering","volatile keyword","completablefuture","lock free programming"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "7 Reasons Why, After 26 Years, Java Still Makes Sense!",
+      "url": "http://localhost:4000/2022/03/15/7-reasons-why-after-26-years-java-still-makes-sense/",
+      "date": "2022-03-15T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "7 Reasons Why, After 26 Years, Java Still Makes Sense!\n\n"
+    },
+  
+    {
+      "title": "Java Bytecode Simplified: Journey to the Wonderland (Part 1)",
+      "url": "http://localhost:4000/2022/03/08/java-bytecode-simplified-journey-to-the-wonderland-part-1/",
+      "date": "2022-03-08T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 14)",
+      "url": "http://localhost:4000/2022/03/01/java-thread-programming-part-14/",
+      "date": "2022-03-01T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "Java Thread Programming (Part 14)\n\n"
+    },
+  
+    {
+      "title": "7 Ways to Improve Your Code Reading Skills",
+      "url": "http://localhost:4000/2022/02/18/7-ways-to-improve-your-code-reading-skills/",
+      "date": "2022-02-18T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "7 Ways to Improve Your Code Reading Skills\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 13)",
+      "url": "http://localhost:4000/2022/02/08/java-thread-programming-part-13/",
+      "date": "2022-02-08T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "Java Thread Programming (Part 13)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 12)",
+      "url": "http://localhost:4000/2022/02/01/java-thread-programming-part-12/",
+      "date": "2022-02-01T00:00:00+00:00",
+      "tags": ["java threads","executor framework","thread pool","scheduled executor","concurrent programming"],
+      "excerpt": "Java Thread Programming (Part 12)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 11)",
+      "url": "http://localhost:4000/2022/01/26/java-thread-programming-part-11/",
+      "date": "2022-01-26T00:00:00+00:00",
+      "tags": ["thread programming","learning thread programming","concurrency","thread","threadpool"],
+      "excerpt": "Java Thread Programming (Part 11)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 10)",
+      "url": "http://localhost:4000/2021/12/22/java-thread-programming-part-10/",
+      "date": "2021-12-22T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Java Thread Programming (Part 10)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 9)",
+      "url": "http://localhost:4000/2021/12/14/java-thread-programming-part-9/",
+      "date": "2021-12-14T00:00:00+00:00",
+      "tags": ["java threads","synchronized collections","thread safety","concurrent collections","atomic operations"],
+      "excerpt": "Java Thread Programming (Part 9)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 8)",
+      "url": "http://localhost:4000/2021/12/07/java-thread-programming-part-8/",
+      "date": "2021-12-07T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Java Thread Programming (Part 8)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 7)",
+      "url": "http://localhost:4000/2021/11/23/java-thread-programming-part-7/",
+      "date": "2021-11-23T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Java Thread Programming (Part 7)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 6)",
+      "url": "http://localhost:4000/2021/11/16/java-thread-programming-part-6/",
+      "date": "2021-11-16T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Java Thread Programming (Part 6)\n\n"
+    },
+  
+    {
+      "title": "Let’s Use Optional to Fix Method Contracts",
+      "url": "http://localhost:4000/2021/11/10/lets-use-optional-to-fix-method-contracts/",
+      "date": "2021-11-10T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Let’s Use Optional to Fix Method Contracts\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 5)",
+      "url": "http://localhost:4000/2021/11/02/java-thread-programming-part-5/",
+      "date": "2021-11-02T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Java Thread Programming (Part 5)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 4)",
+      "url": "http://localhost:4000/2021/10/26/java-thread-programming-part-4/",
+      "date": "2021-10-26T00:00:00+00:00",
+      "tags": ["java threads","volatile keyword","thread safety","memory visibility","data race"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 3)",
+      "url": "http://localhost:4000/2021/10/21/java-thread-programming-part-3/",
+      "date": "2021-10-21T00:00:00+00:00",
+      "tags": ["learning thread programming","thread programming","thread safety","thread lifecycle","core java"],
+      "excerpt": "Java Thread Programming (Part 3)\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 2)",
+      "url": "http://localhost:4000/2021/10/12/java-thread-programming-part-2/",
+      "date": "2021-10-12T00:00:00+00:00",
+      "tags": ["java threads","multithreading","socket programming","web server","concurrent programming"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Java Thread Programming (Part 1)",
+      "url": "http://localhost:4000/2021/10/07/java-thread-programming-part-1/",
+      "date": "2021-10-07T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Compact Strings: Reclaim 25% of Java Heap Memory & Lower Your Cloud Bills",
+      "url": "http://localhost:4000/2021/09/24/compact-strings-reclaim-25-of-java-heap-memory-lower-your-cloud-bills/",
+      "date": "2021-09-24T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "Compact Strings: Reclaim 25% of Java Heap Memory \\&amp; Lower Your Cloud Bills\n\n"
+    },
+  
+    {
+      "title": "Coding and collaboration skills a junior developer should have to get hired – Part 2",
+      "url": "http://localhost:4000/2017/11/21/coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired-part-2/",
+      "date": "2017-11-21T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "Coding and collaboration skills a junior developer should have to get hired – Part 2\n\n"
+    },
+  
+    {
+      "title": "Coding and collaboration skills a junior developer should have to get hired – Part 1",
+      "url": "http://localhost:4000/2017/11/17/coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired-part-1/",
+      "date": "2017-11-17T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "Coding and collaboration skills a junior developer should have to get hired – Part 1\n\n"
+    },
+  
+    {
+      "title": "Interview with an experienced Java developer – a legacy code whisperer – Part -3",
+      "url": "http://localhost:4000/2017/10/15/interview-with-an-experienced-java-developer-a-legacy-code-whisperer-part-3/",
+      "date": "2017-10-15T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Interview with an experienced Java developer – a legacy code whisperer – Part -2",
+      "url": "http://localhost:4000/2017/10/14/interview-with-an-experienced-java-developer-a-legacy-code-whisperer-part-2/",
+      "date": "2017-10-14T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "\n\n"
+    },
+  
+    {
+      "title": "Interview with an experienced Java developer – a legacy code whisperer – Part -1",
+      "url": "http://localhost:4000/2017/10/13/interview-with-an-experienced-java-developer-a-legacy-code-whisperer-part-1/",
+      "date": "2017-10-13T00:00:00+00:00",
+      "tags": ["core java","multi threading","thread","java","code reading skills"],
+      "excerpt": "\n\n"
+    }
+  
+]

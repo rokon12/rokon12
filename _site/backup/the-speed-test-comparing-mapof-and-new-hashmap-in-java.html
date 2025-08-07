@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2023/03/16/speed-test-comparing-map-of-new-hashmap/"><title>The Speed Test: Comparing Map.of() and new HashMap&lt;&gt;() in Java | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="The Speed Test: Comparing Map.of() and new HashMap&lt;&gt;() in Java" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/the-speed-test-comparing-mapof-and-new-hashmap-in-java.html" /><meta property="og:url" content="http://localhost:4000/backup/the-speed-test-comparing-mapof-and-new-hashmap-in-java.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="The Speed Test: Comparing Map.of() and new HashMap&lt;&gt;() in Java" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"The Speed Test: Comparing Map.of() and new HashMap&lt;&gt;() in Java","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/the-speed-test-comparing-mapof-and-new-hashmap-in-java.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><h1 id="the-speed-test-comparing-mapof-and-new-hashmap-in-java">The Speed Test: Comparing Map.of() and new HashMap&lt;&gt;() in Java</h1><p>Java is a popular programming language used for developing a wide range of applications, including web, mobile, and desktop applications.</p><p>It provides many useful data structures for developers to use in their programs, one of which is the <code>Map</code> interface.</p><p>The Map interface is used to store data in key-value pairs, making it an essential data structure for many applications.</p><p>In this article, we will discuss the use of <code>Map.of()</code> and new <code>HashMap&lt;&gt;()</code> in Java, the difference between them, and the benefits of using Map.of().</p><h2 id="what-is-mapof">What is Map.of()?</h2><p><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html#of()"><code>Map.of()</code></a> is a method introduced in Java 9, which allows developers to create an immutable map with up to 10 key-value pairs.</p><p>It provides a convenient and concise way of creating maps, making it easier to create small maps without having to write a lot of code. <code>Map.of()</code> is an improvement over the previous way of creating small maps using the constructor of the HashMap class, which can be cumbersome and verbose.</p><h2 id="what-is-new-hashmap">What is new HashMap&lt;&gt;()?</h2><p><code>new </code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html">HashMap</a><code>&lt;&gt;() </code>is a constructor provided by the HashMap class in Java, which allows developers to create a new instance of a <code>HashMap</code>. It is used to create a mutable map, which means that the map can be modified by adding, removing, or updating key-value pairs.</p><p>It is a commonly used method for creating maps in Java, especially when dealing with larger sets of data.</p><h2 id="benchmarking-mapof-and-new-hashmap">Benchmarking Map.of() and new HashMap&lt;&gt;()</h2><p>To compare the performance of <code>Map.of()</code> and <code>new HashMap&lt;&gt;()</code> in Java, we can use benchmarking tools to measure the time taken to perform various operations on maps created using these methods. In our benchmark, we will measure the time taken to get a value from a map and the time taken to insert values into a map.</p><p>It’s worth noting that our benchmarks are limited to a small set of data, such as ten items. It’s possible that the results could differ for larger data sets or more complex use cases.</p><h2 id="the-benchmarking-code">The benchmarking code</h2><pre><code>package ca.bazlur;
+
+import org.openjdk.jmh.annotations.Benchmark;
+
+import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.infra.Blackhole;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+@State(Scope.Benchmark)
+@Warmup(iterations = 5, time = 1)
+@Measurement(iterations = 20, time = 1)
+@Fork(1)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@OperationsPerInvocation
+public class MapBenchmark {
+    private static final int SIZE = 10;
+
+    private Map&lt;Integer, String&gt; mapOf;
+    private Map&lt;Integer, String&gt; hashMap;
+
+    @Setup
+    public void setup() {
+        mapOf = Map.of(
+                0, "value0",
+                1, "value1",
+                2, "value2",
+                3, "value3",
+                4, "value4",
+                5, "value5",
+                6, "value6",
+                7, "value7",
+                8, "value8",
+                9, "value9"
+        );
+
+        hashMap = new HashMap&lt;&gt;();
+
+        hashMap.put(0, "value0");
+        hashMap.put(1, "value1");
+        hashMap.put(2, "value2");
+        hashMap.put(3, "value3");
+        hashMap.put(4, "value4");
+        hashMap.put(5, "value5");
+        hashMap.put(6, "value6");
+        hashMap.put(7, "value7");
+        hashMap.put(8, "value8");
+        hashMap.put(9, "value9");
+    }
+
+    @Benchmark
+    public void testMapOf(Blackhole blackhole) {
+        Map&lt;Integer, String&gt; map = Map.of(
+                0, "value0",
+                1, "value1",
+                2, "value2",
+                3, "value3",
+                4, "value4",
+                5, "value5",
+                6, "value6",
+                7, "value7",
+                8, "value8",
+                9, "value9"
+        );
+        blackhole.consume(map);
+    }
+
+
+    @Benchmark
+    public void testHashMap(Blackhole blackhole) {
+        Map&lt;Integer, String&gt; hashMap = new HashMap&lt;&gt;();
+        hashMap.put(0, "value0");
+        hashMap.put(1, "value1");
+        hashMap.put(2, "value2");
+        hashMap.put(3, "value3");
+        hashMap.put(4, "value4");
+        hashMap.put(5, "value5");
+        hashMap.put(6, "value6");
+        hashMap.put(7, "value7");
+        hashMap.put(8, "value8");
+        hashMap.put(9, "value9");
+        blackhole.consume(hashMap);
+    }
+
+    @Benchmark
+    public void testGetMapOf() {
+        for (int i = 0; i &lt; 10; i++) {
+            mapOf.get(i);
+        }
+    }
+
+    @Benchmark
+    public void testGetHashMap() {
+        for (int i = 0; i &lt; SIZE; i++) {
+            hashMap.get(i);
+        }
+    }
+}
+
+</code></pre><h2 id="the-results">The results</h2><pre><code>Benchmark                    Mode  Cnt   Score   Error  Units
+MapBenchmark.testGetHashMap  avgt   20  14.999 ± 0.433  ns/op
+MapBenchmark.testGetMapOf    avgt   20  16.327 ± 0.119  ns/op
+MapBenchmark.testHashMap     avgt   20  84.920 ± 1.737  ns/op
+MapBenchmark.testMapOf       avgt   20  83.290 ± 0.471  ns/op
+</code></pre><p>These are the benchmark results for comparing the performance of using <code>new HashMap&lt;&gt;()</code> and <code>Map.of()</code> in Java. The benchmark was conducted with a limited and small data set (e.g. 10).</p><p>These results show that HashMaps have slightly faster ‘get’ operations compared to immutable Maps created using Map.of(). However, creating an immutable Map using Map.of() is still faster than creating a HashMap.</p><p>Note that, based on your JDK distribution and computer, the benchmark results may slightly differ when you try them. However, in most cases, the results should be consistent. It’s always a good idea to run your own benchmarks to ensure you make the right choice for your specific use case.</p><p>Additionally, remember that micro-benchmarks should always be taken with a grain of salt and not used as the sole factor in making a decision. Other factors, such as memory usage, thread safety, and readability of code, should also be considered.</p><p>The source code can be found here: <a href="https://github.com/rokon12/java-map-jmh">https://github.com/rokon12/java-map-jmh</a></p><p>In my opinion, the slight variations in performance may not hold much importance in most cases. It is essential to consider other aspects, such as the particular use case, how concise it is, well-organized code, and preferred features (for example, mutable or immutable nature), when deciding between HashMap and Map.of(). For straightforward scenarios, Map.of() might still have the upper hand regarding simplicity and brevity.</p><p>So let’s see the benefit of using Map.of() –</p><h2 id="benefits-of-using-mapof">Benefits of using Map.of()</h2><p>There are several benefits to using Map.of() over the new HashMap&lt;&gt;() in Java:</p><p><br /></p><p><strong>Conciseness</strong>: Map.of() provides a concise and convenient way of creating small maps in Java. This makes the code more readable and easier to maintain.</p><p><strong>Immutability</strong>: Map.of() creates immutable maps, which means that once the map is created, it cannot be modified. This provides a degree of safety and security for the data stored in the map.</p><p><strong>Type Safety</strong>: Map.of() provides type safety for the keys and values of the map, which helps prevent type-related errors that can occur when using new HashMap&lt;&gt;().</p><h2 id="conclusion">Conclusion</h2><p><br /></p><p>Map.of() is a powerful and useful method introduced in Java 9, which provides a more concise way of creating small maps in Java with added benefits such as immutability and type safety.</p><p>Our benchmarking shows that the latencies of Map.of() and new HashMap&lt;&gt;() for small maps are close, with overlapping error bars, which makes it difficult to definitively conclude that one method is significantly faster than the other based on this data alone.</p><p>The benefits of using Map.of() include its conciseness, immutability, and type safety. Although the performance difference may not be significant based on the provided benchmark results, the other advantages of Map.of() make it an appealing option.</p><p>Developers should consider using Map.of() when creating small maps in Java to take advantage of these benefits.</p><p><br /></p><p><br /></p><p><br /></p><p><strong>Edit:</strong></p><p><em>We conducted an initial benchmark that was somewhat flawed. However, we have since rerun the benchmark and obtained slightly different results, which we have incorporated into this article after making necessary edits. Our gratitude goes to <a href="https://twitter.com/snemarch">Sune Marcher</a>, who brought this to our attention, and we value their input.</em></p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>

@@ -1,0 +1,3467 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-08-06T21:14:25-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bazlur’s Blog Archive</title><subtitle>A comprehensive archive of articles on Java, Software Development, and Technology</subtitle><author><name>A N M Bazlur Rahman</name><email>bazlur@jugbd.org</email></author><entry><title type="html">Building Robust AI Applications with LangChain4j Guardrails and Spring Boot</title><link href="http://localhost:4000/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/" rel="alternate" type="text/html" title="Building Robust AI Applications with LangChain4j Guardrails and Spring Boot" /><published>2025-06-21T00:00:00-04:00</published><updated>2025-06-21T00:00:00-04:00</updated><id>http://localhost:4000/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot</id><content type="html" xml:base="http://localhost:4000/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/"><![CDATA[<p><img src="/images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png" alt="" /></p>
+
+<h1 id="building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot">Building Robust AI Applications with LangChain4j Guardrails and Spring Boot</h1>
+
+<p>As AI applications become increasingly complex, ensuring that language models behave predictably and safely is paramount. LangChain4j’s guardrails feature provides a powerful framework for validating both the inputs and outputs of your AI services. This article demonstrates how to implement comprehensive guardrails in a Spring Boot application, with practical examples that you can adapt to your use cases.</p>
+<blockquote>
+  <p>📦 <strong>Complete source code available at</strong> : <a href="https://github.com/rokon12/guardrails-demo">github.com/rokon12/guardrails-demo</a></p>
+</blockquote>
+
+<h2 id="understanding-langchain4j-guardrails">Understanding LangChain4j Guardrails</h2>
+
+<p>In LangChain4j, guardrails are validation mechanisms that operate exclusively on AI Services, the framework’s high-level abstraction for interacting with language models. Unlike simple validators, guardrails provide sophisticated control over the entire AI interaction lifecycle.</p>
+
+<ol>
+  <li><strong>Input Guardrails</strong> : Act as gatekeepers, validating user input before it reaches the LLM
+    <ol>
+      <li>Prevent prompt injection attacks</li>
+      <li>Filter inappropriate content</li>
+      <li>Enforce business rules</li>
+      <li>Sanitize and normalize input</li>
+    </ol>
+  </li>
+  <li><strong>Output Guardrails</strong> : Act as quality controllers, validating and potentially correcting LLM responses
+    <ol>
+      <li>Ensure a professional tone</li>
+      <li>Detect hallucinations</li>
+      <li>Validate response format</li>
+      <li>Enforce compliance requirements</li>
+    </ol>
+  </li>
+</ol>
+
+<p>This dual-layer approach ensures that your AI applications remain safe, compliant, and aligned with business requirements.</p>
+
+<h2 id="setting-up-a-spring-boot-project-with-langchain4j">Setting Up a Spring Boot Project with LangChain4j</h2>
+
+<p>Let’s start by creating a Spring Boot application with the necessary dependencies. You can use <a href="https://start.spring.io/">Spring Initializr</a> to bootstrap your project or create it directly in your IDE (IntelliJ IDEA, Eclipse, or VS Code).</p>
+<blockquote>
+  <p>🚀 <strong>Quick Start with Spring Initializr:</strong></p>
+
+  <ol>
+    <li>Go to <a href="https://start.spring.io/">start.spring.io</a></li>
+    <li>Choose: Maven/Gradle, Java 21+, Spring Boot 3.x</li>
+    <li>Add dependencies: Spring Web</li>
+    <li>Generate and import into your IDE</li>
+    <li>Add LangChain4j dependencies manually to your <code>pom.xml</code> or <code>build.gradle</code></li>
+  </ol>
+</blockquote>
+
+<pre><code class="language-java">&lt;dependencies&gt;
+    &lt;!-- Spring Boot Essentials --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- LangChain4j Core --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j&lt;/artifactId&gt;
+        &lt;version&gt;1.1.0&lt;/version&gt; &lt;!-- ⚠️ Always check for the latest stable version --&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- LangChain4j OpenAI Integration --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j-open-ai&lt;/artifactId&gt;
+        &lt;version&gt;1.1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- Testing Support --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+        &lt;artifactId&gt;langchain4j-test&lt;/artifactId&gt;
+        &lt;version&gt;1.1.0&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt; &lt;!-- 💡 Keep test dependencies scoped appropriately --&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- Metrics and Monitoring --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+
+<p>Configure your application:</p>
+
+<pre><code class="language-java"># application.yml
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: ${OPENAI_API_KEY} # 🔐 NEVER hardcode API keys - use environment variables
+      model-name: gpt-4 # 💡 Consider cost vs performance when choosing models
+      temperature: 0.7 # 🎲 Balance between creativity (1.0) and consistency (0.0)
+      max-tokens: 1000 # 💰 Control costs by limiting response length
+      timeout: 30s # ⏱️ Prevent hanging requests
+      log-requests: true # 🔍 Enable for debugging, disable in production for performance
+      log-responses: true
+
+# Application-specific settings
+app:
+  guardrails:
+    input:
+      max-length: 1000 # 📏 Prevent resource exhaustion from large inputs
+      rate-limit:
+        enabled: true
+        max-requests-per-minute: 10 # 🛡️ Protect against abuse and control costs
+    output:
+      max-retries: 3 # 🔄 Balance between reliability and latency
+
+</code></pre>
+
+<h2 id="implementing-input-guardrails">Implementing Input Guardrails</h2>
+
+<p>Input guardrails shield your application from malicious, inappropriate, or out-of-scope user inputs. Here are several practical examples.</p>
+
+<h3 id="content-safety-input-guardrail">Content Safety Input Guardrail</h3>
+
+<pre><code class="language-java">@Component
+public class ContentSafetyInputGuardrail implements InputGuardrail {
+
+    // 🚫 Customize this list based on your application's domain and risk profile
+    private static final List&lt;String&gt; PROHIBITED_WORDS = List.of(
+            "hack", "exploit", "bypass", "illegal", "fraud", "crack", "breach",
+            "penetrate", "malware", "virus", "trojan", "backdoor", "phishing",
+            "spam", "scam", "steal", "theft", "identity", "password", "credential"
+    );
+
+    // 🎭 Detect obfuscated threats using regex patterns
+    private static final List&lt;Pattern&gt; THREAT_PATTERNS = List.of(
+            Pattern.compile("h[4@]ck", Pattern.CASE_INSENSITIVE), // Catches "h4ck", "h@ck"
+            Pattern.compile("cr[4@]ck", Pattern.CASE_INSENSITIVE),
+            Pattern.compile("expl[0o]it", Pattern.CASE_INSENSITIVE),
+            Pattern.compile("byp[4@]ss", Pattern.CASE_INSENSITIVE),
+            // 🎯 This pattern catches instruction-style prompts for malicious activities
+            Pattern.compile("[\\w\\s]*(?:how\\s+to|teach\\s+me|show\\s+me)\\s+(?:hack|exploit|bypass)", Pattern.CASE_INSENSITIVE)
+    );
+
+    @Override
+    public InputGuardrailResult validate(UserMessage userMessage) {
+        String originalText = userMessage.singleText();
+        String text = originalText.toLowerCase();
+
+        // 📏 Length validation should be your first check for performance
+        if (originalText.length() &gt; 1000) {
+            return failure("Your message is too long. Please keep it under 1000 characters.");
+        }
+
+        // 🔍 Check for prohibited words
+        for (String word : PROHIBITED_WORDS) {
+            if (text.contains(word)) {
+                // ⚠️ Be careful not to reveal too much about your security measures
+                return failure("Your message contains prohibited content related to security threats.");
+            }
+        }
+        
+        // 🎭 Check for obfuscated patterns
+        for (Pattern pattern : THREAT_PATTERNS) {
+            if (pattern.matcher(originalText).find()) {
+                return failure("Your message contains potentially harmful content patterns.");
+            }
+        }
+
+        return success();
+    }
+}
+</code></pre>
+
+<h3 id="smart-context-aware-guardrail"><strong>Smart Context-Aware Guardrail</strong></h3>
+
+<p>This guardrail uses conversation history to make intelligent decisions:</p>
+
+<pre><code class="language-java">@Component
+@Slf4j
+public class ContextAwareInputGuardrail implements InputGuardrail {
+    
+    private static final int MAX_SIMILAR_QUESTIONS = 3;
+    private static final double SIMILARITY_THRESHOLD = 0.8; // 📊 Adjust based on your tolerance
+    
+    @Override
+    public InputGuardrailResult validate(InputGuardrailRequest request) {
+        ChatMemory memory = request.memory();
+        UserMessage currentMessage = request.userMessage();
+        
+        // 💡 Always handle null cases gracefully
+        if (memory == null || memory.messages().isEmpty()) {
+            return success();
+        }
+        
+        // Check for repetitive questions
+        List&lt;String&gt; previousQuestions = extractUserQuestions(memory);
+        String currentQuestion = currentMessage.singleText();
+        
+        long similarQuestions = previousQuestions.stream()
+            .filter(q -&gt; calculateSimilarity(q, currentQuestion) &gt; SIMILARITY_THRESHOLD)
+            .count();
+        
+        if (similarQuestions &gt;= MAX_SIMILAR_QUESTIONS) {
+            // 📝 Log suspicious behavior for security monitoring
+            log.info("User asking repetitive questions: {}", currentQuestion);
+            return failure("You've asked similar questions multiple times. Please try a different topic or rephrase your question.");
+        }
+        
+        // Check conversation velocity (potential abuse)
+        if (isConversationTooFast(memory)) {
+            return failure("Please slow down. You're sending messages too quickly.");
+        }
+        
+        return success();
+    }
+    
+    private List&lt;String&gt; extractUserQuestions(ChatMemory memory) {
+        return memory.messages().stream()
+            .filter(msg -&gt; msg instanceof UserMessage) // 🎯 Type-safe filtering
+            .map(ChatMessage::text)
+            .collect(Collectors.toList());
+    }
+    
+    private double calculateSimilarity(String s1, String s2) {
+        // 🧮 Simple Jaccard similarity - in production, use more sophisticated methods
+        // Consider: Levenshtein distance, cosine similarity, or semantic embeddings
+        Set&lt;String&gt; set1 = new HashSet&lt;&gt;(Arrays.asList(s1.toLowerCase().split("\\s+")));
+        Set&lt;String&gt; set2 = new HashSet&lt;&gt;(Arrays.asList(s2.toLowerCase().split("\\s+")));
+        
+        Set&lt;String&gt; intersection = new HashSet&lt;&gt;(set1);
+        intersection.retainAll(set2);
+        
+        Set&lt;String&gt; union = new HashSet&lt;&gt;(set1);
+        union.addAll(set2);
+        
+        return union.isEmpty() ? 0 : (double) intersection.size() / union.size();
+    }
+    
+    private boolean isConversationTooFast(ChatMemory memory) {
+        // ⏱️ TODO: Implement timestamp checking
+        // Check if user is sending messages too quickly (potential spam)
+        List&lt;ChatMessage&gt; recentMessages = memory.messages();
+        if (recentMessages.size() &lt; 5) return false;
+        
+        // In a real implementation, you'd check timestamps
+        // This is a simplified example
+        return false;
+    }
+}
+</code></pre>
+
+<h3 id="intelligent-input-sanitizer"><strong>Intelligent Input Sanitizer</strong></h3>
+
+<p>This guardrail not only validates but also improves input quality:</p>
+
+<pre><code class="language-java">@Component
+public class IntelligentInputSanitizerGuardrail implements InputGuardrail {
+    
+    // 🌐 Comprehensive URL pattern that handles most common URL formats
+    private static final Pattern URL_PATTERN = Pattern.compile(
+        "https?://[\\w\\-._~:/?#\\[\\]@!$&amp;'()*+,;=.]+", 
+        Pattern.CASE_INSENSITIVE
+    );
+    
+    // 📧 Standard email pattern - consider RFC 5322 for stricter validation
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+        "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}", 
+        Pattern.CASE_INSENSITIVE
+    );
+
+    @Override
+    public InputGuardrailResult validate(UserMessage userMessage) {
+        String text = userMessage.singleText();
+        
+        // 🔒 Remove potential PII for privacy compliance (GDPR, CCPA)
+        text = EMAIL_PATTERN.matcher(text).replaceAll("[EMAIL_REDACTED]");
+        
+        // 🔗 Clean URLs but keep them for context
+        text = URL_PATTERN.matcher(text).replaceAll("[URL]");
+        
+        // 📝 Normalize whitespace for consistent processing
+        text = text.replaceAll("\\s+", " ").trim();
+        
+        // 🛡️ Remove potentially harmful characters while preserving meaning
+        // These characters could be used for injection attacks
+        text = text.replaceAll("[&lt;&gt;{}\\[\\]|\\\\]", "");
+        
+        // ✂️ Smart truncation that preserves sentence structure
+        if (text.length() &gt; 500) {
+            text = smartTruncate(text, 500);
+        }
+        
+        // 🔤 Fix common typos and normalize
+        text = normalizeText(text);
+        
+        // ✅ Return the sanitized text, not just validation result
+        return successWith(text);
+    }
+    
+    private String smartTruncate(String text, int maxLength) {
+        if (text.length() &lt;= maxLength) return text;
+        
+        // 📍 Try to cut at sentence boundary for better readability
+        int lastPeriod = text.lastIndexOf('.', maxLength);
+        if (lastPeriod &gt; maxLength * 0.8) { // 80% threshold ensures we don't cut too early
+            return text.substring(0, lastPeriod + 1);
+        }
+        
+        // 🔤 Otherwise, cut at word boundary
+        int lastSpace = text.lastIndexOf(' ', maxLength);
+        if (lastSpace &gt; maxLength * 0.8) {
+            return text.substring(0, lastSpace) + "...";
+        }
+        
+        // ✂️ Last resort: hard cut
+        return text.substring(0, maxLength - 3) + "...";
+    }
+    
+    private String normalizeText(String text) {
+        // 🔧 Fix common issues
+        text = text.replaceAll("\\bi\\s", "I ");  // i -&gt; I
+        text = text.replaceAll("\\s+([.,!?])", "$1");  // Remove space before punctuation
+        text = text.replaceAll("([.,!?])(\\w)", "$1 $2");  // Add space after punctuation
+        
+        return text;
+    }
+}
+</code></pre>
+
+<blockquote>
+  <p><strong>ProTip:</strong> Input sanitizers should be the last guardrail in your input chain. They clean and normalize input after all validation checks have passed.</p>
+</blockquote>
+
+<h2 id="implementing-output-guardrails">Implementing Output Guardrails</h2>
+
+<p>Output guardrails ensure that LLM responses meet your quality standards and business requirements.</p>
+
+<h3 id="professional-tone-output-guardrail">Professional Tone Output Guardrail</h3>
+
+<pre><code class="language-java">@Component
+public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
+
+    // 🚫 Phrases that damage professional credibility
+    private static final List&lt;String&gt; UNPROFESSIONAL_PHRASES = List.of(
+            "that's weird", "that's dumb", "whatever", "i don't know"
+    );
+
+    // ✨ Elements that enhance professional communication
+    private static final List&lt;String&gt; REQUIRED_ELEMENTS = List.of(
+            "thank you",
+            "please",
+            "happy to help"
+    );
+
+    @Override
+    public OutputGuardrailResult validate(AiMessage responseFromLLM) {
+        String text = responseFromLLM.text().toLowerCase();
+
+        // 🔍 Check for unprofessional language
+        for (String unprofessionalPhrase : UNPROFESSIONAL_PHRASES) {
+            if (text.contains(unprofessionalPhrase)) {
+                // 🔄 Request reprompting with specific guidance
+                return reprompt("Unprofessional tone detected",
+                        "Please maintain a professional and helpful tone");
+            }
+        }
+
+        // 📏 Enforce response length limits for better UX
+        if (text.length() &gt; 1000) {
+            return reprompt("Response too long",
+                    "Please keep your response under 1000 characters.");
+        }
+
+        // 🎯 Ensure professional courtesy is present
+        boolean hasCourtesy = REQUIRED_ELEMENTS.stream()
+                .anyMatch(text::contains);
+        if (!hasCourtesy) {
+            return reprompt(
+                    "Response lacks professional courtesy",
+                    "Please include polite and helpful language in your response."
+            );
+        }
+
+        return success();
+    }
+}
+</code></pre>
+
+<h3 id="hallucination-detection-guardrail">Hallucination Detection Guardrail</h3>
+
+<pre><code class="language-java">@Component
+public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
+
+    // 🚫 Phrases that damage professional credibility
+    private static final List&lt;String&gt; UNPROFESSIONAL_PHRASES = List.of(
+            "that's weird", "that's dumb", "whatever", "i don't know"
+    );
+
+    // ✨ Elements that enhance professional communication
+    private static final List&lt;String&gt; REQUIRED_ELEMENTS = List.of(
+            "thank you",
+            "please",
+            "happy to help"
+    );
+
+    @Override
+    public OutputGuardrailResult validate(AiMessage responseFromLLM) {
+        String text = responseFromLLM.text().toLowerCase();
+
+        // 🔍 Check for unprofessional language
+        for (String unprofessionalPhrase : UNPROFESSIONAL_PHRASES) {
+            if (text.contains(unprofessionalPhrase)) {
+                // 🔄 Request reprompting with specific guidance
+                return reprompt("Unprofessional tone detected",
+                        "Please maintain a professional and helpful tone");
+            }
+        }
+
+        // 📏 Enforce response length limits for better UX
+        if (text.length() &gt; 1000) {
+            return reprompt("Response too long",
+                    "Please keep your response under 1000 characters.");
+        }
+
+        // 🎯 Ensure professional courtesy is present
+        boolean hasCourtesy = REQUIRED_ELEMENTS.stream()
+                .anyMatch(text::contains);
+        if (!hasCourtesy) {
+            return reprompt(
+                    "Response lacks professional courtesy",
+                    "Please include polite and helpful language in your response."
+            );
+        }
+
+        return success();
+    }
+}
+</code></pre>
+
+<blockquote>
+  <p><strong>ProTip:</strong> Hallucination detection can be computationally expensive. Consider using it selectively for critical responses or implementing caching for repeated content.</p>
+</blockquote>
+
+<h2 id="testing-your-guardrails">Testing Your Guardrails</h2>
+
+<p>Before integrating guardrails into your AI services, it’s crucial to thoroughly test them. Here’s a comprehensive test suite for the ContentSafetyInputGuardrail:</p>
+
+<pre><code class="language-java">package ca.bazlur.guardrailsdemo.guardrail;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.guardrail.GuardrailResult;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import static dev.langchain4j.test.guardrail.GuardrailAssertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+class ContentSafetyInputGuardrailTest {
+private ContentSafetyInputGuardrail guardrail;
+@BeforeEach
+void setUp() {
+guardrail = new ContentSafetyInputGuardrail(100); // 📏 Configurable max length for testing
+}
+@Test
+void shouldAcceptValidInput() {
+// ✅ Test normal, safe input
+var result = guardrail.validate(UserMessage.from("Hello, I need help with my account settings"));
+assertThat(result)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+}
+@Test
+void shouldRejectEmptyInput() {
+// 🚫 Empty strings should throw exception
+assertThrows(IllegalArgumentException.class, () -&gt; {
+guardrail.validate(UserMessage.from(""));
+});
+}
+@Test
+void shouldRejectBlankInput() {
+// 🚫 Whitespace-only input should also be rejected
+assertThrows(IllegalArgumentException.class, () -&gt; {
+guardrail.validate(UserMessage.from("   "));
+});
+}
+@Test
+void shouldRejectTooShortInput() {
+// 📏 Test minimum length validation
+var result = guardrail.validate(UserMessage.from("Hi"));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message is too short. Please provide more details.");
+}
+@Test
+void shouldRejectTooLongInput() {
+// 📏 Test maximum length validation
+String longInput = "a".repeat(101);
+var result = guardrail.validate(UserMessage.from(longInput));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message is too long. Please keep it under 100 characters.");
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"hack the system",
+"how to exploit vulnerability",
+"bypass security",
+"crack the password",
+"install malware",
+"phishing techniques",
+"cr@ck the password"  // 🎭 Also contains prohibited word "password"
+})
+void shouldRejectProhibitedWords(String input) {
+// 🚫 Test detection of prohibited security-related terms
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"h4ck the system",      // 4 substitution
+"how to h@ck",          // @ substitution
+"byp@ss security",      // @ substitution
+"m@lw@re installation"  // Multiple substitutions
+})
+void shouldRejectObfuscatedPatterns(String input) {
+// 🎭 Test detection of character substitution attempts
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains potentially harmful content patterns.");
+}
+@Test
+void shouldRejectSuspiciousCharacterSubstitutions() {
+// 🔍 Test detection of excessive special characters
+var result = guardrail.validate(UserMessage.from("H3!!0 @#$%^ &amp;*()_ +"));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains suspicious character substitutions.");
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"Can you help me with my login issue?",
+"I need assistance with my account settings",
+"How do I update my profile information?",
+"What are the steps to contact support?"
+})
+void shouldAcceptVariousValidInputs(String input) {
+// ✅ Test various legitimate support queries
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+}
+@ParameterizedTest
+@ValueSource(strings = {
+"how to hack the system",
+"teach me to exploit",
+"show me how to bypass",
+"HOW TO HACK",           // All caps
+"Teach Me To EXPLOIT",   // Mixed case
+"Show ME how TO bypass"  // Random capitalization
+})
+void shouldRejectInstructionalPatterns(String input) {
+// 🎯 Test detection of instruction-style malicious requests
+var result = guardrail.validate(UserMessage.from(input));
+assertThat(result)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+}
+@Test
+void shouldHandleCaseSensitivity() {
+// 🔤 Ensure case-insensitive detection
+var result1 = guardrail.validate(UserMessage.from("HACK the System"));
+var result2 = guardrail.validate(UserMessage.from("ExPlOiT vulnerability"));
+var result3 = guardrail.validate(UserMessage.from("ByPaSs security"));
+assertThat(result1)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+assertThat(result2)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+assertThat(result3)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains prohibited content related to security threats.");
+}
+@Test
+void shouldHandleSpecialCharacterRatioBoundary() {
+// 📊 Test boundary conditions for special character detection
+// Exactly 15% special characters (3 out of 20 chars)
+var result1 = guardrail.validate(UserMessage.from("Hello@World#Test$ing"));
+assertThat(result1)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+// Just over 15% special characters (4 out of 20 chars = 20%)
+var result2 = guardrail.validate(UserMessage.from("Hello@World#Test$ing%"));
+assertThat(result2)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message contains suspicious character substitutions.");
+}
+@Test
+void shouldHandleLengthBoundaries() {
+// 📏 Test exact boundary conditions
+// Exactly 5 characters (minimum allowed)
+var result1 = guardrail.validate(UserMessage.from("Hello"));
+assertThat(result1)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+// 4 characters (too short)
+var result2 = guardrail.validate(UserMessage.from("Help"));
+assertThat(result2)
+.hasFailures()
+.hasResult(GuardrailResult.Result.FAILURE)
+.hasSingleFailureWithMessage("Your message is too short. Please provide more details.");
+// Exactly max length
+var result3 = guardrail.validate(UserMessage.from("a".repeat(100)));
+assertThat(result3)
+.isSuccessful()
+.hasResult(GuardrailResult.Result.SUCCESS);
+}
+}
+</code></pre>
+
+<blockquote>
+  <p>💡 <strong>Testing Best Practices for Guardrails:</strong></p>
+
+  <ul>
+    <li>Test boundary conditions (minimum/maximum values)</li>
+    <li>Use parameterized tests for similar scenarios</li>
+    <li>Test both positive and negative cases</li>
+    <li>Verify exact error messages for better debugging</li>
+    <li>Test case sensitivity and special character handling</li>
+    <li>Use the <code>GuardrailAssertions</code> utility for cleaner test code</li>
+  </ul>
+
+  <h2 id="creating-ai-services-with-guardrails">Creating AI Services with Guardrails</h2>
+</blockquote>
+
+<p>Now let’s combine our guardrails into comprehensive AI services.</p>
+
+<pre><code class="language-java">@Component
+public class ProfessionalToneOutputGuardrail implements OutputGuardrail {
+
+    // 🚫 Phrases that damage professional credibility
+    private static final List&lt;String&gt; UNPROFESSIONAL_PHRASES = List.of(
+            "that's weird", "that's dumb", "whatever", "i don't know"
+    );
+
+    // ✨ Elements that enhance professional communication
+    private static final List&lt;String&gt; REQUIRED_ELEMENTS = List.of(
+            "thank you",
+            "please",
+            "happy to help"
+    );
+
+    @Override
+    public OutputGuardrailResult validate(AiMessage responseFromLLM) {
+        String text = responseFromLLM.text().toLowerCase();
+
+        // 🔍 Check for unprofessional language
+        for (String unprofessionalPhrase : UNPROFESSIONAL_PHRASES) {
+            if (text.contains(unprofessionalPhrase)) {
+                // 🔄 Request reprompting with specific guidance
+                return reprompt("Unprofessional tone detected",
+                        "Please maintain a professional and helpful tone");
+            }
+        }
+
+        // 📏 Enforce response length limits for better UX
+        if (text.length() &gt; 1000) {
+            return reprompt("Response too long",
+                    "Please keep your response under 1000 characters.");
+        }
+
+        // 🎯 Ensure professional courtesy is present
+        boolean hasCourtesy = REQUIRED_ELEMENTS.stream()
+                .anyMatch(text::contains);
+        if (!hasCourtesy) {
+            return reprompt(
+                    "Response lacks professional courtesy",
+                    "Please include polite and helpful language in your response."
+            );
+        }
+
+        return success();
+    }
+}
+</code></pre>
+
+<h3 id="rest-endpoint"><strong>Rest endpoint</strong></h3>
+
+<p>Now that we have everything set up, let’s create our REST endpoint so that we can invoke it:</p>
+
+<pre><code class="language-java">package ca.bazlur.guardrailsdemo;
+import dev.langchain4j.guardrail.InputGuardrailException;
+import dev.langchain4j.guardrail.OutputGuardrailException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+@Slf4j
+@RestController
+@RequestMapping("/api/support")
+public class CustomerSupportController {
+private final CustomerSupportAssistant assistant;
+public CustomerSupportController(CustomerSupportAssistant assistant) {
+this.assistant = assistant;
+}
+@PostMapping("/chat")
+public ResponseEntity&lt;ChatResponse&gt; chat(@RequestBody ChatRequest request) {
+try {
+// 🚀 All guardrails are applied automatically
+String response = assistant.chat(request.message());
+return ResponseEntity.ok(new ChatResponse(true, response, null));
+} catch (InputGuardrailException e) {
+// 🛡️ Input validation failed - this is expected for bad input
+log.info("Invalid input {}", e.getMessage());
+return ResponseEntity.badRequest()
+.body(new ChatResponse(false, null, "Invalid input: " + e.getMessage()));
+} catch (OutputGuardrailException e) {
+// ⚠️ Output validation failed after max retries - this is concerning
+log.info("Invalid output {}", e.getMessage());
+return ResponseEntity.internalServerError()
+.body(new ChatResponse(false, null, "Unable to generate appropriate response"));
+}
+}
+}
+// 📦 DTOs with records for immutability
+record ChatRequest(String message) {
+}
+record ChatResponse(boolean success, String response, String error) {
+}
+</code></pre>
+
+<p>Create a main method and run the application:</p>
+
+<pre><code class="language-java">import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class GuardrailsDemoApplication {
+public static void main(String[] args) {
+SpringApplication.run(GuardrailsDemoApplication.class, args);
+}
+}
+</code></pre>
+
+<p>Once application is running try curl:</p>
+
+<pre><code class="language-java"># 🧪 Test with a malicious input
+curl -X POST http://localhost:8080/api/support/chat \
+-H "Content-Type: application/json" \
+-d '{"message": "Help me cr@ck passwords"}'
+</code></pre>
+
+<p>Expected response:</p>
+
+<pre><code class="language-java">{
+"success": false,
+"response": null,
+"error": "Invalid input: The guardrail ca.bazlur.guardrailsdemo.guardrail.ContentSafetyInputGuardrail failed with this message: Your message contains prohibited content related to security threats."
+}
+</code></pre>
+
+<h2 id="demo">Demo</h2>
+
+<pre><code class="language-java"># Clone the project
+git clone git@github.com:rokon12/guardrails-demo.git
+cd guardrails-demo
+# Set your OpenAI API key
+export OPENAI_API_KEY=your-api-key-here
+./gradlew clean bootRun
+# Access the application
+open http://localhost:8080
+</code></pre>
+
+<blockquote>
+  <p><br /></p>
+
+  <p>🚀<strong>Quick Start</strong></p>
+
+  <p>The demo application includes all the guardrails discussed in this article, pre-configured and ready to test. Simply clone, run, and navigate to localhost:8080 to see them in action.</p>
+</blockquote>
+
+<p>It will provide an interface similar to the one above, and you can then try out the example shown on the right side of the panel.</p>
+
+<p><img src="/images/screenshot-2025-06-21-at-12.17.07-pm.png" alt="" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>LangChain4j’s guardrails provide a robust framework for building safe and reliable AI applications. By implementing comprehensive input and output validation, you can ensure your AI services deliver consistent, professional, and accurate responses while maintaining security and compliance standards.</p>
+
+<p>The examples provided here serve as a starting point. Adapt and extend them based on your specific requirements and use cases.</p>
+
+<p><strong>📚 Additional Resources</strong></p>
+
+<ul>
+  <li><a href="https://docs.langchain4j.dev/">LangChain4j Official Documentation</a></li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/guardrails">LangChain4j Guardrails</a></li>
+  <li><a href="https://spring.io/guides/gs/spring-boot-ai/">Spring Boot AI Integration Guide</a></li>
+  <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP LLM Security Top 10</a></li>
+  <li><a href="https://www.anthropic.com/safety">AI Safety Best Practices</a></li>
+</ul>
+
+<p>Happy coding, and remember: with great AI power comes great responsibility! 🚀</p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Java’s Structured Concurrency: Finally Finding Its Footing</title><link href="http://localhost:4000/2025/05/25/javas-structured-concurrency-finally-finding-its-footing/" rel="alternate" type="text/html" title="Java’s Structured Concurrency: Finally Finding Its Footing" /><published>2025-05-25T00:00:00-04:00</published><updated>2025-05-25T00:00:00-04:00</updated><id>http://localhost:4000/2025/05/25/javas-structured-concurrency-finally-finding-its-footing</id><content type="html" xml:base="http://localhost:4000/2025/05/25/javas-structured-concurrency-finally-finding-its-footing/"><![CDATA[<p><img src="/images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png" alt="" /></p>
+
+<h1 id="javas-structured-concurrency-finally-finding-its-footing">Java’s Structured Concurrency: Finally Finding Its Footing</h1>
+
+<p>The structured concurrency API changed again after two incubations and four rounds of previews. Ideally, this scenario is unexpected. However, given its status as a preview API, such changes can occur, as was the case here. These changes lend considerable maturity to the API, and I am hopeful it will now stabilize without requiring further modifications.</p>
+
+<h3 id="what-actually-changed-this-time"><strong>What Actually Changed This Time</strong></h3>
+
+<p>When I first started working with structured concurrency back in its incubation phase, I was excited about the promise of cleaner concurrent code. The idea was simple: treat concurrent tasks like a structured block, where all spawned tasks complete before the block exits. It sounded perfect in theory, but the API continued to evolve, making it a bit frustrating to keep up with the changes. The latest iteration in <a href="https://openjdk.org/jeps/505">JEP 505</a> brings some significant refinements that I believe finally put this feature on solid ground. The most notable change is the introduction of more flexible task handling and better integration with virtual threads. This article will detail the differences and explain the significance of these changes.</p>
+
+<h3 id="the-core-concept-remains-strong"><strong>The Core Concept Remains Strong</strong></h3>
+
+<p>Before diving into the changes, let’s establish what structured concurrency is trying to solve. In traditional concurrent programming, we often end up with scattered task management:</p>
+
+<pre><code class="language-java">import java.util.Random;
+import java.util.concurrent.*;
+
+public class TraditionalConcurrencyExample {
+  private static final Random random = new Random();
+
+  private static String fetchUserData(String userId) throws InterruptedException {
+    Thread.sleep(1000 + random.nextInt(2000)); // 1-3 seconds
+    if (random.nextBoolean()) {
+      throw new RuntimeException("User service unavailable");
+    }
+    return "UserData[" + userId + "]";
+  }
+
+  private static String fetchUserPreferences(String userId) throws InterruptedException {
+    Thread.sleep(800 + random.nextInt(1500)); // 0.8-2.3 seconds
+    if (random.nextBoolean()) {
+      throw new RuntimeException("Preferences service down");
+    }
+    return "Preferences[" + userId + "]";
+  }
+
+  private static String combineUserInfo(String userData, String preferences) {
+    return userData + " + " + preferences;
+  }
+
+  public static String getUserInfoTraditional(String userId) throws Exception {
+    try (ExecutorService executor = Executors.newCachedThreadPool()) {
+      Future&lt;String&gt; future1 = executor.submit(() -&gt; fetchUserData(userId));
+      Future&lt;String&gt; future2 = executor.submit(() -&gt; fetchUserPreferences(userId));
+
+      try {
+        String userData = future1.get();
+        String preferences = future2.get();
+        return combineUserInfo(userData, preferences);
+      } catch (Exception e) {
+        // Cleanup is messy - what about the other task?
+        System.out.println("Error occurred, attempting cleanup...");
+        future1.cancel(true);
+        future2.cancel(true);
+        throw e;
+      }
+    }
+  }
+
+  void main() {
+    for (int i = 0; i &lt; 5; i++) {
+      try {
+        System.out.println("Attempt " + (i + 1) + ": " +
+            getUserInfoTraditional("user123"));
+      } catch (Exception e) {
+        System.out.println("Attempt " + (i + 1) + " failed: " +
+            e.getMessage());
+      }
+      System.out.println();
+    }
+  }
+}
+
+</code></pre>
+
+<p>When you run this code, several issues typically emerge:</p>
+
+<ul>
+  <li><strong>Complex error handling:</strong> If one task fails, we must manually cancel the other task. Otherwise, it will continue running despite no longer being required, leading to resource leakage.</li>
+  <li><strong>Thread lifecycle management:</strong> You are responsible for the entire lifecycle of the threads.</li>
+  <li><strong>Exception propagation:</strong> Checked exceptions tend to get wrapped awkwardly.</li>
+  <li><strong>No guarantee of cleanup:</strong> If the main thread exits unexpectedly, tasks might continue running.</li>
+</ul>
+
+<p>Structured concurrency aims to resolve these challenges.</p>
+
+<h3 id="the-headline-change-static-factory-methods"><strong>The headline change: static factory methods</strong></h3>
+
+<p>The most obvious tweak in JEP 505 is that you no longer call new StructuredTaskScope&lt;&gt;(). You open() one instead:</p>
+
+<pre><code class="language-javascript">try (var scope = StructuredTaskScope.open()) {
+    // ...
+}
+</code></pre>
+
+<p>The zero-argument open() returns a scope that waits for all subtasks to succeed or any to fail—the default “all-or-fail” policy. If you need something fancier, call the overloaded open(joiner) variant and supply a custom completion policy via a Joiner (more on that in a minute). Why the factory? It packages sensible defaults and, critically, gives the implementation room to evolve without breaking your code. I find this change beneficial: using a single keyword is more concise, and it reduces potential complications.</p>
+
+<p>Now let’s rewrite the previous example with the new API:</p>
+
+<pre><code class="language-javascript">public static String getUserInfoTraditional(String userId) throws Exception {
+  try (var scope = StructuredTaskScope.open()) {
+    StructuredTaskScope.Subtask&lt;String&gt; task1 = scope.fork(() -&gt; fetchUserData(userId));
+    StructuredTaskScope.Subtask&lt;String&gt; task2 = scope.fork(() -&gt; fetchUserPreferences(userId));
+
+    scope.join();
+
+    String userData = task1.get();
+    String preferences = task2.get();
+
+    return combineUserInfo(userData, preferences);
+  }
+}
+</code></pre>
+
+<p>The difference is striking. With structured concurrency, the cleanup is automatic and guaranteed. If any task fails, all other tasks in the scope are cancelled. If the scope exits (normally or exceptionally), all resources are cleaned up. This is comparable to having a try-with-resources mechanism for concurrent tasks.</p>
+
+<p>This approach has several advantages I’ve come to appreciate:</p>
+
+<ul>
+  <li>Guaranteed cleanup: Tasks cannot outlive their scope.</li>
+  <li>Clear ownership: Tasks belong to a specific scope.</li>
+  <li>Exception safety: Failures are handled consistently.</li>
+  <li>Resource management: No thread pool management needed.</li>
+  <li>Composability: Scopes can be nested and combined.</li>
+</ul>
+
+<h3 id="joiners-pick-your-success-policy"><strong>Joiners: pick your success policy</strong></h3>
+
+<p>A Joiner intercepts completion events and decides (1) whether to cancel siblings and (2) what join() should return. The JDK ships several factory helpers:</p>
+
+<p><strong>“First one wins” (aka racing a set of replicas)</strong></p>
+
+<pre><code class="language-javascript">try (var scope = StructuredTaskScope.open(
+         Joiner.&lt;String&gt;anySuccessfulResultOrThrow())) {
+
+    urls.forEach(url -&gt; scope.fork(() -&gt; fetchFrom(url)));
+    return scope.join();             // returns first successful String
+}
+</code></pre>
+
+<p><strong>“All must succeed and I want their results”</strong></p>
+
+<pre><code class="language-javascript">try (var scope = StructuredTaskScope.open(
+         Joiner.&lt;Result&gt;allSuccessfulOrThrow())) {
+    tasks.forEach(scope::fork);
+    return scope.join()              // Stream&lt;Subtask&lt;Result&gt;&gt;
+                 .map(Subtask::get)
+                 .toList();
+}
+</code></pre>
+
+<p>These little helpers make common patterns—“race”, “gather”, “wait-for-all”—painless.</p>
+
+<h3 id="rolling-your-own-joiner"><strong>Rolling your own Joiner</strong></h3>
+
+<p>Sometimes you need a custom policy. Suppose I want to collect every successful subtask but ignore failures:</p>
+
+<pre><code class="language-java">import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.StructuredTaskScope;
+import java.util.stream.Stream;
+
+void main() {
+
+  List&lt;String&gt; urls = List.of("https://bazlur.ca", "https://foojay.io", "https://github.com");
+
+  try (var scope = StructuredTaskScope.open(new MyCollectingJoiner&lt;String&gt;())) {
+    urls.forEach(url -&gt; scope.fork(() -&gt; fetchFrom(url)));
+    List&lt;String&gt; fetchedContent = scope.join().toList();
+
+    System.out.println("Total fetched content: " + fetchedContent.size());
+  } catch (InterruptedException e) {
+    throw new RuntimeException(e);
+  }
+
+}
+
+private String fetchFrom(String url) {
+  return "fetched from " + url + "";
+}
+
+class MyCollectingJoiner&lt;T&gt; implements StructuredTaskScope.Joiner&lt;T, Stream&lt;T&gt;&gt; {
+  private final Queue&lt;T&gt; results = new ConcurrentLinkedQueue&lt;&gt;();
+
+  @Override
+  public boolean onComplete(StructuredTaskScope.Subtask&lt;? extends T&gt; st) {
+    if (st.state() == StructuredTaskScope.Subtask.State.SUCCESS)
+      results.add(st.get());
+    return false;
+  }
+
+  @Override
+  public Stream&lt;T&gt; result() {
+    return results.stream();
+  }
+}
+
+</code></pre>
+
+<p>The interface is tiny—onFork, onComplete, and result()—yet powerful enough for most custom logic. To run this, we need JDK 25, and we can execute it from the CLI using the following command:</p>
+
+<pre><code class="language-java">java --enable-preview CollectingJoiner.java.
+</code></pre>
+
+<h3 id="better-cancellation-and-deadlines"><strong>Better cancellation and deadlines</strong></h3>
+
+<p>Cancellation rules did not change in spirit, but the API got stricter. If the owner thread is interrupted before or during join(), the scope automatically cancels every unfinished subtask. Subtasks should promptly honor InterruptedException; otherwise, close() will block, waiting for them to complete. (If you’re calling blocking I/O, you’re fine; if you’re polling, remember to check Thread.currentThread().isInterrupted()).</p>
+
+<p>Need a deadline? Pass a configuration lambda:</p>
+
+<pre><code class="language-javascript">try (var scope = StructuredTaskScope.open(
+         Joiner.&lt;String&gt;anySuccessfulResultOrThrow(),
+         cfg -&gt; cfg.withTimeout(Duration.ofSeconds(2)))) {
+    // ...
+}
+</code></pre>
+
+<p>If the timeout fires, the scope cancels, and join() throws TimeoutException. In practice, I attach a timeout to every external call to keep runaway tasks under control.</p>
+
+<p>You can also swap the default virtual-thread factory for one that sets names or thread-locals:</p>
+
+<pre><code class="language-javascript">ThreadFactory tagged = Thread.ofVirtual().name("api-%d").factory();
+
+try (var scope = StructuredTaskScope.open(
+         Joiner.&lt;Integer&gt;allSuccessfulOrThrow(),
+         cfg -&gt; cfg.withThreadFactory(tagged))) {
+    // ...
+}
+</code></pre>
+
+<p>Thread naming alone makes thread dumps far more readable.</p>
+
+<h3 id="scoped-values-ride-along"><strong>Scoped values ride along</strong></h3>
+
+<p>All subtasks inherit bindings for ScopedValues established in the parent thread. That means you can pass request context, security credentials, or MDC information without packing it into every lambda. Once you experience this capability, you’ll find it hard to revert to using ThreadLocal.</p>
+
+<h3 id="guard-rails-against-misuse"><strong>Guard-rails against misuse</strong></h3>
+
+<p>StructuredTaskScope strictly enforces structure. If fork() is called from any thread other than the owner, a StructureViolationException is thrown. Forget the try-with-resources and let the scope escape the method? Same result. This approach is strict, but it effectively prevents accidental resource exhaustion (akin to ‘fork-bombs’).</p>
+
+<h3 id="observability-improvements"><strong>Observability improvements</strong></h3>
+
+<p>Thread dumps now include the scope tree, so tools can show parent–child relationships directly. When I run jcmd <pid> Thread.dump_to_file -format=json, every scope appears with its forked threads nested below the owner. Finding the straggler that pins your virtual thread pool becomes a two-second grep instead of a half-hour investigation.</pid></p>
+
+<h3 id="some-more-examples-to-try-out"><strong>Some more examples to try out</strong></h3>
+
+<h4 id="example-1--360-product-view-gatherthenfail"><strong>Example 1 – 360° Product View (Gather–Then–Fail)</strong></h4>
+
+<p>A classic e-commerce endpoint where a single HTTP request must aggregate product core data, real-time inventory, and a personalized price. Each sub-service is invoked in parallel inside a <code>StructuredTaskScope</code> that enforces an all-or-nothing policy: any failure or exceeding the one-second deadline cancels the whole group and surfaces an error to the caller. The scope’s timeout, custom thread names, and allSuccessfulOrThrow() joiner encapsulate what is often a complex web of CompletableFuture wiring in three declarative lines.</p>
+
+<pre><code class="language-java">import java.time.Duration;
+import java.util.Random;
+import java.util.concurrent.StructuredTaskScope;
+import java.util.concurrent.ThreadFactory;
+
+public class ThreeSixtyProductView {
+  record Product(long id, String name) {}
+  record Stock(long productId, int quantity) {}
+  record Price(long productId, double amount) {}
+  record ProductPayload(Product core, Stock stock, Price price) {}
+
+  private static Product coreApi(long id) throws InterruptedException {
+    Thread.sleep(100); // simulate latency
+    return new Product(id, "Gadget‑" + id);
+  }
+
+  private static Stock stockApi(long id) throws InterruptedException {
+    Thread.sleep(120);
+    return new Stock(id, new Random().nextInt(100));
+  }
+
+  private static Price priceApi(long id) throws InterruptedException {
+    Thread.sleep(150);
+    return new Price(id, 99.99);
+  }
+
+  static ProductPayload fetchProduct(long id) throws Exception {
+    ThreadFactory named = Thread.ofVirtual().name("prod-%d", 1).factory();
+
+    try (var scope = StructuredTaskScope.open(
+        StructuredTaskScope.Joiner.&lt;Object&gt;allSuccessfulOrThrow(),
+        cfg -&gt; cfg.withTimeout(Duration.ofSeconds(1))
+            .withThreadFactory(named))) {
+
+      StructuredTaskScope.Subtask&lt;Product&gt; core = scope.fork(() -&gt; coreApi(id));
+      StructuredTaskScope.Subtask&lt;Stock&gt; stock = scope.fork(() -&gt; stockApi(id));
+      StructuredTaskScope.Subtask&lt;Price&gt; price = scope.fork(() -&gt; priceApi(id));
+
+      scope.join(); // throws on first failure / timeout
+      return new ProductPayload(core.get(), stock.get(), price.get());
+    }
+  }
+
+  void main() throws Exception {
+    ProductPayload productPayload = fetchProduct(1L);
+    System.out.println(productPayload);
+  }
+}
+</code></pre>
+
+<h4 id="example-2--race-the-mirrors-file-downloader"><strong>Example 2 – “Race the Mirrors” File Downloader</strong></h4>
+
+<p>Large binaries are hosted on several CDN mirrors. Latency varies, so we fire requests to every mirror simultaneously and use Joiner.anySuccessfulResultOrThrow() to stream the first successful InputStream, cancelling the rest. Bandwidth and connection slots are freed instantly, and users perceive the fastest possible download without manual cancellation plumbing.</p>
+
+<pre><code class="language-java">import java.io.*;
+import java.net.URI;
+import java.nio.file.*;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.StructuredTaskScope;
+
+public class MirrorDownloaderDemo {
+  void main() throws Exception {
+    List&lt;URI&gt; mirrors = List.of(
+        URI.create("https://mirror‑a.example.com"),
+        URI.create("https://mirror‑b.example.com"),
+        URI.create("https://mirror‑c.example.com"));
+
+    Path target = Files.createFile(Path.of("download1.txt"));
+    download(target, mirrors);
+    System.out.println("Saved to " + target.toAbsolutePath());
+  }
+
+  static Path download(Path target, List&lt;URI&gt; mirrors) throws Exception {
+    try (var scope = StructuredTaskScope.open(
+        StructuredTaskScope.Joiner.&lt;InputStream&gt;anySuccessfulResultOrThrow())) {
+
+      mirrors.forEach(uri -&gt; scope.fork(() -&gt; fetchFromMirror(uri)));
+      try (InputStream in = scope.join()) {
+        Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING);
+      }
+      return target;
+    }
+  }
+
+  private static InputStream fetchFromMirror(URI uri) throws InterruptedException {
+    Thread.sleep(50 + new Random().nextInt(300));
+    String data = "Downloaded from " + uri + "\n";
+    return new ByteArrayInputStream(data.getBytes());
+  }
+}
+</code></pre>
+
+<h4 id="example-3--batched-thumbnail-generator-with-nested-scopes"><strong>Example 3 – Batched Thumbnail Generator with Nested Scopes</strong></h4>
+
+<p>A media pipeline step receives a directory of images. An outer scope iterates through the files, while an inner scope, for each image, fans out three resize tasks (small, medium, and large). The inner scope fails fast; if any resize fails, that image is skipped, but the outer batch continues unaffected. Nested scopes separate per-item consistency from batch-level throughput with minimal code.</p>
+
+<pre><code class="language-java">import java.io.IOException;
+import java.nio.file.*;
+import java.util.concurrent.StructuredTaskScope;
+
+public class ThumbnailBatchDemo {
+  enum Size {SMALL, MEDIUM, LARGE}
+
+  void main() throws Exception {
+    Path tmpDir = Files.createTempDirectory("images");
+    for (int i = 0; i &lt; 3; i++) Files.createTempFile(tmpDir, "img" + i, ".jpg");
+    processBatch(tmpDir);
+  }
+
+  static void processBatch(Path dir) throws IOException, InterruptedException {
+    try (var batch = StructuredTaskScope.open()) {
+      try (var files = Files.list(dir)) {
+        files.filter(Files::isRegularFile)
+            .forEach(img -&gt; batch.fork(() -&gt; handleOne(img)));
+      }
+      batch.join();
+    }
+  }
+
+  private static void handleOne(Path image) {
+    try (var scope = StructuredTaskScope.open(
+        StructuredTaskScope.Joiner.&lt;Void&gt;allSuccessfulOrThrow())) {
+      scope.fork(() -&gt; resizeAndUpload(image, Size.SMALL));
+      scope.fork(() -&gt; resizeAndUpload(image, Size.MEDIUM));
+      scope.fork(() -&gt; resizeAndUpload(image, Size.LARGE));
+      scope.join();
+    } catch (Exception ex) {
+      System.err.println("Skipping " + image.getFileName() + ": " + ex);
+    }
+  }
+
+  private static Void resizeAndUpload(Path image, Size size) throws InterruptedException {
+    Thread.sleep(80); // simulate resize
+    Thread.sleep(40); // simulate upload
+    System.out.println("Uploaded " + image.getFileName() + " [" + size + "]");
+    return null;
+  }
+}
+</code></pre>
+
+<h4 id="example-4--real-time-quote-service-with-timed-fallback"><strong>Example 4 – Real-Time Quote Service with Timed Fallback</strong></h4>
+
+<p>A trading UI demands a quote within 30 ms. A custom joiner captures the first successful price from the primary market feed, with a scope-level timeout of 30 ms. If the feed stalls, scope.join() returns empty and the service instantly falls back to yesterday’s cached closing price. Callers always receive a value on time, and timeout logic lives in one declarative line.</p>
+
+<pre><code class="language-java">import java.time.Duration;
+import java.util.*;
+import java.util.concurrent.StructuredTaskScope;
+import java.util.concurrent.StructuredTaskScope.Subtask;
+
+public class QuoteServiceDemo {
+  void main() throws Exception {
+    double q = quote("ACME");
+    System.out.printf("Quote for ACME: %.2f%n", q);
+  }
+
+  static double quote(String symbol) throws InterruptedException {
+    var firstSuccess = new StructuredTaskScope.Joiner&lt;Double, Optional&lt;Double&gt;&gt;() {
+      private volatile Double value;
+
+      public boolean onComplete(Subtask&lt;? extends Double&gt; st) {
+        if (st.state() == Subtask.State.SUCCESS) value = st.get();
+        return value != null;           // stop when we have one
+      }
+
+      public Optional&lt;Double&gt; result() {
+        return Optional.ofNullable(value);
+      }
+    };
+
+    try (var scope = StructuredTaskScope.open(firstSuccess,
+        cfg -&gt; cfg.withTimeout(Duration.ofMillis(30)))) {
+      scope.fork(() -&gt; marketFeed(symbol));
+      Optional&lt;Double&gt; latest = scope.join();
+      return latest.orElseGet(() -&gt; cache(symbol));
+    }
+  }
+
+  private static double marketFeed(String symbol) throws InterruptedException {
+    long delay = new Random().nextBoolean() ? 20 : 60; // 50 % chance timeout
+    Thread.sleep(delay);
+    return 100 + new Random().nextDouble();
+  }
+
+  //for demo purposes only
+  private static double cache(String symbol) {
+    return 95.00;
+  }
+}
+</code></pre>
+
+<h3 id="final-thoughts"><strong>Final thoughts</strong></h3>
+
+<p>These changes represent a significant maturation of the structured concurrency API. While I was initially frustrated by the frequent API changes, I now appreciate that the Java team took the time to get this right. The structured concurrency API we have today is significantly better than what we started with, and I’m confident it will serve as a solid foundation for concurrent programming in Java going forward.
+<strong>Want to dive deeper into the latest advancements in Java concurrency?</strong> To explore these topics further and master modern techniques, consider checking out the book <strong>“Modern Concurrency in Java”</strong> available on O’Reilly: <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/">https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/</a></p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speaking at GeeCON 2025: A Memorable Kraków Experience</title><link href="http://localhost:4000/2025/05/25/speaking-at-geecon-2025-a-memorable-krakw-experience/" rel="alternate" type="text/html" title="Speaking at GeeCON 2025: A Memorable Kraków Experience" /><published>2025-05-25T00:00:00-04:00</published><updated>2025-05-25T00:00:00-04:00</updated><id>http://localhost:4000/2025/05/25/speaking-at-geecon-2025-a-memorable-krakw-experience</id><content type="html" xml:base="http://localhost:4000/2025/05/25/speaking-at-geecon-2025-a-memorable-krakw-experience/"><![CDATA[<p><img src="/images/dscf8739-scaled.jpg" alt="" /></p>
+
+<h1 id="speaking-at-geecon-2025-a-memorable-kraków-experience">Speaking at GeeCON 2025: A Memorable Kraków Experience</h1>
+
+<p>I had the pleasure of attending <a href="https://2025.geecon.org/">GeeCON 2025</a> in Kraków—my very first time at the conference. While the sessions were excellent, what truly stood out was the strong sense of community that made the experience special.</p>
+
+<p>I was also lucky to have some great conversations beyond the tech. I had a wonderful discussion with <a href="https://www.linkedin.com/in/shaaf/">Shaaf</a>, ranging from history to politics, over dinner at a Turkish restaurant and then again at a Pakistani one the next day. Later, I spent time walking around the city with <a href="https://www.linkedin.com/in/mohamedtaman/">Mohamed Taman</a> — we took photos in various poses and had fun soaking in Kraków’s atmosphere. That evening, we joined the speaker dinner, where we ended up discussing politics, World War history, technology, religion, and just about everything else. We returned to the hotel close to midnight — a long, engaging, and memorable evening.</p>
+
+<p>Another fun moment: I had a nice chat with <a href="https://www.linkedin.com/in/heinzkabutz/">Heinz Kabutz</a> at the hotel lobby. Both of us wanted to attend each other’s sessions, but unfortunately, they were scheduled at the same time. We laughed about it when Heinz jokingly predicted, <em>“Your session will have 50 people, and mine will have 5!”</em> — a classic, light-hearted moment of speaker camaraderie.</p>
+
+<p><img src="/images/20250515-095232.jpg" alt="" /></p>
+
+<p>This year, I was fortunate to have two sessions accepted at GeeCON.</p>
+
+<p>The first was “<a href="https://speakerdeck.com/sshaaf/java-plus-llms-a-hands-on-guide-with-bazlur-rahman-and-syed-m-shaaf"><strong>Java + LLMs: A Hands-on Guide to Building LLM Apps in Java with Jakarta.</strong></a>”</p>
+
+<p><img src="/images/20250515-104326.jpg" alt="" /></p>
+
+<p>My co-speaker <a href="https://www.linkedin.com/in/shaaf/">Shaaf</a> and I presented in a movie theatre with a massive screen, which added an extra thrill to the experience. We demonstrated how Java developers can connect to LLMs using LangChain4j and shared a variety of practical techniques for building intelligent apps. The session drew a full house and was well-received, which was incredibly encouraging. Around 90-100 people joined the session.</p>
+
+<p><img src="/images/20250515-172344.jpg" alt="" /></p>
+
+<p>Later in the day, I delivered another talk titled “<a href="https://speakerdeck.com/bazlur_rahman/geecon-breaking-java-stereotypes-its-not-your-dads-language-anymore">Breaking Java Stereotypes: It’s Not Your Dad’s Language Anymore</a>.”</p>
+
+<p>This one was scheduled at the very end of the day, and I only had 20 minutes. By that point, both the audience and I were understandably fatigued from a long day of deep tech. Still, I gave it my all, and I hope I convinced a few attendees to see Java in a new light.</p>
+
+<p><img src="/images/20250516-195233.jpg" alt="" /></p>
+
+<p>Outside the conference, Kraków itself left a lasting impression. I’m drawn to cities with rich historical backdrops, where the roads, ancient buildings, and even the pavement seem to hold layers of the past. It’s humbling to walk on ground that has witnessed the full spectrum of history, from golden ages to the turmoil of war, as this depth is what makes these places so distinct. This stands in stark contrast to many modern cities, which can feel uniform in their amenities.</p>
+
+<p><img src="/images/20250516-1926082.jpg" alt="" /></p>
+
+<p>Kraków, however, is captivating. Its forts, ancient architecture, and historic cobblestones create a remarkable aura. Although my visit lasted only a few days, as a traveller, I found the experience quite worthwhile. The city’s unique charm is something that will stay with me for a long time.</p>
+
+<p><img src="/images/20250516-232247.jpg" alt="" /></p>
+
+<p>On a lighter note, I encountered a cultural quirk. As someone who drinks a lot of water, but almost never the sparkling kind, I was surprised by how ubiquitous sparkling water is in Poland. The question “Still or sparkling?” would come to you if you ask for water. So when I called room service, I made sure to be clear: “A large bottle of still water, please.” To my surprise, what arrived was a bottle that could only be described as small or, at best, a medium bottle. Our definitions of ‘large’ differed!</p>
+
+<p><img src="/images/20250516-193226.jpg" alt="" /></p>
+
+<p>I look forward to the possibility of catching up with some of you again at a future GeeCON or somewhere else in the Java community! The sense of community and anticipation for future meetings is what makes these experiences truly special.</p>
+
+<p><img src="/images/20250516-194800.jpg" alt="" /></p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Java + LLMs  + LangChain4j — 2025 Talk Series</title><link href="http://localhost:4000/2025/05/03/java-llms-langchain4j-2025-talk-series/" rel="alternate" type="text/html" title="Java + LLMs  + LangChain4j — 2025 Talk Series" /><published>2025-05-03T00:00:00-04:00</published><updated>2025-05-03T00:00:00-04:00</updated><id>http://localhost:4000/2025/05/03/java-llms-langchain4j-2025-talk-series</id><content type="html" xml:base="http://localhost:4000/2025/05/03/java-llms-langchain4j-2025-talk-series/"><![CDATA[<p><img src="/images/screenshot-2025-05-03-at-5.49.41-am.png" alt="" /></p>
+
+<h1 id="java--llms--langchain4j-2025-talk-series">Java + LLMs  + LangChain4j — 2025 Talk Series</h1>
+
+<p><a href="https://www.linkedin.com/in/shaaf/">Shaaf</a> and I have been heads‑down exploring how <strong>LangChain4j</strong> slots into everyday Java and Jakarta EE projects. Our experiments have grown into a full talk series.</p>
+
+<p>You can find a list of delivered and upcoming talks on my conference page: <a href="/conferences/">https://bazlur.ca/conferences/</a></p>
+
+<h2 id="why-we-re-doing-this">Why we’re doing this</h2>
+
+<ul>
+  <li><strong>LangChain4j</strong> gives Java devs RAG pipelines, vector‑store abstractions, and agent helpers without leaving the JVM.</li>
+  <li><strong>Jakarta EE</strong> supplies the familiar plumbing—CDI, JPA, JAX‑RS—so LLM features drop into existing codebases instead of sitting in sidecars.</li>
+  <li>Together they let us prototype AI‑powered features (chat, summarization, semantic search), Function calling, MCP and many more. You can take them straight to production.</li>
+</ul>
+
+<h2 id="what-the-session-covers">What the session covers</h2>
+
+<ul>
+  <li>Quick introduction to LLM plumbing in Java</li>
+  <li>Prompt design patterns</li>
+  <li>Memory management techniques</li>
+  <li>Tool integration (function calling)</li>
+  <li><strong>RAG</strong> (Retrieval‑Augmented Generation) end‑to‑end</li>
+  <li>vector stores</li>
+  <li>Model Context Protocol</li>
+</ul>
+
+<p>Slides: <a href="https://speakerdeck.com/bazlur_rahman/java-plus-llms-a-hands-on-guide-to-building-llm-apps-in-java-with-jakarta-334970cb-c9e9-46ff-931b-65b0a7a50adb">https://speakerdeck.com/bazlur_rahman/java-plus-llms-a-hands-on-guide-to-building-llm-apps-in-java-with-jakarta-334970cb-c9e9-46ff-931b-65b0a7a50adb</a></p>
+
+<h2 id="try-the-code">Try the code</h2>
+
+<p>We built a progressive demo repo — <a href="https://github.com/learnj-ai/llm-jakarta">https://github.com/learnj-ai/llm-jakarta</a> .</p>
+
+<p>We’re excited to keep refining these ideas and would love your feedback—see you at the next stop on the schedule!</p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Chat with Your Knowledge Base: A Hands-On Java &amp;amp; LangChain4j Guide</title><link href="http://localhost:4000/2025/04/18/chat-with-your-knowledge-base-a-handson-java-langchain4j-guide/" rel="alternate" type="text/html" title="Chat with Your Knowledge Base: A Hands-On Java &amp;amp; LangChain4j Guide" /><published>2025-04-18T00:00:00-04:00</published><updated>2025-04-18T00:00:00-04:00</updated><id>http://localhost:4000/2025/04/18/chat-with-your-knowledge-base-a-handson-java-langchain4j-guide</id><content type="html" xml:base="http://localhost:4000/2025/04/18/chat-with-your-knowledge-base-a-handson-java-langchain4j-guide/"><![CDATA[<p><img src="/images/chatgpt-image-apr-18-2025-02-34-23-am.png" alt="" /></p>
+
+<h1 id="chat-with-your-knowledge-base-a-hands-on-java--langchain4j-guide">Chat with Your Knowledge Base: A Hands-On Java \&amp; LangChain4j Guide</h1>
+
+<blockquote>
+  <p><strong>Disclaimer:</strong> This article details an experimental project built for learning and demonstration purposes. The implementation described is not intended as a production-grade solution. Some parts of the code were generated using JetBrains’ AI Agent, <a href="https://www.jetbrains.com/junie/">Junie</a>.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>Large Language Models (LLMs) like GPT-4, Llama, and Gemini have revolutionized how we interact with information. However, their knowledge is generally limited to the data they were trained on. What if you need an AI assistant that understands <em>your</em> specific domain knowledge – your company’s internal documentation, product specs, or operational data from a complex system?</p>
+
+<p>This is where <strong>Retrieval-Augmented Generation (RAG)</strong> comes in. RAG enhances LLMs by providing them with relevant information retrieved from your specific knowledge sources <em>before</em> they generate a response. This allows them to answer questions based on data they weren’t originally trained on.</p>
+
+<p>This article is a hands-on guide for Java developers looking to build such a system. We’ll walk through creating a simple application that allows you to “chat” with a custom knowledge base using <strong>Java</strong> and the <strong>LangChain4j</strong> library. LangChain4j simplifies the process of integrating LLMs and building AI applications within the Java ecosystem.</p>
+
+<p>By the end of this guide, you’ll have built a basic RAG pipeline that:</p>
+
+<ol>
+  <li>Loads information from local text files representing your knowledge base.</li>
+  <li>Processes and stores this information in a way the LLM can access.</li>
+  <li>Uses an LLM (like OpenAI’s GPT or a local model via Ollama) combined with retrieved knowledge to answer your questions.</li>
+</ol>
+
+<h2 id="what-is-retrieval-augmented-generation-rag"><strong>What is Retrieval-Augmented Generation (RAG)?</strong></h2>
+
+<p>Imagine asking an LLM a question about a specific error code in your internal system. Without RAG, the LLM might guess or say it doesn’t know.</p>
+
+<p>RAG changes this by adding a crucial step:</p>
+
+<ol>
+  <li><strong>Retrieve:</strong> When you ask a question, the system first searches your specific knowledge base (documents, databases, etc.) for information relevant to your query.</li>
+  <li><strong>Augment:</strong> This retrieved information (the “context”) is then added to your original question and sent as a more detailed prompt to the LLM.</li>
+  <li><strong>Generate:</strong> The LLM uses both your question and the provided context to generate an informed answer.</li>
+</ol>
+
+<p>Essentially, RAG gives the LLM the relevant “cheat sheet” just before it needs to answer your domain-specific question.</p>
+
+<h2 id="why-langchain4j"><strong>Why LangChain4j?</strong></h2>
+
+<p>LangChain4j is a Java library inspired by the popular Python LangChain project. It provides helpful abstractions and tools to streamline the development of LLM-powered applications in Java. It simplifies tasks like:</p>
+
+<ul>
+  <li>Connecting to various LLM providers (OpenAI, Ollama, Gemini, etc.).</li>
+  <li>Managing prompts and chat memory.</li>
+  <li>Loading and transforming documents.</li>
+  <li>Integrating with embedding models and vector stores (essential for RAG).</li>
+  <li>Creating AI services and agents.</li>
+</ul>
+
+<p>Using LangChain4j means you can focus more on your application’s logic rather than the boilerplate code often involved in API integrations and data handling for AI tasks.</p>
+
+<h2 id="the-scenario-querying-operational-knowledge"><strong>The Scenario: Querying Operational Knowledge</strong></h2>
+
+<p>For this demo, we won’t build a full-blown industrial system interface. Instead, we’ll simulate a knowledge base containing basic information about technical components, their status, and known issues or operational rules. This information will be stored in simple text files. Our goal is to build a chat interface that can answer questions based <em>only</em> on the information in these files, using RAG.</p>
+
+<h2 id="prerequisites"><strong>Prerequisites</strong></h2>
+
+<p>Before we start coding, make sure you have the following installed:</p>
+
+<ul>
+  <li><strong>Java Development Kit (JDK):</strong> Version 17 or later is recommended; JDK 21 or later is preferred.</li>
+  <li><strong>Build Tool:</strong> Apache Maven or Gradle. We’ll use Maven examples here.</li>
+  <li><strong>IDE:</strong> A Java IDE like IntelliJ IDEA, Eclipse, or VS Code with Java extensions.</li>
+  <li><strong>LLM Access:</strong> You need a way to interact with a large language model (LLM). Choose one:</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Option A (OpenAI):</strong> An API key from OpenAI. You can get one from their website. LangChain4j allows using “demo” as a key for basic, rate-limited testing.</li>
+  <li><strong>Option B (Ollama – Local):</strong> Install <a href="https://ollama.ai/">Ollama</a> on your machine. After installation, pull a model via the command line (e.g., ollama pull llama3 or ollama pull mistral). This allows you to run the LLM entirely locally.</li>
+</ul>
+
+<h2 id="step-1-project-setup-maven"><strong>Step 1: Project Setup (Maven)</strong></h2>
+
+<p>Create a new Maven project in your IDE. Open the pom.xml file and add the necessary LangChain4j dependencies.</p>
+
+<pre><code class="language-java">&lt;dependency&gt;
+    &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+    &lt;artifactId&gt;langchain4j&lt;/artifactId&gt;
+    &lt;version&gt;${langchain4j.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+    &lt;artifactId&gt;langchain4j-open-ai&lt;/artifactId&gt;
+    &lt;version&gt;${langchain4j.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
+    &lt;artifactId&gt;langchain4j-ollama&lt;/artifactId&gt;
+    &lt;version&gt;${langchain4j.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p><em>You can choose either the langchain4j-open-ai or langchain4j-ollama dependency.</em></p>
+
+<h2 id="step-2-creating-the-knowledge-base-files"><strong>Step 2: Creating the Knowledge Base Files</strong></h2>
+
+<p>We need some raw data to feed our RAG system. Create a directory named src/main/resources in your project structure. Inside this directory, create two text files:</p>
+
+<p><strong>src/main/resources/components.txt</strong> :</p>
+
+<pre><code class="language-java">Component ID: PUMP-001. Type: Centrifugal Pump. Status: Running. Connected to: VALVE-001, PIPE-002. Location: Sector A.
+Component ID: VALVE-001. Type: Gate Valve. Status: Open. Connected to: PUMP-001, TANK-A. Location: Sector A.
+Component ID: SENSOR-T1. Type: Temperature Sensor. Monitors: PUMP-001 Casing. Reading: 65C. Unit: Celsius. Location: Sector A.
+Component ID: SENSOR-P1. Type: Pressure Sensor. Monitors: PIPE-002. Reading: 150. Unit: PSI. Location: Sector B.
+Component ID: MOTOR-001. Type: Electric Motor. Status: Running. Drives: PUMP-001. Location: Sector A.
+</code></pre>
+
+<p><strong>src/main/resources/knowledge.txt</strong> :</p>
+
+<pre><code class="language-javascript">Fault ID: F001. Description: High Temperature on PUMP-001. Possible Causes: Low lubrication, bearing wear, blocked outlet VALVE-001. Recommended Action: Check lubrication levels and bearing condition.
+Event ID: E001. Description: Pressure drop in PIPE-002 below 100 PSI. Related Components: PUMP-001, VALVE-001, SENSOR-P1. Possible Causes: Leak in PIPE-002, PUMP-001 failure, VALVE-001 partially closed.
+Rule ID: R001. Condition: If SENSOR-T1 reading &gt; 80C. Action: Generate HIGH_TEMP_ALERT for PUMP-001. Priority: High.
+Maintenance Note M001: PUMP-001 bearings last replaced 6 months ago. Next inspection due in 1 month.
+Safety Procedure S001: Before servicing PUMP-001, ensure MOTOR-001 is locked out and VALVE-001 is closed.
+</code></pre>
+
+<p>These files contain simple, factual statements about our simulated system.</p>
+
+<h2 id="step-3-ingesting-the-knowledge-building-the-rag-pipeline"><strong>Step 3: Ingesting the Knowledge (Building the RAG Pipeline)</strong></h2>
+
+<p>Now, we write the Java code to load these files, process them, and store them in a way that’s searchable. This process involves:</p>
+
+<ol>
+  <li><strong>Loading:</strong> Reading the content from the text files.</li>
+  <li><strong>Splitting:</strong> Breaking down the documents into smaller, manageable chunks (or “segments”). This is important because LLMs have limits on how much text they can process at once, and smaller chunks often lead to more relevant retrieval.</li>
+  <li><strong>Embedding:</strong> Converting each text segment into a numerical vector (an “embedding”) using an Embedding Model. These vectors capture the semantic meaning of the text. Similar concepts will have similar vectors.</li>
+  <li><strong>Storing:</strong> Saving these embeddings along with their corresponding text segments in an “Embedding Store” (often a vector database, but we’ll use a simple in-memory store for this demo).</li>
+</ol>
+
+<p>Create a new Java class, KnowledgeBaseIngestor.java:</p>
+
+<p>package com.example; // Use your package name</p>
+
+<pre><code class="language-java">package ca.bazlur.util;
+
+import ca.bazlur.service.KnowledgeBaseService;
+import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.DocumentParser;
+import dev.langchain4j.data.document.DocumentSplitter;
+import dev.langchain4j.data.document.parser.TextDocumentParser;
+import dev.langchain4j.data.document.splitter.DocumentSplitters;
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.ollama.OllamaEmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel; // Choose one
+// import dev.langchain4j.model.ollama.OllamaEmbeddingModel; // Choose one
+import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
+
+public class KnowledgeBaseIngestor {
+
+    /**
+     * Loads documents from resource files, creates embeddings, and stores them in an in-memory store.
+     *
+     * @return An EmbeddingStore containing the processed knowledge base.
+     * @throws URISyntaxException if the resource file paths are invalid.
+     */
+    public static EmbeddingStore&lt;TextSegment&gt; ingestData() throws URISyntaxException, IOException {
+        System.out.println("Starting knowledge base ingestion...");
+
+        // --- 1. Load Documents ---
+        Document componentsDoc = loadDocumentFromResource("components.txt", new TextDocumentParser());
+        Document knowledgeDoc = loadDocumentFromResource("knowledge.txt", new TextDocumentParser());
+        List&lt;Document&gt; documents = List.of(componentsDoc, knowledgeDoc);
+        System.out.println("Documents loaded successfully.");
+
+        // --- 2. Setup Embedding Model ---
+        // Choose *one* embedding model provider:
+
+        // Option A: OpenAI (Requires OPENAI_API_KEY environment variable or use "demo")
+//      System.out.println("Initializing OpenAI Embedding Model...");
+//      EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+//              .apiKey(System.getenv("OPENAI_API_KEY") != null ? System.getenv("OPENAI_API_KEY") : "demo")
+//              .logRequests(true) // Optional: Log requests to OpenAI
+//              .logResponses(true) // Optional: Log responses from OpenAI
+//              .build();
+
+        // Option B: Ollama (Requires Ollama server running locally)
+        System.out.println("Initializing Ollama Embedding Model...");
+        EmbeddingModel embeddingModel = OllamaEmbeddingModel.builder()
+                .baseUrl("http://localhost:11434") // Default Ollama URL
+                .modelName("llama3")
+                .build();
+        System.out.println("Embedding Model initialized.");
+
+
+        // --- 3. Setup Embedding Store ---
+        // We use a simple in-memory store for this demo.
+        // For persistent storage, explore options like Chroma, Pinecone, Weaviate, etc.
+        System.out.println("Initializing In-Memory Embedding Store...");
+        EmbeddingStore&lt;TextSegment&gt; embeddingStore = new InMemoryEmbeddingStore&lt;&gt;();
+        System.out.println("Embedding Store initialized.");
+
+        // --- 4. Setup Ingestion Pipeline ---
+        // Define how documents are split into segments (chunking strategy)
+        // recursive(maxSegmentSize, maxOverlap) splits text recursively, trying to keep paragraphs/sentences together.
+        // 300 characters per segment, 30 characters overlap between segments.
+        DocumentSplitter splitter = DocumentSplitters.recursive(300, 30);
+        System.out.println("Using recursive document splitter (300 chars, 30 overlap).");
+
+        // EmbeddingStoreIngestor handles splitting, embedding, and storing.
+        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
+                .documentSplitter(splitter)
+                .embeddingModel(embeddingModel)
+                .embeddingStore(embeddingStore)
+                .build();
+
+        // --- 5. Ingest Documents ---
+        System.out.println("Ingesting documents into the embedding store...");
+        ingestor.ingest(documents);
+        System.out.println("Ingestion complete. Embedding store contains");
+
+        return embeddingStore;
+    }
+
+    /**
+     * Helper method to get the Path of a resource file.
+     * Handles running from IDE and within a JAR file.
+     * @param resourceName The name of the file in src/main/resources
+     * @return The Path object for the resource.
+     * @throws URISyntaxException If the resource URL is malformed.
+     * @throws RuntimeException If the resource is not found.
+     */
+    private static Document loadDocumentFromResource(String resourceName, DocumentParser parser) throws IOException {
+        try (InputStream inputStream = getResourceAsStream(resourceName)) {
+            Objects.requireNonNull(inputStream, "Resource not found: " + resourceName);
+            return parser.parse(inputStream);
+        }
+    }
+
+    protected static InputStream getResourceAsStream(String resourceName) {
+        return KnowledgeBaseService.class.getClassLoader().getResourceAsStream(resourceName);
+    }
+
+    public static void main(String[] args) {
+        try {
+            EmbeddingStore&lt;TextSegment&gt; store = ingestData();
+        } catch (URISyntaxException e) {
+            System.err.println("Error finding resource files: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("An error occurred during ingestion: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+
+<p><strong>Explanation of Key Classes:</strong></p>
+
+<ul>
+  <li><a href="https://github.com/langchain4j/langchain4j/blob/main/langchain4j/src/test/java/dev/langchain4j/data/document/parser/TextDocumentParserTest.java">TextDocumentParser</a>: A simple parser for plain text files.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/rag#document-splitter">DocumentSplitters.recursive()</a>: A strategy for splitting documents into segments, trying to respect sentence/paragraph boundaries. The numbers (e.g., 300, 30) control the maximum segment size and the overlap between segments.</li>
+  <li><a href="https://docs.langchain4j.dev/integrations/embedding-models/open-ai#creating-openaiembeddingmodel">EmbeddingModel</a> (OpenAiEmbeddingModel / OllamaEmbeddingModel): The interface and implementations for converting text to embeddings. <em>Note: For Ollama, using a dedicated embedding model like nomic-embed-text is generally better than using a chat model for embedding.</em></li>
+  <li><a href="https://docs.langchain4j.dev/integrations/embedding-stores/in-memory#apis">InMemoryEmbeddingStore</a>: A basic implementation of EmbeddingStore that keeps data in memory. Suitable for demos, but data is lost when the application stops unless serialized.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/rag#embedding-store-ingestor">EmbeddingStoreIngestor</a>: Orchestrates the process of splitting documents, embedding the segments, and adding them to the embedding store.</li>
+</ul>
+
+<h2 id="step-4-building-the-chat-interface-aiservice"><strong>Step 4: Building the Chat Interface (AiService)</strong></h2>
+
+<p>Now we create the main application class that will handle user interaction. It will:</p>
+
+<ol>
+  <li>Initialize the knowledge base by calling our KnowledgeBaseIngestor.</li>
+  <li>Set up a Chat Language Model (the LLM that generates responses).</li>
+  <li>Set up a ContentRetriever that uses the embedding store to find relevant context for user queries.</li>
+  <li>Use LangChain4j’s AiServices to create a simple chat interface.</li>
+  <li>Optionally use ChatMemory to allow the assistant to remember the conversation history.</li>
+</ol>
+
+<p>Create a new Java class, KnowledgeAssistant.java:</p>
+
+<pre><code class="language-java">package ca.bazlur.util;
+
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.ollama.OllamaChatModel;
+import dev.langchain4j.model.ollama.OllamaEmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+
+import java.util.Scanner;
+
+public class KnowledgeAssistant {
+
+    interface Assistant {
+        @SystemMessage("""
+                    You are an AI assistant specialized in querying operational knowledge about technical systems
+                    (components, status, faults, procedures). Answer user questions accurately and concisely, 
+                    relying *strictly* on the information provided in the context. Do not use any prior knowledge or make assumptions.
+                    """)
+        String chat(String userMessage);
+    }
+
+    public static void main(String[] args) {
+        try {
+            // --- 1. Ingest Knowledge Base ---
+            EmbeddingStore&lt;TextSegment&gt; embeddingStore = KnowledgeBaseIngestor.ingestData();
+
+            // --- 2. Setup Chat Model ---
+
+            // Option A: OpenAI
+            /*System.out.println("Initializing OpenAI Chat Model...");
+            ChatLanguageModel chatModel = OpenAiChatModel.builder()
+                    .apiKey(System.getenv("OPENAI_API_KEY") != null ? System.getenv("OPENAI_API_KEY") : "demo")
+                    .modelName("gpt-4o") // Or gpt-4o, etc.
+                    .logRequests(true)
+                    .logResponses(true)
+                    .build();
+            // We also need the corresponding embedding model for the retriever
+            EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+                    .apiKey(System.getenv("OPENAI_API_KEY") != null ? System.getenv("OPENAI_API_KEY") : "demo")
+                    .logRequests(true)
+                    .logResponses(true)
+                    .build();
+            */
+
+            // Option B: Ollama
+            System.out.println("Initializing Ollama Chat Model...");
+            ChatLanguageModel chatModel = OllamaChatModel.builder()
+                    .baseUrl("http://localhost:11434")
+                    .modelName("llama3") // Or mistral, etc.
+                    .build();
+            // We also need the corresponding embedding model for the retriever
+            EmbeddingModel embeddingModel = OllamaEmbeddingModel.builder()
+                .baseUrl("http://localhost:11434")
+                .modelName("llama3")
+                .build();
+            System.out.println("Chat Model initialized.");
+
+
+            // --- 3. Setup Content Retriever (RAG) ---
+            System.out.println("Initializing Content Retriever...");
+            ContentRetriever contentRetriever = EmbeddingStoreContentRetriever.builder()
+                    .embeddingStore(embeddingStore)
+                    .embeddingModel(embeddingModel) // Use the *same* embedding model used during ingestion
+                    .maxResults(3) // Retrieve top 3 most relevant segments
+                    .minScore(0.6) // Filter out segments with relevance score below 0.6
+                    .build();
+            System.out.println("Content Retriever initialized.");
+
+            // --- 4. Setup Chat Memory (Optional) ---
+            // This allows the assistant to remember previous parts of the conversation.
+            ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+            System.out.println("Chat Memory initialized (window size 10).");
+
+            // --- 5. Create the AiService ---
+            // AiServices wires together the chat model, retriever, memory, etc.
+            // It automatically implements the Assistant interface based on annotations and configuration.
+            System.out.println("Creating AI Service...");
+            Assistant assistant = AiServices.builder(Assistant.class)
+                    .chatLanguageModel(chatModel)
+                    .contentRetriever(contentRetriever)
+                    .chatMemory(chatMemory)
+                    .build();
+            System.out.println("AI Service created. Assistant is ready.");
+
+            // --- 6. Start Interactive Chat Loop ---
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\nAssistant: Hello! Ask me about the system components or known issues.");
+            while (true) {
+                System.out.print("You: ");
+                String userQuery = scanner.nextLine();
+
+                if ("exit".equalsIgnoreCase(userQuery)) {
+                    System.out.println("Assistant: Goodbye!");
+                    break;
+                }
+
+                String assistantResponse = assistant.chat(userQuery);
+                System.out.println("Assistant: " + assistantResponse);
+            }
+            scanner.close();
+
+        } catch (Exception e) {
+            System.err.println("An error occurred during assistant setup or chat: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+
+</code></pre>
+
+<p><strong>Explanation of Key Classes:</strong></p>
+
+<ul>
+  <li><a href="https://docs.langchain4j.dev/apidocs/dev/langchain4j/model/chat/ChatLanguageModel.html">ChatLanguageModel</a> (OpenAiChatModel / OllamaChatModel): Interface and implementations for the core LLM that generates responses.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/rag#naive-rag">EmbeddingStoreContentRetriever</a>: An implementation of ContentRetriever specifically designed to work with an <a href="https://docs.langchain4j.dev/integrations/embedding-stores/in-memory#persisting">EmbeddingStore</a>. It takes the user query, embeds it using the <em>same</em> EmbeddingModel used during ingestion, searches the EmbeddingStore for similar embeddings, and retrieves the corresponding text segments.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/ai-services#chat-memory">ChatMemory</a> (MessageWindowChatMemory): Stores the history of the conversation. MessageWindowChatMemory keeps only the last N messages.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/ai-services">AiServices</a>: A powerful factory in LangChain4j that creates an implementation of your defined interface (here, Assistant). It automatically handles:</li>
+</ul>
+
+<!-- -->
+
+<p>*</p>
+<ul>
+  <li>Taking the user message.</li>
+  <li>(If ContentRetriever is provided) Retrieving relevant context.</li>
+  <li>(If ChatMemory is provided) Loading previous messages.</li>
+  <li>Constructing the final prompt (including context and history) for the ChatLanguageModel.</li>
+  <li>Getting the response from the LLM.</li>
+  <li>(If ChatMemory is provided) Saving the current exchange.</li>
+  <li>Returning the LLM’s response.</li>
+</ul>
+
+<h2 id="step-5-running-and-testing"><strong>Step 5: Running and Testing</strong></h2>
+
+<ol>
+  <li><strong>Set Environment Variable (if using OpenAI):</strong> Make sure your OPENAI_API_KEY environment variable is set.</li>
+  <li><strong>Run Ollama (if using Ollama):</strong> Ensure your Ollama application is running in the background.</li>
+  <li><strong>Compile:</strong> Use Maven to compile your project (e.g., <strong>mvn clean compile</strong>).</li>
+  <li><strong>Run:</strong> Execute the <strong>KnowledgeAssistant</strong> class. You can run it from your IDE or use Maven to create an executable JAR (mvn clean package) and run it (<strong>java -jar target/knowledge-base-chat-1.0-SNAPSHOT.jar</strong>).</li>
+</ol>
+
+<p>Once running, you should see the ingestion messages followed by the “Assistant: Hello!” prompt. Try asking questions based on the content of components.txt and knowledge.txt:</p>
+
+<ul>
+  <li>You: What is the status of PUMP-001?</li>
+  <li>You: Where is SENSOR-P1 located?</li>
+  <li>You: What are the possible causes of high temperature on PUMP-001?</li>
+  <li>You: What is rule R001?</li>
+  <li>You: Tell me about PUMP-001.</li>
+  <li>You: What is the safety procedure for PUMP-001?</li>
+</ul>
+
+<p>Observe how the assistant’s answers are derived from the information you provided in the text files, demonstrating the RAG process in action.</p>
+
+<p><img src="/images/screenshot-2025-04-18-at-2.46.48-am.png" alt="" /></p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>Congratulations! You’ve built a basic Retrieval-Augmented Generation (RAG) application using Java and LangChain4j. You’ve seen how to load custom knowledge, process it into searchable embeddings, and create an AI assistant that leverages this specific information to provide relevant answers.</p>
+
+<p>This approach of combining the power of LLMs with your domain-specific data opens up vast possibilities for building intelligent applications that truly understand your world.</p>
+
+<blockquote>
+  <p>For the complete source code, visit: <a href="https://github.com/rokon12/knowledge-base-chat">https://github.com/rokon12/knowledge-base-chat</a></p>
+
+  <p>If you’re looking for more examples integrating LLMs with Java, especially within the Jakarta EE context, you might find this repository helpful: <a href="https://github.com/learnj-ai/llm-jakarta" title="null">https://github.com/learnj-ai/llm-jakarta</a></p>
+</blockquote>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama</title><link href="http://localhost:4000/2025/04/06/building-formpilot-my-journey-creating-an-aipowered-form-filler-with-rag-langchain4j-and-ollama/" rel="alternate" type="text/html" title="Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama" /><published>2025-04-06T00:00:00-04:00</published><updated>2025-04-06T00:00:00-04:00</updated><id>http://localhost:4000/2025/04/06/building-formpilot-my-journey-creating-an-aipowered-form-filler-with-rag-langchain4j-and-ollama</id><content type="html" xml:base="http://localhost:4000/2025/04/06/building-formpilot-my-journey-creating-an-aipowered-form-filler-with-rag-langchain4j-and-ollama/"><![CDATA[<p><img src="/images/chatgpt-image-apr-6-2025-06-10-38-pm.png" alt="" /></p>
+
+<h1 id="building-formpilot-my-journey-creating-an-ai-powered-form-filler-with-rag-langchain4j-and-ollama">Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama</h1>
+
+<blockquote>
+  <p><strong>Disclaimer:</strong> This article details an experimental project built for learning and demonstration purposes. The implementation described is not intended as production-grade solution. Some parts of the code were generated using JetBrains’ AI Agent, <a href="https://www.jetbrains.com/junie/">Junie</a>.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>Have you ever found yourself filling out the same information on web forms over and over again? Name, email, address, phone number… it’s tedious and time-consuming. As a developer who values efficiency, I decided to tackle this problem head-on by building FormPilot, an intelligent form filler that leverages the power of Large Language Models (LLMs) to fill out forms with contextually appropriate information automatically.</p>
+
+<p>In this article, I’ll take you through my journey of creating FormPilot, a Chrome extension backed by a Java Spring Boot application that uses Retrieval-Augmented Generation (RAG), LangChain4j, and Ollama to fill out web forms intelligently. I’ll share the challenges I faced, the solutions I implemented, and the lessons I learned along the way.</p>
+
+<h2 id="the-inspiration"><strong>The Inspiration</strong></h2>
+
+<p>The idea for FormPilot came to me during a conference registration season. I found myself registering for multiple tech conferences, each with their own registration forms asking for the same information. As I filled out yet another form with my name, email, and bio for the fifth time, I thought, “There has to be a better way.”</p>
+
+<p>Sure, there are password managers and form fillers out there, but they typically just save and replay the exact information you’ve entered before. What if we could create something smarter? Something that could help us understand the context of each field and generate appropriate values based on that context?</p>
+
+<p>That’s when I decided to leverage my experience with Java and my interest in AI to build FormPilot.</p>
+
+<h2 id="the-architecture"><strong>The Architecture</strong></h2>
+
+<p>I designed FormPilot with two main components:</p>
+
+<ol>
+  <li>A Chrome extension that detects forms on web pages and communicates with a local server</li>
+  <li>A Spring Boot application that uses RAG, LangChain4j, and Ollama to generate appropriate values for form fields</li>
+</ol>
+
+<p>This architecture allows the extension to be lightweight while offloading the heavy lifting of AI processing to the local server. Here’s how the data flows through the system:</p>
+
+<ol>
+  <li>The Chrome extension detects a form on a web page</li>
+  <li>It extracts metadata about each form field (id, name, type, label, placeholder, etc.)</li>
+  <li>It sends this metadata to the local server</li>
+  <li>The server uses RAG and LangChain4j with Ollama to generate appropriate values for each field</li>
+  <li>The server returns these values to the extension</li>
+  <li>The extension fills the form with the generated values</li>
+</ol>
+
+<h2 id="getting-started-setting-up-your-environment"><strong>Getting Started: Setting Up Your Environment</strong></h2>
+
+<p>Before we dive into the specific code implementation for FormPilot’s backend, let’s set up the necessary tools: Ollama for running the language model locally and the initial Spring Boot project structure.</p>
+
+<h3 id="part-1-installing-and-running-ollama-locally"><strong>Part 1: Installing and Running Ollama Locally</strong></h3>
+
+<p>Ollama enables you to run open-source large language models (LLMs) directly on your own machine. This is great for privacy (data stays local) and avoids API costs.</p>
+
+<ol>
+  <li><strong>Download and Install Ollama:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Visit the official Ollama website: <a href="https://ollama.com/">https://ollama.com/</a></li>
+  <li>Follow the instructions for your operating system:</li>
+</ul>
+
+<!-- -->
+
+<p>*</p>
+<ul>
+  <li><strong>macOS:</strong> Download the .zip file, unzip it, move the app to your Applications folder, and run it once. It installs the command-line tool and runs as a background service (check your menu bar).</li>
+  <li><strong>Windows:</strong> Download and run the .exe installer. It typically sets up Ollama as a background service.</li>
+  <li>
+    <p><strong>Linux:</strong> Use the provided installation script in your terminal:</p>
+
+    <p><br /></p>
+
+    <pre><code>curl -fsSL https://ollama.com/install.sh | sh
+</code></pre>
+
+    <p>This usually sets up Ollama as a <code>systemd</code> service.</p>
+  </li>
+</ul>
+
+<ol>
+  <li><strong>Verify Installation:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Open your terminal (or Command Prompt/PowerShell) and type: <code>ollama --version</code></li>
+  <li>You should see the Ollama version number displayed.</li>
+</ul>
+
+<ol>
+  <li><strong>Ensure Ollama is Running:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Ollama usually runs automatically in the background after installation on macOS and Windows.</li>
+  <li>On Linux, you can check its status: sudo <code>systemctl</code> status ollama. If needed, start it with sudo <code>systemctl</code> start ollama and enable it on boot with sudo <code>systemctl</code> enable ollama.</li>
+  <li>The Ollama server typically listens for requests on <code>http://localhost:11434</code>.</li>
+</ul>
+
+<ol>
+  <li><strong>Install an LLM (e.g., Llama 3):</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>
+    <p>Use the Ollama command line to download the model mentioned in this article (llama3 or deepseek-llm:7b):</p>
+
+    <pre><code>ollama run llama3
+</code></pre>
+  </li>
+</ul>
+
+<!-- -->
+
+<p>*</p>
+<ul>
+  <li>This command will first download the model files (this can take a while) and then load the model, giving you a chat prompt (&gt;&gt;&gt;).</li>
+  <li>You can exit the chat prompt by typing /bye. The model is now downloaded and available for use by applications like your Spring Boot backend.</li>
+  <li>To see all locally downloaded models, use:</li>
+</ul>
+
+<pre><code class="language-java">ollama list
+</code></pre>
+
+<h3><img src="/images/screenshot-2025-04-05-at-9.48.13-pm.png" alt="" /></h3>
+
+<h3 id="part-2-creating-the-spring-boot-project-via-spring-initializr"><strong>Part 2: Creating the Spring Boot Project via Spring Initializr</strong></h3>
+
+<p>Spring Initializr is a web tool that generates a basic Spring Boot project structure for you.</p>
+
+<ol>
+  <li><strong>Visit Spring Initializr:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Go to <a href="https://start.spring.io/">https://start.spring.io/</a> in your browser and configure your project; for brevity, since this part is pretty much known by every spring developer, I am going to skip it. Download the structure and open it in your favourite IDE.</li>
+  <li>
+    <p>Make sure you have the following dependencies in your <code>gradle.build</code> or <code>pom.xml</code>.</p>
+
+    <pre><code>dependencies {
+    implementation 'dev.langchain4j:langchain4j-spring-boot-starter:1.0.0-beta2'
+    implementation 'dev.langchain4j:langchain4j-open-ai-spring-boot-starter:1.0.0-beta2'
+    implementation 'dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:1.0.0-beta2'
+    implementation 'dev.langchain4j:langchain4j-ollama:1.0.0-beta2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+</code></pre>
+  </li>
+</ul>
+
+<p>With Ollama running and the basic Spring Boot project created, you’re ready to start adding the FormPilot-specific code.</p>
+
+<h2 id="implementing-rag-with-langchain4j"><strong>Implementing RAG with LangChain4j</strong></h2>
+
+<p>One of the most exciting parts of building FormPilot was implementing Retrieval-Augmented Generation (RAG) using <a href="https://docs.langchain4j.dev/">LangChain4j</a>. RAG is a technique that enhances LLM outputs by retrieving relevant information from a knowledge base before generating a response.</p>
+
+<p>For FormPilot, I wanted the system to be able to fill forms with personalized information. I started by creating a simple text file (<code>content.txt</code> placed in <code>src/main/resources</code>) containing information about conference speakers, including names, bios, contact information, and session details.</p>
+
+<p>Here’s how I implemented RAG in the RAGConfig class:</p>
+
+<pre><code class="language-java">package ca.bazlur.formpilot.config;
+
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.memory.chat.ChatMemoryProvider;
+import dev.langchain4j.memory.chat.TokenWindowChatMemory;
+import dev.langchain4j.model.Tokenizer;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.DocumentSplitter;
+import dev.langchain4j.data.document.parser.TextDocumentParser;
+import dev.langchain4j.data.document.splitter.DocumentSplitters;
+import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+
+import java.io.IOException;
+
+import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
+
+@Slf4j
+@Configuration
+public class RAGConfig {
+
+    @Bean(name = "ollamaChatMemoryProvider")
+    ChatMemoryProvider chatMemoryProvider(Tokenizer tokenizer) {
+        return memoryId -&gt; TokenWindowChatMemory.builder()
+                .id(memoryId)
+                .maxTokens(10_000, tokenizer)
+                .build();
+    }
+
+    @Bean
+    EmbeddingStore&lt;TextSegment&gt; embeddingStore(EmbeddingModel embeddingModel, ResourceLoader resourceLoader) throws IOException {
+
+        // Normally, you would already have your embedding store filled with your data.
+        // However, for the purpose of this demonstration, we will:
+
+        // 1. Create an in-memory embedding store
+        EmbeddingStore&lt;TextSegment&gt; embeddingStore = new InMemoryEmbeddingStore&lt;&gt;();
+
+        // 2. Load an example document
+        Resource resource = resourceLoader.getResource("classpath:content.txt");
+        Document document = loadDocument(resource.getFile().toPath(), new TextDocumentParser());
+
+        log.info("Document loaded: {}", document.metadata());
+
+        // 3. Split the document into segments 2000 tokens each
+        // 4. Convert segments into embeddings
+        // 5. Store embeddings into embedding store
+        // All this can be done manually, but we will use EmbeddingStoreIngestor to automate this:
+        DocumentSplitter documentSplitter = DocumentSplitters.recursive(2000, 500);
+        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
+                .documentSplitter(documentSplitter)
+                .embeddingModel(embeddingModel)
+                .embeddingStore(embeddingStore)
+                .build();
+        ingestor.ingest(document);
+
+        return embeddingStore;
+    }
+
+
+    @Bean
+    EmbeddingModel embeddingModel(){
+        // not good but works for this demo
+        return new AllMiniLmL6V2EmbeddingModel();
+    }
+
+    @Bean(name = "ollamaContentRetriever")
+    ContentRetriever contentRetriever(EmbeddingStore&lt;TextSegment&gt; embeddingStore, EmbeddingModel embeddingModel) {
+        log.info("Creating ContentRetriever");
+        // You will need to adjust these parameters to find the optimal setting,
+        // which will depend on multiple factors, for example:
+        // - The nature of your data
+        // - The embedding model you are using
+        int maxResults = 2;
+        double minScore = 0.4;
+
+        return EmbeddingStoreContentRetriever.builder()
+                .embeddingStore(embeddingStore)
+                .embeddingModel(embeddingModel)
+                .maxResults(maxResults)
+                .minScore(minScore)
+                .build();
+    }
+}
+</code></pre>
+
+<p>This configuration:</p>
+
+<ol>
+  <li>Creates an in-memory embedding store.</li>
+  <li>Loads the <code>content.txt</code> document from the project’s resources.</li>
+  <li>Split the document into segments of 2000 characters with a 500-character overlap (adjust these values based on your content and model).</li>
+  <li>Converts these segments into vector embeddings using the configured EmbeddingModel and stores them.</li>
+  <li>Creates a <strong>ContentRetriever</strong> that will query this embedding store to find the most relevant text segments based on semantic similarity to the input query (e.g., a form field label).</li>
+</ol>
+
+<h2 id="the-magic-of-langchain4js-aiservice"><strong>The Magic of LangChain4j’s @AiService</strong></h2>
+
+<p>One of the most elegant aspects of FormPilot is how it uses LangChain4j’s <strong>@AiService</strong> annotation to create a declarative interface for interacting with the LLM. This approach dramatically simplifies the code required to prompt the model and parse its response.</p>
+
+<p>Here’s the FormAssistant interface:</p>
+
+<pre><code class="language-java">package ca.bazlur.formpilot.service;
+
+import ca.bazlur.formpilot.model.FormField;
+import dev.langchain4j.service.MemoryId;
+import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.spring.AiService;
+import dev.langchain4j.service.spring.AiServiceWiringMode;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+@AiService
+public interface FormAssistant {
+
+    @SystemMessage("""
+          You are an AI assistant acting *exclusively* as a JSON Form Filler.
+          Your *only* task is to process a list of form fields and accompanying context (if provided) and output a *single, valid JSON object* representing the filled form.
+          
+          **CRITICAL OUTPUT REQUIREMENT:**
+          Your entire response MUST be *only* the final JSON object.
+          - Start immediately with `{`.
+          - End immediately with `}`.
+          - Do NOT include any introductory text, explanations, apologies, conversational filler, or markdown formatting *outside* the JSON structure itself.
+          
+          **Input You Will Receive:**
+          1.  A list/description of form fields, each with metadata like: `id`, `name`, `type`, `label`, `placeholder`, `required`.
+          2.  Optional: Text context or user-supplied data relevant to the form.
+          
+          **Processing Rules:**
+          * **JSON Key:** Use the field's `id` as the key in the output JSON. If `id` is empty or missing, use `name`.
+          * **Skipping Fields:** Ignore any field where both `id` and `name` are empty strings.
+          * **Value Determination (Priority Order):**
+              1.  **Context First:** Use any provided text context or user-supplied data to fill the fields. Match data to relevant field types/labels (e.g., use provided phone number for `tel` field, biography text for `textarea` bio field).
+              2.  **Generation:** If context is insufficient for a field, generate a realistic and contextually appropriate value based on its `type`, `label`, and `placeholder`.
+          * **Type-Specific Generation Rules:**
+              * `email`: Generate a plausible email (e.g., `jane.doe@example.com`) if not in context.
+              * `password`: Use a placeholder strong password (e.g., `P@ssw0rd123!`).
+              * `date`: Generate a valid date (e.g., `1995-06-15`).
+              * `number`: Generate a sensible number based on context (e.g., `85000` for annual income).
+              * `tel`: Generate a plausible phone number (e.g., `+1-416-555-0199`) if not in context.
+              * `textarea` (bios, comments, descriptions): Generate detailed, multi-sentence text relevant to the field's purpose, using context if available.
+              * `select-one` (often paired):
+                  * Fill the associated text input (`field-id-selectized`) with the *text label* (e.g., "Intermediate").
+                  * Leave the `select-one` field (`field-id`) value as `""` (empty string) unless the specific *internal value* is known from context.
+          * **Required Fields:** If `required: true` and no value can be determined from context, generate a placeholder value (e.g., `"N/A - Required"`, `"user@example.com"`, `"https://example.com/placeholder"`) instead of leaving it empty.
+          * **Duplicate Sections:** Fill apparently duplicated sections (e.g., `User` vs. `ImpersonatedUser`) consistently with the same data unless context specifies otherwise.
+      
+          Now, process the following form fields and context, providing only the JSON output. 
+          
+          Return Map&lt;String, ?&gt; where the key is the field's `id` or `name` and the value is the filled value.
+                   
+          """)
+    Map&lt;String, ?&gt; generateForm(@MemoryId String memoryId, @UserMessage List&lt;FormField&gt; fields);
+}
+</code></pre>
+
+<p>Define the FormField record/class (e.g., in the model package)</p>
+
+<pre><code class="language-java">package ca.bazlur.formpilot.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Represents a form field from a webpage.
+ * This data is sent from the Chrome extension to the server.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FormField {
+    private String id;
+    private String name;
+    private String type;
+    private String label;
+    private String placeholder;
+    private boolean required;
+    private String value;
+    private List&lt;Option&gt; options = new ArrayList&lt;&gt;();
+}
+
+@Data
+class Option {
+    private String text;
+    private String value;
+}
+</code></pre>
+
+<p><br /></p>
+
+<p>With just this interface and the <code>@AiService</code> annotation (from <code>dev.langchain4j.service.spring.AiService</code>), the <a href="https://docs.langchain4j.dev/tutorials/spring-boot-integration/">LangChain4j Spring Boot starter</a> automatically creates a bean implementing this interface. When you call the generateForm method:</p>
+
+<ol>
+  <li>It constructs a prompt using the @SystemMessage and the provided fields list (formatted as the <code>@UserMessage</code>).</li>
+  <li>The process automatically incorporates the ContentRetriever bean (our RAG setup). LangChain4j handles querying the retriever and adding relevant context to the prompt sent to the LLM.</li>
+  <li>It sends the combined prompt to the configured LLM (Ollama in this case).</li>
+  <li>It parses the LLM’s JSON response back into a <code>Map&lt;String, String&gt;</code>.</li>
+</ol>
+
+<p>This declarative approach keeps the service layer clean and focuses on <em>what</em> needs to be done rather than the low-level details of LLM interaction and RAG integration.</p>
+
+<h2 id="integrating-with-ollama"><strong>Integrating with Ollama</strong></h2>
+
+<p>I chose to use Ollama for the LLM backend, which allows for the local running of LLMs. This provides several advantages:</p>
+
+<ol>
+  <li><strong>Privacy:</strong> Form data never leaves the user’s computer.</li>
+  <li><strong>No API Costs:</strong> Users don’t need to pay for LLM API usage.</li>
+  <li><strong>Offline Capability:</strong> The system can potentially work without an active internet connection (once models are downloaded).</li>
+</ol>
+
+<p>Configuring LangChain4j to use your local Ollama instance is straightforward using Spring Boot’s <code>application.properties</code> (or application.yml) file located in <code>src/main/resources</code>.</p>
+
+<p>Add the following properties:</p>
+
+<pre><code class="language-java"># LangChain4j Configuration for Ollama
+
+# Base URL for the Ollama API (default port is 11434)
+langchain4j.chat-model.ollama.base-url=http://localhost:11434
+# Specify the Ollama model to use for chat completions
+langchain4j.chat-model.ollama.model-name=llama3
+# Temperature: Controls randomness (0.0 = deterministic)
+langchain4j.chat-model.ollama.temperature=0.0
+# Timeout for API calls
+langchain4j.chat-model.ollama.timeout=PT60S # 60 seconds
+
+# Configure the embedding model (used for RAG)
+# Use an Ollama model capable of generating embeddings
+# Note: Not all models are fine-tuned for embeddings. Check Ollama docs.
+
+langchain4j.embedding-model.ollama.base-url=http://localhost:11434/v1
+langchain4j.embedding-model.ollama.model-name=deepseek-llm:7b
+
+langchain4j.embedding-model.ollama.timeout=PT60S
+</code></pre>
+
+<p>Make sure you have downloaded the specified models using Ollama (e.g., <code>ollama run llama3</code> or <code>ollama run </code>deepseek-llm:7b).</p>
+
+<p>These properties tell the LangChain4j Spring Boot starter to configure both the chat model (for generating the form values) and the embedding model (for RAG) to use your local Ollama server.</p>
+
+<h2 id="building-the-chrome-extension"><strong>Building the Chrome Extension</strong></h2>
+
+<p>The Chrome extension acts as the user-facing part of FormPilot. It needs to:</p>
+
+<ol>
+  <li>Detect forms on the current web page.</li>
+  <li>Extract relevant information about each input field.</li>
+  <li>Send this information to the local Spring Boot backend.</li>
+  <li>Receive the generated values from the backend.</li>
+  <li>Fill out the form fields with the values you received.</li>
+</ol>
+
+<p>I structured the extension with three main parts:</p>
+
+<ol>
+  <li><strong>Content Script (content.js)</strong> : Injected into web pages to interact with the DOM (find forms, fill fields).</li>
+  <li><strong>Background Script (background.js or Service Worker)</strong> : Acts as a central hub, handling communication with the backend server and managing the extension state.</li>
+  <li><strong>Popup UI (popup.html and popup.js)</strong> : Provides a simple interface for the user (e.g., a button to trigger form filling).<img src="/images/screenshot-2025-04-06-at-6.50.38-pm.png" alt="" /></li>
+</ol>
+
+<p>The most challenging part was reliably detecting form fields and extracting useful metadata, especially labels, as HTML forms vary widely in structure. I implemented several strategies in content.js:</p>
+
+<ol>
+  <li>Look for a &lt;label&gt; element with a for attribute matching the field’s ID.</li>
+  <li>Check if the field is nested inside a &lt;label&gt; element.</li>
+  <li>Look for a sibling &lt;label&gt; element.</li>
+  <li>Look at the aria-label or aria-labelledby attributes.</li>
+  <li>As a fallback, check for preceding non-interactive element text content near the field.</li>
+</ol>
+
+<p>Here’s a simplified snippet illustrating field data extraction:</p>
+
+<pre><code class="language-javascript">// content.js (Simplified Example)
+function findFormsAndFields() {
+  const forms = document.querySelectorAll('form');
+  const allFieldsData = [];
+  forms.forEach(form =&gt; {
+    // Select common form input elements within the current form
+    const elements = form.querySelectorAll('input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="hidden"]):not([type="file"]), select, textarea');
+    elements.forEach(element =&gt; {
+      const fieldData = createFormFieldData(element);
+      if (fieldData &amp;&amp; !fieldData.value) { // Only include fields that are not already filled
+        // Check if field is visible to the user
+        if (element.offsetParent !== null) {
+            allFieldsData.push(fieldData);
+        }
+      }
+    });
+  });
+  return allFieldsData;
+}
+function getLabelForElement(element) {
+    // 1. Check for &lt;label for="..."&gt;
+    if (element.id) {
+        const label = document.querySelector(`label[for="${element.id}"]`);
+        if (label) return label.textContent.trim();
+    }
+    // 2. Check for parent &lt;label&gt;
+    const parentLabel = element.closest('label');
+    if (parentLabel) return parentLabel.textContent.replace(element.value || '', '').trim(); // Attempt to remove element's own text if nested
+    // 3. Check aria-label
+    const ariaLabel = element.getAttribute('aria-label');
+    if (ariaLabel) return ariaLabel.trim();
+    // 4. Check aria-labelledby
+    const ariaLabelledBy = element.getAttribute('aria-labelledby');
+    if (ariaLabelledBy) {
+        const labelElement = document.getElementById(ariaLabelledBy);
+        if (labelElement) return labelElement.textContent.trim();
+    }
+    // 5. Fallback: Preceding sibling text (simplified)
+    let previous = element.previousElementSibling;
+    if (previous &amp;&amp; !['input', 'select', 'textarea', 'button', 'label'].includes(previous.tagName.toLowerCase())) {
+        return previous.textContent.trim();
+    }
+    return ''; // No label found
+}
+function createFormFieldData(element) {
+  // Basic check to skip elements we don't want to fill
+  const type = element.type ? element.type.toLowerCase() : element.tagName.toLowerCase();
+  if (type === 'hidden' || type === 'submit' || type === 'button' || type === 'reset' || type === 'file') {
+    return null;
+  }
+  // Skip if element is disabled or readonly
+  if (element.disabled || element.readOnly) {
+      return null;
+  }
+  // Get the current value (to potentially avoid filling already completed fields)
+  let value = '';
+  if (type === 'checkbox' || type === 'radio') {
+      value = element.checked ? 'true' : 'false'; // Represent boolean state
+  } else {
+      value = element.value || '';
+  }
+  return {
+    id: element.id || '',
+    name: element.name || '',
+    type: type,
+    label: getLabelForElement(element), // Use dedicated function for label finding
+    placeholder: element.placeholder || '',
+    required: element.required || false,
+    value: value // Include current value
+  };
+}
+// --- Communication Logic (Example using Chrome messaging) ---
+// This function would be called, e.g., when the user clicks the extension icon
+function requestFormFill() {
+    const fieldsToSend = findFormsAndFields();
+    if (fieldsToSend.length &gt; 0) {
+        // Send fields to the background script
+        chrome.runtime.sendMessage({ action: "fillForm", fields: fieldsToSend }, (response) =&gt; {
+            if (chrome.runtime.lastError) {
+                console.error("FormPilot Error:", chrome.runtime.lastError.message);
+                // Handle error (e.g., show message to user)
+                return;
+            }
+            if (response &amp;&amp; response.filledFields) {
+                // Fill the actual form elements on the page
+                fillFormOnPage(response.filledFields);
+            } else {
+                console.error("FormPilot: No filled fields received from backend or backend error.");
+                // Handle error or empty response
+            }
+        });
+    } else {
+        console.log("FormPilot: No suitable empty fields found on the page.");
+        // Optionally notify user
+    }
+}
+function fillFormOnPage(filledFieldsMap) {
+    // filledFieldsMap is the Map&lt;String, String&gt; from the backend
+    console.log("FormPilot: Received fields to fill:", filledFieldsMap);
+    for (const [identifier, value] of Object.entries(filledFieldsMap)) {
+        // Try finding element by ID first, then by name
+        let element = document.getElementById(identifier) || document.querySelector(`[name="${identifier}"]`);
+        if (element) {
+            fillField(element, value);
+        } else {
+            console.warn(`FormPilot: Could not find element with id or name: ${identifier}`);
+        }
+    }
+    console.log("FormPilot: Form filling attempt complete.");
+}
+function fillField(element, value) {
+    const tagName = element.tagName.toLowerCase();
+    const type = element.type ? element.type.toLowerCase() : tagName;
+    console.log(`FormPilot: Filling field (id=${element.id}, name=${element.name}, type=${type}) with value: ${value}`);
+    if (type === 'select' || type === 'select-one') {
+        // Find the option with matching value or text (case-insensitive text match)
+        const options = Array.from(element.options);
+        let foundOption = options.find(opt =&gt; opt.value === value);
+        if (!foundOption) {
+            foundOption = options.find(opt =&gt; opt.text.toLowerCase() === value.toLowerCase());
+        }
+        if (foundOption) {
+            element.value = foundOption.value;
+        } else {
+            console.warn(`FormPilot: Could not find option "${value}" for select field (id=${element.id}, name=${element.name})`);
+            // Optionally try creating an option if allowed, or skip
+        }
+    } else if (type === 'checkbox') {
+        // Check/uncheck based on truthiness (e.g., "true", "yes", "on", true)
+        const shouldBeChecked = ['true', 'yes', 'on', '1'].includes(String(value).toLowerCase());
+        element.checked = shouldBeChecked;
+    } else if (type === 'radio') {
+        // For radio buttons, find the one in the group with the matching value and check it
+        const radioGroup = document.querySelectorAll(`input[type="radio"][name="${element.name}"]`);
+        radioGroup.forEach(radio =&gt; {
+            radio.checked = (radio.value === value);
+        });
+    } else {
+        // For text inputs, textareas, email, password, number, date, etc.
+        element.value = value;
+    }
+    // IMPORTANT: Trigger events to simulate user input, which many frameworks rely on
+    triggerEvents(element);
+}
+function triggerEvents(element) {
+    // Events commonly listened for by frameworks (React, Vue, Angular, etc.)
+    const eventsToTrigger = [
+        new Event('input', { bubbles: true, cancelable: true }),
+        new Event('change', { bubbles: true, cancelable: true }),
+        new FocusEvent('focus', { bubbles: true, cancelable: true }), // Simulate focus first
+        new FocusEvent('blur', { bubbles: true, cancelable: true })   // Then blur
+    ];
+    // Dispatch focus first
+    element.dispatchEvent(eventsToTrigger[2]);
+    // Dispatch input and change
+    element.dispatchEvent(eventsToTrigger[0]);
+    element.dispatchEvent(eventsToTrigger[1]);
+    // Dispatch blur last
+    element.dispatchEvent(eventsToTrigger[3]);
+}
+// --- Listener for messages from background or popup ---
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) =&gt; {
+    if (request.action === "triggerFormFill") {
+        console.log("FormPilot: Received triggerFormFill command.");
+        requestFormFill();
+        // Indicate async response if needed, though maybe not for this simple trigger
+        // sendResponse({ status: "Form fill initiated" });
+        return true; // Keep message channel open for potential async response from requestFormFill if it used sendResponse
+    }
+});
+console.log("FormPilot Content Script Loaded.");
+</code></pre>
+
+<p>The background script (<code>background.js</code>) would handle the <code>chrome.runtime.onMessage</code> listener for the “fillForm” action, make a fetch request to the local Spring Boot server (<code>http://localhost:8080/api/fill-form</code> or similar), and send the response back to the content script. Remember to configure CORS in your Spring Boot application to allow requests from the Chrome extension’s origin.</p>
+
+<p>Check out the chrome-extension: <a href="https://github.com/rokon12/form-pilot/tree/main/chrome-extension">https://github.com/rokon12/form-pilot/tree/main/chrome-extension</a></p>
+
+<h3 id="setting-up-the-spring-boot-server"><strong>Setting up the Spring Boot Server</strong></h3>
+
+<p>Build the Spring Boot application:</p>
+
+<pre><code class="language-java">./gradlew build
+</code></pre>
+
+<p>Run the Spring Boot application:</p>
+
+<pre><code class="language-java">./gradlew bootRun
+</code></pre>
+
+<p>The server will start on port <code>8080</code>. You can verify it’s running by visiting:</p>
+
+<pre><code class="language-java">http://localhost:8080/api/form/health
+</code></pre>
+
+<h3 id="setting-up-the-chrome-extension"><strong>Setting up the Chrome Extension</strong></h3>
+
+<ol>
+  <li>Open Google Chrome and navigate to: <code>chrome://extensions/</code></li>
+  <li>Enable “Developer mode” by toggling the switch in the top right corner.</li>
+  <li>Click “Load unpacked” and select the chrome-extension directory from this project.</li>
+  <li>The extension should now be installed and visible in your Chrome toolbar.</li>
+</ol>
+
+<h3 id="using-the-demo-form"><strong>Using the Demo Form</strong></h3>
+
+<p>A demo form is included in this project to help you test the Smart Form Filler extension:</p>
+
+<ol>
+  <li>Create the demo form and open it in your browser: file:///path/to/FormPilot/demo/demo-form.html</li>
+  <li>Alternatively, you can serve the demo form using a simple HTTP server:</li>
+</ol>
+
+<h1 id="if-you-have-python-installed">If you have Python installed</h1>
+
+<pre><code class="language-java">python -m http.server
+</code></pre>
+
+<p>Then visit http://localhost:8000/demo/demo-form.html in your browser.</p>
+
+<ol>
+  <li>With the Smart Form Filler extension installed and the local server running, the extension should automatically detect the form fields on the demo page.</li>
+  <li>You can manually trigger form filling in two ways:</li>
+</ol>
+
+<ul>
+  <li>Click the extension icon in your Chrome toolbar</li>
+  <li>Right-click on the page and select “Smart Form Filler” from the context menu, then choose “Fill Forms”</li>
+</ul>
+
+<p><img src="/images/screenshot-2025-04-06-at-6.38.24-pm.png" alt="" /></p>
+
+<h2 id="testing-with-a-demo-form"><strong>Testing with a Demo Form</strong></h2>
+
+<p>To test FormPilot thoroughly, I created a comprehensive demo HTML form (demo.html) that included a wide variety of field types:</p>
+
+<ul>
+  <li>Text inputs (First Name, Last Name, Address Line 1)</li>
+  <li>Email input</li>
+  <li>Password input</li>
+  <li>Telephone input (tel)</li>
+  <li>Date input</li>
+  <li>Number input (Age)</li>
+  <li>Select dropdown (Country)</li>
+  <li>Radio buttons (T-Shirt Size)</li>
+  <li>Checkboxes (Interests)</li>
+  <li>Textarea (Comments/Bio)</li>
+</ul>
+
+<p>Using this demo form locally allowed me to iterate quickly on both the backend logic (ensuring correct values were generated for each type) and the frontend JavaScript (ensuring fields were detected and filled correctly, including event triggering).</p>
+
+<h2 id="challenges-and-solutions"><strong>Challenges and Solutions</strong></h2>
+
+<p>Building FormPilot wasn’t without its hurdles. Here are some key challenges and how I addressed them:</p>
+
+<h3 id="challenge-1-robust-form-field-detection--label-association"><strong>Challenge 1: Robust Form Field Detection \&amp; Label Association</strong></h3>
+
+<p>As mentioned, reliably finding input fields and their corresponding labels across diverse HTML structures is tricky.</p>
+
+<ul>
+  <li><strong>Solution:</strong> Implemented a multi-strategy approach in content.js (checking for attribute, parent labels, aria-label, siblings) as shown in the snippet. Added checks for visibility (offsetParent !== null) and avoided filling already completed fields. It’s not perfect, but covers many common patterns.</li>
+</ul>
+
+<h3 id="challenge-2-handling-diverse-field-types-correctly"><strong>Challenge 2: Handling Diverse Field Types Correctly</strong></h3>
+
+<p>Simply setting <code>element.value</code> doesn’t work for all types (selects, checkboxes, radio buttons).</p>
+
+<ul>
+  <li><strong>Solution:</strong> Created specific logic within the fillField function in content.js to handle different type <code>attributes</code> or <code>tagName</code>. For selects, it searches for matching option values or text. For checkboxes/radio buttons, it sets the checked property based on the received value.</li>
+</ul>
+
+<h3 id="challenge-3-triggering-javascript-events-for-framework-compatibility"><strong>Challenge 3: Triggering JavaScript Events for Framework Compatibility</strong></h3>
+
+<p>Modern web apps heavily rely on JavaScript frameworks (React, Vue, Angular) that listen for input events (input, change, blur, focus) to update their internal state. Just setting the field’s value programmatically often doesn’t trigger these listeners.</p>
+
+<ul>
+  <li><strong>Solution:</strong> Implemented the triggerEvents function in content.js to manually create and dispatch input, change, focus, and blur events on the element after setting its value. This significantly improves compatibility with framework-based forms.</li>
+</ul>
+
+<h3 id="challenge-4-backend-communication--cors"><strong>Challenge 4: Backend Communication \&amp; CORS</strong></h3>
+
+<p>Chrome extensions have security restrictions. Content scripts cannot directly make cross-origin requests (like to http://localhost:8080).</p>
+
+<ul>
+  <li><strong>Solution:</strong></li>
+</ul>
+
+<p>1.</p>
+<ol>
+  <li>The content script sends a message to the background script.</li>
+  <li>The background script (which has fewer restrictions) uses the fetch API to call the Spring Boot backend.</li>
+  <li>Crucially, the Spring Boot application must be configured to handle Cross-Origin Resource Sharing (CORS) by sending the appropriate headers (e.g., <code>Access-Control-Allow-Origin</code>: <code>chrome-extension://YOUR_EXTENSION_ID</code>). This can be done globally using <code>@Configuration</code> and <code>WebMvcConfigurer</code> or on specific <code>@RestController</code> endpoints using <code>@CrossOrigin</code>.</li>
+</ol>
+
+<h3 id="challenge-5-prompt-engineering--model-compliance"><strong>Challenge 5: Prompt Engineering \&amp; Model Compliance</strong></h3>
+
+<p>Getting LLMs to follow detailed instructions exactly—especially when it comes to the output format and using logic like “try RAG first”—can be tricky.</p>
+
+<p>Larger models like OpenAI’s GPT-4o usually follow detailed system instructions well, including sticking to strict JSON formats and trying RAG before generating answers. However, smaller models running locally with Ollama (like <code>llama3</code> or <code>deepseek-llm:7b</code>) may not always do the same. They might add extra text outside the JSON, miss when they should use RAG, or create less accurate data for certain fields.</p>
+
+<ul>
+  <li><strong>Solution:</strong> You often need to fine-tune the prompt to get better results with smaller models. This means making the system instructions clearer and simpler, giving good examples of the exact format you want, and even adding warnings like, “Don’t write anything before or after the JSON.” Sometimes, it also helps to add a cleanup step in your Java backend—like extracting just the JSON from the output—even if the model includes extra text. It’s a balance between how powerful the model is, how complex your prompt is, and how much cleanup you’re willing to do afterward.</li>
+</ul>
+
+<h2 id="lessons-learned"><strong>Lessons Learned</strong></h2>
+
+<p>This project was a fantastic learning experience, reinforcing several key concepts:</p>
+
+<h3 id="1-the-power-of-rag-for-contextual-personalization"><strong>1. The Power of RAG for Contextual Personalization</strong></h3>
+
+<p>Implementing RAG was the most impactful part. Instead of generic placeholders, FormPilot could potentially pull <em>my actual bio</em> or project details from the <code>content.txt</code> file when filling out a relevant field. This moves beyond simple auto-fill to context-aware generation, making the tool significantly more useful. The quality depends heavily on the relevance of the data source and the effectiveness of the embedding model and retrieval parameters.</p>
+
+<h3 id="2-langchain4j-simplifies-java-llm-integration"><strong>2. LangChain4j Simplifies Java LLM Integration</strong></h3>
+
+<p>LangChain4j, especially with its Spring Boot starter, abstracts away much of the complexity of interacting with LLMs and integrating RAG. The @AiService annotation is incredibly powerful, allowing a declarative approach that keeps the business logic clean and focuses on the desired interaction rather than the plumbing.</p>
+
+<h3 id="3-local-llms-ollama-offer-privacy--control"><strong>3. Local LLMs (Ollama) Offer Privacy \&amp; Control</strong></h3>
+
+<p>Using Ollama provided complete control over the model and ensured user data privacy, which is paramount when dealing with potentially sensitive form information. It also decouples the application from reliance on third-party API keys and costs, although it requires users to have sufficient hardware resources. The ease of switching models locally (just change <code>application.properties</code> and run <code>ollama run &lt;new_model&gt;</code>) is also a plus for experimentation.</p>
+
+<h3 id="4-chrome-extension-development"><strong>4. Chrome Extension Development</strong></h3>
+
+<p>Building the Chrome extension highlighted the importance of understanding the different script contexts (content, background, popup), their capabilities, and limitations (especially around DOM access and network requests). Proper event handling (triggerEvents) is essential for compatibility with modern web applications. Careful consideration of permissions and security (like CORS) is mandatory.</p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>This a demonstration of how modern AI techniques like RAG can be combined with frameworks like LangChain4j and local LLMs via Ollama to create genuinely intelligent tools within the familiar Java ecosystem. It moves beyond simple automation to provide context-aware assistance for repetitive tasks like filling forms.</p>
+
+<p>The journey highlighted the power of abstraction provided by libraries like LangChain4j and the increasing accessibility of running powerful LLMs locally. While challenges exist, particularly in reliably interacting with the diverse landscape of web forms, the potential for AI-driven productivity tools like FormPilot is immense.</p>
+
+<p>The combination of a browser extension frontend and a local AI backend offers a compelling architecture for building privacy-preserving, intelligent applications.</p>
+
+<p>If you’re interested in exploring the code further or contributing, you can find the project on GitHub <a href="https://github.com/rokon12/form-pilot">form-pilot</a>.</p>
+
+<p><br /></p>
+
+<p>Feel free to fork it, experiment, and adapt it. I’d love to hear your feedback and suggestions!</p>
+
+<p>Happy (and smarter) form filling!</p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Journey to DevNexus: Challenges, Friendships, and Java</title><link href="http://localhost:4000/2025/03/08/a-journey-to-devnexus-challenges-friendships-and-java/" rel="alternate" type="text/html" title="A Journey to DevNexus: Challenges, Friendships, and Java" /><published>2025-03-08T00:00:00-05:00</published><updated>2025-03-08T00:00:00-05:00</updated><id>http://localhost:4000/2025/03/08/a-journey-to-devnexus-challenges-friendships-and-java</id><content type="html" xml:base="http://localhost:4000/2025/03/08/a-journey-to-devnexus-challenges-friendships-and-java/"><![CDATA[<p><img src="/images/482058307-10232003967115777-7301803814855188745-n.jpg" alt="" /></p>
+
+<h1 id="a-journey-to-devnexus-challenges-friendships-and-java">A Journey to DevNexus: Challenges, Friendships, and Java</h1>
+
+<p>I love participating in conferences—you get to meet so many industry and thought leaders in person, hang out with them, and build lasting bonds. That’s why I had always wanted to attend <a href="https://devnexus.com/">DevNexus</a>, which isn’t far from where I live. Despite receiving an invitation, my trip kept getting delayed due to visa complications.</p>
+
+<p>But finally, it happened. I was heading to Atlanta for DevNexus, one of the biggest Java conferences in this region.</p>
+
+<p>The excitement was real, but of course, my journey had to come with a few unexpected twists.</p>
+
+<h2 id="a-rough-start-at-pearson">A Rough Start at Pearson</h2>
+
+<p>When I arrived at Pearson Airport, I expected a smooth check-in and immigration process. Last year, I visited London, UK, and then Copenhagen; it was a super smooth experience with my new blue passport.</p>
+
+<p>However, that didn’t happen. After passing through security, I was surprised to learn that US immigration takes place here in Pearson. After taking my fingerprints, I was asked some basic questions, such as where I was going, what the purpose of the travel was, how long I was staying, how much money I was carrying, etc., which I thought were standard questions.</p>
+
+<p>However, I was pulled aside for additional questioning, asked to provide detailed information about my travel history, and had my bags thoroughly checked. I had to wait for an hour and a half before being called in, and the questioning itself took another half-hour. The whole process took so long that I missed my flight.</p>
+
+<p>The airport is 40 km from home, and I was fasting. I couldn’t break my fast during the interrogation, and the back-and-forth journey, combined with a lack of sleep, left me exhausted and stressed.</p>
+
+<p>Frustrated but with no other option, I returned home, spent a few hours there, and headed back to the airport at 4 a.m. the next morning. I was worried about the fact that now I would have to go through immigration again; what if they treated me the same way?</p>
+
+<p>However, there were no issues this time—just a long sigh of relief as I finally boarded my flight to Atlanta.</p>
+
+<p>When I arrived at the hotel, I started feeling a strong, burning sensation in my chest. I took a hot shower, which provided some relief, but the pain didn’t completely go away.</p>
+
+<h2 id="first-impressions-of-devnexus">First Impressions of DevNexus</h2>
+
+<p>Walking into DevNexus felt incredible. It was even bigger than I had imagined, buzzing with energy and filled with familiar faces from the Java community.</p>
+
+<p>One of the first people I met was Mike—<a href="https://www.linkedin.com/in/michael-redlich-13a966/">Michael Redlich</a>, InfoQ Java Queue Editor Lead. We had been working together remotely for a long time, but meeting face-to-face brought a different energy to our discussions. He is a very kind and cheerful person and got very excited seeing me in person.</p>
+
+<p><img src="/images/482060541-10232003983436185-1689339836780441743-n.jpg" alt="" /></p>
+
+<p>Then I met my co-speaker, <a href="https://www.linkedin.com/in/shaaf/">Shaaf</a>, a longtime friend. Although we talk almost daily, I was eagerly looking forward to meeting him again in person.</p>
+
+<p>We sat at the speaker lounge and planned our session together.</p>
+
+<p>Although the pain in my chest was intense, practically unbearable, we decided to go ahead with our talk. Shaaf assured me that if I wasn’t able to present, he would take over. Many thanks to him; he supported me all the way in these two days in the conference.</p>
+
+<p><img src="/images/481778775-10232003985396234-4098633525676175712-n.jpg" alt="" /></p>
+
+<p>The next day, I met the kind, brilliant <a href="https://www.linkedin.com/in/geertjanwielenga/">Geertjan Wielenga</a>, the community champion. We’ve known each other for several years now, and both contribute to Foojay. He gave me a tour of the entire conference, stopping by each booth. It was amusing to watch him introduce me to people—though many of whom I already knew online. Meeting them in person, however, was a completely different experience.</p>
+
+<p><img src="/images/481826777-10232003995436485-8105262452812861320-n.jpg" alt="" /></p>
+
+<p>Then there was <a href="https://www.linkedin.com/in/brjavaman/">Bruno Souza</a>, my mentor for a long time. The moment he saw me, he pulled me into a big hug and shouted, “<em>Bazlur! How are you, man? You finally made it!</em>” That moment alone made the trip feel worthwhile. Bruno is a very kind-hearted, incredibly warm, and exceptionally friendly person who always makes you feel special and valued. I just love him.</p>
+
+<p><img src="/images/483917294-10232071615806952-8672895136015387568-n.jpg" alt="" /></p>
+
+<p>I also met Scott Wierschem. We’ve known each other for over seven years, but this was our first time meeting in real life. And then there were Ondro, Simon Martinelli, Andres Almiray, Steve Poole, Kito Mann, Kenneth Kousen, Elder Moraes, Frank Greco, and many more—each an incredible contributor to the Java ecosystem. Meeting them was an absolute privilege.</p>
+
+<h2 id="my-talk-java--llms">My Talk: Java + LLMs</h2>
+
+<p>The big moment for me was my talk: <strong>“Java + LLMs: A Hands-on Guide to Building LLM Apps in Java with Jakarta EE.”</strong></p>
+
+<p>The room was quite full, with a lot of happy attendees.</p>
+
+<p><img src="/images/whatsapp-image-2025-03-08-at-4.19.37-am.jpeg" alt="" /></p>
+
+<p>We went through our presentation, showcasing live demos and explaining how Java developers can integrate LLMs into their applications. Shaaf and I did a great job engaging with the audience for an hour, or at least I’d like to think so.</p>
+
+<p>Slides:</p>
+
+<pre><code class="language-java">
+</code></pre>
+
+<p>After the talk, several people came up to share their thoughts and feedback. Some had more questions, while others simply appreciated the session.</p>
+
+<h2 id="in-closing">In Closing..</h2>
+
+<p>One of the highlights of the conference was getting interviewed by Ari Waller for the <strong>Fika AI Interviews at DevNexus.</strong>We had a good conversation about Java, AI, and the evolving landscape of development. I’m really looking forward to seeing the interview go live!</p>
+
+<p>To be honest, it wasn’t all smooth sailing. I had some unexpected health issues because of the stress I went through, which made things more challenging.</p>
+
+<p>Despite the hurdles, the experience was incredible—meeting so many amazing people, delivering a successful talk, and being part of such an exciting event. <strong>Thanks to Pratik Patel and Vincent Mayers for arranging such an incredible conference.</strong></p>
+
+<p>As DevNexus wrapped up, I headed to the airport with my friend Shaaf. We shared one last iftar, prayed together, had our little chit-chat, and then said our goodbyes.</p>
+
+<p>By 2 AM, I was finally back home in Toronto, greeted by my lovely wife, Tabassum—a warm and familiar welcome after a whirlwind trip.</p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">JetBrains Junie: My Firsthand Experience</title><link href="http://localhost:4000/2025/03/03/jetbrains-junie-my-firsthand-experience/" rel="alternate" type="text/html" title="JetBrains Junie: My Firsthand Experience" /><published>2025-03-03T00:00:00-05:00</published><updated>2025-03-03T00:00:00-05:00</updated><id>http://localhost:4000/2025/03/03/jetbrains-junie-my-firsthand-experience</id><content type="html" xml:base="http://localhost:4000/2025/03/03/jetbrains-junie-my-firsthand-experience/"><![CDATA[<p><img src="/images/gemini-generated-image-aczqicaczqicaczq.jpeg" alt="" /></p>
+
+<h1 id="jetbrains-junie-my-firsthand-experience">JetBrains Junie: My Firsthand Experience</h1>
+
+<p>LLMs are taking over the world—almost literally. Every day, we hear about new models popping up, pushing the boundaries of what AI can do. While some worry about it, others welcome it with open arms. The truth is that AI will inevitably take over certain tasks, much like cars replaced by horse-drawn carriages. But that doesn’t mean we’ll all be useless. Instead, it means we’ll have tools that enhance our productivity and free us from mundane tasks.</p>
+
+<p>As a developer, I’m always on the lookout for anything that can streamline my workflow—something that automates repetitive coding tasks and reduces the time I spend on things that don’t necessarily require deep thinking. Let’s be honest: not every line of code we write is groundbreaking. A lot of it is boilerplate. And AI is proving to be a fantastic assistant in handling those parts.</p>
+
+<p>I’ve been experimenting with several AI tools lately—ChatGPT, Gemini, Anthropic’s Claude, and many more. I also have access to GitHub Copilot and JetBrains AI Assistant. Both are excellent for auto-completing code and offering contextual suggestions. You can highlight a chunk of code and ask for improvements, especially in UI design. But they’re not fully autonomous.</p>
+
+<p>But what if we had an AI agent that could autonomously take on entire tasks? One that I could point to my project and instruct to implement a feature. The agent would not only generate the code but also run tests while I brew my coffee.</p>
+
+<p>Well, that’s exactly what I discovered with JetBrains’ new AI tool—Junie EAP.</p>
+
+<p>I’ve been using it for a while now, and in this post, I want to share two specific use cases where it significantly enhanced my workflow.</p>
+
+<h3 id="building-a-ramadan-awareness-website">Building a Ramadan Awareness Website</h3>
+
+<p>As Ramadan approached, I realized that while Muslims worldwide observe the month-long fast, many people—especially in the West—are still unfamiliar with its significance. That got me thinking: why not build a website to raise awareness?</p>
+
+<p>Now, building a website from scratch is no small feat, especially for someone who isn’t a front-end expert. So, I turned to Junie. I already had all the content written in the<code>content.md</code> file, and I gave it this prompt something like the following, not exactly, as I don’t remember:</p>
+<blockquote>
+  <p>“Create a website about Ramadan to help my non-Muslim friends understand its significance. The content is in the <code>content.md</code> file—read it and use it for the site. The design should reflect Islamic art and culture, be responsive, visually appealing, and built as a single-page application using React.”</p>
+</blockquote>
+
+<p>Of course, Junie didn’t complete the whole thing in one go. It required multiple follow-ups, refinements, and tweaks. However, it did an excellent job laying out the structure, creating reusable components, and producing a functional website. What would have taken me a week or more to build manually, I completed in a single day.</p>
+
+<p><img src="/images/screenshot-2025-03-03-at-7.42.31-am.png" alt="" /></p>
+
+<p>That’s a huge time saver.</p>
+<blockquote>
+  <p>Checkout the website: <strong><a href="https://ramadan-facts.onrender.com/">https://ramadan-facts.onrender.com/</a></strong></p>
+
+  <p>You can scroll to see the whole website.</p>
+</blockquote>
+
+<p>Of course, it wasn’t without hiccups. At one point, a loading dialogue made the entire page disappear. As someone who isn’t deeply familiar with CSS quirks, I struggled to fix it, and Junie wasn’t able to troubleshoot it effectively. But despite these minor setbacks, the tool proved invaluable.</p>
+
+<h3 id="preparing-for-devnexus">Preparing for DevNexus</h3>
+
+<p>I’ll be speaking at DevNexus this week. For my demo, I built multiple projects that showcased step-by-step implementations with LangChain4j and Jakarta EE.</p>
+
+<p>While I’m comfortable with backend development, frontend work is another story. I wanted to build a chatbot interface with a bit of animations and configure the LLM parameters via the UI. So I wouldn’t have to modify the code whenever I wanted to adjust settings.</p>
+
+<p>Again, Junie came to the rescue. It helped me craft a sleek UI using Jakarta Faces with some advanced CSS tricks. The result? A fully functional chatbot interface with dynamic configuration settings—all done in a fraction of the time it would have taken me otherwise.</p>
+
+<p><img src="/images/screenshot-2025-03-03-at-7.08.21-am.png" alt="" /></p>
+
+<p>Also, I wanted to update the README. Well, who wants to write it manually when you have Junie? So I gave it this instruction:</p>
+<blockquote>
+  <p>“Can you scan the repository, identify key components, and update the README, including setup instructions, usage details, and any relevant documentation? Also, include a screenshot from the images folder in the README.”</p>
+</blockquote>
+
+<p><img src="/images/screenshot-2025-03-03-at-7.13.43-am.png" alt="" /></p>
+
+<p>It did an excellent job. Although I wanted all the screenshots, I asked to add one screenshot to the prompt, but it understood.</p>
+<blockquote>
+  <p>Checkout: <a href="https://github.com/rokon12/llm-jakarta">https://github.com/rokon12/llm-jakarta</a></p>
+</blockquote>
+
+<h3 id="in-closing">In Closing…</h3>
+
+<p>It turns out these tools, like Junie, can automate many coding tasks, create tests, and run them autonomously, and when they fail, it goes on to check the error, fix it, and run them again, but they still need human oversight. They struggle with complex issues, and when they hit a roadblock, I must step in.</p>
+
+<p>The key takeaway? Don’t rely on AI mindlessly. Instead, use it as a powerful assistant to handle the tedious parts so you can focus on the creative, high-value aspects of your work.</p>
+
+<p>And that, to me, is an exciting future.</p>
+
+<h3 id="a-note-of-thanks">A Note of Thanks</h3>
+
+<p>A huge thank you to JetBrains for allowing me to access Junie EAP. Those who are interested, check this page: <a href="https://www.jetbrains.com/junie/">https://www.jetbrains.com/junie/</a></p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">DIY JVM Part 1: Decoding the Magic – Parsing Java</title><link href="http://localhost:4000/2025/02/21/diy-jvm-part-1-decoding-the-magic-parsing-java/" rel="alternate" type="text/html" title="DIY JVM Part 1: Decoding the Magic – Parsing Java" /><published>2025-02-21T00:00:00-05:00</published><updated>2025-02-21T00:00:00-05:00</updated><id>http://localhost:4000/2025/02/21/diy-jvm-part-1-decoding-the-magic-parsing-java</id><content type="html" xml:base="http://localhost:4000/2025/02/21/diy-jvm-part-1-decoding-the-magic-parsing-java/"><![CDATA[<p><img src="/images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp" alt="" /></p>
+
+<h1 id="diy-jvm-part-1-decoding-the-magic--parsing-java">DIY JVM Part 1: Decoding the Magic – Parsing Java</h1>
+
+<p>It’s been about 15 years since I last touched C programming. Back in university, I remember writing a small C program for an assignment—just a simple parser that could scan a C source file and check if its structures were correctly formed. It was nothing fancy, just a mundane academic exercise, and to be honest, I never thought much about it afterward. That was the last time I wrote anything significant in C.</p>
+
+<p>Since then, my career has been all about Java and JVM-based languages. C had faded into the background, a relic of my early programming days. But recently, I found myself feeling a bit nostalgic. C is often called the “mother of all programming languages,” and I started wondering—what would it be like to revisit it now, with all the knowledge and experience I’ve accumulated?</p>
+
+<p>Of course, jumping back into C just for the sake of it didn’t make much sense. I wasn’t looking to relearn pointers and memory management from scratch. I wanted a project—something meaningful, something that would bridge my JVM expertise with this old friend from my past. And then it hit me: what if I built a barebones JVM in C? Nothing too ambitious—just a minimal interpreter that could read and execute Java class files. That way, I could explore the internals of the JVM while also refreshing my C skills.</p>
+
+<p>And so, this DIY experiment began.</p>
+
+<h3 id="understanding-java-class-files"><strong>Understanding Java .class Files</strong></h3>
+
+<p>When you compile a Java program, it produces a .class file—essentially a binary representation of Java bytecode. This file follows a strict format defined in the Java Virtual Machine Specification. At its core, it’s a structured stream of bytes, each part serving a specific purpose. If you’ve ever wondered what makes a .class file valid, here’s a quick breakdown:</p>
+
+<ul>
+  <li><strong>Magic Number (4 bytes)</strong> : Every valid .class file starts with 0xCAFEBABE (big-endian format). If this signature doesn’t match, the JVM rejects the file.</li>
+  <li><strong>Minor \&amp; Major Version (2 + 2 bytes)</strong> : Indicates the Java version the file was compiled for. Java 8, for instance, has a major version of 52.</li>
+  <li><strong>Constant Pool Count (2 bytes)</strong> : This tells us how many entries exist in the constant pool—a table of constants (strings, numbers, method references, etc.) used throughout the class file.</li>
+  <li><strong>Constant Pool (variable size)</strong> : This is where the JVM stores symbolic references to class names, method names, field names, and other constants.</li>
+  <li><strong>Access Flags (2 bytes)</strong> : Specifies whether the class is public, final, abstract, or an interface.</li>
+  <li><strong>This Class (2 bytes)</strong> : A reference to the constant pool entry that holds the fully qualified name of the class.</li>
+  <li><strong>Super Class (2 bytes)</strong> : Similar to This Class, but for the superclass. If the class extends another class, this field points to it; otherwise, it’s java.lang.Object.</li>
+  <li><strong>Interfaces, Fields, Methods, and Attributes</strong> : These define what the class implements, the variables it declares, the methods it contains, and additional metadata like annotations and debugging information.</li>
+</ul>
+
+<p>For example, if we take a hexdump of a .class file, it will look like this:</p>
+
+<p><img src="/images/screenshot-2025-02-21-at-12.55.41-am.png" alt="" /></p>
+
+<p>As you can see, it is just a stream of bytes, and the first 4 bytes are the magic number, cafe babe.</p>
+
+<p>We don’t need to implement everything for our minimal JVM—just enough to parse and understand a .class file.</p>
+
+<h3 id="a-quick-c-refresher"><strong>A Quick C Refresher</strong></h3>
+
+<p>Before diving into the implementation, let’s quickly touch on some fundamental C concepts we’ll use in our parser.</p>
+
+<h4 id="preprocessor-directives"><strong>Preprocessor Directives</strong></h4>
+
+<p>In C, preprocessor directives (which begin with #) are handled before actual compilation. Common ones include:</p>
+
+<pre><code class="language-java">#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_CONSTANT_POOL_SIZE 32767
+</code></pre>
+
+<ul>
+  <li><strong>#include &lt;stdio.h&gt;</strong> : Includes the standard I/O functions like printf and fopen.</li>
+  <li><strong>#include &lt;stdlib.h&gt;</strong> : Includes general utilities like malloc/calloc and free.</li>
+  <li><strong>#define MAX_SIZE 32767</strong> : Defines a macro, replacing occurrences of <strong>MAX_SIZE</strong> with <strong>32767</strong> before compilation.</li>
+</ul>
+
+<h4 id="structs-and-header-files"><strong>Structs and Header Files</strong></h4>
+
+<p>To keep things clean, we’ll separate our code into header files <strong>(</strong><strong>.h</strong> <strong>)</strong> and source files <strong>(</strong><strong>.c</strong> <strong>)</strong>. Our header file (<strong>diyjvm.h</strong> ) will contain:</p>
+
+<pre><code class="language-python">typedef struct {
+    uint32_t magic;
+    uint16_t minor_version;
+    uint16_t major_version;
+    uint16_t constant_pool_count;
+    cp_info *constant_pool;
+
+    uint16_t access_flags;
+    uint16_t this_class;
+    uint16_t super_class;
+    uint16_t interfaces_count;
+
+    uint16_t fields_count;  // We'll skip storing the fields themselves for now
+    uint16_t methods_count;
+    method_info *methods;
+} ClassFile;
+</code></pre>
+
+<p>We define data structures using struct and union keywords in C. It’s like class, but I guess it’s less classy or more!</p>
+
+<p>It will also define constants like:</p>
+
+<pre><code class="language-java">#define JAVA_MAGIC 0xCAFEBABE
+#define MAX_STRING_LENGTH 65535
+
+// Constant pool tags
+#define CONSTANT_Class               7
+#define CONSTANT_Fieldref            9
+#define CONSTANT_Methodref           10
+#define CONSTANT_InterfaceMethodref  11
+#define CONSTANT_String              8
+#define CONSTANT_Integer             3
+#define CONSTANT_Float               4
+#define CONSTANT_Long                5
+#define CONSTANT_Double              6
+#define CONSTANT_NameAndType         12
+#define CONSTANT_Utf8                1
+</code></pre>
+
+<p>And function prototypes:</p>
+
+<pre><code class="language-javascript">ClassFile *read_class_file(const char *filename);
+void free_class_file(ClassFile *cf);
+</code></pre>
+
+<p>To make debugging easier, we use the following macro:</p>
+
+<pre><code class="language-java">#define DEBUG_PRINT(fmt, ...)                                \
+    do {                                                     \
+        if (debug_mode) {                                    \
+            fprintf(stderr, "[DEBUG] " fmt, ##__VA_ARGS__);  \
+        }                                                    \
+    } while (0)
+</code></pre>
+
+<p>This macro allows us to print debug messages when <code>debug_mode</code> is enabled. <code>__VA_ARGS__</code> is a preprocessor macro that allows you to create variadic functions in C. Variadic functions are functions that can accept a variable number of arguments. If <code>debug_mode</code> is <code>false</code>, the macro does nothing.</p>
+
+<p>By including diyjvm.h in our source files, we ensure we have access to these definitions.</p>
+
+<h3 id="memory-management-in-c">Memory Management in C</h3>
+
+<p>Another important part of C is that once you allocate memory, it’s your responsibility to clean it up—no garbage collector here. Forgetting to free memory can lead to leaks, which may slow down or crash your program over time.</p>
+
+<p>A macro like this helps handle free memory:</p>
+
+<pre><code class="language-java">#define SAFE_FREE(p)            \
+    do {                        \
+        if ((p) != NULL) {      \
+            free(p);            \
+            (p) = NULL;         \
+        }                       \
+    } while (0)
+</code></pre>
+
+<h3 id="handling-endianness-in-class-file-parsing">Handling Endianness in .class File Parsing</h3>
+
+<p>One critical aspect of parsing Java class files in C is handling endianness. Java class files use <strong>big-endian</strong> format, meaning the most significant byte comes first. However, many modern systems, particularly x86-based machines, use <strong>little-endian</strong> format, where the least significant byte comes first. If we were to read multi-byte values directly, they would be interpreted incorrectly on little-endian systems.</p>
+
+<p>To handle this, I need to write some function as follows:</p>
+
+<pre><code class="language-java">static uint32_t read_u4(FILE *fp, bool *ok) {
+    uint32_t value = 0;
+    if (!safe_fread(&amp;value, 4, 1, fp)) {
+        *ok = false;
+        return 0;
+    }
+    return __builtin_bswap32(value); // Convert from big-endian
+}
+</code></pre>
+
+<p>he <code>read_u4</code> function reads four bytes from the file and stores them in <code>value</code>. However, since <code>value</code> is stored in the system’s native endianness, we need to ensure that it is properly converted. The <code>__builtin_bswap32</code> function swaps the byte order, converting from big-endian to little-endian where necessary. This ensures that the parsed values are correctly interpreted regardless of the underlying architecture.</p>
+
+<h3 id="parsing-a-class-file">Parsing a <code>.class</code> File</h3>
+
+<p>The <code>read_class_file</code> function is responsible for reading a Java class file and extracting its structural elements. It performs the following tasks:</p>
+
+<ul>
+  <li>Opens the specified class file for reading.</li>
+  <li>Reads and verifies the magic number (<code>0xCAFEBABE</code>).</li>
+  <li>Extracts the minor and major version numbers, ensuring they are within the supported range.</li>
+  <li>Parses the constant pool, allocating memory dynamically for its entries.</li>
+  <li>Reads access flags, class references, and superclass details.</li>
+  <li>Extracts interface and field metadata.</li>
+  <li>Skips over field and method attributes, ensuring the correct structure is maintained.</li>
+  <li>Allocates space for methods and parses their details, including code attributes.</li>
+</ul>
+
+<p>Parts of this function are here:</p>
+
+<pre><code class="language-javascript">ClassFile *read_class_file(const char *filename) {
+    DEBUG_PRINT("Opening class file: %s\n", filename);
+
+    FILE *file = fopen(filename, "rb");
+    if (!file) {
+        char error_msg[256];
+        snprintf(error_msg, sizeof(error_msg), "Failed to open class file '%s'.", filename);
+        ERROR_AND_CLEANUP(error_msg, { /* no cleanup needed here */ });
+    }
+
+    bool ok = true;
+    ClassFile *cf = malloc(sizeof(ClassFile));
+    if (!cf) {
+        ERROR_AND_CLEANUP("Out of memory allocating ClassFile.", {
+            fclose(file);
+        });
+    }
+    memset(cf, 0, sizeof(*cf)); // zero out structure
+
+    // Read magic
+    cf-&gt;magic = read_u4(file, &amp;ok);
+    DEBUG_PRINT("Read magic number: 0x%08X\n", cf-&gt;magic);
+    if (!ok || cf-&gt;magic != JAVA_MAGIC) {
+        char error_msg[256];
+        snprintf(error_msg, sizeof(error_msg),
+                 "Invalid or missing magic number in '%s'.", filename);
+        ERROR_AND_CLEANUP(error_msg, {
+            free_class_file(cf);
+            fclose(file);
+        });
+    }
+    DEBUG_PRINT("Magic number verified successfully\n");
+
+    // Read minor/major version
+    cf-&gt;minor_version = read_u2(file, &amp;ok);
+    cf-&gt;major_version = read_u2(file, &amp;ok);
+    if (!ok) {
+        ERROR_AND_CLEANUP("Could not read version numbers.", {
+            free_class_file(cf);
+            fclose(file);
+        });
+    }
+
+    if (cf-&gt;major_version &lt; 45 || cf-&gt;major_version &gt; 69) {
+        ERROR_AND_CLEANUP("Unsupported class file version.", {
+            free_class_file(cf);
+            fclose(file);
+        });
+    }
+
+    // Read constant pool count
+    cf-&gt;constant_pool_count = read_u2(file, &amp;ok);
+    DEBUG_PRINT("Constant pool count: %d\n", cf-&gt;constant_pool_count);
+    if (!ok || cf-&gt;constant_pool_count &gt; MAX_CONSTANT_POOL_SIZE) {
+        ERROR_AND_CLEANUP("Invalid constant pool count.", {
+            free_class_file(cf);
+            fclose(file);
+        });
+    }
+
+    cf-&gt;constant_pool = (cp_info *) calloc(cf-&gt;constant_pool_count, sizeof(cp_info));
+    if (!cf-&gt;constant_pool) {
+        ERROR_AND_CLEANUP("Out of memory allocating constant pool.", {
+            free_class_file(cf);
+            fclose(file);
+        });
+    }
+
+....
+.....
+}
+</code></pre>
+
+<h3 id="project-structure"><strong>Project Structure</strong></h3>
+
+<p>Our project follows a simple layout:</p>
+
+<pre><code class="language-java">diyjvm/
+├── include/
+│   └── diyjvm.h
+├── src/
+│   └── main.c
+└── test/
+    └── HelloWorld.class
+</code></pre>
+
+<ul>
+  <li><strong>include/</strong> : Holds header files.</li>
+  <li><strong>src/</strong> : Contains source code.</li>
+  <li><strong>test/</strong> : Includes sample .class files for testing.</li>
+</ul>
+
+<h3 id="source-code"><strong>Source Code:</strong></h3>
+
+<p>The GitHub repository can be found here: <a href="https://github.com/rokon12/diyjvm/">https://github.com/rokon12/diyjvm/</a></p>
+
+<h3 id="compiling-and-running"><strong>Compiling and Running</strong></h3>
+
+<p>To compile the program:</p>
+
+<pre><code class="language-java">gcc -DDEBUG -Wall -Wextra -I./include src/main.c -o diyjvm
+</code></pre>
+
+<p>Then, to run it:</p>
+
+<pre><code class="language-java">./diyjvm test/HelloWorld.class
+</code></pre>
+
+<p>This should print something like:</p>
+
+<pre><code class="language-java">Class file: test/HelloWorld.class
+Magic: 0xCAFEBABE
+Version: 65.0
+Constant pool entries: 29
+Methods: 2
+</code></pre>
+
+<p>For debugging:</p>
+
+<pre><code class="language-java">./diyjvm -d test/HelloWorld.class
+</code></pre>
+
+<p>This will output more detailed logs about how the file is being parsed.</p>
+
+<pre><code class="language-java">[DEBUG] Initializing diyJVM...
+[DEBUG] Opening class file: test/HelloWorld.class
+[DEBUG] Read magic number: 0xCAFEBABE
+[DEBUG] Magic number verified successfully
+[DEBUG] Constant pool count: 29
+[DEBUG] Reading constant pool entry with tag: 10
+[DEBUG] Reading constant pool entry with tag: 7
+[DEBUG] Reading constant pool entry with tag: 12
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 9
+[DEBUG] Reading constant pool entry with tag: 7
+[DEBUG] Reading constant pool entry with tag: 12
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 8
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 10
+[DEBUG] Reading constant pool entry with tag: 7
+[DEBUG] Reading constant pool entry with tag: 12
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 7
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Reading constant pool entry with tag: 1
+[DEBUG] Methods count: 2
+[DEBUG] Method[0]: access=0x0001, name_index=5, desc_index=6, attr_count=1
+[DEBUG]  -&gt; Found Code attribute
+[DEBUG] Method[0], Code attribute, Sub-attribute 0: name_index=24, length=6
+[DEBUG] Method[1]: access=0x0009, name_index=25, desc_index=26, attr_count=1
+[DEBUG]  -&gt; Found Code attribute
+[DEBUG] Method[1], Code attribute, Sub-attribute 0: name_index=24, length=10
+Class file: test/HelloWorld.class
+Magic: 0xCAFEBABE
+Version: 65.0
+Constant pool entries: 29
+Methods: 2
+[DEBUG] Cleaning up diyJVM...
+</code></pre>
+
+<h3 id="wrapping-up"><strong>Wrapping Up</strong></h3>
+
+<p>This is just the beginning. In this first part, we’ve laid the groundwork—understanding Java class files, refreshing some C fundamentals, and setting up our project. The real fun begins as we start parsing these files in earnest.</p>
+
+<p>Next time, we’ll get our hands dirty with more features. Stay tuned!</p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization</title><link href="http://localhost:4000/2025/02/14/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization/" rel="alternate" type="text/html" title="SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization" /><published>2025-02-14T00:00:00-05:00</published><updated>2025-02-14T00:00:00-05:00</updated><id>http://localhost:4000/2025/02/14/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization</id><content type="html" xml:base="http://localhost:4000/2025/02/14/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization/"><![CDATA[<p><img src="/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg" alt="" /></p>
+
+<h1 id="summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization">SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization</h1>
+
+<p>LLM chat models have become an integral part of many applications today. We are all experimenting and exploring the best ways to utilize them effectively. For Java developers, <strong>LangChain4j</strong> has been an incredible tool in this journey.</p>
+
+<p>By design, most available APIs, such as ChatGPT and Gemini, operate in a <strong>fire-and-forget</strong> mode. They don’t retain previous interactions, meaning every request is treated as a completely new one. However, for a smooth and engaging conversation, maintaining context is crucial—otherwise, the interaction becomes disjointed and frustrating. The common solution is to pass previous messages along with each new prompt, allowing the LLM to infer context. This is where the <strong>chat memory</strong> concept comes in.</p>
+
+<p>That said, every conversation has a <strong>context window</strong> , which limits the maximum number of tokens that can be processed. We can’t pass an unlimited number of tokens in a prompt. As conversations grow longer, they consume more resources, making it necessary to find efficient ways to manage and evict older messages.</p>
+
+<p><strong>LangChain4j</strong> already provides two types of memory eviction policies:</p>
+
+<ol>
+  <li><strong>MessageWindowChatMemory</strong> – This approach keeps track of a fixed number of recent messages, discarding the oldest ones when the limit is reached.</li>
+  <li><strong>TokenWindowChatMemory</strong> – Instead of counting messages, this method monitors the total number of tokens used and removes older messages when the token count exceeds a predefined threshold.</li>
+</ol>
+
+<p>These memory policies help optimize resource usage while ensuring conversations remain coherent and user-friendly.</p>
+
+<p>While both approaches are effective, I wondered why not add a <strong>third approach</strong> —one that summarizes old messages rather <strong>than removing</strong> them. This idea led me to experiment and eventually implement <strong>SummarizingTokenWindowChatMemory</strong> .</p>
+
+<h2 id="summarizingtokenwindowchatmemory"><strong>SummarizingTokenWindowChatMemory</strong></h2>
+
+<p>The core idea behind <strong>SummarizingTokenWindowChatMemory</strong> is straightforward:</p>
+
+<ol>
+  <li><strong>Monitor Chat Tokens:</strong> The system tracks the number of tokens used in a conversation.</li>
+  <li><strong>Trigger Summarization:</strong> The summarization process activates when the token count reaches a predefined threshold.</li>
+  <li><strong>Generate a Summary:</strong> Instead of storing full conversation logs, a summarizer condenses key information into a succinct, meaningful summary.</li>
+  <li><strong>Replace Old Messages:</strong> The summarized content replaces older messages, ensuring the conversation remains within token limits while maintaining continuity.</li>
+</ol>
+
+<p>Let’s look at the code:</p>
+
+<pre><code class="language-java">package ca.bazlur.chefbot.ai;
+
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.SystemMessage;
+import dev.langchain4j.internal.ValidationUtils;
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.model.Tokenizer;
+import dev.langchain4j.store.memory.chat.ChatMemoryStore;
+import dev.langchain4j.store.memory.chat.InMemoryChatMemoryStore;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Slf4j
+public class SummarizingTokenWindowChatMemory implements ChatMemory {
+
+    private final Object id;
+    private final int maxTokens;
+    private final Tokenizer tokenizer;
+    private final ChatMemoryStore store;
+    private final Summarizer summarizer;
+
+    private SummarizingTokenWindowChatMemory(Builder builder) {
+        this.id = ValidationUtils.ensureNotNull(builder.id, "id");
+        this.maxTokens = ValidationUtils.ensureGreaterThanZero(builder.maxTokens, "maxTokens");
+        this.tokenizer = ValidationUtils.ensureNotNull(builder.tokenizer, "tokenizer");
+        this.store = ValidationUtils.ensureNotNull(builder.store, "store");
+        this.summarizer = ValidationUtils.ensureNotNull(builder.summarizer, "summarizer");
+    }
+
+    @Override
+    public Object id() {
+        return id;
+    }
+
+    @Override
+    public void add(ChatMessage message) {
+        // Pull existing messages from store
+        List&lt;ChatMessage&gt; messages = new ArrayList&lt;&gt;(store.getMessages(id));
+
+        // If it's a system message, handle "replace existing system message" logic
+        if (message instanceof SystemMessage) {
+            Optional&lt;SystemMessage&gt; maybeSystem = findSystemMessage(messages);
+            if (maybeSystem.isPresent()) {
+                if (maybeSystem.get().equals(message)) {
+                    // Same system message, do nothing
+                    return;
+                } else {
+                    // Remove old system message so we can replace with new one
+                    messages.remove(maybeSystem.get());
+                }
+            }
+        }
+
+        // Add the new message
+        messages.add(message);
+
+        // Enforce capacity by summarizing older messages if needed
+        ensureSummarizedCapacity(messages);
+
+        // Update store
+        store.updateMessages(id, messages);
+    }
+
+    @Override
+    public List&lt;ChatMessage&gt; messages() {
+        // Return a copy of messages from store
+        List&lt;ChatMessage&gt; messages = new ArrayList&lt;&gt;(store.getMessages(id));
+
+        // (Optional) ensure capacity here again, if you want to guarantee it every time
+        ensureSummarizedCapacity(messages);
+        return messages;
+    }
+
+    @Override
+    public void clear() {
+        store.deleteMessages(id);
+    }
+
+    private void ensureSummarizedCapacity(List&lt;ChatMessage&gt; messages) {
+        int currentTokenCount = tokenizer.estimateTokenCountInMessages(messages);
+        if (currentTokenCount &lt;= maxTokens) {
+            return; // We are within capacity
+        }
+
+        // If we exceed tokens, let's summarize the older messages (except system msg &amp; possibly the newest).
+        // 1) Separate out the system message if present at index 0.
+        // 2) Summarize everything from startIndex...up to near the end,
+        //    leaving maybe the last user or assistant message "unsummarized" for context.
+        // 3) Insert the summary as a single message, then re-check capacity.
+
+        // First, handle any system message
+        Optional&lt;SystemMessage&gt; maybeSystem = findSystemMessage(messages);
+        maybeSystem.ifPresent(messages::remove);
+
+        // Now we can work with the non-system messages
+        int startIndex = 0;
+        int endIndex = messages.size() - 1; // Leave the last message for context
+
+        // Don't try to summarize if we have 2 or fewer messages
+        if (endIndex - startIndex &lt;= 1) {
+            // If we can't summarize, fall back to just removing oldest messages
+            removeOldestUntilFit(messages);
+            // Re-add system message if we had one
+            maybeSystem.ifPresent(messages::addFirst);
+            return;
+        }
+
+        // Get the messages to summarize (everything except maybe system &amp; last)
+        List&lt;ChatMessage&gt; toSummarize = new ArrayList&lt;&gt;(messages.subList(startIndex, endIndex));
+
+        // Generate the summary
+        String summary = summarizer.summarize(toSummarize);
+
+        // Replace the summarized messages with the summary
+        messages.subList(startIndex, endIndex).clear();
+        messages.add(startIndex, SystemMessage.from("Previous conversation summary: " + summary));
+
+        // Re-add system message if we had one
+        maybeSystem.ifPresent(messages::addFirst);
+
+        // If we're still over capacity, remove oldest messages (after any system message)
+        if (tokenizer.estimateTokenCountInMessages(messages) &gt; maxTokens) {
+            removeOldestUntilFit(messages);
+        }
+    }
+
+    private void removeOldestUntilFit(List&lt;ChatMessage&gt; messages) {
+        // Keep system message if present
+        Optional&lt;SystemMessage&gt; maybeSystem = findSystemMessage(messages);
+        maybeSystem.ifPresent(messages::remove);
+
+        // Remove oldest messages until we're under token limit
+        while (!messages.isEmpty() &amp;&amp; tokenizer.estimateTokenCountInMessages(messages) &gt; maxTokens) {
+            messages.removeFirst();
+        }
+
+        // Re-add system message if we had one
+        maybeSystem.ifPresent(messages::addFirst);
+    }
+
+    private Optional&lt;SystemMessage&gt; findSystemMessage(List&lt;ChatMessage&gt; messages) {
+        if (!messages.isEmpty() &amp;&amp; messages.getFirst() instanceof SystemMessage) {
+            return Optional.of((SystemMessage) messages.getFirst());
+        }
+        return Optional.empty();
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Object id;
+        private Integer maxTokens;
+        private Tokenizer tokenizer;
+        private ChatMemoryStore store = new InMemoryChatMemoryStore();
+        private Summarizer summarizer;
+
+        public Builder id(Object id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder maxTokens(Integer maxTokens, Tokenizer tokenizer) {
+            this.maxTokens = maxTokens;
+            this.tokenizer = tokenizer;
+            return this;
+        }
+
+        public Builder chatMemoryStore(ChatMemoryStore store) {
+            this.store = store;
+            return this;
+        }
+
+        public Builder summarizer(Summarizer summarizer) {
+            this.summarizer = summarizer;
+            return this;
+        }
+
+        public SummarizingTokenWindowChatMemory build() {
+            return new SummarizingTokenWindowChatMemory(this);
+        }
+    }
+}
+</code></pre>
+
+<p>The <strong>SummarizingTokenWindowChatMemory</strong> class manages chat messages, ensuring they stay within a specified token limit by summarizing older messages when necessary. It uses an <a href="https://javadoc.io/doc/dev.langchain4j/langchain4j-open-ai/latest/dev/langchain4j/model/openai/OpenAiTokenizer.html"><strong>OpenAiTokenizer</strong></a> to estimate token counts and a <strong>Summarizer</strong> to generate summaries. The class also handles system messages separately, preserving them during summarization. The `Builder` class provides a convenient way to construct <strong>SummarizingTokenWindowChatMemory</strong> instances with the required dependencies.</p>
+
+<p>Now, let’s work on the <strong>Sumerizer</strong>.</p>
+
+<h3 id="the-summarizer-interface"><strong>The Summarizer Interface</strong></h3>
+
+<p>At its core, <strong>OpenAILLMSummarizer</strong> implements the Summarizer interface:</p>
+
+<pre><code class="language-java">import dev.langchain4j.data.message.ChatMessage;
+
+import java.util.List;
+
+public interface Summarizer {
+    String summarize(List&lt;ChatMessage&gt; messages);
+}
+</code></pre>
+
+<p>This provides a contract for any summarization strategy.</p>
+
+<h3 id="summarization-logic"><strong>Summarization Logic</strong></h3>
+
+<p>The main implementation, <strong>OpenAILLMSummarizer</strong> , is responsible for processing chat history and condensing it into a summary:</p>
+
+<pre><code class="language-java">package ca.bazlur.chefbot.ai;
+
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.SystemMessage;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.V;
+
+import java.util.List;
+
+public class OpenAILLMSummarizer implements Summarizer {
+
+    private final int desiredTokenLimit;
+    private final SummarizerAssistant assistant;
+
+    public OpenAILLMSummarizer(OpenAiChatModel openAiChatModel, int desiredTokenLimit) {
+        this.desiredTokenLimit = desiredTokenLimit;
+        assistant = AiServices.builder(SummarizerAssistant.class)
+                .chatLanguageModel(openAiChatModel)
+                .build();
+    }
+
+    @Override
+    public String summarize(List&lt;ChatMessage&gt; messages) {
+        StringBuilder promptBuilder = new StringBuilder("Summarize the following conversation: \n");
+        for (ChatMessage msg : messages) {
+            if (msg instanceof UserMessage) {
+                promptBuilder.append("User: ").append(((UserMessage) msg).contents()).append("\n");
+            } else if (msg instanceof AiMessage) {
+                promptBuilder.append("Assistant: ").append(((AiMessage) msg).text()).append("\n");
+            } else if (msg instanceof SystemMessage) {
+                promptBuilder.append("System: ").append(((SystemMessage) msg).text()).append("\n");
+            }
+        }
+
+        String summary = assistant.summarize(promptBuilder.toString(), desiredTokenLimit);
+        return summary.trim();
+    }
+
+}
+</code></pre>
+
+<ul>
+  <li>Constructs a structured prompt containing key user, AI, and system messages.</li>
+  <li>Invokes the <strong>SummarizerAssistant</strong> , which interacts with OpenAI’s language model to generate the summary.</li>
+</ul>
+
+<h3 id="llm-summarization"><strong>LLM Summarization</strong></h3>
+
+<p>The <strong>SummarizerAssistant</strong> provides an AI-driven summarization method:</p>
+
+<pre><code class="language-java">interface SummarizerAssistant {
+
+    @dev.langchain4j.service.UserMessage("""
+    You are a helpful assistant summarizing past conversation turns for a chatbot.
+
+    Your goal is to create a concise and informative summary of the provided conversation history, 
+    focusing on key information relevant to continuing the conversation.  
+    Pay close attention to user preferences, requests, and any decisions they have made.  
+    Also note any specific topics or tasks discussed.  Be sure to retain information that might be needed 
+    to fulfill a user request or provide a relevant response.
+
+    The summary should be under {desiredTokenLimit} tokens and written in a clear, natural language style.  
+    Avoid simply listing the turns.  Instead, synthesize the information into a coherent narrative.
+
+    Conversation History:
+    {message}
+    """)
+    String summarize(@V("message") String messages, @V("desiredTokenLimit") int desiredTokenLimit);
+}
+</code></pre>
+
+<p>This mechanism:</p>
+
+<ul>
+  <li>Calls an <strong>LLM model</strong> (e.g., OpenAI’s GPT) to generate concise summaries.</li>
+  <li>Ensures that the summarized conversation remains within a predefined token limit.</li>
+</ul>
+
+<h2 id="why-this-matters">Why This Matters</h2>
+
+<p>The <strong>SummarizingTokenWindowChatMemory</strong> approach effectively manages long conversations while staying within the constraints of an LLM’s context window. The chatbot can retain essential details by summarizing older exchanges, ensuring coherence without exceeding token limits. This results in a more fluid and engaging user experience, where the chatbot can “remember” and refer back to past interactions naturally. Additionally, it optimizes efficiency by reducing the amount of text processed with each request, potentially leading to faster response times and lower costs. This makes it particularly valuable when maintaining conversational history, which is crucial for customer support, complex problem-solving, or multi-turn discussions.</p>
+
+<p>That said, this approach isn’t without its challenges. The very nature of summarization means that some details—especially infrequent ones—might get lost in the process. This could occasionally impact the chatbot’s ability to deliver the most precise or personalized responses. Moreover, the summarization step itself adds computational overhead, and its effectiveness heavily depends on the prompt design and the capabilities of the underlying LLM. Another potential issue is <strong>contextual drift</strong> —over multiple rounds of summarization, the chatbot’s understanding of the conversation could gradually shift away from its original meaning. These trade-offs must be carefully weighed when deciding whether this approach is the right fit for a given application.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>To test its functionality, I created a simple chatbot that suggests recipes. The chatbot will ask you a few questions and recommend a recipe based on your responses. As the conversation progresses, the chatbot will start summarizing older messages to retain essential context while staying within the allowed token threshold if the token limit is exceeded.</p>
+
+<p>The source code is here: <a href="https://github.com/rokon12/chefbot">https://github.com/rokon12/chefbot</a></p>
+
+<p><img src="/images/screenshot-2025-02-14-at-1.04.29-am.png" alt="" /></p>
+
+<hr />
+
+<p>Type your email… {#subscribe-email}</p>]]></content><author><name>A N M Bazlur Rahman</name></author><category term="java programming" /><category term="java 11" /><category term="java 21" /><category term="java cli" /><category term="java code" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/img/default-og.jpg" /><media:content medium="image" url="http://localhost:4000/assets/img/default-og.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

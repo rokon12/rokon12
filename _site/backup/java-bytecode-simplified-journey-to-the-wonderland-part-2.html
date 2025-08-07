@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://bazlur.ca/2022/08/16/java-bytecode-simplified-journey-to-the-wonderland-part-2/"><title>Java Bytecode Simplified: Journey to the Wonderland (Part 2) | Bazlur’s Blog Archive</title><meta name="generator" content="Jekyll v3.9.5" /><meta property="og:title" content="Java Bytecode Simplified: Journey to the Wonderland (Part 2)" /><meta name="author" content="A N M Bazlur Rahman" /><meta property="og:locale" content="en_US" /><meta name="description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><meta property="og:description" content="A comprehensive archive of articles on Java, Software Development, and Technology" /><link rel="canonical" href="http://localhost:4000/backup/java-bytecode-simplified-journey-to-the-wonderland-part-2.html" /><meta property="og:url" content="http://localhost:4000/backup/java-bytecode-simplified-journey-to-the-wonderland-part-2.html" /><meta property="og:site_name" content="Bazlur’s Blog Archive" /><meta property="og:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" /><meta property="twitter:image" content="http://localhost:4000/assets/img/default-og.jpg" /><meta property="twitter:title" content="Java Bytecode Simplified: Journey to the Wonderland (Part 2)" /><meta name="twitter:site" content="@bazlur_rahman" /><meta name="twitter:creator" content="@A N M Bazlur Rahman" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"A N M Bazlur Rahman","url":"https://bazlur.ca"},"description":"A comprehensive archive of articles on Java, Software Development, and Technology","headline":"Java Bytecode Simplified: Journey to the Wonderland (Part 2)","image":"http://localhost:4000/assets/img/default-og.jpg","url":"http://localhost:4000/backup/java-bytecode-simplified-journey-to-the-wonderland-part-2.html"}</script><style> /* Critical CSS - Inline for faster initial render */ :root { --primary-color: #2563eb; --secondary-color: #7c3aed; --text-color: #1f2937; --text-light: #6b7280; --bg-color: #ffffff; --bg-gray: #f9fafb; } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--text-color); background: var(--bg-gray); } .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; } header { background: var(--bg-color); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; } .site-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; } .site-title { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; } .nav-links { display: flex; gap: 2rem; list-style: none; } .nav-links a { color: var(--text-color); text-decoration: none; transition: color 0.2s; } .nav-links a:hover { color: var(--primary-color); } /* Above-the-fold home page styles */ .banner-container { margin: 2rem auto 3rem; text-align: center; } .ascii-banner { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.2; color: var(--primary-color); } @media (max-width: 768px) { .wrapper { padding: 0 1rem; } .ascii-banner { font-size: 6px; } .nav-links { gap: 1rem; } }</style><link rel="preload" href="/assets/css/main.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="/assets/css/main.css?v=2"></noscript><link rel="alternate" type="application/rss+xml" title="Bazlur&#39;s Blog Archive" href="/feed.xml"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><body><header class="site-header"><div class="header-wrapper"> <a class="site-title" href="/">Bazlur&#39;s Blog Archive</a> <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <span class="hamburger"> <span></span> <span></span> <span></span> </span> </button><nav class="site-nav"> <a class="nav-link" href="/">Home</a> <a class="nav-link" href="/archive">Archive</a> <a class="nav-link" href="/tags">Tags</a> <a class="nav-link" href="/search">Search</a> <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Speaking</a> <a class="nav-link" href="/about">About</a> <a class="nav-link nav-link-external" href="https://bazlur.ca" target="_blank" rel="noopener">Original Site →</a></nav></div></header><main class="page-content" aria-label="Content"><p><img src="/backup/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg" alt="" /></p><h1 id="java-bytecode-simplified-journey-to-the-wonderland-part-2">Java Bytecode Simplified: Journey to the Wonderland (Part 2)</h1><p>Our <a href="/2022/03/08/java-bytecode-simplified-journey-to-the-wonderland-part-1/">previous article</a> introduced Bytecode and discussed what it includes.</p><p>This article will delve a bit deeper into ConstantPool.</p><p>Highlights:</p><ul><li>Bytecode is a representation that is abstract in nature. They are fictitious codes for a fictitious machine known as the Java Virtual Machine. The Java virtual machine is a piece of software that interprets <strong>Bytecode</strong>.<li>The JVM is a stack-based computer. Real CPUs are register-based systems and execute machine code. Java is compiled into Bytecode, an intermediate form, which is then executed by the <a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">Just In Time</a> (JIT) compiler, which generates machine code.</ul><p>Before going any further, let’s explore <code>javap</code>, which is a very handy tool for deconstructing byte code.</p><p>JavaP is a standard tool included in the JDK’s bin subdirectory.</p><p>An intriguing aspect of <code>javap</code>, is that we do not need to deal with Java source code; rather, it just works with the binary file, which is .class extension.</p><p>Let’s see an example:</p><pre><code>package ca.bazlur;
+
+public class Lamp {
+    private boolean isOn;
+
+    public void turnOn() {
+        this.isOn = true;
+        printStatus();
+    }
+
+    public void turnOff() {
+        this.isOn = false;
+        printStatus();
+    }
+
+    private void printStatus() {
+        System.out.println("Light is turned " + (isOn ? "on" : "off"));
+    }
+
+    public static void main(String[] args) {
+        var lamp = new Lamp();
+        lamp.turnOn();
+        lamp.turnOff();
+    }
+}
+</code></pre><p>If we compile this code using <code>javac</code> we will get a class file, and then we can use <code>javap</code> to disassemble the bytecode from the command line as follows:</p><p><code>javap Lamp</code></p><p>We will get the following output.</p><pre><code>Compiled from "Lamp.java"
+public class ca.bazlur.Lamp {
+  public ca.bazlur.Lamp();
+  public void turnOn();
+  public void turnOff();
+  public static void main(java.lang.String[]);
+}
+</code></pre><p>Note that it prints only the public, protected, and default methods. Abobe, it did not print private methods. If we also wish to view the private method, we must specify an additional switch <code>-p</code>.</p><p><code>javap -p Lamp</code></p><pre><code>Compiled from "Lamp.java"
+public class ca.bazlur.Lamp {
+  private boolean isOn;
+  public ca.bazlur.Lamp();
+  public void turnOn();
+  public void turnOff();
+  private void printStatus();
+  public static void main(java.lang.String[]);
+}
+</code></pre><p>Nonetheless, this only prints the names of the methods. We would be looking for more information, including the bytecode used in the method body. This requires another switch, which is <code>-c</code>.</p><p><code>javap -c Lamp</code></p><pre><code>Compiled from "Lamp.java"
+public class ca.bazlur.Lamp {
+  public ca.bazlur.Lamp();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."&lt;init&gt;":()V
+       4: return
+
+  public void turnOn();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #7                  // Field isOn:Z
+       5: aload_0
+       6: invokevirtual #13                 // Method printStatus:()V
+       9: return
+
+  public void turnOff();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #7                  // Field isOn:Z
+       5: aload_0
+       6: invokevirtual #13                 // Method printStatus:()V
+       9: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: new           #8                  // class ca/bazlur/Lamp
+       3: dup
+       4: invokespecial #36                 // Method "&lt;init&gt;":()V
+       7: astore_1
+       8: aload_1
+       9: invokevirtual #37                 // Method turnOn:()V
+      12: aload_1
+      13: invokevirtual #40                 // Method turnOff:()V
+      16: return
+}
+</code></pre><p>Now, this becomes significantly more intriguing, and we can observe the presence of all bytecodes. If we examine the first line of the main method, we see the following:</p><p><code>new #8</code></p><p>In addition to this, the code has other locations with numbers such as #1, #2, etc. These are the constant pool’s reference values. If we wish to view the constant pool, we must use an additional switch, <code>-v</code>.</p><p><code>javap -v Lamp</code></p><pre><code>Classfile /bytecode-simplified/src/main/java/ca/bazlur/Lamp.class
+  Last modified Aug. 11, 2022; size 1245 bytes
+  SHA-256 checksum cf727468acdcc0b2dd0a6a858a313110e437e01a6625cf4e03f1f0fa41910dae
+  Compiled from "Lamp.java"
+public class ca.bazlur.Lamp
+  minor version: 0
+  major version: 62
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #8                          // ca/bazlur/Lamp
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 5, attributes: 3
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."&lt;init&gt;":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "&lt;init&gt;":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               &lt;init&gt;
+   #6 = Utf8               ()V
+   #7 = Fieldref           #8.#9          // ca/bazlur/Lamp.isOn:Z
+   #8 = Class              #10            // ca/bazlur/Lamp
+   #9 = NameAndType        #11:#12        // isOn:Z
+  #10 = Utf8               ca/bazlur/Lamp
+  #11 = Utf8               isOn
+  #12 = Utf8               Z
+  #13 = Methodref          #8.#14         // ca/bazlur/Lamp.printStatus:()V
+  #14 = NameAndType        #15:#6         // printStatus:()V
+  #15 = Utf8               printStatus
+  #16 = Fieldref           #17.#18        // java/lang/System.out:Ljava/io/PrintStream;
+  #17 = Class              #19            // java/lang/System
+  #18 = NameAndType        #20:#21        // out:Ljava/io/PrintStream;
+  #19 = Utf8               java/lang/System
+  #20 = Utf8               out
+  #21 = Utf8               Ljava/io/PrintStream;
+  #22 = String             #23            // on
+  #23 = Utf8               on
+  #24 = String             #25            // off
+  #25 = Utf8               off
+  #26 = InvokeDynamic      #0:#27         // #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+  #27 = NameAndType        #28:#29        // makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+  #28 = Utf8               makeConcatWithConstants
+  #29 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #30 = Methodref          #31.#32        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #31 = Class              #33            // java/io/PrintStream
+  #32 = NameAndType        #34:#35        // println:(Ljava/lang/String;)V
+  #33 = Utf8               java/io/PrintStream
+  #34 = Utf8               println
+  #35 = Utf8               (Ljava/lang/String;)V
+  #36 = Methodref          #8.#3          // ca/bazlur/Lamp."&lt;init&gt;":()V
+  #37 = Methodref          #8.#38         // ca/bazlur/Lamp.turnOn:()V
+  #38 = NameAndType        #39:#6         // turnOn:()V
+  #39 = Utf8               turnOn
+  #40 = Methodref          #8.#41         // ca/bazlur/Lamp.turnOff:()V
+  #41 = NameAndType        #42:#6         // turnOff:()V
+  #42 = Utf8               turnOff
+  #43 = Utf8               Code
+  #44 = Utf8               LineNumberTable
+  #45 = Utf8               StackMapTable
+  #46 = Class              #47            // java/lang/String
+  #47 = Utf8               java/lang/String
+  #48 = Utf8               main
+  #49 = Utf8               ([Ljava/lang/String;)V
+  #50 = Utf8               SourceFile
+  #51 = Utf8               Lamp.java
+</code></pre><p>The output is quite large, so only a portion of the code for the constant pool is shown here.</p><p>Bytecode starts with minor and major versions. This allows us to determine the version it was compiled from. There are a few other stuff like flags. This flag is <code>ACC PUBLIC</code> because this class is a public class. The <code>ACC SUPER</code> was implemented to fix a problem with super invocation, but since Java 1.8, it has no effect; perhaps it will be deleted in the future. In reality, a JEP proposal is available to eliminate this: <a href="https://openjdk.org/jeps/8267650">https://openjdk.org/jeps/8267650</a>. We will not discuss all of the content of bytecode here, rather let’s move on to <strong>ConstantPool</strong>.</p><p>It can be considered a multidimensional array. In fact, in the JVM specification, the general format mentioned as follows:</p><pre><code>cp_info {
+    u1 tag;
+    u1 info[];
+}
+</code></pre><p>It contains numerous elements, including class name, field name, interface name, String, numbers, pointers to classes or methods, type descriptor, etc., and has an index.</p><p>For instance, the first element contains a Methodref, which is composed of elements <code>#2</code> and <code>#3</code>. In <code>#2</code>, the material is <code>#4</code>. Similarly, in line <code>#4</code>, we have a <code>UTF-8</code> value that is essentially a String, namely <code>java/lang/Object</code>.</p><p>If you use <code>javap</code> to unpack the entire bytecode, you will find something known as a descriptor. They are referred to as Type descriptors. These are strings that describe the signatures of Java methods or Java types at other constant pool locations.</p><table><thead><tr><th><em>BaseType</em> Character<th>Type<th>Interpretation<tbody><tr><td><code>B</code><td><code>byte</code><td>signed byte<tr><td><code>C</code><td><code>char</code><td>Unicode character code point in the Basic Multilingual Plane encoded with UTF-16<tr><td><code>D</code><td><code>double</code><td>double-precision floating-point value<tr><td><code>F</code><td><code>float</code><td>single-precision floating-point value<tr><td><code>I</code><td><code>int</code><td>integer<tr><td><code>J</code><td><code>long</code><td>long integer<tr><td><code>L</code> <em>ClassName</em> <code>;</code><td><code>reference</code><td>an instance of class <em>ClassName</em><tr><td><code>S</code><td><code>short</code><td>signed short<tr><td><code>Z</code><td><code>boolean</code><td><code>true</code> or <code>false</code><tr><td><code>[</code><td><code>reference</code><td>one array dimension</table><p>Although it appears to be shorter \&amp; concise, particularly for primitive types, we must always use fully qualified names in bytecode for reference types.</p><p>Let’s see how we read them. e.g.</p><p><strong><code>()Ljava/lang/String</code></strong></p><p>In the round bracket, nothing between them indicates that this method doesn’t require any parameters. The right of the brackets always indicates the return type. So this represents a method signature, which means it takes nothing but the return string, for example- <code>toString()</code>.</p><p><strong><code>(I)V</code></strong></p><p>This one takes integer parameters and returns a <code>void</code>. The V doesn’t exist in the table, but it means void. The reason it’s not present in the table is because <code>void</code> is not actually a type. It means the absence of a type.</p><p>The constant pool includes all the information required to verify a class during class loading.</p><p>If you are interested in knowing more about Constant Pool, I would recommend reading JVM specifications: <a href="https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.4">https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.4</a></p><p>This is all for today. Next, we will discuss the bytecode catalogue and the family of bytecode.</p><hr /><h3 id="discover-more-from-a-n-m-bazlur-rahman">Discover more from A N M Bazlur Rahman</h3><p>Subscribe to get the latest posts sent to your email.<br /> Type your email… {#subscribe-email}</p><p>Subscribe {#subscribe-submit}</p></main><footer class="site-footer"><div class="footer-content"><p>A comprehensive archive of articles on Java, Software Development, and Technology</p><p>© 2025 A N M Bazlur Rahman. All articles are archived from <a href="https://bazlur.ca">bazlur.ca</a></p><p> <a href="/feed.xml">RSS Feed</a> • <a href="https://twitter.com/bazlur_rahman">Twitter</a> • <a href="https://github.com/rokon12">GitHub</a></p></div></footer><script> // Fade-in animations on scroll document.addEventListener('DOMContentLoaded', function() { const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }; const observer = new IntersectionObserver(function(entries) { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, observerOptions); // Observe fade-in elements document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .stagger-animation').forEach(el => { observer.observe(el); }); // Add fade-in classes to post cards document.querySelectorAll('.post-card').forEach((card, index) => { card.classList.add('fade-in-up'); card.style.transitionDelay = `${index * 0.1}s`; }); // Removed duplicate image observer - handled by image-optimization.js }); </script> <script defer src="/assets/js/terminal.js"></script> <script defer src="/assets/js/image-optimization.js"></script> <script> if ('loading' in HTMLImageElement.prototype) { const images = document.querySelectorAll('img[loading="lazy"]'); images.forEach(img => { img.src = img.dataset.src || img.src; }); } else { // Fallback for browsers that don't support lazy loading const script = document.createElement('script'); script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js'; document.body.appendChild(script); } </script> <script> document.addEventListener('DOMContentLoaded', function() { // Mobile menu toggle const mobileMenuToggle = document.querySelector('.mobile-menu-toggle'); const siteNav = document.querySelector('.site-nav'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', function() { const isExpanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !isExpanded); siteNav.classList.toggle('is-active'); document.body.classList.toggle('menu-open'); }); // Close menu when clicking outside document.addEventListener('click', function(e) { if (!e.target.closest('.site-header') && siteNav.classList.contains('is-active')) { mobileMenuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-active'); document.body.classList.remove('menu-open'); } }); } // Initialize theme const savedTheme = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', savedTheme); // Global search shortcut document.addEventListener('keydown', function(e) { // Focus search with / if (e.key === '/' && !e.metaKey && !e.ctrlKey) { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); document.body.classList.add('search-focused'); } } // Clear focus on ESC if (e.key === 'Escape') { const searchInput = document.querySelector('.quick-search-input') || document.querySelector('#search-input'); if (searchInput && document.activeElement === searchInput) { searchInput.blur(); searchInput.value = ''; document.body.classList.remove('search-focused'); } } }); }); </script> <button class="back-to-top" id="back-to-top" aria-label="Back to top"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline> </svg> </button> <script> document.addEventListener('DOMContentLoaded', function() { const backToTopButton = document.getElementById('back-to-top'); // Show/hide button based on scroll position function toggleBackToTop() { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } } // Throttle scroll events let isScrolling = false; window.addEventListener('scroll', function() { if (!isScrolling) { window.requestAnimationFrame(function() { toggleBackToTop(); isScrolling = false; }); isScrolling = true; } }); // Smooth scroll to top backToTopButton.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); // Initial check toggleBackToTop(); }); </script> <script> if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('/sw.js').then(function(registration) { console.log('ServiceWorker registration successful'); }, function(err) { console.log('ServiceWorker registration failed: ', err); }); }); } </script>
