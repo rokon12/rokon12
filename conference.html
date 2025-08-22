@@ -342,6 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
     function renderEvents(events, containerId) {
         const container = document.getElementById(containerId);
         
@@ -350,40 +356,50 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        container.innerHTML = events.map(event => `
-            <div class="event-card">
+        // Build HTML using DOM methods to avoid template literal issues
+        container.innerHTML = '';
+        events.forEach(event => {
+            const eventCard = document.createElement('div');
+            eventCard.className = 'event-card';
+            
+            let eventHtml = `
                 <div class="event-header">
                     <div class="event-info">
-                        <h3>${event.name}</h3>
-                        <div class="event-date">${event.date}</div>
+                        <h3>${escapeHtml(event.name)}</h3>
+                        <div class="event-date">${escapeHtml(event.date)}</div>
                         <div class="event-location">
-                            <span>${event.locationIcon}</span>
-                            <span>${event.location}</span>
+                            <span>${event.locationIcon || ''}</span>
+                            <span>${escapeHtml(event.location)}</span>
                         </div>
                     </div>
                     <div>
-                        <span class="event-type ${event.type}">${event.type}</span>
+                        <span class="event-type ${escapeHtml(event.type)}">${escapeHtml(event.type)}</span>
                     </div>
-                </div>
-                
-                ${event.talkTitle ? `
+                </div>`;
+            
+            if (event.talkTitle) {
+                eventHtml += `
                 <div class="event-talk">
-                    <span>${event.talkIcon}</span>
-                    <span class="talk-title">${event.talkTitle}</span>
-                </div>
-                ` : ''}
-                
-                ${event.links && event.links.length > 0 ? `
-                <div class="event-links">
-                    ${event.links.map(link => `
-                        <a href="${link.url}" target="_blank" rel="noopener" class="event-link">
-                            ${link.type === 'video' ? '🎥' : '🔗'} ${link.text}
-                        </a>
-                    `).join('')}
-                </div>
-                ` : ''}
-            </div>
-        `).join('');
+                    <span>${event.talkIcon || '🎤'}</span>
+                    <span class="talk-title">${escapeHtml(event.talkTitle)}</span>
+                </div>`;
+            }
+            
+            if (event.links && event.links.length > 0) {
+                eventHtml += '<div class="event-links">';
+                event.links.forEach(link => {
+                    const icon = link.type === 'video' ? '🎥' : '🔗';
+                    eventHtml += `
+                        <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener" class="event-link">
+                            ${icon} ${escapeHtml(link.text)}
+                        </a>`;
+                });
+                eventHtml += '</div>';
+            }
+            
+            eventCard.innerHTML = eventHtml;
+            container.appendChild(eventCard);
+        });
     }
 });
 </script>
