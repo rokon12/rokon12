@@ -275,7 +275,10 @@ permalink: /conference/
 document.addEventListener('DOMContentLoaded', function() {
     // Load speaking data
     console.log('Loading speaking data...');
-    fetch('/speaking.json')
+    // Use absolute URL to ensure it works in all environments
+    const speakingDataUrl = window.location.origin + '/speaking.json';
+    console.log('Fetching from:', speakingDataUrl);
+    fetch(speakingDataUrl)
         .then(response => {
             console.log('Response received:', response.status);
             if (!response.ok) {
