@@ -275,17 +275,33 @@ permalink: /conference/
 document.addEventListener('DOMContentLoaded', function() {
     // Load speaking data
     console.log('Loading speaking data...');
-    // Use absolute URL to ensure it works in all environments
-    const speakingDataUrl = window.location.origin + '/speaking.json';
+    // Try multiple approaches to ensure it works
+    const baseUrl = window.location.origin || 'https://bazlur.com';
+    const speakingDataUrl = baseUrl + '/speaking.json';
     console.log('Fetching from:', speakingDataUrl);
-    fetch(speakingDataUrl)
-        .then(response => {
-            console.log('Response received:', response.status);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
+    
+    // Add timeout and retry logic
+    const fetchWithRetry = (url, retries = 2) => {
+        return fetch(url)
+            .then(response => {
+                console.log('Response received:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                if (retries > 0) {
+                    console.log(`Retrying... (${retries} attempts left)`);
+                    // Try alternative URL if first attempt fails
+                    const altUrl = retries === 1 ? '/speaking.json' : url;
+                    return fetchWithRetry(altUrl, retries - 1);
+                }
+                throw error;
+            });
+    };
+    
+    fetchWithRetry(speakingDataUrl)
         .then(data => {
             console.log('Data parsed successfully. Total events:', data.length);
             // Calculate stats
