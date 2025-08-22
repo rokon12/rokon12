@@ -4,6 +4,11 @@ title: Speaking Engagements
 permalink: /conference/
 ---
 
+{% assign upcoming_events = site.data.speaking | where: "isUpcoming", true %}
+{% assign past_events = site.data.speaking | where: "isUpcoming", false %}
+{% assign total_talks = site.data.speaking | size %}
+{% assign upcoming_count = upcoming_events | size %}
+
 <div class="speaking-page">
     <div class="wrapper">
         <div class="speaking-header">
@@ -13,11 +18,11 @@ permalink: /conference/
 
         <div class="speaking-stats">
             <div class="stat-card">
-                <span class="stat-number" id="total-talks">0</span>
+                <span class="stat-number">{{ total_talks }}</span>
                 <span class="stat-label">Total Talks</span>
             </div>
             <div class="stat-card">
-                <span class="stat-number" id="upcoming-talks">0</span>
+                <span class="stat-number">{{ upcoming_count }}</span>
                 <span class="stat-label">Upcoming</span>
             </div>
             <div class="stat-card">
@@ -33,13 +38,87 @@ permalink: /conference/
 
         <div class="speaking-content">
             <div id="upcoming" class="tab-content active">
-                <div class="events-grid" id="upcoming-events">
-                    <!-- Upcoming events will be loaded here -->
+                <div class="events-grid">
+                    {% if upcoming_events.size > 0 %}
+                        {% for event in upcoming_events %}
+                        <div class="event-card">
+                            <div class="event-header">
+                                <div class="event-info">
+                                    <h3>{{ event.name | escape }}</h3>
+                                    <div class="event-date">{{ event.date | escape }}</div>
+                                    <div class="event-location">
+                                        <span>{{ event.locationIcon }}</span>
+                                        <span>{{ event.location | escape }}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="event-type {{ event.type | escape }}">{{ event.type | escape }}</span>
+                                </div>
+                            </div>
+                            
+                            {% if event.talkTitle %}
+                            <div class="event-talk">
+                                <span>{{ event.talkIcon | default: "🎤" }}</span>
+                                <span class="talk-title">{{ event.talkTitle | escape }}</span>
+                            </div>
+                            {% endif %}
+                            
+                            {% if event.links and event.links.size > 0 %}
+                            <div class="event-links">
+                                {% for link in event.links %}
+                                <a href="{{ link.url | escape }}" target="_blank" rel="noopener" class="event-link">
+                                    {% if link.type == "video" %}🎥{% else %}🔗{% endif %} {{ link.text | escape }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-events">No upcoming events</div>
+                    {% endif %}
                 </div>
             </div>
             <div id="past" class="tab-content">
-                <div class="events-grid" id="past-events">
-                    <!-- Past events will be loaded here -->
+                <div class="events-grid">
+                    {% if past_events.size > 0 %}
+                        {% for event in past_events %}
+                        <div class="event-card">
+                            <div class="event-header">
+                                <div class="event-info">
+                                    <h3>{{ event.name | escape }}</h3>
+                                    <div class="event-date">{{ event.date | escape }}</div>
+                                    <div class="event-location">
+                                        <span>{{ event.locationIcon }}</span>
+                                        <span>{{ event.location | escape }}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="event-type {{ event.type | escape }}">{{ event.type | escape }}</span>
+                                </div>
+                            </div>
+                            
+                            {% if event.talkTitle %}
+                            <div class="event-talk">
+                                <span>{{ event.talkIcon | default: "🎤" }}</span>
+                                <span class="talk-title">{{ event.talkTitle | escape }}</span>
+                            </div>
+                            {% endif %}
+                            
+                            {% if event.links and event.links.size > 0 %}
+                            <div class="event-links">
+                                {% for link in event.links %}
+                                <a href="{{ link.url | escape }}" target="_blank" rel="noopener" class="event-link">
+                                    {% if link.type == "video" %}🎥{% else %}🔗{% endif %} {{ link.text | escape }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-events">No past events</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -223,6 +302,7 @@ permalink: /conference/
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .event-link {
@@ -273,75 +353,17 @@ permalink: /conference/
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Load speaking data
-    console.log('Loading speaking data...');
-    // Try multiple approaches to ensure it works
-    const baseUrl = window.location.origin || 'https://bazlur.com';
-    const speakingDataUrl = baseUrl + '/speaking.json';
-    console.log('Fetching from:', speakingDataUrl);
+    // Calculate countries count from the data
+    const locations = [
+        {% for event in site.data.speaking %}
+        "{{ event.location | split: ',' | last | strip }}"{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ];
     
-    // Add timeout and retry logic
-    const fetchWithRetry = (url, retries = 2) => {
-        return fetch(url)
-            .then(response => {
-                console.log('Response received:', response.status);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .catch(error => {
-                if (retries > 0) {
-                    console.log(`Retrying... (${retries} attempts left)`);
-                    // Try alternative URL if first attempt fails
-                    const altUrl = retries === 1 ? '/speaking.json' : url;
-                    return fetchWithRetry(altUrl, retries - 1);
-                }
-                throw error;
-            });
-    };
+    const uniqueCountries = new Set(locations).size;
+    document.getElementById('countries-count').textContent = uniqueCountries;
     
-    fetchWithRetry(speakingDataUrl)
-        .then(data => {
-            console.log('Data parsed successfully. Total events:', data.length);
-            // Calculate stats
-            const totalTalks = data.length;
-            const upcomingTalks = data.filter(event => event.isUpcoming).length;
-            const countries = new Set(data.map(event => event.location.split(',').pop().trim())).size;
-            
-            // Update stats
-            document.getElementById('total-talks').textContent = totalTalks;
-            document.getElementById('upcoming-talks').textContent = upcomingTalks;
-            document.getElementById('countries-count').textContent = countries;
-            
-            // Separate events
-            const upcomingEvents = data.filter(event => event.isUpcoming)
-                .sort((a, b) => {
-                    // Handle year-only dates
-                    const dateA = isNaN(a.date) ? new Date(a.date) : new Date(a.date, 0, 1);
-                    const dateB = isNaN(b.date) ? new Date(b.date) : new Date(b.date, 0, 1);
-                    return dateB - dateA;
-                });
-            const pastEvents = data.filter(event => !event.isUpcoming)
-                .sort((a, b) => {
-                    // Handle year-only dates
-                    const dateA = isNaN(a.date) ? new Date(a.date) : new Date(a.date, 0, 1);
-                    const dateB = isNaN(b.date) ? new Date(b.date) : new Date(b.date, 0, 1);
-                    return dateB - dateA;
-                });
-            
-            // Render events
-            renderEvents(upcomingEvents, 'upcoming-events');
-            renderEvents(pastEvents, 'past-events');
-        })
-        .catch(error => {
-            console.error('Error loading speaking data:', error);
-            // Display error message to user
-            document.getElementById('upcoming-events').innerHTML = `<div class="no-events">Error loading events: ${error.message}</div>`;
-            document.getElementById('past-events').innerHTML = `<div class="no-events">Error loading events: ${error.message}</div>`;
-        });
-    
-    // Tab switching
+    // Tab switching functionality
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
     
@@ -357,65 +379,5 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById(targetTab).classList.add('active');
         });
     });
-    
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-    
-    function renderEvents(events, containerId) {
-        const container = document.getElementById(containerId);
-        
-        if (events.length === 0) {
-            container.innerHTML = '<div class="no-events">No events to display</div>';
-            return;
-        }
-        
-        // Build HTML using DOM methods to avoid template literal issues
-        container.innerHTML = '';
-        events.forEach(event => {
-            const eventCard = document.createElement('div');
-            eventCard.className = 'event-card';
-            
-            let eventHtml = `
-                <div class="event-header">
-                    <div class="event-info">
-                        <h3>${escapeHtml(event.name)}</h3>
-                        <div class="event-date">${escapeHtml(event.date)}</div>
-                        <div class="event-location">
-                            <span>${event.locationIcon || ''}</span>
-                            <span>${escapeHtml(event.location)}</span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="event-type ${escapeHtml(event.type)}">${escapeHtml(event.type)}</span>
-                    </div>
-                </div>`;
-            
-            if (event.talkTitle) {
-                eventHtml += `
-                <div class="event-talk">
-                    <span>${event.talkIcon || '🎤'}</span>
-                    <span class="talk-title">${escapeHtml(event.talkTitle)}</span>
-                </div>`;
-            }
-            
-            if (event.links && event.links.length > 0) {
-                eventHtml += '<div class="event-links">';
-                event.links.forEach(link => {
-                    const icon = link.type === 'video' ? '🎥' : '🔗';
-                    eventHtml += `
-                        <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener" class="event-link">
-                            ${icon} ${escapeHtml(link.text)}
-                        </a>`;
-                });
-                eventHtml += '</div>';
-            }
-            
-            eventCard.innerHTML = eventHtml;
-            container.appendChild(eventCard);
-        });
-    }
 });
 </script>
