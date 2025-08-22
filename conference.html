@@ -8,6 +8,7 @@ permalink: /conference/
 {% assign past_events = site.data.speaking | where: "isUpcoming", false | sort: "date" | reverse %}
 {% assign total_talks = site.data.speaking | size %}
 {% assign upcoming_count = upcoming_events | size %}
+{% assign past_count = past_events | size %}
 
 <div class="speaking-page">
     <div class="wrapper">
@@ -26,102 +27,94 @@ permalink: /conference/
                 <span class="stat-label">Upcoming</span>
             </div>
             <div class="stat-card">
-                <span class="stat-number" id="countries-count">0</span>
-                <span class="stat-label">Countries</span>
+                <span class="stat-number">{{ past_count }}</span>
+                <span class="stat-label">Past</span>
             </div>
         </div>
 
-        <div class="speaking-tabs">
-            <button class="tab-button active" data-tab="upcoming">Upcoming Events</button>
-            <button class="tab-button" data-tab="past">Past Events</button>
+        {% if upcoming_events.size > 0 %}
+        <div class="events-section">
+            <h2 class="section-title">📅 Upcoming Events</h2>
+            <div class="events-grid">
+                {% for event in upcoming_events %}
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-info">
+                            <h3>{{ event.name | escape }}</h3>
+                            <div class="event-date">{{ event.date | escape }}</div>
+                            <div class="event-location">
+                                <span>{{ event.locationIcon }}</span>
+                                <span>{{ event.location | escape }}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="event-type {{ event.type | escape }}">{{ event.type | escape }}</span>
+                        </div>
+                    </div>
+                    
+                    {% if event.talkTitle %}
+                    <div class="event-talk">
+                        <span>{{ event.talkIcon | default: "🎤" }}</span>
+                        <span class="talk-title">{{ event.talkTitle | escape }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if event.links and event.links.size > 0 %}
+                    <div class="event-links">
+                        {% for link in event.links %}
+                        <a href="{{ link.url | escape }}" target="_blank" rel="noopener" class="event-link">
+                            {% if link.type == "video" %}🎥{% else %}🔗{% endif %} {{ link.text | escape }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
         </div>
+        {% endif %}
 
-        <div class="speaking-content">
-            <div id="upcoming" class="tab-content active">
-                <div class="events-grid">
-                    {% if upcoming_events.size > 0 %}
-                        {% for event in upcoming_events %}
-                        <div class="event-card">
-                            <div class="event-header">
-                                <div class="event-info">
-                                    <h3>{{ event.name | escape }}</h3>
-                                    <div class="event-date">{{ event.date | escape }}</div>
-                                    <div class="event-location">
-                                        <span>{{ event.locationIcon }}</span>
-                                        <span>{{ event.location | escape }}</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="event-type {{ event.type | escape }}">{{ event.type | escape }}</span>
-                                </div>
+        {% if past_events.size > 0 %}
+        <div class="events-section">
+            <h2 class="section-title">📚 Past Events</h2>
+            <div class="events-grid">
+                {% for event in past_events %}
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-info">
+                            <h3>{{ event.name | escape }}</h3>
+                            <div class="event-date">{{ event.date | escape }}</div>
+                            <div class="event-location">
+                                <span>{{ event.locationIcon }}</span>
+                                <span>{{ event.location | escape }}</span>
                             </div>
-                            
-                            {% if event.talkTitle %}
-                            <div class="event-talk">
-                                <span>{{ event.talkIcon | default: "🎤" }}</span>
-                                <span class="talk-title">{{ event.talkTitle | escape }}</span>
-                            </div>
-                            {% endif %}
-                            
-                            {% if event.links and event.links.size > 0 %}
-                            <div class="event-links">
-                                {% for link in event.links %}
-                                <a href="{{ link.url | escape }}" target="_blank" rel="noopener" class="event-link">
-                                    {% if link.type == "video" %}🎥{% else %}🔗{% endif %} {{ link.text | escape }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
                         </div>
+                        <div>
+                            <span class="event-type {{ event.type | escape }}">{{ event.type | escape }}</span>
+                        </div>
+                    </div>
+                    
+                    {% if event.talkTitle %}
+                    <div class="event-talk">
+                        <span>{{ event.talkIcon | default: "🎤" }}</span>
+                        <span class="talk-title">{{ event.talkTitle | escape }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if event.links and event.links.size > 0 %}
+                    <div class="event-links">
+                        {% for link in event.links %}
+                        <a href="{{ link.url | escape }}" target="_blank" rel="noopener" class="event-link">
+                            {% if link.type == "video" %}🎥{% else %}🔗{% endif %} {{ link.text | escape }}
+                        </a>
                         {% endfor %}
-                    {% else %}
-                        <div class="no-events">No upcoming events</div>
+                    </div>
                     {% endif %}
                 </div>
-            </div>
-            <div id="past" class="tab-content">
-                <div class="events-grid">
-                    {% if past_events.size > 0 %}
-                        {% for event in past_events %}
-                        <div class="event-card">
-                            <div class="event-header">
-                                <div class="event-info">
-                                    <h3>{{ event.name | escape }}</h3>
-                                    <div class="event-date">{{ event.date | escape }}</div>
-                                    <div class="event-location">
-                                        <span>{{ event.locationIcon }}</span>
-                                        <span>{{ event.location | escape }}</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="event-type {{ event.type | escape }}">{{ event.type | escape }}</span>
-                                </div>
-                            </div>
-                            
-                            {% if event.talkTitle %}
-                            <div class="event-talk">
-                                <span>{{ event.talkIcon | default: "🎤" }}</span>
-                                <span class="talk-title">{{ event.talkTitle | escape }}</span>
-                            </div>
-                            {% endif %}
-                            
-                            {% if event.links and event.links.size > 0 %}
-                            <div class="event-links">
-                                {% for link in event.links %}
-                                <a href="{{ link.url | escape }}" target="_blank" rel="noopener" class="event-link">
-                                    {% if link.type == "video" %}🎥{% else %}🔗{% endif %} {{ link.text | escape }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                        <div class="no-events">No past events</div>
-                    {% endif %}
-                </div>
+                {% endfor %}
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 
@@ -184,42 +177,16 @@ permalink: /conference/
     letter-spacing: 0.05em;
 }
 
-.speaking-tabs {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #e2e8f0;
+.events-section {
+    margin-bottom: 4rem;
 }
 
-.tab-button {
-    background: none;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
-    cursor: pointer;
-    color: #718096;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 10;
-    pointer-events: auto;
-}
-
-.tab-button:hover {
+.section-title {
+    font-size: 2rem;
     color: #1a202c;
-}
-
-.tab-button.active {
-    color: #3b82f6;
-    border-bottom-color: #3b82f6;
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
 }
 
 .events-grid {
@@ -353,68 +320,3 @@ permalink: /conference/
     }
 }
 </style>
-
-<script>
-(function() {
-    // Self-executing function to avoid conflicts
-    function initConferencePage() {
-        console.log('Initializing conference page');
-        
-        // Calculate countries count from the data
-        const locations = [
-            {% for event in site.data.speaking %}
-            "{{ event.location | split: ',' | last | strip }}"{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-        ];
-        
-        const uniqueCountries = new Set(locations).size;
-        const countriesElement = document.getElementById('countries-count');
-        if (countriesElement) {
-            countriesElement.textContent = uniqueCountries;
-        }
-        
-        // Tab switching functionality - more specific selectors
-        const tabButtons = document.querySelectorAll('.speaking-tabs .tab-button');
-        const tabContents = document.querySelectorAll('.speaking-content .tab-content');
-        
-        console.log('Found tab buttons:', tabButtons.length);
-        console.log('Found tab contents:', tabContents.length);
-        
-        tabButtons.forEach(button => {
-            // Remove any existing listeners
-            button.replaceWith(button.cloneNode(true));
-        });
-        
-        // Re-select buttons after cloning
-        const freshButtons = document.querySelectorAll('.speaking-tabs .tab-button');
-        freshButtons.forEach(button => {
-            button.onclick = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const targetTab = this.dataset.tab;
-                console.log('Tab clicked:', targetTab);
-                
-                // Update active states
-                freshButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                this.classList.add('active');
-                const targetElement = document.getElementById(targetTab);
-                if (targetElement) {
-                    targetElement.classList.add('active');
-                    console.log('Tab switched to:', targetTab);
-                }
-                return false;
-            };
-        });
-    }
-    
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initConferencePage);
-    } else {
-        // DOM is already ready
-        initConferencePage();
-    }
-})();
-</script>
