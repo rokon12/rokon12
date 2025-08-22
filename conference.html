@@ -352,32 +352,57 @@ permalink: /conference/
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Calculate countries count from the data
-    const locations = [
-        {% for event in site.data.speaking %}
-        "{{ event.location | split: ',' | last | strip }}"{% unless forloop.last %},{% endunless %}
-        {% endfor %}
-    ];
-    
-    const uniqueCountries = new Set(locations).size;
-    document.getElementById('countries-count').textContent = uniqueCountries;
-    
-    // Tab switching functionality
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetTab = button.dataset.tab;
-            
-            // Update active states
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            button.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
+(function() {
+    // Self-executing function to avoid conflicts
+    function initConferencePage() {
+        console.log('Initializing conference page');
+        
+        // Calculate countries count from the data
+        const locations = [
+            {% for event in site.data.speaking %}
+            "{{ event.location | split: ',' | last | strip }}"{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+        ];
+        
+        const uniqueCountries = new Set(locations).size;
+        const countriesElement = document.getElementById('countries-count');
+        if (countriesElement) {
+            countriesElement.textContent = uniqueCountries;
+        }
+        
+        // Tab switching functionality - more specific selectors
+        const tabButtons = document.querySelectorAll('.speaking-tabs .tab-button');
+        const tabContents = document.querySelectorAll('.speaking-content .tab-content');
+        
+        console.log('Found tab buttons:', tabButtons.length);
+        console.log('Found tab contents:', tabContents.length);
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetTab = this.dataset.tab;
+                console.log('Switching to tab:', targetTab);
+                
+                // Update active states
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                this.classList.add('active');
+                const targetElement = document.getElementById(targetTab);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                    console.log('Tab switched to:', targetTab);
+                }
+            });
         });
-    });
-});
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initConferencePage);
+    } else {
+        // DOM is already ready
+        initConferencePage();
+    }
+})();
 </script>
