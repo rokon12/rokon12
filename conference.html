@@ -4,8 +4,8 @@ title: Speaking Engagements
 permalink: /conference/
 ---
 
-{% assign upcoming_events = site.data.speaking | where: "isUpcoming", true %}
-{% assign past_events = site.data.speaking | where: "isUpcoming", false %}
+{% assign upcoming_events = site.data.speaking | where: "isUpcoming", true | sort: "date" | reverse %}
+{% assign past_events = site.data.speaking | where: "isUpcoming", false | sort: "date" | reverse %}
 {% assign total_talks = site.data.speaking | size %}
 {% assign upcoming_count = upcoming_events | size %}
 
