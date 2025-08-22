@@ -200,6 +200,9 @@ permalink: /conference/
     color: #718096;
     border-bottom: 3px solid transparent;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .tab-button:hover {
@@ -378,13 +381,21 @@ permalink: /conference/
         console.log('Found tab contents:', tabContents.length);
         
         tabButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            // Remove any existing listeners
+            button.replaceWith(button.cloneNode(true));
+        });
+        
+        // Re-select buttons after cloning
+        const freshButtons = document.querySelectorAll('.speaking-tabs .tab-button');
+        freshButtons.forEach(button => {
+            button.onclick = function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 const targetTab = this.dataset.tab;
-                console.log('Switching to tab:', targetTab);
+                console.log('Tab clicked:', targetTab);
                 
                 // Update active states
-                tabButtons.forEach(btn => btn.classList.remove('active'));
+                freshButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
                 
                 this.classList.add('active');
@@ -393,7 +404,8 @@ permalink: /conference/
                     targetElement.classList.add('active');
                     console.log('Tab switched to:', targetTab);
                 }
-            });
+                return false;
+            };
         });
     }
     
