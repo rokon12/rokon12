@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Fetch</title>
+</head>
+<body>
+    <h1>Test Fetch Speaking Data</h1>
+    <button onclick="testFetch()">Test Fetch</button>
+    <div id="result"></div>
+    
+    <script>
+        function testFetch() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Fetching...';
+            
+            fetch('/speaking.json')
+                .then(response => {
+                    console.log('Response:', response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data:', data);
+                    resultDiv.innerHTML = `
+                        <h2>Success!</h2>
+                        <p>Total events: ${data.length}</p>
+                        <p>First event: ${data[0].name}</p>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                });
+        }
+        
+        // Auto-test on load
+        window.onload = testFetch;
+    </script>
+</body>
+</html>

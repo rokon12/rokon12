@@ -274,9 +274,17 @@ permalink: /conference/
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Load speaking data
+    console.log('Loading speaking data...');
     fetch('/speaking.json')
-        .then(response => response.json())
+        .then(response => {
+            console.log('Response received:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log('Data parsed successfully. Total events:', data.length);
             // Calculate stats
             const totalTalks = data.length;
             const upcomingTalks = data.filter(event => event.isUpcoming).length;
@@ -289,15 +297,30 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Separate events
             const upcomingEvents = data.filter(event => event.isUpcoming)
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
+                .sort((a, b) => {
+                    // Handle year-only dates
+                    const dateA = isNaN(a.date) ? new Date(a.date) : new Date(a.date, 0, 1);
+                    const dateB = isNaN(b.date) ? new Date(b.date) : new Date(b.date, 0, 1);
+                    return dateB - dateA;
+                });
             const pastEvents = data.filter(event => !event.isUpcoming)
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
+                .sort((a, b) => {
+                    // Handle year-only dates
+                    const dateA = isNaN(a.date) ? new Date(a.date) : new Date(a.date, 0, 1);
+                    const dateB = isNaN(b.date) ? new Date(b.date) : new Date(b.date, 0, 1);
+                    return dateB - dateA;
+                });
             
             // Render events
             renderEvents(upcomingEvents, 'upcoming-events');
             renderEvents(pastEvents, 'past-events');
         })
-        .catch(error => console.error('Error loading speaking data:', error));
+        .catch(error => {
+            console.error('Error loading speaking data:', error);
+            // Display error message to user
+            document.getElementById('upcoming-events').innerHTML = `<div class="no-events">Error loading events: ${error.message}</div>`;
+            document.getElementById('past-events').innerHTML = `<div class="no-events">Error loading events: ${error.message}</div>`;
+        });
     
     // Tab switching
     const tabButtons = document.querySelectorAll('.tab-button');
