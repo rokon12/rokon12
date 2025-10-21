@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JUnit 6.0.0 Ships with Java 17 Baseline, Cancellation API, and Kotlin suspend Support (2025-10-20)
+Introducing JUnit 6.0.0: a transformative update that unifies versions, elevates minimum requirements to Java 17, and introduces streamlined support for Kotlin suspend tests. Enjoy enhanced testing performance with the new CancellationToken API, built-in JFR listeners, and upgraded CSV parsing using FastCSV. Embrace the future of testing&mdash;migrate today!...
+[Read further^](https://www.infoq.com//news/2025/10/junit6-java17-kotlin)
+
+
 ### GPULlama3.java Brings GPU-Accelerated LLM Inference to Pure Java (2025-06-24)
 The University of Manchester's Beehive Lab has released GPULlama3.java, marking the first Java-native implementation of Llama3 with automatic GPU acceleration. This project leverages TornadoVM to enable GPU-accelerated large language model inference without requiring developers to write CUDA or native code, potentially transforming how Java developers approach AI apps in enterprise environments....
 [Read further^](https://www.infoq.com//news/2025/06/gpullama3-java-gpu-llm)
@@ -87,11 +92,6 @@ JEP 491, &quot;Synchronize Virtual Threads without Pinning,&quot; is now Propose
 ### Netflix Adopts Virtual Threads: a Case Study on Performance and Pitfalls (2024-08-05)
 Netflix, a long-time Java adopter, recently upgraded to Java 21. They are now harnessing new features such as generational ZGC and virtual threads to improve performance across their extensive microservices fleet. While virtual threads, designed for high-throughput concurrent applications, showed early promise, they also brought unique challenges in real-world scenarios....
 [Read further^](https://www.infoq.com//news/2024/08/netflix-performance-case-study)
-
-
-### JEP 481: Third Preview of Scoped Values API Brings Key Enhancements in JDK 23 (2024-07-22)
-JEP 481, Scoped Values (Third Preview), formerly known as Extent-Local Variables (Incubator), offers a third preview, with one change, to gain additional experience and feedback from one round of incubation and two rounds of preview. This feature enables the sharing of immutable data within and across threads....
-[Read further^](https://www.infoq.com//news/2024/07/jep-481-enhanced-scoped-values)
 
 
 ## <u>[Foojay.io](https://foojay.io/)</u>
@@ -162,4 +162,4 @@ Let’s examine how to leverage Java records for parameterized tests through a c
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 20 Oct 2025 03:06:44 GMT*
+*This page was last updated on Tue, 21 Oct 2025 02:58:38 GMT*
