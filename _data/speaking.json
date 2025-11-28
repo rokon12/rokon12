@@ -1,5 +1,82 @@
 
 [
+ {
+    "name": "Confoo",
+    "date": "2026",
+    "location": "Montreal, Canada",
+    "locationIcon": "🇨🇦",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Java Concurrency Face-Off: Virtual Threads vs Reactive",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://confoo.ca/en/2026/session/old-dog-new-tricks-the-java-25-reinvention",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://confoo.ca/en/2026/session/old-dog-new-tricks-the-java-25-reinvention",
+        "text": "Details"
+      }
+    ]
+  },
+ {
+  "name": "Confoo",
+  "date": "2026",
+  "location": "Montreal, Canada",
+  "locationIcon": "🇨🇦",
+  "role": "Speaker",
+  "type": "talk",
+  "talkTitle": "Old Dog, New Tricks: The Java 25 Reinvention",
+  "talkIcon": "🎤",
+  "isUpcoming": true,
+  "eventUrl": "https://confoo.ca/en/2026/session/old-dog-new-tricks-the-java-25-reinvention",
+  "links": [
+    {
+      "type": "event",
+      "url": "https://confoo.ca/en/2026/session/old-dog-new-tricks-the-java-25-reinvention",
+      "text": "Details"
+    }
+  ]
+},
+  {
+    "name": "JChampions Conference 2025",
+    "date": "2026",
+    "location": "Online",
+    "locationIcon": "🌐",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Old Dog, New Tricks: The Java 25 Reinvention",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://jchampionsconf.com/sessions.html#rahmanCard",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://jchampionsconf.com/sessions.html#rahmanCard",
+        "text": "Details"
+      }
+    ]
+  },
+    {
+    "name": "DevNexus 2025",
+    "date": "2026",
+    "location": "Atlanta, GA, USA",
+    "locationIcon": "🇺🇸",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Securing AI in Java: Guardrails, Ethical LLMs, and Compliance Tools",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://devnexus.com/events/securing-ai-in-java-guardrails-ethical-llms-and-compliance-tools",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://devnexus.com/events/securing-ai-in-java-guardrails-ethical-llms-and-compliance-tools",
+        "text": "Details"
+      }
+    ]
+  },
+  
   {
     "name": "Toronto Java Users Group",
     "date": "2025",
