@@ -9,7 +9,7 @@
     "type": "talk",
     "talkTitle": "Building LLM Apps in Java with LangChain4j and Jakarta EE",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://www.meetup.com/toronto-java-users-group/events/307291866/?eventOrigin=group_events_list",
     "links": [
       {
@@ -28,7 +28,7 @@
     "type": "talk",
     "talkTitle": "Building LLM Apps in Java with LangChain4j and Jakarta EE",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://www.eventbrite.com/e/java-llms-a-hands-on-guide-with-bazlur-rahman-syed-m-shaaf-tickets-1309355159529?aff=ebdsoporgprofile",
     "links": [
       {
@@ -47,7 +47,7 @@
     "type": "talk",
     "talkTitle": "TechTalk: Building LLM Apps in Java with LangChain4j and Jakarta EE",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://www.meetup.com/toronto-java-users-group/events/307291866/?eventOrigin=group_events_list",
     "links": [
       {
@@ -66,7 +66,7 @@
     "type": "talk",
     "talkTitle": "Building LLM Apps in Java with LangChain4j and Jakarta EE",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://jdconf.com/speakers-details.html#bazlur-rahman",
     "links": [
       {
@@ -85,7 +85,7 @@
     "type": "talk",
     "talkTitle": "Breaking Java Stereotypes: It's Not Your Dad's Language Anymore",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://www.mitechcon.events/MITechCon2025#/speakers?lang=en&sessionId=140801000000528077",
     "links": [
       {
@@ -104,7 +104,7 @@
     "type": "talk",
     "talkTitle": "Java + LLMs: A Hands-On Guide to Building LLM Apps in Java with Jakarta EE",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://devnexus.com/presentations/java-llms-a-hands-on-guide-to-building-llm-apps-in-java-with-jakartaee",
     "links": [
       {
@@ -123,7 +123,7 @@
     "type": "talk",
     "talkTitle": "Java + LLMs: A Hands-On Guide to Building LLM Apps in Java with Jakarta",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://jchampionsconf.com/sessions.html#rahmanCard",
     "links": [
       {
@@ -142,7 +142,7 @@
     "type": "talk",
     "talkTitle": "Java + LLMs: A Hands‑On Guide to Building LLM Apps in Java",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://2025.geecon.org/speakers/info.html?id=1003",
     "links": [
       {
