@@ -9,7 +9,7 @@
     "type": "talk",
     "talkTitle": "Building LLM Apps in Java with LangChain4j and Jakarta EE",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://www.meetup.com/toronto-java-users-group/events/307291866/?eventOrigin=group_events_list",
     "links": [
       {
