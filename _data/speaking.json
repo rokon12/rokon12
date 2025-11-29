@@ -1,5 +1,24 @@
 
 [
+  {
+    "name": "Java Developer's Conference 2025",
+    "date": "2025",
+    "location": "Montreal, Canada",
+    "locationIcon": "🇧🇩",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "From 21 to 25: What Modern Java Looks Like Today",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://jdc.jugbd.org/sessions.html",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://jdc.jugbd.org/sessions.html",
+        "text": "Details"
+      }
+    ]
+  },
  {
     "name": "Confoo",
     "date": "2026",
