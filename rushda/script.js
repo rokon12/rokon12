@@ -1371,8 +1371,11 @@ function navigateSection(direction) {
     createParticleExplosion(window.innerWidth / 2, window.innerHeight / 2, 'star', 8);
 }
 
-// Enhanced Animation and Particle Effects
+// Enhanced Animation and Particle Effects - DISABLED to remove oval animation
 function createParticleExplosion(x, y, type = 'star', count = 10) {
+    // Disabled - was causing annoying oval zoom animation on button clicks
+    return;
+
     const container = document.getElementById('particleContainer');
     const particles = ['⭐', '💖', '🎉', '✨', '🌟', '💫', '🎊'];
 
