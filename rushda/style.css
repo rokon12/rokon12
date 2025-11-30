@@ -2,17 +2,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    tap-highlight-color: transparent;
 }
 
-button, .letter-btn, .nav-btn, .tab-btn, .activity-btn {
+*:active,
+*:focus {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    tap-highlight-color: transparent !important;
+}
+
+button, input, a, div[onclick], span[onclick] {
     outline: none !important;
-    border: none !important;
     -webkit-tap-highlight-color: transparent !important;
     -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     -webkit-appearance: none !important;
@@ -20,15 +28,16 @@ button, .letter-btn, .nav-btn, .tab-btn, .activity-btn {
     appearance: none !important;
     background-clip: padding-box !important;
     -webkit-touch-callout: none !important;
+    tap-highlight-color: transparent !important;
 }
 
-button:focus, .letter-btn:focus, .nav-btn:focus, .tab-btn:focus, .activity-btn:focus {
+button:focus, input:focus, a:focus {
     outline: none !important;
     box-shadow: none !important;
 }
 
-/* Accessible focus states - visible for keyboard users */
-button:focus-visible, .letter-btn:focus-visible, .nav-btn:focus-visible, .tab-btn:focus-visible, .activity-btn:focus-visible {
+/* Accessible focus states - visible for keyboard users only */
+button:focus-visible, a:focus-visible {
     outline: 3px solid #fff !important;
     outline-offset: 2px !important;
     box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.3) !important;
@@ -53,25 +62,6 @@ button:focus-visible, .letter-btn:focus-visible, .nav-btn:focus-visible, .tab-bt
 
 .skip-link:focus {
     top: 10px;
-}
-
-button:active, .letter-btn:active, .nav-btn:active {
-    outline: none !important;
-}
-
-/* Force remove all possible oval/highlight effects */
-*:focus, *:active, *:hover {
-    outline: none !important;
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    -webkit-tap-highlight-color: transparent !important;
-}
-
-::selection {
-    background: transparent !important;
-}
-
-::-moz-selection {
-    background: transparent !important;
 }
 
 /* Disable any system highlight colors */
