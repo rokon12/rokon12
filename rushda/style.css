@@ -10,23 +10,25 @@
     user-select: none;
 }
 
-button, .letter-btn, .nav-btn {
+button, .letter-btn, .nav-btn, .tab-btn, .activity-btn {
     outline: none !important;
     border: none !important;
     -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
     background-clip: padding-box !important;
+    -webkit-touch-callout: none !important;
 }
 
-button:focus, .letter-btn:focus, .nav-btn:focus {
+button:focus, .letter-btn:focus, .nav-btn:focus, .tab-btn:focus, .activity-btn:focus {
     outline: none !important;
     box-shadow: none !important;
 }
 
 /* Accessible focus states - visible for keyboard users */
-button:focus-visible, .letter-btn:focus-visible, .nav-btn:focus-visible {
+button:focus-visible, .letter-btn:focus-visible, .nav-btn:focus-visible, .tab-btn:focus-visible, .activity-btn:focus-visible {
     outline: 3px solid #fff !important;
     outline-offset: 2px !important;
     box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.3) !important;
