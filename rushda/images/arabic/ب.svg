@@ -1,0 +1,46 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Duck/Batta for ب -->
+  <rect width="200" height="200" fill="#e0f2f1"/>
+  
+  <!-- Water -->
+  <ellipse cx="100" cy="175" rx="80" ry="15" fill="#4fc3f7" opacity="0.6"/>
+  
+  <!-- Duck body -->
+  <ellipse cx="100" cy="130" rx="35" ry="20" fill="#ffeb3b" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Duck head -->
+  <circle cx="75" cy="105" r="18" fill="#ffeb3b" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Duck beak -->
+  <ellipse cx="60" cy="108" rx="8" ry="4" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Duck eye -->
+  <circle cx="72" cy="100" r="3" fill="#000"/>
+  <circle cx="73" cy="99" r="1" fill="#fff"/>
+  
+  <!-- Duck wing -->
+  <ellipse cx="105" cy="125" rx="15" ry="12" fill="#ffca28" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Wing details -->
+  <path d="M95 120 Q105 115 115 120" fill="none" stroke="#f57c00" stroke-width="1"/>
+  <path d="M98 128 Q108 123 118 128" fill="none" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Duck feet -->
+  <ellipse cx="85" cy="150" rx="8" ry="4" fill="#ff9800"/>
+  <ellipse cx="105" cy="150" rx="8" ry="4" fill="#ff9800"/>
+  
+  <!-- Webbed feet details -->
+  <path d="M80 150 L85 148 L90 150" fill="none" stroke="#f57c00" stroke-width="1"/>
+  <path d="M100 150 L105 148 L110 150" fill="none" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Water ripples -->
+  <ellipse cx="60" cy="170" rx="15" ry="3" fill="#29b6f6" opacity="0.5"/>
+  <ellipse cx="140" cy="175" rx="12" ry="2" fill="#29b6f6" opacity="0.5"/>
+  
+  <!-- Small fish -->
+  <ellipse cx="150" cy="165" rx="6" ry="3" fill="#4fc3f7"/>
+  <path d="M156 165 L160 163 L160 167 Z" fill="#4fc3f7"/>
+  
+  <!-- Arabic letter ب -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#f57c00" font-weight="bold">ب</text>
+</svg>

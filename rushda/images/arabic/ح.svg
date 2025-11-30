@@ -1,0 +1,53 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Horse/Hisan for ح -->
+  <rect width="200" height="200" fill="#e8f5e8"/>
+  
+  <!-- Horse body -->
+  <ellipse cx="110" cy="130" rx="40" ry="25" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Horse neck -->
+  <ellipse cx="75" cy="100" rx="15" ry="30" fill="#8d6e63" stroke="#5d4037" stroke-width="2" transform="rotate(-20 75 100)"/>
+  
+  <!-- Horse head -->
+  <ellipse cx="60" cy="75" rx="12" ry="20" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Horse ears -->
+  <path d="M55 60 L52 50 L58 55 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <path d="M65 62 L62 52 L68 57 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  
+  <!-- Horse eye -->
+  <circle cx="55" cy="70" r="3" fill="#000"/>
+  <circle cx="56" cy="69" r="1" fill="#fff"/>
+  
+  <!-- Horse nostril -->
+  <ellipse cx="48" cy="85" rx="2" ry="3" fill="#000"/>
+  
+  <!-- Horse mane -->
+  <path d="M70 65 Q75 70 78 80 Q80 90 82 100" fill="none" stroke="#424242" stroke-width="4"/>
+  <path d="M65 60 Q70 65 73 75 Q75 85 77 95" fill="none" stroke="#424242" stroke-width="4"/>
+  
+  <!-- Horse legs -->
+  <rect x="85" y="150" width="8" height="25" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <rect x="100" y="150" width="8" height="25" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <rect x="125" y="150" width="8" height="25" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <rect x="140" y="150" width="8" height="25" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  
+  <!-- Horse hooves -->
+  <ellipse cx="89" cy="177" rx="5" ry="3" fill="#424242"/>
+  <ellipse cx="104" cy="177" rx="5" ry="3" fill="#424242"/>
+  <ellipse cx="129" cy="177" rx="5" ry="3" fill="#424242"/>
+  <ellipse cx="144" cy="177" rx="5" ry="3" fill="#424242"/>
+  
+  <!-- Horse tail -->
+  <path d="M150 135 Q165 140 160 160 Q155 175 165 180" fill="none" stroke="#424242" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Saddle -->
+  <ellipse cx="100" cy="115" rx="25" ry="10" fill="#d32f2f" stroke="#b71c1c" stroke-width="2"/>
+  <path d="M75 115 Q100 105 125 115" fill="#f44336" stroke="#d32f2f" stroke-width="2"/>
+  
+  <!-- Ground grass -->
+  <path d="M0 180 Q10 175 20 180 Q30 175 40 180 Q50 175 60 180 Q70 175 80 180 Q90 175 100 180 Q110 175 120 180 Q130 175 140 180 Q150 175 160 180 Q170 175 180 180 Q190 175 200 180" fill="#4caf50" opacity="0.5"/>
+  
+  <!-- Arabic letter ح -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ح</text>
+</svg>

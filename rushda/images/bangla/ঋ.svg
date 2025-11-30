@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Season/Ritu for ঋ -->
+  <rect width="200" height="200" fill="#e8f5e8"/>
+  
+  <!-- Tree trunk -->
+  <rect x="90" y="140" width="20" height="40" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Tree crown base -->
+  <circle cx="100" cy="120" r="35" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+  
+  <!-- Seasonal elements - Spring flowers -->
+  <circle cx="85" cy="105" r="5" fill="#ffb3ba"/>
+  <circle cx="115" cy="115" r="5" fill="#ffb3ba"/>
+  <circle cx="100" cy="95" r="5" fill="#ffb3ba"/>
+  
+  <!-- Seasonal elements - Summer sun rays -->
+  <circle cx="140" cy="60" r="15" fill="#ffd54f" stroke="#f57c00" stroke-width="2"/>
+  <line x1="155" y1="50" x2="160" y2="45" stroke="#f57c00" stroke-width="2"/>
+  <line x1="155" y1="70" x2="160" y2="75" stroke="#f57c00" stroke-width="2"/>
+  <line x1="145" y1="45" x2="150" y2="40" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Seasonal elements - Autumn leaves -->
+  <ellipse cx="70" cy="85" rx="6" ry="4" fill="#ff9800" transform="rotate(20 70 85)"/>
+  <ellipse cx="130" cy="145" rx="6" ry="4" fill="#ff5722" transform="rotate(-30 130 145)"/>
+  
+  <!-- Seasonal elements - Winter snowflakes -->
+  <g stroke="#81d4fa" stroke-width="2" fill="none">
+    <line x1="50" y1="70" x2="58" y2="78"/>
+    <line x1="58" y1="70" x2="50" y2="78"/>
+    <line x1="54" y1="66" x2="54" y2="82"/>
+    <line x1="46" y1="74" x2="62" y2="74"/>
+  </g>
+  
+  <!-- Bengali letter ঋ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#2e7d32" font-weight="bold">ঋ</text>
+</svg>

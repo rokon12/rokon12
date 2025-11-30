@@ -1,0 +1,47 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pomegranate/Rumman for ر -->
+  <rect width="200" height="200" fill="#ffebee"/>
+  
+  <!-- Pomegranate body -->
+  <circle cx="100" cy="120" r="40" fill="#c62828" stroke="#8e0000" stroke-width="2"/>
+  
+  <!-- Pomegranate crown -->
+  <path d="M85 80 Q90 70 95 80 Q100 70 105 80 Q110 70 115 80" fill="#8e0000" stroke="#5f0000" stroke-width="2"/>
+  <circle cx="100" cy="80" r="8" fill="#8e0000"/>
+  
+  <!-- Pomegranate highlight -->
+  <ellipse cx="85" cy="105" rx="12" ry="15" fill="#ef5350" opacity="0.8"/>
+  
+  <!-- Cut pomegranate showing seeds -->
+  <circle cx="150" cy="140" r="25" fill="#c62828" stroke="#8e0000" stroke-width="2"/>
+  <circle cx="150" cy="140" r="22" fill="#fff"/>
+  
+  <!-- Pomegranate seeds -->
+  <circle cx="145" cy="135" r="3" fill="#d32f2f"/>
+  <circle cx="155" cy="135" r="3" fill="#d32f2f"/>
+  <circle cx="150" cy="143" r="3" fill="#d32f2f"/>
+  <circle cx="140" cy="143" r="3" fill="#d32f2f"/>
+  <circle cx="160" cy="143" r="3" fill="#d32f2f"/>
+  <circle cx="145" cy="150" r="3" fill="#d32f2f"/>
+  <circle cx="155" cy="150" r="3" fill="#d32f2f"/>
+  <circle cx="150" cy="128" r="3" fill="#d32f2f"/>
+  
+  <!-- Seed highlights -->
+  <circle cx="146" cy="134" r="1" fill="#ffcdd2"/>
+  <circle cx="156" cy="134" r="1" fill="#ffcdd2"/>
+  <circle cx="151" cy="142" r="1" fill="#ffcdd2"/>
+  
+  <!-- Pomegranate branch -->
+  <line x1="100" y1="80" x2="100" y2="60" stroke="#4caf50" stroke-width="3"/>
+  <ellipse cx="95" cy="58" rx="8" ry="4" fill="#66bb6a" stroke="#4caf50" stroke-width="1" transform="rotate(-20 95 58)"/>
+  <ellipse cx="105" cy="58" rx="8" ry="4" fill="#66bb6a" stroke="#4caf50" stroke-width="1" transform="rotate(20 105 58)"/>
+  
+  <!-- Scattered seeds -->
+  <circle cx="50" cy="150" r="2" fill="#d32f2f"/>
+  <circle cx="55" cy="160" r="2" fill="#d32f2f"/>
+  <circle cx="45" cy="165" r="2" fill="#d32f2f"/>
+  <circle cx="60" cy="155" r="2" fill="#d32f2f"/>
+  
+  <!-- Arabic letter ر -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#8e0000" font-weight="bold">ر</text>
+</svg>

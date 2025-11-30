@@ -1,0 +1,45 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Banana/Muz for م -->
+  <rect width="200" height="200" fill="#fff8e1"/>
+  
+  <!-- Banana bunch -->
+  <path d="M100 60 Q90 80 95 110 Q100 140 105 165" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  <path d="M105 65 Q95 85 100 115 Q105 145 110 170" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  <path d="M110 70 Q100 90 105 120 Q110 150 115 175" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  <path d="M95 65 Q85 85 90 115 Q95 145 100 170" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  
+  <!-- Banana tips -->
+  <ellipse cx="105" cy="165" rx="3" ry="8" fill="#8d6e63"/>
+  <ellipse cx="110" cy="170" rx="3" ry="8" fill="#8d6e63"/>
+  <ellipse cx="115" cy="175" rx="3" ry="8" fill="#8d6e63"/>
+  <ellipse cx="100" cy="170" rx="3" ry="8" fill="#8d6e63"/>
+  
+  <!-- Banana stem -->
+  <ellipse cx="102" cy="55" rx="8" ry="12" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+  
+  <!-- Banana highlights -->
+  <path d="M98 80 Q96 100 98 120" fill="none" stroke="#fff59d" stroke-width="3" opacity="0.8"/>
+  <path d="M108 85 Q106 105 108 125" fill="none" stroke="#fff59d" stroke-width="3" opacity="0.8"/>
+  
+  <!-- Banana texture lines -->
+  <line x1="98" y1="80" x2="102" y2="150" stroke="#fbc02d" stroke-width="1" opacity="0.7"/>
+  <line x1="103" y1="85" x2="107" y2="155" stroke="#fbc02d" stroke-width="1" opacity="0.7"/>
+  <line x1="108" y1="90" x2="112" y2="160" stroke="#fbc02d" stroke-width="1" opacity="0.7"/>
+  <line x1="93" y1="85" x2="97" y2="155" stroke="#fbc02d" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Peeled banana -->
+  <path d="M40 100 Q35 120 40 150" fill="#fff9c4" stroke="#fbc02d" stroke-width="2"/>
+  <path d="M40 100 Q30 110 25 130 Q20 145 25 150" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  <path d="M40 100 Q50 110 55 130 Q60 145 55 150" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  <path d="M40 100 Q45 95 40 90" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Monkey hand reaching -->
+  <ellipse cx="160" cy="100" rx="12" ry="8" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <ellipse cx="155" cy="95" rx="3" ry="6" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <ellipse cx="160" cy="94" rx="3" ry="6" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <ellipse cx="165" cy="95" rx="3" ry="6" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <ellipse cx="170" cy="98" rx="4" ry="7" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  
+  <!-- Arabic letter م -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#fbc02d" font-weight="bold">م</text>
+</svg>

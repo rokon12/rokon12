@@ -1,0 +1,63 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Frog/Difda for ض -->
+  <rect width="200" height="200" fill="#e0f2f1"/>
+  
+  <!-- Lily pad -->
+  <ellipse cx="100" cy="160" rx="60" ry="25" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+  <line x1="100" y1="160" x2="70" y2="140" stroke="#2e7d32" stroke-width="1"/>
+  <line x1="100" y1="160" x2="130" y2="140" stroke="#2e7d32" stroke-width="1"/>
+  <line x1="100" y1="160" x2="100" y2="135" stroke="#2e7d32" stroke-width="1"/>
+  
+  <!-- Frog body -->
+  <ellipse cx="100" cy="130" rx="35" ry="30" fill="#66bb6a" stroke="#4caf50" stroke-width="2"/>
+  
+  <!-- Frog belly -->
+  <ellipse cx="100" cy="135" rx="25" ry="20" fill="#a5d6a7" opacity="0.8"/>
+  
+  <!-- Frog head -->
+  <ellipse cx="100" cy="100" rx="30" ry="20" fill="#66bb6a" stroke="#4caf50" stroke-width="2"/>
+  
+  <!-- Frog eyes (bulging) -->
+  <circle cx="85" cy="90" r="10" fill="#66bb6a" stroke="#4caf50" stroke-width="2"/>
+  <circle cx="115" cy="90" r="10" fill="#66bb6a" stroke="#4caf50" stroke-width="2"/>
+  <circle cx="85" cy="90" r="8" fill="#fff"/>
+  <circle cx="115" cy="90" r="8" fill="#fff"/>
+  <circle cx="85" cy="90" r="5" fill="#000"/>
+  <circle cx="115" cy="90" r="5" fill="#000"/>
+  <circle cx="87" cy="88" r="2" fill="#fff"/>
+  <circle cx="117" cy="88" r="2" fill="#fff"/>
+  
+  <!-- Frog mouth -->
+  <ellipse cx="100" cy="110" rx="15" ry="3" fill="#2e7d32"/>
+  
+  <!-- Frog nostrils -->
+  <circle cx="95" cy="105" r="1" fill="#000"/>
+  <circle cx="105" cy="105" r="1" fill="#000"/>
+  
+  <!-- Frog front legs -->
+  <ellipse cx="75" cy="125" rx="8" ry="15" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(-20 75 125)"/>
+  <ellipse cx="125" cy="125" rx="8" ry="15" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(20 125 125)"/>
+  
+  <!-- Frog webbed feet -->
+  <ellipse cx="70" cy="140" rx="10" ry="6" fill="#4caf50"/>
+  <path d="M60 140 L65 138 L70 140 L75 138 L80 140" fill="none" stroke="#2e7d32" stroke-width="1"/>
+  <ellipse cx="130" cy="140" rx="10" ry="6" fill="#4caf50"/>
+  <path d="M120 140 L125 138 L130 140 L135 138 L140 140" fill="none" stroke="#2e7d32" stroke-width="1"/>
+  
+  <!-- Frog back legs -->
+  <ellipse cx="70" cy="150" rx="15" ry="8" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(-30 70 150)"/>
+  <ellipse cx="130" cy="150" rx="15" ry="8" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(30 130 150)"/>
+  
+  <!-- Water ripples -->
+  <ellipse cx="60" cy="175" rx="15" ry="3" fill="#4fc3f7" opacity="0.5"/>
+  <ellipse cx="140" cy="170" rx="12" ry="2" fill="#4fc3f7" opacity="0.5"/>
+  
+  <!-- Flies -->
+  <ellipse cx="50" cy="80" rx="2" ry="1" fill="#000"/>
+  <line x1="48" y1="80" x2="52" y2="80" stroke="#666" stroke-width="0.5"/>
+  <ellipse cx="150" cy="70" rx="2" ry="1" fill="#000"/>
+  <line x1="148" y1="70" x2="152" y2="70" stroke="#666" stroke-width="0.5"/>
+  
+  <!-- Arabic letter ض -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#4caf50" font-weight="bold">ض</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Star/Tara for ত -->
+  <rect width="200" height="200" fill="#1a237e"/>
+  
+  <!-- Large star -->
+  <polygon points="100,50 110,80 140,80 118,98 128,128 100,110 72,128 82,98 60,80 90,80" 
+           fill="#ffd54f" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Small stars around -->
+  <polygon points="50,70 52,76 58,76 53,80 55,86 50,82 45,86 47,80 42,76 48,76" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="150,60 152,66 158,66 153,70 155,76 150,72 145,76 147,70 142,66 148,66" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="160,130 162,136 168,136 163,140 165,146 160,142 155,146 157,140 152,136 158,136" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="40,140 42,146 48,146 43,150 45,156 40,152 35,156 37,150 32,146 38,146" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="170,100 172,106 178,106 173,110 175,116 170,112 165,116 167,110 162,106 168,106" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="30,110 32,116 38,116 33,120 35,126 30,122 25,126 27,120 22,116 28,116" 
+           fill="#fff" opacity="0.8"/>
+  
+  <!-- Twinkling effect -->
+  <circle cx="100" cy="90" r="2" fill="#fff" opacity="0.9"/>
+  <circle cx="120" cy="70" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="80" cy="75" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="135" cy="110" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="65" cy="115" r="1" fill="#fff" opacity="0.7"/>
+  
+  <!-- Night sky clouds -->
+  <ellipse cx="40" cy="50" rx="15" ry="8" fill="#3f51b5" opacity="0.6"/>
+  <ellipse cx="160" cy="40" rx="12" ry="6" fill="#3f51b5" opacity="0.6"/>
+  
+  <!-- Bengali letter ত -->
+  <text x="25" y="35" font-family="Arial, sans-serif" font-size="32" fill="#ffd54f" font-weight="bold">ত</text>
+</svg>

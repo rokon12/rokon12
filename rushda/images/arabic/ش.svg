@@ -1,0 +1,49 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sun/Shams for ش -->
+  <rect width="200" height="200" fill="#ffeb3b" opacity="0.3"/>
+  
+  <!-- Sun center -->
+  <circle cx="100" cy="100" r="35" fill="#ffd54f" stroke="#f57c00" stroke-width="3"/>
+  
+  <!-- Sun face -->
+  <circle cx="88" cy="90" r="4" fill="#f57c00"/> <!-- Left eye -->
+  <circle cx="112" cy="90" r="4" fill="#f57c00"/> <!-- Right eye -->
+  <path d="M92 110 Q100 118 108 110" fill="none" stroke="#f57c00" stroke-width="3" stroke-linecap="round"/> <!-- Smile -->
+  
+  <!-- Sun rays -->
+  <line x1="100" y1="35" x2="100" y2="15" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="100" y1="165" x2="100" y2="185" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="35" y1="100" x2="15" y2="100" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="165" y1="100" x2="185" y2="100" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Diagonal rays -->
+  <line x1="125" y1="42" x2="135" y2="25" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="158" y1="75" x2="175" y2="65" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="158" y1="125" x2="175" y2="135" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="125" y1="158" x2="135" y2="175" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="75" y1="158" x2="65" y2="175" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="42" y1="125" x2="25" y2="135" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="42" y1="75" x2="25" y2="65" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  <line x1="75" y1="42" x2="65" y2="25" stroke="#ff9800" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Shorter rays between main rays -->
+  <line x1="113" y1="38" x2="118" y2="28" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="147" y1="59" x2="157" y2="49" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="162" y1="87" x2="172" y2="82" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="162" y1="113" x2="172" y2="118" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="147" y1="141" x2="157" y2="151" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="113" y1="162" x2="118" y2="172" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="87" y1="162" x2="82" y2="172" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="53" y1="141" x2="43" y2="151" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="38" y1="113" x2="28" y2="118" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="38" y1="87" x2="28" y2="82" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="53" y1="59" x2="43" y2="49" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  <line x1="87" y1="38" x2="82" y2="28" stroke="#ffb74d" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Sun highlights -->
+  <ellipse cx="85" cy="85" rx="8" ry="12" fill="#fff" opacity="0.4"/>
+  <circle cx="95" cy="95" r="4" fill="#fff" opacity="0.3"/>
+  
+  <!-- Arabic letter ش -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#f57c00" font-weight="bold">ش</text>
+</svg>

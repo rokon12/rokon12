@@ -1,0 +1,33 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Water/Jol for জ -->
+  <rect width="200" height="200" fill="#e0f2f1"/>
+  
+  <!-- Water container/glass -->
+  <path d="M70 60 L130 60 L125 160 L75 160 Z" fill="#e1f5fe" stroke="#0277bd" stroke-width="2"/>
+  
+  <!-- Water inside -->
+  <path d="M75 65 L125 65 L122 155 L78 155 Z" fill="#4fc3f7" opacity="0.8"/>
+  
+  <!-- Water surface with ripples -->
+  <ellipse cx="100" cy="65" rx="25" ry="3" fill="#29b6f6"/>
+  <ellipse cx="100" cy="68" rx="20" ry="2" fill="#03a9f4" opacity="0.7"/>
+  
+  <!-- Water drops -->
+  <ellipse cx="60" cy="80" rx="3" ry="5" fill="#4fc3f7"/>
+  <ellipse cx="140" cy="90" rx="3" ry="5" fill="#4fc3f7"/>
+  <ellipse cx="55" cy="120" rx="2.5" ry="4" fill="#4fc3f7"/>
+  <ellipse cx="145" cy="110" rx="2.5" ry="4" fill="#4fc3f7"/>
+  
+  <!-- Bubbles in water -->
+  <circle cx="85" cy="100" r="3" fill="#e1f5fe" opacity="0.8"/>
+  <circle cx="110" cy="120" r="2.5" fill="#e1f5fe" opacity="0.8"/>
+  <circle cx="95" cy="140" r="2" fill="#e1f5fe" opacity="0.8"/>
+  <circle cx="115" cy="95" r="1.5" fill="#e1f5fe" opacity="0.8"/>
+  
+  <!-- Water splash -->
+  <path d="M45 140 Q50 130 55 140 Q60 130 65 140" fill="none" stroke="#4fc3f7" stroke-width="2"/>
+  <path d="M135 150 Q140 140 145 150 Q150 140 155 150" fill="none" stroke="#4fc3f7" stroke-width="2"/>
+  
+  <!-- Bengali letter জ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#0277bd" font-weight="bold">জ</text>
+</svg>

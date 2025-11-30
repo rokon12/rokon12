@@ -1,0 +1,56 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Color/Rong for র -->
+  <rect width="200" height="200" fill="#fafafa"/>
+  
+  <!-- Paint palette -->
+  <ellipse cx="100" cy="120" rx="50" ry="30" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Color blobs on palette -->
+  <circle cx="80" cy="110" r="8" fill="#f44336"/>
+  <circle cx="100" cy="105" r="8" fill="#2196f3"/>
+  <circle cx="120" cy="110" r="8" fill="#ffeb3b"/>
+  <circle cx="85" cy="130" r="8" fill="#4caf50"/>
+  <circle cx="115" cy="130" r="8" fill="#ff9800"/>
+  <circle cx="100" cy="135" r="8" fill="#9c27b0"/>
+  
+  <!-- Paintbrush -->
+  <line x1="60" y1="80" x2="40" y2="60" stroke="#8d6e63" stroke-width="4"/>
+  <ellipse cx="65" cy="85" rx="4" ry="8" fill="#616161" stroke="#424242" stroke-width="1"/>
+  <ellipse cx="68" cy="88" rx="2" ry="5" fill="#f44336"/>
+  
+  <!-- Paint tubes -->
+  <rect x="140" y="90" width="8" height="25" fill="#f44336" stroke="#d32f2f" stroke-width="1" rx="2"/>
+  <rect x="150" y="95" width="8" height="20" fill="#2196f3" stroke="#1976d2" stroke-width="1" rx="2"/>
+  <rect x="160" y="100" width="8" height="15" fill="#4caf50" stroke="#2e7d32" stroke-width="1" rx="2"/>
+  
+  <!-- Tube caps -->
+  <rect x="140" y="88" width="8" height="4" fill="#8d6e63" rx="1"/>
+  <rect x="150" y="93" width="8" height="4" fill="#8d6e63" rx="1"/>
+  <rect x="160" y="98" width="8" height="4" fill="#8d6e63" rx="1"/>
+  
+  <!-- Paint drops -->
+  <ellipse cx="145" cy="120" rx="2" ry="4" fill="#f44336"/>
+  <ellipse cx="155" cy="120" rx="2" ry="4" fill="#2196f3"/>
+  <ellipse cx="165" cy="120" rx="2" ry="4" fill="#4caf50"/>
+  
+  <!-- Color wheel in background -->
+  <circle cx="40" cy="140" r="20" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+  <path d="M40 120 A20 20 0 0 1 60 140" fill="#f44336" opacity="0.7"/>
+  <path d="M60 140 A20 20 0 0 1 40 160" fill="#ffeb3b" opacity="0.7"/>
+  <path d="M40 160 A20 20 0 0 1 20 140" fill="#2196f3" opacity="0.7"/>
+  <path d="M20 140 A20 20 0 0 1 40 120" fill="#4caf50" opacity="0.7"/>
+  
+  <!-- Splashes and splatters -->
+  <circle cx="30" cy="100" r="3" fill="#ff9800" opacity="0.8"/>
+  <circle cx="170" cy="130" r="2" fill="#e91e63" opacity="0.8"/>
+  <circle cx="25" cy="170" r="2.5" fill="#9c27b0" opacity="0.8"/>
+  <circle cx="175" cy="160" r="1.5" fill="#00bcd4" opacity="0.8"/>
+  
+  <!-- Small paint spots -->
+  <circle cx="90" cy="80" r="1.5" fill="#f44336"/>
+  <circle cx="110" cy="85" r="1" fill="#2196f3"/>
+  <circle cx="130" cy="75" r="1.2" fill="#4caf50"/>
+  
+  <!-- Bengali letter র -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#f44336" font-weight="bold">র</text>
+</svg>

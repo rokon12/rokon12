@@ -1,0 +1,48 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lemon/Limun for ل -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Lemon body -->
+  <ellipse cx="100" cy="120" rx="30" ry="40" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  
+  <!-- Lemon ends -->
+  <ellipse cx="100" cy="85" rx="8" ry="5" fill="#fbc02d"/>
+  <ellipse cx="100" cy="155" rx="8" ry="5" fill="#fbc02d"/>
+  
+  <!-- Lemon highlight -->
+  <ellipse cx="85" cy="105" rx="10" ry="15" fill="#fff59d" opacity="0.8"/>
+  
+  <!-- Cut lemon showing segments -->
+  <circle cx="150" cy="120" r="30" fill="#ffeb3b" stroke="#fbc02d" stroke-width="2"/>
+  <circle cx="150" cy="120" r="27" fill="#fff9c4"/>
+  
+  <!-- Lemon segments -->
+  <line x1="150" y1="93" x2="150" y2="147" stroke="#fbc02d" stroke-width="2"/>
+  <line x1="124" y1="108" x2="176" y2="132" stroke="#fbc02d" stroke-width="2"/>
+  <line x1="124" y1="132" x2="176" y2="108" stroke="#fbc02d" stroke-width="2"/>
+  
+  <!-- Lemon seeds -->
+  <ellipse cx="140" cy="115" rx="2" ry="4" fill="#fff" stroke="#fbc02d" stroke-width="1"/>
+  <ellipse cx="160" cy="125" rx="2" ry="4" fill="#fff" stroke="#fbc02d" stroke-width="1"/>
+  <ellipse cx="155" cy="110" rx="2" ry="4" fill="#fff" stroke="#fbc02d" stroke-width="1"/>
+  
+  <!-- Lemon leaf -->
+  <ellipse cx="100" cy="70" rx="12" ry="6" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(20 100 70)"/>
+  <line x1="100" y1="70" x2="105" y2="75" stroke="#4caf50" stroke-width="1"/>
+  
+  <!-- Lemonade glass -->
+  <path d="M40 140 L45 160 L55 160 L60 140" fill="none" stroke="#424242" stroke-width="2"/>
+  <rect x="42" y="140" width="16" height="1" fill="#424242"/>
+  <path d="M43 145 L57 145 L55 155 L45 155 Z" fill="#ffeb3b" opacity="0.7"/>
+  
+  <!-- Ice cubes -->
+  <rect x="47" y="148" width="4" height="4" fill="#e3f2fd" stroke="#90caf9" stroke-width="0.5"/>
+  <rect x="52" y="150" width="4" height="4" fill="#e3f2fd" stroke="#90caf9" stroke-width="0.5"/>
+  
+  <!-- Straw -->
+  <rect x="49" y="135" width="2" height="20" fill="#f44336" stroke="#d32f2f" stroke-width="0.5"/>
+  <rect x="49" y="135" width="2" height="5" fill="#fff" opacity="0.5"/>
+  
+  <!-- Arabic letter ل -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#fbc02d" font-weight="bold">ل</text>
+</svg>

@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Star/Najma for ن -->
+  <rect width="200" height="200" fill="#1a237e"/>
+  
+  <!-- Large star in center -->
+  <polygon points="100,50 110,80 140,80 118,98 128,128 100,110 72,128 82,98 60,80 90,80" 
+           fill="#ffd54f" stroke="#fbc02d" stroke-width="2"/>
+  
+  <!-- Small stars around -->
+  <polygon points="50,60 52,66 58,66 53,70 55,76 50,72 45,76 47,70 42,66 48,66" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="150,50 152,56 158,56 153,60 155,66 150,62 145,66 147,60 142,56 148,56" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="160,120 162,126 168,126 163,130 165,136 160,132 155,136 157,130 152,126 158,126" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="40,130 42,136 48,136 43,140 45,146 40,142 35,146 37,140 32,136 38,136" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="30,90 32,96 38,96 33,100 35,106 30,102 25,106 27,100 22,96 28,96" 
+           fill="#fff" opacity="0.8"/>
+  <polygon points="170,90 172,96 178,96 173,100 175,106 170,102 165,106 167,100 162,96 168,96" 
+           fill="#fff" opacity="0.8"/>
+  
+  <!-- Constellation lines -->
+  <line x1="50" y1="68" x2="100" y2="80" stroke="#fff" stroke-width="1" opacity="0.3"/>
+  <line x1="100" y1="80" x2="150" y2="58" stroke="#fff" stroke-width="1" opacity="0.3"/>
+  <line x1="40" y1="138" x2="100" y2="110" stroke="#fff" stroke-width="1" opacity="0.3"/>
+  <line x1="100" y1="110" x2="160" y2="128" stroke="#fff" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Shooting star -->
+  <line x1="20" y1="40" x2="80" y2="60" stroke="#ffd54f" stroke-width="2" opacity="0.8"/>
+  <line x1="25" y1="35" x2="75" y2="55" stroke="#fff59d" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Moon crescent -->
+  <circle cx="180" cy="40" r="15" fill="#ffd54f" opacity="0.8"/>
+  <circle cx="185" cy="35" r="12" fill="#1a237e"/>
+  
+  <!-- Twinkling effect on main star -->
+  <circle cx="100" cy="90" r="2" fill="#fff" opacity="0.9"/>
+  <circle cx="110" cy="80" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="90" cy="85" r="1" fill="#fff" opacity="0.7"/>
+  
+  <!-- Arabic letter ن -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#ffd54f" font-weight="bold">ن</text>
+</svg>

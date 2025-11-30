@@ -1,0 +1,62 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Machine/Jontro for য -->
+  <rect width="200" height="200" fill="#f3e5f5"/>
+  
+  <!-- Machine base -->
+  <rect x="50" y="120" width="100" height="50" fill="#9e9e9e" stroke="#616161" stroke-width="2" rx="5"/>
+  
+  <!-- Machine top -->
+  <rect x="60" y="90" width="80" height="35" fill="#757575" stroke="#424242" stroke-width="2" rx="3"/>
+  
+  <!-- Control panel -->
+  <rect x="70" y="95" width="60" height="25" fill="#333" stroke="#000" stroke-width="1"/>
+  
+  <!-- Buttons and lights -->
+  <circle cx="85" cy="105" r="4" fill="#f44336"/>
+  <circle cx="100" cy="105" r="4" fill="#4caf50"/>
+  <circle cx="115" cy="105" r="4" fill="#2196f3"/>
+  
+  <!-- Display screen -->
+  <rect x="80" y="110" width="40" height="8" fill="#000"/>
+  <rect x="82" y="111" width="36" height="6" fill="#4fc3f7"/>
+  
+  <!-- Machine arm/lever -->
+  <line x1="40" y1="100" x2="60" y2="105" stroke="#616161" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="35" cy="98" r="5" fill="#8d6e63"/>
+  
+  <!-- Machine wheels/gears -->
+  <circle cx="70" cy="140" r="12" fill="#616161" stroke="#424242" stroke-width="2"/>
+  <circle cx="130" cy="140" r="12" fill="#616161" stroke="#424242" stroke-width="2"/>
+  
+  <!-- Gear teeth -->
+  <polygon points="70,128 75,130 75,134 70,136 65,134 65,130" fill="#424242"/>
+  <polygon points="82,140 80,135 84,135 86,140 84,145 80,145" fill="#424242"/>
+  <polygon points="70,152 65,150 65,146 70,144 75,146 75,150" fill="#424242"/>
+  <polygon points="58,140 60,145 56,145 54,140 56,135 60,135" fill="#424242"/>
+  
+  <polygon points="130,128 135,130 135,134 130,136 125,134 125,130" fill="#424242"/>
+  <polygon points="142,140 140,135 144,135 146,140 144,145 140,145" fill="#424242"/>
+  <polygon points="130,152 125,150 125,146 130,144 135,146 135,150" fill="#424242"/>
+  <polygon points="118,140 120,145 116,145 114,140 116,135 120,135" fill="#424242"/>
+  
+  <!-- Machine output/conveyor -->
+  <rect x="150" y="135" width="30" height="10" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <line x1="155" y1="135" x2="155" y2="145" stroke="#5d4037" stroke-width="1"/>
+  <line x1="165" y1="135" x2="165" y2="145" stroke="#5d4037" stroke-width="1"/>
+  <line x1="175" y1="135" x2="175" y2="145" stroke="#5d4037" stroke-width="1"/>
+  
+  <!-- Steam/smoke -->
+  <circle cx="90" cy="75" r="3" fill="#e0e0e0" opacity="0.7"/>
+  <circle cx="95" cy="68" r="2.5" fill="#e0e0e0" opacity="0.6"/>
+  <circle cx="105" cy="70" r="2" fill="#e0e0e0" opacity="0.5"/>
+  <circle cx="110" cy="62" r="1.5" fill="#e0e0e0" opacity="0.4"/>
+  
+  <!-- Machine legs -->
+  <rect x="55" y="170" width="6" height="15" fill="#616161"/>
+  <rect x="75" y="170" width="6" height="15" fill="#616161"/>
+  <rect x="119" y="170" width="6" height="15" fill="#616161"/>
+  <rect x="139" y="170" width="6" height="15" fill="#616161"/>
+  
+  <!-- Bengali letter য -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#424242" font-weight="bold">য</text>
+</svg>

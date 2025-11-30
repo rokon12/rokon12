@@ -1,0 +1,43 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Goat/Chagol for ছ -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Goat body -->
+  <ellipse cx="100" cy="135" rx="30" ry="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Goat head -->
+  <ellipse cx="75" cy="105" rx="18" ry="15" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Goat horns -->
+  <path d="M68 85 Q65 75 70 70" fill="none" stroke="#8d6e63" stroke-width="3" stroke-linecap="round"/>
+  <path d="M82 85 Q85 75 80 70" fill="none" stroke="#8d6e63" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Goat ears -->
+  <ellipse cx="65" cy="100" rx="5" ry="10" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <ellipse cx="85" cy="100" rx="5" ry="10" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Eyes -->
+  <circle cx="70" cy="100" r="2" fill="#000"/>
+  <circle cx="80" cy="100" r="2" fill="#000"/>
+  
+  <!-- Goat beard -->
+  <ellipse cx="65" cy="118" rx="3" ry="8" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Goat legs -->
+  <rect x="75" y="150" width="6" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="85" y="150" width="6" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="110" y="150" width="6" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="120" y="150" width="6" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Goat tail -->
+  <path d="M130 140 Q140 145 135 155" fill="none" stroke="#8d6e63" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Grass -->
+  <line x1="40" y1="170" x2="45" y2="160" stroke="#4caf50" stroke-width="2"/>
+  <line x1="50" y1="175" x2="55" y2="165" stroke="#4caf50" stroke-width="2"/>
+  <line x1="150" y1="170" x2="155" y2="160" stroke="#4caf50" stroke-width="2"/>
+  <line x1="160" y1="175" x2="165" y2="165" stroke="#4caf50" stroke-width="2"/>
+  
+  <!-- Bengali letter ছ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#8d6e63" font-weight="bold">ছ</text>
+</svg>

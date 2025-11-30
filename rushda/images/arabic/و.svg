@@ -1,0 +1,57 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rose/Warda for و -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Rose center -->
+  <circle cx="100" cy="100" r="8" fill="#c62828"/>
+  
+  <!-- Rose petals (layered) -->
+  <!-- Outer petals -->
+  <ellipse cx="100" cy="80" rx="10" ry="18" fill="#f44336" stroke="#d32f2f" stroke-width="1"/>
+  <ellipse cx="120" cy="100" rx="18" ry="10" fill="#f44336" stroke="#d32f2f" stroke-width="1"/>
+  <ellipse cx="100" cy="120" rx="10" ry="18" fill="#f44336" stroke="#d32f2f" stroke-width="1"/>
+  <ellipse cx="80" cy="100" rx="18" ry="10" fill="#f44336" stroke="#d32f2f" stroke-width="1"/>
+  
+  <!-- Diagonal outer petals -->
+  <ellipse cx="115" cy="85" rx="12" ry="16" fill="#e53935" stroke="#d32f2f" stroke-width="1" transform="rotate(45 115 85)"/>
+  <ellipse cx="115" cy="115" rx="12" ry="16" fill="#e53935" stroke="#d32f2f" stroke-width="1" transform="rotate(-45 115 115)"/>
+  <ellipse cx="85" cy="115" rx="12" ry="16" fill="#e53935" stroke="#d32f2f" stroke-width="1" transform="rotate(45 85 115)"/>
+  <ellipse cx="85" cy="85" rx="12" ry="16" fill="#e53935" stroke="#d32f2f" stroke-width="1" transform="rotate(-45 85 85)"/>
+  
+  <!-- Middle petals -->
+  <ellipse cx="100" cy="88" rx="6" ry="12" fill="#e57373" stroke="#d32f2f" stroke-width="1"/>
+  <ellipse cx="112" cy="100" rx="12" ry="6" fill="#e57373" stroke="#d32f2f" stroke-width="1"/>
+  <ellipse cx="100" cy="112" rx="6" ry="12" fill="#e57373" stroke="#d32f2f" stroke-width="1"/>
+  <ellipse cx="88" cy="100" rx="12" ry="6" fill="#e57373" stroke="#d32f2f" stroke-width="1"/>
+  
+  <!-- Rose stem -->
+  <line x1="100" y1="120" x2="100" y2="170" stroke="#4caf50" stroke-width="6"/>
+  
+  <!-- Rose thorns -->
+  <path d="M95 130 L90 127 L95 125" stroke="#2e7d32" stroke-width="2"/>
+  <path d="M105 145 L110 142 L105 140" stroke="#2e7d32" stroke-width="2"/>
+  <path d="M95 160 L90 157 L95 155" stroke="#2e7d32" stroke-width="2"/>
+  
+  <!-- Rose leaves -->
+  <ellipse cx="85" cy="135" rx="12" ry="8" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(-30 85 135)"/>
+  <ellipse cx="115" cy="150" rx="10" ry="6" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(30 115 150)"/>
+  
+  <!-- Leaf veins -->
+  <line x1="85" y1="130" x2="85" y2="140" stroke="#4caf50" stroke-width="1"/>
+  <line x1="115" y1="147" x2="115" y2="153" stroke="#4caf50" stroke-width="1"/>
+  
+  <!-- Rose buds -->
+  <ellipse cx="60" cy="80" rx="6" ry="10" fill="#e57373" stroke="#d32f2f" stroke-width="2"/>
+  <ellipse cx="140" cy="70" rx="5" ry="8" fill="#e57373" stroke="#d32f2f" stroke-width="2"/>
+  
+  <!-- Bud stems -->
+  <line x1="60" y1="90" x2="60" y2="110" stroke="#4caf50" stroke-width="3"/>
+  <line x1="140" y1="78" x2="140" y2="95" stroke="#4caf50" stroke-width="3"/>
+  
+  <!-- Fallen petals -->
+  <ellipse cx="50" cy="160" rx="4" ry="6" fill="#f44336" opacity="0.7" transform="rotate(20 50 160)"/>
+  <ellipse cx="150" cy="165" rx="3" ry="5" fill="#e57373" opacity="0.7" transform="rotate(-30 150 165)"/>
+  
+  <!-- Arabic letter و -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#d32f2f" font-weight="bold">و</text>
+</svg>

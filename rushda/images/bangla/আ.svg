@@ -1,0 +1,24 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mango/Aam for আ -->
+  <rect width="200" height="200" fill="#fff8e1"/>
+  
+  <!-- Mango shape -->
+  <ellipse cx="100" cy="120" rx="45" ry="60" fill="#ffa726" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Mango highlight -->
+  <ellipse cx="85" cy="100" rx="20" ry="25" fill="#ffb74d" opacity="0.8"/>
+  
+  <!-- Mango stem -->
+  <rect x="95" y="50" width="10" height="15" fill="#4caf50" rx="2"/>
+  
+  <!-- Leaf -->
+  <ellipse cx="110" cy="55" rx="15" ry="8" fill="#66bb6a" transform="rotate(45 110 55)"/>
+  
+  <!-- Mango spots -->
+  <ellipse cx="120" cy="110" rx="5" ry="8" fill="#ff9800" opacity="0.6"/>
+  <ellipse cx="90" cy="140" rx="4" ry="6" fill="#ff9800" opacity="0.6"/>
+  <ellipse cx="110" cy="135" rx="3" ry="5" fill="#ff9800" opacity="0.6"/>
+  
+  <!-- Bengali letter আ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#e65100" font-weight="bold">আ</text>
+</svg>

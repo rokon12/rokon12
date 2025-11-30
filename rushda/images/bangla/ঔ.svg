@@ -1,0 +1,35 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Medicine/Oushod for ঔ -->
+  <rect width="200" height="200" fill="#e8f5e8"/>
+  
+  <!-- Medicine bottle -->
+  <rect x="80" y="90" width="40" height="80" fill="#81c784" stroke="#4caf50" stroke-width="2" rx="5"/>
+  
+  <!-- Bottle cap -->
+  <rect x="85" y="80" width="30" height="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="2" rx="3"/>
+  
+  <!-- Medicine label -->
+  <rect x="85" y="100" width="30" height="50" fill="#fff" stroke="#e0e0e0" stroke-width="1" rx="2"/>
+  
+  <!-- Cross symbol on label -->
+  <line x1="100" y1="115" x2="100" y2="135" stroke="#f44336" stroke-width="4"/>
+  <line x1="90" y1="125" x2="110" y2="125" stroke="#f44336" stroke-width="4"/>
+  
+  <!-- Pills around bottle -->
+  <circle cx="60" cy="110" r="6" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  <circle cx="140" cy="120" r="6" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  <circle cx="70" cy="150" r="6" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  <circle cx="130" cy="160" r="6" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Capsules -->
+  <ellipse cx="55" cy="140" rx="4" ry="8" fill="#ff5722" stroke="#d84315" stroke-width="1"/>
+  <ellipse cx="145" cy="145" rx="4" ry="8" fill="#ff5722" stroke="#d84315" stroke-width="1"/>
+  
+  <!-- Medicine drops/liquid -->
+  <circle cx="125" cy="95" r="3" fill="#2196f3" opacity="0.7"/>
+  <circle cx="75" cy="105" r="2" fill="#2196f3" opacity="0.7"/>
+  <circle cx="130" cy="135" r="2.5" fill="#2196f3" opacity="0.7"/>
+  
+  <!-- Bengali letter ঔ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#4caf50" font-weight="bold">ঔ</text>
+</svg>

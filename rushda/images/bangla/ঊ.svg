@@ -1,0 +1,29 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wool/Urna for ঊ -->
+  <rect width="200" height="200" fill="#fafafa"/>
+  
+  <!-- Wool ball -->
+  <circle cx="100" cy="120" r="45" fill="#ffffff" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Wool texture lines -->
+  <path d="M70 95 Q85 100 90 110 Q95 120 105 115 Q115 110 125 120 Q130 130 120 140" 
+        fill="none" stroke="#bdbdbd" stroke-width="2" stroke-linecap="round"/>
+  <path d="M75 130 Q90 125 100 135 Q110 145 125 140 Q135 135 130 150" 
+        fill="none" stroke="#bdbdbd" stroke-width="2" stroke-linecap="round"/>
+  <path d="M85 105 Q95 115 110 105 Q120 95 115 115 Q110 135 95 130" 
+        fill="none" stroke="#bdbdbd" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Loose wool strands -->
+  <path d="M60 110 Q70 115 65 125" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M140 105 Q150 110 145 120" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M85 75 Q90 85 95 80" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Knitting needles -->
+  <line x1="50" y1="80" x2="90" y2="120" stroke="#8d6e63" stroke-width="3"/>
+  <line x1="150" y1="80" x2="110" y2="120" stroke="#8d6e63" stroke-width="3"/>
+  <circle cx="50" cy="80" r="3" fill="#d7b899"/>
+  <circle cx="150" cy="80" r="3" fill="#d7b899"/>
+  
+  <!-- Bengali letter ঊ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#8d6e63" font-weight="bold">ঊ</text>
+</svg>

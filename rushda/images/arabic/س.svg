@@ -1,0 +1,63 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fish/Samak for س -->
+  <rect width="200" height="200" fill="#e0f2f1"/>
+  
+  <!-- Water background -->
+  <rect x="0" y="100" width="200" height="100" fill="#4fc3f7" opacity="0.3"/>
+  
+  <!-- Water bubbles -->
+  <circle cx="30" cy="120" r="3" fill="#4fc3f7" opacity="0.6"/>
+  <circle cx="170" cy="140" r="4" fill="#4fc3f7" opacity="0.6"/>
+  <circle cx="50" cy="160" r="2.5" fill="#4fc3f7" opacity="0.6"/>
+  <circle cx="150" cy="110" r="3.5" fill="#4fc3f7" opacity="0.6"/>
+  
+  <!-- Main fish body -->
+  <ellipse cx="100" cy="120" rx="35" ry="20" fill="#26a69a" stroke="#00695c" stroke-width="2"/>
+  
+  <!-- Fish head -->
+  <ellipse cx="70" cy="120" rx="15" ry="18" fill="#26a69a" stroke="#00695c" stroke-width="2"/>
+  
+  <!-- Fish tail -->
+  <path d="M135 120 L155 105 L160 120 L155 135 Z" fill="#26a69a" stroke="#00695c" stroke-width="2"/>
+  
+  <!-- Fish fins -->
+  <ellipse cx="100" cy="100" rx="8" ry="12" fill="#4db6ac" stroke="#00695c" stroke-width="1"/>
+  <ellipse cx="100" cy="140" rx="8" ry="12" fill="#4db6ac" stroke="#00695c" stroke-width="1"/>
+  <ellipse cx="80" cy="105" rx="6" ry="10" fill="#4db6ac" stroke="#00695c" stroke-width="1"/>
+  
+  <!-- Fish eye -->
+  <circle cx="65" cy="115" r="4" fill="#fff"/>
+  <circle cx="66" cy="114" r="2" fill="#000"/>
+  
+  <!-- Fish mouth -->
+  <ellipse cx="55" cy="120" rx="3" ry="2" fill="#000"/>
+  
+  <!-- Fish scales -->
+  <ellipse cx="85" cy="115" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="95" cy="110" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="105" cy="115" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="115" cy="110" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="125" cy="115" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="90" cy="125" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="100" cy="130" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="110" cy="125" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  <ellipse cx="120" cy="130" rx="3" ry="2" fill="#4db6ac" opacity="0.7"/>
+  
+  <!-- Small fish around -->
+  <ellipse cx="40" cy="150" rx="12" ry="8" fill="#4db6ac" stroke="#26a69a" stroke-width="1"/>
+  <path d="M52 150 L58 147 L58 153 Z" fill="#4db6ac"/>
+  <circle cx="38" cy="148" r="2" fill="#fff"/>
+  <circle cx="38" cy="148" r="1" fill="#000"/>
+  
+  <ellipse cx="160" cy="160" rx="10" ry="6" fill="#4db6ac" stroke="#26a69a" stroke-width="1"/>
+  <path d="M170 160 L175 158 L175 162 Z" fill="#4db6ac"/>
+  <circle cx="158" cy="159" r="1.5" fill="#fff"/>
+  <circle cx="158" cy="159" r="0.5" fill="#000"/>
+  
+  <!-- Seaweed -->
+  <path d="M20 180 Q25 160 30 180 Q35 160 40 180" fill="none" stroke="#4caf50" stroke-width="3"/>
+  <path d="M160 185 Q165 165 170 185 Q175 165 180 185" fill="none" stroke="#4caf50" stroke-width="3"/>
+  
+  <!-- Arabic letter س -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#00695c" font-weight="bold">س</text>
+</svg>

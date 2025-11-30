@@ -1,0 +1,39 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Airavata/Oirabat for ঐ -->
+  <rect width="200" height="200" fill="#f3e5f5"/>
+  
+  <!-- Elephant body -->
+  <ellipse cx="100" cy="140" rx="45" ry="30" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Elephant head -->
+  <ellipse cx="100" cy="95" rx="30" ry="25" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Elephant trunk -->
+  <path d="M75 110 Q60 125 55 145 Q50 160 65 165 Q75 170 80 155 Q85 140 85 125" 
+        fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Elephant ears -->
+  <ellipse cx="75" cy="85" rx="15" ry="20" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  <ellipse cx="125" cy="85" rx="15" ry="20" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Eyes -->
+  <circle cx="90" cy="88" r="4" fill="#000"/>
+  <circle cx="110" cy="88" r="4" fill="#000"/>
+  
+  <!-- Tusks -->
+  <ellipse cx="85" cy="105" rx="3" ry="12" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <ellipse cx="115" cy="105" rx="3" ry="12" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Legs -->
+  <rect x="70" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  <rect x="90" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  <rect x="110" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  <rect x="130" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  
+  <!-- Decorative elements (divine elephant) -->
+  <circle cx="100" cy="65" r="8" fill="#ffd54f" stroke="#f57c00" stroke-width="2"/>
+  <path d="M92 65 Q100 55 108 65" fill="none" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Bengali letter ঐ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#616161" font-weight="bold">ঐ</text>
+</svg>

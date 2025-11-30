@@ -1,0 +1,55 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hand/Yad for ي -->
+  <rect width="200" height="200" fill="#fff3e0"/>
+  
+  <!-- Hand palm -->
+  <ellipse cx="100" cy="130" rx="25" ry="35" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Thumb -->
+  <ellipse cx="75" cy="115" rx="8" ry="20" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2" transform="rotate(-30 75 115)"/>
+  
+  <!-- Index finger -->
+  <ellipse cx="90" cy="85" rx="6" ry="25" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Middle finger -->
+  <ellipse cx="100" cy="80" rx="6" ry="30" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Ring finger -->
+  <ellipse cx="110" cy="85" rx="6" ry="25" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Pinky finger -->
+  <ellipse cx="120" cy="90" rx="5" ry="20" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Finger segments -->
+  <line x1="90" y1="95" x2="90" y2="95" stroke="#ff8a65" stroke-width="1"/>
+  <line x1="90" y1="105" x2="90" y2="105" stroke="#ff8a65" stroke-width="1"/>
+  <line x1="100" y1="90" x2="100" y2="90" stroke="#ff8a65" stroke-width="1"/>
+  <line x1="100" y1="100" x2="100" y2="100" stroke="#ff8a65" stroke-width="1"/>
+  <line x1="110" y1="95" x2="110" y2="95" stroke="#ff8a65" stroke-width="1"/>
+  <line x1="110" y1="105" x2="110" y2="105" stroke="#ff8a65" stroke-width="1"/>
+  <line x1="120" y1="100" x2="120" y2="100" stroke="#ff8a65" stroke-width="1"/>
+  
+  <!-- Palm lines -->
+  <path d="M85 120 Q95 130 105 125" fill="none" stroke="#ff8a65" stroke-width="1"/>
+  <path d="M80 135 Q100 140 115 135" fill="none" stroke="#ff8a65" stroke-width="1"/>
+  <path d="M85 145 Q100 150 110 145" fill="none" stroke="#ff8a65" stroke-width="1"/>
+  
+  <!-- Wrist -->
+  <ellipse cx="100" cy="165" rx="20" ry="10" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Arm -->
+  <rect x="85" y="170" width="30" height="20" fill="#ffdbcb" stroke="#ff8a65" stroke-width="2"/>
+  
+  <!-- Fingernails -->
+  <ellipse cx="90" cy="72" rx="3" ry="4" fill="#ffccbc" stroke="#ff8a65" stroke-width="0.5"/>
+  <ellipse cx="100" cy="65" rx="3" ry="4" fill="#ffccbc" stroke="#ff8a65" stroke-width="0.5"/>
+  <ellipse cx="110" cy="72" rx="3" ry="4" fill="#ffccbc" stroke="#ff8a65" stroke-width="0.5"/>
+  <ellipse cx="120" cy="80" rx="2.5" ry="3" fill="#ffccbc" stroke="#ff8a65" stroke-width="0.5"/>
+  
+  <!-- Gesture lines (showing movement) -->
+  <path d="M60 60 Q70 65 80 60" fill="none" stroke="#ffc107" stroke-width="2" opacity="0.7"/>
+  <path d="M140 55 Q150 60 160 55" fill="none" stroke="#ffc107" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Arabic letter ي -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#ff8a65" font-weight="bold">ي</text>
+</svg>

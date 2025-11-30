@@ -1,0 +1,30 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Moon/Chand for চ -->
+  <rect width="200" height="200" fill="#1a237e"/>
+  
+  <!-- Moon crescent -->
+  <circle cx="100" cy="100" r="40" fill="#ffd54f" stroke="#f57c00" stroke-width="2"/>
+  <circle cx="115" cy="85" r="35" fill="#1a237e"/>
+  
+  <!-- Moon craters -->
+  <circle cx="85" cy="90" r="4" fill="#ffb74d" opacity="0.7"/>
+  <circle cx="95" cy="110" r="3" fill="#ffb74d" opacity="0.7"/>
+  <circle cx="105" cy="125" r="2.5" fill="#ffb74d" opacity="0.7"/>
+  <circle cx="80" cy="115" r="2" fill="#ffb74d" opacity="0.7"/>
+  
+  <!-- Stars around moon -->
+  <g fill="#ffd54f" opacity="0.8">
+    <polygon points="50,60 52,66 58,66 53,70 55,76 50,72 45,76 47,70 42,66 48,66"/>
+    <polygon points="150,50 152,56 158,56 153,60 155,66 150,62 145,66 147,60 142,56 148,56"/>
+    <polygon points="160,120 162,126 168,126 163,130 165,136 160,132 155,136 157,130 152,126 158,126"/>
+    <polygon points="40,130 42,136 48,136 43,140 45,146 40,142 35,146 37,140 32,136 38,136"/>
+  </g>
+  
+  <!-- Cloud -->
+  <ellipse cx="140" cy="160" rx="15" ry="8" fill="#e1f5fe" opacity="0.8"/>
+  <ellipse cx="130" cy="155" rx="12" ry="6" fill="#e1f5fe" opacity="0.8"/>
+  <ellipse cx="150" cy="155" rx="10" ry="6" fill="#e1f5fe" opacity="0.8"/>
+  
+  <!-- Bengali letter চ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#ffd54f" font-weight="bold">চ</text>
+</svg>

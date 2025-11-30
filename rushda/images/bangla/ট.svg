@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tomato for ট -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Tomato body -->
+  <ellipse cx="100" cy="120" rx="35" ry="40" fill="#f44336" stroke="#d32f2f" stroke-width="2"/>
+  
+  <!-- Tomato top/crown -->
+  <path d="M75 85 Q85 75 95 85 Q105 75 115 85 Q125 75 125 85" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+  
+  <!-- Tomato stem -->
+  <rect x="95" y="70" width="10" height="15" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+  
+  <!-- Tomato highlight -->
+  <ellipse cx="85" cy="105" rx="12" ry="15" fill="#ffcdd2" opacity="0.8"/>
+  
+  <!-- Tomato segments -->
+  <path d="M100 85 Q90 100 85 120 Q90 140 100 155" fill="none" stroke="#d32f2f" stroke-width="1" opacity="0.7"/>
+  <path d="M100 85 Q110 100 115 120 Q110 140 100 155" fill="none" stroke="#d32f2f" stroke-width="1" opacity="0.7"/>
+  <path d="M100 85 Q95 105 100 125 Q105 145 100 155" fill="none" stroke="#d32f2f" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Small tomatoes nearby -->
+  <circle cx="60" cy="140" r="12" fill="#f44336" stroke="#d32f2f" stroke-width="1"/>
+  <circle cx="140" cy="135" r="10" fill="#f44336" stroke="#d32f2f" stroke-width="1"/>
+  
+  <!-- Small tomato stems -->
+  <line x1="60" y1="128" x2="60" y2="125" stroke="#4caf50" stroke-width="2"/>
+  <line x1="140" y1="125" x2="140" y2="122" stroke="#4caf50" stroke-width="2"/>
+  
+  <!-- Bengali letter ট -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#d32f2f" font-weight="bold">ট</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Flower/Phul for ফ -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Flower center -->
+  <circle cx="100" cy="100" r="12" fill="#ffd54f" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Flower petals -->
+  <ellipse cx="100" cy="75" rx="8" ry="20" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+  <ellipse cx="125" cy="100" rx="20" ry="8" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+  <ellipse cx="100" cy="125" rx="8" ry="20" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+  <ellipse cx="75" cy="100" rx="20" ry="8" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+  
+  <!-- Diagonal petals -->
+  <ellipse cx="118" cy="82" rx="12" ry="15" fill="#f06292" stroke="#c2185b" stroke-width="2" transform="rotate(45 118 82)"/>
+  <ellipse cx="118" cy="118" rx="12" ry="15" fill="#f06292" stroke="#c2185b" stroke-width="2" transform="rotate(-45 118 118)"/>
+  <ellipse cx="82" cy="118" rx="12" ry="15" fill="#f06292" stroke="#c2185b" stroke-width="2" transform="rotate(45 82 118)"/>
+  <ellipse cx="82" cy="82" rx="12" ry="15" fill="#f06292" stroke="#c2185b" stroke-width="2" transform="rotate(-45 82 82)"/>
+  
+  <!-- Flower stem -->
+  <line x1="100" y1="125" x2="100" y2="170" stroke="#4caf50" stroke-width="6"/>
+  
+  <!-- Leaves -->
+  <ellipse cx="85" cy="140" rx="12" ry="8" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(-30 85 140)"/>
+  <ellipse cx="115" cy="155" rx="10" ry="6" fill="#66bb6a" stroke="#4caf50" stroke-width="2" transform="rotate(30 115 155)"/>
+  
+  <!-- Leaf veins -->
+  <line x1="85" y1="135" x2="85" y2="145" stroke="#4caf50" stroke-width="1"/>
+  <line x1="115" y1="152" x2="115" y2="158" stroke="#4caf50" stroke-width="1"/>
+  
+  <!-- Small flowers around -->
+  <circle cx="50" cy="80" r="6" fill="#ffeb3b"/>
+  <ellipse cx="45" cy="75" rx="3" ry="6" fill="#ff9800"/>
+  <ellipse cx="55" cy="75" rx="3" ry="6" fill="#ff9800"/>
+  <ellipse cx="45" cy="85" rx="3" ry="6" fill="#ff9800"/>
+  <ellipse cx="55" cy="85" rx="3" ry="6" fill="#ff9800"/>
+  
+  <circle cx="150" cy="130" r="5" fill="#9c27b0"/>
+  <ellipse cx="146" cy="127" rx="2" ry="5" fill="#e91e63"/>
+  <ellipse cx="154" cy="127" rx="2" ry="5" fill="#e91e63"/>
+  <ellipse cx="146" cy="133" rx="2" ry="5" fill="#e91e63"/>
+  <ellipse cx="154" cy="133" rx="2" ry="5" fill="#e91e63"/>
+  
+  <!-- Butterflies -->
+  <ellipse cx="160" cy="60" rx="4" ry="6" fill="#ffb74d" stroke="#f57c00" stroke-width="1"/>
+  <ellipse cx="168" cy="60" rx="4" ry="6" fill="#ffb74d" stroke="#f57c00" stroke-width="1"/>
+  <ellipse cx="160" cy="70" rx="3" ry="4" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  <ellipse cx="168" cy="70" rx="3" ry="4" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  <line x1="164" y1="55" x2="164" y2="75" stroke="#8d6e63" stroke-width="1"/>
+  
+  <!-- Bengali letter ফ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#c2185b" font-weight="bold">ফ</text>
+</svg>

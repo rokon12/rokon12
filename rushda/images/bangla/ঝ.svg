@@ -1,0 +1,33 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Waterfall/Jhorna for ঝ -->
+  <rect width="200" height="200" fill="#e0f2f1"/>
+  
+  <!-- Rock/cliff -->
+  <path d="M20 50 L80 60 L85 180 L15 180 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <path d="M120 40 L180 50 L185 180 L115 180 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Waterfall streams -->
+  <path d="M80 60 Q90 80 85 100 Q95 120 90 140 Q100 160 95 180" 
+        fill="none" stroke="#4fc3f7" stroke-width="6" stroke-linecap="round"/>
+  <path d="M85 65 Q95 85 90 105 Q100 125 95 145 Q105 165 100 180" 
+        fill="none" stroke="#29b6f6" stroke-width="4" stroke-linecap="round"/>
+  <path d="M120 50 Q110 70 115 90 Q105 110 110 130 Q100 150 105 180" 
+        fill="none" stroke="#4fc3f7" stroke-width="6" stroke-linecap="round"/>
+  <path d="M115 55 Q105 75 110 95 Q100 115 105 135 Q95 155 100 180" 
+        fill="none" stroke="#29b6f6" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Water splash at bottom -->
+  <ellipse cx="100" cy="175" rx="30" ry="8" fill="#e1f5fe" opacity="0.8"/>
+  <circle cx="85" cy="170" r="3" fill="#4fc3f7" opacity="0.7"/>
+  <circle cx="115" cy="172" r="2.5" fill="#4fc3f7" opacity="0.7"/>
+  <circle cx="100" cy="168" r="2" fill="#4fc3f7" opacity="0.7"/>
+  
+  <!-- Water mist -->
+  <circle cx="70" cy="100" r="2" fill="#e1f5fe" opacity="0.5"/>
+  <circle cx="130" cy="110" r="1.5" fill="#e1f5fe" opacity="0.5"/>
+  <circle cx="75" cy="130" r="1.8" fill="#e1f5fe" opacity="0.5"/>
+  <circle cx="125" cy="140" r="1.2" fill="#e1f5fe" opacity="0.5"/>
+  
+  <!-- Bengali letter ঝ -->
+  <text x="25" y="35" font-family="Arial, sans-serif" font-size="32" fill="#0277bd" font-weight="bold">ঝ</text>
+</svg>

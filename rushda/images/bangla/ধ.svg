@@ -1,0 +1,57 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rice/Dhan for ধ -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Rice field background -->
+  <rect x="0" y="150" width="200" height="50" fill="#8bc34a" opacity="0.3"/>
+  
+  <!-- Rice plant stalks -->
+  <line x1="70" y1="180" x2="75" y2="100" stroke="#4caf50" stroke-width="3"/>
+  <line x1="90" y1="180" x2="95" y2="95" stroke="#4caf50" stroke-width="3"/>
+  <line x1="110" y1="180" x2="115" y2="100" stroke="#4caf50" stroke-width="3"/>
+  <line x1="130" y1="180" x2="125" y2="95" stroke="#4caf50" stroke-width="3"/>
+  
+  <!-- Rice grains on stalks -->
+  <ellipse cx="77" cy="105" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="79" cy="110" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="75" cy="115" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="81" cy="120" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="73" cy="125" rx="2" ry="4" fill="#ffeb3b"/>
+  
+  <ellipse cx="97" cy="100" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="99" cy="105" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="95" cy="110" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="101" cy="115" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="93" cy="120" rx="2" ry="4" fill="#ffeb3b"/>
+  
+  <ellipse cx="117" cy="105" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="119" cy="110" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="115" cy="115" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="121" cy="120" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="113" cy="125" rx="2" ry="4" fill="#ffeb3b"/>
+  
+  <ellipse cx="127" cy="100" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="129" cy="105" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="125" cy="110" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="131" cy="115" rx="2" ry="4" fill="#ffeb3b"/>
+  <ellipse cx="123" cy="120" rx="2" ry="4" fill="#ffeb3b"/>
+  
+  <!-- Rice bag -->
+  <rect x="40" y="130" width="30" height="40" fill="#d7b899" stroke="#8d6e63" stroke-width="2" rx="5"/>
+  <ellipse cx="55" cy="128" rx="15" ry="5" fill="#ffeb3b"/>
+  
+  <!-- Scattered rice grains -->
+  <ellipse cx="25" cy="160" rx="1.5" ry="3" fill="#ffeb3b"/>
+  <ellipse cx="30" cy="165" rx="1.5" ry="3" fill="#ffeb3b"/>
+  <ellipse cx="35" cy="162" rx="1.5" ry="3" fill="#ffeb3b"/>
+  <ellipse cx="160" cy="155" rx="1.5" ry="3" fill="#ffeb3b"/>
+  <ellipse cx="165" cy="160" rx="1.5" ry="3" fill="#ffeb3b"/>
+  <ellipse cx="170" cy="157" rx="1.5" ry="3" fill="#ffeb3b"/>
+  
+  <!-- Rice bowl -->
+  <ellipse cx="150" cy="140" rx="20" ry="8" fill="#ffb74d" stroke="#f57c00" stroke-width="2"/>
+  <ellipse cx="150" cy="137" rx="18" ry="6" fill="#fff"/>
+  
+  <!-- Bengali letter ধ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#4caf50" font-weight="bold">ধ</text>
+</svg>

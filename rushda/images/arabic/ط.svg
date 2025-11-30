@@ -1,0 +1,53 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bird/Tair for ط -->
+  <rect width="200" height="200" fill="#e3f2fd"/>
+  
+  <!-- Sky clouds -->
+  <ellipse cx="40" cy="50" rx="20" ry="10" fill="#fff" opacity="0.8"/>
+  <ellipse cx="30" cy="55" rx="15" ry="8" fill="#fff" opacity="0.8"/>
+  <ellipse cx="50" cy="55" rx="12" ry="6" fill="#fff" opacity="0.8"/>
+  
+  <!-- Bird body -->
+  <ellipse cx="100" cy="120" rx="25" ry="18" fill="#2196f3" stroke="#1976d2" stroke-width="2"/>
+  
+  <!-- Bird head -->
+  <circle cx="80" cy="105" r="15" fill="#2196f3" stroke="#1976d2" stroke-width="2"/>
+  
+  <!-- Bird beak -->
+  <path d="M65 105 L55 108 L65 111 Z" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Bird eye -->
+  <circle cx="75" cy="100" r="3" fill="#000"/>
+  <circle cx="76" cy="99" r="1" fill="#fff"/>
+  
+  <!-- Bird wings (spread) -->
+  <ellipse cx="100" cy="110" rx="40" ry="20" fill="#42a5f5" stroke="#1976d2" stroke-width="2" transform="rotate(-10 100 110)"/>
+  <ellipse cx="100" cy="115" rx="35" ry="15" fill="#64b5f6" stroke="#1976d2" stroke-width="1" transform="rotate(-10 100 115)"/>
+  
+  <!-- Wing feathers -->
+  <path d="M60 100 Q80 95 100 100" fill="none" stroke="#1976d2" stroke-width="1"/>
+  <path d="M70 110 Q90 105 110 110" fill="none" stroke="#1976d2" stroke-width="1"/>
+  <path d="M100 100 Q120 95 140 100" fill="none" stroke="#1976d2" stroke-width="1"/>
+  <path d="M90 110 Q110 105 130 110" fill="none" stroke="#1976d2" stroke-width="1"/>
+  
+  <!-- Bird tail -->
+  <ellipse cx="125" cy="125" rx="12" ry="20" fill="#42a5f5" stroke="#1976d2" stroke-width="2" transform="rotate(30 125 125)"/>
+  
+  <!-- Bird feet -->
+  <line x1="90" y1="135" x2="85" y2="145" stroke="#ff9800" stroke-width="2"/>
+  <line x1="100" y1="135" x2="95" y2="145" stroke="#ff9800" stroke-width="2"/>
+  <path d="M85 145 L82 148 M85 145 L85 148 M85 145 L88 148" stroke="#ff9800" stroke-width="1.5"/>
+  <path d="M95 145 L92 148 M95 145 L95 148 M95 145 L98 148" stroke="#ff9800" stroke-width="1.5"/>
+  
+  <!-- Tree branch -->
+  <line x1="60" y1="150" x2="140" y2="150" stroke="#8d6e63" stroke-width="4"/>
+  <ellipse cx="70" cy="145" rx="5" ry="8" fill="#4caf50" transform="rotate(20 70 145)"/>
+  <ellipse cx="130" cy="145" rx="4" ry="7" fill="#4caf50" transform="rotate(-20 130 145)"/>
+  
+  <!-- Other birds in sky -->
+  <path d="M160 40 Q165 35 170 40 Q175 35 180 40" fill="none" stroke="#666" stroke-width="1"/>
+  <path d="M150 60 Q155 55 160 60 Q165 55 170 60" fill="none" stroke="#666" stroke-width="1"/>
+  
+  <!-- Arabic letter ط -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#1976d2" font-weight="bold">ط</text>
+</svg>

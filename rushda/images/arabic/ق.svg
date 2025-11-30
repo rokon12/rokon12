@@ -1,0 +1,62 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cat/Qitta for ق -->
+  <rect width="200" height="200" fill="#fff8e1"/>
+  
+  <!-- Cat body -->
+  <ellipse cx="100" cy="140" rx="30" ry="20" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Cat stripes -->
+  <path d="M80 135 Q90 132 100 135" fill="none" stroke="#e65100" stroke-width="2"/>
+  <path d="M85 145 Q95 142 105 145" fill="none" stroke="#e65100" stroke-width="2"/>
+  <path d="M115 140 Q120 138 125 140" fill="none" stroke="#e65100" stroke-width="2"/>
+  
+  <!-- Cat head -->
+  <circle cx="100" cy="100" r="20" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Cat ears -->
+  <path d="M80 85 L75 70 L88 80 Z" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  <path d="M120 85 L125 70 L112 80 Z" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  <path d="M80 85 L77 73 L86 81 Z" fill="#ffccbc"/>
+  <path d="M120 85 L123 73 L114 81 Z" fill="#ffccbc"/>
+  
+  <!-- Cat eyes -->
+  <ellipse cx="92" cy="95" rx="4" ry="6" fill="#4caf50"/>
+  <ellipse cx="108" cy="95" rx="4" ry="6" fill="#4caf50"/>
+  <line x1="92" y1="95" x2="92" y2="95" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <line x1="108" y1="95" x2="108" y2="95" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Cat nose -->
+  <path d="M100 105 L95 108 L100 110 L105 108 Z" fill="#e91e63"/>
+  
+  <!-- Cat mouth -->
+  <path d="M100 110 Q95 115 90 110" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+  <path d="M100 110 Q105 115 110 110" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Cat whiskers -->
+  <line x1="70" y1="100" x2="85" y2="102" stroke="#000" stroke-width="1"/>
+  <line x1="70" y1="105" x2="85" y2="105" stroke="#000" stroke-width="1"/>
+  <line x1="115" y1="102" x2="130" y2="100" stroke="#000" stroke-width="1"/>
+  <line x1="115" y1="105" x2="130" y2="105" stroke="#000" stroke-width="1"/>
+  
+  <!-- Cat legs -->
+  <ellipse cx="85" cy="155" rx="6" ry="12" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  <ellipse cx="100" cy="155" rx="6" ry="12" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  <ellipse cx="115" cy="155" rx="6" ry="12" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Cat paws -->
+  <ellipse cx="85" cy="165" rx="7" ry="4" fill="#424242"/>
+  <ellipse cx="100" cy="165" rx="7" ry="4" fill="#424242"/>
+  <ellipse cx="115" cy="165" rx="7" ry="4" fill="#424242"/>
+  
+  <!-- Cat tail -->
+  <path d="M130 140 Q145 135 150 150 Q155 165 145 170" fill="none" stroke="#ff9800" stroke-width="8" stroke-linecap="round"/>
+  <path d="M140 140 Q145 138 148 145" fill="none" stroke="#e65100" stroke-width="2"/>
+  <path d="M145 155 Q148 153 150 160" fill="none" stroke="#e65100" stroke-width="2"/>
+  
+  <!-- Ball of yarn -->
+  <circle cx="50" cy="160" r="15" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+  <path d="M40 155 Q50 150 60 155 Q55 165 45 160 Q40 170 50 175" fill="none" stroke="#c2185b" stroke-width="1"/>
+  
+  <!-- Arabic letter ق -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#f57c00" font-weight="bold">ق</text>
+</svg>

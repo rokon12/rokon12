@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mouse/Indur for ই -->
+  <rect width="200" height="200" fill="#f5f5f5"/>
+  
+  <!-- Mouse body -->
+  <ellipse cx="100" cy="130" rx="35" ry="25" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Mouse head -->
+  <ellipse cx="70" cy="110" rx="20" ry="18" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Mouse ears -->
+  <ellipse cx="60" cy="95" rx="8" ry="12" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <ellipse cx="80" cy="95" rx="8" ry="12" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <ellipse cx="60" cy="95" rx="4" ry="6" fill="#ffb3ba"/>
+  <ellipse cx="80" cy="95" rx="4" ry="6" fill="#ffb3ba"/>
+  
+  <!-- Eye -->
+  <circle cx="65" cy="108" r="3" fill="#000"/>
+  
+  <!-- Nose -->
+  <circle cx="55" cy="115" r="2" fill="#000"/>
+  
+  <!-- Whiskers -->
+  <line x1="40" y1="112" x2="50" y2="110" stroke="#333" stroke-width="1"/>
+  <line x1="40" y1="118" x2="50" y2="118" stroke="#333" stroke-width="1"/>
+  
+  <!-- Tail -->
+  <path d="M130 135 Q150 140 165 130 Q170 125 160 120" fill="none" stroke="#8d6e63" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bengali letter ই -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ই</text>
+</svg>

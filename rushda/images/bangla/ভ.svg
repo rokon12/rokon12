@@ -1,0 +1,60 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bear/Bhaluk for ভ -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Bear body -->
+  <ellipse cx="100" cy="130" rx="35" ry="30" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bear head -->
+  <circle cx="100" cy="85" r="25" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bear ears -->
+  <circle cx="85" cy="65" r="8" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <circle cx="115" cy="65" r="8" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <circle cx="85" cy="65" r="4" fill="#a1887f"/>
+  <circle cx="115" cy="65" r="4" fill="#a1887f"/>
+  
+  <!-- Bear eyes -->
+  <circle cx="92" cy="80" r="3" fill="#000"/>
+  <circle cx="108" cy="80" r="3" fill="#000"/>
+  <circle cx="93" cy="79" r="1" fill="#fff"/>
+  <circle cx="109" cy="79" r="1" fill="#fff"/>
+  
+  <!-- Bear nose -->
+  <ellipse cx="100" cy="90" rx="3" ry="2" fill="#000"/>
+  
+  <!-- Bear mouth -->
+  <path d="M95 95 Q100 100 105 95" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Bear arms -->
+  <ellipse cx="70" cy="115" rx="12" ry="20" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <ellipse cx="130" cy="115" rx="12" ry="20" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bear legs -->
+  <ellipse cx="85" cy="155" rx="10" ry="18" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <ellipse cx="115" cy="155" rx="10" ry="18" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bear paws -->
+  <ellipse cx="70" cy="130" rx="6" ry="8" fill="#a1887f"/>
+  <ellipse cx="130" cy="130" rx="6" ry="8" fill="#a1887f"/>
+  <ellipse cx="85" cy="170" rx="8" ry="6" fill="#a1887f"/>
+  <ellipse cx="115" cy="170" rx="8" ry="6" fill="#a1887f"/>
+  
+  <!-- Honey pot -->
+  <ellipse cx="150" cy="140" rx="12" ry="15" fill="#ffb74d" stroke="#f57c00" stroke-width="2"/>
+  <ellipse cx="150" cy="130" rx="10" ry="3" fill="#8d6e63"/>
+  <line x1="150" y1="125" x2="150" y2="120" stroke="#8d6e63" stroke-width="2"/>
+  
+  <!-- Honey dripping -->
+  <circle cx="145" cy="155" r="2" fill="#ffa726"/>
+  <ellipse cx="145" cy="160" rx="1" ry="3" fill="#ffa726"/>
+  
+  <!-- Bees -->
+  <ellipse cx="40" cy="70" rx="3" ry="2" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  <ellipse cx="170" cy="90" rx="3" ry="2" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  <line x1="40" y1="70" x2="44" y2="68" stroke="#666" stroke-width="1"/>
+  <line x1="170" y1="90" x2="174" y2="88" stroke="#666" stroke-width="1"/>
+  
+  <!-- Bengali letter ভ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ভ</text>
+</svg>

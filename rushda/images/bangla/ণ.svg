@@ -1,0 +1,38 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Speech/Bani for ণ -->
+  <rect width="200" height="200" fill="#e8f5e8"/>
+  
+  <!-- Person speaking -->
+  <circle cx="80" cy="80" r="15" fill="#ffdbcb"/> <!-- Head -->
+  <ellipse cx="80" cy="110" rx="12" ry="20" fill="#2196f3"/> <!-- Body -->
+  <ellipse cx="65" cy="120" rx="8" ry="3" fill="#ffdbcb" transform="rotate(20 65 120)"/> <!-- Arm -->
+  <ellipse cx="95" cy="120" rx="8" ry="3" fill="#ffdbcb" transform="rotate(-20 95 120)"/> <!-- Arm -->
+  
+  <!-- Eyes and mouth -->
+  <circle cx="76" cy="77" r="2" fill="#000"/>
+  <circle cx="84" cy="77" r="2" fill="#000"/>
+  <ellipse cx="80" cy="85" rx="3" ry="2" fill="#000"/>
+  
+  <!-- Speech bubbles -->
+  <ellipse cx="130" cy="70" rx="25" ry="15" fill="#fff" stroke="#e0e0e0" stroke-width="2"/>
+  <ellipse cx="140" cy="100" rx="20" ry="12" fill="#fff" stroke="#e0e0e0" stroke-width="2"/>
+  <ellipse cx="125" cy="125" rx="22" ry="13" fill="#fff" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Speech bubble tails -->
+  <path d="M105 75 Q115 80 120 75" fill="#fff" stroke="#e0e0e0" stroke-width="2"/>
+  <path d="M120 105 Q125 110 130 105" fill="#fff" stroke="#e0e0e0" stroke-width="2"/>
+  <path d="M105 125 Q110 130 115 125" fill="#fff" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Text/words in speech bubbles -->
+  <text x="125" y="75" font-family="Arial, sans-serif" font-size="8" fill="#333" text-anchor="middle">কথা</text>
+  <text x="140" y="105" font-family="Arial, sans-serif" font-size="7" fill="#333" text-anchor="middle">বাণী</text>
+  <text x="125" y="130" font-family="Arial, sans-serif" font-size="7" fill="#333" text-anchor="middle">ভাষা</text>
+  
+  <!-- Sound waves -->
+  <path d="M110 60 Q115 55 120 60" fill="none" stroke="#4caf50" stroke-width="2" opacity="0.7"/>
+  <path d="M115 50 Q120 45 125 50" fill="none" stroke="#4caf50" stroke-width="2" opacity="0.7"/>
+  <path d="M105 90 Q110 85 115 90" fill="none" stroke="#4caf50" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Bengali letter ণ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#4caf50" font-weight="bold">ণ</text>
+</svg>

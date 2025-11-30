@@ -1,0 +1,60 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bull/Shar for ষ -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Bull body -->
+  <ellipse cx="110" cy="140" rx="45" ry="25" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bull head -->
+  <ellipse cx="75" cy="110" rx="25" ry="20" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bull horns -->
+  <path d="M60 95 Q50 85 55 75" fill="none" stroke="#424242" stroke-width="4" stroke-linecap="round"/>
+  <path d="M90 95 Q100 85 95 75" fill="none" stroke="#424242" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bull ears -->
+  <ellipse cx="55" cy="105" rx="8" ry="12" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  <ellipse cx="95" cy="105" rx="8" ry="12" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bull eyes -->
+  <circle cx="70" cy="105" r="4" fill="#000"/>
+  <circle cx="80" cy="105" r="4" fill="#000"/>
+  <circle cx="71" cy="104" r="1" fill="#fff"/>
+  <circle cx="81" cy="104" r="1" fill="#fff"/>
+  
+  <!-- Bull nostrils -->
+  <ellipse cx="60" cy="118" rx="5" ry="3" fill="#5d4037"/>
+  <circle cx="58" cy="118" r="1.5" fill="#000"/>
+  <circle cx="62" cy="118" r="1.5" fill="#000"/>
+  
+  <!-- Bull legs -->
+  <rect x="80" y="160" width="8" height="20" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <rect x="95" y="160" width="8" height="20" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <rect x="125" y="160" width="8" height="20" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  <rect x="140" y="160" width="8" height="20" fill="#8d6e63" stroke="#5d4037" stroke-width="1"/>
+  
+  <!-- Bull hooves -->
+  <ellipse cx="84" cy="182" rx="6" ry="3" fill="#424242"/>
+  <ellipse cx="99" cy="182" rx="6" ry="3" fill="#424242"/>
+  <ellipse cx="129" cy="182" rx="6" ry="3" fill="#424242"/>
+  <ellipse cx="144" cy="182" rx="6" ry="3" fill="#424242"/>
+  
+  <!-- Bull tail -->
+  <path d="M155 145 Q170 150 165 170" fill="none" stroke="#5d4037" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="165" cy="172" rx="3" ry="6" fill="#5d4037"/>
+  
+  <!-- Bull muscular build -->
+  <ellipse cx="95" cy="125" rx="8" ry="12" fill="#a1887f" opacity="0.6"/>
+  <ellipse cx="130" cy="135" rx="12" ry="8" fill="#a1887f" opacity="0.6"/>
+  
+  <!-- Ground -->
+  <ellipse cx="100" cy="185" rx="80" ry="10" fill="#8d6e63" opacity="0.3"/>
+  
+  <!-- Dust clouds -->
+  <circle cx="50" cy="175" r="4" fill="#d7ccc8" opacity="0.7"/>
+  <circle cx="150" cy="175" r="3" fill="#d7ccc8" opacity="0.7"/>
+  <circle cx="45" cy="180" r="2.5" fill="#d7ccc8" opacity="0.6"/>
+  
+  <!-- Bengali letter ষ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ষ</text>
+</svg>

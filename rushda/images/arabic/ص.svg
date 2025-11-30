@@ -1,0 +1,55 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Falcon/Saqr for ص -->
+  <rect width="200" height="200" fill="#e3f2fd"/>
+  
+  <!-- Falcon body -->
+  <ellipse cx="100" cy="130" rx="25" ry="35" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Falcon chest -->
+  <ellipse cx="100" cy="125" rx="20" ry="30" fill="#d7ccc8" stroke="#a1887f" stroke-width="1"/>
+  
+  <!-- Chest pattern -->
+  <path d="M90 115 Q100 112 110 115" fill="none" stroke="#8d6e63" stroke-width="1"/>
+  <path d="M88 125 Q100 122 112 125" fill="none" stroke="#8d6e63" stroke-width="1"/>
+  <path d="M90 135 Q100 132 110 135" fill="none" stroke="#8d6e63" stroke-width="1"/>
+  
+  <!-- Falcon head -->
+  <circle cx="100" cy="85" r="18" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Falcon beak (hooked) -->
+  <path d="M85 85 L75 88 L78 92 L85 90 Z" fill="#424242" stroke="#212121" stroke-width="1"/>
+  <path d="M75 88 Q73 90 75 92" fill="none" stroke="#212121" stroke-width="1"/>
+  
+  <!-- Falcon eye -->
+  <circle cx="95" cy="80" r="5" fill="#fff"/>
+  <circle cx="95" cy="80" r="4" fill="#ffd54f"/>
+  <circle cx="95" cy="80" r="2" fill="#000"/>
+  
+  <!-- Falcon wings -->
+  <ellipse cx="75" cy="120" rx="20" ry="30" fill="#5d4037" stroke="#3e2723" stroke-width="2" transform="rotate(-20 75 120)"/>
+  <ellipse cx="125" cy="120" rx="20" ry="30" fill="#5d4037" stroke="#3e2723" stroke-width="2" transform="rotate(20 125 120)"/>
+  
+  <!-- Wing feathers -->
+  <path d="M65 105 Q75 100 85 105" fill="none" stroke="#3e2723" stroke-width="1"/>
+  <path d="M60 115 Q70 110 80 115" fill="none" stroke="#3e2723" stroke-width="1"/>
+  <path d="M55 125 Q65 120 75 125" fill="none" stroke="#3e2723" stroke-width="1"/>
+  <path d="M115 105 Q125 100 135 105" fill="none" stroke="#3e2723" stroke-width="1"/>
+  <path d="M120 115 Q130 110 140 115" fill="none" stroke="#3e2723" stroke-width="1"/>
+  <path d="M125 125 Q135 120 145 125" fill="none" stroke="#3e2723" stroke-width="1"/>
+  
+  <!-- Falcon talons -->
+  <path d="M90 160 L85 175 L80 170 L82 175 L87 170" fill="#424242" stroke="#212121" stroke-width="1"/>
+  <path d="M110 160 L115 175 L120 170 L118 175 L113 170" fill="#424242" stroke="#212121" stroke-width="1"/>
+  
+  <!-- Branch -->
+  <line x1="50" y1="175" x2="150" y2="175" stroke="#8d6e63" stroke-width="6"/>
+  
+  <!-- Sky elements -->
+  <circle cx="40" cy="40" r="2" fill="#666" opacity="0.5"/> <!-- Small bird -->
+  <circle cx="160" cy="50" r="2" fill="#666" opacity="0.5"/> <!-- Small bird -->
+  <path d="M35 40 Q40 35 45 40" fill="none" stroke="#666" stroke-width="1" opacity="0.5"/>
+  <path d="M155 50 Q160 45 165 50" fill="none" stroke="#666" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Arabic letter ص -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ص</text>
+</svg>

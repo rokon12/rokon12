@@ -1,0 +1,40 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Drum/Dhak for ঢ -->
+  <rect width="200" height="200" fill="#f3e5f5"/>
+  
+  <!-- Drum body -->
+  <ellipse cx="100" cy="120" rx="40" ry="50" fill="#8d6e63" stroke="#5d4037" stroke-width="3"/>
+  
+  <!-- Drum top -->
+  <ellipse cx="100" cy="80" rx="40" ry="12" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Drum bottom -->
+  <ellipse cx="100" cy="160" rx="40" ry="12" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Drum decorative bands -->
+  <ellipse cx="100" cy="100" rx="38" ry="3" fill="#d7b899"/>
+  <ellipse cx="100" cy="140" rx="38" ry="3" fill="#d7b899"/>
+  
+  <!-- Drum ropes/straps -->
+  <path d="M65 85 L65 155" stroke="#8d6e63" stroke-width="4"/>
+  <path d="M85 85 L85 155" stroke="#8d6e63" stroke-width="4"/>
+  <path d="M115 85 L115 155" stroke="#8d6e63" stroke-width="4"/>
+  <path d="M135 85 L135 155" stroke="#8d6e63" stroke-width="4"/>
+  
+  <!-- Drumsticks -->
+  <ellipse cx="45" cy="75" rx="3" ry="15" fill="#d7b899" stroke="#8d6e63" stroke-width="2" transform="rotate(30 45 75)"/>
+  <ellipse cx="155" cy="75" rx="3" ry="15" fill="#d7b899" stroke="#8d6e63" stroke-width="2" transform="rotate(-30 155 75)"/>
+  
+  <!-- Drumstick tips -->
+  <circle cx="40" cy="65" r="4" fill="#ffb74d" stroke="#f57c00" stroke-width="1"/>
+  <circle cx="160" cy="65" r="4" fill="#ffb74d" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Sound waves -->
+  <path d="M30 100 Q35 95 40 100" fill="none" stroke="#ffd54f" stroke-width="2" opacity="0.7"/>
+  <path d="M160 100 Q165 95 170 100" fill="none" stroke="#ffd54f" stroke-width="2" opacity="0.7"/>
+  <path d="M25 120 Q30 115 35 120" fill="none" stroke="#ffd54f" stroke-width="2" opacity="0.7"/>
+  <path d="M165 120 Q170 115 175 120" fill="none" stroke="#ffd54f" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Bengali letter ঢ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ঢ</text>
+</svg>

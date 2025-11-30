@@ -1,0 +1,43 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Plate/Thala for থ -->
+  <rect width="200" height="200" fill="#fff8e1"/>
+  
+  <!-- Large plate -->
+  <circle cx="100" cy="120" r="50" fill="#ffd54f" stroke="#f57c00" stroke-width="3"/>
+  <circle cx="100" cy="120" r="45" fill="#ffeb3b" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Plate rim highlight -->
+  <circle cx="100" cy="120" r="48" fill="none" stroke="#fff" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Food items on plate -->
+  <!-- Rice -->
+  <ellipse cx="100" cy="120" rx="25" ry="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Curry/dal -->
+  <circle cx="85" cy="105" r="8" fill="#ff9800" opacity="0.8"/>
+  <circle cx="115" cy="110" r="6" fill="#ff6f00" opacity="0.8"/>
+  
+  <!-- Vegetables -->
+  <circle cx="80" cy="135" r="5" fill="#4caf50"/>
+  <circle cx="120" cy="135" r="4" fill="#8bc34a"/>
+  <ellipse cx="90" cy="140" rx="3" ry="5" fill="#ff5722"/>
+  <ellipse cx="110" cy="140" rx="4" ry="3" fill="#ff5722"/>
+  
+  <!-- Small plates around -->
+  <circle cx="60" cy="80" r="15" fill="#ffb74d" stroke="#f57c00" stroke-width="2"/>
+  <circle cx="140" cy="75" r="12" fill="#ffb74d" stroke="#f57c00" stroke-width="2"/>
+  <circle cx="50" cy="160" r="18" fill="#ffb74d" stroke="#f57c00" stroke-width="2"/>
+  <circle cx="150" cy="165" r="14" fill="#ffb74d" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Food on small plates -->
+  <circle cx="60" cy="80" r="8" fill="#f44336"/> <!-- Sweets -->
+  <circle cx="140" cy="75" r="6" fill="#9c27b0"/>
+  <ellipse cx="50" cy="160" rx="10" ry="8" fill="#ff9800"/>
+  <circle cx="150" cy="165" r="7" fill="#4caf50"/>
+  
+  <!-- Table surface -->
+  <ellipse cx="100" cy="185" rx="80" ry="10" fill="#8d6e63" opacity="0.3"/>
+  
+  <!-- Bengali letter থ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#f57c00" font-weight="bold">থ</text>
+</svg>

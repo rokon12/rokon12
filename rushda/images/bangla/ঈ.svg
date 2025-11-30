@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Eagle/Igol for ঈ -->
+  <rect width="200" height="200" fill="#e3f2fd"/>
+  
+  <!-- Eagle body -->
+  <ellipse cx="100" cy="130" rx="25" ry="35" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Eagle head -->
+  <circle cx="100" cy="85" r="18" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Beak -->
+  <path d="M85 85 L75 88 L85 91 Z" fill="#ffa726" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Eye -->
+  <circle cx="95" cy="80" r="4" fill="#fff"/>
+  <circle cx="96" cy="79" r="2" fill="#000"/>
+  
+  <!-- Wings -->
+  <ellipse cx="80" cy="120" rx="20" ry="30" fill="#6d4c41" stroke="#5d4037" stroke-width="2" transform="rotate(-20 80 120)"/>
+  <ellipse cx="120" cy="120" rx="20" ry="30" fill="#6d4c41" stroke="#5d4037" stroke-width="2" transform="rotate(20 120 120)"/>
+  
+  <!-- Wing details -->
+  <ellipse cx="75" cy="115" rx="8" ry="15" fill="#8d6e63" transform="rotate(-20 75 115)"/>
+  <ellipse cx="125" cy="115" rx="8" ry="15" fill="#8d6e63" transform="rotate(20 125 115)"/>
+  
+  <!-- Legs -->
+  <line x1="95" y1="160" x2="95" y2="175" stroke="#ffa726" stroke-width="3"/>
+  <line x1="105" y1="160" x2="105" y2="175" stroke="#ffa726" stroke-width="3"/>
+  
+  <!-- Bengali letter ঈ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#5d4037" font-weight="bold">ঈ</text>
+</svg>

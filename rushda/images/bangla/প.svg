@@ -1,0 +1,58 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bird/Pakhi for প -->
+  <rect width="200" height="200" fill="#e3f2fd"/>
+  
+  <!-- Bird body -->
+  <ellipse cx="100" cy="120" rx="25" ry="18" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Bird head -->
+  <circle cx="80" cy="105" r="15" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Bird beak -->
+  <path d="M65 105 L55 108 L65 111 Z" fill="#ffa726" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Bird eye -->
+  <circle cx="75" cy="100" r="3" fill="#000"/>
+  <circle cx="76" cy="99" r="1" fill="#fff"/>
+  
+  <!-- Bird wings -->
+  <ellipse cx="110" cy="110" rx="20" ry="15" fill="#ffb74d" stroke="#f57c00" stroke-width="2" transform="rotate(-20 110 110)"/>
+  <ellipse cx="115" cy="115" rx="15" ry="10" fill="#ff9800" transform="rotate(-20 115 115)"/>
+  
+  <!-- Wing details -->
+  <path d="M100 105 Q120 100 130 110" fill="none" stroke="#f57c00" stroke-width="1"/>
+  <path d="M105 110 Q120 108 125 115" fill="none" stroke="#f57c00" stroke-width="1"/>
+  <path d="M108 115 Q118 115 122 120" fill="none" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Bird tail -->
+  <ellipse cx="125" cy="125" rx="12" ry="20" fill="#ffb74d" stroke="#f57c00" stroke-width="2" transform="rotate(30 125 125)"/>
+  
+  <!-- Bird legs -->
+  <line x1="90" y1="135" x2="85" y2="150" stroke="#ff5722" stroke-width="3"/>
+  <line x1="100" y1="135" x2="95" y2="150" stroke="#ff5722" stroke-width="3"/>
+  <line x1="85" y1="150" x2="80" y2="152" stroke="#ff5722" stroke-width="2"/>
+  <line x1="85" y1="150" x2="90" y2="152" stroke="#ff5722" stroke-width="2"/>
+  <line x1="95" y1="150" x2="90" y2="152" stroke="#ff5722" stroke-width="2"/>
+  <line x1="95" y1="150" x2="100" y2="152" stroke="#ff5722" stroke-width="2"/>
+  
+  <!-- Tree branch -->
+  <line x1="50" y1="155" x2="150" y2="155" stroke="#8d6e63" stroke-width="6"/>
+  <line x1="120" y1="155" x2="130" y2="145" stroke="#8d6e63" stroke-width="4"/>
+  
+  <!-- Leaves on branch -->
+  <ellipse cx="60" cy="150" rx="5" ry="8" fill="#4caf50" transform="rotate(20 60 150)"/>
+  <ellipse cx="140" cy="150" rx="4" ry="7" fill="#4caf50" transform="rotate(-20 140 150)"/>
+  <ellipse cx="125" cy="140" rx="3" ry="6" fill="#4caf50"/>
+  
+  <!-- Clouds -->
+  <ellipse cx="40" cy="50" rx="15" ry="8" fill="#fff" opacity="0.8"/>
+  <ellipse cx="30" cy="55" rx="12" ry="6" fill="#fff" opacity="0.8"/>
+  <ellipse cx="50" cy="55" rx="10" ry="6" fill="#fff" opacity="0.8"/>
+  
+  <!-- Flying birds in distance -->
+  <path d="M150 40 Q155 35 160 40 Q165 35 170 40" fill="none" stroke="#666" stroke-width="1"/>
+  <path d="M120 35 Q125 30 130 35 Q135 30 140 35" fill="none" stroke="#666" stroke-width="1"/>
+  
+  <!-- Bengali letter প -->
+  <text x="25" y="35" font-family="Arial, sans-serif" font-size="32" fill="#f57c00" font-weight="bold">প</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grapes/Ungur for ঙ -->
+  <rect width="200" height="200" fill="#f3e5f5"/>
+  
+  <!-- Grape bunch -->
+  <circle cx="100" cy="80" r="8" fill="#9c27b0"/>
+  <circle cx="90" cy="90" r="8" fill="#9c27b0"/>
+  <circle cx="110" cy="90" r="8" fill="#9c27b0"/>
+  <circle cx="85" cy="105" r="8" fill="#9c27b0"/>
+  <circle cx="100" cy="105" r="8" fill="#9c27b0"/>
+  <circle cx="115" cy="105" r="8" fill="#9c27b0"/>
+  <circle cx="80" cy="120" r="8" fill="#9c27b0"/>
+  <circle cx="95" cy="120" r="8" fill="#9c27b0"/>
+  <circle cx="110" cy="120" r="8" fill="#9c27b0"/>
+  <circle cx="125" cy="120" r="8" fill="#9c27b0"/>
+  <circle cx="85" cy="135" r="8" fill="#9c27b0"/>
+  <circle cx="100" cy="135" r="8" fill="#9c27b0"/>
+  <circle cx="115" cy="135" r="8" fill="#9c27b0"/>
+  <circle cx="90" cy="150" r="8" fill="#9c27b0"/>
+  <circle cx="105" cy="150" r="8" fill="#9c27b0"/>
+  <circle cx="95" cy="165" r="8" fill="#9c27b0"/>
+  
+  <!-- Grape stem -->
+  <line x1="100" y1="60" x2="100" y2="75" stroke="#4caf50" stroke-width="4"/>
+  
+  <!-- Grape leaves -->
+  <path d="M85 55 Q70 45 75 65 Q85 70 90 60 Q95 50 85 55" fill="#66bb6a" stroke="#4caf50" stroke-width="2"/>
+  <path d="M115 55 Q130 45 125 65 Q115 70 110 60 Q105 50 115 55" fill="#66bb6a" stroke="#4caf50" stroke-width="2"/>
+  
+  <!-- Bengali letter ঙ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#9c27b0" font-weight="bold">ঙ</text>
+</svg>

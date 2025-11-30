@@ -1,0 +1,43 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cow/Goru for গ -->
+  <rect width="200" height="200" fill="#f1f8e9"/>
+  
+  <!-- Cow body -->
+  <ellipse cx="100" cy="135" rx="40" ry="25" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Cow head -->
+  <ellipse cx="70" cy="105" rx="20" ry="18" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Cow horns -->
+  <path d="M60 90 Q55 85 58 80" fill="none" stroke="#8d6e63" stroke-width="3" stroke-linecap="round"/>
+  <path d="M80 90 Q85 85 82 80" fill="none" stroke="#8d6e63" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Cow ears -->
+  <ellipse cx="55" cy="105" rx="8" ry="12" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  <ellipse cx="85" cy="105" rx="8" ry="12" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Eyes -->
+  <circle cx="65" cy="100" r="3" fill="#000"/>
+  <circle cx="75" cy="100" r="3" fill="#000"/>
+  
+  <!-- Nose -->
+  <ellipse cx="55" cy="115" rx="4" ry="3" fill="#ffb3ba"/>
+  <line x1="53" y1="115" x2="57" y2="115" stroke="#000" stroke-width="1"/>
+  
+  <!-- Cow legs -->
+  <rect x="70" y="155" width="8" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="85" y="155" width="8" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="115" y="155" width="8" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="130" y="155" width="8" height="20" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Cow tail -->
+  <path d="M140 140 Q155 145 150 165" fill="none" stroke="#8d6e63" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Cow spots -->
+  <ellipse cx="90" cy="125" rx="6" ry="8" fill="#8d6e63" opacity="0.5"/>
+  <ellipse cx="120" cy="140" rx="8" ry="6" fill="#8d6e63" opacity="0.5"/>
+  <ellipse cx="110" cy="120" rx="5" ry="7" fill="#8d6e63" opacity="0.5"/>
+  
+  <!-- Bengali letter গ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#8d6e63" font-weight="bold">গ</text>
+</svg>

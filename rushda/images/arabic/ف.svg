@@ -1,0 +1,60 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Elephant/Feel for ف -->
+  <rect width="200" height="200" fill="#f3e5f5"/>
+  
+  <!-- Elephant body -->
+  <ellipse cx="110" cy="140" rx="45" ry="30" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Elephant head -->
+  <ellipse cx="80" cy="110" rx="25" ry="22" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Elephant trunk -->
+  <path d="M60 125 Q45 140 40 160 Q35 175 50 180 Q60 185 65 170 Q70 155 70 140" 
+        fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Trunk tip -->
+  <circle cx="50" cy="180" r="4" fill="#757575"/>
+  
+  <!-- Elephant ears -->
+  <ellipse cx="60" cy="100" rx="18" ry="25" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  <ellipse cx="100" cy="95" rx="18" ry="25" fill="#9e9e9e" stroke="#616161" stroke-width="2"/>
+  
+  <!-- Ear details -->
+  <ellipse cx="60" cy="100" rx="12" ry="18" fill="#b0b0b0" opacity="0.5"/>
+  <ellipse cx="100" cy="95" rx="12" ry="18" fill="#b0b0b0" opacity="0.5"/>
+  
+  <!-- Elephant eyes -->
+  <circle cx="75" cy="105" r="4" fill="#000"/>
+  <circle cx="85" cy="105" r="4" fill="#000"/>
+  <circle cx="76" cy="104" r="1" fill="#fff"/>
+  <circle cx="86" cy="104" r="1" fill="#fff"/>
+  
+  <!-- Elephant tusks -->
+  <ellipse cx="70" cy="125" rx="3" ry="12" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <ellipse cx="90" cy="125" rx="3" ry="12" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Elephant legs -->
+  <rect x="75" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  <rect x="95" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  <rect x="115" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  <rect x="135" y="165" width="12" height="20" fill="#9e9e9e" stroke="#616161" stroke-width="1"/>
+  
+  <!-- Elephant feet -->
+  <ellipse cx="81" cy="187" rx="8" ry="3" fill="#616161"/>
+  <ellipse cx="101" cy="187" rx="8" ry="3" fill="#616161"/>
+  <ellipse cx="121" cy="187" rx="8" ry="3" fill="#616161"/>
+  <ellipse cx="141" cy="187" rx="8" ry="3" fill="#616161"/>
+  
+  <!-- Elephant tail -->
+  <path d="M155 145 Q170 150 165 170" fill="none" stroke="#616161" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="165" cy="172" rx="3" ry="5" fill="#616161"/>
+  
+  <!-- Peanuts -->
+  <ellipse cx="40" cy="170" rx="6" ry="10" fill="#d7b899" stroke="#8d6e63" stroke-width="1"/>
+  <line x1="40" y1="165" x2="40" y2="175" stroke="#8d6e63" stroke-width="1"/>
+  <ellipse cx="50" cy="175" rx="6" ry="10" fill="#d7b899" stroke="#8d6e63" stroke-width="1"/>
+  <line x1="50" y1="170" x2="50" y2="180" stroke="#8d6e63" stroke-width="1"/>
+  
+  <!-- Arabic letter ف -->
+  <text x="25" y="45" font-family="'Noto Sans Arabic', 'Arabic Typesetting', Arial, sans-serif" font-size="32" fill="#616161" font-weight="bold">ف</text>
+</svg>

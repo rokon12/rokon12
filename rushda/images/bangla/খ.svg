@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rabbit/Khorgosh for খ -->
+  <rect width="200" height="200" fill="#f3e5f5"/>
+  
+  <!-- Rabbit body -->
+  <ellipse cx="100" cy="135" rx="30" ry="25" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Rabbit head -->
+  <ellipse cx="100" cy="100" rx="20" ry="18" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Rabbit ears -->
+  <ellipse cx="90" cy="75" rx="6" ry="18" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  <ellipse cx="110" cy="75" rx="6" ry="18" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="2"/>
+  <ellipse cx="90" cy="75" rx="3" ry="12" fill="#ffb3ba"/>
+  <ellipse cx="110" cy="75" rx="3" ry="12" fill="#ffb3ba"/>
+  
+  <!-- Eyes -->
+  <circle cx="95" cy="95" r="3" fill="#000"/>
+  <circle cx="105" cy="95" r="3" fill="#000"/>
+  
+  <!-- Nose -->
+  <ellipse cx="100" cy="105" rx="2" ry="3" fill="#ffb3ba"/>
+  
+  <!-- Whiskers -->
+  <line x1="80" y1="100" x2="90" y2="102" stroke="#666" stroke-width="1"/>
+  <line x1="80" y1="105" x2="90" y2="105" stroke="#666" stroke-width="1"/>
+  <line x1="110" y1="102" x2="120" y2="100" stroke="#666" stroke-width="1"/>
+  <line x1="110" y1="105" x2="120" y2="105" stroke="#666" stroke-width="1"/>
+  
+  <!-- Rabbit tail -->
+  <circle cx="125" cy="140" r="6" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Rabbit feet -->
+  <ellipse cx="85" cy="155" rx="8" ry="5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <ellipse cx="115" cy="155" rx="8" ry="5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Carrot nearby -->
+  <path d="M140 120 L150 145" stroke="#ff9800" stroke-width="6" stroke-linecap="round"/>
+  <path d="M145 115 L150 125" stroke="#4caf50" stroke-width="3" stroke-linecap="round"/>
+  <path d="M150 110 L155 120" stroke="#4caf50" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Bengali letter খ -->
+  <text x="25" y="45" font-family="Arial, sans-serif" font-size="32" fill="#666" font-weight="bold">খ</text>
+</svg>
