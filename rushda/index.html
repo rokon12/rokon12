@@ -99,90 +99,107 @@ permalink: /rushda/
     <div class="container">
         <header role="banner">
             <h1>Learn with Fun!</h1>
-            <nav class="main-nav">
-                <div class="nav-category">
-                    <div class="nav-category-title">Letters</div>
-                    <div class="nav-category-buttons">
-                        <button class="nav-btn" onclick="showSection('alphabet')" aria-label="Learn uppercase letters">
-                            <span class="icon">ABC</span>
-                            <span>Big Letters</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('lowercase')" aria-label="Learn lowercase letters">
-                            <span class="icon">abc</span>
-                            <span>Small Letters</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('phonics')" aria-label="Learn letter sounds">
-                            <span class="icon">Sounds</span>
-                            <span>Phonics</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="nav-category">
-                    <div class="nav-category-title">Languages</div>
-                    <div class="nav-category-buttons">
-                        <button class="nav-btn" onclick="showSection('bangla')" aria-label="Learn Bangla alphabet">
-                            <span class="icon">BD</span>
-                            <span>Bangla</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('arabic')" aria-label="Learn Arabic alphabet">
-                            <span class="icon">AR</span>
-                            <span>Arabic</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="nav-category">
-                    <div class="nav-category-title">Learn</div>
-                    <div class="nav-category-buttons">
-                        <button class="nav-btn" onclick="showSection('spelling')" aria-label="Practice spelling">
-                            <span class="icon">Spell</span>
-                            <span>Spelling</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('counting')" aria-label="Learn numbers">
-                            <span class="icon">123</span>
-                            <span>Numbers</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="nav-category">
-                    <div class="nav-category-title">Games</div>
-                    <div class="nav-category-buttons">
-                        <button class="nav-btn" onclick="showSection('quiz')" aria-label="Take a quiz">
-                            <span class="icon">?</span>
-                            <span>Quiz</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('memory')" aria-label="Play memory game">
-                            <span class="icon">Brain</span>
-                            <span>Memory</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="nav-category">
-                    <div class="nav-category-title">Fun</div>
-                    <div class="nav-category-buttons">
-                        <button class="nav-btn" onclick="showSection('rhymes')" aria-label="Sing songs">
-                            <span class="icon">Music</span>
-                            <span>Songs</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('drawing')" aria-label="Draw and color">
-                            <span class="icon">Art</span>
-                            <span>Draw</span>
-                        </button>
-                        <button class="nav-btn" onclick="showSection('stories')" aria-label="Read stories">
-                            <span class="icon">Book</span>
-                            <span>Stories</span>
-                        </button>
-                    </div>
-                </div>
-            </nav>
             <button class="sound-toggle" id="soundToggle" onclick="toggleGlobalSound()" aria-label="Toggle sound">
                 <span class="sound-on">Sound ON</span>
                 <span class="sound-off" style="display:none;">Sound OFF</span>
             </button>
         </header>
+
+        <!-- Tabbed Category Navigation -->
+        <nav class="tab-nav" role="tablist" aria-label="Activity categories">
+            <button class="tab-btn active" onclick="showCategory('letters')" role="tab" aria-selected="true" aria-controls="letters-panel">
+                <span class="tab-icon">ABC</span>
+                <span class="tab-label">Letters</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('languages')" role="tab" aria-selected="false" aria-controls="languages-panel">
+                <span class="tab-icon">BD</span>
+                <span class="tab-label">Languages</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('learn')" role="tab" aria-selected="false" aria-controls="learn-panel">
+                <span class="tab-icon">123</span>
+                <span class="tab-label">Learn</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('games')" role="tab" aria-selected="false" aria-controls="games-panel">
+                <span class="tab-icon">?</span>
+                <span class="tab-label">Games</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('fun')" role="tab" aria-selected="false" aria-controls="fun-panel">
+                <span class="tab-icon">Art</span>
+                <span class="tab-label">Fun</span>
+            </button>
+        </nav>
+
+        <!-- Category Panels with Activity Buttons -->
+        <div class="category-panels">
+            <div id="letters-panel" class="category-panel active" role="tabpanel">
+                <div class="activity-buttons">
+                    <button class="activity-btn" onclick="showSection('alphabet')" aria-label="Learn uppercase letters">
+                        <span class="activity-icon">ABC</span>
+                        <span class="activity-label">Big Letters</span>
+                    </button>
+                    <button class="activity-btn" onclick="showSection('lowercase')" aria-label="Learn lowercase letters">
+                        <span class="activity-icon">abc</span>
+                        <span class="activity-label">Small Letters</span>
+                    </button>
+                    <button class="activity-btn" onclick="showSection('phonics')" aria-label="Learn letter sounds">
+                        <span class="activity-icon">Sounds</span>
+                        <span class="activity-label">Phonics</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="languages-panel" class="category-panel" role="tabpanel">
+                <div class="activity-buttons">
+                    <button class="activity-btn" onclick="showSection('bangla')" aria-label="Learn Bangla alphabet">
+                        <span class="activity-icon">BD</span>
+                        <span class="activity-label">Bangla</span>
+                    </button>
+                    <button class="activity-btn" onclick="showSection('arabic')" aria-label="Learn Arabic alphabet">
+                        <span class="activity-icon">AR</span>
+                        <span class="activity-label">Arabic</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="learn-panel" class="category-panel" role="tabpanel">
+                <div class="activity-buttons">
+                    <button class="activity-btn" onclick="showSection('spelling')" aria-label="Practice spelling">
+                        <span class="activity-icon">Spell</span>
+                        <span class="activity-label">Spelling</span>
+                    </button>
+                    <button class="activity-btn" onclick="showSection('counting')" aria-label="Learn numbers">
+                        <span class="activity-icon">123</span>
+                        <span class="activity-label">Numbers</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="games-panel" class="category-panel" role="tabpanel">
+                <div class="activity-buttons">
+                    <button class="activity-btn" onclick="showSection('quiz')" aria-label="Take a quiz">
+                        <span class="activity-icon">?</span>
+                        <span class="activity-label">Quiz</span>
+                    </button>
+                    <button class="activity-btn" onclick="showSection('memory')" aria-label="Play memory game">
+                        <span class="activity-icon">Brain</span>
+                        <span class="activity-label">Memory</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="fun-panel" class="category-panel" role="tabpanel">
+                <div class="activity-buttons">
+                    <button class="activity-btn" onclick="showSection('rhymes')" aria-label="Sing songs">
+                        <span class="activity-icon">Music</span>
+                        <span class="activity-label">Songs</span>
+                    </button>
+                    <button class="activity-btn" onclick="showSection('drawing')" aria-label="Draw and color">
+                        <span class="activity-icon">Art</span>
+                        <span class="activity-label">Draw</span>
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <!-- Main Content -->
         <main id="main-content" role="main">
@@ -764,81 +781,6 @@ permalink: /rushda/
                     <h3>Add Stickers:</h3>
                     <div class="stickers" id="stickers">
                         <!-- Stickers will be generated -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Storybooks Section -->
-        <section id="stories" class="learning-section">
-            <h2>Interactive Storybooks!</h2>
-            <div class="storybooks-container">
-                <!-- Story Selection Screen -->
-                <div class="story-library" id="storyLibrary">
-                    <h3>Choose a Story to Read!</h3>
-                    <div class="book-shelf" id="bookShelf">
-                        <!-- Story books will be generated -->
-                    </div>
-                </div>
-
-                <!-- Story Reading Interface -->
-                <div class="story-reader" id="storyReader" style="display: none;">
-                    <div class="story-header">
-                        <button class="back-to-library-btn" onclick="backToLibrary()">
-                            Back to Library
-                        </button>
-                        <div class="story-title" id="currentStoryTitle">Story Title</div>
-                        <div class="page-counter" id="pageCounter">Page 1 of 5</div>
-                    </div>
-
-                    <div class="story-book">
-                        <div class="story-page" id="storyPage">
-                            <div class="story-scene" id="storyScene">
-                                <!-- Interactive story scene will be rendered here -->
-                            </div>
-                            <div class="story-text" id="storyText">
-                                Story text will appear here...
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="story-controls">
-                        <button class="story-nav-btn prev-btn" onclick="previousPage()" id="prevBtn" disabled>
-                            Previous
-                        </button>
-                        <button class="story-control-btn read-btn" onclick="readCurrentPage()" id="readBtn">
-                            Read to Me
-                        </button>
-                        <button class="story-control-btn auto-btn" onclick="toggleAutoRead()" id="autoBtn">
-                            Auto Play
-                        </button>
-                        <button class="story-nav-btn next-btn" onclick="nextPage()" id="nextBtn">
-                            Next
-                        </button>
-                    </div>
-
-                    <div class="story-progress">
-                        <div class="progress-bar-story">
-                            <div class="progress-fill-story" id="progressFillStory"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Story Completion Celebration -->
-                <div class="story-completion" id="storyCompletion" style="display: none;">
-                    <div class="completion-content">
-                        <h3>Story Complete!</h3>
-                        <div class="completion-message" id="completionMessage">
-                            Great job reading the story!
-                        </div>
-                        <div class="completion-actions">
-                            <button class="completion-btn" onclick="restartStory()">
-                                Read Again
-                            </button>
-                            <button class="completion-btn" onclick="backToLibrary()">
-                                Choose New Story
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

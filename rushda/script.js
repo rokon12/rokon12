@@ -45,6 +45,31 @@ function initSoundPreference() {
     }
 }
 
+// Category tab navigation
+function showCategory(category) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+    });
+
+    const activeTab = document.querySelector(`.tab-btn[onclick="showCategory('${category}')"]`);
+    if (activeTab) {
+        activeTab.classList.add('active');
+        activeTab.setAttribute('aria-selected', 'true');
+    }
+
+    // Update panels
+    document.querySelectorAll('.category-panel').forEach(panel => {
+        panel.classList.remove('active');
+    });
+
+    const activePanel = document.getElementById(`${category}-panel`);
+    if (activePanel) {
+        activePanel.classList.add('active');
+    }
+}
+
 // Quiz variables
 let currentQuizCategory = 'all';
 let currentQuizQuestion = 0;
@@ -1491,7 +1516,6 @@ document.addEventListener('DOMContentLoaded', () => {
         initializeMemoryGame();
         initializeNurseryRhymes();
         initializeDrawing();
-        initializeStorybooks();
         showSection('alphabet');
     }, 1000);
 });

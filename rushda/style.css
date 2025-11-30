@@ -675,65 +675,6 @@ nav {
     flex-wrap: wrap;
 }
 
-/* Category-based navigation */
-.main-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    max-width: 100%;
-}
-
-.nav-category {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 12px 15px;
-    backdrop-filter: blur(10px);
-}
-
-.nav-category-title {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.75em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.nav-category-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.nav-btn {
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    font-size: 1em;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    min-width: 70px;
-}
-
-.nav-btn .icon {
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
-.nav-btn span:last-child {
-    font-size: 0.75em;
-}
-
 /* Sound toggle button */
 .sound-toggle {
     position: fixed;
@@ -762,12 +703,294 @@ nav {
     color: #666;
 }
 
+/* ========================================
+   TABBED CATEGORY NAVIGATION
+   ======================================== */
+
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    min-width: 70px;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: white;
+    color: #667eea;
+    border-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.tab-icon {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.tab-label {
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Category Panels */
+.category-panels {
+    margin-bottom: 20px;
+}
+
+.category-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.category-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Activity Buttons */
+.activity-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.activity-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    min-width: 120px;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.activity-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+}
+
+.activity-btn:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.activity-icon {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.activity-label {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* Different colors for each category */
+#languages-panel .activity-btn {
+    background: linear-gradient(135deg, #4ecdc4, #44b8b0);
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+#languages-panel .activity-btn:hover {
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.5);
+}
+
+#learn-panel .activity-btn {
+    background: linear-gradient(135deg, #a18cd1, #9178c4);
+    box-shadow: 0 6px 20px rgba(161, 140, 209, 0.4);
+}
+
+#learn-panel .activity-btn:hover {
+    box-shadow: 0 10px 30px rgba(161, 140, 209, 0.5);
+}
+
+#games-panel .activity-btn {
+    background: linear-gradient(135deg, #fbc531, #e8b82a);
+    box-shadow: 0 6px 20px rgba(251, 197, 49, 0.4);
+}
+
+#games-panel .activity-btn:hover {
+    box-shadow: 0 10px 30px rgba(251, 197, 49, 0.5);
+}
+
+#fun-panel .activity-btn {
+    background: linear-gradient(135deg, #45b7d1, #3ca8c2);
+    box-shadow: 0 6px 20px rgba(69, 183, 209, 0.4);
+}
+
+#fun-panel .activity-btn:hover {
+    box-shadow: 0 10px 30px rgba(69, 183, 209, 0.5);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .tab-nav {
+        gap: 6px;
+        padding: 12px;
+    }
+
+    .tab-btn {
+        padding: 10px 15px;
+        min-width: 60px;
+    }
+
+    .tab-icon {
+        font-size: 1em;
+    }
+
+    .tab-label {
+        font-size: 0.65em;
+    }
+
+    .activity-buttons {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .activity-btn {
+        padding: 15px 20px;
+        min-width: 100px;
+    }
+
+    .activity-icon {
+        font-size: 1.3em;
+    }
+
+    .activity-label {
+        font-size: 0.9em;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+
+    .sound-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px 14px;
+        font-size: 0.8em;
+    }
+
+    .tab-nav {
+        gap: 5px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        min-width: 50px;
+        border-radius: 12px;
+    }
+
+    .tab-icon {
+        font-size: 0.9em;
+    }
+
+    .tab-label {
+        font-size: 0.6em;
+    }
+
+    .activity-buttons {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .activity-btn {
+        padding: 15px;
+        min-width: 80px;
+        flex: 1;
+        max-width: 45%;
+        border-radius: 15px;
+    }
+
+    .activity-icon {
+        font-size: 1.2em;
+    }
+
+    .activity-label {
+        font-size: 0.85em;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .tab-btn {
+        padding: 6px 8px;
+        min-width: 45px;
+    }
+
+    .tab-icon {
+        font-size: 0.85em;
+    }
+
+    .tab-label {
+        font-size: 0.55em;
+    }
+
+    .activity-btn {
+        padding: 12px;
+        min-width: 70px;
+    }
+}
+
 /* Legacy nav-btn styles for backwards compatibility */
-nav:not(.main-nav) .nav-btn {
+.nav-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
     padding: 15px 30px;
     font-size: 1.5em;
     border-radius: 50px;
-    flex-direction: row;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
