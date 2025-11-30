@@ -7,848 +7,368 @@ permalink: /rushda/
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Primary Meta Tags -->
     <title>Learn with Fun - Interactive Learning App for Toddlers</title>
-    <meta name="title" content="Learn with Fun - Interactive Learning App for Toddlers">
-    <meta name="description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, spelling, memory games, drawing, and storybooks. Fun educational activities for kids ages 2-6.">
-    <meta name="keywords" content="toddler learning, kids education, alphabet for kids, phonics, bangla alphabet, arabic alphabet, counting games, spelling games, memory games, drawing for kids, educational app">
+    <meta name="description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, spelling, memory games, and drawing.">
     <meta name="author" content="Bazlur Rahman">
-    <meta name="robots" content="index, follow">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bazlur.com/rushda/">
     <meta property="og:title" content="Learn with Fun - Interactive Learning App for Toddlers">
-    <meta property="og:description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, spelling, memory games, drawing, and storybooks.">
-    <meta property="og:image" content="https://bazlur.com/rushda/images/og-image.png">
-    <meta property="og:site_name" content="Learn with Fun">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bazlur.com/rushda/">
-    <meta property="twitter:title" content="Learn with Fun - Interactive Learning App for Toddlers">
-    <meta property="twitter:description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, and fun games.">
-    <meta property="twitter:image" content="https://bazlur.com/rushda/images/og-image.png">
-    <meta property="twitter:creator" content="@bazlur_rahman">
+    <meta property="og:description" content="Free interactive learning app for toddlers with alphabet, phonics, multilingual letters, and educational games.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/star.svg">
-    <link rel="apple-touch-icon" href="images/star.svg">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://bazlur.com/rushda/">
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Learn with Fun",
-        "description": "Interactive learning app for toddlers featuring alphabet, phonics, multilingual letters, numbers, and educational games",
-        "url": "https://bazlur.com/rushda/",
-        "applicationCategory": "EducationalApplication",
-        "operatingSystem": "Any",
-        "audience": {
-            "@type": "EducationalAudience",
-            "educationalRole": "student",
-            "audienceType": "Toddlers and Preschoolers"
-        },
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "Bazlur Rahman",
-            "url": "https://bazlur.com"
-        },
-        "featureList": [
-            "English Alphabet Learning",
-            "Phonics and Letter Sounds",
-            "Bangla Alphabet",
-            "Arabic Alphabet",
-            "Spelling Games",
-            "Counting and Numbers",
-            "Memory Games",
-            "Drawing and Coloring",
-            "Interactive Storybooks",
-            "Nursery Rhymes"
-        ]
-    }
-    </script>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-259LZVMWRJ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-259LZVMWRJ');
     </script>
 </head>
 <body>
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <div class="container">
-        <header role="banner">
-            <h1>Learn with Fun!</h1>
-            <button class="sound-toggle" id="soundToggle" onclick="toggleGlobalSound()" aria-label="Toggle sound">
-                <span class="sound-on">Sound ON</span>
-                <span class="sound-off" style="display:none;">Sound OFF</span>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">Learn with Fun!</h1>
+            <button class="sound-btn" id="soundToggle" onclick="toggleGlobalSound()">
+                <span id="soundIcon">Sound ON</span>
             </button>
         </header>
 
-        <!-- Tabbed Category Navigation -->
-        <nav class="tab-nav" role="tablist" aria-label="Activity categories">
-            <button class="tab-btn active" onclick="showCategory('letters')" role="tab" aria-selected="true" aria-controls="letters-panel">
+        <!-- Category Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-category="letters" onclick="showCategory('letters')">
                 <span class="tab-icon">ABC</span>
-                <span class="tab-label">Letters</span>
+                <span class="tab-text">Letters</span>
             </button>
-            <button class="tab-btn" onclick="showCategory('languages')" role="tab" aria-selected="false" aria-controls="languages-panel">
+            <button class="tab" data-category="languages" onclick="showCategory('languages')">
                 <span class="tab-icon">BD</span>
-                <span class="tab-label">Languages</span>
+                <span class="tab-text">Languages</span>
             </button>
-            <button class="tab-btn" onclick="showCategory('learn')" role="tab" aria-selected="false" aria-controls="learn-panel">
+            <button class="tab" data-category="learn" onclick="showCategory('learn')">
                 <span class="tab-icon">123</span>
-                <span class="tab-label">Learn</span>
+                <span class="tab-text">Learn</span>
             </button>
-            <button class="tab-btn" onclick="showCategory('games')" role="tab" aria-selected="false" aria-controls="games-panel">
+            <button class="tab" data-category="games" onclick="showCategory('games')">
                 <span class="tab-icon">?</span>
-                <span class="tab-label">Games</span>
+                <span class="tab-text">Games</span>
             </button>
-            <button class="tab-btn" onclick="showCategory('fun')" role="tab" aria-selected="false" aria-controls="fun-panel">
+            <button class="tab" data-category="fun" onclick="showCategory('fun')">
                 <span class="tab-icon">Art</span>
-                <span class="tab-label">Fun</span>
+                <span class="tab-text">Fun</span>
             </button>
         </nav>
 
-        <!-- Category Panels with Activity Buttons -->
-        <div class="category-panels">
-            <div id="letters-panel" class="category-panel active" role="tabpanel">
-                <div class="activity-buttons">
-                    <button class="activity-btn" onclick="showSection('alphabet')" aria-label="Learn uppercase letters">
-                        <span class="activity-icon">ABC</span>
-                        <span class="activity-label">Big Letters</span>
-                    </button>
-                    <button class="activity-btn" onclick="showSection('lowercase')" aria-label="Learn lowercase letters">
-                        <span class="activity-icon">abc</span>
-                        <span class="activity-label">Small Letters</span>
-                    </button>
-                    <button class="activity-btn" onclick="showSection('phonics')" aria-label="Learn letter sounds">
-                        <span class="activity-icon">Sounds</span>
-                        <span class="activity-label">Phonics</span>
-                    </button>
-                </div>
+        <!-- Activity Panels -->
+        <div class="panels">
+            <div class="panel active" id="letters-panel">
+                <button class="card card-red" onclick="showSection('alphabet')">
+                    <span class="card-icon">ABC</span>
+                    <span class="card-title">Big Letters</span>
+                </button>
+                <button class="card card-red" onclick="showSection('lowercase')">
+                    <span class="card-icon">abc</span>
+                    <span class="card-title">Small Letters</span>
+                </button>
+                <button class="card card-red" onclick="showSection('phonics')">
+                    <span class="card-icon">Sounds</span>
+                    <span class="card-title">Phonics</span>
+                </button>
             </div>
 
-            <div id="languages-panel" class="category-panel" role="tabpanel">
-                <div class="activity-buttons">
-                    <button class="activity-btn" onclick="showSection('bangla')" aria-label="Learn Bangla alphabet">
-                        <span class="activity-icon">BD</span>
-                        <span class="activity-label">Bangla</span>
-                    </button>
-                    <button class="activity-btn" onclick="showSection('arabic')" aria-label="Learn Arabic alphabet">
-                        <span class="activity-icon">AR</span>
-                        <span class="activity-label">Arabic</span>
-                    </button>
-                </div>
+            <div class="panel" id="languages-panel">
+                <button class="card card-teal" onclick="showSection('bangla')">
+                    <span class="card-icon">BD</span>
+                    <span class="card-title">Bangla</span>
+                </button>
+                <button class="card card-teal" onclick="showSection('arabic')">
+                    <span class="card-icon">AR</span>
+                    <span class="card-title">Arabic</span>
+                </button>
             </div>
 
-            <div id="learn-panel" class="category-panel" role="tabpanel">
-                <div class="activity-buttons">
-                    <button class="activity-btn" onclick="showSection('spelling')" aria-label="Practice spelling">
-                        <span class="activity-icon">Spell</span>
-                        <span class="activity-label">Spelling</span>
-                    </button>
-                    <button class="activity-btn" onclick="showSection('counting')" aria-label="Learn numbers">
-                        <span class="activity-icon">123</span>
-                        <span class="activity-label">Numbers</span>
-                    </button>
-                </div>
+            <div class="panel" id="learn-panel">
+                <button class="card card-purple" onclick="showSection('spelling')">
+                    <span class="card-icon">Spell</span>
+                    <span class="card-title">Spelling</span>
+                </button>
+                <button class="card card-purple" onclick="showSection('counting')">
+                    <span class="card-icon">123</span>
+                    <span class="card-title">Numbers</span>
+                </button>
             </div>
 
-            <div id="games-panel" class="category-panel" role="tabpanel">
-                <div class="activity-buttons">
-                    <button class="activity-btn" onclick="showSection('quiz')" aria-label="Take a quiz">
-                        <span class="activity-icon">?</span>
-                        <span class="activity-label">Quiz</span>
-                    </button>
-                    <button class="activity-btn" onclick="showSection('memory')" aria-label="Play memory game">
-                        <span class="activity-icon">Brain</span>
-                        <span class="activity-label">Memory</span>
-                    </button>
-                </div>
+            <div class="panel" id="games-panel">
+                <button class="card card-yellow" onclick="showSection('quiz')">
+                    <span class="card-icon">?</span>
+                    <span class="card-title">Quiz</span>
+                </button>
+                <button class="card card-yellow" onclick="showSection('memory')">
+                    <span class="card-icon">Brain</span>
+                    <span class="card-title">Memory</span>
+                </button>
             </div>
 
-            <div id="fun-panel" class="category-panel" role="tabpanel">
-                <div class="activity-buttons">
-                    <button class="activity-btn" onclick="showSection('rhymes')" aria-label="Sing songs">
-                        <span class="activity-icon">Music</span>
-                        <span class="activity-label">Songs</span>
-                    </button>
-                    <button class="activity-btn" onclick="showSection('drawing')" aria-label="Draw and color">
-                        <span class="activity-icon">Art</span>
-                        <span class="activity-label">Draw</span>
-                    </button>
-                </div>
+            <div class="panel" id="fun-panel">
+                <button class="card card-blue" onclick="showSection('rhymes')">
+                    <span class="card-icon">Music</span>
+                    <span class="card-title">Songs</span>
+                </button>
+                <button class="card card-blue" onclick="showSection('drawing')">
+                    <span class="card-icon">Art</span>
+                    <span class="card-title">Draw</span>
+                </button>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <main id="main-content" role="main">
-
-        <!-- Alphabet Section -->
-        <section id="alphabet" class="learning-section active" aria-label="Alphabet Learning">
-            <h2>Learn Your Letters!</h2>
-            <div class="alphabet-grid" id="alphabetGrid">
-                <!-- Letters will be generated by JavaScript -->
-            </div>
-            <div class="letter-display" id="letterDisplay">
-                <div class="big-letter" id="bigLetter">A</div>
-                <div class="letter-image" id="letterImage">
-                    <img src="images/a.svg" alt="Apple" id="alphabetImage">
-                </div>
-                <div class="letter-word" id="letterWord">A is for Apple</div>
-            </div>
-        </section>
-
-        <!-- Lowercase Letters Section -->
-        <section id="lowercase" class="learning-section">
-            <h2>Learn Small Letters!</h2>
-            <div class="alphabet-grid" id="lowercaseGrid">
-                <!-- Lowercase letters will be generated by JavaScript -->
-            </div>
-            <div class="letter-display" id="lowercaseLetterDisplay">
-                <div class="big-letter" id="lowercaseBigLetter">a</div>
-                <div class="letter-image" id="lowercaseLetterImage">
-                    <img src="images/a.svg" alt="Apple" id="lowercaseAlphabetImage">
-                </div>
-                <div class="letter-word" id="lowercaseLetterWord">a is for apple</div>
-            </div>
-        </section>
-
-        <!-- Phonics/Pronunciation Section -->
-        <section id="phonics" class="learning-section">
-            <h2>Letter Sounds!</h2>
-            <div class="phonics-container">
-                <div class="vowel-selector">
-                    <h3>Choose a vowel sound:</h3>
-                    <div class="vowel-buttons">
-                        <button class="vowel-btn active" onclick="selectVowel('a')" data-vowel="a">
-                            <span class="vowel-letter">A</span>
-                            <span class="vowel-sound">ah</span>
-                        </button>
-                        <button class="vowel-btn" onclick="selectVowel('e')" data-vowel="e">
-                            <span class="vowel-letter">E</span>
-                            <span class="vowel-sound">eh</span>
-                        </button>
-                        <button class="vowel-btn" onclick="selectVowel('i')" data-vowel="i">
-                            <span class="vowel-letter">I</span>
-                            <span class="vowel-sound">ih</span>
-                        </button>
-                        <button class="vowel-btn" onclick="selectVowel('o')" data-vowel="o">
-                            <span class="vowel-letter">O</span>
-                            <span class="vowel-sound">oh</span>
-                        </button>
-                        <button class="vowel-btn" onclick="selectVowel('u')" data-vowel="u">
-                            <span class="vowel-letter">U</span>
-                            <span class="vowel-sound">uh</span>
-                        </button>
+        <!-- Main Content Sections -->
+        <main class="content">
+            <!-- Alphabet Section -->
+            <section id="alphabet" class="section active">
+                <h2>Learn Your Letters!</h2>
+                <div class="alphabet-grid" id="alphabetGrid"></div>
+                <div class="letter-display" id="letterDisplay">
+                    <div class="big-letter" id="bigLetter">A</div>
+                    <div class="letter-image" id="letterImage">
+                        <img src="images/a.svg" alt="Apple" id="alphabetImage">
                     </div>
+                    <div class="letter-word" id="letterWord">A is for Apple</div>
                 </div>
+            </section>
 
-                <div class="consonant-grid" id="consonantGrid">
-                    <!-- Consonant combinations will be generated by JavaScript -->
-                </div>
-
-                <div class="phonics-display">
-                    <div class="current-sound" id="currentSound">Ba</div>
-                    <div class="sound-description" id="soundDescription">B makes "buh" sound with A makes "ah" = "Ba"</div>
-                    <button class="play-sound-btn" onclick="playCurrentSound()">
-                        Play Sound
-                    </button>
-                    <button class="practice-btn" onclick="startPhonicsGame()">
-                        Practice Game
-                    </button>
-                </div>
-            </div>
-
-            <!-- Phonics Practice Game -->
-            <div class="phonics-game" id="phonicsGame" style="display: none;">
-                <h3>Can you find the sound?</h3>
-                <div class="game-question" id="gameQuestion">Find "Ba"</div>
-                <div class="sound-options" id="soundOptions">
-                    <!-- Options will be generated -->
-                </div>
-                <div class="game-score">Score: <span id="phonicsScore">0</span></div>
-            </div>
-        </section>
-
-        <!-- Bangla Letters Section -->
-        <section id="bangla" class="learning-section">
-            <h2>বাংলা বর্ণমালা শিখি!</h2>
-            <div class="bangla-container">
-                <div class="bangla-category-selector">
-                    <button class="category-btn active" onclick="selectBanglaCategory('vowels')">
-                        <span>স্বরবর্ণ</span>
-                        <span class="category-desc">Vowels</span>
-                    </button>
-                    <button class="category-btn" onclick="selectBanglaCategory('consonants')">
-                        <span>ব্যঞ্জনবর্ণ</span>
-                        <span class="category-desc">Consonants</span>
-                    </button>
-                </div>
-
-                <div class="bangla-grid" id="banglaGrid">
-                    <!-- Bangla letters will be generated by JavaScript -->
-                </div>
-
-                <div class="bangla-display">
-                    <div class="bangla-big-letter" id="banglaBigLetter">অ</div>
-                    <div class="bangla-letter-image" id="banglaLetterImage">
-                        <img src="images/bangla/অ.svg" alt="অজগর" id="banglaAlphabetImage">
+            <!-- Lowercase Letters Section -->
+            <section id="lowercase" class="section">
+                <h2>Learn Small Letters!</h2>
+                <div class="alphabet-grid" id="lowercaseGrid"></div>
+                <div class="letter-display" id="lowercaseLetterDisplay">
+                    <div class="big-letter" id="lowercaseBigLetter">a</div>
+                    <div class="letter-image" id="lowercaseLetterImage">
+                        <img src="images/a.svg" alt="Apple" id="lowercaseAlphabetImage">
                     </div>
-                    <div class="bangla-pronunciation" id="banglaPronunciation">অ (o)</div>
-                    <div class="bangla-word-section">
-                        <div class="bangla-word" id="banglaWord">অজগর</div>
-                        <div class="bangla-word-meaning" id="banglaWordMeaning">Ojgor (Python)</div>
-                    </div>
-                    <div class="bangla-controls">
-                        <button class="play-bangla-btn" onclick="playBanglaLetter()">
-                            উচ্চারণ শুনুন
-                        </button>
-                        <button class="practice-bangla-btn" onclick="startBanglaGame()">
-                            অনুশীলন করুন
-                        </button>
-                    </div>
+                    <div class="letter-word" id="lowercaseLetterWord">a is for apple</div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Bangla Practice Game -->
-            <div class="bangla-game" id="banglaGame" style="display: none;">
-                <h3>সঠিক বর্ণটি খুঁজুন!</h3>
-                <div class="bangla-game-question" id="banglaGameQuestion">
-                    <div class="question-text">কোনটি "অ"?</div>
-                </div>
-                <div class="bangla-options" id="banglaOptions">
-                    <!-- Options will be generated -->
-                </div>
-                <div class="bangla-score">স্কোর: <span id="banglaScore">০</span></div>
-            </div>
-        </section>
-
-        <!-- Arabic Letters Section -->
-        <section id="arabic" class="learning-section">
-            <h2>تعلم الحروف العربية!</h2>
-            <div class="arabic-container">
-                <div class="arabic-greeting">
-                    <h3>السلام عليكم ورحمة الله وبركاته</h3>
-                    <p>Let's learn Arabic letters together!</p>
-                </div>
-
-                <div class="arabic-grid" id="arabicGrid">
-                    <!-- Arabic letters will be generated by JavaScript -->
-                </div>
-
-                <div class="arabic-display">
-                    <div class="arabic-big-letter" id="arabicBigLetter">أ</div>
-                    <div class="arabic-letter-image" id="arabicLetterImage">
-                        <img src="images/arabic/أ.svg" alt="أسد" id="arabicAlphabetImage">
-                    </div>
-                    <div class="arabic-pronunciation" id="arabicPronunciation">أ (alif)</div>
-                    <div class="arabic-word-section">
-                        <div class="arabic-word" id="arabicWord">أسد</div>
-                        <div class="arabic-word-meaning" id="arabicWordMeaning">Asad (Lion)</div>
-                    </div>
-                    <div class="arabic-controls">
-                        <button class="play-arabic-btn" onclick="playArabicLetter()">
-                            استمع للنطق
-                        </button>
-                        <button class="practice-arabic-btn" onclick="startArabicGame()">
-                            تدرب
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Arabic Practice Game -->
-            <div class="arabic-game" id="arabicGame" style="display: none;">
-                <h3>اعثر على الحرف الصحيح!</h3>
-                <div class="arabic-game-question" id="arabicGameQuestion">
-                    <div class="question-text">أين "أ"؟</div>
-                </div>
-                <div class="arabic-options" id="arabicOptions">
-                    <!-- Options will be generated -->
-                </div>
-                <div class="arabic-score">النقاط: <span id="arabicScore">٠</span></div>
-            </div>
-        </section>
-
-        <!-- Spelling Section -->
-        <section id="spelling" class="learning-section">
-            <h2>Let's Spell!</h2>
-            <div class="spelling-game">
-                <div class="word-image" id="wordImage">
-                    <img id="spellingImage" src="" alt="">
-                    <div class="word-label" id="wordLabel">CAT</div>
-                </div>
-                <div class="word-to-spell" id="wordToSpell">
-                    <!-- Letter slots will be generated -->
-                </div>
-                <div class="letter-choices" id="letterChoices">
-                    <!-- Letter buttons will be generated -->
-                </div>
-                <div class="spelling-controls">
-                    <button class="control-btn clear-btn" onclick="clearSpelling()">
-                        <span>Try Again</span>
-                    </button>
-                    <button class="control-btn hint-btn" onclick="showHint()">
-                        <span>Hint</span>
-                    </button>
-                    <button class="control-btn next-btn" onclick="nextWord()">
-                        <span>Next Word</span>
-                    </button>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                    <div class="progress-text" id="progressText">0/10 Words</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Counting Section -->
-        <section id="counting" class="learning-section">
-            <h2>Let's Count!</h2>
-            <div class="counting-area">
-                <div class="number-display" id="numberDisplay">1</div>
-                <div class="objects-container" id="objectsContainer">
-                    <!-- Objects will be generated -->
-                </div>
-                <div class="number-buttons" id="numberButtons">
-                    <!-- Number buttons will be generated -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Quiz Section -->
-        <section id="quiz" class="learning-section">
-            <h2>Quiz Time!</h2>
-            <div class="quiz-container">
-                <div class="quiz-categories">
-                    <button class="category-btn active" onclick="selectQuizCategory('all')">
-                        <span>All</span>
-                    </button>
-                    <button class="category-btn" onclick="selectQuizCategory('letters')">
-                        <span>Letters</span>
-                    </button>
-                    <button class="category-btn" onclick="selectQuizCategory('numbers')">
-                        <span>Numbers</span>
-                    </button>
-                    <button class="category-btn" onclick="selectQuizCategory('colors')">
-                        <span>Colors</span>
-                    </button>
-                    <button class="category-btn" onclick="selectQuizCategory('shapes')">
-                        <span>Shapes</span>
-                    </button>
-                </div>
-
-                <div class="quiz-question" id="quizQuestion">
-                    <div class="question-text" id="questionText">What letter is this?</div>
-                    <div class="question-content" id="questionContent">A</div>
-                </div>
-
-                <div class="quiz-answers" id="quizAnswers">
-                    <!-- Answer buttons will be generated -->
-                </div>
-
-                <div class="quiz-score">
-                    <div class="score-display">
-                        <span class="score-label">Score:</span>
-                        <span class="score-value" id="quizScore">0</span>
-                    </div>
-                    <div class="streak-display">
-                        <span class="streak-label">Streak:</span>
-                        <span class="streak-value" id="quizStreak">0</span>
-                    </div>
-                </div>
-
-                <button class="next-question-btn" id="nextQuestionBtn" onclick="nextQuestion()" style="display: none;">
-                    Next Question
-                </button>
-            </div>
-        </section>
-
-        <!-- Memory Game Section -->
-        <section id="memory" class="learning-section">
-            <h2>Memory Game!</h2>
-            <div class="memory-container">
-                <div class="memory-controls">
-                    <div class="difficulty-selector">
-                        <button class="difficulty-btn active" onclick="setMemoryDifficulty('easy')">
-                            <span>Easy (4 cards)</span>
-                        </button>
-                        <button class="difficulty-btn" onclick="setMemoryDifficulty('medium')">
-                            <span>Medium (8 cards)</span>
-                        </button>
-                        <button class="difficulty-btn" onclick="setMemoryDifficulty('hard')">
-                            <span>Hard (12 cards)</span>
-                        </button>
-                    </div>
-
-                    <div class="memory-stats">
-                        <div class="stat-item">
-                            <span class="stat-label">Moves:</span>
-                            <span class="stat-value" id="memoryMoves">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Matches:</span>
-                            <span class="stat-value" id="memoryMatches">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Time:</span>
-                            <span class="stat-value" id="memoryTime">0s</span>
-                        </div>
-                    </div>
-
-                    <button class="new-game-btn" onclick="startNewMemoryGame()">
-                        New Game
-                    </button>
-                </div>
-
-                <div class="memory-board" id="memoryBoard">
-                    <!-- Memory cards will be generated here -->
-                </div>
-
-                <div class="memory-message" id="memoryMessage">
-                    Find all the matching pairs!
-                </div>
-            </div>
-        </section>
-
-        <!-- Nursery Rhymes Section -->
-        <section id="rhymes" class="learning-section">
-            <h2>Sing Along!</h2>
-            <div class="rhymes-container">
-                <div class="song-selector">
-                    <h3>Choose a Song:</h3>
-                    <div class="song-buttons" id="songButtons">
-                        <!-- Song buttons will be generated -->
-                    </div>
-                </div>
-
-                <div class="rhyme-player" id="rhymePlayer">
-                    <div class="song-title" id="songTitle">ABC Song</div>
-
-                    <div class="lyrics-display" id="lyricsDisplay">
-                        <div class="lyrics-line" id="lyricsLine">Click a song to start singing!</div>
-                    </div>
-
-                    <div class="player-controls">
-                        <button class="control-btn play-btn" id="playBtn" onclick="togglePlay()">
-                            <span id="playIcon">Play</span>
-                        </button>
-                        <button class="control-btn restart-btn" onclick="restartSong()">
-                            Restart
-                        </button>
-                        <button class="control-btn slow-btn" onclick="toggleSpeed()">
-                            <span id="speedText">Normal</span>
-                        </button>
-                    </div>
-
-                    <div class="progress-container">
-                        <div class="progress-bar-rhyme">
-                            <div class="progress-fill-rhyme" id="progressFillRhyme"></div>
-                        </div>
-                        <div class="progress-text-rhyme" id="progressTextRhyme">0:00 / 0:00</div>
-                    </div>
-                </div>
-
-                <div class="rhyme-animations" id="rhymeAnimations">
-                    <!-- Animated elements for each song -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Drawing & Coloring Section -->
-        <section id="drawing" class="learning-section">
-            <h2>Let's Draw & Color!</h2>
-            <div class="drawing-container">
-                <div class="drawing-tools">
-                    <div class="tool-group">
-                        <h3>Choose Activity:</h3>
-                        <div class="activity-buttons">
-                            <button class="activity-btn active" onclick="setDrawingMode('free')">
-                                <span>Free Draw</span>
+            <!-- Phonics Section -->
+            <section id="phonics" class="section">
+                <h2>Letter Sounds!</h2>
+                <div class="phonics-container">
+                    <div class="vowel-selector">
+                        <h3>Choose a vowel sound:</h3>
+                        <div class="vowel-buttons">
+                            <button class="vowel-btn active" onclick="selectVowel('a')" data-vowel="a">
+                                <span class="vowel-letter">A</span>
+                                <span class="vowel-sound">ah</span>
                             </button>
-                            <button class="activity-btn" onclick="setDrawingMode('trace')">
-                                <span>Trace Letters</span>
+                            <button class="vowel-btn" onclick="selectVowel('e')" data-vowel="e">
+                                <span class="vowel-letter">E</span>
+                                <span class="vowel-sound">eh</span>
                             </button>
-                            <button class="activity-btn" onclick="setDrawingMode('color')">
-                                <span>Color Pages</span>
+                            <button class="vowel-btn" onclick="selectVowel('i')" data-vowel="i">
+                                <span class="vowel-letter">I</span>
+                                <span class="vowel-sound">ih</span>
                             </button>
-                            <button class="activity-btn" onclick="setDrawingMode('mix')">
-                                <span>Mix Colors</span>
+                            <button class="vowel-btn" onclick="selectVowel('o')" data-vowel="o">
+                                <span class="vowel-letter">O</span>
+                                <span class="vowel-sound">oh</span>
+                            </button>
+                            <button class="vowel-btn" onclick="selectVowel('u')" data-vowel="u">
+                                <span class="vowel-letter">U</span>
+                                <span class="vowel-sound">uh</span>
                             </button>
                         </div>
                     </div>
+                    <div class="consonant-grid" id="consonantGrid"></div>
+                    <div class="phonics-display">
+                        <div class="current-sound" id="currentSound">Ba</div>
+                        <div class="sound-description" id="soundDescription">B + A = "Ba"</div>
+                        <button class="play-sound-btn" onclick="playCurrentSound()">Play Sound</button>
+                    </div>
+                </div>
+            </section>
 
-                    <div class="tool-group">
-                        <h3>Colors:</h3>
-                        <div class="color-palette" id="colorPalette">
-                            <!-- Color buttons will be generated -->
+            <!-- Bangla Section -->
+            <section id="bangla" class="section">
+                <h2>বাংলা বর্ণমালা শিখি!</h2>
+                <div class="bangla-container">
+                    <div class="bangla-category-selector">
+                        <button class="category-btn active" onclick="selectBanglaCategory('vowels')">
+                            <span>স্বরবর্ণ</span>
+                            <span class="category-desc">Vowels</span>
+                        </button>
+                        <button class="category-btn" onclick="selectBanglaCategory('consonants')">
+                            <span>ব্যঞ্জনবর্ণ</span>
+                            <span class="category-desc">Consonants</span>
+                        </button>
+                    </div>
+                    <div class="bangla-grid" id="banglaGrid"></div>
+                    <div class="bangla-display">
+                        <div class="bangla-big-letter" id="banglaBigLetter">অ</div>
+                        <div class="bangla-letter-image" id="banglaLetterImage">
+                            <img src="images/bangla/অ.svg" alt="অজগর" id="banglaAlphabetImage">
+                        </div>
+                        <div class="bangla-pronunciation" id="banglaPronunciation">অ (o)</div>
+                        <div class="bangla-word-section">
+                            <div class="bangla-word" id="banglaWord">অজগর</div>
+                            <div class="bangla-word-meaning" id="banglaWordMeaning">Ojgor (Python)</div>
+                        </div>
+                        <button class="play-bangla-btn" onclick="playBanglaLetter()">উচ্চারণ শুনুন</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Arabic Section -->
+            <section id="arabic" class="section">
+                <h2>تعلم الحروف العربية!</h2>
+                <div class="arabic-container">
+                    <div class="arabic-grid" id="arabicGrid"></div>
+                    <div class="arabic-display">
+                        <div class="arabic-big-letter" id="arabicBigLetter">أ</div>
+                        <div class="arabic-letter-image" id="arabicLetterImage">
+                            <img src="images/arabic/أ.svg" alt="أسد" id="arabicAlphabetImage">
+                        </div>
+                        <div class="arabic-pronunciation" id="arabicPronunciation">أ (alif)</div>
+                        <div class="arabic-word-section">
+                            <div class="arabic-word" id="arabicWord">أسد</div>
+                            <div class="arabic-word-meaning" id="arabicWordMeaning">Asad (Lion)</div>
+                        </div>
+                        <button class="play-arabic-btn" onclick="playArabicLetter()">استمع للنطق</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spelling Section -->
+            <section id="spelling" class="section">
+                <h2>Let's Spell!</h2>
+                <div class="spelling-game">
+                    <div class="word-image" id="wordImage">
+                        <img id="spellingImage" src="" alt="">
+                        <div class="word-label" id="wordLabel">CAT</div>
+                    </div>
+                    <div class="word-to-spell" id="wordToSpell"></div>
+                    <div class="letter-choices" id="letterChoices"></div>
+                    <div class="spelling-controls">
+                        <button class="control-btn" onclick="clearSpelling()">Try Again</button>
+                        <button class="control-btn" onclick="showHint()">Hint</button>
+                        <button class="control-btn" onclick="nextWord()">Next Word</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Counting Section -->
+            <section id="counting" class="section">
+                <h2>Let's Count!</h2>
+                <div class="counting-area">
+                    <div class="number-display" id="numberDisplay">1</div>
+                    <div class="objects-container" id="objectsContainer"></div>
+                    <div class="number-buttons" id="numberButtons"></div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <h2>Quiz Time!</h2>
+                <div class="quiz-container">
+                    <div class="quiz-question" id="quizQuestion">
+                        <div class="question-text" id="questionText">What letter is this?</div>
+                        <div class="question-content" id="questionContent">A</div>
+                    </div>
+                    <div class="quiz-answers" id="quizAnswers"></div>
+                    <div class="quiz-score">
+                        <span>Score: <strong id="quizScore">0</strong></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Memory Game Section -->
+            <section id="memory" class="section">
+                <h2>Memory Game!</h2>
+                <div class="memory-container">
+                    <div class="memory-controls">
+                        <div class="difficulty-selector">
+                            <button class="difficulty-btn active" onclick="setMemoryDifficulty('easy')">Easy</button>
+                            <button class="difficulty-btn" onclick="setMemoryDifficulty('medium')">Medium</button>
+                            <button class="difficulty-btn" onclick="setMemoryDifficulty('hard')">Hard</button>
+                        </div>
+                        <div class="memory-stats">
+                            <span>Moves: <strong id="memoryMoves">0</strong></span>
+                            <span>Matches: <strong id="memoryMatches">0</strong></span>
+                        </div>
+                        <button class="new-game-btn" onclick="startNewMemoryGame()">New Game</button>
+                    </div>
+                    <div class="memory-board" id="memoryBoard"></div>
+                </div>
+            </section>
+
+            <!-- Nursery Rhymes Section -->
+            <section id="rhymes" class="section">
+                <h2>Sing Along!</h2>
+                <div class="rhymes-container">
+                    <div class="song-selector">
+                        <h3>Choose a Song:</h3>
+                        <div class="song-buttons" id="songButtons"></div>
+                    </div>
+                    <div class="rhyme-player" id="rhymePlayer">
+                        <div class="song-title" id="songTitle">ABC Song</div>
+                        <div class="lyrics-display" id="lyricsDisplay">
+                            <div class="lyrics-line" id="lyricsLine">Click a song to start!</div>
+                        </div>
+                        <div class="player-controls">
+                            <button class="control-btn" id="playBtn" onclick="togglePlay()">Play</button>
+                            <button class="control-btn" onclick="restartSong()">Restart</button>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <div class="tool-group">
-                        <h3>Brush Size:</h3>
+            <!-- Drawing Section -->
+            <section id="drawing" class="section">
+                <h2>Let's Draw!</h2>
+                <div class="drawing-container">
+                    <div class="drawing-tools">
+                        <div class="color-palette" id="colorPalette"></div>
                         <div class="brush-sizes">
-                            <button class="brush-btn" onclick="setBrushSize(10)">
-                                <div class="brush-preview small"></div> Small
-                            </button>
-                            <button class="brush-btn active" onclick="setBrushSize(20)">
-                                <div class="brush-preview medium"></div> Medium
-                            </button>
-                            <button class="brush-btn" onclick="setBrushSize(35)">
-                                <div class="brush-preview large"></div> Large
-                            </button>
+                            <button class="brush-btn" onclick="setBrushSize(8)">S</button>
+                            <button class="brush-btn active" onclick="setBrushSize(16)">M</button>
+                            <button class="brush-btn" onclick="setBrushSize(28)">L</button>
+                        </div>
+                        <div class="drawing-actions">
+                            <button class="action-btn" onclick="clearCanvas()">Clear</button>
                         </div>
                     </div>
-
-                    <div class="tool-group">
-                        <h3>Actions:</h3>
-                        <div class="action-buttons">
-                            <button class="action-btn clear-btn" onclick="clearCanvas()">
-                                Clear
-                            </button>
-                            <button class="action-btn save-btn" onclick="saveDrawing()">
-                                Save
-                            </button>
-                            <button class="action-btn template-btn" onclick="loadTemplate()">
-                                New Template
-                            </button>
-                        </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="drawingCanvas" width="800" height="500"></canvas>
                     </div>
                 </div>
-
-                <div class="canvas-area">
-                    <div class="canvas-container">
-                        <canvas id="drawingCanvas" width="800" height="600"></canvas>
-                        <canvas id="templateCanvas" width="800" height="600"></canvas>
-                    </div>
-
-                    <div class="drawing-message" id="drawingMessage">
-                        Choose colors and start drawing!
-                    </div>
-                </div>
-            </div>
-
-            <div class="color-mixing-panel" id="colorMixingPanel" style="display: none;">
-                    <h3>Mix Colors Together!</h3>
-                    <div class="mixing-explanation" id="mixingExplanation">
-                        Choose 2 or more colors to mix together!
-                    </div>
-
-                    <div class="mixing-mode-selector">
-                        <button class="mode-btn active" onclick="setMixingMode('simple')" id="simpleModeBtn">
-                            <span>Simple (2 colors)</span>
-                        </button>
-                        <button class="mode-btn" onclick="setMixingMode('advanced')" id="advancedModeBtn">
-                            <span>Advanced (3+ colors)</span>
-                        </button>
-                    </div>
-
-                    <div class="color-categories">
-                        <div class="color-category">
-                            <h4>Primary Colors:</h4>
-                            <div class="color-buttons">
-                                <button class="primary-color-btn" data-color="red" onclick="selectPrimaryColor('red', '#ff4444')">
-                                    <div class="color-circle" style="background-color: #ff4444;"></div>
-                                    <span>Red</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="blue" onclick="selectPrimaryColor('blue', '#4444ff')">
-                                    <div class="color-circle" style="background-color: #4444ff;"></div>
-                                    <span>Blue</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="yellow" onclick="selectPrimaryColor('yellow', '#ffff44')">
-                                    <div class="color-circle" style="background-color: #ffff44;"></div>
-                                    <span>Yellow</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="color-category">
-                            <h4>Secondary Colors:</h4>
-                            <div class="color-buttons">
-                                <button class="primary-color-btn" data-color="purple" onclick="selectPrimaryColor('purple', '#8b4bff')">
-                                    <div class="color-circle" style="background-color: #8b4bff;"></div>
-                                    <span>Purple</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="orange" onclick="selectPrimaryColor('orange', '#ff8c42')">
-                                    <div class="color-circle" style="background-color: #ff8c42;"></div>
-                                    <span>Orange</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="green" onclick="selectPrimaryColor('green', '#4caf50')">
-                                    <div class="color-circle" style="background-color: #4caf50;"></div>
-                                    <span>Green</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="color-category">
-                            <h4>Special Colors:</h4>
-                            <div class="color-buttons">
-                                <button class="primary-color-btn" data-color="white" onclick="selectPrimaryColor('white', '#ffffff')">
-                                    <div class="color-circle" style="background-color: #ffffff; border: 2px solid #ccc;"></div>
-                                    <span>White</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="black" onclick="selectPrimaryColor('black', '#333333')">
-                                    <div class="color-circle" style="background-color: #333333;"></div>
-                                    <span>Black</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="pink" onclick="selectPrimaryColor('pink', '#ffb3ba')">
-                                    <div class="color-circle" style="background-color: #ffb3ba;"></div>
-                                    <span>Pink</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="color-category">
-                            <h4>Light Colors:</h4>
-                            <div class="color-buttons">
-                                <button class="primary-color-btn" data-color="light blue" onclick="selectPrimaryColor('light blue', '#bae1ff')">
-                                    <div class="color-circle" style="background-color: #bae1ff;"></div>
-                                    <span>Light Blue</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="light green" onclick="selectPrimaryColor('light green', '#bffcc6')">
-                                    <div class="color-circle" style="background-color: #bffcc6;"></div>
-                                    <span>Light Green</span>
-                                </button>
-                                <button class="primary-color-btn" data-color="light yellow" onclick="selectPrimaryColor('light yellow', '#ffffba')">
-                                    <div class="color-circle" style="background-color: #ffffba;"></div>
-                                    <span>Light Yellow</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mixing-area">
-                        <div class="selected-colors" id="selectedColorsDisplay">
-                            <div class="selected-colors-label">Selected Colors:</div>
-                            <div class="selected-colors-list" id="selectedColorsList">
-                                <!-- Selected colors will appear here -->
-                            </div>
-                        </div>
-
-                        <div class="mixing-bowls" id="mixingBowls">
-                            <!-- Dynamic mixing bowls will be generated -->
-                        </div>
-
-                        <div class="mixing-cauldron">
-                            <div class="cauldron-container">
-                                <div class="cauldron-content" id="cauldronContent">
-                                    <div class="cauldron-surface" id="cauldronSurface"></div>
-                                    <div class="bubbles" id="bubbles"></div>
-                                </div>
-                                <div class="cauldron-label">Magic Mixing Pot!</div>
-                            </div>
-                        </div>
-
-                        <button class="mix-btn" id="mixBtn" onclick="mixColors()" disabled>
-                            Mix Colors!
-                        </button>
-
-                        <button class="reset-mix-btn" onclick="resetMixing()">
-                            Try Again
-                        </button>
-                    </div>
-
-                    <div class="mixing-result" id="mixingResult">
-                        <div class="result-text" id="resultText"></div>
-                        <button class="use-color-btn" id="useColorBtn" onclick="useNewColor()" style="display: none;">
-                            Use This Color to Draw!
-                        </button>
-                    </div>
-                </div>
-
-                <div class="sticker-panel" id="stickerPanel" style="display: none;">
-                    <h3>Add Stickers:</h3>
-                    <div class="stickers" id="stickers">
-                        <!-- Stickers will be generated -->
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
         <!-- Celebration Modal -->
-        <div class="celebration" id="celebration" role="dialog" aria-label="Celebration">
-            <div class="celebration-content">
+        <div class="celebration" id="celebration">
+            <div class="celebration-box">
                 <h2>Great Job!</h2>
-                <div class="stars" aria-hidden="true">***</div>
+                <div class="stars">* * *</div>
                 <button onclick="closeCelebration()">Continue</button>
             </div>
         </div>
-
-        </main>
     </div>
 
-    <!-- Loading screen -->
-    <div class="loading-screen" id="loadingScreen">
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
         <div class="loading-content">
-            <div class="loading-logo">Learn!</div>
             <div class="loading-text">Learn with Fun!</div>
-            <div class="loading-spinner">
-                <div class="spinner-letter">L</div>
-                <div class="spinner-letter">E</div>
-                <div class="spinner-letter">A</div>
-                <div class="spinner-letter">R</div>
-                <div class="spinner-letter">N</div>
-            </div>
-            <div class="loading-progress">
-                <div class="loading-bar" id="loadingBar"></div>
-            </div>
+            <div class="loading-bar"><div class="loading-progress" id="loadingBar"></div></div>
         </div>
     </div>
-
-    <!-- Floating background elements -->
-    <div class="floating-elements" id="floatingElements"></div>
-
-    <!-- Achievement System -->
-    <div class="achievement-panel" id="achievementPanel">
-        <div class="achievement-header">
-            <h3>Achievements</h3>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-                <span class="progress-text" id="progressText">0/100</span>
-            </div>
-        </div>
-        <div class="achievement-list" id="achievementList"></div>
-    </div>
-
-    <!-- Achievement Notification -->
-    <div class="achievement-notification" id="achievementNotification">
-        <div class="achievement-content">
-            <span class="achievement-icon">Trophy</span>
-            <div class="achievement-text">
-                <div class="achievement-title"></div>
-                <div class="achievement-description"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Particle effects container -->
-    <div class="particle-container" id="particleContainer"></div>
-
-    <!-- Celebration overlay -->
 
     <script src="script.js"></script>
 </body>
-
 </html>
-
