@@ -669,7 +669,9 @@ function flipCard(card) {
 // ===== Nursery Rhymes =====
 const songs = [
     {
-        title: 'ABC Song',
+        title: '🎵 ABC Song',
+        icon: '🔤',
+        animations: ['🅰️', '🅱️', '©️', '🔤', '📚'],
         lyrics: [
             'A B C D E F G',
             'H I J K L M N O P',
@@ -680,7 +682,9 @@ const songs = [
         ]
     },
     {
-        title: 'Twinkle Twinkle',
+        title: '⭐ Twinkle Twinkle',
+        icon: '⭐',
+        animations: ['⭐', '🌟', '✨', '💫', '🌙'],
         lyrics: [
             'Twinkle, twinkle, little star',
             'How I wonder what you are',
@@ -691,12 +695,44 @@ const songs = [
         ]
     },
     {
-        title: 'Row Your Boat',
+        title: '🚣 Row Your Boat',
+        icon: '🚣',
+        animations: ['🚣', '🌊', '⛵', '🐟', '☀️'],
         lyrics: [
             'Row, row, row your boat',
             'Gently down the stream',
             'Merrily, merrily, merrily, merrily',
             'Life is but a dream'
+        ]
+    },
+    {
+        title: '🐑 Baa Baa Black Sheep',
+        icon: '🐑',
+        animations: ['🐑', '🧶', '👦', '👧', '🏠'],
+        lyrics: [
+            'Baa, baa, black sheep',
+            'Have you any wool?',
+            'Yes sir, yes sir',
+            'Three bags full',
+            'One for the master',
+            'One for the dame',
+            'One for the little boy',
+            'Who lives down the lane'
+        ]
+    },
+    {
+        title: '🕷️ Itsy Bitsy Spider',
+        icon: '🕷️',
+        animations: ['🕷️', '🌧️', '☀️', '🌈', '💧'],
+        lyrics: [
+            'The itsy bitsy spider',
+            'Climbed up the water spout',
+            'Down came the rain',
+            'And washed the spider out',
+            'Out came the sun',
+            'And dried up all the rain',
+            'And the itsy bitsy spider',
+            'Climbed up the spout again'
         ]
     }
 ];
@@ -705,6 +741,8 @@ let currentSong = 0;
 let currentLyricLine = 0;
 let isPlaying = false;
 let songTimer = null;
+let playbackSpeed = 1; // 1 = normal (3s), 0.6 = slow (5s)
+let songStartTime = 0;
 
 function initializeNurseryRhymes() {
     const buttons = document.getElementById('songButtons');
@@ -713,61 +751,162 @@ function initializeNurseryRhymes() {
     songs.forEach((song, index) => {
         const btn = document.createElement('button');
         btn.className = 'song-btn';
-        btn.textContent = song.title;
+        btn.innerHTML = `<span>${song.icon}</span> ${song.title.replace(/^[^\s]+\s/, '')}`;
         btn.onclick = () => selectSong(index);
         buttons.appendChild(btn);
     });
+
+    // Initialize first song
+    selectSong(0);
 }
 
 function selectSong(index) {
+    // Stop current playback
+    if (songTimer) clearInterval(songTimer);
+    isPlaying = false;
+
     currentSong = index;
     currentLyricLine = 0;
-    isPlaying = false;
-    if (songTimer) clearInterval(songTimer);
 
-    document.getElementById('songTitle').textContent = songs[index].title;
-    document.getElementById('lyricsLine').textContent = songs[index].lyrics[0];
-    document.getElementById('playBtn').textContent = 'Play';
+    const song = songs[index];
+
+    // Update UI
+    document.getElementById('songTitle').textContent = song.title;
+    document.getElementById('lyricsLine').textContent = song.lyrics[0];
+    document.getElementById('playIcon').textContent = '▶ Play';
+
+    // Update progress
+    updateProgress(0);
+
+    // Update song button active state
+    document.querySelectorAll('.song-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+    });
+
+    // Show animations
+    showSongAnimations(song.animations);
+}
+
+function showSongAnimations(animations) {
+    const container = document.getElementById('rhymeAnimations');
+    if (!container) return;
+
+    container.innerHTML = '';
+    animations.forEach(emoji => {
+        const el = document.createElement('span');
+        el.className = 'animation-element';
+        el.textContent = emoji;
+        container.appendChild(el);
+    });
 }
 
 function togglePlay() {
     isPlaying = !isPlaying;
-    document.getElementById('playBtn').textContent = isPlaying ? 'Pause' : 'Play';
 
     if (isPlaying) {
+        document.getElementById('playIcon').textContent = '⏸ Pause';
+        songStartTime = Date.now();
         playLyrics();
     } else {
+        document.getElementById('playIcon').textContent = '▶ Play';
         if (songTimer) clearInterval(songTimer);
+    }
+}
+
+function toggleSpeed() {
+    playbackSpeed = playbackSpeed === 1 ? 0.6 : 1;
+    const speedText = document.getElementById('speedText');
+    speedText.textContent = playbackSpeed === 1 ? '🐢 Slow' : '🐇 Normal';
+
+    // If playing, restart with new speed
+    if (isPlaying) {
+        clearInterval(songTimer);
+        playLyrics();
     }
 }
 
 function playLyrics() {
     const song = songs[currentSong];
+    const interval = playbackSpeed === 1 ? 3000 : 5000;
 
     const showLine = () => {
         if (currentLyricLine < song.lyrics.length) {
             const line = song.lyrics[currentLyricLine];
-            document.getElementById('lyricsLine').textContent = line;
+
+            // Show lyrics with word highlighting
+            displayLyricsWithHighlight(line);
+
             speak(line);
             currentLyricLine++;
+
+            // Update progress
+            const progress = (currentLyricLine / song.lyrics.length) * 100;
+            updateProgress(progress);
         } else {
+            // Song finished
             currentLyricLine = 0;
             isPlaying = false;
-            document.getElementById('playBtn').textContent = 'Play';
+            document.getElementById('playIcon').textContent = '▶ Play';
             clearInterval(songTimer);
+            updateProgress(100);
+
+            // Show celebration
+            setTimeout(() => {
+                showCelebration();
+            }, 500);
         }
     };
 
     showLine();
-    songTimer = setInterval(showLine, 3000);
+    songTimer = setInterval(showLine, interval);
+}
+
+function displayLyricsWithHighlight(line) {
+    const lyricsContainer = document.getElementById('lyricsLine');
+    const words = line.split(' ');
+
+    lyricsContainer.innerHTML = words.map((word, i) =>
+        `<span class="lyrics-word" style="animation-delay: ${i * 0.1}s">${word}</span>`
+    ).join(' ');
+
+    // Highlight words one by one
+    words.forEach((word, i) => {
+        setTimeout(() => {
+            const wordElements = lyricsContainer.querySelectorAll('.lyrics-word');
+            wordElements.forEach((el, j) => {
+                if (j < i) el.classList.add('sung');
+                else if (j === i) el.classList.add('highlighted');
+                else el.classList.remove('highlighted', 'sung');
+            });
+        }, i * 300);
+    });
+}
+
+function updateProgress(percent) {
+    const progressFill = document.getElementById('progressFillRhyme');
+    const progressText = document.getElementById('progressTextRhyme');
+
+    if (progressFill) {
+        progressFill.style.width = percent + '%';
+    }
+
+    if (progressText) {
+        const song = songs[currentSong];
+        const totalLines = song.lyrics.length;
+        const currentLine = Math.min(currentLyricLine, totalLines);
+        progressText.textContent = `Line ${currentLine} / ${totalLines}`;
+    }
 }
 
 function restartSong() {
     currentLyricLine = 0;
     if (songTimer) clearInterval(songTimer);
     isPlaying = false;
-    document.getElementById('playBtn').textContent = 'Play';
-    document.getElementById('lyricsLine').textContent = songs[currentSong].lyrics[0];
+
+    const song = songs[currentSong];
+    document.getElementById('playIcon').textContent = '▶ Play';
+    document.getElementById('lyricsLine').textContent = song.lyrics[0];
+    updateProgress(0);
 }
 
 // ===== Drawing =====

@@ -319,13 +319,25 @@ permalink: /rushda/
                     <div class="rhyme-player" id="rhymePlayer">
                         <div class="song-title" id="songTitle">ABC Song</div>
                         <div class="lyrics-display" id="lyricsDisplay">
-                            <div class="lyrics-line" id="lyricsLine">Click a song to start!</div>
+                            <div class="lyrics-line" id="lyricsLine">Click a song to start singing!</div>
                         </div>
                         <div class="player-controls">
-                            <button class="control-btn" id="playBtn" onclick="togglePlay()">Play</button>
-                            <button class="control-btn" onclick="restartSong()">Restart</button>
+                            <button class="control-btn play-btn" id="playBtn" onclick="togglePlay()">
+                                <span id="playIcon">▶ Play</span>
+                            </button>
+                            <button class="control-btn restart-btn" onclick="restartSong()">↺ Restart</button>
+                            <button class="control-btn speed-btn" onclick="toggleSpeed()">
+                                <span id="speedText">🐢 Slow</span>
+                            </button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar-rhyme">
+                                <div class="progress-fill-rhyme" id="progressFillRhyme"></div>
+                            </div>
+                            <div class="progress-text-rhyme" id="progressTextRhyme">0:00 / 0:00</div>
                         </div>
                     </div>
+                    <div class="rhyme-animations" id="rhymeAnimations"></div>
                 </div>
             </section>
 
