@@ -6,6 +6,44 @@ let spellingProgress = [];
 let completedWords = 0;
 let hintCount = 0;
 let selectedLetters = [];
+let globalSoundEnabled = true;
+
+// Global sound toggle function
+function toggleGlobalSound() {
+    globalSoundEnabled = !globalSoundEnabled;
+    const toggleBtn = document.getElementById('soundToggle');
+    const soundOn = toggleBtn.querySelector('.sound-on');
+    const soundOff = toggleBtn.querySelector('.sound-off');
+
+    if (globalSoundEnabled) {
+        toggleBtn.classList.remove('muted');
+        soundOn.style.display = 'inline';
+        soundOff.style.display = 'none';
+    } else {
+        toggleBtn.classList.add('muted');
+        soundOn.style.display = 'none';
+        soundOff.style.display = 'inline';
+        // Stop any currently playing sounds
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+    }
+
+    // Save preference
+    localStorage.setItem('rushda-sound-enabled', globalSoundEnabled);
+}
+
+// Initialize sound preference from localStorage
+function initSoundPreference() {
+    const saved = localStorage.getItem('rushda-sound-enabled');
+    if (saved !== null) {
+        globalSoundEnabled = saved === 'true';
+        if (!globalSoundEnabled) {
+            toggleGlobalSound(); // This will toggle it back to match saved state
+            toggleGlobalSound();
+        }
+    }
+}
 
 // Quiz variables
 let currentQuizCategory = 'all';
@@ -1437,6 +1475,7 @@ function startLoadingSequence() {
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     startLoadingSequence();
+    initSoundPreference();
 
     setTimeout(() => {
         initializeAchievements();

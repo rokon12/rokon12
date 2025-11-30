@@ -8,7 +8,78 @@ permalink: /rushda/
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn with Fun - For Toddlers</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Learn with Fun - Interactive Learning App for Toddlers</title>
+    <meta name="title" content="Learn with Fun - Interactive Learning App for Toddlers">
+    <meta name="description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, spelling, memory games, drawing, and storybooks. Fun educational activities for kids ages 2-6.">
+    <meta name="keywords" content="toddler learning, kids education, alphabet for kids, phonics, bangla alphabet, arabic alphabet, counting games, spelling games, memory games, drawing for kids, educational app">
+    <meta name="author" content="Bazlur Rahman">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bazlur.com/rushda/">
+    <meta property="og:title" content="Learn with Fun - Interactive Learning App for Toddlers">
+    <meta property="og:description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, spelling, memory games, drawing, and storybooks.">
+    <meta property="og:image" content="https://bazlur.com/rushda/images/og-image.png">
+    <meta property="og:site_name" content="Learn with Fun">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bazlur.com/rushda/">
+    <meta property="twitter:title" content="Learn with Fun - Interactive Learning App for Toddlers">
+    <meta property="twitter:description" content="Free interactive learning app for toddlers featuring alphabet, phonics, Bangla, Arabic, numbers, and fun games.">
+    <meta property="twitter:image" content="https://bazlur.com/rushda/images/og-image.png">
+    <meta property="twitter:creator" content="@bazlur_rahman">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/star.svg">
+    <link rel="apple-touch-icon" href="images/star.svg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bazlur.com/rushda/">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Learn with Fun",
+        "description": "Interactive learning app for toddlers featuring alphabet, phonics, multilingual letters, numbers, and educational games",
+        "url": "https://bazlur.com/rushda/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student",
+            "audienceType": "Toddlers and Preschoolers"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Bazlur Rahman",
+            "url": "https://bazlur.com"
+        },
+        "featureList": [
+            "English Alphabet Learning",
+            "Phonics and Letter Sounds",
+            "Bangla Alphabet",
+            "Arabic Alphabet",
+            "Spelling Games",
+            "Counting and Numbers",
+            "Memory Games",
+            "Drawing and Coloring",
+            "Interactive Storybooks",
+            "Nursery Rhymes"
+        ]
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 
     <!-- Google tag (gtag.js) -->
@@ -22,63 +93,102 @@ permalink: /rushda/
     </script>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="container">
-        <header>
+        <header role="banner">
             <h1>Learn with Fun!</h1>
-            <nav>
-                <button class="nav-btn" onclick="showSection('alphabet')">
-                    <span class="icon">ABC</span>
-                    <span>Letters</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('lowercase')">
-                    <span class="icon">abc</span>
-                    <span>Small Letters</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('phonics')">
-                    <span class="icon">Sounds</span>
-                    <span>Sounds</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('bangla')">
-                    <span class="icon">BD</span>
-                    <span>Bangla</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('arabic')">
-                    <span class="icon">AR</span>
-                    <span>Arabic</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('spelling')">
-                    <span class="icon">Spell</span>
-                    <span>Spelling</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('counting')">
-                    <span class="icon">123</span>
-                    <span>Numbers</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('quiz')">
-                    <span class="icon">?</span>
-                    <span>Quiz</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('memory')">
-                    <span class="icon">Brain</span>
-                    <span>Memory</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('rhymes')">
-                    <span class="icon">Music</span>
-                    <span>Songs</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('drawing')">
-                    <span class="icon">Art</span>
-                    <span>Draw</span>
-                </button>
-                <button class="nav-btn" onclick="showSection('stories')">
-                    <span class="icon">Book</span>
-                    <span>Stories</span>
-                </button>
+            <nav class="main-nav">
+                <div class="nav-category">
+                    <div class="nav-category-title">Letters</div>
+                    <div class="nav-category-buttons">
+                        <button class="nav-btn" onclick="showSection('alphabet')" aria-label="Learn uppercase letters">
+                            <span class="icon">ABC</span>
+                            <span>Big Letters</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('lowercase')" aria-label="Learn lowercase letters">
+                            <span class="icon">abc</span>
+                            <span>Small Letters</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('phonics')" aria-label="Learn letter sounds">
+                            <span class="icon">Sounds</span>
+                            <span>Phonics</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-category">
+                    <div class="nav-category-title">Languages</div>
+                    <div class="nav-category-buttons">
+                        <button class="nav-btn" onclick="showSection('bangla')" aria-label="Learn Bangla alphabet">
+                            <span class="icon">BD</span>
+                            <span>Bangla</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('arabic')" aria-label="Learn Arabic alphabet">
+                            <span class="icon">AR</span>
+                            <span>Arabic</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-category">
+                    <div class="nav-category-title">Learn</div>
+                    <div class="nav-category-buttons">
+                        <button class="nav-btn" onclick="showSection('spelling')" aria-label="Practice spelling">
+                            <span class="icon">Spell</span>
+                            <span>Spelling</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('counting')" aria-label="Learn numbers">
+                            <span class="icon">123</span>
+                            <span>Numbers</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-category">
+                    <div class="nav-category-title">Games</div>
+                    <div class="nav-category-buttons">
+                        <button class="nav-btn" onclick="showSection('quiz')" aria-label="Take a quiz">
+                            <span class="icon">?</span>
+                            <span>Quiz</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('memory')" aria-label="Play memory game">
+                            <span class="icon">Brain</span>
+                            <span>Memory</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-category">
+                    <div class="nav-category-title">Fun</div>
+                    <div class="nav-category-buttons">
+                        <button class="nav-btn" onclick="showSection('rhymes')" aria-label="Sing songs">
+                            <span class="icon">Music</span>
+                            <span>Songs</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('drawing')" aria-label="Draw and color">
+                            <span class="icon">Art</span>
+                            <span>Draw</span>
+                        </button>
+                        <button class="nav-btn" onclick="showSection('stories')" aria-label="Read stories">
+                            <span class="icon">Book</span>
+                            <span>Stories</span>
+                        </button>
+                    </div>
+                </div>
             </nav>
+            <button class="sound-toggle" id="soundToggle" onclick="toggleGlobalSound()" aria-label="Toggle sound">
+                <span class="sound-on">Sound ON</span>
+                <span class="sound-off" style="display:none;">Sound OFF</span>
+            </button>
         </header>
 
+        <!-- Main Content -->
+        <main id="main-content" role="main">
+
         <!-- Alphabet Section -->
-        <section id="alphabet" class="learning-section active">
+        <section id="alphabet" class="learning-section active" aria-label="Alphabet Learning">
             <h2>Learn Your Letters!</h2>
             <div class="alphabet-grid" id="alphabetGrid">
                 <!-- Letters will be generated by JavaScript -->
@@ -735,13 +845,15 @@ permalink: /rushda/
         </section>
 
         <!-- Celebration Modal -->
-        <div class="celebration" id="celebration">
+        <div class="celebration" id="celebration" role="dialog" aria-label="Celebration">
             <div class="celebration-content">
                 <h2>Great Job!</h2>
-                <div class="stars">***</div>
+                <div class="stars" aria-hidden="true">***</div>
                 <button onclick="closeCelebration()">Continue</button>
             </div>
         </div>
+
+        </main>
     </div>
 
     <!-- Loading screen -->
