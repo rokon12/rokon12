@@ -1,0 +1,423 @@
+---
+layout: null
+title: Threadly - Java Thread Dump Analyzer
+permalink: /threadly/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-85BEVKXND2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-85BEVKXND2');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Threadly - Java Thread Dump Analysis Tool | Free Online Thread Dump Viewer</title>
+    <meta name="title" content="Threadly - Java Thread Dump Analysis Tool | Free Online Thread Dump Viewer">
+    <meta name="description" content="Free online Java thread dump analyzer with deadlock detection, performance insights, and interactive visualization. Analyze jstack JSON output with advanced concurrency analysis features.">
+    <meta name="keywords" content="java thread dump, jstack analyzer, deadlock detection, java concurrency, thread dump viewer, performance analysis, java debugging, thread state analysis">
+    <meta name="author" content="Bazlur Rahman">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bazlur.com/threadly/">
+    <meta property="og:title" content="Threadly - Java Thread Dump Analysis Tool">
+    <meta property="og:description" content="Free online Java thread dump analyzer with deadlock detection, performance insights, and interactive visualization. Analyze jstack JSON output with advanced concurrency analysis features.">
+    <meta property="og:image" content="https://bazlur.com/threadly/image/og-image.png">
+    <meta property="og:site_name" content="Threadly">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bazlur.com/threadly/">
+    <meta property="twitter:title" content="Threadly - Java Thread Dump Analysis Tool">
+    <meta property="twitter:description" content="Free online Java thread dump analyzer with deadlock detection, performance insights, and interactive visualization.">
+    <meta property="twitter:image" content="https://bazlur.com/threadly/image/og-image.png">
+    <meta property="twitter:creator" content="@bazlur_rahman">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="image/favicon-16x16.png">
+    <link rel="manifest" href="image/site.webmanifest">
+    <link rel="icon" href="image/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bazlur.com/threadly/">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Threadly",
+        "description": "Free online Java thread dump analyzer with deadlock detection, performance insights, and interactive visualization",
+        "url": "https://bazlur.com/threadly/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Bazlur Rahman",
+            "url": "https://bazlur.ca"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Bazlur Rahman",
+            "url": "https://bazlur.ca"
+        },
+        "featureList": [
+            "Java thread dump analysis",
+            "Deadlock detection",
+            "Performance insights",
+            "Interactive visualization",
+            "Thread state analysis",
+            "Export functionality",
+            "Client-side processing",
+            "Privacy-focused"
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Processing thread dump...</div>
+            <div class="loading-details" id="loadingDetails">Parsing JSON data</div>
+        </div>
+    </div>
+
+    <div class="help-overlay" id="helpOverlay" onclick="if(event.target === this) hideHelp()">
+        <div class="help-content">
+            <div class="help-header">
+                <h2 class="help-title">Threadly Help</h2>
+                <button class="help-close" onclick="hideHelp()" title="Close">&times;</button>
+            </div>
+
+            <div class="help-section">
+                <h3>Keyboard Shortcuts</h3>
+                <ul class="shortcut-list">
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Open file</span>
+                        <span class="shortcut-keys">Ctrl/Cmd + O</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Focus search</span>
+                        <span class="shortcut-keys">Ctrl/Cmd + F</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Expand all containers</span>
+                        <span class="shortcut-keys">Ctrl/Cmd + E</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Collapse all containers</span>
+                        <span class="shortcut-keys">Ctrl/Cmd + Shift + E</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Print thread dump</span>
+                        <span class="shortcut-keys">Ctrl/Cmd + P</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Close menus / Go back</span>
+                        <span class="shortcut-keys">Escape</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Switch to paste mode</span>
+                        <span class="shortcut-keys">Ctrl/Cmd + V</span>
+                    </li>
+                    <li class="shortcut-item">
+                        <span class="shortcut-description">Show this help</span>
+                        <span class="shortcut-keys">?</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="help-section">
+                <h3>Tips & Tricks</h3>
+                <div class="help-tip">
+                    <strong>Drag & Drop:</strong> Simply drag your thread dump JSON file onto the upload area
+                </div>
+                <div class="help-tip">
+                    <strong>Persistent Settings:</strong> Your theme preference, filter settings, and expand/collapse states are saved automatically
+                </div>
+                <div class="help-tip">
+                    <strong>Thread States:</strong> Threads are color-coded by state - Waiting (yellow), Sleeping (purple), Runnable (green), Blocked (red)
+                </div>
+                <div class="help-tip">
+                    <strong>Stack Traces:</strong> Click on any thread to view its full stack trace
+                </div>
+                <div class="help-tip">
+                    <strong>Export Options:</strong> Export your analysis as text (clipboard) or HTML file for sharing
+                </div>
+            </div>
+
+            <div class="help-section">
+                <h3>Generating Thread Dumps</h3>
+                <div class="help-tip">
+                    <strong>Standard JVM:</strong><br>
+                    <code>jstack -format=json &lt;pid&gt; &gt; thread-dump.json</code>
+                </div>
+                <div class="help-tip">
+                    <strong>JDK 21+ with Virtual Threads:</strong><br>
+                    <code>jcmd &lt;pid&gt; Thread.dump_to_file -format=json thread-dump.json</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-brand">
+                    <h1>Threadly</h1>
+                    <p class="tagline">Free Java Thread Dump Analyzer</p>
+                </div>
+                <nav role="navigation" aria-label="Main navigation">
+                    <button class="theme-toggle" onclick="showHelp()" style="margin-right: 10px;" aria-label="Open help">Help</button>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">Toggle Theme</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-methods">
+                <div class="method-tabs">
+                    <button class="method-tab active" onclick="switchUploadMethod('file')">Upload File</button>
+                    <button class="method-tab" onclick="switchUploadMethod('paste')">Paste JSON</button>
+                </div>
+
+                <div class="upload-method" id="fileUploadMethod">
+                    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                        <h2>Upload Thread Dump JSON</h2>
+                        <p>Drag and drop your thread dump JSON file here, or click to browse</p>
+                        <input type="file" id="fileInput" accept=".json">
+                        <button class="btn">Choose File</button>
+                        <button class="btn btn-secondary" onclick="loadSampleData(event)">Try Demo</button>
+                    </div>
+                </div>
+
+                <div class="upload-method" id="pasteUploadMethod" style="display: none;">
+                    <div class="paste-area">
+                        <h2>Paste Thread Dump JSON</h2>
+                        <p>Copy and paste your thread dump JSON content below</p>
+                        <textarea
+                            id="jsonTextArea"
+                            placeholder="Paste your thread dump JSON here..."
+                            rows="10"></textarea>
+                        <div class="paste-controls">
+                            <button class="btn" onclick="processJsonFromTextArea()">Analyze JSON</button>
+                            <button class="btn btn-secondary" onclick="loadSampleData(event)">Try Demo</button>
+                            <button class="btn btn-secondary" onclick="clearTextArea()">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-notice">
+                    <strong>Privacy:</strong> This page is client-side only, and no data will leave your computer when you upload.
+                </div>
+            </div>
+
+            <div class="recent-files" style="margin-top: 20px;">
+                <button class="recent-files-button" onclick="toggleRecentFiles()">
+                    Recent Files
+                    <span id="recentFileCount" style="background-color: var(--accent-color); color: white; padding: 2px 6px; border-radius: 10px; font-size: 12px; display: none;">0</span>
+                </button>
+                <div class="recent-files-dropdown" id="recentFilesDropdown">
+                    <div id="recentFilesList">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+            <aside class="book-promotion" role="complementary" aria-labelledby="book-heading">
+                <div class="book-card">
+                    <div class="book-content">
+                        <div class="book-cover">
+                            <img src="https://learning.oreilly.com/covers/urn:orm:book:9781098165406/800w/"
+                                 alt="Modern Concurrency in Java book cover by Bazlur Rahman"
+                                 loading="lazy"
+                                 width="80"
+                                 height="100">
+                        </div>
+                        <div class="book-details">
+                            <h3 id="book-heading">Welcome to the Future of Java</h3>
+                            <p>Struggling with thread creation costs and scalability limitations? Those days are over. <strong>"Modern Concurrency in Java"</strong> takes you from Java 1.0 to the cutting-edge world of virtual threads and Project Loom.</p>
+                            <p>Master virtual thread internals, structured concurrency, ForkJoinPool, and performance optimization. Learn expert tips for building scalable, efficient Java applications with practical, real-world guidance.</p>
+                            <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="book-link"
+                               aria-label="Read Modern Concurrency in Java on O'Reilly Learning Platform">
+                                Get the Book &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="instructions">
+                <h3>How to Generate Thread Dumps</h3>
+                <p>Generate a JSON thread dump from your Java application using:</p>
+                <pre><code>jstack -format=json &lt;pid&gt; &gt; thread-dump.json</code></pre>
+                <p>Or with JDK 21+ and virtual threads:</p>
+                <pre><code>jcmd &lt;pid&gt; Thread.dump_to_file -format=json thread-dump.json</code></pre>
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="analysis-view" id="analysisView">
+            <div class="back-button-container">
+                <button class="back-button" onclick="goBackToUpload()">
+                    &larr; Back to Upload
+                </button>
+            </div>
+            <div class="analysis-grid">
+                <aside class="sidebar">
+                    <div class="stats-panel">
+                        <h3>Summary</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">Process ID</span>
+                            <span class="stat-value" id="processId">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Runtime Version</span>
+                            <span class="stat-value" id="runtimeVersion">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Threads</span>
+                            <span class="stat-value" id="totalThreads">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Containers</span>
+                            <span class="stat-value" id="totalContainers">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Timestamp</span>
+                            <span class="stat-value" id="timestamp">-</span>
+                        </div>
+                    </div>
+
+                    <div class="thread-state-summary" id="threadStateSummary">
+                        <h4 style="font-size: 14px; margin-bottom: 12px;">Thread States</h4>
+                        <div class="pie-chart" id="pieChart">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div id="stateSummaryContent">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div class="state-summary-bar" id="stateSummaryBar">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+
+                    <div class="analysis-alerts" id="analysisAlerts">
+                        <!-- Dynamically populated with deadlock and performance alerts -->
+                    </div>
+
+                    <div class="performance-insights" id="performanceInsights">
+                        <h4 style="font-size: 14px; margin-bottom: 12px;">Performance Insights</h4>
+                        <div id="performanceMetrics">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div class="recommendations" id="recommendations">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Search & Filter</h3>
+                        <input type="text" class="search-box" id="searchBox" placeholder="Search threads..." oninput="filterThreads()">
+
+                        <h4 style="margin-top: 20px; margin-bottom: 10px; font-size: 14px;">Thread States</h4>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filterWaiting" checked onchange="filterThreads()">
+                            <label for="filterWaiting">Waiting</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filterSleeping" checked onchange="filterThreads()">
+                            <label for="filterSleeping">Sleeping</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filterRunnable" checked onchange="filterThreads()">
+                            <label for="filterRunnable">Runnable</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filterBlocked" checked onchange="filterThreads()">
+                            <label for="filterBlocked">Blocked</label>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="tree-container">
+                    <div class="tree-controls">
+                        <div>
+                            <button onclick="expandAll()">Expand All</button>
+                            <button onclick="collapseAll()">Collapse All</button>
+                            <button class="print-button" onclick="printView()">Print</button>
+                        </div>
+                        <div class="export-menu">
+                            <button onclick="toggleExportMenu()">Export</button>
+                            <div class="export-dropdown" id="exportDropdown">
+                                <div class="export-option" onclick="exportAsText()">Copy as Text</div>
+                                <div class="export-option" onclick="exportAsHTML()">Save as HTML</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tree-view" id="treeView"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer role="contentinfo" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Threadly</h4>
+                    <p>Threadly is a free, open-source Java thread dump analyzer that helps developers debug concurrency issues, detect deadlocks, and analyze thread performance. All processing happens client-side for maximum privacy and security.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Deadlock detection and analysis</li>
+                        <li>Thread state visualization</li>
+                        <li>Performance insights and recommendations</li>
+                        <li>Interactive thread dump exploration</li>
+                        <li>Export capabilities (HTML, Text)</li>
+                        <li>Client-side processing (privacy-first)</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Author</h4>
+                    <p>Created by <a href="https://bazlur.ca" target="_blank" rel="noopener">Bazlur Rahman</a>, author of "Modern Concurrency in Java" and Java Champion.</p>
+                    <p>For more Java concurrency insights, follow <a href="https://twitter.com/bazlur_rahman" target="_blank" rel="noopener">@bazlur_rahman</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Threadly. Made with love for the Java community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
