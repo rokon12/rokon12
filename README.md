@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 526 Simplifies Deferred Initialization Ahead of JDK 26 (2025-12-02)
+JEP 526 introduces Lazy Constants for JDK 26, enhancing developer ergonomics and performance. This feature replaces the earlier Stable Values, simplifying initialization while ensuring thread safety and immutability. With utilities for lazy lists and maps, it promotes efficient resource management, reducing startup costs. Feedback is welcomed to refine this API ahead of a potential future release....
+[Read further^](https://www.infoq.com//news/2025/12/jep526-lazy-constants)
+
+
 ### JUnit 6.0.0 Ships with Java 17 Baseline, Cancellation API, and Kotlin suspend Support (2025-10-20)
 Introducing JUnit 6.0.0: a transformative update that unifies versions, elevates minimum requirements to Java 17, and introduces streamlined support for Kotlin suspend tests. Enjoy enhanced testing performance with the new CancellationToken API, built-in JFR listeners, and upgraded CSV parsing using FastCSV. Embrace the future of testing&mdash;migrate today!...
 [Read further^](https://www.infoq.com//news/2025/10/junit6-java17-kotlin)
@@ -87,11 +92,6 @@ JEP 512 enhances Java with Compact Source Files and Instance Main Methods in JDK
 ### Java Evolves to Tackle Virtual Threads Pinning with JEP 491 (2024-11-04)
 JEP 491, &quot;Synchronize Virtual Threads without Pinning,&quot; is now Proposed to Target for JDK 24. This initiative aims to resolve Java's &quot;pinning&quot; issue, a limitation of the synchronized keyword, which restricts scalability with virtual threads.  JEP 491 eliminates this constraint, unlocking high-performance concurrency without extensive refactoring....
 [Read further^](https://www.infoq.com//news/2024/11/java-evolves-tackle-pinning)
-
-
-### Netflix Adopts Virtual Threads: a Case Study on Performance and Pitfalls (2024-08-05)
-Netflix, a long-time Java adopter, recently upgraded to Java 21. They are now harnessing new features such as generational ZGC and virtual threads to improve performance across their extensive microservices fleet. While virtual threads, designed for high-throughput concurrent applications, showed early promise, they also brought unique challenges in real-world scenarios....
-[Read further^](https://www.infoq.com//news/2024/08/netflix-performance-case-study)
 
 
 ## <u>[Foojay.io](https://foojay.io/)</u>
@@ -162,4 +162,4 @@ Let’s examine how to leverage Java records for parameterized tests through a c
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Tue, 2 Dec 2025 03:09:21 GMT*
+*This page was last updated on Wed, 3 Dec 2025 03:08:35 GMT*
