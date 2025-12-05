@@ -44,7 +44,7 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
-### JEP 526 Simplifies Deferred Initialization Ahead of JDK 26 (2025-12-02)
+### JEP 526 Simplifies Deferred Initialization ahead of JDK 26 (2025-12-02)
 JEP 526 introduces Lazy Constants for JDK 26, enhancing developer ergonomics and performance. This feature replaces the earlier Stable Values, simplifying initialization while ensuring thread safety and immutability. With utilities for lazy lists and maps, it promotes efficient resource management, reducing startup costs. Feedback is welcomed to refine this API ahead of a potential future release....
 [Read further^](https://www.infoq.com//news/2025/12/jep526-lazy-constants)
 
@@ -162,4 +162,4 @@ Let’s examine how to leverage Java records for parameterized tests through a c
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Thu, 4 Dec 2025 03:10:01 GMT*
+*This page was last updated on Fri, 5 Dec 2025 03:10:08 GMT*
