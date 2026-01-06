@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 525 Brings Timeout Handling and Joiner Refinements to Java&rsquo;s Structured Concurrency (2026-01-05)
+JEP 525, a highlight in the upcoming JDK 26, refines structured concurrency for clearer, safer task management. This iteration introduces a timeout callback for custom joiners, enhancing flexibility and error handling. With streamlined APIs and focus on practical usage, it empowers developers to efficiently manage concurrent tasks, paving the way for advanced Project Loom features....
+[Read further^](https://www.infoq.com//news/2026/01/timeout-joiner-refinements)
+
+
 ### JEP 500: Java to Enforce Strict Final Field Immutability by Restricting Reflection (2025-12-18)
 JEP 500 prepares the Java ecosystem for final field integrity in JDK 26, restricting deep reflection mutations. This crucial update aims to enhance safety and performance by closing a long-standing loophole, transitioning toward stricter encapsulation. Developers can now anticipate warnings when attempting these mutations, ensuring a reliable path for future optimizations....
 [Read further^](https://www.infoq.com//news/2025/12/jdk26-final-fields-reflection)
@@ -87,11 +92,6 @@ Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creat
 ### JEP 505 Delivers Fifth Preview of Java's Structured Concurrency with Key API Refinements (2025-05-12)
 JEP 505, Structured Concurrency, has reached Targeted status in JDK 25. This refined API enhances parallel task management through static factory methods like StructuredTaskScope.open(). It improves cancellation, observability, and subtask lifetime handling, ensuring clearer, safer code. Developers are encouraged to explore and provide feedback on this innovative iteration....
 [Read further^](https://www.infoq.com//news/2025/05/jep-505-concurrency-preview-5)
-
-
-### Instance Main Methods Move from Preview to Final in JDK&#8239;25 (2025-05-05)
-JEP 512 enhances Java with Compact Source Files and Instance Main Methods in JDK 25, easing the learning curve for beginners. Key features include simplified syntax, automatic imports, and a new IO helper class, empowering developers to create programs with minimal complexity. These changes solidify Java's commitment to accessibility and innovation in programming....
-[Read further^](https://www.infoq.com//news/2025/05/jdk25-instance-main-methods)
 
 
 ## <u>[Foojay.io](https://foojay.io/)</u>
@@ -162,4 +162,4 @@ Let’s examine how to leverage Java records for parameterized tests through a c
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 5 Jan 2026 03:32:48 GMT*
+*This page was last updated on Tue, 6 Jan 2026 03:19:52 GMT*
