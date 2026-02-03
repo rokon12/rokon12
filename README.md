@@ -97,6 +97,11 @@ JEP 505, Structured Concurrency, has reached Targeted status in JDK 25. This ref
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
+### Announcing: Sustainability for Java Developers — A New Collaborative Guide from the Foojay.io Community (2026-02-02)
+Java developers from around the world are writing a book about a question that’s becoming impossible to ignore: how do we write software that’s good for both our projects and the planet? Sustainability for Java Developers: Towards an Understanding of …...
+[Read further^](https://foojay.io/today/announcing-sustainability-for-java-developers-a-new-collaborative-guide-from-the-foojay-io-community/)
+
+
 ### Robust AI Applications with LangChain4j Guardrails and Spring Boot (2025-07-29)
 Table of Contents Understanding LangChain4j GuardrailsSetting Up a Spring Boot Project with LangChain4jImplementing Input GuardrailsContent Safety Input GuardrailSmart Context-Aware GuardrailIntelligent Input SanitizerImplementing Output GuardrailsProfessional Tone Output GuardrailHallucination Detection GuardrailTesting Your GuardrailsCreating AI Services with GuardrailsRest endpointDemoConclusion As AI applications become …...
 [Read further^](https://foojay.io/today/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/)
@@ -147,11 +152,6 @@ How JEP 455 can be utilized to handle complex decision-making scenarios more eff
 [Read further^](https://foojay.io/today/exploring-new-features-in-jdk-23-simplifying-java-with-primitive-type-patterns-with-jep-455/)
 
 
-### Records for Cleaner and More Expressive Parameterized Tests in JUnit 5 (2024-04-03)
-Let’s examine how to leverage Java records for parameterized tests through a concrete example – testing an expression evaluator....
-[Read further^](https://foojay.io/today/records-for-cleaner-and-more-expressive-parameterized-tests-in-junit-5/)
-
-
 ## <u>[Talks](https://github.com/rokon12/confernece-talks)</u>
 
 
@@ -162,4 +162,4 @@ Let’s examine how to leverage Java records for parameterized tests through a c
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 2 Feb 2026 04:09:09 GMT*
+*This page was last updated on Tue, 3 Feb 2026 04:01:10 GMT*
