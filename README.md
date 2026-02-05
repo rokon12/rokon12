@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### Java Explores Carrier Classes to Extend Data-Oriented Programming Beyond Records (2026-02-04)
+The OpenJDK Amber project has published a new design note proposing &ldquo;carrier classes&rdquo; and &ldquo;carrier interfaces&rdquo; to extend record-style data modeling to more Java types. The proposal preserves concise state descriptions, derived methods, and pattern matching, while relaxing structural constraints that limit records....
+[Read further^](https://www.infoq.com//news/2026/02/java-beyond-records)
+
+
 ### JEP 525 Brings Timeout Handling and Joiner Refinements to Java&rsquo;s Structured Concurrency (2026-01-05)
 JEP 525, a highlight in the upcoming JDK 26, refines structured concurrency for clearer, safer task management. This iteration introduces a timeout callback for custom joiners, enhancing flexibility and error handling. With streamlined APIs and focus on practical usage, it empowers developers to efficiently manage concurrent tasks, paving the way for advanced Project Loom features....
 [Read further^](https://www.infoq.com//news/2026/01/timeout-joiner-refinements)
@@ -87,11 +92,6 @@ JEP 502 introduces the Stable Values API in JDK 25, enhancing application startu
 ### Spring AI 1.0 Released, Streamlines AI Application Development with Broad Model Support (2025-05-20)
 Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creation of AI-driven applications in Java. Seamlessly integrate with top AI models for chat, image generation, and more. With portable abstractions and support for Retrieval Augmented Generation, developers can build scalable, production-ready solutions while adhering to Spring standards....
 [Read further^](https://www.infoq.com//news/2025/05/spring-ai-1-0-streamlines-apps)
-
-
-### JEP 505 Delivers Fifth Preview of Java's Structured Concurrency with Key API Refinements (2025-05-12)
-JEP 505, Structured Concurrency, has reached Targeted status in JDK 25. This refined API enhances parallel task management through static factory methods like StructuredTaskScope.open(). It improves cancellation, observability, and subtask lifetime handling, ensuring clearer, safer code. Developers are encouraged to explore and provide feedback on this innovative iteration....
-[Read further^](https://www.infoq.com//news/2025/05/jep-505-concurrency-preview-5)
 
 
 ## <u>[Foojay.io](https://foojay.io/)</u>
@@ -162,4 +162,4 @@ How JEP 455 can be utilized to handle complex decision-making scenarios more eff
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Wed, 4 Feb 2026 03:59:40 GMT*
+*This page was last updated on Thu, 5 Feb 2026 04:00:56 GMT*
