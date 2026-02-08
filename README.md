@@ -44,7 +44,7 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
-### Java Explores Carrier Classes to Extend Data-Oriented Programming Beyond Records (2026-02-04)
+### Java Explores Carrier Classes to Extend Data-Oriented Programming beyond Records (2026-02-04)
 The OpenJDK Amber project has published a new design note proposing &ldquo;carrier classes&rdquo; and &ldquo;carrier interfaces&rdquo; to extend record-style data modeling to more Java types. The proposal preserves concise state descriptions, derived methods, and pattern matching, while relaxing structural constraints that limit records....
 [Read further^](https://www.infoq.com//news/2026/02/java-beyond-records)
 
@@ -162,4 +162,4 @@ How JEP 455 can be utilized to handle complex decision-making scenarios more eff
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Sat, 7 Feb 2026 03:55:11 GMT*
+*This page was last updated on Sun, 8 Feb 2026 04:20:55 GMT*
