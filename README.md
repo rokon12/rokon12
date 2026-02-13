@@ -97,61 +97,6 @@ Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creat
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
-### Announcing: Sustainability for Java Developers — A New Collaborative Guide from the Foojay.io Community (2026-02-02)
-Java developers from around the world are writing a book about a question that’s becoming impossible to ignore: how do we write software that’s good for both our projects and the planet? Sustainability for Java Developers: Towards an Understanding of …...
-[Read further^](https://foojay.io/today/announcing-sustainability-for-java-developers-a-new-collaborative-guide-from-the-foojay-io-community/)
-
-
-### Robust AI Applications with LangChain4j Guardrails and Spring Boot (2025-07-29)
-Table of Contents Understanding LangChain4j GuardrailsSetting Up a Spring Boot Project with LangChain4jImplementing Input GuardrailsContent Safety Input GuardrailSmart Context-Aware GuardrailIntelligent Input SanitizerImplementing Output GuardrailsProfessional Tone Output GuardrailHallucination Detection GuardrailTesting Your GuardrailsCreating AI Services with GuardrailsRest endpointDemoConclusion As AI applications become …...
-[Read further^](https://foojay.io/today/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/)
-
-
-### Java’s Structured Concurrency: Finally Finding Its Footing (2025-06-04)
-Table of Contents What Actually Changed This TimeThe Core Concept Remains StrongThe headline change: static factory methodsJoiners: pick your success policyRolling your own JoinerBetter cancellation and deadlinesScoped values ride alongGuard-rails against misuseObservability improvementsSome more examples to try outFinal thoughts The …...
-[Read further^](https://foojay.io/today/javas-structured-concurrency-finally-finding-its-footing/)
-
-
-### Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama (2025-05-06)
-Table of Contents The InspirationThe ArchitectureGetting Started: Setting Up Your EnvironmentPart 1: Installing and Running Ollama LocallyPart 2: Creating the Spring Boot Project via Spring InitializrImplementing RAG with LangChain4jThe Magic of LangChain4j’s @AiServiceIntegrating with OllamaBuilding the Chrome ExtensionSetting up the …...
-[Read further^](https://foojay.io/today/building-formpilot-my-journey-creating-an-ai-powered-form-filler-with-rag-langchain4j-and-ollama/)
-
-
-### SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization (2025-03-03)
-Table of Contents SummarizingTokenWindowChatMemoryThe Summarizer InterfaceSummarization LogicLLM SummarizationWhy This MattersConclusion LLM chat models have become an integral part of many applications today. We are all experimenting and exploring the best ways to utilize them effectively. For Java developers, LangChain4j has …...
-[Read further^](https://foojay.io/today/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization/)
-
-
-### Java Tips # 01 – Writing Shebang Scripts in Pure Java (2024-10-29)
-Table of Contents Getting StartedKey Point: Shebang LineMake It ExecutableBonus Tip: Running From Anywhere Did you know you can write a CLI script in Java just as easily as you would in a bash script, and run it directly from …...
-[Read further^](https://foojay.io/today/java-tips-01-writing-shebang-scripts-in-pure-java/)
-
-
-### Interview with a Java Champion: Reflections on a Storied Career and Insights for the Next Generation (2024-08-19)
-Java Champion Ben Evans shares his journey, insights on Java’s evolution, and advice for developers in this insightful interview....
-[Read further^](https://foojay.io/today/interview-with-a-java-champion-reflections-on-a-storied-career-and-insights-for-the-next-generation/)
-
-
-### Creating a Command Line Tool with JBang and PicoCLI to Generate Release Notes (2024-07-24)
-Learn how to create a Java command-line tool with JBang and PicoCLI to automate generating release notes from GitHub....
-[Read further^](https://foojay.io/today/creating-a-command-line-tool-with-jbang-and-picocli-to-generate-release-notes/)
-
-
-### Unsafe is Finally Going Away: Embracing Safer Memory Access with JEP 471 (2024-07-11)
-Java’s sun.misc.Unsafe is being phased out. Learn safer memory access using VarHandle and Foreign Function & Memory API to keep your applications secure and up-to-date....
-[Read further^](https://foojay.io/today/unsafe-is-finally-going-away-embracing-safer-memory-access-with-jep-471/)
-
-
-### Exploring New Features in JDK 23: Simplifying Java with Module Import Declarations with JEP 476 (2024-06-20)
-JEP 476 represents a significant step towards simplifying Java programming by reducing boilerplate code and improving readability....
-[Read further^](https://foojay.io/today/exploring-new-features-in-jdk-23-simplifying-java-with-module-import-declarations-with-jep-476/)
-
-
-### Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455 (2024-06-06)
-How JEP 455 can be utilized to handle complex decision-making scenarios more efficiently. We’ll examine a practical example to illustrate the benefits of this feature....
-[Read further^](https://foojay.io/today/exploring-new-features-in-jdk-23-simplifying-java-with-primitive-type-patterns-with-jep-455/)
-
-
 ## <u>[Talks](https://github.com/rokon12/confernece-talks)</u>
 
 
@@ -162,4 +107,4 @@ How JEP 455 can be utilized to handle complex decision-making scenarios more eff
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Thu, 12 Feb 2026 04:10:06 GMT*
+*This page was last updated on Fri, 13 Feb 2026 04:06:50 GMT*
