@@ -1,6 +1,44 @@
 
 [
   {
+    "name": "JNation 2026",
+    "date": "2026",
+    "location": "Coimbra, Portugal",
+    "locationIcon": "🇵🇹",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Architecting Intelligent Enterprise Systems: From Scratch",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://jnation.pt/sessions/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://jnation.pt/sessions/",
+        "text": "Details"
+      }
+    ]
+  },
+  {
+    "name": "JNation 2026",
+    "date": "2026",
+    "location": "Coimbra, Portugal",
+    "locationIcon": "🇵🇹",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Old Dog, New Tricks: The Java 25 Reinvention",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://jnation.pt/sessions/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://jnation.pt/sessions/",
+        "text": "Details"
+      }
+    ]
+  },
+  {
     "name": "Java Developer's Conference 2025",
     "date": "2025",
     "location": "Dhaka, Bangladesh",
