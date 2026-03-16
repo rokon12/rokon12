@@ -1,0 +1,86 @@
+<p><img src="/images/f8ce2ee3-e5e4-4fc4-91ea-47f05eb997b7.jpeg" alt="" /></p>
+
+<h1 id="what-is-countdownlatch-and-how-to-use-it">What is CountDownLatch and How to Use It?</h1>
+
+<p>In Java’s concurrency API, CountDownLatch is a synchronizer that allows one or more threads to wait for a set of operations to complete. Imagine you’re developing a server application that relies on various resources to be initialized before it can start processing requests. These resources could be things like:{#ember49}</p>
+
+<ul>
+  <li>Loading configuration files</li>
+  <li>Establishing database connections</li>
+  <li>Initializing caches</li>
+  <li>Starting embedded servers or services</li>
+</ul>
+
+<p>A CountDownLatch is initialized with a given count, representing the number of actions that must occur before the latch is released. Each action decrements this count. When the count reaches zero, all waiting threads are released, and any subsequent invocations of the latch’s methods will pass without blocking.{#ember51}</p>
+
+<h3 id="ember52">How to Use CountDownLatch:</h3>
+
+<p>The primary methods are await() for waiting and countDown() for decrementing the count.{#ember53}</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.concurrency101</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.sun.net.httpserver.HttpExchange</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.net.httpserver.HttpHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.net.httpserver.HttpServer</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.InetSocketAddress</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.CountDownLatch</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountDownLatchDemo</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">server</span> <span class="o">=</span> <span class="nc">HttpServer</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">new</span> <span class="nc">InetSocketAddress</span><span class="o">(</span><span class="mi">8000</span><span class="o">),</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="n">server</span><span class="o">.</span><span class="na">setExecutor</span><span class="o">(</span><span class="nc">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">());</span>
+        <span class="n">server</span><span class="o">.</span><span class="na">createContext</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">GreetingsHandler</span><span class="o">());</span>
+
+        <span class="nc">CountDownLatch</span> <span class="n">latch</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CountDownLatch</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Load Config"</span><span class="o">,</span> <span class="n">latch</span><span class="o">));</span>
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Init DB Connection"</span><span class="o">,</span> <span class="n">latch</span><span class="o">));</span>
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Init Cache"</span><span class="o">,</span> <span class="n">latch</span><span class="o">));</span>
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Start Embedded Server"</span><span class="o">,</span> <span class="n">latch</span><span class="o">));</span>
+
+        <span class="n">latch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All initializations complete. Application is starting..."</span><span class="o">);</span>
+
+        <span class="n">server</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">record</span> <span class="nf">Task</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">CountDownLatch</span> <span class="n">latch</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doHeavyLifting</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">" has finished."</span><span class="o">);</span>
+        <span class="n">latch</span><span class="o">.</span><span class="na">countDown</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doHeavyLifting</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">GreetingsHandler</span> <span class="kd">implements</span> <span class="nc">HttpHandler</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">HttpExchange</span> <span class="n">t</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="s">"Hello world!"</span><span class="o">;</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">sendResponseHeaders</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+        <span class="nc">OutputStream</span> <span class="n">os</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">getResponseBody</span><span class="o">();</span>
+        <span class="n">os</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+        <span class="n">os</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In this example, we initialize a CountDownLatch with a count of 4. Then, we create four virtual threads. Each task calls countDown() on the latch after it is completed. The main thread waits for these tasks by calling await() on the latch. When the count reaches zero, the message “<strong>All initializations complete. Application is starting…</strong>” is displayed, and we start the server.</p>
+

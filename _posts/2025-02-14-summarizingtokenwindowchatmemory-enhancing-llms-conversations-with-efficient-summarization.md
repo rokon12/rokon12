@@ -349,6 +349,3 @@ The source code is here: <https://github.com/rokon12/chefbot>
 
 ![](/images/screenshot-2025-02-14-at-1.04.29-am.png)  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

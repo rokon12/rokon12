@@ -259,6 +259,3 @@ The final release of the entire Jakarta 10 platform will be during the coming mo
 
 Finally, if you want to know more about what's going on with Jakarta EE, please watch this [session](https://www.youtube.com/watch?v=-ZE6CoH3uWQ) by [Reza Rahman](https://www.linkedin.com/in/javareza/)!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

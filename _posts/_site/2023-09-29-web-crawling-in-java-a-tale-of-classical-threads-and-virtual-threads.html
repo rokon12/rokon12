@@ -1,0 +1,254 @@
+<p><img src="/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg" alt="" /></p>
+
+<h1 id="web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads">Web Crawling in Java: A Tale of Classical Threads and Virtual Threads</h1>
+
+<p>I<strong>n today’s fast-paced digital world, web crawling is a cornerstone technology behind search engines, data analysis tools, and various other applications.</strong></p>
+
+<p><strong>Java, a language known for its robustness and scalability, offers intriguing ways to implement web crawling.</strong></p>
+
+<p><strong>Yet, the thread model you choose can make a world of difference.</strong></p>
+
+<p><strong>This article unfolds a compelling narrative around web crawling in Java, contrasting classical threads with their newer counterpart: virtual threads.</strong></p>
+
+<h2 id="environment-setup"><strong>Environment Setup</strong></h2>
+
+<p>Before diving into the code and its intricate comparisons, ensure you have JDK 21 installed on your system. If you’re using a Unix-based system, SDKMAN! It makes this simple. Just open your terminal and run <code class="language-plaintext highlighter-rouge">curl -s "https://get.sdkman.io" | bash</code> to install SDKMAN!, followed by <code class="language-plaintext highlighter-rouge">source "$HOME/.sdkman/bin/sdkman-init.sh"</code> to initialize it. Finally, install JDK 21 with <code class="language-plaintext highlighter-rouge">sdk install java 21.0.0-&lt;vendor&gt;</code>, replacing &lt;vendor&gt; with your preferred vendor (e.g., zulu, adopt).</p>
+
+<p>Now that your environment is ready let’s move forward with our captivating tale of web crawling in Java.</p>
+
+<p>By having JDK 21 at your disposal, you are now well-equipped to delve into the fascinating juxtaposition of classical and virtual threads in Java’s web-crawling landscape.</p>
+
+<h2 id="the-code-overview"><strong>The Code Overview</strong></h2>
+
+<p>The Java code in focus here serves as a skeletal web crawler, a program that starts at an initial URL and recursively follows links to gather data from various web pages.</p>
+
+<p>It leverages both classical threads, using a fixed thread pool, and virtual threads.</p>
+
+<p>The objective is to examine how each threading model impacts the performance of the web crawler.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Queue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.atomic.AtomicInteger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Condition</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.ReentrantLock</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.jsoup.Jsoup</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.nodes.Document</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.nodes.Element</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.select.Elements</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crawler</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ReentrantLock</span> <span class="no">QUEUE_LOCK</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReentrantLock</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Condition</span> <span class="no">QUEUE_NOT_EMPTY</span> <span class="o">=</span> <span class="no">QUEUE_LOCK</span><span class="o">.</span><span class="na">newCondition</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MAX_PAGES_TO_SEARCH</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">AtomicInteger</span> <span class="n">count</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ConcurrentMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">visited</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">url</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">pageQueue</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Crawler</span><span class="o">(</span><span class="nc">AtomicInteger</span> <span class="n">count</span><span class="o">,</span> <span class="nc">ConcurrentMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">visited</span><span class="o">,</span> <span class="nc">String</span> <span class="n">url</span><span class="o">,</span>
+                   <span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">pageQueue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">visited</span> <span class="o">=</span> <span class="n">visited</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">pageQueue</span> <span class="o">=</span> <span class="n">pageQueue</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">visited</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">url</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">count</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">&lt;</span> <span class="no">MAX_PAGES_TO_SEARCH</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="kt">var</span> <span class="n">connection</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="n">url</span><span class="o">).</span><span class="na">openConnection</span><span class="o">();</span>
+                <span class="n">connection</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"HEAD"</span><span class="o">);</span>
+                <span class="n">connection</span><span class="o">.</span><span class="na">connect</span><span class="o">();</span>
+                <span class="nc">String</span> <span class="n">contentType</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">getContentType</span><span class="o">();</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">contentType</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">contentType</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"text/"</span><span class="o">)</span> <span class="o">||</span> <span class="n">contentType</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"xml"</span><span class="o">)))</span> <span class="o">{</span>
+                    <span class="nc">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="nc">Jsoup</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">url</span><span class="o">).</span><span class="na">get</span><span class="o">();</span>
+                    <span class="nc">Elements</span> <span class="n">linksOnPage</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"a[href]"</span><span class="o">);</span>
+                    <span class="n">visited</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="n">count</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+
+                    <span class="k">for</span> <span class="o">(</span><span class="nc">Element</span> <span class="n">link</span> <span class="o">:</span> <span class="n">linksOnPage</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nc">String</span> <span class="n">nextUrl</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="na">attr</span><span class="o">(</span><span class="s">"abs:href"</span><span class="o">);</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">nextUrl</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"http"</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">nextUrl</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">pageQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">nextUrl</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                    <span class="n">signalQueue</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Error occurred while accessing URL '%s', the error: %s\n"</span><span class="o">,</span> <span class="n">url</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">signalQueue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="no">QUEUE_LOCK</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="no">QUEUE_NOT_EMPTY</span><span class="o">.</span><span class="na">signalAll</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="no">QUEUE_LOCK</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">//Classical Threads</span>
+    <span class="c1">//Pages crawled: 101</span>
+    <span class="c1">//Execution time: 20910ms</span>
+    <span class="c1">//Throughput: 4.8302247728359635 pages/sec</span>
+
+    <span class="c1">//Virtual threads</span>
+    <span class="c1">//Pages crawled: 785</span>
+    <span class="c1">//Execution time: 29323ms</span>
+    <span class="c1">//Throughput: 26.77079425706783 pages/sec</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ConcurrentMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ConcurrentHashMap</span><span class="o">&lt;&gt;();</span>
+        <span class="kd">final</span> <span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">pageQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedBlockingDeque</span><span class="o">&lt;&gt;();</span>
+        <span class="n">pageQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"https://foojay.io/"</span><span class="o">);</span>
+
+        <span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="nc">AtomicInteger</span> <span class="n">pageCount</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicInteger</span><span class="o">();</span>
+
+ <span class="c1">//       try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {</span>
+       <span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">executor</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="nc">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">availableProcessors</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">pageCount</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">&lt;</span> <span class="no">MAX_PAGES_TO_SEARCH</span><span class="o">)</span> <span class="o">{</span>
+                <span class="no">QUEUE_LOCK</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+                <span class="k">while</span> <span class="o">(</span><span class="n">pageQueue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="no">QUEUE_NOT_EMPTY</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="nc">String</span> <span class="n">poll</span> <span class="o">=</span> <span class="n">pageQueue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">poll</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">visited</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">poll</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">executor</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="nc">Crawler</span><span class="o">(</span><span class="n">pageCount</span><span class="o">,</span> <span class="n">visited</span><span class="o">,</span> <span class="n">poll</span><span class="o">,</span> <span class="n">pageQueue</span><span class="o">));</span>
+                <span class="o">}</span>
+                <span class="no">QUEUE_LOCK</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="n">executor</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+            <span class="n">executor</span><span class="o">.</span><span class="na">awaitTermination</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Main thread interrupted!"</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kt">long</span> <span class="n">endTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="kt">long</span> <span class="n">totalTime</span> <span class="o">=</span> <span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nPages crawled: "</span> <span class="o">+</span> <span class="n">visited</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Execution time: "</span> <span class="o">+</span> <span class="n">totalTime</span> <span class="o">+</span> <span class="s">"ms"</span><span class="o">);</span>
+
+        <span class="kt">double</span> <span class="n">pagesPerSecond</span> <span class="o">=</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="n">visited</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">/</span> <span class="o">(</span><span class="n">totalTime</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Throughput: "</span> <span class="o">+</span> <span class="n">pagesPerSecond</span> <span class="o">+</span> <span class="s">" pages/sec"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="key-components">Key Components</h3>
+
+<ul>
+  <li><strong>ConcurrentMap</strong> <strong>visited</strong> : Our trusty guide, marking the URLs we’ve visited.</li>
+  <li><strong>Queue</strong> <strong>pageQueue</strong> : The frontier, storing URLs awaiting exploration.</li>
+  <li><strong>AtomicInteger</strong> <strong>count</strong> : The diligent counter, keeping track of the number of pages visited.</li>
+  <li><strong>Crawler Class</strong> : The main protagonist embodies crawling logic.</li>
+  <li><strong>run()</strong> <strong>Method</strong> : The heart of the operation, orchestrating the fetching and parsing of web pages.</li>
+</ul>
+
+<h3 id="the-core-logic"><strong>The Core Logic</strong></h3>
+
+<p>When the program starts, it initializes a shared visited map, a pageQueue, and an AtomicInteger count.</p>
+
+<p>It then creates an executor service—either classical or virtual threads, based on the scenario—and enters a while loop.</p>
+
+<p>Inside this loop, it picks URLs from the pageQueue and submits new Crawler tasks for execution.</p>
+
+<p>Each Crawler task fetches the web page, parses the HTML to find links, and adds those new URLs to the pageQueue.</p>
+
+<h2 id="running-the-code-execution-command-with-dependencies">Running the Code: Execution Command with Dependencies</h2>
+
+<p>Before running your web crawler, it’s important to include its dependency: the jsoup library, specifically version 1.16.1, which is used for HTML parsing.</p>
+
+<h3 id="command-line-execution">Command-Line Execution</h3>
+
+<ol>
+  <li><strong>Compile the Java File</strong> : Navigate to the directory containing your <code class="language-plaintext highlighter-rouge">Crawler.java</code> file. To compile the code, include the <a href="https://jsoup.org/">jsoup library</a> in the classpath. If the jsoup JAR file is in the same directory, you can run:<code class="language-plaintext highlighter-rouge"> javac -cp '.:jsoup-1.16.1.jar' Crawler.java</code></li>
+  <li><strong>Run the Compiled Class</strong> : When running the Java program, don’t forget to include the JSoup library in the classpath again:<code class="language-plaintext highlighter-rouge"> java -cp '.:jsoup-1.16.1.jar' Crawler </code>Make sure you’ve replaced <code class="language-plaintext highlighter-rouge">jsoup-1.16.1.jar</code> with the correct version if you downloaded a different one.</li>
+</ol>
+
+<p>By following these steps, your Java web crawler will be up and running, fully equipped with the jsoup library for HTML parsing.</p>
+
+<p>If you prefer to manage dependencies using a build tool, both Maven and Gradle offer straightforward ways to include the JSoup library. Below are the steps for each:</p>
+
+<h3 id="using-maven">Using Maven</h3>
+
+<ul>
+  <li><strong>Add Dependency</strong> : In your <code class="language-plaintext highlighter-rouge">pom.xml</code>, include the following dependency for JSoup version 1.16.1:<code class="language-plaintext highlighter-rouge"> </code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependencies</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">jsoup</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jsoup</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">1.16</span><span class="o">.</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+ <span class="o">&lt;/</span><span class="n">dependencies</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Compile and Run</strong> : Navigate to your project directory and execute:<code class="language-plaintext highlighter-rouge"> mvn compile exec:java -Dexec.mainClass="</code><code class="language-plaintext highlighter-rouge">Crawler</code><code class="language-plaintext highlighter-rouge">"</code> .</li>
+</ul>
+
+<h3 id="using-gradle">Using Gradle</h3>
+
+<ul>
+  <li><strong>Add Dependency</strong> : In your file<code class="language-plaintext highlighter-rouge">build.gradle</code>, add the following dependency:<code class="language-plaintext highlighter-rouge"> dependencies { implementation 'org.jsoup:jsoup:1.16.1' }</code></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Compile and Run</strong> : Navigate to your project directory and run:<code class="language-plaintext highlighter-rouge"> gradle run</code></li>
+</ul>
+
+<p>Either of these build tools will automatically download the JSoup library and include it in your project’s classpath, making the compilation and execution process much smoother.</p>
+
+<h2 id="a-comparative-analysis"><strong>A Comparative Analysis</strong></h2>
+
+<h3 id="metrics-observed"><strong>Metrics Observed</strong></h3>
+
+<p>With <strong>Virtual Threads</strong> :</p>
+
+<ul>
+  <li>Pages crawled: 785</li>
+  <li>Execution time: 29,323 ms</li>
+  <li>Throughput: 26.77 pages/sec</li>
+</ul>
+
+<p>With <strong>Classical Threads</strong> :</p>
+
+<ul>
+  <li>Pages crawled: 101</li>
+  <li>Execution time: 20,910 ms</li>
+  <li>Throughput: 4.83 pages/sec</li>
+</ul>
+
+<h3 id="the-revelation-virtual-threads-shine"><strong>The Revelation: Virtual Threads Shine</strong></h3>
+
+<ol>
+  <li><strong>Throughput</strong> : Virtual threads deliver a throughput of 26.77 pages/sec, significantly higher than the 4.83 pages/sec achieved by classical threads. It’s akin to a sports car leaving a bicycle in the dust.</li>
+  <li><strong>Pages Crawled</strong> : Virtual threads manage to crawl a whopping 785 pages, compared to the modest 101 by classical threads. The difference is too vast to ignore.</li>
+  <li><strong>Resource Efficiency</strong> : Both virtual and classical threads in this example are backed by the same number of underlying physical threads, thanks to Java’s ForkJoinPool. This makes the comparison even more compelling, showing how much more you can achieve with the same resources when using virtual threads.</li>
+</ol>
+
+<h2 id="drawing-conclusions"><strong>Drawing Conclusions</strong></h2>
+
+<p>The story told by this code and its performance metrics is one of stark contrast between classical and virtual threads. Virtual threads not only outperform classical threads in terms of throughput but also do so without requiring more underlying resources. It’s as if they’re performing a high-wire act while juggling, making the most of what they have.</p>
+
+<p><strong>In essence, the choice of threading model isn’t merely a technical decision; it’s a strategic one that could redefine the efficiency and scalability of your applications. As our web crawler has demonstrated, opting for virtual threads can be akin to unlocking a hidden level of performance, propelling your Java applications into a new realm of efficiency.</strong></p>
+
+<p><strong><em>NOTE: Keep in mind that the code I’ve shared here has an issue known as pinning. I’ll go into more detail about this in my next article.</em></strong></p>
+

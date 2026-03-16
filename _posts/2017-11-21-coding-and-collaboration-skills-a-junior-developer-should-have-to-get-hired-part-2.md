@@ -46,6 +46,3 @@ So this is all for today, I hope this was helpful.
 
 Stay tuned.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

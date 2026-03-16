@@ -232,6 +232,3 @@ We hope that Shai's journey and wisdom have inspired you to continue learning, g
 
 **I hope you, as a reader, have found this interview beneficial. Stay tuned for next week's interview with another industry star.**  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

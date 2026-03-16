@@ -49,6 +49,3 @@ Keep doing that until you get a sense of what the intent behind the larger metho
 
 This can help your understanding of the method construct and improve your knowledge of refactoring as well.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

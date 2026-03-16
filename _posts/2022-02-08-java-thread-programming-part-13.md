@@ -105,6 +105,3 @@ Once the maximum number of threads in the ThreadPool has been determined, we can
 
 This is all for today. In the next article, we will discuss other aspects of ThreadPool, such as queue size and ForkJoinPool.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

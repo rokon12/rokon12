@@ -245,6 +245,3 @@ You can run using the following command --
 java --source 18 --enable-preview Main.java
 ```
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

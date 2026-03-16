@@ -108,6 +108,3 @@ That's it.
 
 This is how we can run the incubator feature from IntelliJ IDEA.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

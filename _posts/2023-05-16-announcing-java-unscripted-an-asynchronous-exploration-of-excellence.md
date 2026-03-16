@@ -60,6 +60,3 @@ So, let's get this conversation started! We can't wait to delve into your experi
 We thank you in advance for your time and contribution to this community initiative, and we eagerly look forward to your participation.  
 **Remember, your story matters, and it has the power to inspire!**
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

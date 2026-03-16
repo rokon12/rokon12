@@ -32,6 +32,3 @@ In order to advance your career, I hope this will help you concentrate on develo
 
 Stay in touch!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -1,10 +1,10 @@
 # Site settings
-title: Bazlur's Blog Archive
-description: A comprehensive archive of articles on Java, Software Development, and Technology
+title: Bazlur Rahman
+description: Writing about Java, concurrency, JVM internals, and software architecture
 author:
   name: A N M Bazlur Rahman
   email: bazlur@jugbd.org
-  url: https://bazlur.ca
+  url: https://bazlur.com
 
 # URL settings
 url: "https://bazlur.com"

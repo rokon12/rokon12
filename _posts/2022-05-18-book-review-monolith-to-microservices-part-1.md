@@ -62,6 +62,3 @@ Of course, it won't be cheap, somewhat costly, but with Microservices, you can b
 
 That's all for today. I will discuss the next chapter in the next article in this series.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -180,6 +180,3 @@ We don't need to use client-side locking in the above classes. These are thread-
 
 That's all for today!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

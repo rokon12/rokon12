@@ -60,6 +60,3 @@ Bazlur Rahman: ***It's good that you mentioned the book Clean Code. I see a tend
 
 * *Observation # 10: To go beyond average, you must go the extra mile.*
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

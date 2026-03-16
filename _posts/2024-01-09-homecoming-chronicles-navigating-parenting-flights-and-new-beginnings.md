@@ -53,6 +53,3 @@ I hope this compilation will keep you engaged for a while. Rest assured, I'll be
 
 Until then, happy reading! And thank you for being a part of this journey with me.{#ember749}  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -252,6 +252,3 @@ The story told by this code and its performance metrics is one of stark contrast
 
 ***NOTE: Keep in mind that the code I've shared here has an issue known as pinning. I'll go into more detail about this in my next article.***  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

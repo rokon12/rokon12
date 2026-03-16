@@ -63,6 +63,3 @@ Bazlur Rahman: ***Thank you, Scott, for your valuable time! Any parting piece of
 
 * *Observation#17: Always look for a good mentor. Your mentor will help you to do great work.*
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

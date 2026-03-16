@@ -297,6 +297,3 @@ I hope you enjoyed the article; until next time, stay happy!
 
 <br />
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

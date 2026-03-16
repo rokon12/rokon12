@@ -129,6 +129,3 @@ That concludes Part One of our in-depth conversation with Java expert and AWS so
 
 **Read the part -- II : <https://foojay.io/today/exploring-the-depths-of-java-a-comprehensive-conversation-with-jakob-jenkov-part-ii/>**  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

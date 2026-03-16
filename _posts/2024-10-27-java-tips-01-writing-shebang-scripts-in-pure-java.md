@@ -168,6 +168,3 @@ sudo mv ./hello /usr/local/bin/
 
 Now, you can invoke it from any directory just by typing `hello` in your terminal.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

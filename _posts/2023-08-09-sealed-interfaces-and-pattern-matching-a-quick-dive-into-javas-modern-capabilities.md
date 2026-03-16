@@ -71,6 +71,3 @@ In the example above, we are checking the type of shape object, and depending on
 
 **In conclusion, sealed classes and interfaces, together with pattern matching, provide powerful new tools for more explicit, controlled, and flexible design in Java.**  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

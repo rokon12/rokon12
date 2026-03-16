@@ -1,0 +1,52 @@
+<p><img src="/images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp" alt="" /></p>
+
+<h1 id="exploring-new-features-in-jdk-23-a-sneak-peek">Exploring New Features in JDK 23: A Sneak Peek</h1>
+
+<h3 id="the-main-method-and-println">The main method and println</h3>
+
+<p>With JDK 23 on the horizon, I decided to dive into some of its new features by running the following code in the CLI:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">void</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">println</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello World</span><span class="dl">"</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">readln</span><span class="p">(</span><span class="dl">"</span><span class="s2">Enter your name: </span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">println</span><span class="p">(</span><span class="dl">"</span><span class="s2">Your name is </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="nx">readln</span><span class="p">(</span><span class="dl">"</span><span class="s2">Enter your age: </span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">println</span><span class="p">(</span><span class="dl">"</span><span class="s2">Your age is </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">age</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>All I did is, I create a file named. <code class="language-plaintext highlighter-rouge">Main.java</code>. Then run the following command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">java --enable-preview --source 23 Main.java</code></p>
+
+<p>Here is the output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World
+Enter your name: Bazlur
+Your name is Bazlur
+Enter your age: 60
+Your age is 60
+</code></pre></div></div>
+
+<p>One key observation is that <code class="language-plaintext highlighter-rouge">readln</code> captures input as strings without automatic type conversion, unlike Python. This behavior is expected but worth noting. Although this feature is still in the preview phase, it shows great potential for future enhancements.</p>
+
+<h3 id="the-new-javaioio-class">The New java.io.IO Class</h3>
+
+<p>The new <a href="https://github.com/openjdk/jdk/blob/jdk-23%2B25/src/java.base/share/classes/java/io/IO.java">java.io.IO</a> class introduces three additional methods: <code class="language-plaintext highlighter-rouge">println</code>, print, and readln, which are automatically imported. This makes it easier for beginners as there’s no need for extra import statements.</p>
+
+<h3 id="downloading-jdk-23">Downloading JDK 23</h3>
+
+<p>Since JDK 23 isn’t officially available yet, the Early-Access Builds version is available through SDKMAN, which makes it easier to manage and install. I have installed the <code class="language-plaintext highlighter-rouge">23.ea.25-open</code></p>
+
+<p>If you don’t have SDKMAN, use this <a href="https://sdkman.io/install#:~:text=It%20effortlessly%20sets%20up%20on,both%20Bash%20and%20ZSH%20shells.">resource</a> to download and install it. Besides SDKMAN, the OpenJDK JDK 23 Early-Access Builds are available <a href="https://jdk.java.net/23/">here</a>.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The upcoming JDK 23 release promises to introduce convenient features for developers, particularly beginners. The new IO class is a great example, simplifying input and output operations. As we await the official release, building from the source gives us an exciting preview of what’s to come.</p>
+
+<p>More about this can be found here: <a href="https://www.infoq.com/news/2024/05/jep477-implicit-classes-main/">https://www.infoq.com/news/2024/05/jep477-implicit-classes-main/</a></p>
+
+<hr />
+

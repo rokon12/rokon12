@@ -170,6 +170,3 @@ Now let's summarize what we have just learned from this discussion and a few mor
 
 That's all for today!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

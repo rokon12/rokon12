@@ -1,0 +1,465 @@
+<p><img src="/images/chatgpt-image-apr-18-2025-02-34-23-am.png" alt="" /></p>
+
+<h1 id="chat-with-your-knowledge-base-a-hands-on-java--langchain4j-guide">Chat with Your Knowledge Base: A Hands-On Java \&amp; LangChain4j Guide</h1>
+
+<blockquote>
+  <p><strong>Disclaimer:</strong> This article details an experimental project built for learning and demonstration purposes. The implementation described is not intended as a production-grade solution. Some parts of the code were generated using JetBrains’ AI Agent, <a href="https://www.jetbrains.com/junie/">Junie</a>.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>Large Language Models (LLMs) like GPT-4, Llama, and Gemini have revolutionized how we interact with information. However, their knowledge is generally limited to the data they were trained on. What if you need an AI assistant that understands <em>your</em> specific domain knowledge – your company’s internal documentation, product specs, or operational data from a complex system?</p>
+
+<p>This is where <strong>Retrieval-Augmented Generation (RAG)</strong> comes in. RAG enhances LLMs by providing them with relevant information retrieved from your specific knowledge sources <em>before</em> they generate a response. This allows them to answer questions based on data they weren’t originally trained on.</p>
+
+<p>This article is a hands-on guide for Java developers looking to build such a system. We’ll walk through creating a simple application that allows you to “chat” with a custom knowledge base using <strong>Java</strong> and the <strong>LangChain4j</strong> library. LangChain4j simplifies the process of integrating LLMs and building AI applications within the Java ecosystem.</p>
+
+<p>By the end of this guide, you’ll have built a basic RAG pipeline that:</p>
+
+<ol>
+  <li>Loads information from local text files representing your knowledge base.</li>
+  <li>Processes and stores this information in a way the LLM can access.</li>
+  <li>Uses an LLM (like OpenAI’s GPT or a local model via Ollama) combined with retrieved knowledge to answer your questions.</li>
+</ol>
+
+<h2 id="what-is-retrieval-augmented-generation-rag"><strong>What is Retrieval-Augmented Generation (RAG)?</strong></h2>
+
+<p>Imagine asking an LLM a question about a specific error code in your internal system. Without RAG, the LLM might guess or say it doesn’t know.</p>
+
+<p>RAG changes this by adding a crucial step:</p>
+
+<ol>
+  <li><strong>Retrieve:</strong> When you ask a question, the system first searches your specific knowledge base (documents, databases, etc.) for information relevant to your query.</li>
+  <li><strong>Augment:</strong> This retrieved information (the “context”) is then added to your original question and sent as a more detailed prompt to the LLM.</li>
+  <li><strong>Generate:</strong> The LLM uses both your question and the provided context to generate an informed answer.</li>
+</ol>
+
+<p>Essentially, RAG gives the LLM the relevant “cheat sheet” just before it needs to answer your domain-specific question.</p>
+
+<h2 id="why-langchain4j"><strong>Why LangChain4j?</strong></h2>
+
+<p>LangChain4j is a Java library inspired by the popular Python LangChain project. It provides helpful abstractions and tools to streamline the development of LLM-powered applications in Java. It simplifies tasks like:</p>
+
+<ul>
+  <li>Connecting to various LLM providers (OpenAI, Ollama, Gemini, etc.).</li>
+  <li>Managing prompts and chat memory.</li>
+  <li>Loading and transforming documents.</li>
+  <li>Integrating with embedding models and vector stores (essential for RAG).</li>
+  <li>Creating AI services and agents.</li>
+</ul>
+
+<p>Using LangChain4j means you can focus more on your application’s logic rather than the boilerplate code often involved in API integrations and data handling for AI tasks.</p>
+
+<h2 id="the-scenario-querying-operational-knowledge"><strong>The Scenario: Querying Operational Knowledge</strong></h2>
+
+<p>For this demo, we won’t build a full-blown industrial system interface. Instead, we’ll simulate a knowledge base containing basic information about technical components, their status, and known issues or operational rules. This information will be stored in simple text files. Our goal is to build a chat interface that can answer questions based <em>only</em> on the information in these files, using RAG.</p>
+
+<h2 id="prerequisites"><strong>Prerequisites</strong></h2>
+
+<p>Before we start coding, make sure you have the following installed:</p>
+
+<ul>
+  <li><strong>Java Development Kit (JDK):</strong> Version 17 or later is recommended; JDK 21 or later is preferred.</li>
+  <li><strong>Build Tool:</strong> Apache Maven or Gradle. We’ll use Maven examples here.</li>
+  <li><strong>IDE:</strong> A Java IDE like IntelliJ IDEA, Eclipse, or VS Code with Java extensions.</li>
+  <li><strong>LLM Access:</strong> You need a way to interact with a large language model (LLM). Choose one:</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Option A (OpenAI):</strong> An API key from OpenAI. You can get one from their website. LangChain4j allows using “demo” as a key for basic, rate-limited testing.</li>
+  <li><strong>Option B (Ollama – Local):</strong> Install <a href="https://ollama.ai/">Ollama</a> on your machine. After installation, pull a model via the command line (e.g., ollama pull llama3 or ollama pull mistral). This allows you to run the LLM entirely locally.</li>
+</ul>
+
+<h2 id="step-1-project-setup-maven"><strong>Step 1: Project Setup (Maven)</strong></h2>
+
+<p>Create a new Maven project in your IDE. Open the pom.xml file and add the necessary LangChain4j dependencies.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">dev</span><span class="o">.</span><span class="na">langchain4j</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">langchain4j</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">langchain4j</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">dev</span><span class="o">.</span><span class="na">langchain4j</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">langchain4j</span><span class="o">-</span><span class="n">open</span><span class="o">-</span><span class="n">ai</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">langchain4j</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">dev</span><span class="o">.</span><span class="na">langchain4j</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">langchain4j</span><span class="o">-</span><span class="n">ollama</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="o">{</span><span class="n">langchain4j</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p><em>You can choose either the langchain4j-open-ai or langchain4j-ollama dependency.</em></p>
+
+<h2 id="step-2-creating-the-knowledge-base-files"><strong>Step 2: Creating the Knowledge Base Files</strong></h2>
+
+<p>We need some raw data to feed our RAG system. Create a directory named src/main/resources in your project structure. Inside this directory, create two text files:</p>
+
+<p><strong>src/main/resources/components.txt</strong> :</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Component</span> <span class="nl">ID:</span> <span class="no">PUMP</span><span class="o">-</span><span class="mo">001</span><span class="o">.</span> <span class="nl">Type:</span> <span class="nc">Centrifugal</span> <span class="nc">Pump</span><span class="o">.</span> <span class="nl">Status:</span> <span class="nc">Running</span><span class="o">.</span> <span class="nc">Connected</span> <span class="nl">to:</span> <span class="no">VALVE</span><span class="o">-</span><span class="mo">001</span><span class="o">,</span> <span class="no">PIPE</span><span class="o">-</span><span class="mo">002</span><span class="o">.</span> <span class="nl">Location:</span> <span class="nc">Sector</span> <span class="no">A</span><span class="o">.</span>
+<span class="nc">Component</span> <span class="nl">ID:</span> <span class="no">VALVE</span><span class="o">-</span><span class="mo">001</span><span class="o">.</span> <span class="nl">Type:</span> <span class="nc">Gate</span> <span class="nc">Valve</span><span class="o">.</span> <span class="nl">Status:</span> <span class="nc">Open</span><span class="o">.</span> <span class="nc">Connected</span> <span class="nl">to:</span> <span class="no">PUMP</span><span class="o">-</span><span class="mo">001</span><span class="o">,</span> <span class="no">TANK</span><span class="o">-</span><span class="no">A</span><span class="o">.</span> <span class="nl">Location:</span> <span class="nc">Sector</span> <span class="no">A</span><span class="o">.</span>
+<span class="nc">Component</span> <span class="nl">ID:</span> <span class="no">SENSOR</span><span class="o">-</span><span class="no">T1</span><span class="o">.</span> <span class="nl">Type:</span> <span class="nc">Temperature</span> <span class="nc">Sensor</span><span class="o">.</span> <span class="nl">Monitors:</span> <span class="no">PUMP</span><span class="o">-</span><span class="mo">001</span> <span class="nc">Casing</span><span class="o">.</span> <span class="nl">Reading:</span> <span class="mi">65</span><span class="no">C</span><span class="o">.</span> <span class="nl">Unit:</span> <span class="nc">Celsius</span><span class="o">.</span> <span class="nl">Location:</span> <span class="nc">Sector</span> <span class="no">A</span><span class="o">.</span>
+<span class="nc">Component</span> <span class="nl">ID:</span> <span class="no">SENSOR</span><span class="o">-</span><span class="no">P1</span><span class="o">.</span> <span class="nl">Type:</span> <span class="nc">Pressure</span> <span class="nc">Sensor</span><span class="o">.</span> <span class="nl">Monitors:</span> <span class="no">PIPE</span><span class="o">-</span><span class="mo">002</span><span class="o">.</span> <span class="nl">Reading:</span> <span class="mi">150</span><span class="o">.</span> <span class="nl">Unit:</span> <span class="no">PSI</span><span class="o">.</span> <span class="nl">Location:</span> <span class="nc">Sector</span> <span class="no">B</span><span class="o">.</span>
+<span class="nc">Component</span> <span class="nl">ID:</span> <span class="no">MOTOR</span><span class="o">-</span><span class="mo">001</span><span class="o">.</span> <span class="nl">Type:</span> <span class="nc">Electric</span> <span class="nc">Motor</span><span class="o">.</span> <span class="nl">Status:</span> <span class="nc">Running</span><span class="o">.</span> <span class="nl">Drives:</span> <span class="no">PUMP</span><span class="o">-</span><span class="mo">001</span><span class="o">.</span> <span class="nl">Location:</span> <span class="nc">Sector</span> <span class="no">A</span><span class="o">.</span>
+</code></pre></div></div>
+
+<p><strong>src/main/resources/knowledge.txt</strong> :</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Fault</span> <span class="nx">ID</span><span class="p">:</span> <span class="nx">F001</span><span class="p">.</span> <span class="nx">Description</span><span class="p">:</span> <span class="nx">High</span> <span class="nx">Temperature</span> <span class="nx">on</span> <span class="nx">PUMP</span><span class="o">-</span><span class="mi">001</span><span class="p">.</span> <span class="nx">Possible</span> <span class="nx">Causes</span><span class="p">:</span> <span class="nx">Low</span> <span class="nx">lubrication</span><span class="p">,</span> <span class="nx">bearing</span> <span class="nx">wear</span><span class="p">,</span> <span class="nx">blocked</span> <span class="nx">outlet</span> <span class="nx">VALVE</span><span class="o">-</span><span class="mi">001</span><span class="p">.</span> <span class="nx">Recommended</span> <span class="nx">Action</span><span class="p">:</span> <span class="nx">Check</span> <span class="nx">lubrication</span> <span class="nx">levels</span> <span class="nx">and</span> <span class="nx">bearing</span> <span class="nx">condition</span><span class="p">.</span>
+<span class="nx">Event</span> <span class="nx">ID</span><span class="p">:</span> <span class="nx">E001</span><span class="p">.</span> <span class="nx">Description</span><span class="p">:</span> <span class="nx">Pressure</span> <span class="nx">drop</span> <span class="k">in</span> <span class="nx">PIPE</span><span class="o">-</span><span class="mi">002</span> <span class="nx">below</span> <span class="mi">100</span> <span class="nx">PSI</span><span class="p">.</span> <span class="nx">Related</span> <span class="nx">Components</span><span class="p">:</span> <span class="nx">PUMP</span><span class="o">-</span><span class="mi">001</span><span class="p">,</span> <span class="nx">VALVE</span><span class="o">-</span><span class="mi">001</span><span class="p">,</span> <span class="nx">SENSOR</span><span class="o">-</span><span class="nx">P1</span><span class="p">.</span> <span class="nx">Possible</span> <span class="nx">Causes</span><span class="p">:</span> <span class="nx">Leak</span> <span class="k">in</span> <span class="nx">PIPE</span><span class="o">-</span><span class="mi">002</span><span class="p">,</span> <span class="nx">PUMP</span><span class="o">-</span><span class="mi">001</span> <span class="nx">failure</span><span class="p">,</span> <span class="nx">VALVE</span><span class="o">-</span><span class="mi">001</span> <span class="nx">partially</span> <span class="nx">closed</span><span class="p">.</span>
+<span class="nx">Rule</span> <span class="nx">ID</span><span class="p">:</span> <span class="nx">R001</span><span class="p">.</span> <span class="nx">Condition</span><span class="p">:</span> <span class="nx">If</span> <span class="nx">SENSOR</span><span class="o">-</span><span class="nx">T1</span> <span class="nx">reading</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="nx">C</span><span class="p">.</span> <span class="nx">Action</span><span class="p">:</span> <span class="nx">Generate</span> <span class="nx">HIGH_TEMP_ALERT</span> <span class="k">for</span> <span class="nx">PUMP</span><span class="o">-</span><span class="mi">001</span><span class="p">.</span> <span class="nx">Priority</span><span class="p">:</span> <span class="nx">High</span><span class="p">.</span>
+<span class="nx">Maintenance</span> <span class="nx">Note</span> <span class="nx">M001</span><span class="p">:</span> <span class="nx">PUMP</span><span class="o">-</span><span class="mi">001</span> <span class="nx">bearings</span> <span class="nx">last</span> <span class="nx">replaced</span> <span class="mi">6</span> <span class="nx">months</span> <span class="nx">ago</span><span class="p">.</span> <span class="nx">Next</span> <span class="nx">inspection</span> <span class="nx">due</span> <span class="k">in</span> <span class="mi">1</span> <span class="nx">month</span><span class="p">.</span>
+<span class="nx">Safety</span> <span class="nx">Procedure</span> <span class="nx">S001</span><span class="p">:</span> <span class="nx">Before</span> <span class="nx">servicing</span> <span class="nx">PUMP</span><span class="o">-</span><span class="mi">001</span><span class="p">,</span> <span class="nx">ensure</span> <span class="nx">MOTOR</span><span class="o">-</span><span class="mi">001</span> <span class="nx">is</span> <span class="nx">locked</span> <span class="nx">out</span> <span class="nx">and</span> <span class="nx">VALVE</span><span class="o">-</span><span class="mi">001</span> <span class="nx">is</span> <span class="nx">closed</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p>These files contain simple, factual statements about our simulated system.</p>
+
+<h2 id="step-3-ingesting-the-knowledge-building-the-rag-pipeline"><strong>Step 3: Ingesting the Knowledge (Building the RAG Pipeline)</strong></h2>
+
+<p>Now, we write the Java code to load these files, process them, and store them in a way that’s searchable. This process involves:</p>
+
+<ol>
+  <li><strong>Loading:</strong> Reading the content from the text files.</li>
+  <li><strong>Splitting:</strong> Breaking down the documents into smaller, manageable chunks (or “segments”). This is important because LLMs have limits on how much text they can process at once, and smaller chunks often lead to more relevant retrieval.</li>
+  <li><strong>Embedding:</strong> Converting each text segment into a numerical vector (an “embedding”) using an Embedding Model. These vectors capture the semantic meaning of the text. Similar concepts will have similar vectors.</li>
+  <li><strong>Storing:</strong> Saving these embeddings along with their corresponding text segments in an “Embedding Store” (often a vector database, but we’ll use a simple in-memory store for this demo).</li>
+</ol>
+
+<p>Create a new Java class, KnowledgeBaseIngestor.java:</p>
+
+<p>package com.example; // Use your package name</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.util</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">ca.bazlur.service.KnowledgeBaseService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.Document</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.DocumentParser</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.DocumentSplitter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.parser.TextDocumentParser</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.splitter.DocumentSplitters</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.segment.TextSegment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.embedding.EmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.ollama.OllamaEmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.openai.OpenAiEmbeddingModel</span><span class="o">;</span> <span class="c1">// Choose one</span>
+<span class="c1">// import dev.langchain4j.model.ollama.OllamaEmbeddingModel; // Choose one</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.EmbeddingSearchRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.EmbeddingStore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.EmbeddingStoreIngestor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URISyntaxException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.Path</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.Paths</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">KnowledgeBaseIngestor</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Loads documents from resource files, creates embeddings, and stores them in an in-memory store.
+     *
+     * @return An EmbeddingStore containing the processed knowledge base.
+     * @throws URISyntaxException if the resource file paths are invalid.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="nf">ingestData</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">URISyntaxException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting knowledge base ingestion..."</span><span class="o">);</span>
+
+        <span class="c1">// --- 1. Load Documents ---</span>
+        <span class="nc">Document</span> <span class="n">componentsDoc</span> <span class="o">=</span> <span class="n">loadDocumentFromResource</span><span class="o">(</span><span class="s">"components.txt"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">TextDocumentParser</span><span class="o">());</span>
+        <span class="nc">Document</span> <span class="n">knowledgeDoc</span> <span class="o">=</span> <span class="n">loadDocumentFromResource</span><span class="o">(</span><span class="s">"knowledge.txt"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">TextDocumentParser</span><span class="o">());</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Document</span><span class="o">&gt;</span> <span class="n">documents</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">componentsDoc</span><span class="o">,</span> <span class="n">knowledgeDoc</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Documents loaded successfully."</span><span class="o">);</span>
+
+        <span class="c1">// --- 2. Setup Embedding Model ---</span>
+        <span class="c1">// Choose *one* embedding model provider:</span>
+
+        <span class="c1">// Option A: OpenAI (Requires OPENAI_API_KEY environment variable or use "demo")</span>
+<span class="c1">//      System.out.println("Initializing OpenAI Embedding Model...");</span>
+<span class="c1">//      EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()</span>
+<span class="c1">//              .apiKey(System.getenv("OPENAI_API_KEY") != null ? System.getenv("OPENAI_API_KEY") : "demo")</span>
+<span class="c1">//              .logRequests(true) // Optional: Log requests to OpenAI</span>
+<span class="c1">//              .logResponses(true) // Optional: Log responses from OpenAI</span>
+<span class="c1">//              .build();</span>
+
+        <span class="c1">// Option B: Ollama (Requires Ollama server running locally)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Initializing Ollama Embedding Model..."</span><span class="o">);</span>
+        <span class="nc">EmbeddingModel</span> <span class="n">embeddingModel</span> <span class="o">=</span> <span class="nc">OllamaEmbeddingModel</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">baseUrl</span><span class="o">(</span><span class="s">"http://localhost:11434"</span><span class="o">)</span> <span class="c1">// Default Ollama URL</span>
+                <span class="o">.</span><span class="na">modelName</span><span class="o">(</span><span class="s">"llama3"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Embedding Model initialized."</span><span class="o">);</span>
+
+
+        <span class="c1">// --- 3. Setup Embedding Store ---</span>
+        <span class="c1">// We use a simple in-memory store for this demo.</span>
+        <span class="c1">// For persistent storage, explore options like Chroma, Pinecone, Weaviate, etc.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Initializing In-Memory Embedding Store..."</span><span class="o">);</span>
+        <span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="n">embeddingStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InMemoryEmbeddingStore</span><span class="o">&lt;&gt;();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Embedding Store initialized."</span><span class="o">);</span>
+
+        <span class="c1">// --- 4. Setup Ingestion Pipeline ---</span>
+        <span class="c1">// Define how documents are split into segments (chunking strategy)</span>
+        <span class="c1">// recursive(maxSegmentSize, maxOverlap) splits text recursively, trying to keep paragraphs/sentences together.</span>
+        <span class="c1">// 300 characters per segment, 30 characters overlap between segments.</span>
+        <span class="nc">DocumentSplitter</span> <span class="n">splitter</span> <span class="o">=</span> <span class="nc">DocumentSplitters</span><span class="o">.</span><span class="na">recursive</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Using recursive document splitter (300 chars, 30 overlap)."</span><span class="o">);</span>
+
+        <span class="c1">// EmbeddingStoreIngestor handles splitting, embedding, and storing.</span>
+        <span class="nc">EmbeddingStoreIngestor</span> <span class="n">ingestor</span> <span class="o">=</span> <span class="nc">EmbeddingStoreIngestor</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">documentSplitter</span><span class="o">(</span><span class="n">splitter</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">embeddingModel</span><span class="o">(</span><span class="n">embeddingModel</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">embeddingStore</span><span class="o">(</span><span class="n">embeddingStore</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="c1">// --- 5. Ingest Documents ---</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ingesting documents into the embedding store..."</span><span class="o">);</span>
+        <span class="n">ingestor</span><span class="o">.</span><span class="na">ingest</span><span class="o">(</span><span class="n">documents</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ingestion complete. Embedding store contains"</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">embeddingStore</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Helper method to get the Path of a resource file.
+     * Handles running from IDE and within a JAR file.
+     * @param resourceName The name of the file in src/main/resources
+     * @return The Path object for the resource.
+     * @throws URISyntaxException If the resource URL is malformed.
+     * @throws RuntimeException If the resource is not found.
+     */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Document</span> <span class="nf">loadDocumentFromResource</span><span class="o">(</span><span class="nc">String</span> <span class="n">resourceName</span><span class="o">,</span> <span class="nc">DocumentParser</span> <span class="n">parser</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">getResourceAsStream</span><span class="o">(</span><span class="n">resourceName</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">Objects</span><span class="o">.</span><span class="na">requireNonNull</span><span class="o">(</span><span class="n">inputStream</span><span class="o">,</span> <span class="s">"Resource not found: "</span> <span class="o">+</span> <span class="n">resourceName</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kd">static</span> <span class="nc">InputStream</span> <span class="nf">getResourceAsStream</span><span class="o">(</span><span class="nc">String</span> <span class="n">resourceName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">KnowledgeBaseService</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="n">resourceName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="n">store</span> <span class="o">=</span> <span class="n">ingestData</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">URISyntaxException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error finding resource files: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"An error occurred during ingestion: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Explanation of Key Classes:</strong></p>
+
+<ul>
+  <li><a href="https://github.com/langchain4j/langchain4j/blob/main/langchain4j/src/test/java/dev/langchain4j/data/document/parser/TextDocumentParserTest.java">TextDocumentParser</a>: A simple parser for plain text files.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/rag#document-splitter">DocumentSplitters.recursive()</a>: A strategy for splitting documents into segments, trying to respect sentence/paragraph boundaries. The numbers (e.g., 300, 30) control the maximum segment size and the overlap between segments.</li>
+  <li><a href="https://docs.langchain4j.dev/integrations/embedding-models/open-ai#creating-openaiembeddingmodel">EmbeddingModel</a> (OpenAiEmbeddingModel / OllamaEmbeddingModel): The interface and implementations for converting text to embeddings. <em>Note: For Ollama, using a dedicated embedding model like nomic-embed-text is generally better than using a chat model for embedding.</em></li>
+  <li><a href="https://docs.langchain4j.dev/integrations/embedding-stores/in-memory#apis">InMemoryEmbeddingStore</a>: A basic implementation of EmbeddingStore that keeps data in memory. Suitable for demos, but data is lost when the application stops unless serialized.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/rag#embedding-store-ingestor">EmbeddingStoreIngestor</a>: Orchestrates the process of splitting documents, embedding the segments, and adding them to the embedding store.</li>
+</ul>
+
+<h2 id="step-4-building-the-chat-interface-aiservice"><strong>Step 4: Building the Chat Interface (AiService)</strong></h2>
+
+<p>Now we create the main application class that will handle user interaction. It will:</p>
+
+<ol>
+  <li>Initialize the knowledge base by calling our KnowledgeBaseIngestor.</li>
+  <li>Set up a Chat Language Model (the LLM that generates responses).</li>
+  <li>Set up a ContentRetriever that uses the embedding store to find relevant context for user queries.</li>
+  <li>Use LangChain4j’s AiServices to create a simple chat interface.</li>
+  <li>Optionally use ChatMemory to allow the assistant to remember the conversation history.</li>
+</ol>
+
+<p>Create a new Java class, KnowledgeAssistant.java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.util</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.segment.TextSegment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.memory.ChatMemory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.memory.chat.MessageWindowChatMemory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.chat.ChatLanguageModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.embedding.EmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.ollama.OllamaChatModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.ollama.OllamaEmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.openai.OpenAiChatModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.openai.OpenAiEmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.rag.content.retriever.ContentRetriever</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.AiServices</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.SystemMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.EmbeddingStore</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">KnowledgeAssistant</span> <span class="o">{</span>
+
+    <span class="kd">interface</span> <span class="nc">Assistant</span> <span class="o">{</span>
+        <span class="nd">@SystemMessage</span><span class="o">(</span><span class="s">"""
+                    You are an AI assistant specialized in querying operational knowledge about technical systems
+                    (components, status, faults, procedures). Answer user questions accurately and concisely, 
+                    relying *strictly* on the information provided in the context. Do not use any prior knowledge or make assumptions.
+                    """</span><span class="o">)</span>
+        <span class="nc">String</span> <span class="nf">chat</span><span class="o">(</span><span class="nc">String</span> <span class="n">userMessage</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// --- 1. Ingest Knowledge Base ---</span>
+            <span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="n">embeddingStore</span> <span class="o">=</span> <span class="nc">KnowledgeBaseIngestor</span><span class="o">.</span><span class="na">ingestData</span><span class="o">();</span>
+
+            <span class="c1">// --- 2. Setup Chat Model ---</span>
+
+            <span class="c1">// Option A: OpenAI</span>
+            <span class="cm">/*System.out.println("Initializing OpenAI Chat Model...");
+            ChatLanguageModel chatModel = OpenAiChatModel.builder()
+                    .apiKey(System.getenv("OPENAI_API_KEY") != null ? System.getenv("OPENAI_API_KEY") : "demo")
+                    .modelName("gpt-4o") // Or gpt-4o, etc.
+                    .logRequests(true)
+                    .logResponses(true)
+                    .build();
+            // We also need the corresponding embedding model for the retriever
+            EmbeddingModel embeddingModel = OpenAiEmbeddingModel.builder()
+                    .apiKey(System.getenv("OPENAI_API_KEY") != null ? System.getenv("OPENAI_API_KEY") : "demo")
+                    .logRequests(true)
+                    .logResponses(true)
+                    .build();
+            */</span>
+
+            <span class="c1">// Option B: Ollama</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Initializing Ollama Chat Model..."</span><span class="o">);</span>
+            <span class="nc">ChatLanguageModel</span> <span class="n">chatModel</span> <span class="o">=</span> <span class="nc">OllamaChatModel</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">baseUrl</span><span class="o">(</span><span class="s">"http://localhost:11434"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">modelName</span><span class="o">(</span><span class="s">"llama3"</span><span class="o">)</span> <span class="c1">// Or mistral, etc.</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="c1">// We also need the corresponding embedding model for the retriever</span>
+            <span class="nc">EmbeddingModel</span> <span class="n">embeddingModel</span> <span class="o">=</span> <span class="nc">OllamaEmbeddingModel</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">baseUrl</span><span class="o">(</span><span class="s">"http://localhost:11434"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">modelName</span><span class="o">(</span><span class="s">"llama3"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Chat Model initialized."</span><span class="o">);</span>
+
+
+            <span class="c1">// --- 3. Setup Content Retriever (RAG) ---</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Initializing Content Retriever..."</span><span class="o">);</span>
+            <span class="nc">ContentRetriever</span> <span class="n">contentRetriever</span> <span class="o">=</span> <span class="nc">EmbeddingStoreContentRetriever</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">embeddingStore</span><span class="o">(</span><span class="n">embeddingStore</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">embeddingModel</span><span class="o">(</span><span class="n">embeddingModel</span><span class="o">)</span> <span class="c1">// Use the *same* embedding model used during ingestion</span>
+                    <span class="o">.</span><span class="na">maxResults</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="c1">// Retrieve top 3 most relevant segments</span>
+                    <span class="o">.</span><span class="na">minScore</span><span class="o">(</span><span class="mf">0.6</span><span class="o">)</span> <span class="c1">// Filter out segments with relevance score below 0.6</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Content Retriever initialized."</span><span class="o">);</span>
+
+            <span class="c1">// --- 4. Setup Chat Memory (Optional) ---</span>
+            <span class="c1">// This allows the assistant to remember previous parts of the conversation.</span>
+            <span class="nc">ChatMemory</span> <span class="n">chatMemory</span> <span class="o">=</span> <span class="nc">MessageWindowChatMemory</span><span class="o">.</span><span class="na">withMaxMessages</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Chat Memory initialized (window size 10)."</span><span class="o">);</span>
+
+            <span class="c1">// --- 5. Create the AiService ---</span>
+            <span class="c1">// AiServices wires together the chat model, retriever, memory, etc.</span>
+            <span class="c1">// It automatically implements the Assistant interface based on annotations and configuration.</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating AI Service..."</span><span class="o">);</span>
+            <span class="nc">Assistant</span> <span class="n">assistant</span> <span class="o">=</span> <span class="nc">AiServices</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="nc">Assistant</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">chatLanguageModel</span><span class="o">(</span><span class="n">chatModel</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">contentRetriever</span><span class="o">(</span><span class="n">contentRetriever</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">chatMemory</span><span class="o">(</span><span class="n">chatMemory</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"AI Service created. Assistant is ready."</span><span class="o">);</span>
+
+            <span class="c1">// --- 6. Start Interactive Chat Loop ---</span>
+            <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nAssistant: Hello! Ask me about the system components or known issues."</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"You: "</span><span class="o">);</span>
+                <span class="nc">String</span> <span class="n">userQuery</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="s">"exit"</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">userQuery</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Assistant: Goodbye!"</span><span class="o">);</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="nc">String</span> <span class="n">assistantResponse</span> <span class="o">=</span> <span class="n">assistant</span><span class="o">.</span><span class="na">chat</span><span class="o">(</span><span class="n">userQuery</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Assistant: "</span> <span class="o">+</span> <span class="n">assistantResponse</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">scanner</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"An error occurred during assistant setup or chat: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Explanation of Key Classes:</strong></p>
+
+<ul>
+  <li><a href="https://docs.langchain4j.dev/apidocs/dev/langchain4j/model/chat/ChatLanguageModel.html">ChatLanguageModel</a> (OpenAiChatModel / OllamaChatModel): Interface and implementations for the core LLM that generates responses.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/rag#naive-rag">EmbeddingStoreContentRetriever</a>: An implementation of ContentRetriever specifically designed to work with an <a href="https://docs.langchain4j.dev/integrations/embedding-stores/in-memory#persisting">EmbeddingStore</a>. It takes the user query, embeds it using the <em>same</em> EmbeddingModel used during ingestion, searches the EmbeddingStore for similar embeddings, and retrieves the corresponding text segments.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/ai-services#chat-memory">ChatMemory</a> (MessageWindowChatMemory): Stores the history of the conversation. MessageWindowChatMemory keeps only the last N messages.</li>
+  <li><a href="https://docs.langchain4j.dev/tutorials/ai-services">AiServices</a>: A powerful factory in LangChain4j that creates an implementation of your defined interface (here, Assistant). It automatically handles:</li>
+</ul>
+
+<!-- -->
+
+<p>*</p>
+<ul>
+  <li>Taking the user message.</li>
+  <li>(If ContentRetriever is provided) Retrieving relevant context.</li>
+  <li>(If ChatMemory is provided) Loading previous messages.</li>
+  <li>Constructing the final prompt (including context and history) for the ChatLanguageModel.</li>
+  <li>Getting the response from the LLM.</li>
+  <li>(If ChatMemory is provided) Saving the current exchange.</li>
+  <li>Returning the LLM’s response.</li>
+</ul>
+
+<h2 id="step-5-running-and-testing"><strong>Step 5: Running and Testing</strong></h2>
+
+<ol>
+  <li><strong>Set Environment Variable (if using OpenAI):</strong> Make sure your OPENAI_API_KEY environment variable is set.</li>
+  <li><strong>Run Ollama (if using Ollama):</strong> Ensure your Ollama application is running in the background.</li>
+  <li><strong>Compile:</strong> Use Maven to compile your project (e.g., <strong>mvn clean compile</strong>).</li>
+  <li><strong>Run:</strong> Execute the <strong>KnowledgeAssistant</strong> class. You can run it from your IDE or use Maven to create an executable JAR (mvn clean package) and run it (<strong>java -jar target/knowledge-base-chat-1.0-SNAPSHOT.jar</strong>).</li>
+</ol>
+
+<p>Once running, you should see the ingestion messages followed by the “Assistant: Hello!” prompt. Try asking questions based on the content of components.txt and knowledge.txt:</p>
+
+<ul>
+  <li>You: What is the status of PUMP-001?</li>
+  <li>You: Where is SENSOR-P1 located?</li>
+  <li>You: What are the possible causes of high temperature on PUMP-001?</li>
+  <li>You: What is rule R001?</li>
+  <li>You: Tell me about PUMP-001.</li>
+  <li>You: What is the safety procedure for PUMP-001?</li>
+</ul>
+
+<p>Observe how the assistant’s answers are derived from the information you provided in the text files, demonstrating the RAG process in action.</p>
+
+<p><img src="/images/screenshot-2025-04-18-at-2.46.48-am.png" alt="" /></p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>Congratulations! You’ve built a basic Retrieval-Augmented Generation (RAG) application using Java and LangChain4j. You’ve seen how to load custom knowledge, process it into searchable embeddings, and create an AI assistant that leverages this specific information to provide relevant answers.</p>
+
+<p>This approach of combining the power of LLMs with your domain-specific data opens up vast possibilities for building intelligent applications that truly understand your world.</p>
+
+<blockquote>
+  <p>For the complete source code, visit: <a href="https://github.com/rokon12/knowledge-base-chat">https://github.com/rokon12/knowledge-base-chat</a></p>
+
+  <p>If you’re looking for more examples integrating LLMs with Java, especially within the Jakarta EE context, you might find this repository helpful: <a href="https://github.com/learnj-ai/llm-jakarta" title="null">https://github.com/learnj-ai/llm-jakarta</a></p>
+</blockquote>
+

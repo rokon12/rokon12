@@ -1,125 +1,56 @@
 {% comment %}
-  Related Posts Component
-  Finds and displays posts related to the current post based on shared tags
-  Falls back to title similarity if no tags are present
+  Related Posts — shows up to 3 related articles based on shared tags.
+  Falls back to recent posts if no tags match.
 {% endcomment %}
 
-<div class="related-posts-section">
-  <h2 class="related-posts-header">
-    <span class="gradient-text">Related Articles</span>
-  </h2>
-  
-  {% if page.tags and page.tags.size > 0 %}
-    {% comment %} Tag-based related posts with better scoring {% endcomment %}
-    {% assign related_posts = site.posts | where_exp: "post", "post.url != page.url" %}
-    {% assign scored_posts = "" | split: "" %}
-    {% assign max_posts_to_check = 30 %}
-    {% assign posts_checked = 0 %}
-    
-    {% for post in related_posts %}
-      {% if posts_checked >= max_posts_to_check %}
-        {% break %}
+{% if page.tags and page.tags.size > 0 %}
+  {% assign related_posts = site.posts | where_exp: "post", "post.url != page.url" %}
+  {% assign scored_posts = "" | split: "" %}
+  {% assign max_posts_to_check = 30 %}
+  {% assign posts_checked = 0 %}
+
+  {% for post in related_posts %}
+    {% if posts_checked >= max_posts_to_check %}{% break %}{% endif %}
+    {% assign shared_tags = 0 %}
+    {% for tag in post.tags %}
+      {% if page.tags contains tag %}
+        {% assign shared_tags = shared_tags | plus: 1 %}
       {% endif %}
-      
-      {% assign shared_tags = 0 %}
-      {% for tag in post.tags %}
-        {% if page.tags contains tag %}
-          {% assign shared_tags = shared_tags | plus: 1 %}
-        {% endif %}
-      {% endfor %}
-      
-      {% comment %} Only include posts with at least 2 shared tags or 1 if page has few tags {% endcomment %}
-      {% assign min_shared_tags = 1 %}
-      {% if page.tags.size > 3 %}
-        {% assign min_shared_tags = 2 %}
-      {% endif %}
-      
-      {% if shared_tags >= min_shared_tags %}
-        {% assign scored_posts = scored_posts | push: post %}
-      {% endif %}
-      
-      {% assign posts_checked = posts_checked | plus: 1 %}
     {% endfor %}
-    
-    {% comment %} Take the most recent posts from those with shared tags {% endcomment %}
-    {% assign sorted_posts = scored_posts | sort: "date" | reverse %}
-    
-    {% if sorted_posts.size > 0 %}
-      <div class="related-posts-grid">
-        {% for post in sorted_posts limit: 5 %}
-          <article class="related-post-card">
-            <a href="{{ post.url | relative_url }}" class="related-post-link">
-              <div class="related-post-content">
-                <h3 class="related-post-title">{{ post.title | escape }}</h3>
-                
-                <time class="related-post-date" datetime="{{ post.date_published }}">
-                  {{ post.date_published | date: "%B %d, %Y" }}
-                </time>
-                
-                {% if post.excerpt %}
-                  <p class="related-post-excerpt">
-                    {{ post.excerpt | strip_html | truncate: 120 }}
-                  </p>
-                {% endif %}
-                
-                {% if post.tags and post.tags.size > 0 %}
-                  <div class="related-post-tags">
-                    {% for tag in post.tags limit: 3 %}
-                      <span class="related-post-tag">{{ tag }}</span>
-                    {% endfor %}
-                    {% if post.tags.size > 3 %}
-                      <span class="related-post-tag">+{{ post.tags.size | minus: 3 }}</span>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              </div>
-              
-              <div class="related-post-arrow">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M7 5L12 10L7 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </a>
-          </article>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p class="no-related-posts">No related articles found. Check back later for more content!</p>
+    {% if shared_tags >= 1 %}
+      {% assign scored_posts = scored_posts | push: post %}
     {% endif %}
-    
-  {% else %}
-    {% comment %} Fallback: Show recent posts if no tags {% endcomment %}
-    <div class="related-posts-notice">
-      <p>💡 <strong>Tip:</strong> Add tags to your posts to see more relevant suggestions!</p>
-    </div>
-    
-    <div class="related-posts-grid">
-      {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | limit: 5 %}
-      {% for post in recent_posts %}
-        <article class="related-post-card">
-          <a href="{{ post.url | relative_url }}" class="related-post-link">
-            <div class="related-post-content">
-              <h3 class="related-post-title">{{ post.title | escape }}</h3>
-              
-              <time class="related-post-date" datetime="{{ post.date_published }}">
-                {{ post.date_published | date: "%B %d, %Y" }}
-              </time>
-              
-              {% if post.excerpt %}
-                <p class="related-post-excerpt">
-                  {{ post.excerpt | strip_html | truncate: 120 }}
-                </p>
-              {% endif %}
-            </div>
-            
-            <div class="related-post-arrow">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M7 5L12 10L7 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </a>
-        </article>
+    {% assign posts_checked = posts_checked | plus: 1 %}
+  {% endfor %}
+
+  {% assign sorted_posts = scored_posts | sort: "date" | reverse %}
+
+  {% if sorted_posts.size > 0 %}
+  <div class="related-posts-section">
+    <h3 class="related-posts-header">Related Articles</h3>
+    <ul class="related-posts-list">
+      {% for post in sorted_posts limit: 3 %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%b %Y" }}</time>
+        </li>
       {% endfor %}
-    </div>
+    </ul>
+  </div>
   {% endif %}
-</div>
+{% else %}
+  {% assign recent = site.posts | where_exp: "post", "post.url != page.url" %}
+  {% if recent.size > 0 %}
+  <div class="related-posts-section">
+    <h3 class="related-posts-header">Recent Articles</h3>
+    <ul class="related-posts-list">
+      {% for post in recent limit: 3 %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%b %Y" }}</time>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endif %}

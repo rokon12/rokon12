@@ -1,0 +1,799 @@
+<p><img src="/images/chatgpt-image-apr-6-2025-06-10-38-pm.png" alt="" /></p>
+
+<h1 id="building-formpilot-my-journey-creating-an-ai-powered-form-filler-with-rag-langchain4j-and-ollama">Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama</h1>
+
+<blockquote>
+  <p><strong>Disclaimer:</strong> This article details an experimental project built for learning and demonstration purposes. The implementation described is not intended as production-grade solution. Some parts of the code were generated using JetBrains’ AI Agent, <a href="https://www.jetbrains.com/junie/">Junie</a>.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>Have you ever found yourself filling out the same information on web forms over and over again? Name, email, address, phone number… it’s tedious and time-consuming. As a developer who values efficiency, I decided to tackle this problem head-on by building FormPilot, an intelligent form filler that leverages the power of Large Language Models (LLMs) to fill out forms with contextually appropriate information automatically.</p>
+
+<p>In this article, I’ll take you through my journey of creating FormPilot, a Chrome extension backed by a Java Spring Boot application that uses Retrieval-Augmented Generation (RAG), LangChain4j, and Ollama to fill out web forms intelligently. I’ll share the challenges I faced, the solutions I implemented, and the lessons I learned along the way.</p>
+
+<h2 id="the-inspiration"><strong>The Inspiration</strong></h2>
+
+<p>The idea for FormPilot came to me during a conference registration season. I found myself registering for multiple tech conferences, each with their own registration forms asking for the same information. As I filled out yet another form with my name, email, and bio for the fifth time, I thought, “There has to be a better way.”</p>
+
+<p>Sure, there are password managers and form fillers out there, but they typically just save and replay the exact information you’ve entered before. What if we could create something smarter? Something that could help us understand the context of each field and generate appropriate values based on that context?</p>
+
+<p>That’s when I decided to leverage my experience with Java and my interest in AI to build FormPilot.</p>
+
+<h2 id="the-architecture"><strong>The Architecture</strong></h2>
+
+<p>I designed FormPilot with two main components:</p>
+
+<ol>
+  <li>A Chrome extension that detects forms on web pages and communicates with a local server</li>
+  <li>A Spring Boot application that uses RAG, LangChain4j, and Ollama to generate appropriate values for form fields</li>
+</ol>
+
+<p>This architecture allows the extension to be lightweight while offloading the heavy lifting of AI processing to the local server. Here’s how the data flows through the system:</p>
+
+<ol>
+  <li>The Chrome extension detects a form on a web page</li>
+  <li>It extracts metadata about each form field (id, name, type, label, placeholder, etc.)</li>
+  <li>It sends this metadata to the local server</li>
+  <li>The server uses RAG and LangChain4j with Ollama to generate appropriate values for each field</li>
+  <li>The server returns these values to the extension</li>
+  <li>The extension fills the form with the generated values</li>
+</ol>
+
+<h2 id="getting-started-setting-up-your-environment"><strong>Getting Started: Setting Up Your Environment</strong></h2>
+
+<p>Before we dive into the specific code implementation for FormPilot’s backend, let’s set up the necessary tools: Ollama for running the language model locally and the initial Spring Boot project structure.</p>
+
+<h3 id="part-1-installing-and-running-ollama-locally"><strong>Part 1: Installing and Running Ollama Locally</strong></h3>
+
+<p>Ollama enables you to run open-source large language models (LLMs) directly on your own machine. This is great for privacy (data stays local) and avoids API costs.</p>
+
+<ol>
+  <li><strong>Download and Install Ollama:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Visit the official Ollama website: <a href="https://ollama.com/">https://ollama.com/</a></li>
+  <li>Follow the instructions for your operating system:</li>
+</ul>
+
+<!-- -->
+
+<p>*</p>
+<ul>
+  <li><strong>macOS:</strong> Download the .zip file, unzip it, move the app to your Applications folder, and run it once. It installs the command-line tool and runs as a background service (check your menu bar).</li>
+  <li><strong>Windows:</strong> Download and run the .exe installer. It typically sets up Ollama as a background service.</li>
+  <li>
+    <p><strong>Linux:</strong> Use the provided installation script in your terminal:</p>
+
+    <p><br /></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fsSL https://ollama.com/install.sh | sh
+</code></pre></div>    </div>
+
+    <p>This usually sets up Ollama as a <code class="language-plaintext highlighter-rouge">systemd</code> service.</p>
+  </li>
+</ul>
+
+<ol>
+  <li><strong>Verify Installation:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Open your terminal (or Command Prompt/PowerShell) and type: <code class="language-plaintext highlighter-rouge">ollama --version</code></li>
+  <li>You should see the Ollama version number displayed.</li>
+</ul>
+
+<ol>
+  <li><strong>Ensure Ollama is Running:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Ollama usually runs automatically in the background after installation on macOS and Windows.</li>
+  <li>On Linux, you can check its status: sudo <code class="language-plaintext highlighter-rouge">systemctl</code> status ollama. If needed, start it with sudo <code class="language-plaintext highlighter-rouge">systemctl</code> start ollama and enable it on boot with sudo <code class="language-plaintext highlighter-rouge">systemctl</code> enable ollama.</li>
+  <li>The Ollama server typically listens for requests on <code class="language-plaintext highlighter-rouge">http://localhost:11434</code>.</li>
+</ul>
+
+<ol>
+  <li><strong>Install an LLM (e.g., Llama 3):</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>
+    <p>Use the Ollama command line to download the model mentioned in this article (llama3 or deepseek-llm:7b):</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ollama run llama3
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<!-- -->
+
+<p>*</p>
+<ul>
+  <li>This command will first download the model files (this can take a while) and then load the model, giving you a chat prompt (&gt;&gt;&gt;).</li>
+  <li>You can exit the chat prompt by typing /bye. The model is now downloaded and available for use by applications like your Spring Boot backend.</li>
+  <li>To see all locally downloaded models, use:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ollama</span> <span class="n">list</span>
+</code></pre></div></div>
+
+<h3><img src="/images/screenshot-2025-04-05-at-9.48.13-pm.png" alt="" /></h3>
+
+<h3 id="part-2-creating-the-spring-boot-project-via-spring-initializr"><strong>Part 2: Creating the Spring Boot Project via Spring Initializr</strong></h3>
+
+<p>Spring Initializr is a web tool that generates a basic Spring Boot project structure for you.</p>
+
+<ol>
+  <li><strong>Visit Spring Initializr:</strong></li>
+</ol>
+
+<p>*</p>
+<ul>
+  <li>Go to <a href="https://start.spring.io/">https://start.spring.io/</a> in your browser and configure your project; for brevity, since this part is pretty much known by every spring developer, I am going to skip it. Download the structure and open it in your favourite IDE.</li>
+  <li>
+    <p>Make sure you have the following dependencies in your <code class="language-plaintext highlighter-rouge">gradle.build</code> or <code class="language-plaintext highlighter-rouge">pom.xml</code>.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+    implementation 'dev.langchain4j:langchain4j-spring-boot-starter:1.0.0-beta2'
+    implementation 'dev.langchain4j:langchain4j-open-ai-spring-boot-starter:1.0.0-beta2'
+    implementation 'dev.langchain4j:langchain4j-embeddings-all-minilm-l6-v2:1.0.0-beta2'
+    implementation 'dev.langchain4j:langchain4j-ollama:1.0.0-beta2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>With Ollama running and the basic Spring Boot project created, you’re ready to start adding the FormPilot-specific code.</p>
+
+<h2 id="implementing-rag-with-langchain4j"><strong>Implementing RAG with LangChain4j</strong></h2>
+
+<p>One of the most exciting parts of building FormPilot was implementing Retrieval-Augmented Generation (RAG) using <a href="https://docs.langchain4j.dev/">LangChain4j</a>. RAG is a technique that enhances LLM outputs by retrieving relevant information from a knowledge base before generating a response.</p>
+
+<p>For FormPilot, I wanted the system to be able to fill forms with personalized information. I started by creating a simple text file (<code class="language-plaintext highlighter-rouge">content.txt</code> placed in <code class="language-plaintext highlighter-rouge">src/main/resources</code>) containing information about conference speakers, including names, bios, contact information, and session details.</p>
+
+<p>Here’s how I implemented RAG in the RAGConfig class:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.formpilot.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.segment.TextSegment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.memory.chat.ChatMemoryProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.memory.chat.TokenWindowChatMemory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.Tokenizer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.embedding.EmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.EmbeddingStore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.extern.slf4j.Slf4j</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.Document</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.DocumentSplitter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.parser.TextDocumentParser</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.document.splitter.DocumentSplitters</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.rag.content.retriever.ContentRetriever</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.EmbeddingStoreIngestor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.core.io.Resource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.core.io.ResourceLoader</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">dev</span><span class="o">.</span><span class="na">langchain4j</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">document</span><span class="o">.</span><span class="na">loader</span><span class="o">.</span><span class="na">FileSystemDocumentLoader</span><span class="o">.</span><span class="na">loadDocument</span><span class="o">;</span>
+
+<span class="nd">@Slf4j</span>
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RAGConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"ollamaChatMemoryProvider"</span><span class="o">)</span>
+    <span class="nc">ChatMemoryProvider</span> <span class="nf">chatMemoryProvider</span><span class="o">(</span><span class="nc">Tokenizer</span> <span class="n">tokenizer</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">memoryId</span> <span class="o">-&gt;</span> <span class="nc">TokenWindowChatMemory</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">id</span><span class="o">(</span><span class="n">memoryId</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">maxTokens</span><span class="o">(</span><span class="mi">10_000</span><span class="o">,</span> <span class="n">tokenizer</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="nf">embeddingStore</span><span class="o">(</span><span class="nc">EmbeddingModel</span> <span class="n">embeddingModel</span><span class="o">,</span> <span class="nc">ResourceLoader</span> <span class="n">resourceLoader</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+
+        <span class="c1">// Normally, you would already have your embedding store filled with your data.</span>
+        <span class="c1">// However, for the purpose of this demonstration, we will:</span>
+
+        <span class="c1">// 1. Create an in-memory embedding store</span>
+        <span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="n">embeddingStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InMemoryEmbeddingStore</span><span class="o">&lt;&gt;();</span>
+
+        <span class="c1">// 2. Load an example document</span>
+        <span class="nc">Resource</span> <span class="n">resource</span> <span class="o">=</span> <span class="n">resourceLoader</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">"classpath:content.txt"</span><span class="o">);</span>
+        <span class="nc">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="n">loadDocument</span><span class="o">(</span><span class="n">resource</span><span class="o">.</span><span class="na">getFile</span><span class="o">().</span><span class="na">toPath</span><span class="o">(),</span> <span class="k">new</span> <span class="nc">TextDocumentParser</span><span class="o">());</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Document loaded: {}"</span><span class="o">,</span> <span class="n">document</span><span class="o">.</span><span class="na">metadata</span><span class="o">());</span>
+
+        <span class="c1">// 3. Split the document into segments 2000 tokens each</span>
+        <span class="c1">// 4. Convert segments into embeddings</span>
+        <span class="c1">// 5. Store embeddings into embedding store</span>
+        <span class="c1">// All this can be done manually, but we will use EmbeddingStoreIngestor to automate this:</span>
+        <span class="nc">DocumentSplitter</span> <span class="n">documentSplitter</span> <span class="o">=</span> <span class="nc">DocumentSplitters</span><span class="o">.</span><span class="na">recursive</span><span class="o">(</span><span class="mi">2000</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+        <span class="nc">EmbeddingStoreIngestor</span> <span class="n">ingestor</span> <span class="o">=</span> <span class="nc">EmbeddingStoreIngestor</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">documentSplitter</span><span class="o">(</span><span class="n">documentSplitter</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">embeddingModel</span><span class="o">(</span><span class="n">embeddingModel</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">embeddingStore</span><span class="o">(</span><span class="n">embeddingStore</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="n">ingestor</span><span class="o">.</span><span class="na">ingest</span><span class="o">(</span><span class="n">document</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">embeddingStore</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Bean</span>
+    <span class="nc">EmbeddingModel</span> <span class="nf">embeddingModel</span><span class="o">(){</span>
+        <span class="c1">// not good but works for this demo</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">AllMiniLmL6V2EmbeddingModel</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"ollamaContentRetriever"</span><span class="o">)</span>
+    <span class="nc">ContentRetriever</span> <span class="nf">contentRetriever</span><span class="o">(</span><span class="nc">EmbeddingStore</span><span class="o">&lt;</span><span class="nc">TextSegment</span><span class="o">&gt;</span> <span class="n">embeddingStore</span><span class="o">,</span> <span class="nc">EmbeddingModel</span> <span class="n">embeddingModel</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"Creating ContentRetriever"</span><span class="o">);</span>
+        <span class="c1">// You will need to adjust these parameters to find the optimal setting,</span>
+        <span class="c1">// which will depend on multiple factors, for example:</span>
+        <span class="c1">// - The nature of your data</span>
+        <span class="c1">// - The embedding model you are using</span>
+        <span class="kt">int</span> <span class="n">maxResults</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">minScore</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="nc">EmbeddingStoreContentRetriever</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">embeddingStore</span><span class="o">(</span><span class="n">embeddingStore</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">embeddingModel</span><span class="o">(</span><span class="n">embeddingModel</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">maxResults</span><span class="o">(</span><span class="n">maxResults</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">minScore</span><span class="o">(</span><span class="n">minScore</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This configuration:</p>
+
+<ol>
+  <li>Creates an in-memory embedding store.</li>
+  <li>Loads the <code class="language-plaintext highlighter-rouge">content.txt</code> document from the project’s resources.</li>
+  <li>Split the document into segments of 2000 characters with a 500-character overlap (adjust these values based on your content and model).</li>
+  <li>Converts these segments into vector embeddings using the configured EmbeddingModel and stores them.</li>
+  <li>Creates a <strong>ContentRetriever</strong> that will query this embedding store to find the most relevant text segments based on semantic similarity to the input query (e.g., a form field label).</li>
+</ol>
+
+<h2 id="the-magic-of-langchain4js-aiservice"><strong>The Magic of LangChain4j’s @AiService</strong></h2>
+
+<p>One of the most elegant aspects of FormPilot is how it uses LangChain4j’s <strong>@AiService</strong> annotation to create a declarative interface for interacting with the LLM. This approach dramatically simplifies the code required to prompt the model and parse its response.</p>
+
+<p>Here’s the FormAssistant interface:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.formpilot.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">ca.bazlur.formpilot.model.FormField</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.MemoryId</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.SystemMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.UserMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.spring.AiService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.spring.AiServiceWiringMode</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="nd">@AiService</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FormAssistant</span> <span class="o">{</span>
+
+    <span class="nd">@SystemMessage</span><span class="o">(</span><span class="s">"""
+          You are an AI assistant acting *exclusively* as a JSON Form Filler.
+          Your *only* task is to process a list of form fields and accompanying context (if provided) and output a *single, valid JSON object* representing the filled form.
+          
+          **CRITICAL OUTPUT REQUIREMENT:**
+          Your entire response MUST be *only* the final JSON object.
+          - Start immediately with `{`.
+          - End immediately with `}`.
+          - Do NOT include any introductory text, explanations, apologies, conversational filler, or markdown formatting *outside* the JSON structure itself.
+          
+          **Input You Will Receive:**
+          1.  A list/description of form fields, each with metadata like: `id`, `name`, `type`, `label`, `placeholder`, `required`.
+          2.  Optional: Text context or user-supplied data relevant to the form.
+          
+          **Processing Rules:**
+          * **JSON Key:** Use the field's `id` as the key in the output JSON. If `id` is empty or missing, use `name`.
+          * **Skipping Fields:** Ignore any field where both `id` and `name` are empty strings.
+          * **Value Determination (Priority Order):**
+              1.  **Context First:** Use any provided text context or user-supplied data to fill the fields. Match data to relevant field types/labels (e.g., use provided phone number for `tel` field, biography text for `textarea` bio field).
+              2.  **Generation:** If context is insufficient for a field, generate a realistic and contextually appropriate value based on its `type`, `label`, and `placeholder`.
+          * **Type-Specific Generation Rules:**
+              * `email`: Generate a plausible email (e.g., `jane.doe@example.com`) if not in context.
+              * `password`: Use a placeholder strong password (e.g., `P@ssw0rd123!`).
+              * `date`: Generate a valid date (e.g., `1995-06-15`).
+              * `number`: Generate a sensible number based on context (e.g., `85000` for annual income).
+              * `tel`: Generate a plausible phone number (e.g., `+1-416-555-0199`) if not in context.
+              * `textarea` (bios, comments, descriptions): Generate detailed, multi-sentence text relevant to the field's purpose, using context if available.
+              * `select-one` (often paired):
+                  * Fill the associated text input (`field-id-selectized`) with the *text label* (e.g., "</span><span class="nc">Intermediate</span><span class="s">").
+                  * Leave the `select-one` field (`field-id`) value as `""` (empty string) unless the specific *internal value* is known from context.
+          * **Required Fields:** If `required: true` and no value can be determined from context, generate a placeholder value (e.g., `"</span><span class="no">N</span><span class="o">/</span><span class="no">A</span> <span class="o">-</span> <span class="nc">Required</span><span class="s">"`, `"</span><span class="n">user</span><span class="nd">@example</span><span class="o">.</span><span class="na">com</span><span class="s">"`, `"</span><span class="nl">https:</span><span class="c1">//example.com/placeholder"`) instead of leaving it empty.</span>
+          <span class="o">*</span> <span class="o">**</span><span class="nc">Duplicate</span> <span class="nl">Sections:</span><span class="o">**</span> <span class="nc">Fill</span> <span class="n">apparently</span> <span class="n">duplicated</span> <span class="nf">sections</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">g</span><span class="o">.,</span> <span class="err">`</span><span class="nc">User</span><span class="err">`</span> <span class="n">vs</span><span class="o">.</span> <span class="err">`</span><span class="nc">ImpersonatedUser</span><span class="err">`</span><span class="o">)</span> <span class="n">consistently</span> <span class="n">with</span> <span class="n">the</span> <span class="n">same</span> <span class="n">data</span> <span class="n">unless</span> <span class="n">context</span> <span class="n">specifies</span> <span class="n">otherwise</span><span class="o">.</span>
+      
+          <span class="nc">Now</span><span class="o">,</span> <span class="n">process</span> <span class="n">the</span> <span class="n">following</span> <span class="n">form</span> <span class="n">fields</span> <span class="n">and</span> <span class="n">context</span><span class="o">,</span> <span class="n">providing</span> <span class="n">only</span> <span class="n">the</span> <span class="no">JSON</span> <span class="n">output</span><span class="o">.</span> 
+          
+          <span class="nc">Return</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">where</span> <span class="n">the</span> <span class="n">key</span> <span class="n">is</span> <span class="n">the</span> <span class="n">field</span><span class="err">'</span><span class="n">s</span> <span class="err">`</span><span class="n">id</span><span class="err">`</span> <span class="n">or</span> <span class="err">`</span><span class="n">name</span><span class="err">`</span> <span class="n">and</span> <span class="n">the</span> <span class="n">value</span> <span class="n">is</span> <span class="n">the</span> <span class="n">filled</span> <span class="n">value</span><span class="o">.</span>
+                   
+          <span class="s">""</span><span class="err">"</span><span class="o">)</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="o">?&gt;</span> <span class="n">generateForm</span><span class="o">(</span><span class="nd">@MemoryId</span> <span class="nc">String</span> <span class="n">memoryId</span><span class="o">,</span> <span class="nd">@UserMessage</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">FormField</span><span class="o">&gt;</span> <span class="n">fields</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Define the FormField record/class (e.g., in the model package)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.formpilot.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">lombok.AllArgsConstructor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.NoArgsConstructor</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Represents a form field from a webpage.
+ * This data is sent from the Chrome extension to the server.
+ */</span>
+<span class="nd">@Data</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FormField</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">type</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">label</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">placeholder</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">required</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">value</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Option</span><span class="o">&gt;</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+
+<span class="nd">@Data</span>
+<span class="kd">class</span> <span class="nc">Option</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">text</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>With just this interface and the <code class="language-plaintext highlighter-rouge">@AiService</code> annotation (from <code class="language-plaintext highlighter-rouge">dev.langchain4j.service.spring.AiService</code>), the <a href="https://docs.langchain4j.dev/tutorials/spring-boot-integration/">LangChain4j Spring Boot starter</a> automatically creates a bean implementing this interface. When you call the generateForm method:</p>
+
+<ol>
+  <li>It constructs a prompt using the @SystemMessage and the provided fields list (formatted as the <code class="language-plaintext highlighter-rouge">@UserMessage</code>).</li>
+  <li>The process automatically incorporates the ContentRetriever bean (our RAG setup). LangChain4j handles querying the retriever and adding relevant context to the prompt sent to the LLM.</li>
+  <li>It sends the combined prompt to the configured LLM (Ollama in this case).</li>
+  <li>It parses the LLM’s JSON response back into a <code class="language-plaintext highlighter-rouge">Map&lt;String, String&gt;</code>.</li>
+</ol>
+
+<p>This declarative approach keeps the service layer clean and focuses on <em>what</em> needs to be done rather than the low-level details of LLM interaction and RAG integration.</p>
+
+<h2 id="integrating-with-ollama"><strong>Integrating with Ollama</strong></h2>
+
+<p>I chose to use Ollama for the LLM backend, which allows for the local running of LLMs. This provides several advantages:</p>
+
+<ol>
+  <li><strong>Privacy:</strong> Form data never leaves the user’s computer.</li>
+  <li><strong>No API Costs:</strong> Users don’t need to pay for LLM API usage.</li>
+  <li><strong>Offline Capability:</strong> The system can potentially work without an active internet connection (once models are downloaded).</li>
+</ol>
+
+<p>Configuring LangChain4j to use your local Ollama instance is straightforward using Spring Boot’s <code class="language-plaintext highlighter-rouge">application.properties</code> (or application.yml) file located in <code class="language-plaintext highlighter-rouge">src/main/resources</code>.</p>
+
+<p>Add the following properties:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nc">LangChain4j</span> <span class="nc">Configuration</span> <span class="k">for</span> <span class="nc">Ollama</span>
+
+<span class="err">#</span> <span class="nc">Base</span> <span class="no">URL</span> <span class="k">for</span> <span class="n">the</span> <span class="nc">Ollama</span> <span class="nf">API</span> <span class="o">(</span><span class="k">default</span> <span class="n">port</span> <span class="n">is</span> <span class="mi">11434</span><span class="o">)</span>
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">chat</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">base</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="nl">http:</span><span class="c1">//localhost:11434</span>
+<span class="err">#</span> <span class="nc">Specify</span> <span class="n">the</span> <span class="nc">Ollama</span> <span class="n">model</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">chat</span> <span class="n">completions</span>
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">chat</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">model</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="n">llama3</span>
+<span class="err">#</span> <span class="nl">Temperature:</span> <span class="nc">Controls</span> <span class="nf">randomness</span> <span class="o">(</span><span class="mf">0.0</span> <span class="o">=</span> <span class="n">deterministic</span><span class="o">)</span>
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">chat</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">temperature</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="err">#</span> <span class="nc">Timeout</span> <span class="k">for</span> <span class="no">API</span> <span class="n">calls</span>
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">chat</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">timeout</span><span class="o">=</span><span class="no">PT60S</span> <span class="err">#</span> <span class="mi">60</span> <span class="n">seconds</span>
+
+<span class="err">#</span> <span class="nc">Configure</span> <span class="n">the</span> <span class="n">embedding</span> <span class="nf">model</span> <span class="o">(</span><span class="n">used</span> <span class="k">for</span> <span class="no">RAG</span><span class="o">)</span>
+<span class="err">#</span> <span class="nc">Use</span> <span class="n">an</span> <span class="nc">Ollama</span> <span class="n">model</span> <span class="n">capable</span> <span class="n">of</span> <span class="n">generating</span> <span class="n">embeddings</span>
+<span class="err">#</span> <span class="nl">Note:</span> <span class="nc">Not</span> <span class="n">all</span> <span class="n">models</span> <span class="n">are</span> <span class="n">fine</span><span class="o">-</span><span class="n">tuned</span> <span class="k">for</span> <span class="n">embeddings</span><span class="o">.</span> <span class="nc">Check</span> <span class="nc">Ollama</span> <span class="n">docs</span><span class="o">.</span>
+
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">embedding</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">base</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="nl">http:</span><span class="c1">//localhost:11434/v1</span>
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">embedding</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">model</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="n">deepseek</span><span class="o">-</span><span class="nl">llm:</span><span class="mi">7</span><span class="n">b</span>
+
+<span class="n">langchain4j</span><span class="o">.</span><span class="na">embedding</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="na">ollama</span><span class="o">.</span><span class="na">timeout</span><span class="o">=</span><span class="no">PT60S</span>
+</code></pre></div></div>
+
+<p>Make sure you have downloaded the specified models using Ollama (e.g., <code class="language-plaintext highlighter-rouge">ollama run llama3</code> or <code class="language-plaintext highlighter-rouge">ollama run </code>deepseek-llm:7b).</p>
+
+<p>These properties tell the LangChain4j Spring Boot starter to configure both the chat model (for generating the form values) and the embedding model (for RAG) to use your local Ollama server.</p>
+
+<h2 id="building-the-chrome-extension"><strong>Building the Chrome Extension</strong></h2>
+
+<p>The Chrome extension acts as the user-facing part of FormPilot. It needs to:</p>
+
+<ol>
+  <li>Detect forms on the current web page.</li>
+  <li>Extract relevant information about each input field.</li>
+  <li>Send this information to the local Spring Boot backend.</li>
+  <li>Receive the generated values from the backend.</li>
+  <li>Fill out the form fields with the values you received.</li>
+</ol>
+
+<p>I structured the extension with three main parts:</p>
+
+<ol>
+  <li><strong>Content Script (content.js)</strong> : Injected into web pages to interact with the DOM (find forms, fill fields).</li>
+  <li><strong>Background Script (background.js or Service Worker)</strong> : Acts as a central hub, handling communication with the backend server and managing the extension state.</li>
+  <li><strong>Popup UI (popup.html and popup.js)</strong> : Provides a simple interface for the user (e.g., a button to trigger form filling).<img src="/images/screenshot-2025-04-06-at-6.50.38-pm.png" alt="" /></li>
+</ol>
+
+<p>The most challenging part was reliably detecting form fields and extracting useful metadata, especially labels, as HTML forms vary widely in structure. I implemented several strategies in content.js:</p>
+
+<ol>
+  <li>Look for a &lt;label&gt; element with a for attribute matching the field’s ID.</li>
+  <li>Check if the field is nested inside a &lt;label&gt; element.</li>
+  <li>Look for a sibling &lt;label&gt; element.</li>
+  <li>Look at the aria-label or aria-labelledby attributes.</li>
+  <li>As a fallback, check for preceding non-interactive element text content near the field.</li>
+</ol>
+
+<p>Here’s a simplified snippet illustrating field data extraction:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// content.js (Simplified Example)</span>
+<span class="kd">function</span> <span class="nx">findFormsAndFields</span><span class="p">()</span> <span class="p">{</span>
+<span class="err"> </span> <span class="kd">const</span> <span class="nx">forms</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">form</span><span class="dl">'</span><span class="p">);</span>
+<span class="err"> </span> <span class="kd">const</span> <span class="nx">allFieldsData</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="err"> </span> <span class="nx">forms</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">form</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// Select common form input elements within the current form</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">form</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="hidden"]):not([type="file"]), select, textarea</span><span class="dl">'</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">elements</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">fieldData</span> <span class="o">=</span> <span class="nx">createFormFieldData</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">fieldData</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">fieldData</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Only include fields that are not already filled</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Check if field is visible to the user</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">offsetParent</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">allFieldsData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">fieldData</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">});</span>
+<span class="err"> </span> <span class="p">});</span>
+<span class="err"> </span> <span class="k">return</span> <span class="nx">allFieldsData</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">getLabelForElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// 1. Check for &lt;label for="..."&gt;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">label</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">`label[for="</span><span class="p">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">"]`</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">label</span><span class="p">)</span> <span class="k">return</span> <span class="nx">label</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// 2. Check for parent &lt;label&gt;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">parentLabel</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="dl">'</span><span class="s1">label</span><span class="dl">'</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">parentLabel</span><span class="p">)</span> <span class="k">return</span> <span class="nx">parentLabel</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">value</span> <span class="o">||</span> <span class="dl">''</span><span class="p">,</span> <span class="dl">''</span><span class="p">).</span><span class="nx">trim</span><span class="p">();</span> <span class="c1">// Attempt to remove element's own text if nested</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// 3. Check aria-label</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">ariaLabel</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">aria-label</span><span class="dl">'</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">ariaLabel</span><span class="p">)</span> <span class="k">return</span> <span class="nx">ariaLabel</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// 4. Check aria-labelledby</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">ariaLabelledBy</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">aria-labelledby</span><span class="dl">'</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">ariaLabelledBy</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">labelElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">ariaLabelledBy</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">labelElement</span><span class="p">)</span> <span class="k">return</span> <span class="nx">labelElement</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// 5. Fallback: Preceding sibling text (simplified)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">let</span> <span class="nx">previous</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">previousElementSibling</span><span class="p">;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">previous</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">[</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">textarea</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">label</span><span class="dl">'</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="nx">previous</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()))</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="nx">previous</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="dl">''</span><span class="p">;</span> <span class="c1">// No label found</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">createFormFieldData</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="c1">// Basic check to skip elements we don't want to fill</span>
+<span class="err"> </span> <span class="kd">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">?</span> <span class="nx">element</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="p">:</span> <span class="nx">element</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+<span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">hidden</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">button</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">reset</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">file</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="c1">// Skip if element is disabled or readonly</span>
+<span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">||</span> <span class="nx">element</span><span class="p">.</span><span class="nx">readOnly</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="c1">// Get the current value (to potentially avoid filling already completed fields)</span>
+<span class="err"> </span> <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+<span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">checkbox</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">radio</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">checked</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">true</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">false</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Represent boolean state</span>
+<span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">value</span> <span class="o">||</span> <span class="dl">''</span><span class="p">;</span>
+<span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="k">return</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">id</span><span class="p">:</span> <span class="nx">element</span><span class="p">.</span><span class="nx">id</span> <span class="o">||</span> <span class="dl">''</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">name</span><span class="p">:</span> <span class="nx">element</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="dl">''</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">type</span><span class="p">:</span> <span class="nx">type</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">label</span><span class="p">:</span> <span class="nx">getLabelForElement</span><span class="p">(</span><span class="nx">element</span><span class="p">),</span> <span class="c1">// Use dedicated function for label finding</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">placeholder</span><span class="p">:</span> <span class="nx">element</span><span class="p">.</span><span class="nx">placeholder</span> <span class="o">||</span> <span class="dl">''</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">required</span><span class="p">:</span> <span class="nx">element</span><span class="p">.</span><span class="nx">required</span> <span class="o">||</span> <span class="kc">false</span><span class="p">,</span>
+<span class="err"> </span> <span class="err"> </span> <span class="na">value</span><span class="p">:</span> <span class="nx">value</span> <span class="c1">// Include current value</span>
+<span class="err"> </span> <span class="p">};</span>
+<span class="p">}</span>
+<span class="c1">// --- Communication Logic (Example using Chrome messaging) ---</span>
+<span class="c1">// This function would be called, e.g., when the user clicks the extension icon</span>
+<span class="kd">function</span> <span class="nx">requestFormFill</span><span class="p">()</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">fieldsToSend</span> <span class="o">=</span> <span class="nx">findFormsAndFields</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">fieldsToSend</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Send fields to the background script</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">({</span> <span class="na">action</span><span class="p">:</span> <span class="dl">"</span><span class="s2">fillForm</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="nx">fieldsToSend</span> <span class="p">},</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot Error:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">lastError</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Handle error (e.g., show message to user)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span><span class="p">;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">response</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">filledFields</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Fill the actual form elements on the page</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">fillFormOnPage</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">filledFields</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot: No filled fields received from backend or backend error.</span><span class="dl">"</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Handle error or empty response</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">});</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot: No suitable empty fields found on the page.</span><span class="dl">"</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Optionally notify user</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">fillFormOnPage</span><span class="p">(</span><span class="nx">filledFieldsMap</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// filledFieldsMap is the Map&lt;String, String&gt; from the backend</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot: Received fields to fill:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">filledFieldsMap</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">identifier</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">filledFieldsMap</span><span class="p">))</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Try finding element by ID first, then by name</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">let</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">identifier</span><span class="p">)</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">`[name="</span><span class="p">${</span><span class="nx">identifier</span><span class="p">}</span><span class="s2">"]`</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">fillField</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">`FormPilot: Could not find element with id or name: </span><span class="p">${</span><span class="nx">identifier</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot: Form filling attempt complete.</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">fillField</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">tagName</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">type</span> <span class="p">?</span> <span class="nx">element</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="p">:</span> <span class="nx">tagName</span><span class="p">;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`FormPilot: Filling field (id=</span><span class="p">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">, name=</span><span class="p">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">, type=</span><span class="p">${</span><span class="nx">type</span><span class="p">}</span><span class="s2">) with value: </span><span class="p">${</span><span class="nx">value</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">select</span><span class="dl">'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">select-one</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Find the option with matching value or text (case-insensitive text match)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">options</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">let</span> <span class="nx">foundOption</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">opt</span> <span class="o">=&gt;</span> <span class="nx">opt</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">value</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foundOption</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">foundOption</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">opt</span> <span class="o">=&gt;</span> <span class="nx">opt</span><span class="p">.</span><span class="nx">text</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">());</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">foundOption</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">foundOption</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">`FormPilot: Could not find option "</span><span class="p">${</span><span class="nx">value</span><span class="p">}</span><span class="s2">" for select field (id=</span><span class="p">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">, name=</span><span class="p">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">)`</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Optionally try creating an option if allowed, or skip</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">checkbox</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Check/uncheck based on truthiness (e.g., "true", "yes", "on", true)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">shouldBeChecked</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">true</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">yes</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">on</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">());</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="nx">shouldBeChecked</span><span class="p">;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">radio</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// For radio buttons, find the one in the group with the matching value and check it</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">radioGroup</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">`input[type="radio"][name="</span><span class="p">${</span><span class="nx">element</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">"]`</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">radioGroup</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">radio</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">radio</span><span class="p">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="p">(</span><span class="nx">radio</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">value</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">});</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// For text inputs, textareas, email, password, number, date, etc.</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// IMPORTANT: Trigger events to simulate user input, which many frameworks rely on</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">triggerEvents</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">triggerEvents</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// Events commonly listened for by frameworks (React, Vue, Angular, etc.)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="kd">const</span> <span class="nx">eventsToTrigger</span> <span class="o">=</span> <span class="p">[</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="dl">'</span><span class="s1">input</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">bubbles</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">cancelable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}),</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">bubbles</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">cancelable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}),</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">new</span> <span class="nx">FocusEvent</span><span class="p">(</span><span class="dl">'</span><span class="s1">focus</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">bubbles</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">cancelable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}),</span> <span class="c1">// Simulate focus first</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">new</span> <span class="nx">FocusEvent</span><span class="p">(</span><span class="dl">'</span><span class="s1">blur</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">bubbles</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">cancelable</span><span class="p">:</span> <span class="kc">true</span> <span class="p">})</span> <span class="err"> </span> <span class="c1">// Then blur</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">];</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// Dispatch focus first</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">eventsToTrigger</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// Dispatch input and change</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">eventsToTrigger</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">eventsToTrigger</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="c1">// Dispatch blur last</span>
+<span class="err"> </span> <span class="err"> </span> <span class="nx">element</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">eventsToTrigger</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="c1">// --- Listener for messages from background or popup ---</span>
+<span class="nx">chrome</span><span class="p">.</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">onMessage</span><span class="p">.</span><span class="nx">addListener</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">sender</span><span class="p">,</span> <span class="nx">sendResponse</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">action</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">triggerFormFill</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot: Received triggerFormFill command.</span><span class="dl">"</span><span class="p">);</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nx">requestFormFill</span><span class="p">();</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// Indicate async response if needed, though maybe not for this simple trigger</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">// sendResponse({ status: "Form fill initiated" });</span>
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// Keep message channel open for potential async response from requestFormFill if it used sendResponse</span>
+<span class="err"> </span> <span class="err"> </span> <span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">FormPilot Content Script Loaded.</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The background script (<code class="language-plaintext highlighter-rouge">background.js</code>) would handle the <code class="language-plaintext highlighter-rouge">chrome.runtime.onMessage</code> listener for the “fillForm” action, make a fetch request to the local Spring Boot server (<code class="language-plaintext highlighter-rouge">http://localhost:8080/api/fill-form</code> or similar), and send the response back to the content script. Remember to configure CORS in your Spring Boot application to allow requests from the Chrome extension’s origin.</p>
+
+<p>Check out the chrome-extension: <a href="https://github.com/rokon12/form-pilot/tree/main/chrome-extension">https://github.com/rokon12/form-pilot/tree/main/chrome-extension</a></p>
+
+<h3 id="setting-up-the-spring-boot-server"><strong>Setting up the Spring Boot Server</strong></h3>
+
+<p>Build the Spring Boot application:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="n">build</span>
+</code></pre></div></div>
+
+<p>Run the Spring Boot application:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="n">bootRun</span>
+</code></pre></div></div>
+
+<p>The server will start on port <code class="language-plaintext highlighter-rouge">8080</code>. You can verify it’s running by visiting:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">http:</span><span class="c1">//localhost:8080/api/form/health</span>
+</code></pre></div></div>
+
+<h3 id="setting-up-the-chrome-extension"><strong>Setting up the Chrome Extension</strong></h3>
+
+<ol>
+  <li>Open Google Chrome and navigate to: <code class="language-plaintext highlighter-rouge">chrome://extensions/</code></li>
+  <li>Enable “Developer mode” by toggling the switch in the top right corner.</li>
+  <li>Click “Load unpacked” and select the chrome-extension directory from this project.</li>
+  <li>The extension should now be installed and visible in your Chrome toolbar.</li>
+</ol>
+
+<h3 id="using-the-demo-form"><strong>Using the Demo Form</strong></h3>
+
+<p>A demo form is included in this project to help you test the Smart Form Filler extension:</p>
+
+<ol>
+  <li>Create the demo form and open it in your browser: file:///path/to/FormPilot/demo/demo-form.html</li>
+  <li>Alternatively, you can serve the demo form using a simple HTTP server:</li>
+</ol>
+
+<h1 id="if-you-have-python-installed">If you have Python installed</h1>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="o">.</span><span class="na">server</span>
+</code></pre></div></div>
+
+<p>Then visit http://localhost:8000/demo/demo-form.html in your browser.</p>
+
+<ol>
+  <li>With the Smart Form Filler extension installed and the local server running, the extension should automatically detect the form fields on the demo page.</li>
+  <li>You can manually trigger form filling in two ways:</li>
+</ol>
+
+<ul>
+  <li>Click the extension icon in your Chrome toolbar</li>
+  <li>Right-click on the page and select “Smart Form Filler” from the context menu, then choose “Fill Forms”</li>
+</ul>
+
+<p><img src="/images/screenshot-2025-04-06-at-6.38.24-pm.png" alt="" /></p>
+
+<h2 id="testing-with-a-demo-form"><strong>Testing with a Demo Form</strong></h2>
+
+<p>To test FormPilot thoroughly, I created a comprehensive demo HTML form (demo.html) that included a wide variety of field types:</p>
+
+<ul>
+  <li>Text inputs (First Name, Last Name, Address Line 1)</li>
+  <li>Email input</li>
+  <li>Password input</li>
+  <li>Telephone input (tel)</li>
+  <li>Date input</li>
+  <li>Number input (Age)</li>
+  <li>Select dropdown (Country)</li>
+  <li>Radio buttons (T-Shirt Size)</li>
+  <li>Checkboxes (Interests)</li>
+  <li>Textarea (Comments/Bio)</li>
+</ul>
+
+<p>Using this demo form locally allowed me to iterate quickly on both the backend logic (ensuring correct values were generated for each type) and the frontend JavaScript (ensuring fields were detected and filled correctly, including event triggering).</p>
+
+<h2 id="challenges-and-solutions"><strong>Challenges and Solutions</strong></h2>
+
+<p>Building FormPilot wasn’t without its hurdles. Here are some key challenges and how I addressed them:</p>
+
+<h3 id="challenge-1-robust-form-field-detection--label-association"><strong>Challenge 1: Robust Form Field Detection \&amp; Label Association</strong></h3>
+
+<p>As mentioned, reliably finding input fields and their corresponding labels across diverse HTML structures is tricky.</p>
+
+<ul>
+  <li><strong>Solution:</strong> Implemented a multi-strategy approach in content.js (checking for attribute, parent labels, aria-label, siblings) as shown in the snippet. Added checks for visibility (offsetParent !== null) and avoided filling already completed fields. It’s not perfect, but covers many common patterns.</li>
+</ul>
+
+<h3 id="challenge-2-handling-diverse-field-types-correctly"><strong>Challenge 2: Handling Diverse Field Types Correctly</strong></h3>
+
+<p>Simply setting <code class="language-plaintext highlighter-rouge">element.value</code> doesn’t work for all types (selects, checkboxes, radio buttons).</p>
+
+<ul>
+  <li><strong>Solution:</strong> Created specific logic within the fillField function in content.js to handle different type <code class="language-plaintext highlighter-rouge">attributes</code> or <code class="language-plaintext highlighter-rouge">tagName</code>. For selects, it searches for matching option values or text. For checkboxes/radio buttons, it sets the checked property based on the received value.</li>
+</ul>
+
+<h3 id="challenge-3-triggering-javascript-events-for-framework-compatibility"><strong>Challenge 3: Triggering JavaScript Events for Framework Compatibility</strong></h3>
+
+<p>Modern web apps heavily rely on JavaScript frameworks (React, Vue, Angular) that listen for input events (input, change, blur, focus) to update their internal state. Just setting the field’s value programmatically often doesn’t trigger these listeners.</p>
+
+<ul>
+  <li><strong>Solution:</strong> Implemented the triggerEvents function in content.js to manually create and dispatch input, change, focus, and blur events on the element after setting its value. This significantly improves compatibility with framework-based forms.</li>
+</ul>
+
+<h3 id="challenge-4-backend-communication--cors"><strong>Challenge 4: Backend Communication \&amp; CORS</strong></h3>
+
+<p>Chrome extensions have security restrictions. Content scripts cannot directly make cross-origin requests (like to http://localhost:8080).</p>
+
+<ul>
+  <li><strong>Solution:</strong></li>
+</ul>
+
+<p>1.</p>
+<ol>
+  <li>The content script sends a message to the background script.</li>
+  <li>The background script (which has fewer restrictions) uses the fetch API to call the Spring Boot backend.</li>
+  <li>Crucially, the Spring Boot application must be configured to handle Cross-Origin Resource Sharing (CORS) by sending the appropriate headers (e.g., <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Origin</code>: <code class="language-plaintext highlighter-rouge">chrome-extension://YOUR_EXTENSION_ID</code>). This can be done globally using <code class="language-plaintext highlighter-rouge">@Configuration</code> and <code class="language-plaintext highlighter-rouge">WebMvcConfigurer</code> or on specific <code class="language-plaintext highlighter-rouge">@RestController</code> endpoints using <code class="language-plaintext highlighter-rouge">@CrossOrigin</code>.</li>
+</ol>
+
+<h3 id="challenge-5-prompt-engineering--model-compliance"><strong>Challenge 5: Prompt Engineering \&amp; Model Compliance</strong></h3>
+
+<p>Getting LLMs to follow detailed instructions exactly—especially when it comes to the output format and using logic like “try RAG first”—can be tricky.</p>
+
+<p>Larger models like OpenAI’s GPT-4o usually follow detailed system instructions well, including sticking to strict JSON formats and trying RAG before generating answers. However, smaller models running locally with Ollama (like <code class="language-plaintext highlighter-rouge">llama3</code> or <code class="language-plaintext highlighter-rouge">deepseek-llm:7b</code>) may not always do the same. They might add extra text outside the JSON, miss when they should use RAG, or create less accurate data for certain fields.</p>
+
+<ul>
+  <li><strong>Solution:</strong> You often need to fine-tune the prompt to get better results with smaller models. This means making the system instructions clearer and simpler, giving good examples of the exact format you want, and even adding warnings like, “Don’t write anything before or after the JSON.” Sometimes, it also helps to add a cleanup step in your Java backend—like extracting just the JSON from the output—even if the model includes extra text. It’s a balance between how powerful the model is, how complex your prompt is, and how much cleanup you’re willing to do afterward.</li>
+</ul>
+
+<h2 id="lessons-learned"><strong>Lessons Learned</strong></h2>
+
+<p>This project was a fantastic learning experience, reinforcing several key concepts:</p>
+
+<h3 id="1-the-power-of-rag-for-contextual-personalization"><strong>1. The Power of RAG for Contextual Personalization</strong></h3>
+
+<p>Implementing RAG was the most impactful part. Instead of generic placeholders, FormPilot could potentially pull <em>my actual bio</em> or project details from the <code class="language-plaintext highlighter-rouge">content.txt</code> file when filling out a relevant field. This moves beyond simple auto-fill to context-aware generation, making the tool significantly more useful. The quality depends heavily on the relevance of the data source and the effectiveness of the embedding model and retrieval parameters.</p>
+
+<h3 id="2-langchain4j-simplifies-java-llm-integration"><strong>2. LangChain4j Simplifies Java LLM Integration</strong></h3>
+
+<p>LangChain4j, especially with its Spring Boot starter, abstracts away much of the complexity of interacting with LLMs and integrating RAG. The @AiService annotation is incredibly powerful, allowing a declarative approach that keeps the business logic clean and focuses on the desired interaction rather than the plumbing.</p>
+
+<h3 id="3-local-llms-ollama-offer-privacy--control"><strong>3. Local LLMs (Ollama) Offer Privacy \&amp; Control</strong></h3>
+
+<p>Using Ollama provided complete control over the model and ensured user data privacy, which is paramount when dealing with potentially sensitive form information. It also decouples the application from reliance on third-party API keys and costs, although it requires users to have sufficient hardware resources. The ease of switching models locally (just change <code class="language-plaintext highlighter-rouge">application.properties</code> and run <code class="language-plaintext highlighter-rouge">ollama run &lt;new_model&gt;</code>) is also a plus for experimentation.</p>
+
+<h3 id="4-chrome-extension-development"><strong>4. Chrome Extension Development</strong></h3>
+
+<p>Building the Chrome extension highlighted the importance of understanding the different script contexts (content, background, popup), their capabilities, and limitations (especially around DOM access and network requests). Proper event handling (triggerEvents) is essential for compatibility with modern web applications. Careful consideration of permissions and security (like CORS) is mandatory.</p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>This a demonstration of how modern AI techniques like RAG can be combined with frameworks like LangChain4j and local LLMs via Ollama to create genuinely intelligent tools within the familiar Java ecosystem. It moves beyond simple automation to provide context-aware assistance for repetitive tasks like filling forms.</p>
+
+<p>The journey highlighted the power of abstraction provided by libraries like LangChain4j and the increasing accessibility of running powerful LLMs locally. While challenges exist, particularly in reliably interacting with the diverse landscape of web forms, the potential for AI-driven productivity tools like FormPilot is immense.</p>
+
+<p>The combination of a browser extension frontend and a local AI backend offers a compelling architecture for building privacy-preserving, intelligent applications.</p>
+
+<p>If you’re interested in exploring the code further or contributing, you can find the project on GitHub <a href="https://github.com/rokon12/form-pilot">form-pilot</a>.</p>
+
+<p><br /></p>
+
+<p>Feel free to fork it, experiment, and adapt it. I’d love to hear your feedback and suggestions!</p>
+
+<p>Happy (and smarter) form filling!</p>
+

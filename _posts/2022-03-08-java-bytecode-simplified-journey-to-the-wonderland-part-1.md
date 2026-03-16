@@ -164,6 +164,3 @@ That's all for today!
 
 Happy coding!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

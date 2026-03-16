@@ -171,6 +171,3 @@ If you found this article to be informative and engaging, please consider giving
 
 <br />
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -192,6 +192,3 @@ Let's break down the key advantages of using records in this context:
 
 Records offer a compelling solution for structuring test cases in JUnit 5 parameterized tests. When compared to traditional approaches, records significantly improve code clarity, type safety, and overall maintainability.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -114,6 +114,3 @@ Don't go for a big bang rewrite, as Martin Fowler stated, if you do a bing-bang 
 >
 That's for today, I will write about the next chapter in the following article.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

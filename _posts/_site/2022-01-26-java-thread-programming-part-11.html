@@ -1,0 +1,107 @@
+<h1 id="java-thread-programming-part-11">Java Thread Programming (Part 11)</h1>
+
+<p>In the <a href="https://foojay.io/today/java-thread-programming-part-2/" title="second article of this series">second article of this series</a>, we saw that we can create a functional web server application using Java threads. With that, we could receive multiple requests from many clients and serve them properly.</p>
+
+<p>However, there is a limitation. We cannot just receive an unbounded number of requests simultaneously. The constraint is not on the sockets. The modern OS can handle millions of open sockets at a time. That means, in theory, we should be able to serve that many requests at a time.</p>
+
+<p>The limitation is that we cannot create an unbounded number of threads.</p>
+
+<p>We did an experiment in the <a href="https://foojay.io/today/java-thread-programming-part-7/" title="7th article of the series">7th article of the series</a> and figured out that we cannot just have an unbounded number of threads in a machine.</p>
+
+<p>Let’s do the same test again to determine how many threads we can create on a machine.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.atomic.AtomicInteger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.LockSupport</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Playground</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicInteger</span><span class="o">();</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">new</span> <span class="nf">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"thread count = "</span> <span class="o">+</span> <span class="n">count</span><span class="o">);</span>
+        <span class="nc">LockSupport</span><span class="o">.</span><span class="na">park</span><span class="o">();</span>
+      <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The above program is a simple one. It creates threads in a loop and then parks them, which means the thread gets disabled for further use, but it certainly does the system call and allocates memory. It keeps creating threads until it cannot create anymore, throwing an exception, OutOfMemoryError. We are interested in the number we get until the program throws an exception.</p>
+
+<p>On my machine, I was able to create only 2020 threads with the following configurations.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">Chip:</span> <span class="nc">Apple</span> <span class="no">M1</span>
+<span class="nc">Memory</span> <span class="mi">8</span><span class="no">GB</span>
+<span class="nl">OS:</span> <span class="n">macOS</span> <span class="nc">Monterey</span>
+</code></pre></div></div>
+
+<p>As you can see, we cannot create many threads as the request comes along. Also, spawning a new thread on each request is costly; it takes up memory and time to create a thread. If too many requests come to the server, and the response time between a request and response is shorter, then many threads will be created within a short window of time. And creating threads and stoping them, we will have to use CPU resources.</p>
+
+<p>Besides, in a machine, we have a limited amount of CPUs, and at a point in time, a CPU can only handle one thread. That means, if we have 4 CPUs in a machine, we will have four threads running at a point in time, and the rest of them will be waiting.</p>
+
+<p>As a result, the thread scheduler has to be super busy to provide a time slice to each. Therefore, having many threads means more context switching, which also has overhead. So eventually, it will result in degrading the performance of the application.</p>
+
+<p>To solve all of the problems above, Java introduced a technique called, ThreadPool. In a ThreadPool, we will create several threads when the application starts (we can create on-demand as well), and they will be waiting in Queue; when a request comes into the server, a thread will be picked from the pool, and given the task to the thread, once the thread is done with the job, the thread will return to the pool. The idea is that we will have a limited number of threads, and we will reuse them.</p>
+
+<p><img src="/images/thread-pool-700x370.png" alt="" /></p>
+
+<p>In our <a href="https://foojay.io/today/java-thread-programming-part-7/" title="7th article of the series">7th article of the series</a>, we created a thread pool of our own, that wasn’t production-ready. However, in JDK, we have classes that help us to instantiate a production-ready thread pool. Let’s discuss that.</p>
+
+<p>In Java, ThreadPool is realized through a framework called Executor. It has a special interface:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Executor</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="nc">Runnable</span> <span class="n">command</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This interface has only one method; <code class="language-plaintext highlighter-rouge">execute ()</code> takes an instance of Runnable interface.</p>
+
+<p>A request comes from a client ot a server, and the server responds. In between, the server does specific work. We can call it a unit of work or a job. We will pass that unit of work or job to the <code class="language-plaintext highlighter-rouge">execute()</code> method.</p>
+
+<p>The executor framework underneath works as a producer/consumer pattern. The jobs we put in it are the producer, and the threads inside the executor framework are the consumer of the jobs.</p>
+
+<p>This interface has several implementations. But to make it simple, we have a factory class named, Executors. It has many static factory methods, which makes our life easy.</p>
+
+<p>Let’s see how we can use it:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MultiThreadedServer</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+    <span class="nc">ServerSocket</span> <span class="n">serverSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
+    <span class="nc">ExecutorService</span> <span class="n">threadPool</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+      <span class="n">threadPool</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+          <span class="n">handleRequest</span><span class="o">(</span><span class="n">socket</span><span class="o">);</span>
+        <span class="o">}</span>
+      <span class="o">});</span>
+    <span class="o">}</span>
+
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">handleRequest</span><span class="o">(</span><span class="nc">Socket</span> <span class="n">socket</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">//Todo send the appropriate response to the client </span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The above program is a fully multithreaded web server, but we didn’t create any threads by ourselves. Instead, we created a thread pool using Executors. We specified the number of threads we required, and then the executors provided us with a thread pool with that number. Whenever we get a request from a client, we call a method, <code class="language-plaintext highlighter-rouge">handleRequest()</code>, to handle the request and send a response. We wrap the <code class="language-plaintext highlighter-rouge">handleRequest()</code> method in a runnable and submit it to the thread pool.</p>
+
+<p>This is quite simple. We don’t have to create any threads manually, instead, at the startup of the application, we will ask the executor framework to provision threads for us, and they will be reused the whole time, as long as the application runs.</p>
+
+<p>I hope this clears up the purpose of the executor framework, and in the following article, we will go a bit further in-depth about the framework. Till then, stay happy, and be curious!</p>
+
+<hr />
+

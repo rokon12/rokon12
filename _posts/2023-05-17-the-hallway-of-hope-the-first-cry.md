@@ -104,6 +104,3 @@ The doctor has decided to proceed with a C-section. There's no point in delaying
 If a C-section was necessary, why did she have to endure so much pain? Only Allah knows.  
 I'm waiting for the nurse to call me into the operating theater, eagerly anticipating the sound of the baby's first cry.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

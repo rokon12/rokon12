@@ -43,6 +43,3 @@ Overall, this trip was a mix of personal and professional highlights, from reuni
 
 ![](/images/img-9484-scaled.jpg)  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

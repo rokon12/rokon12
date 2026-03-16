@@ -20,6 +20,3 @@ Reference:
 <https://twitter.com/Java_Champions/status/1523728715368509440>  
 <https://github.com/aalmiray/java-champions/blob/master/README.adoc>  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

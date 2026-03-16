@@ -72,6 +72,3 @@ And that, to me, is an exciting future.
 
 A huge thank you to JetBrains for allowing me to access Junie EAP. Those who are interested, check this page: <https://www.jetbrains.com/junie/>  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

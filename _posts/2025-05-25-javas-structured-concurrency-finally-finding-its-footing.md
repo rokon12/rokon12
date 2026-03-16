@@ -463,6 +463,3 @@ public class QuoteServiceDemo {
 These changes represent a significant maturation of the structured concurrency API. While I was initially frustrated by the frequent API changes, I now appreciate that the Java team took the time to get this right. The structured concurrency API we have today is significantly better than what we started with, and I'm confident it will serve as a solid foundation for concurrent programming in Java going forward.
 **Want to dive deeper into the latest advancements in Java concurrency?** To explore these topics further and master modern techniques, consider checking out the book **"Modern Concurrency in Java"** available on O'Reilly: <https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/>  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

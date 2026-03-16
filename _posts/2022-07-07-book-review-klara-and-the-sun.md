@@ -23,6 +23,3 @@ Book Review: Klara and the Sun
 >
 *As a side note, I read this book a good while ago, so I thought I'd save the review.*  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

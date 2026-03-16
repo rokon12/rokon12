@@ -1,0 +1,51 @@
+<p><img src="/images/idea-overview-5-1-2x.webp" alt="" /></p>
+
+<h1 id="how-to-enable-java-preview-features-and-run-code-from-intellij-idea">How to Enable Java Preview Features and Run Code from IntelliJ IDEA</h1>
+
+<p><a href="https://openjdk.java.net/jeps/425">JEP 425: Virtual Threads (Preview)</a> has been proposed recently. It has been a long-awaited feature in Java. I wanted to give it a try. So I download the <a href="https://jdk.java.net/loom/">early release</a> of JDK which has the <a href="https://wiki.openjdk.java.net/display/loom/Main">project loom</a> in it. However, it is under preview.</p>
+
+<p>The following snippet was pretty much my first program written for testing virtual threads.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello from virtual thread"</span><span class="o">);</span>
+        <span class="o">}).</span><span class="na">join</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>It is so simple that I could just run it in the command line using the <a href="https://openjdk.java.net/jeps/330">source code launcher</a> :</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">preview</span> <span class="o">--</span><span class="n">release</span> <span class="mi">19</span> <span class="nc">Main</span><span class="o">.</span><span class="na">java</span>
+</code></pre></div></div>
+
+<p>However, it needed a bit of <a href="https://en.wiktionary.org/wiki/yak_shaving">yak shaving</a>. I needed to download the JDK, extract the tarball, set the java home, etc. I manage multiple JDKs using <a href="https://sdkman.io/">SDKMAN</a>; it doesn’t have it since it’s still in early access release. So I had to let SDKMAN know it manually.</p>
+
+<p>Then I figured, maybe, perhaps an IDE could help me here. So I opened my favourite IDE, which happens to be <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>. I created a project and set up the JDK using the following window-</p>
+
+<p><img src="/images/screen-shot-2022-05-08-at-4.59.40-am.png" alt="" /></p>
+
+<p>Then when I tried to run, it didn’t allow me to run the code since the virtual thread was still in preview. Here are the steps I had to go through in IntelliJ IDEA.</p>
+
+<p>First, you need to go preference, and then <strong>Build, Execution, Deployment</strong> and then Select Java Compiler.</p>
+
+<p><img src="/images/screen-shot-2022-05-08-at-5.03.41-am.png" alt="" /></p>
+
+<p>At the bottom, there is a box named the additional command line parameter. Add the following line there-</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">preview</span>
+</code></pre></div></div>
+
+<p>And then go to the run configuration. Select the modify options and Mark the Add VM options.</p>
+
+<p><img src="/images/screen-shot-2022-05-08-at-5.04.39-am.png" alt="" /></p>
+
+<p>You need to add <code class="language-plaintext highlighter-rouge">--enable-preview </code>there as well.</p>
+
+<p><img src="/images/screen-shot-2022-05-08-at-5.11.43-am.png" alt="" /></p>
+
+<p>That’s it.</p>
+
+<p>Now you can run the project loom from IntelliJ IDEA.</p>
+

@@ -257,6 +257,3 @@ But be careful; this new approach isn't perfect. You might run into an error tha
 
 I'll talk more about what this error means in my next article.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

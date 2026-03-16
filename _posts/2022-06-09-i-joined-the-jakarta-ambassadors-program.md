@@ -18,6 +18,3 @@ I have been doing spring for pretty much all my career. However, I always have h
 >
 > --- Jakarta EE Ambassadors (@jee_ambassadors) [May 17, 2022](https://twitter.com/jee_ambassadors/status/1526353796884008960?ref_src=twsrc%5Etfw)
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

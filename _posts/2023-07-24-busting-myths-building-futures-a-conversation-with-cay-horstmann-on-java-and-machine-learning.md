@@ -218,6 +218,3 @@ Cay also emphasized the importance of hands-on learning in education and the val
 
 His perspectives provide valuable insights for anyone navigating the ever-evolving software industry.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -1,0 +1,91 @@
+<p><img src="/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg" alt="" /></p>
+
+<h1 id="what-is-cyclicbarrier-and-when-to-use-it-in-java">What is CyclicBarrier and When to Use It in Java?</h1>
+
+<p>In Java’s concurrency API, CyclicBarrier is another kind of synchronizer, similar to CountDownLatch. It enables multiple threads to wait for each other at a predefined execution point before resuming work. For example, consider a financial application that performs complex risk assessments for various portfolios. The reviews could involve multiple steps like data gathering, calculations and report generation.{#ember1331}</p>
+
+<p>In this scenario, a CyclicBarrier can be used to ensure that all steps are synchronized across different threads. Below is a more detailed example illustrating this concept.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.concurrency101</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.CyclicBarrier</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CyclicBarrierDemo</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">numberOfPortfolios</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+        <span class="nc">Runnable</span> <span class="n">barrierAction</span> <span class="o">=</span> <span class="o">()</span>
+                <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All portfolios have completed the current step. "</span> <span class="o">+</span>
+                <span class="s">"Proceeding to the next step."</span><span class="o">);</span>
+
+        <span class="kt">var</span> <span class="n">barrier</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CyclicBarrier</span><span class="o">(</span><span class="n">numberOfPortfolios</span><span class="o">,</span> <span class="n">barrierAction</span><span class="o">);</span>
+        <span class="kt">var</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+        <span class="nc">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">numberOfPortfolios</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(</span>
+                        <span class="k">new</span> <span class="nf">PortfolioTask</span><span class="o">((</span><span class="s">"Portfolio "</span> <span class="o">+</span> <span class="n">i</span><span class="o">),</span>
+                                <span class="n">barrier</span><span class="o">,</span> <span class="n">random</span><span class="o">.</span><span class="na">nextLong</span><span class="o">(</span><span class="mi">1000</span><span class="o">))));</span>
+
+        <span class="c1">// Keeping main thread alive to allow `PortfolioTask` threads to complete</span>
+        <span class="c1">// Java Virtual Threads are daemon threads, they will stop when no other </span>
+        <span class="c1">// non-daemon threads (main in this case) are running.</span>
+        <span class="c1">// So when the main thread finishes, these Virtual Threads could be stopped </span>
+        <span class="c1">// before completing their tasks.</span>
+        <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hope by now all work is done!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">record</span> <span class="nf">PortfolioTask</span><span class="o">(</span><span class="nc">String</span> <span class="n">portfolioName</span><span class="o">,</span>
+                     <span class="nc">CyclicBarrier</span> <span class="n">barrier</span><span class="o">,</span>
+                     <span class="nc">Long</span> <span class="n">sleepTime</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portfolioName</span> <span class="o">+</span> <span class="s">" is gathering data..."</span><span class="o">);</span>
+            <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">sleepTime</span><span class="o">);</span>
+            <span class="n">barrier</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portfolioName</span> <span class="o">+</span> <span class="s">" is calculating risk..."</span><span class="o">);</span>
+            <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">sleepTime</span><span class="o">);</span>
+            <span class="n">barrier</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portfolioName</span> <span class="o">+</span> <span class="s">" is generating the report..."</span><span class="o">);</span>
+            <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">sleepTime</span><span class="o">);</span>
+            <span class="n">barrier</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portfolioName</span> <span class="o">+</span> <span class="s">" risk assessment is complete."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Output of the code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Portfolio</span> <span class="mi">1</span> <span class="n">is</span> <span class="n">gathering</span> <span class="n">data</span><span class="o">...</span>
+<span class="nc">Portfolio</span> <span class="mi">3</span> <span class="n">is</span> <span class="n">gathering</span> <span class="n">data</span><span class="o">...</span>
+<span class="nc">Portfolio</span> <span class="mi">2</span> <span class="n">is</span> <span class="n">gathering</span> <span class="n">data</span><span class="o">...</span>
+<span class="nc">All</span> <span class="n">portfolios</span> <span class="n">have</span> <span class="n">completed</span> <span class="n">the</span> <span class="n">current</span> <span class="n">step</span><span class="o">.</span> <span class="nc">Proceeding</span> <span class="n">to</span> <span class="n">the</span> <span class="n">next</span> <span class="n">step</span><span class="o">.</span>
+<span class="nc">Portfolio</span> <span class="mi">3</span> <span class="n">is</span> <span class="n">calculating</span> <span class="n">risk</span><span class="o">...</span>
+<span class="nc">Portfolio</span> <span class="mi">2</span> <span class="n">is</span> <span class="n">calculating</span> <span class="n">risk</span><span class="o">...</span>
+<span class="nc">Portfolio</span> <span class="mi">1</span> <span class="n">is</span> <span class="n">calculating</span> <span class="n">risk</span><span class="o">...</span>
+<span class="nc">All</span> <span class="n">portfolios</span> <span class="n">have</span> <span class="n">completed</span> <span class="n">the</span> <span class="n">current</span> <span class="n">step</span><span class="o">.</span> <span class="nc">Proceeding</span> <span class="n">to</span> <span class="n">the</span> <span class="n">next</span> <span class="n">step</span><span class="o">.</span>
+<span class="nc">Portfolio</span> <span class="mi">3</span> <span class="n">is</span> <span class="n">generating</span> <span class="n">the</span> <span class="n">report</span><span class="o">...</span>
+<span class="nc">Portfolio</span> <span class="mi">1</span> <span class="n">is</span> <span class="n">generating</span> <span class="n">the</span> <span class="n">report</span><span class="o">...</span>
+<span class="nc">Portfolio</span> <span class="mi">2</span> <span class="n">is</span> <span class="n">generating</span> <span class="n">the</span> <span class="n">report</span><span class="o">...</span>
+<span class="nc">All</span> <span class="n">portfolios</span> <span class="n">have</span> <span class="n">completed</span> <span class="n">the</span> <span class="n">current</span> <span class="n">step</span><span class="o">.</span> <span class="nc">Proceeding</span> <span class="n">to</span> <span class="n">the</span> <span class="n">next</span> <span class="n">step</span><span class="o">.</span>
+<span class="nc">Portfolio</span> <span class="mi">3</span> <span class="n">risk</span> <span class="n">assessment</span> <span class="n">is</span> <span class="n">complete</span><span class="o">.</span>
+<span class="nc">Portfolio</span> <span class="mi">2</span> <span class="n">risk</span> <span class="n">assessment</span> <span class="n">is</span> <span class="n">complete</span><span class="o">.</span>
+<span class="nc">Portfolio</span> <span class="mi">1</span> <span class="n">risk</span> <span class="n">assessment</span> <span class="n">is</span> <span class="n">complete</span><span class="o">.</span>
+<span class="nc">Hope</span> <span class="n">by</span> <span class="n">now</span> <span class="n">all</span> <span class="n">work</span> <span class="n">is</span> <span class="n">done</span><span class="o">!</span>
+</code></pre></div></div>
+
+<p>In this example of a financial portfolio risk assessment application, a CyclicBarrier effectively synchronizes multiple threads through different steps. This ensures that all portfolios complete each step before moving on to the next, maintaining the integrity and accuracy of the risk assessments.{#ember2835}</p>
+
+<p>Besides, a significant benefit of CyclicBarrier over CountDownLatch is reusability. It can be reused after the waiting threads are released in its barrier point. That’s why it’s named ‘<strong>Cyclic</strong>’ because it can be used in a cyclic manner, i.e., in repeated events/operations.{#ember2836}</p>
+
+<p>In the code, we have reused CyclicBarrier in multiple steps.{#ember2837}</p>
+

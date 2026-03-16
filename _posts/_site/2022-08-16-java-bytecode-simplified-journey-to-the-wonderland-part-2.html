@@ -1,0 +1,295 @@
+<p><img src="/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg" alt="" /></p>
+
+<h1 id="java-bytecode-simplified-journey-to-the-wonderland-part-2">Java Bytecode Simplified: Journey to the Wonderland (Part 2)</h1>
+
+<p>Our <a href="/2022/03/08/java-bytecode-simplified-journey-to-the-wonderland-part-1/">previous article</a> introduced Bytecode and discussed what it includes.</p>
+
+<p>This article will delve a bit deeper into ConstantPool.</p>
+
+<p>Highlights:</p>
+
+<ul>
+  <li>Bytecode is a representation that is abstract in nature. They are fictitious codes for a fictitious machine known as the Java Virtual Machine. The Java virtual machine is a piece of software that interprets <strong>Bytecode</strong>.</li>
+  <li>The JVM is a stack-based computer. Real CPUs are register-based systems and execute machine code. Java is compiled into Bytecode, an intermediate form, which is then executed by the <a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">Just In Time</a> (JIT) compiler, which generates machine code.</li>
+</ul>
+
+<p>Before going any further, let’s explore <code class="language-plaintext highlighter-rouge">javap</code>, which is a very handy tool for deconstructing byte code.</p>
+
+<p>JavaP is a standard tool included in the JDK’s bin subdirectory.</p>
+
+<p>An intriguing aspect of <code class="language-plaintext highlighter-rouge">javap</code>, is that we do not need to deal with Java source code; rather, it just works with the binary file, which is .class extension.</p>
+
+<p>Let’s see an example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lamp</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isOn</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOn</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">isOn</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">printStatus</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOff</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">isOn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">printStatus</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">printStatus</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Light is turned "</span> <span class="o">+</span> <span class="o">(</span><span class="n">isOn</span> <span class="o">?</span> <span class="s">"on"</span> <span class="o">:</span> <span class="s">"off"</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">lamp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Lamp</span><span class="o">();</span>
+        <span class="n">lamp</span><span class="o">.</span><span class="na">turnOn</span><span class="o">();</span>
+        <span class="n">lamp</span><span class="o">.</span><span class="na">turnOff</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>If we compile this code using <code class="language-plaintext highlighter-rouge">javac</code> we will get a class file, and then we can use <code class="language-plaintext highlighter-rouge">javap</code> to disassemble the bytecode from the command line as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">javap Lamp</code></p>
+
+<p>We will get the following output.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Compiled</span> <span class="n">from</span> <span class="s">"Lamp.java"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOn</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOff</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">[]);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Note that it prints only the public, protected, and default methods. Abobe, it did not print private methods. If we also wish to view the private method, we must specify an additional switch <code class="language-plaintext highlighter-rouge">-p</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">javap -p Lamp</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Compiled</span> <span class="n">from</span> <span class="s">"Lamp.java"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isOn</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="n">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOn</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOff</span><span class="o">();</span>
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">printStatus</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">[]);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Nonetheless, this only prints the names of the methods. We would be looking for more information, including the bytecode used in the method body. This requires another switch, which is <code class="language-plaintext highlighter-rouge">-c</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">javap -c Lamp</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Compiled</span> <span class="n">from</span> <span class="s">"Lamp.java"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span><span class="o">();</span>
+    <span class="nl">Code:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">1</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="mi">1</span>                  <span class="c1">// Method java/lang/Object."&lt;init&gt;":()V</span>
+       <span class="mi">4</span><span class="o">:</span> <span class="k">return</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOn</span><span class="o">();</span>
+    <span class="nl">Code:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">1</span><span class="o">:</span> <span class="n">iconst_1</span>
+       <span class="mi">2</span><span class="o">:</span> <span class="n">putfield</span>      <span class="err">#</span><span class="mi">7</span>                  <span class="c1">// Field isOn:Z</span>
+       <span class="mi">5</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">6</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="mi">13</span>                 <span class="c1">// Method printStatus:()V</span>
+       <span class="mi">9</span><span class="o">:</span> <span class="k">return</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOff</span><span class="o">();</span>
+    <span class="nl">Code:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">1</span><span class="o">:</span> <span class="n">iconst_0</span>
+       <span class="mi">2</span><span class="o">:</span> <span class="n">putfield</span>      <span class="err">#</span><span class="mi">7</span>                  <span class="c1">// Field isOn:Z</span>
+       <span class="mi">5</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="mi">6</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="mi">13</span>                 <span class="c1">// Method printStatus:()V</span>
+       <span class="mi">9</span><span class="o">:</span> <span class="k">return</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">[]);</span>
+    <span class="nl">Code:</span>
+       <span class="mi">0</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="mi">8</span>                  <span class="c1">// class ca/bazlur/Lamp</span>
+       <span class="mi">3</span><span class="o">:</span> <span class="n">dup</span>
+       <span class="mi">4</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="mi">36</span>                 <span class="c1">// Method "&lt;init&gt;":()V</span>
+       <span class="mi">7</span><span class="o">:</span> <span class="n">astore_1</span>
+       <span class="mi">8</span><span class="o">:</span> <span class="n">aload_1</span>
+       <span class="mi">9</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="mi">37</span>                 <span class="c1">// Method turnOn:()V</span>
+      <span class="mi">12</span><span class="o">:</span> <span class="n">aload_1</span>
+      <span class="mi">13</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="mi">40</span>                 <span class="c1">// Method turnOff:()V</span>
+      <span class="mi">16</span><span class="o">:</span> <span class="k">return</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now, this becomes significantly more intriguing, and we can observe the presence of all bytecodes. If we examine the first line of the main method, we see the following:</p>
+
+<p><code class="language-plaintext highlighter-rouge">new #8</code></p>
+
+<p>In addition to this, the code has other locations with numbers such as #1, #2, etc. These are the constant pool’s reference values. If we wish to view the constant pool, we must use an additional switch, <code class="language-plaintext highlighter-rouge">-v</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">javap -v Lamp</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Classfile</span> <span class="o">/</span><span class="n">bytecode</span><span class="o">-</span><span class="n">simplified</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">ca</span><span class="o">/</span><span class="n">bazlur</span><span class="o">/</span><span class="nc">Lamp</span><span class="o">.</span><span class="na">class</span>
+  <span class="nc">Last</span> <span class="n">modified</span> <span class="nc">Aug</span><span class="o">.</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">2022</span><span class="o">;</span> <span class="n">size</span> <span class="mi">1245</span> <span class="n">bytes</span>
+  <span class="no">SHA</span><span class="o">-</span><span class="mi">256</span> <span class="n">checksum</span> <span class="n">cf727468acdcc0b2dd0a6a858a313110e437e01a6625cf4e03f1f0fa41910dae</span>
+  <span class="nc">Compiled</span> <span class="n">from</span> <span class="s">"Lamp.java"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ca</span><span class="o">.</span><span class="na">bazlur</span><span class="o">.</span><span class="na">Lamp</span>
+  <span class="n">minor</span> <span class="nl">version:</span> <span class="mi">0</span>
+  <span class="n">major</span> <span class="nl">version:</span> <span class="mi">62</span>
+  <span class="nl">flags:</span> <span class="o">(</span><span class="mh">0x0021</span><span class="o">)</span> <span class="no">ACC_PUBLIC</span><span class="o">,</span> <span class="no">ACC_SUPER</span>
+  <span class="nl">this_class:</span> <span class="err">#</span><span class="mi">8</span>                          <span class="c1">// ca/bazlur/Lamp</span>
+  <span class="nl">super_class:</span> <span class="err">#</span><span class="mi">2</span>                         <span class="c1">// java/lang/Object</span>
+  <span class="nl">interfaces:</span> <span class="mi">0</span><span class="o">,</span> <span class="nl">fields:</span> <span class="mi">1</span><span class="o">,</span> <span class="nl">methods:</span> <span class="mi">5</span><span class="o">,</span> <span class="nl">attributes:</span> <span class="mi">3</span>
+<span class="nc">Constant</span> <span class="nl">pool:</span>
+   <span class="err">#</span><span class="mi">1</span> <span class="o">=</span> <span class="nc">Methodref</span>          <span class="err">#</span><span class="mi">2</span><span class="o">.</span><span class="err">#</span><span class="mi">3</span>          <span class="c1">// java/lang/Object."&lt;init&gt;":()V</span>
+   <span class="err">#</span><span class="mi">2</span> <span class="o">=</span> <span class="nc">Class</span>              <span class="err">#</span><span class="mi">4</span>             <span class="c1">// java/lang/Object</span>
+   <span class="err">#</span><span class="mi">3</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">5</span><span class="o">:</span><span class="err">#</span><span class="mi">6</span>          <span class="c1">// "&lt;init&gt;":()V</span>
+   <span class="err">#</span><span class="mi">4</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">Object</span>
+   <span class="err">#</span><span class="mi">5</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="o">&lt;</span><span class="n">init</span><span class="o">&gt;</span>
+   <span class="err">#</span><span class="mi">6</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="o">()</span><span class="no">V</span>
+   <span class="err">#</span><span class="mi">7</span> <span class="o">=</span> <span class="nc">Fieldref</span>           <span class="err">#</span><span class="mi">8</span><span class="o">.</span><span class="err">#</span><span class="mi">9</span>          <span class="c1">// ca/bazlur/Lamp.isOn:Z</span>
+   <span class="err">#</span><span class="mi">8</span> <span class="o">=</span> <span class="nc">Class</span>              <span class="err">#</span><span class="mi">10</span>            <span class="c1">// ca/bazlur/Lamp</span>
+   <span class="err">#</span><span class="mi">9</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">11</span><span class="o">:</span><span class="err">#</span><span class="mi">12</span>        <span class="c1">// isOn:Z</span>
+  <span class="err">#</span><span class="mi">10</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">ca</span><span class="o">/</span><span class="n">bazlur</span><span class="o">/</span><span class="nc">Lamp</span>
+  <span class="err">#</span><span class="mi">11</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">isOn</span>
+  <span class="err">#</span><span class="mi">12</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="no">Z</span>
+  <span class="err">#</span><span class="mi">13</span> <span class="o">=</span> <span class="nc">Methodref</span>          <span class="err">#</span><span class="mi">8</span><span class="o">.</span><span class="err">#</span><span class="mi">14</span>         <span class="c1">// ca/bazlur/Lamp.printStatus:()V</span>
+  <span class="err">#</span><span class="mi">14</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">15</span><span class="o">:</span><span class="err">#</span><span class="mi">6</span>         <span class="c1">// printStatus:()V</span>
+  <span class="err">#</span><span class="mi">15</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">printStatus</span>
+  <span class="err">#</span><span class="mi">16</span> <span class="o">=</span> <span class="nc">Fieldref</span>           <span class="err">#</span><span class="mi">17</span><span class="o">.</span><span class="err">#</span><span class="mi">18</span>        <span class="c1">// java/lang/System.out:Ljava/io/PrintStream;</span>
+  <span class="err">#</span><span class="mi">17</span> <span class="o">=</span> <span class="nc">Class</span>              <span class="err">#</span><span class="mi">19</span>            <span class="c1">// java/lang/System</span>
+  <span class="err">#</span><span class="mi">18</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">20</span><span class="o">:</span><span class="err">#</span><span class="mi">21</span>        <span class="c1">// out:Ljava/io/PrintStream;</span>
+  <span class="err">#</span><span class="mi">19</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">System</span>
+  <span class="err">#</span><span class="mi">20</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">out</span>
+  <span class="err">#</span><span class="mi">21</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="nc">Ljava</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="nc">PrintStream</span><span class="o">;</span>
+  <span class="err">#</span><span class="mi">22</span> <span class="o">=</span> <span class="nc">String</span>             <span class="err">#</span><span class="mi">23</span>            <span class="c1">// on</span>
+  <span class="err">#</span><span class="mi">23</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">on</span>
+  <span class="err">#</span><span class="mi">24</span> <span class="o">=</span> <span class="nc">String</span>             <span class="err">#</span><span class="mi">25</span>            <span class="c1">// off</span>
+  <span class="err">#</span><span class="mi">25</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">off</span>
+  <span class="err">#</span><span class="mi">26</span> <span class="o">=</span> <span class="nc">InvokeDynamic</span>      <span class="err">#</span><span class="mi">0</span><span class="o">:</span><span class="err">#</span><span class="mi">27</span>         <span class="c1">// #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;</span>
+  <span class="err">#</span><span class="mi">27</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">28</span><span class="o">:</span><span class="err">#</span><span class="mi">29</span>        <span class="c1">// makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;</span>
+  <span class="err">#</span><span class="mi">28</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">makeConcatWithConstants</span>
+  <span class="err">#</span><span class="mi">29</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="o">(</span><span class="nc">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">String</span><span class="o">;)</span><span class="nc">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">String</span><span class="o">;</span>
+  <span class="err">#</span><span class="mi">30</span> <span class="o">=</span> <span class="nc">Methodref</span>          <span class="err">#</span><span class="mi">31</span><span class="o">.</span><span class="err">#</span><span class="mi">32</span>        <span class="c1">// java/io/PrintStream.println:(Ljava/lang/String;)V</span>
+  <span class="err">#</span><span class="mi">31</span> <span class="o">=</span> <span class="nc">Class</span>              <span class="err">#</span><span class="mi">33</span>            <span class="c1">// java/io/PrintStream</span>
+  <span class="err">#</span><span class="mi">32</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">34</span><span class="o">:</span><span class="err">#</span><span class="mi">35</span>        <span class="c1">// println:(Ljava/lang/String;)V</span>
+  <span class="err">#</span><span class="mi">33</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">java</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="nc">PrintStream</span>
+  <span class="err">#</span><span class="mi">34</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">println</span>
+  <span class="err">#</span><span class="mi">35</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="o">(</span><span class="nc">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">String</span><span class="o">;)</span><span class="no">V</span>
+  <span class="err">#</span><span class="mi">36</span> <span class="o">=</span> <span class="nc">Methodref</span>          <span class="err">#</span><span class="mi">8</span><span class="o">.</span><span class="err">#</span><span class="mi">3</span>          <span class="c1">// ca/bazlur/Lamp."&lt;init&gt;":()V</span>
+  <span class="err">#</span><span class="mi">37</span> <span class="o">=</span> <span class="nc">Methodref</span>          <span class="err">#</span><span class="mi">8</span><span class="o">.</span><span class="err">#</span><span class="mi">38</span>         <span class="c1">// ca/bazlur/Lamp.turnOn:()V</span>
+  <span class="err">#</span><span class="mi">38</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">39</span><span class="o">:</span><span class="err">#</span><span class="mi">6</span>         <span class="c1">// turnOn:()V</span>
+  <span class="err">#</span><span class="mi">39</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">turnOn</span>
+  <span class="err">#</span><span class="mi">40</span> <span class="o">=</span> <span class="nc">Methodref</span>          <span class="err">#</span><span class="mi">8</span><span class="o">.</span><span class="err">#</span><span class="mi">41</span>         <span class="c1">// ca/bazlur/Lamp.turnOff:()V</span>
+  <span class="err">#</span><span class="mi">41</span> <span class="o">=</span> <span class="nc">NameAndType</span>        <span class="err">#</span><span class="mi">42</span><span class="o">:</span><span class="err">#</span><span class="mi">6</span>         <span class="c1">// turnOff:()V</span>
+  <span class="err">#</span><span class="mi">42</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">turnOff</span>
+  <span class="err">#</span><span class="mi">43</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="nc">Code</span>
+  <span class="err">#</span><span class="mi">44</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="nc">LineNumberTable</span>
+  <span class="err">#</span><span class="mi">45</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="nc">StackMapTable</span>
+  <span class="err">#</span><span class="mi">46</span> <span class="o">=</span> <span class="nc">Class</span>              <span class="err">#</span><span class="mi">47</span>            <span class="c1">// java/lang/String</span>
+  <span class="err">#</span><span class="mi">47</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">String</span>
+  <span class="err">#</span><span class="mi">48</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="n">main</span>
+  <span class="err">#</span><span class="mi">49</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="o">([</span><span class="nc">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="nc">String</span><span class="o">;)</span><span class="no">V</span>
+  <span class="err">#</span><span class="mi">50</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="nc">SourceFile</span>
+  <span class="err">#</span><span class="mi">51</span> <span class="o">=</span> <span class="nc">Utf8</span>               <span class="nc">Lamp</span><span class="o">.</span><span class="na">java</span>
+</code></pre></div></div>
+
+<p>The output is quite large, so only a portion of the code for the constant pool is shown here.</p>
+
+<p>Bytecode starts with minor and major versions. This allows us to determine the version it was compiled from. There are a few other stuff like flags. This flag is <code class="language-plaintext highlighter-rouge">ACC PUBLIC</code> because this class is a public class. The <code class="language-plaintext highlighter-rouge">ACC SUPER</code> was implemented to fix a problem with super invocation, but since Java 1.8, it has no effect; perhaps it will be deleted in the future. In reality, a JEP proposal is available to eliminate this: <a href="https://openjdk.org/jeps/8267650">https://openjdk.org/jeps/8267650</a>. We will not discuss all of the content of bytecode here, rather let’s move on to <strong>ConstantPool</strong>.</p>
+
+<p>It can be considered a multidimensional array. In fact, in the JVM specification, the general format mentioned as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cp_info</span> <span class="o">{</span>
+    <span class="n">u1</span> <span class="n">tag</span><span class="o">;</span>
+    <span class="n">u1</span> <span class="n">info</span><span class="o">[];</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>It contains numerous elements, including class name, field name, interface name, String, numbers, pointers to classes or methods, type descriptor, etc., and has an index.</p>
+
+<p>For instance, the first element contains a Methodref, which is composed of elements <code class="language-plaintext highlighter-rouge">#2</code> and <code class="language-plaintext highlighter-rouge">#3</code>. In <code class="language-plaintext highlighter-rouge">#2</code>, the material is <code class="language-plaintext highlighter-rouge">#4</code>. Similarly, in line <code class="language-plaintext highlighter-rouge">#4</code>, we have a <code class="language-plaintext highlighter-rouge">UTF-8</code> value that is essentially a String, namely <code class="language-plaintext highlighter-rouge">java/lang/Object</code>.</p>
+
+<p>If you use <code class="language-plaintext highlighter-rouge">javap</code> to unpack the entire bytecode, you will find something known as a descriptor. They are referred to as Type descriptors. These are strings that describe the signatures of Java methods or Java types at other constant pool locations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><em>BaseType</em> Character</th>
+      <th>Type</th>
+      <th>Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">B</code></td>
+      <td><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td>signed byte</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">C</code></td>
+      <td><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td>Unicode character code point in the Basic Multilingual Plane encoded with UTF-16</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">D</code></td>
+      <td><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td>double-precision floating-point value</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">F</code></td>
+      <td><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td>single-precision floating-point value</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">I</code></td>
+      <td><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td>integer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">J</code></td>
+      <td><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td>long integer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">L</code> <em>ClassName</em> <code class="language-plaintext highlighter-rouge">;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">reference</code></td>
+      <td>an instance of class <em>ClassName</em></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">S</code></td>
+      <td><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td>signed short</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Z</code></td>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[</code></td>
+      <td><code class="language-plaintext highlighter-rouge">reference</code></td>
+      <td>one array dimension</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Although it appears to be shorter \&amp; concise, particularly for primitive types, we must always use fully qualified names in bytecode for reference types.</p>
+
+<p>Let’s see how we read them. e.g.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">()Ljava/lang/String</code></strong></p>
+
+<p>In the round bracket, nothing between them indicates that this method doesn’t require any parameters. The right of the brackets always indicates the return type. So this represents a method signature, which means it takes nothing but the return string, for example- <code class="language-plaintext highlighter-rouge">toString()</code>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">(I)V</code></strong></p>
+
+<p>This one takes integer parameters and returns a <code class="language-plaintext highlighter-rouge">void</code>. The V doesn’t exist in the table, but it means void. The reason it’s not present in the table is because <code class="language-plaintext highlighter-rouge">void</code> is not actually a type. It means the absence of a type.</p>
+
+<p>The constant pool includes all the information required to verify a class during class loading.</p>
+
+<p>If you are interested in knowing more about Constant Pool, I would recommend reading JVM specifications: <a href="https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.4">https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.4</a></p>
+
+<p>This is all for today. Next, we will discuss the bytecode catalogue and the family of bytecode.</p>
+

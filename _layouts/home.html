@@ -2,102 +2,43 @@
 layout: default
 ---
 
-<!-- ASCII Art Banner -->
-<div class="banner-container">
-    <pre class="ascii-banner">
-╔════════════════════════════════════════════════════════════════════════════════════╗
-║                                                                                    ║
-║   ____               _            _          _            _     _                  ║
-║  | __ )  __ _ _____ | |_   _ _ __( )___     / \   _ __ ___| |__ (_)_   _____       ║
-║  |  _ \ / _` |_  / || | | | | '__|// __|   / _ \ | '__/ __| '_ \| \ \ / / _ \      ║
-║  | |_) | (_| |/ /| || | |_| | |    \__ \  / ___ \| | | (__| | | | |\ V /  __/      ║
-║  |____/ \__,_/___|_| _|\__,_|_|    |___/ /_/   \_\_|  \___|_| |_|_| \_/ \___|      ║
-║                                                                                    ║
-║                          ╭────────────────────────────╮                            ║
-║                          │   > Java | Code | Life <   │                            ║
-║                          ╰────────────────────────────╯                            ║
-║                                                                                    ║
-╚════════════════════════════════════════════════════════════════════════════════════╝
-    </pre>
-    <div class="banner-subtitle">
-        <span class="typing-text">Welcome to my digital garden where code meets creativity</span>
-    </div>
-</div>
-
-<!-- Quick Search Section -->
-<div class="search-section enhanced">
-    <div class="search-wrapper">
-        <div class="search-container">
-            <div class="search-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.35-4.35"/>
-                </svg>
-            </div>
-            <form action="{{ site.baseurl }}/search/" method="get">
-                <input type="text"
-                       name="q"
-                       class="quick-search-input"
-                       placeholder="Search articles, tags, or topics... (press / to focus)"
-                       autocomplete="off">
-                <button type="submit" class="quick-search-button">
-                    <span>Search</span>
-                </button>
-            </form>
-        </div>
-        <div class="popular-tags">
-            <span class="tag-label">Popular:</span>
-            {% assign sorted_tags = site.tags | sort %}
-            {% for tag in sorted_tags limit: 5 %}
-                <a href="{{ '/tags/' | append: tag[0] | append: '/' | relative_url }}" class="popular-tag">{{ tag[0] }}</a>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
 <div class="wrapper">
-    <!-- Featured Posts Section -->
-    {% assign featured_posts = site.posts | where: "featured", true | limit: 3 %}
-    {% if featured_posts.size > 0 %}
-    <section class="featured-posts">
-        <h2 class="section-header featured-header">
-            Featured Articles
-        </h2>
-        <div class="featured-grid">
-            {% for post in featured_posts %}
-            <article class="featured-card">
-                {% if post.featured_image %}
-                <div class="featured-image">
-                    <img src="{{ post.featured_image }}" alt="{{ post.title | escape }}" loading="lazy" decoding="async">
+    <div class="home-hero">
+        <h1>A N M Bazlur Rahman</h1>
+        <p class="home-subtitle">Java Champion &middot; Software Engineer &middot; O'Reilly Author</p>
+        <p class="home-description">Writing about Java concurrency, JVM internals, and software architecture.</p>
+    </div>
+
+    <section class="recent-posts">
+        <h2 class="section-header">Recent Writing</h2>
+
+        <div class="post-list">
+            {% for post in site.posts limit:8 %}
+            <article class="post-list-item">
+                <div class="post-list-meta">
+                    <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%b %-d, %Y" }}</time>
                 </div>
-                {% endif %}
-                <div class="featured-content">
-                    <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-                    <p class="featured-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                    <div class="featured-meta">
-                        <time datetime="{{ post.date }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-                        <a href="{{ post.url | relative_url }}" class="featured-link">Read more &rarr;</a>
+                <div class="post-list-content">
+                    <h3 class="post-list-title">
+                        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                    </h3>
+                    <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+                    {% if post.tags and post.tags.size > 0 %}
+                    <div class="post-list-tags">
+                        {% for tag in post.tags limit: 3 %}
+                            <span class="tag-inline">{{ tag }}</span>
+                        {% endfor %}
                     </div>
+                    {% endif %}
                 </div>
             </article>
             {% endfor %}
         </div>
-    </section>
-    {% endif %}
 
-    <!-- Recent Posts Section -->
-    <section class="recent-posts">
-        <h2 class="section-header">
-            Recent Articles
-        </h2>
-
-        <div class="post-grid">
-            {% for post in site.posts limit:12 %}
-                {% include post-card.html post=post %}
-            {% endfor %}
+        <div class="home-more">
+            <a href="{{ "/archive" | relative_url }}">All articles &rarr;</a>
         </div>
 
-        <!-- Pagination -->
         {% if paginator.total_pages > 1 %}
         <div class="pagination">
             {% if paginator.previous_page %}
@@ -105,9 +46,7 @@ layout: default
             {% else %}
                 <span class="previous">&larr; Newer</span>
             {% endif %}
-
             <span class="page_number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-
             {% if paginator.next_page %}
                 <a href="{{ paginator.next_page_path | relative_url }}" class="next">Older &rarr;</a>
             {% else %}

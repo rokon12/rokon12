@@ -138,6 +138,3 @@ As he continues to shape and contribute to the software industry, follow his jou
 
 Through this interview, we understand that, truly, these are exciting times to be a Java developer.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -92,6 +92,3 @@ Conclusion:
 
 That concludes our insightful two-part conversation with Java expert Jakob Jenkov. We delved into Java's evolution, the challenges in software development, and the potential impact of AI. Jakob's advice for developers navigating these complex dynamics was truly invaluable. As we continue our journey in the programming world, his pragmatic approach and emphasis on understanding will guide us. Stay tuned for more illuminating discussions. Happy coding!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

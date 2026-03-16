@@ -1,0 +1,198 @@
+<p><img src="/images/cafe-g56e2bcea6-1920.jpg" alt="" /></p>
+
+<h1 id="the-5-most-pivotal-and-innovative-additions-to-openjdk-19">The 5 Most Pivotal and Innovative Additions to OpenJDK 19</h1>
+
+<p>Although <a href="https://foojay.io/today/openjdk-19-released/">OpenJDK 19</a> is not an LTS, it is still a significant release, in my opinion.</p>
+
+<p>It includes several game-changing features that will alter the Java landscape.</p>
+
+<p>Many features intrigue my interest, but there are five in particular that I can’t wait to try out. Let’s break those down and talk about them separately.</p>
+
+<p><strong><a href="https://openjdk.org/jeps/425">JEP 425: Virtual Threads (Preview)</a></strong></p>
+
+<p>Under the umbrella of Project Loom, JEP 425 introduces virtual threads, which aim to dramatically reduce the effort of writing, maintaining, and observing high-throughput concurrent applications on the Java platform. This is a <a href="https://openjdk.java.net/jeps/12">preview feature</a>. Consider the following example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">vThread</span> <span class="o">=</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">startVirtualThread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello from the virtual thread"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">vThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Since this is a preview feature, a developer will need to provide the <strong>–enable-preview</strong> flag to compile this code, as shown in the following command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">javac --release 19 --enable-preview Main.java</code></p>
+
+<p>The same flag is also required to run the program:</p>
+
+<p><code class="language-plaintext highlighter-rouge">java --enable-preview Main</code></p>
+
+<p>However, one can directly run this using the <a href="https://openjdk.java.net/jeps/330">source code launcher</a>. In that case, the command line would be:<br />
+<code class="language-plaintext highlighter-rouge">java --source 19 --enable-preview Main.java</code></p>
+
+<p>The <a href="https://docs.oracle.com/javase/9/jshell/introduction-jshell.htm#JSHEL-GUID-630F27C8-1195-4989-9F6B-2C51D46F52C8">jshell</a> option is also available but requires enabling the preview feature as well:</p>
+
+<p><code class="language-plaintext highlighter-rouge">jshell --enable-preview</code></p>
+
+<p>While <strong>Thread.startVirtualThread(Runnable)</strong> is the convenient way to create a virtual thread, new APIs like <a href="https://download.java.net/java/early_access/loom/docs/api/java.base/java/lang/Thread.Builder.html"><strong>Thread.Builder</strong></a>, <a href="https://download.java.net/java/early_access/loom/docs/api/java.base/java/lang/Thread.html#ofVirtual()"><strong>Thread.ofVirtual()</strong></a>, and <a href="https://download.java.net/java/early_access/loom/docs/api/java.base/java/lang/Thread.html#ofPlatform()"><strong>Thread.ofPlatform()</strong></a> were added to create virtual and platform threads.</p>
+
+<p>If you want to know more about it, please, head over the my GitHub repository: <a href="https://github.com/rokon12/project-loom-slides-and-demo-code">https://github.com/rokon12/project-loom-slides-and-demo-code</a>.</p>
+
+<p><br /></p>
+
+<p><strong><a href="https://openjdk.org/jeps/428">JEP 428: Structured Concurrency (Incubator)</a></strong></p>
+
+<p>Structured Concurrency allows you to treat multiple tasks running on different threads as an atomic operation, making multithreaded programming easier. As a result, error handling and cancellation will be simplified, reliability will increase, and observability will be boosted. Let’s see an example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Response</span> <span class="nx">handle</span><span class="p">()</span> <span class="nx">throws</span> <span class="nx">ExecutionException</span><span class="p">,</span> <span class="nx">InterruptedException</span> <span class="p">{</span>
+   <span class="k">try</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StructuredTaskScope</span><span class="p">.</span><span class="nx">ShutdownOnFailure</span><span class="p">())</span> <span class="p">{</span>
+       <span class="nx">Future</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">fork</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="nx">findUser</span><span class="p">());</span>
+       <span class="nx">Future</span><span class="o">&lt;</span><span class="nx">Integer</span><span class="o">&gt;</span> <span class="nx">order</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">fork</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="nx">fetchOrder</span><span class="p">());</span>
+
+       <span class="nx">scope</span><span class="p">.</span><span class="nx">join</span><span class="p">();</span>          <span class="c1">// Join both forks</span>
+       <span class="nx">scope</span><span class="p">.</span><span class="nx">throwIfFailed</span><span class="p">();</span> <span class="c1">// ... and propagate errors</span>
+
+       <span class="c1">// Here, both forks have succeeded, so compose their results</span>
+       <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">resultNow</span><span class="p">(),</span> <span class="nx">order</span><span class="p">.</span><span class="nx">resultNow</span><span class="p">());</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This API runs on top of JEP 425, <a href="https://openjdk.java.net/jeps/425">Virtual Threads (Preview)</a>, also targeted for JDK 19</p>
+
+<p>Compile the above code as shown in the following command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">javac --release 19 --enable-preview --add-modules jdk.incubator.concurrent Main.java</code></p>
+
+<p>The same flag is also required to run the program:</p>
+
+<p><code class="language-plaintext highlighter-rouge">java --enable-preview --add-modules jdk.incubator.concurrent Main;</code></p>
+
+<p>However, one can directly run this using the <a href="https://openjdk.java.net/jeps/330">source code launcher</a>. In that case, the command line would be:</p>
+
+<p><code class="language-plaintext highlighter-rouge">java --source 19 --enable-preview --add-modules jdk.incubator.concurrent Main.java</code></p>
+
+<p>The <a href="https://docs.oracle.com/javase/9/jshell/introduction-jshell.htm#JSHEL-GUID-630F27C8-1195-4989-9F6B-2C51D46F52C8">jshell</a> option is also available, but requires enabling the preview feature as well:</p>
+
+<p><code class="language-plaintext highlighter-rouge">jshell --enable-preview --add-modules jdk.incubator.concurrent</code></p>
+
+<p><a href="https://openjdk.org/jeps/427"><strong>JEP 427: Pattern Matching for switch (Third Preview)</strong></a></p>
+
+<p>Pattern Machining (Third Preview) is to add a pattern for switch expressions and statements to the Java programming language. For concise and safe expression of complex data-oriented queries, it allows testing against multiple patterns, each with a distinct action. Consider the following example-</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PatternMatching</span> <span class="o">{</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">transform</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="mi">200</span> <span class="o">-&gt;</span> <span class="s">"Ok"</span><span class="o">;</span>
+      <span class="k">case</span> <span class="mi">301</span> <span class="o">-&gt;</span> <span class="s">"Moved Permanently"</span><span class="o">;</span>
+      <span class="k">case</span> <span class="mi">404</span> <span class="o">-&gt;</span> <span class="s">"Not found"</span><span class="o">;</span>
+      <span class="k">case</span> <span class="mi">500</span> <span class="o">-&gt;</span> <span class="s">"Internal Server Error"</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nc">Number</span> <span class="n">n</span> <span class="n">when</span> <span class="n">n</span><span class="o">.</span><span class="na">intValue</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">600</span> <span class="o">-&gt;</span> <span class="s">"Invalid"</span><span class="o">;</span>
+      <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"Valid"</span><span class="o">;</span>
+    <span class="o">};</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transform</span><span class="o">(</span><span class="mi">200</span><span class="o">));</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transform</span><span class="o">(</span><span class="mi">600</span><span class="o">));</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transform</span><span class="o">(</span><span class="mi">404</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is also a preview feature, requiring developers to add <code class="language-plaintext highlighter-rouge">--enable-preview</code>.</p>
+
+<p><strong><a href="JEP-424: Foreign Function &amp; Memory API (Preview)">JEP-424: Foreign Function \&amp; Memory API (Preview)</a></strong></p>
+
+<p>By utilizing the Foreign Function and Memory API, Java applications can talk to and use data that is not built into the JRE. Without the hassle and security concerns of the JNI, Java programs can now access native memory, invoke native functions, and process native data. Example-</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Linker</span> <span class="n">linker</span> <span class="o">=</span> <span class="nc">Linker</span><span class="o">.</span><span class="na">nativeLinker</span><span class="o">();</span>
+<span class="nc">SymbolLookup</span> <span class="n">stdlib</span> <span class="o">=</span> <span class="n">linker</span><span class="o">.</span><span class="na">defaultLookup</span><span class="o">();</span>
+<span class="nc">MethodHandle</span> <span class="n">radixSort</span> <span class="o">=</span> <span class="n">linker</span><span class="o">.</span><span class="na">downcallHandle</span><span class="o">(</span>
+                             <span class="n">stdlib</span><span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="s">"radixsort"</span><span class="o">),</span> <span class="o">...);</span>
+</code></pre></div></div>
+
+<p>Developers who want to learn more about this JEP can leverage this series on Foojay: <a href="https://foojay.io/today/project-panama-for-newbies-part-1/">https://foojay.io/today/project-panama-for-newbies-part-1/</a></p>
+
+<p><strong><a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns (Preview)</a></strong></p>
+
+<p>The purpose of Record Patterns is to enrich the language with record patterns that can be used to deconstruct record values. To “enable a robust, declarative, and composable form of data navigation and processing,” record patterns can be combined with type patterns.</p>
+
+<p>Let’s consider the following example-</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.stream.Stream</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+    <span class="kt">var</span> <span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Rectangle</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+    <span class="kt">var</span> <span class="n">s3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Triangle</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+
+    <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">s1</span><span class="o">,</span> <span class="n">s2</span><span class="o">,</span> <span class="n">s3</span><span class="o">,</span> <span class="mi">42</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+      <span class="kt">var</span> <span class="n">area</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="nc">Circle</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="s">"Radius of the circle: "</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">radius</span> <span class="o">+</span> <span class="s">" and area: "</span><span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">area</span><span class="o">();</span>
+        <span class="k">case</span> <span class="nc">Rectangle</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="s">"Height "</span><span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="na">height</span> <span class="o">+</span> <span class="s">", width: "</span><span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="na">width</span> <span class="o">+</span><span class="s">" and the area of Rectangle: "</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="na">area</span><span class="o">();</span>
+        <span class="k">case</span> <span class="nc">Shape</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="s">"Area of the Shape: "</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">area</span><span class="o">();</span>
+        <span class="k">case</span> <span class="nc">Integer</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="s">"It is: "</span> <span class="o">+</span> <span class="n">n</span><span class="o">;</span>
+        <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"not supported"</span><span class="o">;</span>
+      <span class="o">};</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">area</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+
+  <span class="kd">private</span> <span class="kd">interface</span> <span class="nc">Shape</span> <span class="o">{</span>
+
+    <span class="kt">int</span> <span class="nf">area</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="n">record</span> <span class="nf">Triangle</span><span class="o">(</span><span class="kt">int</span> <span class="n">baseLength</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">Shape</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">area</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">baseLength</span> <span class="o">*</span> <span class="k">this</span><span class="o">.</span><span class="na">height</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">record</span> <span class="nf">Rectangle</span><span class="o">(</span><span class="kt">int</span> <span class="n">height</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">Shape</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">area</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">height</span> <span class="o">*</span> <span class="n">width</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">record</span> <span class="nf">Circle</span><span class="o">(</span><span class="kt">int</span> <span class="n">radius</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">Shape</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">area</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">radius</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Since this is also a <a href="https://openjdk.java.net/jeps/12">preview feature</a>, developers require adding <code class="language-plaintext highlighter-rouge">--enable-preview</code> while compiling the above example.</p>
+
+<p><strong>Conclusion:</strong></p>
+
+<p>There you have it; those are the five features I have been looking forward to most.</p>
+
+<p>Please keep in mind that none of these features should be used in a production setting without first going through the preview process.</p>
+
+<p>However, it is always recommended to try them, and feedback is greatly appreciated if an issue is found.</p>
+
+<p>This set of features, however, is all we expect to see in the upcoming LTS version.</p>
+
+<p>Finally, if you liked this article and want to read more like it in the future, <a href="https://twitter.com/bazlur_rahman">follow me on Twitter</a> (why wouldn’t you?).</p>
+

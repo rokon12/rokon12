@@ -137,6 +137,3 @@ While I give you a glimpse of ForkJoinPool, we will discuss it in more detail in
 
 Until then, cheers!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -56,6 +56,3 @@ Additionally, I presented the following talks at the [JCon Europe](https://2023.
 
 I hope this compilation will keep you engaged for a while. Rest assured, I'll be back next month with more intriguing content. Until then, happy reading!{#ember261}  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

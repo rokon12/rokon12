@@ -1,0 +1,119 @@
+<p><img src="/images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg" alt="" /></p>
+
+<h1 id="java-thread-programming-part-15">Java Thread Programming (Part 15)</h1>
+
+<p>This article will discuss how we do asynchronous method invocation with <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a> and <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/Future.html">Future</a> with a practical example.</p>
+
+<p><img src="/images/playground.java-700x227.png" alt="" /></p>
+
+<p>Look at the code snippet. It doesn’t have anything yet, but <a href="/2022/03/01/java-thread-programming-part-14/">as we learned about Java threading</a>, we know anything we put here will run on the main thread unless we spawn a new thread from here.</p>
+
+<p>Now consider a case where you work as a banker, and you need to calculate how much credit you can provide to a person.</p>
+
+<p>To calculate the credit, you need to calculate that person’s assets and liabilities. And then, you want to do some other tasks and pass the assets and liabilities to the credit score calculator. So let’s put these thoughts into code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="nc">Credit</span> <span class="nf">calculateCreditForPerson</span><span class="o">(</span><span class="nc">Long</span> <span class="n">personId</span><span class="o">)</span> <span class="o">{</span>
+     <span class="kt">var</span> <span class="n">person</span> <span class="o">=</span> <span class="n">getPerson</span><span class="o">(</span><span class="n">personId</span><span class="o">);</span>
+     <span class="kt">var</span> <span class="n">assets</span> <span class="o">=</span> <span class="n">getAssets</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+     <span class="kt">var</span> <span class="n">liabilities</span> <span class="o">=</span> <span class="n">getLiabilities</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+
+     <span class="n">doSomeImportantTask</span><span class="o">();</span>
+     <span class="k">return</span> <span class="nf">calculateCredit</span><span class="o">(</span><span class="n">assets</span><span class="o">,</span> <span class="n">liabilities</span><span class="o">);</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is pretty sequential, and all of them are done one after one. Each method takes some time to work on. It calls the database and then waits for the result. Until the result is returned, the execution waits. This is a blocking scenario.</p>
+
+<p>That means when it calls the <code class="language-plaintext highlighter-rouge">getPerson()</code> method, if it makes a network call, which is usually an IO-bound task until we get the result, the main thread would just block, and nothing would progress here. Once the result is returned, we get to the next method, which is another blocking method, as it also makes a database call over the network.</p>
+
+<p>We have five methods over here. If all of them take around 200 milliseconds each to execute, that’s 1000 milliseconds. While executing all the methods, the main thread is blocked most of the time without doing anything. We shouldn’t really waste a resource like this. How about we optimize it so that it doesn’t take the whole 1000 milliseconds?</p>
+
+<p>The solution is to pass those method executions into different threads. Of course, we can create a new thread for each method directly through the new operator, but we need to get the result from the thread.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">AtomicReference</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AtomicReference</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="k">new</span> <span class="nx">Thread</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">getPerson</span><span class="p">(</span><span class="nx">personId</span><span class="p">);</span>
+    <span class="nx">person</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">start</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>We could do something like the above. We are essentially sharing the state between the main and newly created threads. In such a case, we use <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/atomic/AtomicReference.html">AtomicReference</a> to update variables in a thread-safe way.</p>
+
+<p>But over here, we are spawning a new thread. So each time we execute the code, we have to create multiple threads. Creating threads is an expensive operation. We should not create them on an ad-hoc basis. We should use ThreadPool instead, which we will do later. Let’s see the whole code.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="nc">Credit</span> <span class="nf">calculateCreditForPerson</span><span class="o">(</span><span class="nc">Long</span> <span class="n">personId</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">person</span> <span class="o">=</span> <span class="n">getPerson</span><span class="o">(</span><span class="n">personId</span><span class="o">);</span>
+    <span class="kt">var</span> <span class="n">assetRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicReference</span><span class="o">();</span>
+    <span class="kt">var</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">assetRef</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">getAssets</span><span class="o">(</span><span class="n">person</span><span class="o">)));</span>
+
+    <span class="kt">var</span> <span class="n">liabilitiesRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicReference</span><span class="o">();</span>
+    <span class="kt">var</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">liabilitiesRef</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">getLiabilities</span><span class="o">(</span><span class="n">person</span><span class="o">)));</span>
+    <span class="kt">var</span> <span class="n">t3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">doSomeImportantTask</span><span class="o">());</span>
+    <span class="n">t3</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+    <span class="n">t1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+    <span class="n">t2</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+
+    <span class="kt">var</span> <span class="n">credit</span> <span class="o">=</span> <span class="n">calculateCredit</span><span class="o">(</span><span class="n">assetRef</span><span class="o">.</span><span class="na">get</span><span class="o">(),</span> <span class="n">liabilitiesRef</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+
+    <span class="n">t3</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+
+    <span class="k">return</span> <span class="n">credit</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Over there, the first method call is indeed a blocking call. The main thread waits for the method to finish the work. The following two methods’ invocation depends on this, so even if we execute it through another thread, we need to wait for its results.</p>
+
+<p>So executing it from the main thread makes sense. The next three methods can be executed independently. They should not wait for each other. So we can pass them into three separate threads, which we did over here.</p>
+
+<p>The final method of invocation is dependent on the second and third methods. So we need to wait on them. That’s why we called the join method on the threads of those two methods.</p>
+
+<p>And finally, before returning the credit, we join the third thread.</p>
+
+<p>The code above works and takes less time, but it is very hard to understand and has too many moving parts.</p>
+
+<p>Let’s not create a thread for each method by ourselves; rather, we should use executors. That’s best practice. Let’s do that.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="nc">Credit</span> <span class="nf">calculateCreditForPerson3</span><span class="o">(</span><span class="nc">ExecutorService</span> <span class="n">pool</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="nc">ExecutionException</span><span class="o">,</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+    <span class="kt">var</span> <span class="n">person</span> <span class="o">=</span> <span class="n">getPerson</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+    <span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Assets</span><span class="o">&gt;</span> <span class="n">assetFuture</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">getAssets</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+    <span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Liabilities</span><span class="o">&gt;</span> <span class="n">liabilitiesFuture</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">getLiabilities</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+
+    <span class="n">pool</span><span class="o">.</span><span class="na">submit</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">doSomeImportantTask</span><span class="o">());</span>
+
+    <span class="k">return</span> <span class="nf">calculateCredit</span><span class="o">(</span><span class="n">assetFuture</span><span class="o">.</span><span class="na">get</span><span class="o">(),</span> <span class="n">liabilitiesFuture</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>To know how the future works, read part 12 of this threading series: ​​<a href="https://foojay.io/today/java-thread-programming-part-12/">https://foojay.io/today/java-thread-programming-part-12/</a>.</p>
+
+<p><img src="/images/aysnchronos-programming-1024x447.png" alt="" /></p>
+
+<p>The code exactly does the same thing, but it is much cleaner and better. The basic idea is that the second and third methods are being executed independently and separately in other threads.</p>
+
+<p>While they are being executed, the main thread is not blocked, and we made some progress in invoking the fourth method. Indeed, when we called <code class="language-plaintext highlighter-rouge">future.get()</code> blocking call the final method, but that is necessary. It could happen that they are already finished when we get to the final method.</p>
+
+<p>While the final method is executed in the main thread, the fourth method is being executed in another thread asynchronously.</p>
+
+<p>So we have learned how we can write asynchronous methods using <a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/Executors.html">Executors</a>, <code class="language-plaintext highlighter-rouge">Callable</code> and <code class="language-plaintext highlighter-rouge">Future</code>.</p>
+
+<p><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/concurrent/CompletableFuture.html">CompletableFuture</a> is another way to deal with asynchronicity in Java, and it is considered to be a much better way. This is how the above code can be written:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="nc">Credit</span> <span class="nf">calculateCreditForPerson</span><span class="o">(</span><span class="nc">Long</span> <span class="n">personId</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ExecutionException</span><span class="o">,</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+   <span class="k">return</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">supplyAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">getPerson</span><span class="o">(</span><span class="n">personId</span><span class="o">))</span>
+           <span class="o">.</span><span class="na">thenComposeAsync</span><span class="o">(</span><span class="n">person</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">var</span> <span class="n">assetFuture</span> <span class="o">=</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">supplyAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">getAssets</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+        <span class="kd">final</span> <span class="kt">var</span> <span class="n">liabilitiesFuture</span> <span class="o">=</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">supplyAsync</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">getLiabilities</span><span class="o">(</span><span class="n">person</span><span class="o">));</span>
+        <span class="kd">final</span> <span class="kt">var</span> <span class="n">importantWork</span> <span class="o">=</span> <span class="nc">CompletableFuture</span><span class="o">.</span><span class="na">runAsync</span><span class="o">(</span><span class="nl">Playground:</span><span class="o">:</span><span class="n">doSomeImportantTask</span><span class="o">);</span>
+       <span class="k">return</span> <span class="n">importantWork</span><span class="o">.</span><span class="na">thenCompose</span><span class="o">((</span><span class="n">v</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">assetFuture</span><span class="o">.</span><span class="na">thenCombineAsync</span><span class="o">(</span><span class="n">liabilitiesFuture</span><span class="o">,</span> <span class="o">((</span><span class="n">assets</span><span class="o">,</span> <span class="n">liabilities</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">calculateCredit</span><span class="o">(</span><span class="n">assets</span><span class="o">,</span> <span class="n">liabilities</span><span class="o">))));</span>
+   <span class="o">}).</span><span class="na">get</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>But I wouldn’t explain this in this article because it needs some background. Please wait until the next parts come out…</p>
+
+<p>Until then, cheers!</p>
+
+<hr />
+

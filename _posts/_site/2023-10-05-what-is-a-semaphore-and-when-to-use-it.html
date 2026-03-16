@@ -1,0 +1,81 @@
+<p><img src="/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg" alt="" /></p>
+
+<h1 id="what-is-a-semaphore-and-when-to-use-it">What is a semaphore, and when to use it?</h1>
+
+<p>In Java’s concurrency API, a semaphore is another synchronization tool that simultaneously controls the number of threads accessing a particular resource or section of code. It manages a set of permits; threads must acquire a permit before proceeding. If a permit is available, the thread acquires it and continues execution. If not, the thread is blocked until a permit becomes available or interrupted. The Semaphore class in Java offers two primary methods: acquire() and release().{#ember1009}</p>
+
+<p>Let’s assume a database that can only endure ten connections simultaneously. With the advent of Virtual Threads in JDK 21, creating many threads has become relatively easy and cheap. This becomes a double-edged sword for this particular case, as many threads can attempt to connect in this database simultaneously, and this can overwhelm the database.{#ember1010}</p>
+
+<p>Here is our MockDatabase class:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MockDatabase</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">MockConnection</span> <span class="nf">getConnection</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> <span class="c1">// assume it takes 10 ms</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">MockConnection</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>To avoid overwhelming the database, we can employ a semaphore to limit concurrent access. Below is the modified MockDatabase class with a Semaphore:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.Semaphore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MockDatabase</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Semaphore</span> <span class="n">semaphore</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Semaphore</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="nc">MockConnection</span> <span class="nf">getConnection</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">semaphore</span><span class="o">.</span><span class="na">acquire</span><span class="o">();</span>
+            <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">MockConnection</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">semaphore</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>To ensure that the semaphore is effectively limiting the database connections to ten, we can create a JUnit test. The test will utilize an AtomicInteger to count the maximum number of concurrent calls to the getConnection() method and verify that it never exceeds ten.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.atomic.AtomicInteger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">assertj</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.</span><span class="na">assertThat</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">MockDatabaseTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetConnection_shouldLimitConcurrentInvocationsToTen</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">concurrentCalls</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicInteger</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="kt">var</span> <span class="n">maxConcurrentCalls</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicInteger</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+        <span class="kt">var</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MockDatabase</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nc">MockConnection</span> <span class="nf">getConnection</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">concurrentCalls</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+                <span class="n">maxConcurrentCalls</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">maxConcurrentCalls</span><span class="o">.</span><span class="na">get</span><span class="o">(),</span> <span class="n">concurrentCalls</span><span class="o">.</span><span class="na">get</span><span class="o">()));</span>
+                <span class="n">concurrentCalls</span><span class="o">.</span><span class="na">decrementAndGet</span><span class="o">();</span>
+                <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">executorService</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1000</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">index</span> <span class="o">-&gt;</span> <span class="n">instance</span><span class="o">.</span><span class="na">getConnection</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">maxConcurrentCalls</span><span class="o">.</span><span class="na">get</span><span class="o">()).</span><span class="na">isLessThanOrEqualTo</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In conclusion, Java’s Semaphore class offers a robust and straightforward mechanism for controlling access to limited resources in a concurrent environment.</p>
+

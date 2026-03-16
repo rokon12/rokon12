@@ -155,6 +155,3 @@ Nicolas provides an invaluable perspective, emphasizing passion and continual le
 
 *Note: This comprehensive and insightful interview was conducted through various digital platforms, including Google Docs, email, and Slack. We welcome any suggestions to enhance our process, ensuring better future experiences.*  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

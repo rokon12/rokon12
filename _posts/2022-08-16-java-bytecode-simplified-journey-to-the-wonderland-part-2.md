@@ -259,6 +259,3 @@ If you are interested in knowing more about Constant Pool, I would recommend rea
 
 This is all for today. Next, we will discuss the bytecode catalogue and the family of bytecode.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

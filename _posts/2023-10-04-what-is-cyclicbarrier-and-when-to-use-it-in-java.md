@@ -102,6 +102,3 @@ Besides, a significant benefit of CyclicBarrier over CountDownLatch is reusabili
 
 In the code, we have reused CyclicBarrier in multiple steps.{#ember2837}
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

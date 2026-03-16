@@ -127,6 +127,3 @@ The constraint is primarily set by the operating system. This investigation effe
 
 ***Thank you for reading this. If you have a different perspective on this topic or if your experiments yield different results, I would be very interested to hear about it. Please feel free to share your findings with me.***  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

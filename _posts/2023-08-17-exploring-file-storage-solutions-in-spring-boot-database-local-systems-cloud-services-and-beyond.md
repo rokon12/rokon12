@@ -224,6 +224,3 @@ Remember to choose the right storage option that suits not just your application
 
 Happy coding!
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

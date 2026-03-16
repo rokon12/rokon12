@@ -1,0 +1,118 @@
+<p><img src="/images/erik.jpeg" alt="" /></p>
+
+<h1 id="exploring-java-21s-intriguing-additions-unveiling-new-features-part-1">Exploring Java 21’s Intriguing Additions: Unveiling New Features (Part 1)</h1>
+
+<h2 id="introduction">Introduction:</h2>
+
+<p>Java 21 is going to introduce several intriguing additions that enhance the language’s capabilities.</p>
+
+<p>This article aims to discuss a few notable features that stand out, providing an overview of their functionalities and potential use cases.</p>
+
+<p><br /></p>
+
+<h2 id="character-enhancements">Character Enhancements:</h2>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Character.isEmoji(int codePoint)</code>: This method determines whether a character is considered an emoji based on its Unicode properties defined in Unicode Emoji (<a href="https://unicode.org/reports/tr51/#Emoji_Properties_and_Data_Files">Unicode Emoji Technical Standard #51</a>). For example, executing <code class="language-plaintext highlighter-rouge">Character.isEmoji(9203)</code> would return <code class="language-plaintext highlighter-rouge">true</code> for the character ⏳, which has the code point 9203.</li>
+  <li><code class="language-plaintext highlighter-rouge">Character.isEmojiPresentation(int codePoint)</code>: Similar to <code class="language-plaintext highlighter-rouge">isEmoji()</code>, this method checks if a character has the Emoji Presentation property. It helps identify characters that display as emojis when rendered.</li>
+</ol>
+
+<p>Example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">boolean</span> <span class="n">isEmoji</span> <span class="o">=</span> <span class="nc">Character</span><span class="o">.</span><span class="na">isEmoji</span><span class="o">(</span><span class="mi">9203</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isEmoji</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The output will be <code class="language-plaintext highlighter-rouge">true</code> because the character with code point 9203 (⏳) is considered an emoji.</p>
+
+<p>You can find more details about these methods in the <a href="https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/Character.html#isEmoji(int)">Java documentation</a>.</p>
+
+<p><br /></p>
+
+<h2 id="stringbuffer-and-stringbuilder-improvements">StringBuffer and StringBuilder Improvements:</h2>
+
+<p>Java 21 enhances the <code class="language-plaintext highlighter-rouge">StringBuffer</code> and <code class="language-plaintext highlighter-rouge">StringBuilder</code> classes with the <code class="language-plaintext highlighter-rouge">repeat()</code> method, which allows repetitive concatenation of characters or character sequences. The two overloaded versions of <code class="language-plaintext highlighter-rouge">repeat()</code> are as follows:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">StringBuffer.repeat(int codePoint, int count)</code>: Repeats <code class="language-plaintext highlighter-rouge">count</code> copies of the string representation of the specified <code class="language-plaintext highlighter-rouge">codePoint</code> argument in the <code class="language-plaintext highlighter-rouge">StringBuffer</code> sequence. For instance, executing <code class="language-plaintext highlighter-rouge">buffer.repeat(9203, 5)</code> would append ⏳ five times to the <code class="language-plaintext highlighter-rouge">StringBuffer</code>, resulting in “⏳⏳⏳⏳⏳”.</li>
+  <li><code class="language-plaintext highlighter-rouge">StringBuffer.repeat(CharSequence cs, int count)</code>: Appends <code class="language-plaintext highlighter-rouge">count</code> copies of the specified <code class="language-plaintext highlighter-rouge">CharSequence</code> <code class="language-plaintext highlighter-rouge">cs</code> to the <code class="language-plaintext highlighter-rouge">StringBuffer</code>. Similarly, these methods are also available in the <code class="language-plaintext highlighter-rouge">StringBuilder</code> class.</li>
+</ol>
+
+<p>Example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StringBuffer</span><span class="p">();</span>
+<span class="nx">buffer</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">9203</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="nx">System</span><span class="p">.</span><span class="nx">out</span><span class="p">.</span><span class="nx">println</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>The output will be <code class="language-plaintext highlighter-rouge">⏳⏳⏳⏳⏳</code>, as the code point 9203 (⏳) is repeated five times using the <code class="language-plaintext highlighter-rouge">repeat()</code> method.</p>
+
+<p><br /></p>
+
+<h2 id="string-enhancements">String Enhancements:</h2>
+
+<p>Java 21 introduces two new methods in the <code class="language-plaintext highlighter-rouge">String</code> class, namely <code class="language-plaintext highlighter-rouge">indexOf(String str, int beginIndex, int endIndex)</code> and <code class="language-plaintext highlighter-rouge">indexOf(int ch, int beginIndex, int endIndex)</code>, which expand the searching capabilities within a specified range of a string.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">String.indexOf(String str, int beginIndex, int endIndex)</code>: Returns the index of the first occurrence of the specified substring within the given index range of the string. This method provides the same result as invoking <code class="language-plaintext highlighter-rouge">s.substring(beginIndex, endIndex).indexOf(str) + beginIndex</code>. If the <code class="language-plaintext highlighter-rouge">indexOf(String)</code> method returns a non-negative index, it is returned; otherwise, -1 is returned.</li>
+  <li><code class="language-plaintext highlighter-rouge">String.indexOf(int ch, int beginIndex, int endIndex)</code>: Returns the index of the first occurrence of the specified character within the given range of the string. The search starts at <code class="language-plaintext highlighter-rouge">beginIndex</code> and stops before <code class="language-plaintext highlighter-rouge">endIndex</code>. This method supports characters in the range from 0 to 0xFFFF, as well as other Unicode code points.</li>
+</ol>
+
+<p><br /></p>
+
+<p>Java 21 also enhances the <code class="language-plaintext highlighter-rouge">String</code> class with a <code class="language-plaintext highlighter-rouge">splitWithDelimiters(String regex, int limit)</code> method. This method splits a string based on a given regular expression and returns both the strings and the matching delimiters. For example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">booAndFoo</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">boo:::and::foo</span><span class="dl">"</span><span class="p">;</span>
+<span class="nb">String</span><span class="p">[]</span> <span class="nx">splits</span> <span class="o">=</span> <span class="nx">booAndFoo</span><span class="p">.</span><span class="nx">splitWithDelimiters</span><span class="p">(</span><span class="dl">"</span><span class="s2">:+</span><span class="dl">"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nx">System</span><span class="p">.</span><span class="nx">out</span><span class="p">.</span><span class="nx">println</span><span class="p">(</span><span class="dl">"</span><span class="s2">splits = </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">Arrays</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="nx">splits</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>The output will be: <code class="language-plaintext highlighter-rouge">splits = [boo, :::, and, ::, foo]</code>, where the string is split around the <code class="language-plaintext highlighter-rouge">:+</code> delimiter, limiting the result to a maximum of three splits.</p>
+
+<p><br /></p>
+
+<h2 id="collections-framework-enhancements">Collections Framework Enhancements:</h2>
+
+<p>Java 21 introduces several new methods in the <code class="language-plaintext highlighter-rouge">Collections</code> class that enhance the Collections Framework’s functionality.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Collections.newSequencedSetFromMap(SequencedMap&lt;E, Boolean&gt; map)</code>: This method returns a <code class="language-plaintext highlighter-rouge">SequencedSet</code> backed by the specified <code class="language-plaintext highlighter-rouge">SequencedMap</code>. The resulting set maintains the ordering, concurrency, and performance characteristics of the backing map. This enables developers to obtain a <code class="language-plaintext highlighter-rouge">SequencedSet</code> implementation corresponding to any <code class="language-plaintext highlighter-rouge">SequencedMap</code> implementation.</li>
+  <li><code class="language-plaintext highlighter-rouge">Collections.shuffle(List&lt;?&gt; list, RandomGenerator rnd)</code>: This method randomly permutes the elements of the specified list using the provided source of randomness. The permutations occur with equal likelihood, assuming a fair source of randomness.</li>
+  <li><code class="language-plaintext highlighter-rouge">Collections.unmodifiableSequencedCollection(SequencedCollection&lt;? extends T&gt; c)</code>: Returns an unmodifiable view of the specified <code class="language-plaintext highlighter-rouge">SequencedCollection</code>. It allows read-only access to the underlying collection, throwing an <code class="language-plaintext highlighter-rouge">UnsupportedOperationException</code> if modification is attempted.</li>
+  <li><code class="language-plaintext highlighter-rouge">Collections.unmodifiableSequencedSet(SequencedSet&lt;? extends T&gt; s)</code>: Returns an unmodifiable view of the specified <code class="language-plaintext highlighter-rouge">SequencedSet</code>, providing read-only access to the set while disallowing modifications.</li>
+  <li><code class="language-plaintext highlighter-rouge">Collections.unmodifiableSequencedMap(SequencedMap&lt;? extends K, ? extends V&gt; m)</code>: Similar to the previous methods, this returns an unmodifiable view of the specified <code class="language-plaintext highlighter-rouge">SequencedMap</code>, allowing read-only operations.</li>
+</ol>
+
+<p>SequencedCollection and SequencedMap are new interfaces introduced in Java 21 that preserve the order of elements and entries, respectively.</p>
+
+<p>To know more about Sequence Collection, read my news item on infoQ: <a href="https://www.infoq.com/news/2023/03/collections-framework-makeover/">Collections Framework Makeover</a>.</p>
+
+<p><br /></p>
+
+<h2 id="hashmap-and-hashset-improvements">HashMap and HashSet Improvements:</h2>
+
+<p>Java 21 introduces convenient factory methods for creating <code class="language-plaintext highlighter-rouge">HashMap</code> and <code class="language-plaintext highlighter-rouge">HashSet</code> instances.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Collections.newHashMap(int numMappings)</code>: Creates a new, empty <code class="language-plaintext highlighter-rouge">HashMap</code> suitable for the expected number of mappings. The map uses a default load factor of 0.75, and its initial capacity is typically large enough to accommodate the expected number of mappings without requiring resizing.</li>
+  <li><code class="language-plaintext highlighter-rouge">Collections.newHashSet(int numElements)</code>: Creates a new, empty <code class="language-plaintext highlighter-rouge">HashSet</code> suitable for the expected number of elements. The set also uses a default load factor of 0.75, with an initial capacity that can accommodate the expected number of elements efficiently.</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><br /></p>
+
+<p>If you want to experiment with these new features can download the OpenJDK from the <a href="https://jdk.java.net/21/">OpenJDK JDK 21 Early-Access Builds</a>.</p>
+
+<p>Another alternative is to use <a href="https://sdkman.io/">SDKMan</a>, a software development kit manager, to download and manage different versions of Java. SDKMan can be used via the command line, which can make the process easier for developers who prefer this method.</p>
+
+<p>However, these are early-access builds, so they may not be as stable as the final release, scheduled for September 2023, and are intended for testing and feedback purposes.</p>
+
+<p>Nonetheless, Java 21 introduces various exciting language and collections framework additions. The new methods related to character properties, string manipulation, and collections provide developers with enhanced functionality and flexibility in their code. These additions aim to improve the productivity and performance of Java developers.</p>
+
+<p><strong><em>Note: To explore the complete set of new functionalities introduced in Java 21, stay tuned for future articles discussing additional features.</em></strong></p>
+

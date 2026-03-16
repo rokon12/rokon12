@@ -140,6 +140,3 @@ public class ProducerConsumerExample {
 
 That's it for today!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

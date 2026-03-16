@@ -94,6 +94,3 @@ As DevNexus wrapped up, I headed to the airport with my friend Shaaf. We shared 
 
 By 2 AM, I was finally back home in Toronto, greeted by my lovely wife, Tabassum---a warm and familiar welcome after a whirlwind trip.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

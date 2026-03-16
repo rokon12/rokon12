@@ -141,6 +141,3 @@ Developers are encouraged to transition to the VarHandle API and the Foreign Fun
 
 The phased deprecation provides ample time for adaptation, ensuring a smoother transition. For more about it, read my [infoQ news](https://www.infoq.com/news/2024/06/jep-456-removing-unsafe-methods/) item.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

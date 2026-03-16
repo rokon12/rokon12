@@ -819,6 +819,3 @@ The examples provided here serve as a starting point. Adapt and extend them base
 
 Happy coding, and remember: with great AI power comes great responsibility! 🚀  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

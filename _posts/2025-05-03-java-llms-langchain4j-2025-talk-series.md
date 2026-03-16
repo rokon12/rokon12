@@ -43,6 +43,3 @@ We built a progressive demo repo --- <https://github.com/learnj-ai/llm-jakarta> 
 
 We're excited to keep refining these ideas and would love your feedback---see you at the next stop on the schedule!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

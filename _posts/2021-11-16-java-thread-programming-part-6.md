@@ -284,6 +284,3 @@ Thread[Consumer # 2,5,main]: Resumed.
 
 That's all for today!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

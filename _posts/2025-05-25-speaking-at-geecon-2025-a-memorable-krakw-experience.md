@@ -52,6 +52,3 @@ I look forward to the possibility of catching up with some of you again at a fut
 
 ![](/images/20250516-194800.jpg)  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

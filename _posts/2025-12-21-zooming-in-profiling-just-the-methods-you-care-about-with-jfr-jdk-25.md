@@ -280,6 +280,3 @@ Instead of profiling the entire JVM and filtering later, you zoom in from the st
 
 Happy tracing.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

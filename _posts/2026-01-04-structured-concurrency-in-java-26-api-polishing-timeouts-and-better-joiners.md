@@ -207,6 +207,3 @@ Structured concurrency doesn't make concurrency "easy", but it does make it hone
 
 At this stage, JEP 525 feels stable enough to use seriously in Java 26 preview builds. If you've ever been bitten by runaway tasks or half-failed fan-outs, it's worth your time.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

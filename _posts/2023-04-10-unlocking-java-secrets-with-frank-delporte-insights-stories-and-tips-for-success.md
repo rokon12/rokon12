@@ -207,6 +207,3 @@ We hope that our readers have found this interview both enlightening and motivat
 
 ***We have recently made a change to our interview format by removing the editor's note at the end of each question and answer. We would love to hear your thoughts on this alteration. Please let us know whether you find this change beneficial or if you feel that the previous format with the editor's note was more effective. Your feedback is essential in helping us continually improve our content and provide the best experience for our readers.***  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

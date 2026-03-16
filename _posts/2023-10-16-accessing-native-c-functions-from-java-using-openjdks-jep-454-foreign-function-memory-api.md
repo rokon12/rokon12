@@ -93,6 +93,3 @@ If everything is set up correctly, the output should display:
 
 OpenJDK's JEP 454 offers a promising alternative to JNI for interacting with native code. By providing a simpler, safer, and more efficient API, it has the potential to revolutionize how Java developers work with native libraries and memory.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

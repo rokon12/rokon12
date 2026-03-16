@@ -397,6 +397,3 @@ Congratulations! You've built a versatile release notes generator powered by JBa
 
 Let me know if you'd like me to elaborate on any specific code section or aspect!
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

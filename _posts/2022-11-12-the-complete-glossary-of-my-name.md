@@ -24,6 +24,3 @@ This impressive and lovely name was given to me by my parents, and I am eternall
 
 So, there you have it: a complete glossary of terms relating to my name.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

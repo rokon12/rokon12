@@ -361,6 +361,3 @@ This is just the beginning. In this first part, we've laid the groundwork---unde
 
 Next time, we'll get our hands dirty with more features. Stay tuned!
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

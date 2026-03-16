@@ -129,6 +129,3 @@ Nonetheless, Java 21 introduces various exciting language and collections framew
 
 ***Note: To explore the complete set of new functionalities introduced in Java 21, stay tuned for future articles discussing additional features.***  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

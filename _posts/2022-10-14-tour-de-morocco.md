@@ -53,6 +53,3 @@ I learned and accomplished a lot, and I'd like to attend similar conferences mor
 
 ![](/images/pxl-20221005-172039371.jpeg)
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

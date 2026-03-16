@@ -213,6 +213,3 @@ This set of features, however, is all we expect to see in the upcoming LTS versi
 
 Finally, if you liked this article and want to read more like it in the future, [follow me on Twitter](https://twitter.com/bazlur_rahman) (why wouldn't you?).  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

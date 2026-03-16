@@ -145,6 +145,3 @@ Sealed Classes, pattern matching, and the integration of functional programming 
 
 The real-life use cases for these features are not rare but abundant, and their integration into Java's ecosystem signals a promising direction for the language and its community.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

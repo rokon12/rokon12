@@ -63,6 +63,3 @@ The '**hallway track**', the networking opportunities at the pub afterwards, and
 
 In conclusion, JConf Toronto 2023 was a confluence of minds and ideas, weaving together the threads of innovation and camaraderie, setting the stage for an even more inspiring event in 2024.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

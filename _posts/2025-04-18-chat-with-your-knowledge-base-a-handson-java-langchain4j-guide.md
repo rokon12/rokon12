@@ -460,6 +460,3 @@ This approach of combining the power of LLMs with your domain-specific data open
 >
 If you're looking for more examples integrating LLMs with Java, especially within the Jakarta EE context, you might find this repository helpful: [https://github.com/learnj-ai/llm-jakarta](https://github.com/learnj-ai/llm-jakarta "null")  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

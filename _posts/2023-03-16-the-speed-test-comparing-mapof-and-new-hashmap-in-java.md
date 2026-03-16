@@ -210,6 +210,3 @@ Developers should consider using Map.of() when creating small maps in Java to ta
 
 *We conducted an initial benchmark that was somewhat flawed. However, we have since rerun the benchmark and obtained slightly different results, which we have incorporated into this article after making necessary edits. Our gratitude goes to [Sune Marcher](https://twitter.com/snemarch), who brought this to our attention, and we value their input.*  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

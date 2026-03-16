@@ -128,6 +128,3 @@ Finally, [here is a Twitter thread](https://twitter.com/bazlur_rahman/status/149
 
 I hope you, I, and all of us will continue to work and love it and please share any additional insights or reasons you have for being part of the Java ecosystem below.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

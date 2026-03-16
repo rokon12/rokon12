@@ -159,6 +159,3 @@ Overall, this interview gives valuable information about how to get ahead in the
 
 **I hope you, as a reader, have found this interview beneficial. Stay tuned for next week's interview with another industry star.**  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

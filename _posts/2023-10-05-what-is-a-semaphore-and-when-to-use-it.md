@@ -93,6 +93,3 @@ class MockDatabaseTest {
 
 In conclusion, Java's Semaphore class offers a robust and straightforward mechanism for controlling access to limited resources in a concurrent environment.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

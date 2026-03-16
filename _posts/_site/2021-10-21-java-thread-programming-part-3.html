@@ -1,0 +1,102 @@
+<h1 id="java-thread-programming-part-3">Java Thread Programming (Part 3)</h1>
+
+<p>Continuing <a href="https://foojay.io/today/java-thread-programming-part-2/">from part 2</a>, let’s start this article with a bit of context first (<em>and if you don’t like reading text, you can skip this introduction, and go directly to the section below where I discuss pieces of code</em>).</p>
+
+<h2 id="context">Context</h2>
+
+<ul>
+  <li>When we start an application program, the operating system creates a process.</li>
+  <li>Each process has a unique id (we call it PID) and a memory boundary.</li>
+  <li>A process allocates its required memory from the main memory, and it manipulates data within a boundary.</li>
+  <li>No other process can access the allocated memory that is already acquired by a process.</li>
+  <li>It works like a sandbox, and in that way avoids processes stepping on one another’s foot.</li>
+  <li>Ideally, we can have many small processes to run multiple things simultaneously on our computers and let the operating systems scheduler schedule them as it sees fit.</li>
+  <li>In fact, this is how it was done before the development of threads. However, when we want to do large pieces of work, breaking them into smaller pieces, we need to accumulate them once they are finished.</li>
+  <li>And not all tiny pieces can be independent, some of them must rely on each other, and thus we need to share information amongst them.</li>
+  <li>To do that, we use inter-process communication. The problem with this idea is that having too many processes on a computer and then communicating with each other isn’t cheap. And precisely that is where the notion of threads comes into the picture.</li>
+</ul>
+
+<p>The idea of the thread is that a process can have many tiny processes within itself. These small processes can share the memory space that a process acquires. These little processes are called a thread. So the bottom line is, threads are independent execution environments in the CPU and share the same memory space. That allows them faster memory access and better performance.</p>
+
+<p>That seems to be a good idea. However, it comes with many problems alongside its benefits. Let’s discuss some of those problems and how we can deal with them. But don’t get discouraged, the benefits still outweigh the problems!</p>
+
+<h2 id="code">Code</h2>
+
+<p>Let’s begin by running a piece of code.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bazlur.threads</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FoojayPlayground</span> <span class="o">{</span>
+ <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">running</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">var</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+   <span class="k">while</span> <span class="o">(!</span><span class="n">running</span><span class="o">)</span> <span class="o">{</span>
+   <span class="o">}</span>
+   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Foojay.io"</span><span class="o">);</span>
+  <span class="o">});</span>
+
+  <span class="kt">var</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+   <span class="n">running</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"I love "</span><span class="o">);</span>
+  <span class="o">});</span>
+
+  <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+  <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The above piece of code is reasonably straightforward. We have created two threads. Both of them share a variable named “running”. There is a while loop inside the first thread. The loop will keep running while the variable is false, which means this thread will continue to execute the loop unless the variable is changed. Once the loop breaks, it prints “Foojay.io.” The second thread changes the variable and then prints “I love.”</p>
+
+<p>Now the question gets to be, what would be the output?</p>
+
+<p>Outwardly it seems the output would be following:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">I</span> <span class="n">love</span>
+<span class="nc">Foojay</span><span class="o">.</span><span class="na">io</span>
+</code></pre></div></div>
+
+<p>Well, that’s only one case because if you run the above code several times, you will see different results. There would be three outcomes of the program, varying on different computers. The reason is, we can only ask the thread to execute a piece of code, but <strong>we cannot guarantee the execution order of multiple threads</strong>. Threads are scheduled by the operating system’s thread scheduler. We will discuss the thread’s lifecycle in forthcoming articles.</p>
+
+<p><strong>Case 1.</strong>The first thread will continue running the loop. In contrast, the second thread will change the variable and immediately print “I love”. Since the variable now changed, the loop breaks, and it prints “Foojay.io”, so that the output is:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">I</span> <span class="n">love</span>
+<span class="nc">Foojay</span><span class="o">.</span><span class="na">io</span>
+</code></pre></div></div>
+
+<p><strong>Case 2.</strong>The second thread will run first and change the variable and then immediately in the first thread, the loop will break and print the “Foojay.io”. And the second thread will print “I love”. Thus the output is:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Foojay</span><span class="o">.</span><span class="na">io</span>
+<span class="no">I</span> <span class="n">love</span>
+</code></pre></div></div>
+
+<p><strong>Case 3.</strong> The above two cases seem reasonable. <strong>However, there is a third case that we may not anticipate immediately:</strong> the first thread may be stuck and the second thread will print “I love” and that’s all. No more output. This can be difficult to reproduce, but it can happen.</p>
+
+<p>Let me explain the third case!</p>
+
+<p>We know the modern computer has multiple CPUs in it. Nonetheless, we cannot guarantee in which core the thread will eventually run. For example, the above two threads can run in two different CPUs, which most likely the case.</p>
+
+<p>When a CPU executes a code, it reads data from the main memory. However, modern CPUs have various caches for faster access to memory. There are three types of cache associated with each CPU. They are L1 Cache, L2 Cache, and L3 Cache.</p>
+
+<p><img src="/images/cache-678x510.png" alt="" /></p>
+
+<p>When starting the first thread, the CPU it runs may cache the running variable and keeps it running. But, on the other hand, when the second thread runs and changes the variable on a different CPU, it won’t be visible to the first thread. Thus the problem of the third case would occur.</p>
+
+<p>We cannot tell whether this would be the case because it all depends on the operating system and having multiple CPUs in a computer. Despite this, we can prevent the CPU from caching, by using “volatile” in the variable. This will instruct the CPU not to cache the variable and, instead, it will read it from the main memory:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FoojayPlayground</span> <span class="o">{</span>
+<span class="err"> </span> <span class="err"> </span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">running</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+<span class="err"> </span> <span class="err"> </span><span class="o">...</span>
+<span class="err"> </span> <span class="err"> </span><span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now, if we run the above program, the third case will not happen.</p>
+
+<p>The above problem is called the visibility problem. There are a few similar problems that deal with the visibility issue.</p>
+
+<p>We will discuss them in the following articles!</p>
+
+<p>That’s it for today!</p>
+

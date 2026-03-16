@@ -1,0 +1,54 @@
+<p><img src="/images/monolith-to-microservice.jpeg" alt="" /></p>
+
+<h1 id="book-review-monolith-to-microservices-part-1">Book Review: Monolith to Microservices (Part 1)</h1>
+
+<p>I have just finished reading <a href="https://www.amazon.ca/Monolith-Microservices-Evolutionary-Patterns-Transform/dp/1492047848">“Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith</a>” by Sam Newman.</p>
+
+<p>This book is undoubtedly great. It explains the critical aspects applicable when moving away from a monolith to a microservices architecture.</p>
+
+<p>In this article, I will try to summarize some of the key elements from the book that impacted me.</p>
+
+<p>This book contains five chapters, each of which has a great deal of context and explanation.</p>
+
+<p>So I will go through each chapter, one by one.</p>
+
+<h2 id="chapter-1just-enough-microservices"><strong>Chapter 1:</strong>Just Enough Microservices</h2>
+
+<p>This chapter starts with defining the concept, “Microservice” itself, the benefits and the problems it creates.</p>
+
+<h3 id="microservices-defined">Microservices Defined</h3>
+
+<p>So from the definition, Microservices have the following key components:</p>
+
+<ol>
+  <li><strong>A service that can be deployed independently.</strong> The idea is that a service has to have the ability to deploy in production without disrupting any other associated services. Therefore, any changes in a particular service shouldn’t affect any other service, which is essential for having Microservices.</li>
+  <li><strong>A service has to be modelled around a business domain.</strong> The idea is that if you need to touch two or more services to deliver a feature, then that’s not an ideal scenario for Microservices. So we have to find a way so that his cross-service changes are less frequent.</li>
+  <li><strong>Each service has to own its data.</strong> Again, we can compare this with the object-oriented design principle; the way a class encapsulates its fields, a service must encapsulate the data.</li>
+</ol>
+
+<h3 id="benefits-of-microservices">Benefits of Microservices</h3>
+
+<p>Now the question is, what are the benefits it brings to the table? Well many. It puts many options on the table, you can mix and match different technology. It offers us to choose to mix different programming languages, programming styles, deployment platforms or databases to find the right mix.</p>
+
+<p>Multiple services can be developed independently without getting each other ways. The developers can focus on their particular thing. Above all, it gives us flexibility. It opens up many more options regarding how we can solve a specific problem in future.</p>
+
+<p>Finally, it reduces the blast radius. If a particular service goes out of service, ideally, it shouldn’t impact any other services.</p>
+
+<h3 id="not-a-silver-bullet">Not a Silver Bullet</h3>
+
+<p>However, the Microservice architecture is not a silver bullet. It also brings a lot of baggage. Communication between services becomes a bottleneck. We now have to worry about latencies, and they vary, and thus the system becomes unpredictable. The transactional behaviour that we cherish so much will go away out the window.</p>
+
+<p>Network calls can become a headache, for example, Service A is talking to Service B, but Service B might go offline. Since data are not in one place, getting a consistent view of data across multiple machines becomes difficult. In fact, microservice can be a terrible idea, except for all the good stuff it provides.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Putting all these pros and cons upfront, the book argues whether we really need to go forward with Microservices or not. Perhaps not, in many cases. There are still many benefits of having a monolith.</p>
+
+<p>For example, it has a much simpler deployment topology and much simpler developer workflow. Activities like monitoring, troubleshooting, and end-to-end testing are relatively easy in the monolith. Besides, if you want to reuse code, it’s just there, and a method calls away.</p>
+
+<p>Still, suppose you want to go for it. In that case, you must have a perfect reason for that: independent deployability, independent scalability, mix and max technology, reducing the blast radius, etc.</p>
+
+<p>Of course, it won’t be cheap, somewhat costly, but with Microservices, you can buy more options. Well, you certainly need to know that there is a cost associated with the term “buying”.</p>
+
+<p>That’s all for today. I will discuss the next chapter in the next article in this series.</p>
+

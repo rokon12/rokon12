@@ -1,0 +1,164 @@
+<p><img src="/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg" alt="" /></p>
+
+<h1 id="writing-testable-code-a-journey-through-consideration-and-refactoring">Writing Testable Code: A Journey Through Consideration and Refactoring</h1>
+
+<p><strong>In an ideal world, every piece of code we write would be easily testable, clearly understood, and perfectly maintainable. However, reality often presents us with complex problems and solutions that aren’t always straightforward. Writing testable code sometimes requires a thoughtful approach, deep consideration of the use cases, and even refactoring to ensure that the code is robust and fully tested.</strong></p>
+
+<h2 id="the-challenge-of-testing">The Challenge of Testing</h2>
+
+<p>Imagine a scenario where you need to create an Amazon S3 client based on different credential providers. At first glance, the implementation might seem simple. However, when it comes to writing unit tests for this code, challenges arise.</p>
+
+<p>The initial implementation might include a method that builds the S3 client, choosing between different credentials providers based on the input parameters. While this code may function correctly, testing it becomes a problem. How do you verify which credentials provider was used? How do you isolate the code from the AWS SDK, which might require real AWS credentials?</p>
+
+<p>Let’s see an example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">AmazonS3</span> <span class="nf">getAmazonS3Client</span><span class="o">(</span>
+        <span class="kd">final</span> <span class="nc">String</span> <span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Regions</span> <span class="n">region</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="nc">AWSCredentialsProvider</span> <span class="n">credentialsProvider</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">StringUtils</span><span class="o">.</span><span class="na">isNotEmpty</span><span class="o">(</span><span class="n">s3AccessKeyId</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">StringUtils</span><span class="o">.</span><span class="na">isNotEmpty</span><span class="o">(</span><span class="n">secretAccessKey</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">credentialsProvider</span> <span class="o">=</span>
+                <span class="k">new</span> <span class="nf">AWSStaticCredentialsProvider</span><span class="o">(</span><span class="k">new</span> <span class="nc">BasicAWSCredentials</span><span class="o">(</span><span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="n">secretAccessKey</span><span class="o">));</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">credentialsProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultAWSCredentialsProviderChain</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="nc">AmazonS3ClientBuilder</span><span class="o">.</span><span class="na">standard</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">withCredentials</span><span class="o">(</span><span class="n">credentialsProvider</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">withRegion</span><span class="o">(</span><span class="n">region</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="the-process-of-refactoring">The Process of Refactoring</h2>
+
+<p>Recognizing that the code is hard to test, the next step is to consider how it can be refactored to make testing easier. This often involves identifying the dependencies and behaviours that are hard to test and finding ways to isolate them.</p>
+
+<p>In our example, the challenge was verifying the code’s behaviour based on different credentials providers.</p>
+
+<p>The solution can be by introducing an interface and separate implementations for the different scenarios. This allowed the behaviour to be tested in isolation without having to know the internal details of the Amazon S3 client.</p>
+
+<p>This refactoring process involved several steps:</p>
+
+<ul>
+  <li><strong>Identifying the Problem:</strong> Recognizing that the code was hard to test and understanding why.</li>
+  <li><strong>Designing a Solution:</strong> Introducing an interface and separate implementations to isolate the behaviour.</li>
+  <li><strong>Implementing the Changes:</strong> Refactoring the code to use the new design.</li>
+  <li><strong>Writing the Tests:</strong> Creating unit tests that cover all code paths and may ensure 100% coverage.</li>
+</ul>
+
+<p>Here’s the refactored code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">AmazonS3ClientFactory</span> <span class="o">{</span>
+    <span class="nc">AmazonS3</span> <span class="nf">getAmazonS3Client</span><span class="o">(</span><span class="nc">String</span> <span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="nc">Regions</span> <span class="n">region</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">static</span> <span class="kd">class</span> <span class="nc">AWSStaticCredentialsProviderS3ClientFactory</span> <span class="kd">implements</span> <span class="nc">AmazonS3ClientFactory</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">AmazonS3</span> <span class="nf">getAmazonS3Client</span><span class="o">(</span><span class="nc">String</span> <span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="nc">Regions</span> <span class="n">region</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">AmazonS3ClientBuilder</span><span class="o">.</span><span class="na">standard</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withCredentials</span><span class="o">(</span><span class="k">new</span> <span class="nc">AWSStaticCredentialsProvider</span><span class="o">(</span><span class="k">new</span> <span class="nc">BasicAWSCredentials</span><span class="o">(</span><span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="n">secretAccessKey</span><span class="o">)))</span>
+                <span class="o">.</span><span class="na">withRegion</span><span class="o">(</span><span class="n">region</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">static</span> <span class="kd">class</span> <span class="nc">DefaultAWSCredentialsProviderChainS3ClientFactory</span> <span class="kd">implements</span> <span class="nc">AmazonS3ClientFactory</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">AmazonS3</span> <span class="nf">getAmazonS3Client</span><span class="o">(</span><span class="nc">String</span> <span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="nc">String</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="nc">Regions</span> <span class="n">region</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">AmazonS3ClientBuilder</span><span class="o">.</span><span class="na">standard</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withCredentials</span><span class="o">(</span><span class="k">new</span> <span class="nc">DefaultAWSCredentialsProviderChain</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">withRegion</span><span class="o">(</span><span class="n">region</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="nc">AmazonS3</span> <span class="nf">getAmazonS3Client</span><span class="o">(</span>
+        <span class="kd">final</span> <span class="nc">String</span> <span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Regions</span> <span class="n">region</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">StringUtils</span><span class="o">.</span><span class="na">isNotEmpty</span><span class="o">(</span><span class="n">s3AccessKeyId</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">StringUtils</span><span class="o">.</span><span class="na">isNotEmpty</span><span class="o">(</span><span class="n">secretAccessKey</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">AWSStaticCredentialsProviderS3ClientFactory</span><span class="o">().</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="n">region</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">DefaultAWSCredentialsProviderChainS3ClientFactory</span><span class="o">().</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="n">s3AccessKeyId</span><span class="o">,</span> <span class="n">secretAccessKey</span><span class="o">,</span> <span class="n">region</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This refactoring allowed the behaviour to be tested in isolation without having to know the internal details of the Amazon S3 client.</p>
+
+<h2 id="writing-the-tests">Writing the Tests</h2>
+
+<p>With the code refactored, we can now write unit tests that cover all code paths and ensure 100% coverage. Here are the specific tests:</p>
+
+<h3 id="test-the-aws-static-credentials-provider-factory">Test the AWS Static Credentials Provider Factory</h3>
+
+<p>This test ensures that the factory for creating an S3 client with static credentials works correctly.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Test</span>
+<span class="kr">public</span> <span class="k">void</span> <span class="nx">shouldUseAWSStaticCredentialsProvider_whenKeysProvided</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AgentAttackEventS3Operations</span><span class="p">.</span><span class="nx">AWSStaticCredentialsProviderS3ClientFactory</span><span class="p">();</span>
+  <span class="nx">AmazonS3</span> <span class="nx">s3Client</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">getAmazonS3Client</span><span class="p">(</span><span class="nx">S3_ACCESS_KEY_ID</span><span class="p">,</span> <span class="nx">S3_SECRET_ACCESS_KEY</span><span class="p">,</span> <span class="nx">REGION</span><span class="p">);</span>
+  <span class="nx">assertThat</span><span class="p">(</span><span class="nx">s3Client</span><span class="p">).</span><span class="nx">isNotNull</span><span class="p">();</span>
+  <span class="nx">assertEquals</span><span class="p">(</span><span class="nx">REGION</span><span class="p">.</span><span class="nx">getName</span><span class="p">(),</span> <span class="nx">s3Client</span><span class="p">.</span><span class="nx">getRegionName</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="test-the-default-aws-credentials-provider-factory">Test the Default AWS Credentials Provider Factory</h3>
+
+<p>This test ensures that the factory for creating an S3 client with the default credentials provider works correctly.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Test</span>
+<span class="kr">public</span> <span class="k">void</span> <span class="nx">shouldUseDefaultAWSCredentialsProvider_whenKeysNotProvided</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">factory</span> <span class="o">=</span>
+      <span class="k">new</span> <span class="nx">AgentAttackEventS3Operations</span><span class="p">.</span><span class="nx">DefaultAWSCredentialsProviderChainS3ClientFactory</span><span class="p">();</span>
+  <span class="nx">AmazonS3</span> <span class="nx">s3Client</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">getAmazonS3Client</span><span class="p">(</span><span class="nx">S3_ACCESS_KEY_ID</span><span class="p">,</span> <span class="nx">S3_SECRET_ACCESS_KEY</span><span class="p">,</span> <span class="nx">REGION</span><span class="p">);</span>
+  <span class="nx">assertThat</span><span class="p">(</span><span class="nx">s3Client</span><span class="p">).</span><span class="nx">isNotNull</span><span class="p">();</span>
+  <span class="nx">assertEquals</span><span class="p">(</span><span class="nx">REGION</span><span class="p">.</span><span class="nx">getName</span><span class="p">(),</span> <span class="nx">s3Client</span><span class="p">.</span><span class="nx">getRegionName</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="test-the-choice-of-credentials-provider-based-on-input">Test the Choice of Credentials Provider Based on Input</h3>
+
+<p>These tests ensure that the correct factory is used based on the presence or absence of access keys.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldUseAWSStaticCredentials_whenKeysNotEmpty</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">s3Operations</span><span class="o">.</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="no">S3_ACCESS_KEY_ID</span><span class="o">,</span> <span class="no">S3_SECRET_ACCESS_KEY</span><span class="o">,</span> <span class="no">REGION</span><span class="o">);</span>
+
+  <span class="n">verify</span><span class="o">(</span><span class="n">awsStaticCredentialsProviderS3ClientFactory</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="n">anyString</span><span class="o">(),</span> <span class="n">anyString</span><span class="o">(),</span> <span class="n">any</span><span class="o">(</span><span class="nc">Regions</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+  <span class="n">verify</span><span class="o">(</span><span class="n">defaultAWSCredentialsProviderChainS3ClientFactory</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="n">anyString</span><span class="o">(),</span> <span class="n">anyString</span><span class="o">(),</span> <span class="n">any</span><span class="o">(</span><span class="nc">Regions</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldUseDefaultAWSCredentials_whenKeysEmpty</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">s3Operations</span><span class="o">.</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="no">REGION</span><span class="o">);</span>
+
+  <span class="n">verify</span><span class="o">(</span><span class="n">awsStaticCredentialsProviderS3ClientFactory</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="n">anyString</span><span class="o">(),</span> <span class="n">anyString</span><span class="o">(),</span> <span class="n">any</span><span class="o">(</span><span class="nc">Regions</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+  <span class="n">verify</span><span class="o">(</span><span class="n">defaultAWSCredentialsProviderChainS3ClientFactory</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">getAmazonS3Client</span><span class="o">(</span><span class="n">anyString</span><span class="o">(),</span> <span class="n">anyString</span><span class="o">(),</span> <span class="n">any</span><span class="o">(</span><span class="nc">Regions</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>These examples illustrate how refactoring the code to use an interface and separate implementations allows for thorough testing of the logic, including the choice of credentials provider based on the input parameters.</p>
+
+<h2 id="lessons-learned-and-conclusion">Lessons Learned and Conclusion</h2>
+
+<p>The journey from initial implementation to fully testable code teaches us to:</p>
+
+<ul>
+  <li><strong>Consider Testability from the Start</strong></li>
+  <li><strong>Don’t Be Afraid to Refactor</strong></li>
+  <li><strong>Use Tools Wisely</strong></li>
+  <li><strong>Test Behavior, Not Implementation</strong></li>
+</ul>
+
+<p>In the end, the journey toward testable code is one of continuous learning and improvement.</p>
+
+<p>It’s a path that leads to better code, better tests, and better software.</p>
+
+<p>By considering real-world examples and learning from the process of refactoring and testing, we can create robust and maintainable code that stands the test of time.</p>
+
+<hr />
+

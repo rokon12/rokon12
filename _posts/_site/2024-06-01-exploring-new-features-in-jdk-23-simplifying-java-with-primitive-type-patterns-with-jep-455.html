@@ -1,0 +1,92 @@
+<p><img src="/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp" alt="" /></p>
+
+<h1 id="exploring-new-features-in-jdk-23-simplifying-java-with-primitive-type-patterns-with-jep-455">Exploring New Features in JDK 23: Simplifying Java with Primitive Type Patterns with JEP 455</h1>
+
+<p>Java continues to evolve, introducing features that streamline coding practices and improve readability. <a href="https://openjdk.org/jeps/455">JEP 455</a> is one such proposal that enhances the switch statement, making it more versatile and expressive. This article delves into how JEP 455 can be utilized to handle complex decision-making scenarios more efficiently. We’ll examine a practical example to illustrate the benefits of this feature.</p>
+
+<h3 id="whats-new-in-jep-455"><strong>What’s New in JEP 455?</strong></h3>
+
+<p>This JEP introduces the following key features:</p>
+
+<ul>
+  <li><strong>Primitive Type Patterns:</strong> You can use primitive types (like int, long, boolean, etc.) directly within pattern-matching constructs. This eliminates the need for unnecessary boxing and unboxing of values.</li>
+  <li><strong>Expanded</strong> <strong>instanceof</strong> <strong>and</strong> <strong>switch</strong> <strong>:</strong> The instanceof operator and switch expressions have been extended to work seamlessly with primitive types.</li>
+</ul>
+
+<h3 id="practical-example-user-order-processing"><strong>Practical Example: User Order Processing</strong></h3>
+
+<p>Let’s explore a practical example demonstrating how JEP 455 can be applied. We’ll create a simple order processing system that distinguishes between logged-in and unrecognized users and processes their orders accordingly.</p>
+
+<p>What I did here was create a file named OrderService.java and then put the following code.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">void</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="mi">12345</span><span class="nx">L</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>  <span class="c1">//loggedIn user</span>
+    <span class="nx">startProcessing</span><span class="p">(</span><span class="nx">OrderStatus</span><span class="p">.</span><span class="nx">NEW</span><span class="p">,</span> <span class="k">switch</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">loggedIn</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="kc">true</span> <span class="o">-&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">();</span>
+        <span class="k">case</span> <span class="kc">false</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Unrecognized user</span><span class="dl">"</span><span class="p">);</span>
+            <span class="k">yield</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="mi">0</span><span class="nx">L</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">//not loggedIn user</span>
+    <span class="nx">startProcessing</span><span class="p">(</span><span class="nx">OrderStatus</span><span class="p">.</span><span class="nx">NEW</span><span class="p">,</span> <span class="k">switch</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">loggedIn</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="kc">true</span> <span class="o">-&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">();</span>
+        <span class="k">case</span> <span class="kc">false</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Unrecognized user</span><span class="dl">"</span><span class="p">);</span>
+            <span class="k">yield</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="k">void</span> <span class="nx">startProcessing</span><span class="p">(</span><span class="nx">OrderStatus</span> <span class="nx">orderStatus</span><span class="p">,</span> <span class="nx">long</span> <span class="nx">userId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">userId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">-</span><span class="mi">1</span><span class="nx">L</span> <span class="o">-&gt;</span> <span class="nx">System</span><span class="p">.</span><span class="nx">out</span><span class="p">.</span><span class="nx">println</span><span class="p">(</span><span class="dl">"</span><span class="s2">Unrecognized User. Unable to process order.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="k">default</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="k">switch</span> <span class="p">(</span><span class="nx">orderStatus</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="nx">NEW</span> <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Order for User %s is received and will start processing</span><span class="dl">"</span><span class="p">;</span>
+                <span class="k">case</span> <span class="nx">PROCESSING</span> <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Order for User %s is being processed.</span><span class="dl">"</span><span class="p">;</span>
+                <span class="k">case</span> <span class="nx">DISPATCHED</span><span class="p">,</span> <span class="nx">DELIVERED</span> <span class="o">-&gt;</span> <span class="dl">"</span><span class="s2">Order for User %s has already been processed</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">};</span>
+            <span class="nx">log</span><span class="p">(</span><span class="nb">String</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">userId</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">void</span> <span class="nx">log</span><span class="p">(</span><span class="nb">String</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">println</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kr">enum</span> <span class="nx">OrderStatus</span> <span class="p">{</span>
+    <span class="nx">NEW</span><span class="p">,</span>
+    <span class="nx">PROCESSING</span><span class="p">,</span>
+    <span class="nx">DISPATCHED</span><span class="p">,</span>
+    <span class="nx">DELIVERED</span>
+<span class="p">}</span>
+
+<span class="nx">record</span> <span class="nx">User</span><span class="p">(</span><span class="nx">long</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">boolean</span> <span class="nx">loggedIn</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>In this example, we create a User object with an ID and a loggedIn status. The switch expression inside the startProcessing method evaluates whether the user is logged in. If the user is logged in, their ID is used for processing; if not, a log message is generated, and -1 is yielded to indicate an unrecognized user. The startProcessing method then uses another switch statement to handle different OrderStatus values. Appropriate messages are printed depending on the order status, demonstrating the efficiency and clarity achieved using JEP 455. This nested switch usage showcases how the new expression syntax simplifies complex decision-making logic.</p>
+
+<p>This code uses the instance main method and shorter <code class="language-plaintext highlighter-rouge">println</code> method that is available through JEP 477. More on JEP 477 can be found in this <a href="https://www.infoq.com/news/2024/05/jep477-implicit-classes-main/">infoQ story</a>:</p>
+
+<p><strong>NOTE</strong>: This is a <a href="https://openjdk.org/jeps/12">preview language feature</a>, available through the –enable-preview flag with the JDK 23 compiler and runtime. To try the examples above in JDK 23, you must enable the preview features:</p>
+
+<ul>
+  <li>Compile the program with javac –release 23 –enable-preview OrderService.java and run it with java –enable-preview OrderService; or,</li>
+  <li>When using the <a href="https://openjdk.org/jeps/330">source code launcher</a>, run the program with java –enable-preview OrderService.java; or,</li>
+  <li>When using <a href="https://openjdk.java.net/jeps/222">jshell</a>, start it with jshell –enable-preview.</li>
+</ul>
+
+<p>Since JDK 23 isn’t officially available yet, the Early-Access Builds version is available through SDKMAN, which makes it easier to manage and install. I have installed the 23.ea.25-open</p>
+
+<p>If you don’t have SDKMAN, use this <a href="https://sdkman.io/install#:~:text=It%20effortlessly%20sets%20up%20on,both%20Bash%20and%20ZSH%20shells.">resource</a> to download and install it. In addition to SDKMAN, the OpenJDK JDK 23 Early-Access Builds are available <a href="https://jdk.java.net/23/">here</a>.</p>
+
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+
+<p>As Java continues to evolve, features like JEP 455 demonstrate the language’s commitment to modernizing and improving developer productivity. Embrace these changes to write more efficient and readable code and stay ahead in the ever-evolving landscape of Java development. More about this JEP can be found here: <a href="https://www.infoq.com/news/2024/02/java-enhances-pattern-matching/">https://www.infoq.com/news/2024/02/java-enhances-pattern-matching/</a></p>
+
+<hr />
+

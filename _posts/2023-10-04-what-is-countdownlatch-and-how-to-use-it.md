@@ -94,6 +94,3 @@ class GreetingsHandler implements HttpHandler {
 
 In this example, we initialize a CountDownLatch with a count of 4. Then, we create four virtual threads. Each task calls countDown() on the latch after it is completed. The main thread waits for these tasks by calling await() on the latch. When the count reaches zero, the message "**All initializations complete. Application is starting...**" is displayed, and we start the server.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

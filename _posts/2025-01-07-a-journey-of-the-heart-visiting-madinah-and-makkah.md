@@ -55,6 +55,3 @@ Two weeks passed in the blink of an eye. As we bid farewell to these sacred citi
 
 This journey reminded me of life's true essence: humility, gratitude, and devotion to our Creator. I pray that Allah grants everyone the chance to visit these blessed places and experience their profound spiritual beauty.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

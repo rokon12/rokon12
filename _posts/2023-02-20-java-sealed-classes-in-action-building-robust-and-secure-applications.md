@@ -639,6 +639,3 @@ By limiting the set of permitted subclasses or implementers, you can prevent bug
 
 By mastering Java-sealed classes, you can take your programming skills to the next level and build better software.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

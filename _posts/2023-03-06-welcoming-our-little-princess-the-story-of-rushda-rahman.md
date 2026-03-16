@@ -31,6 +31,3 @@ While it is challenging to translate the Quran into English, a rough translation
 Official and legal requirements such as birth certificates, passports, etc., will use the name "**Rushda At-Taqwaa Rahman** ." Middle names usually get omitted, so it will usually be **Rushda Rahman**.  
 Choosing a name for our daughter was a significant decision, and we are proud to have chosen Rushda At-Taqwaa Bint Bazlur Rahman. It represents our values and hopes for our daughter's future, and we believe it will guide her on the path of righteousness. We hope our daughter will live up to her name and be a source of inspiration and guidance for others.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -1,0 +1,55 @@
+<p><img src="/images/ae9ff0aa-e74c-4de4-92b3-e358ab55de0a.jpeg" alt="" /></p>
+
+<h1 id="sealed-interfaces-and-pattern-matching-a-quick-dive-into-javas-modern-capabilities">Sealed Interfaces and Pattern Matching: A Quick Dive into Java’s Modern Capabilities</h1>
+
+<p><strong>Sealed classes in Java are a new feature that provides a way to restrict the classes that can inherit from a superclass or extend an interface. This new language feature enhances the encapsulation and provides more control to developers over their codebase.</strong></p>
+
+<p>In this tutorial, we will explore sealed classes, how to use them to find all subclasses, and how to apply pattern matching in a practical context.</p>
+
+<p>Let’s start with a basic interface definition named <code class="language-plaintext highlighter-rouge">Shape</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Shape</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">getArea</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In a conventional scenario, any class can implement <code class="language-plaintext highlighter-rouge">Shape</code>, and finding all classes that do this is not straightforward. However, with the introduction of sealed classes, we can specify precisely which classes are allowed to implement an interface.</p>
+
+<h2 id="defining-a-sealed-interface">Defining a Sealed Interface</h2>
+
+<p>Here is how you can declare a sealed interface with permitted subclasses:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">sealed</span> <span class="kd">interface</span> <span class="nc">Shape</span> <span class="n">permits</span> <span class="nc">Circle</span><span class="o">,</span> <span class="nc">Rectangle</span><span class="o">,</span> <span class="nc">Square</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">getArea</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the example above, we declared <code class="language-plaintext highlighter-rouge">Shape</code> as a sealed interface and explicitly specified that only <code class="language-plaintext highlighter-rouge">Circle</code>, <code class="language-plaintext highlighter-rouge">Rectangle</code>, and <code class="language-plaintext highlighter-rouge">Square</code> classes can implement <code class="language-plaintext highlighter-rouge">Shape</code>. This is a powerful feature, as it gives us more control over our class hierarchy and prevents unwanted class implementations.</p>
+
+<h2 id="finding-all-permitted-subclasses">Finding All Permitted Subclasses</h2>
+
+<p>With a sealed interface, finding all subclasses or implementors becomes straightforward:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">permittedSubclasses</span> <span class="o">=</span> <span class="nx">Shape</span><span class="p">.</span><span class="kd">class</span><span class="p">.</span><span class="nx">getPermittedSubclasses</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">Class</span><span class="o">&lt;</span><span class="p">?</span><span class="o">&gt;</span> <span class="nx">subclass</span> <span class="p">:</span> <span class="nx">permittedSubclasses</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">System</span><span class="p">.</span><span class="nx">out</span><span class="p">.</span><span class="nx">println</span><span class="p">(</span><span class="dl">"</span><span class="s2">subclass = </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">subclass</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The method <code class="language-plaintext highlighter-rouge">getPermittedSubclasses()</code> returns an array of <code class="language-plaintext highlighter-rouge">Class</code> objects representing the permitted subclasses of <code class="language-plaintext highlighter-rouge">Shape</code>. We can then loop through the array and print out all the subclasses.</p>
+
+<h2 id="pattern-matching-with-sealed-classes">Pattern Matching with Sealed Classes</h2>
+
+<p>Pattern matching is another powerful feature in Java that goes hand-in-hand with sealed classes. With pattern matching, we can perform operations based on the type of the object:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">switch</span> <span class="o">(</span><span class="n">shape</span><span class="o">){</span>
+    <span class="k">case</span> <span class="nc">Circle</span> <span class="n">circle</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"circle = "</span> <span class="o">+</span> <span class="n">circle</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Rectangle</span> <span class="n">rectangle</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"rectangle = "</span> <span class="o">+</span> <span class="n">rectangle</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Square</span> <span class="n">square</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"square = "</span> <span class="o">+</span> <span class="n">square</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the example above, we are checking the type of shape object, and depending on the type, different operations are performed. Note that since we’re using a sealed interface, we know exactly which classes could be the type of shape, so we can handle them all explicitly.</p>
+
+<p><strong>In conclusion, sealed classes and interfaces, together with pattern matching, provide powerful new tools for more explicit, controlled, and flexible design in Java.</strong></p>
+

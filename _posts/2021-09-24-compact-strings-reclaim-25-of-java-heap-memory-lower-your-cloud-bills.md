@@ -38,6 +38,3 @@ The `-XX:+CompactStrings` flag controls this feature.
 
 If you want to disable it, use the `-XX:-CompactStrings` flag.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

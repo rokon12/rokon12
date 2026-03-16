@@ -116,6 +116,3 @@ We will discuss them in the following articles!
 
 That's it for today!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -39,6 +39,3 @@ Did you find the content valuable? Feel free to contribute by reaching out to me
 > By the way, I'll be speaking about Project Loom at the [Garden State Java User Group](https://gsjug.org/) on **Tuesday, July 12, 2022**. You can join me if you're interested.
 Registration: <https://www.eventbrite.com/e/your-java-code-in-the-fast-lane-using-project-loom-tickets-372411471737>  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

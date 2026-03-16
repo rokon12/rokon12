@@ -1,0 +1,341 @@
+<p><img src="/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg" alt="" /></p>
+
+<h1 id="summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization">SummarizingTokenWindowChatMemory: Enhancing LLM’s Conversations with Efficient Summarization</h1>
+
+<p>LLM chat models have become an integral part of many applications today. We are all experimenting and exploring the best ways to utilize them effectively. For Java developers, <strong>LangChain4j</strong> has been an incredible tool in this journey.</p>
+
+<p>By design, most available APIs, such as ChatGPT and Gemini, operate in a <strong>fire-and-forget</strong> mode. They don’t retain previous interactions, meaning every request is treated as a completely new one. However, for a smooth and engaging conversation, maintaining context is crucial—otherwise, the interaction becomes disjointed and frustrating. The common solution is to pass previous messages along with each new prompt, allowing the LLM to infer context. This is where the <strong>chat memory</strong> concept comes in.</p>
+
+<p>That said, every conversation has a <strong>context window</strong> , which limits the maximum number of tokens that can be processed. We can’t pass an unlimited number of tokens in a prompt. As conversations grow longer, they consume more resources, making it necessary to find efficient ways to manage and evict older messages.</p>
+
+<p><strong>LangChain4j</strong> already provides two types of memory eviction policies:</p>
+
+<ol>
+  <li><strong>MessageWindowChatMemory</strong> – This approach keeps track of a fixed number of recent messages, discarding the oldest ones when the limit is reached.</li>
+  <li><strong>TokenWindowChatMemory</strong> – Instead of counting messages, this method monitors the total number of tokens used and removes older messages when the token count exceeds a predefined threshold.</li>
+</ol>
+
+<p>These memory policies help optimize resource usage while ensuring conversations remain coherent and user-friendly.</p>
+
+<p>While both approaches are effective, I wondered why not add a <strong>third approach</strong> —one that summarizes old messages rather <strong>than removing</strong> them. This idea led me to experiment and eventually implement <strong>SummarizingTokenWindowChatMemory</strong> .</p>
+
+<h2 id="summarizingtokenwindowchatmemory"><strong>SummarizingTokenWindowChatMemory</strong></h2>
+
+<p>The core idea behind <strong>SummarizingTokenWindowChatMemory</strong> is straightforward:</p>
+
+<ol>
+  <li><strong>Monitor Chat Tokens:</strong> The system tracks the number of tokens used in a conversation.</li>
+  <li><strong>Trigger Summarization:</strong> The summarization process activates when the token count reaches a predefined threshold.</li>
+  <li><strong>Generate a Summary:</strong> Instead of storing full conversation logs, a summarizer condenses key information into a succinct, meaningful summary.</li>
+  <li><strong>Replace Old Messages:</strong> The summarized content replaces older messages, ensuring the conversation remains within token limits while maintaining continuity.</li>
+</ol>
+
+<p>Let’s look at the code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.chefbot.ai</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.ChatMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.SystemMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.internal.ValidationUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.memory.ChatMemory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.Tokenizer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.memory.chat.ChatMemoryStore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.store.memory.chat.InMemoryChatMemoryStore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.extern.slf4j.Slf4j</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="nd">@Slf4j</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SummarizingTokenWindowChatMemory</span> <span class="kd">implements</span> <span class="nc">ChatMemory</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Object</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">maxTokens</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Tokenizer</span> <span class="n">tokenizer</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ChatMemoryStore</span> <span class="n">store</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Summarizer</span> <span class="n">summarizer</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">SummarizingTokenWindowChatMemory</span><span class="o">(</span><span class="nc">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">ensureNotNull</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">id</span><span class="o">,</span> <span class="s">"id"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">maxTokens</span> <span class="o">=</span> <span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">ensureGreaterThanZero</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">maxTokens</span><span class="o">,</span> <span class="s">"maxTokens"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tokenizer</span> <span class="o">=</span> <span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">ensureNotNull</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">tokenizer</span><span class="o">,</span> <span class="s">"tokenizer"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">store</span> <span class="o">=</span> <span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">ensureNotNull</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">store</span><span class="o">,</span> <span class="s">"store"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">summarizer</span> <span class="o">=</span> <span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">ensureNotNull</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">summarizer</span><span class="o">,</span> <span class="s">"summarizer"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">id</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">ChatMessage</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Pull existing messages from store</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">store</span><span class="o">.</span><span class="na">getMessages</span><span class="o">(</span><span class="n">id</span><span class="o">));</span>
+
+        <span class="c1">// If it's a system message, handle "replace existing system message" logic</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">message</span> <span class="k">instanceof</span> <span class="nc">SystemMessage</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">SystemMessage</span><span class="o">&gt;</span> <span class="n">maybeSystem</span> <span class="o">=</span> <span class="n">findSystemMessage</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">maybeSystem</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">maybeSystem</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">message</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="c1">// Same system message, do nothing</span>
+                    <span class="k">return</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="c1">// Remove old system message so we can replace with new one</span>
+                    <span class="n">messages</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">maybeSystem</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Add the new message</span>
+        <span class="n">messages</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+
+        <span class="c1">// Enforce capacity by summarizing older messages if needed</span>
+        <span class="n">ensureSummarizedCapacity</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+
+        <span class="c1">// Update store</span>
+        <span class="n">store</span><span class="o">.</span><span class="na">updateMessages</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">messages</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="nf">messages</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Return a copy of messages from store</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">store</span><span class="o">.</span><span class="na">getMessages</span><span class="o">(</span><span class="n">id</span><span class="o">));</span>
+
+        <span class="c1">// (Optional) ensure capacity here again, if you want to guarantee it every time</span>
+        <span class="n">ensureSummarizedCapacity</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">messages</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">store</span><span class="o">.</span><span class="na">deleteMessages</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">ensureSummarizedCapacity</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">currentTokenCount</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="na">estimateTokenCountInMessages</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">currentTokenCount</span> <span class="o">&lt;=</span> <span class="n">maxTokens</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span> <span class="c1">// We are within capacity</span>
+        <span class="o">}</span>
+
+        <span class="c1">// If we exceed tokens, let's summarize the older messages (except system msg &amp; possibly the newest).</span>
+        <span class="c1">// 1) Separate out the system message if present at index 0.</span>
+        <span class="c1">// 2) Summarize everything from startIndex...up to near the end,</span>
+        <span class="c1">//    leaving maybe the last user or assistant message "unsummarized" for context.</span>
+        <span class="c1">// 3) Insert the summary as a single message, then re-check capacity.</span>
+
+        <span class="c1">// First, handle any system message</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">SystemMessage</span><span class="o">&gt;</span> <span class="n">maybeSystem</span> <span class="o">=</span> <span class="n">findSystemMessage</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+        <span class="n">maybeSystem</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="nl">messages:</span><span class="o">:</span><span class="n">remove</span><span class="o">);</span>
+
+        <span class="c1">// Now we can work with the non-system messages</span>
+        <span class="kt">int</span> <span class="n">startIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">endIndex</span> <span class="o">=</span> <span class="n">messages</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// Leave the last message for context</span>
+
+        <span class="c1">// Don't try to summarize if we have 2 or fewer messages</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">endIndex</span> <span class="o">-</span> <span class="n">startIndex</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// If we can't summarize, fall back to just removing oldest messages</span>
+            <span class="n">removeOldestUntilFit</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+            <span class="c1">// Re-add system message if we had one</span>
+            <span class="n">maybeSystem</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="nl">messages:</span><span class="o">:</span><span class="n">addFirst</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Get the messages to summarize (everything except maybe system &amp; last)</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">toSummarize</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">messages</span><span class="o">.</span><span class="na">subList</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">endIndex</span><span class="o">));</span>
+
+        <span class="c1">// Generate the summary</span>
+        <span class="nc">String</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">summarizer</span><span class="o">.</span><span class="na">summarize</span><span class="o">(</span><span class="n">toSummarize</span><span class="o">);</span>
+
+        <span class="c1">// Replace the summarized messages with the summary</span>
+        <span class="n">messages</span><span class="o">.</span><span class="na">subList</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">endIndex</span><span class="o">).</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">messages</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="nc">SystemMessage</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"Previous conversation summary: "</span> <span class="o">+</span> <span class="n">summary</span><span class="o">));</span>
+
+        <span class="c1">// Re-add system message if we had one</span>
+        <span class="n">maybeSystem</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="nl">messages:</span><span class="o">:</span><span class="n">addFirst</span><span class="o">);</span>
+
+        <span class="c1">// If we're still over capacity, remove oldest messages (after any system message)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="na">estimateTokenCountInMessages</span><span class="o">(</span><span class="n">messages</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">maxTokens</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">removeOldestUntilFit</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">removeOldestUntilFit</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Keep system message if present</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">SystemMessage</span><span class="o">&gt;</span> <span class="n">maybeSystem</span> <span class="o">=</span> <span class="n">findSystemMessage</span><span class="o">(</span><span class="n">messages</span><span class="o">);</span>
+        <span class="n">maybeSystem</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="nl">messages:</span><span class="o">:</span><span class="n">remove</span><span class="o">);</span>
+
+        <span class="c1">// Remove oldest messages until we're under token limit</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">messages</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">tokenizer</span><span class="o">.</span><span class="na">estimateTokenCountInMessages</span><span class="o">(</span><span class="n">messages</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">maxTokens</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">messages</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Re-add system message if we had one</span>
+        <span class="n">maybeSystem</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="nl">messages:</span><span class="o">:</span><span class="n">addFirst</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">SystemMessage</span><span class="o">&gt;</span> <span class="nf">findSystemMessage</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">messages</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">messages</span><span class="o">.</span><span class="na">getFirst</span><span class="o">()</span> <span class="k">instanceof</span> <span class="nc">SystemMessage</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">((</span><span class="nc">SystemMessage</span><span class="o">)</span> <span class="n">messages</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nc">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Builder</span> <span class="nf">builder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Builder</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="nc">Object</span> <span class="n">id</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">maxTokens</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">Tokenizer</span> <span class="n">tokenizer</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">ChatMemoryStore</span> <span class="n">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InMemoryChatMemoryStore</span><span class="o">();</span>
+        <span class="kd">private</span> <span class="nc">Summarizer</span> <span class="n">summarizer</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nc">Builder</span> <span class="nf">id</span><span class="o">(</span><span class="nc">Object</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="nc">Builder</span> <span class="nf">maxTokens</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">maxTokens</span><span class="o">,</span> <span class="nc">Tokenizer</span> <span class="n">tokenizer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">maxTokens</span> <span class="o">=</span> <span class="n">maxTokens</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="nc">Builder</span> <span class="nf">chatMemoryStore</span><span class="o">(</span><span class="nc">ChatMemoryStore</span> <span class="n">store</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">store</span> <span class="o">=</span> <span class="n">store</span><span class="o">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="nc">Builder</span> <span class="nf">summarizer</span><span class="o">(</span><span class="nc">Summarizer</span> <span class="n">summarizer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">summarizer</span> <span class="o">=</span> <span class="n">summarizer</span><span class="o">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="nc">SummarizingTokenWindowChatMemory</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">SummarizingTokenWindowChatMemory</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <strong>SummarizingTokenWindowChatMemory</strong> class manages chat messages, ensuring they stay within a specified token limit by summarizing older messages when necessary. It uses an <a href="https://javadoc.io/doc/dev.langchain4j/langchain4j-open-ai/latest/dev/langchain4j/model/openai/OpenAiTokenizer.html"><strong>OpenAiTokenizer</strong></a> to estimate token counts and a <strong>Summarizer</strong> to generate summaries. The class also handles system messages separately, preserving them during summarization. The `Builder` class provides a convenient way to construct <strong>SummarizingTokenWindowChatMemory</strong> instances with the required dependencies.</p>
+
+<p>Now, let’s work on the <strong>Sumerizer</strong>.</p>
+
+<h3 id="the-summarizer-interface"><strong>The Summarizer Interface</strong></h3>
+
+<p>At its core, <strong>OpenAILLMSummarizer</strong> implements the Summarizer interface:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.ChatMessage</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Summarizer</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">summarize</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This provides a contract for any summarization strategy.</p>
+
+<h3 id="summarization-logic"><strong>Summarization Logic</strong></h3>
+
+<p>The main implementation, <strong>OpenAILLMSummarizer</strong> , is responsible for processing chat history and condensing it into a summary:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">ca.bazlur.chefbot.ai</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.AiMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.ChatMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.SystemMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.data.message.UserMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.model.openai.OpenAiChatModel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.AiServices</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dev.langchain4j.service.V</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OpenAILLMSummarizer</span> <span class="kd">implements</span> <span class="nc">Summarizer</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">desiredTokenLimit</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">SummarizerAssistant</span> <span class="n">assistant</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">OpenAILLMSummarizer</span><span class="o">(</span><span class="nc">OpenAiChatModel</span> <span class="n">openAiChatModel</span><span class="o">,</span> <span class="kt">int</span> <span class="n">desiredTokenLimit</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">desiredTokenLimit</span> <span class="o">=</span> <span class="n">desiredTokenLimit</span><span class="o">;</span>
+        <span class="n">assistant</span> <span class="o">=</span> <span class="nc">AiServices</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="nc">SummarizerAssistant</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">chatLanguageModel</span><span class="o">(</span><span class="n">openAiChatModel</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">summarize</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ChatMessage</span><span class="o">&gt;</span> <span class="n">messages</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">StringBuilder</span> <span class="n">promptBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">(</span><span class="s">"Summarize the following conversation: \n"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ChatMessage</span> <span class="n">msg</span> <span class="o">:</span> <span class="n">messages</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">msg</span> <span class="k">instanceof</span> <span class="nc">UserMessage</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">promptBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"User: "</span><span class="o">).</span><span class="na">append</span><span class="o">(((</span><span class="nc">UserMessage</span><span class="o">)</span> <span class="n">msg</span><span class="o">).</span><span class="na">contents</span><span class="o">()).</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">msg</span> <span class="k">instanceof</span> <span class="nc">AiMessage</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">promptBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Assistant: "</span><span class="o">).</span><span class="na">append</span><span class="o">(((</span><span class="nc">AiMessage</span><span class="o">)</span> <span class="n">msg</span><span class="o">).</span><span class="na">text</span><span class="o">()).</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">msg</span> <span class="k">instanceof</span> <span class="nc">SystemMessage</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">promptBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"System: "</span><span class="o">).</span><span class="na">append</span><span class="o">(((</span><span class="nc">SystemMessage</span><span class="o">)</span> <span class="n">msg</span><span class="o">).</span><span class="na">text</span><span class="o">()).</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">String</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">assistant</span><span class="o">.</span><span class="na">summarize</span><span class="o">(</span><span class="n">promptBuilder</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">desiredTokenLimit</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">summary</span><span class="o">.</span><span class="na">trim</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Constructs a structured prompt containing key user, AI, and system messages.</li>
+  <li>Invokes the <strong>SummarizerAssistant</strong> , which interacts with OpenAI’s language model to generate the summary.</li>
+</ul>
+
+<h3 id="llm-summarization"><strong>LLM Summarization</strong></h3>
+
+<p>The <strong>SummarizerAssistant</strong> provides an AI-driven summarization method:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">SummarizerAssistant</span> <span class="o">{</span>
+
+    <span class="nd">@dev</span><span class="o">.</span><span class="na">langchain4j</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">UserMessage</span><span class="o">(</span><span class="s">"""
+    You are a helpful assistant summarizing past conversation turns for a chatbot.
+
+    Your goal is to create a concise and informative summary of the provided conversation history, 
+    focusing on key information relevant to continuing the conversation.  
+    Pay close attention to user preferences, requests, and any decisions they have made.  
+    Also note any specific topics or tasks discussed.  Be sure to retain information that might be needed 
+    to fulfill a user request or provide a relevant response.
+
+    The summary should be under {desiredTokenLimit} tokens and written in a clear, natural language style.  
+    Avoid simply listing the turns.  Instead, synthesize the information into a coherent narrative.
+
+    Conversation History:
+    {message}
+    """</span><span class="o">)</span>
+    <span class="nc">String</span> <span class="nf">summarize</span><span class="o">(</span><span class="nd">@V</span><span class="o">(</span><span class="s">"message"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">messages</span><span class="o">,</span> <span class="nd">@V</span><span class="o">(</span><span class="s">"desiredTokenLimit"</span><span class="o">)</span> <span class="kt">int</span> <span class="n">desiredTokenLimit</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This mechanism:</p>
+
+<ul>
+  <li>Calls an <strong>LLM model</strong> (e.g., OpenAI’s GPT) to generate concise summaries.</li>
+  <li>Ensures that the summarized conversation remains within a predefined token limit.</li>
+</ul>
+
+<h2 id="why-this-matters">Why This Matters</h2>
+
+<p>The <strong>SummarizingTokenWindowChatMemory</strong> approach effectively manages long conversations while staying within the constraints of an LLM’s context window. The chatbot can retain essential details by summarizing older exchanges, ensuring coherence without exceeding token limits. This results in a more fluid and engaging user experience, where the chatbot can “remember” and refer back to past interactions naturally. Additionally, it optimizes efficiency by reducing the amount of text processed with each request, potentially leading to faster response times and lower costs. This makes it particularly valuable when maintaining conversational history, which is crucial for customer support, complex problem-solving, or multi-turn discussions.</p>
+
+<p>That said, this approach isn’t without its challenges. The very nature of summarization means that some details—especially infrequent ones—might get lost in the process. This could occasionally impact the chatbot’s ability to deliver the most precise or personalized responses. Moreover, the summarization step itself adds computational overhead, and its effectiveness heavily depends on the prompt design and the capabilities of the underlying LLM. Another potential issue is <strong>contextual drift</strong> —over multiple rounds of summarization, the chatbot’s understanding of the conversation could gradually shift away from its original meaning. These trade-offs must be carefully weighed when deciding whether this approach is the right fit for a given application.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>To test its functionality, I created a simple chatbot that suggests recipes. The chatbot will ask you a few questions and recommend a recipe based on your responses. As the conversation progresses, the chatbot will start summarizing older messages to retain essential context while staying within the allowed token threshold if the token limit is exceeded.</p>
+
+<p>The source code is here: <a href="https://github.com/rokon12/chefbot">https://github.com/rokon12/chefbot</a></p>
+
+<p><img src="/images/screenshot-2025-02-14-at-1.04.29-am.png" alt="" /></p>
+

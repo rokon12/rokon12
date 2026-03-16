@@ -1,0 +1,113 @@
+<p><img src="/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg" alt="" /></p>
+
+<h1 id="exploring-the-impact-of-stack-size-on-jvm-thread-creation-a-myth-debunked">Exploring the Impact of Stack Size on JVM Thread Creation: A Myth Debunked</h1>
+
+<p><strong>Among Java developers, a prevailing assumption is that the number of native threads that can be created within the Java Virtual Machine (JVM) is linked to the stack size. To scrutinize this widespread notion, an experiment was conducted. The results revealed that stack size plays a less significant role in native thread creation than previously thought.</strong></p>
+
+<h2 id="the-experiment"><strong>The Experiment</strong></h2>
+
+<p>The experiment utilized the following Java program, which continuously creates threads and counts them using an <a href="https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/concurrent/atomic/AtomicInteger.html">AtomicInteger</a>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.concurrent.atomic.AtomicInteger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.LockSupport</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadCounter</span> <span class="o">{</span>
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+       <span class="nc">AtomicInteger</span> <span class="n">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AtomicInteger</span><span class="o">();</span>
+
+       <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+           <span class="nc">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+               <span class="n">counter</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">();</span>
+               <span class="k">if</span> <span class="o">(</span><span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Number of threads created so far: %d%n"</span><span class="o">,</span> <span class="n">counter</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+               <span class="o">}</span>
+               <span class="nc">LockSupport</span><span class="o">.</span><span class="na">park</span><span class="o">();</span>
+           <span class="o">});</span>
+           <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+       <span class="o">}</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="test-environment"><strong>Test Environment</strong></h2>
+
+<p>The test ran on a machine with the following configuration:</p>
+
+<ul>
+  <li>Processor: Apple M1 Max</li>
+  <li>Memory: 64 GB</li>
+  <li>Operating System: macOS Vancura</li>
+  <li>Java Version: openjdk 21</li>
+</ul>
+
+<h2 id="s"><strong>s</strong></h2>
+
+<h3 id="default-stack-size"><strong>Default Stack Size</strong></h3>
+
+<p>The initial test was conducted using the default stack size of 2048 KB. Approximately 16,300 threads were created before an <a href="https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/OutOfMemoryError.html">OutOfMemoryError</a> was triggered.</p>
+
+<p>Number of threads created so far: 16300</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">created</span> <span class="n">so</span> <span class="nl">far:</span> <span class="mi">16300</span>
+<span class="o">[</span><span class="mf">3.566</span><span class="n">s</span><span class="o">][</span><span class="n">warning</span><span class="o">][</span><span class="n">os</span><span class="o">,</span><span class="n">thread</span><span class="o">]</span> <span class="nc">Failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">thread</span> <span class="s">"Unknown thread"</span> <span class="o">-</span> <span class="n">pthread_create</span> <span class="nf">failed</span> <span class="o">(</span><span class="no">EAGAIN</span><span class="o">)</span> <span class="k">for</span> <span class="nl">attributes:</span> <span class="nl">stacksize:</span> <span class="mi">2048</span><span class="n">k</span><span class="o">,</span> <span class="nl">guardsize:</span> <span class="mi">16</span><span class="n">k</span><span class="o">,</span> <span class="n">detached</span><span class="o">.</span>
+<span class="o">[</span><span class="mf">3.566</span><span class="n">s</span><span class="o">][</span><span class="n">warning</span><span class="o">][</span><span class="n">os</span><span class="o">,</span><span class="n">thread</span><span class="o">]</span> <span class="nc">Failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">the</span> <span class="kd">native</span> <span class="n">thread</span> <span class="k">for</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span> <span class="s">"Thread-16354"</span>
+<span class="nc">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">"main"</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">OutOfMemoryError</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">create</span> <span class="kd">native</span> <span class="nl">thread:</span> <span class="n">possibly</span> <span class="n">out</span> <span class="n">of</span> <span class="n">memory</span> <span class="n">or</span> <span class="n">process</span><span class="o">/</span><span class="n">resource</span> <span class="n">limits</span> <span class="n">reached</span>
+</code></pre></div></div>
+
+<p>Calculations indicate that the memory required for these 16,300 threads was around 31.875 GB, well below the total memory of 64 GB.</p>
+
+<h3 id="10-mb-stack-size"><strong>10 MB Stack Size</strong></h3>
+
+<p>To change the stack size to 10 MB, the following JVM option was used:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-XX:ThreadStackSize=10240
+</code></pre></div></div>
+
+<p>The program yielded a similar result—16,300 threads—before the OutOfMemoryError occurred again.</p>
+
+<p>Number of threads created so far: 16300</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">created</span> <span class="n">so</span> <span class="nl">far:</span> <span class="mi">16300</span>
+<span class="o">[</span><span class="mf">3.995</span><span class="n">s</span><span class="o">][</span><span class="n">warning</span><span class="o">][</span><span class="n">os</span><span class="o">,</span><span class="n">thread</span><span class="o">]</span> <span class="nc">Failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">thread</span> <span class="s">"Unknown thread"</span> <span class="o">-</span> <span class="n">pthread_create</span> <span class="nf">failed</span> <span class="o">(</span><span class="no">EAGAIN</span><span class="o">)</span> <span class="k">for</span> <span class="nl">attributes:</span> <span class="nl">stacksize:</span> <span class="mi">10240</span><span class="n">k</span><span class="o">,</span> <span class="nl">guardsize:</span> <span class="mi">16</span><span class="n">k</span><span class="o">,</span> <span class="n">detached</span><span class="o">.</span>
+<span class="o">[</span><span class="mf">3.995</span><span class="n">s</span><span class="o">][</span><span class="n">warning</span><span class="o">][</span><span class="n">os</span><span class="o">,</span><span class="n">thread</span><span class="o">]</span> <span class="nc">Failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">the</span> <span class="kd">native</span> <span class="n">thread</span> <span class="k">for</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span> <span class="s">"Thread-16354"</span>
+<span class="nc">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">"main"</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">OutOfMemoryError</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">create</span> <span class="kd">native</span> <span class="nl">thread:</span> <span class="n">possibly</span> <span class="n">out</span> <span class="n">of</span> <span class="n">memory</span> <span class="n">or</span> <span class="n">process</span><span class="o">/</span><span class="n">resource</span> <span class="n">limits</span> <span class="n">reached</span>
+	<span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">base</span><span class="o">/</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span><span class="o">.</span><span class="na">start0</span><span class="o">(</span><span class="nc">Native</span> <span class="nc">Method</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>In case you want to use IntelliJ IDEA, you can configure the stack size, check the following image:
+<img src="/images/screenshot-2023-09-10-at-10.48.08-pm-1-1024x700.png" alt="" /></p>
+
+<h3 id="1-gb-stack-size"><strong>1 GB Stack Size</strong></h3>
+
+<p>Finally, for the most extreme case, the stack size was set to 1 GB using:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-XX:ThreadStackSize=1048576
+</code></pre></div></div>
+
+<p>Remarkably, the program again maxed out at approximately 16,300 threads, reinforcing the pattern observed in the previous tests.</p>
+
+<p>Number of threads created so far: 16300</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">created</span> <span class="n">so</span> <span class="nl">far:</span> <span class="mi">16200</span>
+<span class="nc">Number</span> <span class="n">of</span> <span class="n">threads</span> <span class="n">created</span> <span class="n">so</span> <span class="nl">far:</span> <span class="mi">16300</span>
+<span class="o">[</span><span class="mf">3.497</span><span class="n">s</span><span class="o">][</span><span class="n">warning</span><span class="o">][</span><span class="n">os</span><span class="o">,</span><span class="n">thread</span><span class="o">]</span> <span class="nc">Failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">thread</span> <span class="s">"Unknown thread"</span> <span class="o">-</span> <span class="n">pthread_create</span> <span class="nf">failed</span> <span class="o">(</span><span class="no">EAGAIN</span><span class="o">)</span> <span class="k">for</span> <span class="nl">attributes:</span> <span class="nl">stacksize:</span> <span class="mi">1048576</span><span class="n">k</span><span class="o">,</span> <span class="nl">guardsize:</span> <span class="mi">16</span><span class="n">k</span><span class="o">,</span> <span class="n">detached</span><span class="o">.</span>
+<span class="o">[</span><span class="mf">3.497</span><span class="n">s</span><span class="o">][</span><span class="n">warning</span><span class="o">][</span><span class="n">os</span><span class="o">,</span><span class="n">thread</span><span class="o">]</span> <span class="nc">Failed</span> <span class="n">to</span> <span class="n">start</span> <span class="n">the</span> <span class="kd">native</span> <span class="n">thread</span> <span class="k">for</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Thread</span> <span class="s">"Thread-16354"</span>
+<span class="nc">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">"main"</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">OutOfMemoryError</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">create</span> <span class="kd">native</span> <span class="nl">thread:</span> <span class="n">possibly</span> <span class="n">out</span> <span class="n">of</span> <span class="n">memory</span> <span class="n">or</span> <span class="n">process</span><span class="o">/</span><span class="n">resource</span> <span class="n">limits</span> <span class="n">reached</span>
+</code></pre></div></div>
+
+<h2 id="insights-from-the-data"><strong>Insights from the Data</strong></h2>
+
+<p>The consistency across all three tests underscores that stack size does not affect the number of native threads that can be created. Rather, the limitation appears to be imposed by the operating system.</p>
+
+<p>It’s worth noting that the OS was capable of creating more threads than the available physical memory, thanks to the concept of virtual memory. Virtual memory leverages disk space to extend RAM, allowing applications to allocate more memory than is physically present, albeit at a lower access speed.</p>
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+
+<p>Contrary to the commonly held belief, this experiment proves that stack size does not have a impact on the number of native threads that can be created in a JVM environment.</p>
+
+<p>The constraint is primarily set by the operating system. This investigation effectively dispels the myth that stack size is the determining factor in native thread limitations.</p>
+
+<hr />
+
+<p><strong><em>Thank you for reading this. If you have a different perspective on this topic or if your experiments yield different results, I would be very interested to hear about it. Please feel free to share your findings with me.</em></strong></p>
+

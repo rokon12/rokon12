@@ -210,6 +210,3 @@ In conclusion, Java bytecode can be updated and controlled for many reasons, suc
 
 But even though these methods may work sometimes, they must be used correctly and in accordance with the terms of any license applications.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -142,6 +142,3 @@ And finally -- stay curious!
 
 The wisdom shared by Simon Martinelli is not just a reflection of his own journey but serves as guiding principles for software developers at all stages of their careers. Whether you're a seasoned developer or just starting out, his emphasis on simplicity in solutions, the importance of mentoring, and the value of ongoing education make for invaluable lessons. His pragmatic and down-to-earth insights provide a road map for navigating the complex, ever-evolving landscape of software development.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

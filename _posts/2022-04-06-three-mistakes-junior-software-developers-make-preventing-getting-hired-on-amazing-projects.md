@@ -71,6 +71,3 @@ Here I have rushed through the coding and collaboration skills that every junior
 
 I will keep posting more detail in later articles in this series, so stay tuned!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

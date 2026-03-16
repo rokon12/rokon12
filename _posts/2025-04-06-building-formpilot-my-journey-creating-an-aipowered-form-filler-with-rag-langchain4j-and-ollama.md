@@ -761,6 +761,3 @@ Feel free to fork it, experiment, and adapt it. I'd love to hear your feedback a
 
 Happy (and smarter) form filling!  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

@@ -112,6 +112,3 @@ Stay tuned to learn more about these exciting changes as we explore them in futu
 
 \[ad-promo\]  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

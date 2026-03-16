@@ -162,6 +162,3 @@ Michael's enthusiasm for learning and contributing is infectious, and his recomm
 
 Overall, this interview is an excellent resource for anyone looking to navigate the complex and exciting world of software development.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

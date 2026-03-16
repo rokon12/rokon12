@@ -60,6 +60,3 @@ Conclusion:
 
 Even though it might be difficult, writing and speaking can provide numerous rewards that we all desire to reap.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

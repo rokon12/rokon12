@@ -34,6 +34,3 @@ The trip was short but nice, and I hope to attend the conference next year, God 
 
 My flight was delayed several times due to the weather, and I was exhausted when it finally took off around 10 p.m. Overall, it was an excellent experience that allowed me to learn and network with other professionals in my field.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

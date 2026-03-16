@@ -283,6 +283,3 @@ While AtomicInteger serves well in most use cases, LongAdder is highlighted as p
 
 It's worth noting that achieving accurate results through benchmarking can be challenging, so this information should be approached with caution.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

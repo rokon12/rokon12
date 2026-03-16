@@ -63,6 +63,3 @@ That's it.
 
 Now you can run the project loom from IntelliJ IDEA.
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}

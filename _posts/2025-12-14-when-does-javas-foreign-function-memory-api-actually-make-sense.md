@@ -401,6 +401,3 @@ FFM is not a magic speed pill. It is a bridge:
 
 **The rule of thumb is simple:** minimize boundary crossings, maximize work per crossing. If you can keep the heavy lifting on one side of the bridge, FFM earns its keep; if the work ping-pongs back and forth, pure Java likely wins on both speed and simplicity.  
 
-*** ** * ** ***
-
-Type your email... {#subscribe-email}
