@@ -2,20 +2,30 @@
 layout: default
 ---
 
-<div class="wrapper">
-
-    <!-- Hero -->
-    <section class="home-hero">
-        <h1>Bazlur Rahman</h1>
-        <p class="home-subtitle">Java Champion &middot; Staff Software Engineer &middot; O'Reilly Author</p>
-        <p class="home-description">I write about Java, concurrency, distributed systems, and building reliable software.</p>
-        <p class="home-book">Author of <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/">Modern Concurrency in Java</a> (O'Reilly Media)</p>
-        <div class="home-cta">
-            <a href="{{ "/archive" | relative_url }}" class="cta-link">Read Articles</a>
-            <a href="https://bazlur.com/conference/" target="_blank" rel="noopener" class="cta-link">View Talks</a>
-            <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="cta-link">Book</a>
+<!-- Hero: Two-column with book -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-card">
+                <h1>A N M Bazlur Rahman</h1>
+                <p class="hero-credential">Sr. Staff Software Engineer &middot; Java Champion &middot; Published Author &middot; InfoQ Editor</p>
+                <p class="hero-description">Helping teams master modern Java, concurrent programming, building LLM applications in Java, and JVM performance through deep-dive content and expert talks</p>
+                <div class="hero-buttons">
+                    <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="btn-primary">Order "Modern Concurrency in Java"</a>
+                    <div class="hero-buttons-row">
+                        <a href="{{ "/archive" | relative_url }}" class="btn-secondary">Latest Deep Dive Articles</a>
+                        <a href="https://bazlur.com/conference/" target="_blank" rel="noopener" class="btn-secondary">Watch My Talks</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+        <div class="hero-book">
+            <img src="/assets/img/book-cover.png" alt="Modern Concurrency in Java - O'Reilly" class="book-cover">
+        </div>
+    </div>
+</section>
+
+<div class="wrapper">
 
     <!-- Featured Work -->
     <section class="home-section">
@@ -95,7 +105,7 @@ layout: default
     <section class="home-section home-newsletter">
         <h2 class="section-header">Newsletter</h2>
         <p>Join developers learning about modern Java, concurrency, and AI-powered systems.</p>
-        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="cta-link">Subscribe</a>
+        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="btn-secondary">Subscribe</a>
     </section>
 
 </div>
