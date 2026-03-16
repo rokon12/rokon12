@@ -39,7 +39,7 @@ plugins:
   - jekyll-optional-front-matter
 
 # Pagination
-paginate: 10
+paginate: 15
 paginate_path: "/page/:num/"
 
 # Collections

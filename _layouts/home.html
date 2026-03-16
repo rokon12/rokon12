@@ -13,7 +13,7 @@ layout: default
         <h2 class="section-header">Recent Writing</h2>
 
         <div class="post-list">
-            {% for post in site.posts limit:8 %}
+            {% for post in site.posts limit:15 %}
             <article class="post-list-item">
                 <div class="post-list-meta">
                     <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%b %-d, %Y" }}</time>

@@ -6,7 +6,7 @@ permalink: /search/
 
 <div class="wrapper">
   <div class="search-container">
-    <h1 class="terminal-header">Search Archive</h1>
+    <h1>Search</h1>
     
     <div class="search-box">
       <input type="text" 
@@ -55,50 +55,48 @@ permalink: /search/
 
 .search-input {
   width: 100%;
-  padding: 20px 25px;
-  font-size: 18px;
-  font-family: 'JetBrains Mono', monospace;
-  background: #1a1a2e;
-  border: 2px solid #313244;
-  border-radius: 12px;
-  color: #fff;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #fff;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  color: #24292f;
   outline: none;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 .search-input:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #437291;
+  box-shadow: 0 0 0 2px rgba(67, 114, 145, 0.15);
 }
 
 .search-input::placeholder {
-  color: #666;
+  color: #656d76;
 }
 
 .search-shortcuts {
   position: absolute;
-  right: 20px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 12px;
-  color: #666;
-  font-family: 'JetBrains Mono', monospace;
+  color: #656d76;
 }
 
 .search-shortcuts kbd {
-  background: rgba(255, 255, 255, 0.1);
+  background: #f6f8fa;
   padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid #333;
-  font-family: 'JetBrains Mono', monospace;
+  border-radius: 3px;
+  border: 1px solid #d0d7de;
+  font-size: 11px;
 }
 
 .search-stats {
   text-align: center;
-  color: #999;
+  color: #656d76;
   font-size: 14px;
   margin: 20px 0;
-  font-family: 'JetBrains Mono', monospace;
   min-height: 20px;
 }
 
@@ -126,71 +124,62 @@ permalink: /search/
 }
 
 .chip {
-  background: rgba(102, 126, 234, 0.1);
-  border: 1px solid rgba(102, 126, 234, 0.3);
-  color: #667eea;
-  padding: 8px 16px;
-  border-radius: 20px;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  color: #437291;
+  padding: 6px 14px;
+  border-radius: 3px;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: 'JetBrains Mono', monospace;
 }
 
 .chip:hover {
-  background: rgba(102, 126, 234, 0.2);
-  transform: translateY(-2px);
+  border-color: #437291;
+  color: #2c5f7c;
 }
 
 .search-result-item {
-  background: #1a1a2e;
-  border: 1px solid #313244;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.3s ease;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #d0d7de;
 }
 
-.search-result-item:hover {
-  border-color: #667eea;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.1);
+.search-result-item:last-child {
+  border-bottom: none;
 }
 
 .search-result-title {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
 }
 
 .search-result-title a {
-  color: #667eea;
+  color: #24292f;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .search-result-title a:hover {
-  color: #764ba2;
+  color: #437291;
 }
 
 .search-result-meta {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 15px;
-  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #656d76;
+  margin-bottom: 8px;
 }
 
 .search-result-excerpt {
-  color: #ccc;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  color: #656d76;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
 }
 
 .search-result-excerpt mark {
-  background: rgba(102, 126, 234, 0.3);
-  color: #fff;
-  padding: 2px 4px;
-  border-radius: 3px;
+  background: rgba(67, 114, 145, 0.15);
+  color: #24292f;
+  padding: 1px 3px;
+  border-radius: 2px;
 }
 
 .search-result-tags {
@@ -200,23 +189,24 @@ permalink: /search/
 }
 
 .search-result-tag {
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
-  padding: 4px 10px;
-  border-radius: 12px;
+  background: #f6f8fa;
+  color: #656d76;
+  padding: 2px 8px;
+  border-radius: 3px;
   font-size: 12px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  border: 1px solid #d0d7de;
 }
 
 .search-result-tag:hover {
-  background: rgba(102, 126, 234, 0.2);
+  color: #437291;
+  border-color: #437291;
 }
 
 .search-loading {
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: #656d76;
 }
 
 .search-loading::after {
@@ -224,7 +214,7 @@ permalink: /search/
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 2px solid #667eea;
+  border: 2px solid #437291;
   border-radius: 50%;
   border-top-color: transparent;
   animation: spin 0.8s linear infinite;

@@ -36,12 +36,6 @@ layout: default
     </div>
 
     <div class="wrapper">
-        {% if page.original_url %}
-        <div class="original-article-notice">
-            <p>Originally published at <a href="{{ page.original_url }}" target="_blank" rel="noopener">{{ page.original_url }}</a></p>
-        </div>
-        {% endif %}
-
         {% include author-bio.html %}
 
         <footer class="post-footer">
