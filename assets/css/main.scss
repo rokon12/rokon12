@@ -5,6 +5,7 @@
 // Import syntax highlighting
 @import "syntax-highlighting";
 @import "prism-overrides";
+@import "share-buttons";
 
 // Variables
 $primary-color: #2563eb;
@@ -2311,9 +2312,6 @@ img[loading="lazy"] {
 // PROFESSIONAL NERDY ENHANCEMENTS
 // ============================================
 
-// Import fonts for code/terminal look
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
-
 // Terminal-style cursor blink
 @keyframes blink {
   0%, 50% { opacity: 1; }
@@ -4133,8 +4131,101 @@ img {
 .post-content {
   flex: 1;
   min-width: 0; // Prevent overflow
-  
+
   @media (max-width: 1199px) {
     width: 100%;
   }
+}
+
+// Author bio
+.author-bio {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  background: $bg-color;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+}
+
+.author-bio-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.author-bio-name {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: $bg-dark;
+}
+
+.author-bio-text p {
+  color: $text-light;
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0.75rem;
+  line-height: 1.5;
+}
+
+.author-bio-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: $primary-color;
+
+    &:hover {
+      color: $primary-dark;
+    }
+  }
+}
+
+// Reading time
+.reading-time {
+  color: $text-light;
+}
+
+// Heading anchor links
+.heading-anchor {
+  margin-left: 0.5rem;
+  color: $border-color;
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-size: 0.85em;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+h4:hover .heading-anchor {
+  opacity: 1;
+}
+
+// Post nav labels (prev/next)
+.post-nav-label {
+  font-size: 0.9rem;
+  color: $text-light;
+}
+
+// Page layout
+.page-wrapper {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.page-title {
+  margin-bottom: 2rem;
+}
+
+.page-content-body {
+  max-width: 800px;
+  font-size: 1.05rem;
+  line-height: 1.8;
 }

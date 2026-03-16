@@ -1,0 +1,163 @@
+// Share buttons component styles
+.share-buttons {
+  margin: 40px 0;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 16px;
+}
+
+.share-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #667eea;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: center;
+}
+
+.share-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.share-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #1a1a2e;
+  border: 2px solid #313244;
+  border-radius: 12px;
+  color: #ccc;
+  font-size: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: #667eea;
+    color: #fff;
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+  }
+
+  svg, span {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Platform-specific colors on hover
+.share-twitter:hover { border-color: #1DA1F2; color: #1DA1F2; }
+.share-linkedin:hover { border-color: #0077B5; color: #0077B5; }
+.share-reddit:hover { border-color: #FF4500; color: #FF4500; }
+.share-hackernews:hover { border-color: #FF6600; color: #FF6600; }
+.share-email:hover { border-color: #764ba2; color: #764ba2; }
+
+.share-copy:hover,
+.share-copy.copied {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.share-copy.copied {
+  animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+// Native share button (mobile)
+.share-native {
+  display: none;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  color: white;
+  font-weight: 600;
+  margin-top: 12px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  }
+}
+
+// Toast notification
+.share-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-family: 'JetBrains Mono', monospace;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .share-buttons-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .share-native {
+    display: flex;
+  }
+
+  .share-button {
+    padding: 12px;
+
+    span { display: none; }
+  }
+}
+
+// Dark theme adjustments
+[data-theme="dracula"] .share-button,
+[data-theme="nord"] .share-button,
+[data-theme="monokai"] .share-button {
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+// Print styles
+@media print {
+  .share-buttons { display: none; }
+}

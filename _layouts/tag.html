@@ -20,52 +20,11 @@ layout: default
 <div class="wrapper">
     <section class="tag-posts">
         {% assign tag_posts = site.posts | where: "tags", page.tag | sort: 'date_published' | reverse %}
-        
+
         {% if tag_posts.size > 0 %}
             <div class="post-grid">
                 {% for post in tag_posts %}
-                <article class="post-card">
-                    {% if post.featured_image %}
-                    <a href="{{ post.url | relative_url }}" class="post-card-image">
-                        <img src="{{ post.featured_image }}" 
-                             alt="{{ post.title | escape }}" 
-                             loading="lazy">
-                    </a>
-                    {% else %}
-                    <div class="post-card-image placeholder">
-                        <div class="placeholder-content">
-                            <span>{{ post.title | truncate: 1, "" }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-                    
-                    <div class="post-card-content">
-                        <div class="post-card-header">
-                            <h3 class="post-card-title">
-                                <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-                            </h3>
-                            <p class="post-card-meta">
-                                <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%B %-d, %Y" }}</time>
-                            </p>
-                        </div>
-                        
-                        <div class="post-card-body">
-                            <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
-                        </div>
-                        
-                        <div class="post-card-footer">
-                            <div class="post-tags">
-                                {% for tag in post.tags limit: 3 %}
-                                    <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag-badge">{{ tag }}</a>
-                                {% endfor %}
-                                {% if post.tags.size > 3 %}
-                                    <span class="tag-more">+{{ post.tags.size | minus: 3 }} more</span>
-                                {% endif %}
-                            </div>
-                            <a href="{{ post.url | relative_url }}" class="read-more">Read article</a>
-                        </div>
-                    </div>
-                </article>
+                    {% include post-card.html post=post %}
                 {% endfor %}
             </div>
         {% else %}
@@ -75,8 +34,8 @@ layout: default
             </div>
         {% endif %}
     </section>
-    
+
     <div class="tag-navigation">
-        <a href="{{ '/tags/' | relative_url }}" class="btn-secondary">← All Tags</a>
+        <a href="{{ '/tags/' | relative_url }}" class="btn-secondary">&larr; All Tags</a>
     </div>
 </div>

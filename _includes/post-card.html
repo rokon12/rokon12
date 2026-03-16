@@ -1,0 +1,45 @@
+{% comment %}
+  Reusable post card component.
+  Usage: {% include post-card.html post=post %}
+{% endcomment %}
+<article class="post-card">
+    {% if include.post.featured_image %}
+    <a href="{{ include.post.url | relative_url }}" class="post-card-image">
+        <img src="{{ include.post.featured_image }}"
+             alt="{{ include.post.title | escape }}"
+             loading="lazy" decoding="async">
+    </a>
+    {% else %}
+    <div class="post-card-image placeholder">
+        <div class="placeholder-content">
+            <span>{{ include.post.title | truncate: 1, "" }}</span>
+        </div>
+    </div>
+    {% endif %}
+    <div class="post-card-content">
+        <div class="post-card-header">
+            <h3 class="post-card-title">
+                <a href="{{ include.post.url | relative_url }}">{{ include.post.title | escape }}</a>
+            </h3>
+            <p class="post-card-meta">
+                <time datetime="{{ include.post.date_published }}">{{ include.post.date_published | date: "%B %-d, %Y" }}</time>
+            </p>
+        </div>
+        <div class="post-card-body">
+            <p>{{ include.post.excerpt | strip_html | truncate: 120 }}</p>
+        </div>
+        <div class="post-card-footer">
+            {% if include.post.tags and include.post.tags.size > 0 %}
+            <div class="post-card-tags">
+                {% for tag in include.post.tags limit: 3 %}
+                    <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag-badge">{{ tag }}</a>
+                {% endfor %}
+                {% if include.post.tags.size > 3 %}
+                    <span class="tag-more">+{{ include.post.tags.size | minus: 3 }}</span>
+                {% endif %}
+            </div>
+            {% endif %}
+            <a href="{{ include.post.url | relative_url }}" class="read-more">Read article</a>
+        </div>
+    </div>
+</article>

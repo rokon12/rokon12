@@ -1,0 +1,16 @@
+{% if page.layout == 'post' %}
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" data-manual></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+<script defer src="{{ site.baseurl }}/assets/js/prism-setup.js"></script>
+<script defer src="{{ site.baseurl }}/assets/js/share.js"></script>
+{% endif %}
+
+{% if page.layout == 'home' %}
+<script defer src="{{ site.baseurl }}/assets/js/terminal.js"></script>
+{% endif %}
+
+<script defer src="{{ site.baseurl }}/assets/js/image-optimization.js"></script>
+<script defer src="{{ site.baseurl }}/assets/js/site.js"></script>

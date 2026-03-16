@@ -1,13 +1,14 @@
 {% comment %}
-Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
+Share buttons for posts.
+CSS: _sass/_share-buttons.scss
+JS:  assets/js/share.js
 {% endcomment %}
 
 <div class="share-buttons">
   <h3 class="share-title">Share this article</h3>
-  
+
   <div class="share-buttons-grid">
-    <!-- Twitter/X -->
-    <button class="share-button share-twitter" 
+    <button class="share-button share-twitter"
             onclick="shareOnTwitter('{{ page.title | escape }}', '{{ page.url | absolute_url }}')"
             aria-label="Share on Twitter">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -15,9 +16,8 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
       </svg>
       <span>Twitter</span>
     </button>
-    
-    <!-- LinkedIn -->
-    <button class="share-button share-linkedin" 
+
+    <button class="share-button share-linkedin"
             onclick="shareOnLinkedIn('{{ page.title | escape }}', '{{ page.url | absolute_url }}')"
             aria-label="Share on LinkedIn">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -25,9 +25,8 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
       </svg>
       <span>LinkedIn</span>
     </button>
-    
-    <!-- Copy Link -->
-    <button class="share-button share-copy" 
+
+    <button class="share-button share-copy"
             onclick="copyToClipboard('{{ page.url | absolute_url }}')"
             aria-label="Copy link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -36,9 +35,8 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
       </svg>
       <span>Copy Link</span>
     </button>
-    
-    <!-- Email -->
-    <button class="share-button share-email" 
+
+    <button class="share-button share-email"
             onclick="shareViaEmail('{{ page.title | escape }}', '{{ page.url | absolute_url }}')"
             aria-label="Share via email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -47,9 +45,8 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
       </svg>
       <span>Email</span>
     </button>
-    
-    <!-- Reddit -->
-    <button class="share-button share-reddit" 
+
+    <button class="share-button share-reddit"
             onclick="shareOnReddit('{{ page.title | escape }}', '{{ page.url | absolute_url }}')"
             aria-label="Share on Reddit">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -57,9 +54,8 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
       </svg>
       <span>Reddit</span>
     </button>
-    
-    <!-- HackerNews -->
-    <button class="share-button share-hackernews" 
+
+    <button class="share-button share-hackernews"
             onclick="shareOnHackerNews('{{ page.title | escape }}', '{{ page.url | absolute_url }}')"
             aria-label="Share on Hacker News">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -68,9 +64,8 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
       <span>HN</span>
     </button>
   </div>
-  
-  <!-- Mobile share (uses native share API) -->
-  <button class="share-button share-native" 
+
+  <button class="share-button share-native"
           onclick="nativeShare('{{ page.title | escape }}', '{{ page.excerpt | strip_html | truncate: 100 | escape }}', '{{ page.url | absolute_url }}')"
           aria-label="Share">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -87,340 +82,3 @@ Share buttons for posts - Twitter, LinkedIn, Copy Link, Email
 <div class="share-toast" id="share-toast">
   <span class="share-toast-message"></span>
 </div>
-
-<script>
-// Share on Twitter/X
-function shareOnTwitter(title, url) {
-  const text = encodeURIComponent(title);
-  const shareUrl = encodeURIComponent(url);
-  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${shareUrl}`, '_blank', 'width=550,height=450');
-  trackShare('twitter');
-}
-
-// Share on LinkedIn
-function shareOnLinkedIn(title, url) {
-  const shareUrl = encodeURIComponent(url);
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`, '_blank', 'width=550,height=450');
-  trackShare('linkedin');
-}
-
-// Share on Reddit
-function shareOnReddit(title, url) {
-  const shareTitle = encodeURIComponent(title);
-  const shareUrl = encodeURIComponent(url);
-  window.open(`https://www.reddit.com/submit?title=${shareTitle}&url=${shareUrl}`, '_blank', 'width=850,height=550');
-  trackShare('reddit');
-}
-
-// Share on HackerNews
-function shareOnHackerNews(title, url) {
-  const shareTitle = encodeURIComponent(title);
-  const shareUrl = encodeURIComponent(url);
-  window.open(`https://news.ycombinator.com/submitlink?t=${shareTitle}&u=${shareUrl}`, '_blank', 'width=550,height=450');
-  trackShare('hackernews');
-}
-
-// Share via Email
-function shareViaEmail(title, url) {
-  const subject = encodeURIComponent(`Check out: ${title}`);
-  const body = encodeURIComponent(`I thought you might find this interesting:\n\n${title}\n${url}\n\nFrom Bazlur's Archive`);
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  trackShare('email');
-}
-
-// Copy to clipboard
-function copyToClipboard(url) {
-  // Create temporary input element
-  const temp = document.createElement('input');
-  temp.value = url;
-  document.body.appendChild(temp);
-  temp.select();
-  
-  try {
-    // Try modern API first
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => {
-        showToast('Link copied to clipboard!');
-        animateCopyButton();
-      });
-    } else {
-      // Fallback for older browsers
-      document.execCommand('copy');
-      showToast('Link copied to clipboard!');
-      animateCopyButton();
-    }
-  } catch (err) {
-    showToast('Failed to copy link');
-  }
-  
-  document.body.removeChild(temp);
-  trackShare('copy');
-}
-
-// Native share API (mobile)
-function nativeShare(title, text, url) {
-  if (navigator.share) {
-    navigator.share({
-      title: title,
-      text: text,
-      url: url
-    }).then(() => {
-      trackShare('native');
-    }).catch((error) => {
-      if (error.name !== 'AbortError') {
-        console.log('Error sharing:', error);
-      }
-    });
-  } else {
-    // Fallback to copy link
-    copyToClipboard(url);
-  }
-}
-
-// Show toast notification
-function showToast(message) {
-  const toast = document.getElementById('share-toast');
-  const toastMessage = toast.querySelector('.share-toast-message');
-  
-  toastMessage.textContent = message;
-  toast.classList.add('show');
-  
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3000);
-}
-
-// Animate copy button
-function animateCopyButton() {
-  const copyButton = document.querySelector('.share-copy');
-  copyButton.classList.add('copied');
-  
-  // Change icon temporarily
-  const span = copyButton.querySelector('span');
-  const originalText = span.textContent;
-  span.textContent = 'Copied!';
-  
-  setTimeout(() => {
-    copyButton.classList.remove('copied');
-    span.textContent = originalText;
-  }, 2000);
-}
-
-// Track share events (for analytics if needed)
-function trackShare(platform) {
-  console.log(`Shared on ${platform}`);
-  // You can add analytics tracking here
-}
-
-// Show native share button only if supported
-document.addEventListener('DOMContentLoaded', function() {
-  const nativeButton = document.querySelector('.share-native');
-  if (!navigator.share) {
-    nativeButton.style.display = 'none';
-  } else {
-    // Hide native button on desktop
-    if (window.innerWidth > 768) {
-      nativeButton.style.display = 'none';
-    }
-  }
-});
-</script>
-
-<style>
-.share-buttons {
-  margin: 40px 0;
-  padding: 30px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  border-radius: 16px;
-}
-
-.share-title {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #667eea;
-  font-family: 'JetBrains Mono', monospace;
-  text-align: center;
-}
-
-.share-buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.share-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: #1a1a2e;
-  border: 2px solid #313244;
-  border-radius: 12px;
-  color: #ccc;
-  font-size: 14px;
-  font-family: 'JetBrains Mono', monospace;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.share-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(102, 126, 234, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.share-button:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.share-button:hover {
-  transform: translateY(-2px);
-  border-color: #667eea;
-  color: #fff;
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
-}
-
-.share-button svg {
-  position: relative;
-  z-index: 1;
-}
-
-.share-button span {
-  position: relative;
-  z-index: 1;
-}
-
-/* Platform-specific colors on hover */
-.share-twitter:hover {
-  border-color: #1DA1F2;
-  color: #1DA1F2;
-}
-
-.share-linkedin:hover {
-  border-color: #0077B5;
-  color: #0077B5;
-}
-
-.share-reddit:hover {
-  border-color: #FF4500;
-  color: #FF4500;
-}
-
-.share-hackernews:hover {
-  border-color: #FF6600;
-  color: #FF6600;
-}
-
-.share-email:hover {
-  border-color: #764ba2;
-  color: #764ba2;
-}
-
-.share-copy:hover,
-.share-copy.copied {
-  border-color: #10b981;
-  color: #10b981;
-}
-
-.share-copy.copied {
-  animation: successPulse 0.5s ease;
-}
-
-@keyframes successPulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Native share button (mobile) */
-.share-native {
-  display: none;
-  width: 100%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border: none;
-  color: white;
-  font-weight: 600;
-  margin-top: 12px;
-}
-
-.share-native:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-}
-
-/* Toast notification */
-.share-toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  padding: 16px 24px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  z-index: 10000;
-  opacity: 0;
-  transition: all 0.3s ease;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.share-toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .share-buttons-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .share-native {
-    display: flex;
-  }
-  
-  .share-button span {
-    display: none;
-  }
-  
-  .share-button {
-    padding: 12px;
-  }
-}
-
-/* Dark theme adjustments */
-[data-theme="dracula"] .share-button,
-[data-theme="nord"] .share-button,
-[data-theme="monokai"] .share-button {
-  background: var(--bg-secondary);
-  border-color: var(--accent);
-}
-
-/* Print styles */
-@media print {
-  .share-buttons {
-    display: none;
-  }
-}
-</style>
