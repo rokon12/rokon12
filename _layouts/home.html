@@ -103,9 +103,16 @@ layout: default
 
     <!-- Newsletter -->
     <section class="home-section home-newsletter">
-        <h2 class="section-header">Newsletter</h2>
+        <h2 class="section-header">Newsletter &mdash; The Coding Caf&eacute;</h2>
         <p>Join developers learning about modern Java, concurrency, and AI-powered systems.</p>
-        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="btn-secondary">Subscribe</a>
+        {% if site.data.substack and site.data.substack.size > 0 %}
+        <ul class="newsletter-recent">
+            {% for post in site.data.substack %}
+            <li><a href="{{ post.url }}" target="_blank" rel="noopener">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="btn-secondary">Subscribe &amp; Read More</a>
     </section>
 
 </div>

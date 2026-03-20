@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Before You Ask AI to Code, Write a Better Spec",
+    "url": "https://bazlur.substack.com/p/before-you-ask-ai-to-code-write-a",
+    "date": "Thu, 19 Mar 2026 15:16:24 GMT",
+    "description": "In AI-assisted development, ambiguity does not go away. It turns into code that looks plausible. One of the fastest..."
+  },
+  {
+    "title": "Code Is Cheap. Trust Is Expensive",
+    "url": "https://bazlur.substack.com/p/code-is-cheap-trust-is-expensive",
+    "date": "Mon, 16 Mar 2026 15:00:34 GMT",
+    "description": "The real bottleneck in AI-assisted Java development is no longer producing code. It is understanding it, verifying..."
+  },
+  {
+    "title": "Building Smart Mock: An AI-Powered API Mock Server with Spring Boot and Ollama",
+    "url": "https://bazlur.substack.com/p/building-smart-mock-an-ai-powered",
+    "date": "Tue, 12 Aug 2025 13:30:59 GMT",
+    "description": "In software development, teams often need to mock APIs during the early stages of integration."
+  },
+  {
+    "title": "Build Your Own AI Gmail Assistant: A Complete Guide to Creating Chithi",
+    "url": "https://bazlur.substack.com/p/build-your-own-ai-gmail-assistant",
+    "date": "Fri, 25 Jul 2025 12:01:39 GMT",
+    "description": "Ever wish you had an AI assistant right inside Gmail to help you write better emails?"
+  },
+  {
+    "title": "Building FormPilot: My Journey Creating an AI-Powered Form Filler with RAG, LangChain4j, and Ollama",
+    "url": "https://bazlur.substack.com/p/building-formpilot-my-journey-creating",
+    "date": "Sun, 06 Jul 2025 14:15:22 GMT",
+    "description": "Have you ever found yourself filling out the same information on web forms over and over again?"
+  }
+]
