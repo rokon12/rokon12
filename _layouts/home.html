@@ -2,20 +2,21 @@
 layout: default
 ---
 
-<!-- Hero: Two-column with book -->
+<!-- Hero: Two-column with book + avatar -->
 <section class="hero">
     <div class="hero-inner">
         <div class="hero-text">
             <div class="hero-card">
                 <h1>A N M Bazlur Rahman</h1>
                 <p class="hero-credential">Sr. Staff Software Engineer &middot; Java Champion &middot; Published Author &middot; InfoQ Editor</p>
-                <p class="hero-description">Helping teams master modern Java, concurrent programming, building LLM applications in Java, and JVM performance through deep-dive content and expert talks</p>
+                <p class="hero-tagline">Deep dives into Java concurrency, virtual threads, and modern JVM development.</p>
+                <p class="hero-description">Helping teams master modern Java, concurrent programming, building LLM applications in Java, and JVM performance through deep-dive content and expert talks.</p>
                 <div class="hero-buttons">
-                    <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="btn-primary">Order "Modern Concurrency in Java"</a>
                     <div class="hero-buttons-row">
-                        <a href="{{ "/archive" | relative_url }}" class="btn-secondary">Latest Deep Dive Articles</a>
+                        <a href="{{ "/archive" | relative_url }}" class="btn-primary">Latest Deep Dive Articles</a>
                         <a href="https://bazlur.com/conference/" target="_blank" rel="noopener" class="btn-secondary">Watch My Talks</a>
                     </div>
+                    <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="btn-book">Order "Modern Concurrency in Java" on O'Reilly &rarr;</a>
                 </div>
             </div>
         </div>
@@ -27,28 +28,40 @@ layout: default
 
 <div class="wrapper">
 
+    <!-- About Teaser -->
+    <section class="home-section home-about">
+        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> About</h2>
+        <p>I'm a software engineer based in Toronto with over a decade of experience building systems in Java. In 2022, I was recognized as a <strong>Java Champion</strong>. I'm authoring <em>Modern Concurrency in Java</em> for O'Reilly Media, serve as editor for the Java Queue at InfoQ, and founded the <a href="https://jugbd.org/" target="_blank" rel="noopener">Java User Group in Bangladesh</a>.</p>
+        <div class="home-more">
+            <a href="{{ "/about" | relative_url }}">More about me &rarr;</a>
+        </div>
+    </section>
+
     <!-- Featured Work -->
     <section class="home-section">
-        <h2 class="section-header">Featured Work</h2>
+        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Featured Work</h2>
         <div class="featured-work">
-            <div class="work-item">
-                <h3><a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener">Modern Concurrency in Java</a></h3>
+            <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="work-card">
+                <div class="work-card-icon">&#128214;</div>
+                <h3>Modern Concurrency in Java</h3>
                 <p>A deep dive into Virtual Threads, Structured Concurrency, and modern JVM concurrency patterns. Published by O'Reilly Media.</p>
-            </div>
-            <div class="work-item">
-                <h3><a href="https://bazlur.com/conference/" target="_blank" rel="noopener">Conference Talks</a></h3>
-                <p>Talks at DevNexus, Devoxx, ConFoo, GeeCON, JNation, and international Java conferences on concurrency, virtual threads, and AI with Java.</p>
-            </div>
-            <div class="work-item">
-                <h3><a href="https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/" target="_blank" rel="noopener">InfoQ Articles</a></h3>
+            </a>
+            <a href="https://bazlur.com/conference/" target="_blank" rel="noopener" class="work-card">
+                <div class="work-card-icon">&#127908;</div>
+                <h3>Conference Talks</h3>
+                <p>Talks at DevNexus, Devoxx, ConFoo, GeeCON, JNation, and international Java conferences on concurrency, virtual threads, and AI.</p>
+            </a>
+            <a href="https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/" target="_blank" rel="noopener" class="work-card">
+                <div class="work-card-icon">&#9997;</div>
+                <h3>InfoQ Articles</h3>
                 <p>Technical writing and editorial work as Java Queue editor at InfoQ.</p>
-            </div>
+            </a>
         </div>
     </section>
 
     <!-- Latest Articles -->
     <section class="home-section">
-        <h2 class="section-header">Latest Articles</h2>
+        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Latest Articles</h2>
         <div class="post-list">
             {% for post in site.posts limit:8 %}
             <article class="post-list-item">
@@ -73,19 +86,28 @@ layout: default
 
     <!-- Popular Articles -->
     <section class="home-section">
-        <h2 class="section-header">Popular Articles</h2>
-        <ul class="popular-list">
+        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Popular Articles</h2>
+        <div class="popular-grid">
+            {% assign popular_count = 0 %}
             {% for post in site.posts %}
-                {% if post.url contains 'virtual-thread' or post.url contains 'structured-concurrency' or post.url contains 'langchain4j' or post.url contains 'java-thread-programming-part-1' or post.url contains 'compact-strings' %}
-                <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+                {% if popular_count < 6 %}
+                    {% if post.url contains 'virtual-thread' or post.url contains 'structured-concurrency' or post.url contains 'langchain4j' or post.url contains 'java-thread-programming-part-1' or post.url contains 'compact-strings' %}
+                    <a href="{{ post.url | relative_url }}" class="popular-card">
+                        <span class="popular-card-title">{{ post.title | escape }}</span>
+                        {% if post.tags and post.tags.size > 0 %}
+                        <span class="popular-card-tag">{{ post.tags | first }}</span>
+                        {% endif %}
+                    </a>
+                    {% assign popular_count = popular_count | plus: 1 %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-        </ul>
+        </div>
     </section>
 
     <!-- Upcoming Talks -->
     <section class="home-section">
-        <h2 class="section-header">Talks &amp; Speaking</h2>
+        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Talks &amp; Speaking</h2>
         <div class="talks-list">
             {% for talk in site.data.speaking limit: 4 %}
             {% if talk.isUpcoming %}
@@ -103,16 +125,17 @@ layout: default
 
     <!-- Newsletter -->
     <section class="home-section home-newsletter">
-        <h2 class="section-header">Newsletter &mdash; The Coding Caf&eacute;</h2>
-        <p>Join developers learning about modern Java, concurrency, and AI-powered systems.</p>
+        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Newsletter &mdash; The Coding Caf&eacute;</h2>
+        <p class="newsletter-pitch">A deep-dive newsletter on modern Java, concurrency, and building AI-powered systems. New issue every other week.</p>
         {% if site.data.substack and site.data.substack.size > 0 %}
+        <p class="newsletter-label">Recent issues:</p>
         <ul class="newsletter-recent">
             {% for post in site.data.substack %}
             <li><a href="{{ post.url }}" target="_blank" rel="noopener">{{ post.title }}</a></li>
             {% endfor %}
         </ul>
         {% endif %}
-        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="btn-secondary">Subscribe &amp; Read More</a>
+        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" class="btn-primary newsletter-cta">Subscribe &amp; Read More</a>
     </section>
 
 </div>
