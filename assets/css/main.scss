@@ -12,15 +12,20 @@ $primary-color: #437291;
 $primary-dark: #2c5f7c;
 $primary-light: #5a8ba8;
 $secondary-color: #437291;
-$accent-color: #e76f00;
-$text-color: #24292f;
+$accent-color: #c44d2b;
+$text-color: #303633;
 $text-light: #656d76;
 $bg-color: #ffffff;
 $bg-light: #f6f8fa;
-$bg-dark: #1f2328;
+$bg-dark: #0f1b2d;
 $border-color: #d0d7de;
 $shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 $shadow-lg: 0 3px 8px rgba(0, 0, 0, 0.08);
+
+// Typography
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+$font-mono: 'Inconsolata', 'JetBrains Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
 
 // Base styles
 * {
@@ -28,11 +33,11 @@ $shadow-lg: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: $font-sans;
   font-size: 16px;
   line-height: 1.6;
   color: $text-color;
-  background-color: $bg-light;
+  background-color: $bg-color;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -63,14 +68,13 @@ a {
   }
 }
 
-// Header
+// Header — dark nav bar
 .site-header {
-  background: $bg-color;
-  box-shadow: $shadow;
+  background: $bg-dark;
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid $border-color;
+  border-bottom: none;
 }
 
 .header-wrapper {
@@ -86,11 +90,11 @@ a {
 .site-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: $text-color;
+  color: #ffffff;
   text-decoration: none;
 
   &:hover {
-    color: $primary-color;
+    color: rgba(255, 255, 255, 0.85);
   }
 }
 
@@ -101,13 +105,13 @@ a {
 }
 
 .nav-link {
-  color: $text-light;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $primary-color;
+    color: #ffffff;
   }
 }
 
@@ -434,9 +438,8 @@ a {
 
 // Post page
 .post-header {
-  padding: 2rem 0 1.5rem;
+  padding: 2.5rem 0 1.5rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid $border-color;
 
   &.with-hero {
     margin-top: -100px;
@@ -448,18 +451,20 @@ a {
   }
 
   h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.3;
-    max-width: 42em;
+    font-family: $font-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.25;
+    max-width: 46em;
     margin: 0 0 0.75rem;
-    color: $bg-dark;
+    color: $text-color;
   }
 }
 
 .post-meta {
   color: $text-light;
   font-size: 0.9rem;
+  font-family: $font-sans;
 
   time {
     font-weight: 500;
@@ -488,9 +493,9 @@ a {
 }
 
 .post-content {
-  max-width: 42em;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
-  font-size: 1rem;
+  max-width: 46em;
+  font-family: $font-serif;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: $text-color;
 
@@ -502,43 +507,45 @@ a {
   }
 
   h2 {
-    font-size: 1.35rem;
+    font-family: $font-serif;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
     margin-bottom: 0.75rem;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid $border-color;
+    color: $text-color;
   }
 
   h3 {
-    font-size: 1.15rem;
+    font-family: $font-serif;
+    font-size: 1.25rem;
     font-weight: 700;
-    font-style: italic;
-    margin-top: 2rem;
+    margin-top: 2.25rem;
     margin-bottom: 0.5rem;
   }
 
   h4 {
-    font-size: 1rem;
+    font-family: $font-serif;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
 
   p {
-    margin: 0 0 1em;
+    margin: 0 0 1.2em;
   }
 
   a {
-    color: #437291;
+    color: $accent-color;
     text-decoration: none;
 
     &:hover {
-      color: #e76f00;
+      color: darken($accent-color, 12%);
+      text-decoration: underline;
     }
 
     &:visited {
-      color: #666666;
+      color: darken($accent-color, 8%);
     }
   }
 
@@ -549,43 +556,46 @@ a {
   }
 
   pre {
-    margin: 1.5rem 0;
+    margin: 1.75rem 0;
     font-size: 0.9em;
+    font-family: $font-mono;
   }
 
   p code, li code, td code {
-    background: #f6f8fa;
-    color: #24292f;
-    padding: 0.15rem 0.35rem;
+    background: $bg-light;
+    color: $text-color;
+    padding: 0.15rem 0.4rem;
     border-radius: 3px;
-    font-family: 'JetBrains Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+    font-family: $font-mono;
     font-size: 0.85em;
   }
 
   blockquote {
-    border-left: 3px solid #bbb;
-    padding-left: 1.25rem;
-    margin: 1.5rem 0;
-    color: $text-light;
+    border-left: 3px solid #0f1872;
+    padding-left: 1.5rem;
+    margin: 1.75rem 0;
+    color: $text-color;
+    font-style: italic;
   }
 
   ul, ol {
-    margin: 0 0 1em;
-    padding-left: 2em;
+    margin: 0 0 1.2em;
+    padding-left: 1.75em;
   }
 
   li {
-    margin-bottom: 0.25em;
+    margin-bottom: 0.3em;
   }
 
   table {
     border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.95em;
+    margin: 1.75rem 0;
+    font-family: $font-sans;
+    font-size: 0.9em;
 
     th, td {
       border: 1px solid $border-color;
-      padding: 0.4rem 0.75rem;
+      padding: 0.5rem 0.85rem;
       text-align: left;
     }
 
@@ -598,7 +608,7 @@ a {
   hr {
     border: none;
     border-top: 1px solid $border-color;
-    margin: 2rem 0;
+    margin: 2.5rem 0;
   }
 }
 
@@ -3290,7 +3300,7 @@ img {
       position: absolute;
       height: 3px;
       width: 100%;
-      background: $text-color;
+      background: #ffffff;
       border-radius: 3px;
       opacity: 1;
       left: 0;
@@ -3346,23 +3356,28 @@ img {
     top: 60px;
     left: 0;
     right: 0;
-    background: $bg-color;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: $bg-dark;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     flex-direction: column;
     gap: 0;
     padding: 1rem 0;
     max-height: calc(100vh - 60px);
     overflow-y: auto;
-    
+
     &.is-active {
       display: flex;
     }
-    
+
     .nav-link {
       width: 100%;
       padding: 1rem 2rem;
-      border-bottom: 1px solid rgba($text-color, 0.1);
-      
+      color: rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:hover {
+        color: #ffffff;
+      }
+
       &:last-child {
         border-bottom: none;
       }
@@ -3392,9 +3407,8 @@ img {
     font-size: 1.25rem;
   }
   
-  .post-title {
-    font-size: 2rem;
-    line-height: 1.3;
+  .post-header h1 {
+    font-size: 1.75rem;
   }
   
   .ascii-banner {
@@ -3450,8 +3464,8 @@ img {
 // Responsive Post Content
 @media (max-width: 768px) {
   .post-content {
-    font-size: 1rem;
-    
+    font-size: 1.05rem;
+
     img {
       margin: 1rem -1rem;
       width: calc(100% + 2rem);
@@ -4813,10 +4827,10 @@ h4:hover .heading-anchor {
 .nav-icon {
   display: flex;
   align-items: center;
-  color: $text-light;
+  color: rgba(255, 255, 255, 0.7);
 
   &:hover {
-    color: $primary-color;
+    color: #ffffff;
   }
 
   svg {

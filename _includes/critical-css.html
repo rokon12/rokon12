@@ -1,11 +1,14 @@
 <style>
 :root {
   --primary-color: #437291;
-  --text-color: #24292f;
+  --text-color: #303633;
   --text-light: #656d76;
   --bg-color: #ffffff;
   --bg-light: #f6f8fa;
   --border-color: #d0d7de;
+  --nav-bg: #0f1b2d;
+  --nav-text: rgba(255, 255, 255, 0.7);
+  --nav-text-hover: #ffffff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,8 +27,8 @@ body {
 }
 
 .site-header {
-  background: var(--bg-color);
-  border-bottom: 1px solid var(--border-color);
+  background: var(--nav-bg);
+  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -44,7 +47,7 @@ body {
 .site-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-color);
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -55,12 +58,12 @@ body {
 }
 
 .nav-link {
-  color: var(--text-light);
+  color: var(--nav-text);
   text-decoration: none;
   font-size: 0.9rem;
 }
 
-.nav-link:hover { color: var(--primary-color); }
+.nav-link:hover { color: var(--nav-text-hover); }
 
 @media (max-width: 768px) {
   .wrapper, .header-wrapper { padding: 0 1rem; }
