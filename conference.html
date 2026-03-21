@@ -13,31 +13,33 @@ permalink: /conference/
 <div class="speaking-page">
     <div class="wrapper">
         <header class="speaking-header">
-            <h1 class="page-title">Speaking Engagements</h1>
-            <p class="page-subtitle">{{ total_talks }} talks across conferences, meetups, and workshops</p>
+            <h1>Speaking Engagements</h1>
+            <p class="speaking-subtitle">{{ total_talks }} talks across conferences, meetups, and workshops around the world.</p>
         </header>
 
         {% if upcoming_events.size > 0 %}
         <section class="events-section">
-            <h2 class="section-title">Upcoming <span class="count">({{ upcoming_count }})</span></h2>
+            <h2>Upcoming <span class="count">({{ upcoming_count }})</span></h2>
             <div class="events-list">
                 {% for event in upcoming_events %}
                 <article class="event-card upcoming">
                     <div class="event-main">
                         <h3 class="event-name">{{ event.name | escape }}</h3>
-                        <p class="event-talk-title">{{ event.talkTitle | escape }}</p>
+                        <p class="event-talk">{{ event.talkTitle | escape }}</p>
                         <div class="event-meta">
-                            <span class="event-date">{{ event.date | escape }}</span>
-                            <span class="separator">&middot;</span>
-                            <span class="event-location">{{ event.location | escape }}</span>
-                            <span class="separator">&middot;</span>
+                            <span>{{ event.date | escape }}</span>
+                            <span class="sep">&middot;</span>
+                            <span>{{ event.location | escape }}</span>
+                            {% if event.type %}
+                            <span class="sep">&middot;</span>
                             <span class="event-type">{{ event.type | capitalize | escape }}</span>
+                            {% endif %}
                         </div>
                     </div>
                     {% if event.links and event.links.size > 0 %}
-                    <div class="event-actions">
+                    <div class="event-links">
                         {% for link in event.links %}
-                        <a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer" class="btn {% if link.type == 'video' %}btn-video{% endif %}">
+                        <a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer" class="event-btn {% if link.type == 'video' %}event-btn--video{% endif %}">
                             {{ link.text | escape }}{% if link.type == 'video' %} &#9654;{% endif %}
                         </a>
                         {% endfor %}
@@ -51,23 +53,23 @@ permalink: /conference/
 
         {% if past_events.size > 0 %}
         <section class="events-section">
-            <h2 class="section-title">Past <span class="count">({{ past_count }})</span></h2>
-            <div class="events-list past-list">
+            <h2>Past <span class="count">({{ past_count }})</span></h2>
+            <div class="events-list events-list--past">
                 {% for event in past_events %}
-                <article class="event-card past">
+                <article class="event-card">
                     <div class="event-main">
                         <h3 class="event-name">{{ event.name | escape }}</h3>
-                        <p class="event-talk-title">{{ event.talkTitle | escape }}</p>
+                        <p class="event-talk">{{ event.talkTitle | escape }}</p>
                         <div class="event-meta">
-                            <span class="event-date">{{ event.date | escape }}</span>
-                            <span class="separator">&middot;</span>
-                            <span class="event-location">{{ event.location | escape }}</span>
+                            <span>{{ event.date | escape }}</span>
+                            <span class="sep">&middot;</span>
+                            <span>{{ event.location | escape }}</span>
                         </div>
                     </div>
                     {% if event.links and event.links.size > 0 %}
-                    <div class="event-actions">
+                    <div class="event-links">
                         {% for link in event.links %}
-                        <a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer" class="btn {% if link.type == 'video' %}btn-video{% endif %}">
+                        <a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer" class="event-btn {% if link.type == 'video' %}event-btn--video{% endif %}">
                             {{ link.text | escape }}{% if link.type == 'video' %} &#9654;{% endif %}
                         </a>
                         {% endfor %}
@@ -89,64 +91,73 @@ permalink: /conference/
 .speaking-page {
     padding: 2.5rem 0 4rem;
     min-height: calc(100vh - 200px);
-    background: #fafafa;
 }
 
+/* Header */
 .speaking-header {
     margin-bottom: 2.5rem;
+    max-width: 46em;
 }
 
-.page-title {
+.speaking-header h1 {
+    font-family: 'Lora', Georgia, serif;
     font-size: 2rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    color: #111;
+    font-weight: 400;
+    color: #303633;
+    margin: 0 0 0.5rem;
 }
 
-.page-subtitle {
-    font-size: 1rem;
-    color: #666;
+.speaking-subtitle {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    color: #656d76;
     margin: 0;
+    line-height: 1.6;
 }
 
+/* Sections */
 .events-section {
     margin-bottom: 3rem;
+    max-width: 46em;
 }
 
-.section-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #333;
-    margin: 0 0 1rem 0;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #e0e0e0;
+.events-section h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #303633;
+    margin: 0 0 1.25rem;
 }
 
-.section-title .count {
+.events-section h2 .count {
     font-weight: 400;
-    color: #888;
+    color: #656d76;
 }
 
+/* Event list */
 .events-list {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    background: #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
+    gap: 0;
 }
 
+/* Event card */
 .event-card {
-    background: #fff;
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.5rem;
+    border-bottom: 1px solid #d0d7de;
+}
+
+.event-card:last-child {
+    border-bottom: none;
 }
 
 .event-card.upcoming {
-    border-left: 3px solid #2563eb;
+    padding-left: 1.25rem;
+    border-left: 3px solid #0f1b2d;
 }
 
 .event-main {
@@ -155,90 +166,94 @@ permalink: /conference/
 }
 
 .event-name {
-    font-size: 1rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #111;
-    margin: 0 0 0.25rem 0;
+    color: #303633;
+    margin: 0 0 0.2rem;
 }
 
-.event-talk-title {
-    font-size: 0.9375rem;
-    color: #444;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.4;
+.event-talk {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    color: #303633;
+    margin: 0 0 0.5rem;
+    line-height: 1.45;
 }
 
 .event-meta {
-    font-size: 0.8125rem;
-    color: #666;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.82rem;
+    color: #656d76;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
-.separator {
-    color: #ccc;
+.sep {
+    color: #d0d7de;
 }
 
 .event-type {
-    color: #2563eb;
+    color: #437291;
     font-weight: 500;
 }
 
-.event-actions {
+/* Action links */
+.event-links {
     display: flex;
     gap: 0.5rem;
     flex-shrink: 0;
+    padding-top: 0.15rem;
 }
 
-.btn {
+.event-btn {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    font-size: 0.8125rem;
+    padding: 0.4rem 0.9rem;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
     border-radius: 6px;
-    background: #f0f0f0;
-    color: #333;
-    border: 1px solid #ddd;
-    transition: background 0.15s ease;
+    background: #f6f8fa;
+    color: #303633;
+    border: 1px solid #d0d7de;
+    transition: all 0.15s ease;
 }
 
-.btn:hover {
-    background: #e5e5e5;
-    color: #111;
+.event-btn:hover {
+    background: #ebeef1;
+    color: #303633;
+    border-color: #437291;
 }
 
-.btn-video {
-    background: #111;
+.event-btn--video {
+    background: #0f1b2d;
     color: #fff;
-    border-color: #111;
+    border-color: #0f1b2d;
 }
 
-.btn-video:hover {
-    background: #333;
+.event-btn--video:hover {
+    background: #1a2d47;
     color: #fff;
 }
 
-/* Past events - slightly muted */
-.past-list .event-card {
-    padding: 1rem 1.5rem;
+/* Past events — slightly quieter */
+.events-list--past .event-talk {
+    font-size: 1rem;
+    color: #444;
 }
 
-.past-list .event-name {
-    font-size: 0.9375rem;
-}
-
-.past-list .event-talk-title {
-    font-size: 0.875rem;
-    color: #555;
+.events-list--past .event-name {
+    font-size: 0.9rem;
 }
 
 .no-events {
     text-align: center;
-    color: #888;
+    color: #656d76;
     padding: 3rem 0;
+    font-family: 'Lora', Georgia, serif;
 }
 
 /* Responsive */
@@ -247,22 +262,21 @@ permalink: /conference/
         padding: 1.5rem 0 3rem;
     }
 
-    .page-title {
-        font-size: 1.5rem;
+    .speaking-header h1 {
+        font-size: 1.6rem;
     }
 
     .event-card {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.75rem;
     }
 
-    .event-actions {
+    .event-links {
         width: 100%;
     }
 
-    .btn {
+    .event-btn {
         flex: 1;
         text-align: center;
     }
@@ -270,17 +284,7 @@ permalink: /conference/
 
 /* Print */
 @media print {
-    .speaking-page {
-        background: #fff;
-        padding: 0;
-    }
-
-    .event-card {
-        border-bottom: 1px solid #ddd;
-    }
-
-    .btn {
-        display: none;
-    }
+    .speaking-page { padding: 0; }
+    .event-btn { display: none; }
 }
 </style>
