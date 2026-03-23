@@ -21,7 +21,7 @@ Why Unstructured Concurrency Is a Problem
 
 Take a typical `ExecutorService` example:
 
-```
+```java
 Response handle() throws ExecutionException, InterruptedException {
     Future<String> user = executor.submit(() -> findUser());
     Future<Integer> order = executor.submit(() -> fetchOrder());
@@ -46,7 +46,7 @@ What Structured Concurrency Changes
 
 Structured concurrency makes the relationship explicit. Tasks are born inside a scope, and they die with that scope.
 
-```
+```java
 Response handle() throws InterruptedException {
     try (var scope = StructuredTaskScope.open()) {
         var user = scope.fork(() -> findUser());
@@ -73,7 +73,7 @@ Most concurrent code follows a handful of patterns. JDK 26 bakes those patterns 
 
 ### All Tasks Must Succeed
 
-```
+```java
 try (var scope = StructuredTaskScope.open(
         StructuredTaskScope.Joiner.allSuccessfulOrThrow())) {
 
@@ -89,7 +89,7 @@ If any task fails, the rest are cancelled and you get a clear failure signal. In
 
 ### First Successful Result Wins
 
-```
+```java
 try (var scope = StructuredTaskScope.open(
         StructuredTaskScope.Joiner.<String>anySuccessfulOrThrow())) {
 
@@ -108,7 +108,7 @@ Timeouts and Configuration
 
 Configuration in Java 26 is cleaner and more readable:
 
-```
+```java
 try (var scope = StructuredTaskScope.open(
         StructuredTaskScope.Joiner.allSuccessfulOrThrow(),
         cfg -> cfg
@@ -127,7 +127,7 @@ Custom Joiners When You Need Flexibility
 
 If built-in joiners don't fit, you can write your own. For example, returning partial results on timeout:
 
-```
+```java
 class PartialResultsJoiner<T>
         implements StructuredTaskScope.Joiner<T, List<T>> {
 
@@ -160,7 +160,7 @@ Handling Failures Cleanly
 
 Structured concurrency also makes failure handling more direct:
 
-```
+```java
 try (var scope = StructuredTaskScope.open(
         StructuredTaskScope.Joiner.allSuccessfulOrThrow())) {
 
@@ -206,4 +206,3 @@ Final Thoughts
 Structured concurrency doesn't make concurrency "easy", but it does make it honest. The code now reflects the way tasks actually relate to each other. Lifetimes are clear, failures are contained, and cancellation works the way you expect.
 
 At this stage, JEP 525 feels stable enough to use seriously in Java 26 preview builds. If you've ever been bitten by runaway tasks or half-failed fan-outs, it's worth your time.  
-

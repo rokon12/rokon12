@@ -1,0 +1,231 @@
+.post-wrapper-with-toc {
+  position: relative;
+}
+
+.toc-sidebar {
+  display: none;
+}
+
+.post-container {
+  position: relative;
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.post-toc {
+  display: none;
+}
+
+.post-toc[hidden] {
+  display: none !important;
+}
+
+.post-toc__label {
+  margin-bottom: 12px;
+  color: #0284c7;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.post-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-toc__item {
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.post-toc__item--h3 {
+  padding-left: 16px;
+}
+
+.post-toc__link {
+  display: block;
+  overflow: visible;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-decoration: none;
+  text-overflow: clip;
+  transition: all 0.2s ease;
+  white-space: normal;
+}
+
+.post-toc__link:hover {
+  color: #0284c7;
+}
+
+.post-toc__link.active {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: #0284c7;
+  font-weight: 500;
+}
+
+.post-toc--mobile {
+  margin: 0 0 2rem;
+}
+
+.post-content {
+  scroll-margin-top: 120px;
+}
+
+.post-content h2,
+.post-content h3 {
+  scroll-margin-top: 120px;
+}
+
+.post-content .code-block-wrapper {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.post-content .shiki {
+  margin: 0;
+  overflow-x: auto;
+  padding: 1rem 1.35rem !important;
+  border: none;
+  border-radius: 6px;
+  background: #eff1f5 !important;
+  box-shadow: none;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.post-content .shiki::before,
+.post-content .shiki::after {
+  content: none;
+}
+
+.post-content .shiki code {
+  display: block;
+  counter-reset: code-line;
+  font-size: 0;
+  line-height: 0;
+}
+
+.post-content .shiki .line {
+  display: block;
+  min-width: max-content;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.post-content .shiki .line::before {
+  content: counter(code-line);
+  counter-increment: code-line;
+  display: inline-block;
+  min-width: 2.5rem;
+  margin-right: 1rem;
+  padding-right: 0.85rem;
+  border-right: 1.5px solid rgba(128, 131, 147, 0.2);
+  color: #808393;
+  text-align: right;
+  user-select: none;
+}
+
+.post-content .code-copy-button {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  background: transparent;
+  border: none;
+  color: #4c4f69;
+  cursor: pointer;
+}
+
+.post-content .code-copy-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.post-content .code-copy-tooltip {
+  position: absolute;
+  top: 8px;
+  right: 42px;
+  z-index: 2;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  background: #358524;
+  color: #fff;
+  font-size: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.post-content .code-copy-tooltip.is-visible {
+  opacity: 1;
+}
+
+.post-content :not(pre) > code {
+  padding: 0.16rem 0.38rem;
+  border-radius: 4px;
+  background: #eff1f5;
+  color: #4c4f69;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.85em;
+}
+
+@media (min-width: 768px) {
+  .post-wrapper-with-toc {
+    max-width: 1280px;
+    padding-left: 368px;
+  }
+
+  .toc-sidebar {
+    display: block;
+    position: static;
+    flex: 0 0 auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .post-toc--desktop {
+    position: fixed;
+    top: var(--post-toc-top, 255px);
+    bottom: 40px;
+    left: max(24px, calc(50vw - 640px + 40px));
+    z-index: 10;
+    display: block;
+    width: 280px;
+    overflow-y: auto;
+    background: transparent;
+    transition: opacity 0.2s ease;
+  }
+
+  .post-toc--desktop.is-hidden-at-end {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .post-toc--mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .post-wrapper-with-toc {
+    padding-left: 2rem;
+  }
+
+  .toc-sidebar {
+    display: none;
+  }
+
+  .post-toc--mobile {
+    display: block;
+  }
+}

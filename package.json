@@ -1,0 +1,11 @@
+{
+  "name": "bazlur-blog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bundle exec jekyll build && node scripts/render-code-blocks.mjs"
+  },
+  "dependencies": {
+    "shiki": "^3.13.0"
+  }
+}

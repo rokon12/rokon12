@@ -24,11 +24,13 @@ layout: default
     </div>
 
     <div class="wrapper post-wrapper-with-toc">
-        <aside class="toc-sidebar" id="toc-sidebar-wrapper">
-            {% include toc.html %}
+        <aside class="toc-sidebar">
+            {% include toc.html variant="desktop" %}
         </aside>
 
         <div class="post-container">
+            {% include toc.html variant="mobile" %}
+
             <div class="post-content e-content" itemprop="articleBody">
                 {{ content }}
             </div>
