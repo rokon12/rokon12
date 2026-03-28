@@ -31,6 +31,7 @@ public class WebsiteScraper {
     private static final FlexmarkHtmlConverter htmlToMarkdownConverter = FlexmarkHtmlConverter.builder().build();
     private static final int REQUEST_DELAY_MS = 1000; // Reduced delay for testing
     private static final int CONNECTION_TIMEOUT_MS = 120000; // 120 second
+    private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36";
 
     private static class Progress {
         @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.CLASS)
@@ -194,7 +195,7 @@ public class WebsiteScraper {
                 Document doc;
                 try {
                     doc = Jsoup.connect(currentUrl)
-                                  .userAgent("Mozilla/5.0")
+                                  .userAgent(USER_AGENT)
                                   .timeout(CONNECTION_TIMEOUT_MS)
                                   .get();
                 } catch (IOException e) {
@@ -245,7 +246,7 @@ public class WebsiteScraper {
                         // Fetch full article content
                         sleep(REQUEST_DELAY_MS); // Rate limiting
                         Document articleDoc = Jsoup.connect(url)
-                                                .userAgent("Mozilla/5.0")
+                                                .userAgent(USER_AGENT)
                                                 .timeout(CONNECTION_TIMEOUT_MS)
                                                 .get();
 
@@ -261,6 +262,7 @@ public class WebsiteScraper {
                         content.select("p:contains(Subscribe to get the latest posts sent to your email)").remove();
                         content.select("p:contains(Type your email...)").remove();
                         content.select("p:contains(Subscribe)").remove();
+                        content.select(".wp-block-jetpack-subscriptions__container").remove();
 
                         // Download images - also check in the full article document for lazy-loaded images
                         Elements allImages = articleDoc.select("article img, .entry-content img, .post-content img, figure img");
