@@ -38,6 +38,25 @@
       }
     ]
   },
+    {
+    "name": "Microsoft JDConf 2026",
+    "date": "2026",
+    "location": "Online",
+    "locationIcon": "🌐",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Building LLM Apps in Java with LangChain4j",
+    "talkIcon": "🎤",
+    "isUpcoming": false,
+    "eventUrl": "https://jdconf.com/",
+    "links": [
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=cJ1odDNflEA&t=9775s",
+        "text": "Details"
+      }
+    ]
+  },
   {
     "name": "Java Developer's Conference 2025",
     "date": "2025",
