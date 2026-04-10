@@ -1,13 +1,20 @@
 <aside class="author-bio">
   <div class="author-bio-content">
+    <img
+      class="author-bio-photo"
+      src="{{ site.author.photo | relative_url }}"
+      alt="{{ site.author.photo_alt }}"
+      loading="lazy"
+      width="128"
+      height="128">
     <div class="author-bio-text">
       <strong class="author-bio-name">{{ site.author.name }}</strong>
-      <p>Java Champion, author, and speaker. Writing about Java, concurrency, and software craftsmanship.</p>
+      <p>{{ site.author.role }}. Writing about Java concurrency, JVM internals, AI in Java, and software craftsmanship.</p>
       <div class="author-bio-links">
-        <a href="https://github.com/rokon12" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-        <a href="https://www.linkedin.com/in/bazlur/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-        <a href="https://x.com/bazlur_rahman" target="_blank" rel="noopener" aria-label="X">X</a>
-        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" aria-label="Newsletter">Newsletter</a>
+        <a href="https://github.com/rokon12" target="_blank" rel="noopener" aria-label="Follow A N M Bazlur Rahman on GitHub">GitHub</a>
+        <a href="https://www.linkedin.com/in/bazlur/" target="_blank" rel="noopener" aria-label="Connect with A N M Bazlur Rahman on LinkedIn">LinkedIn</a>
+        <a href="https://x.com/bazlur_rahman" target="_blank" rel="noopener" aria-label="Follow A N M Bazlur Rahman on X, formerly Twitter">X</a>
+        <a href="https://bazlur.substack.com/" target="_blank" rel="noopener" aria-label="Subscribe to The Coding Cafe newsletter">Newsletter</a>
       </div>
     </div>
   </div>

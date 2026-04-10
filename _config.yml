@@ -1,10 +1,22 @@
 # Site settings
-title: Bazlur Rahman
-description: Writing about Java, concurrency, JVM internals, and software architecture
+title: A N M Bazlur Rahman
+description: Java Champion, O'Reilly author, speaker, and Sr. Staff Software Engineer writing about Java concurrency, JVM internals, AI in Java, and software architecture.
 author:
   name: A N M Bazlur Rahman
   email: bazlur@jugbd.org
   url: https://bazlur.com
+  photo: /images/author.jpg
+  photo_alt: A N M Bazlur Rahman speaking at Copenhagen Developers Festival
+  role: Sr. Staff Software Engineer, Java Champion, Author, and Speaker
+  location: Toronto, Canada
+  same_as:
+    - https://github.com/rokon12
+    - https://www.linkedin.com/in/bazlur/
+    - https://x.com/bazlur_rahman
+    - https://bsky.app/profile/bazlur.ca
+    - https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/
+    - https://foojay.io/today/author/bazlur-rahman/
+default_social_image: /assets/img/default-og.jpg
 
 # URL settings
 url: "https://bazlur.com"
@@ -79,14 +91,16 @@ exclude:
 # SEO settings
 twitter:
   username: bazlur_rahman
-  card: summary
+  card: summary_large_image
 
 social:
   name: A N M Bazlur Rahman
   links:
-    - https://twitter.com/bazlur_rahman
+    - https://x.com/bazlur_rahman
     - https://github.com/rokon12
     - https://linkedin.com/in/bazlur
+    - https://bsky.app/profile/bazlur.ca
+    - https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/
 
 # Google Analytics (if you have one)
 # google_analytics: UA-XXXXXXXXX-X

@@ -2,12 +2,37 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assign raw_page_description = page.description %}
+    {% if raw_page_description == nil or raw_page_description == '' %}
+      {% assign raw_page_description = page.excerpt | strip_html | strip_newlines %}
+    {% endif %}
+    {% if raw_page_description == nil or raw_page_description == '' %}
+      {% assign raw_page_description = page.content | strip_html | strip_newlines %}
+    {% endif %}
+    {% if raw_page_description == nil or raw_page_description == '' %}
+      {% assign raw_page_description = site.description %}
+    {% endif %}
+    {% assign page_description = raw_page_description | replace: '  ', ' ' | truncate: 180 %}
+    {% assign page_image = page.featured_image | default: page.image | default: site.default_social_image %}
+    {% if page_image contains '://' %}
+      {% assign page_image_url = page_image %}
+    {% else %}
+      {% assign page_image_url = page_image | absolute_url %}
+    {% endif %}
+    {% assign page_title = page.title | default: site.title %}
 
     {% if page.original_url %}
     <link rel="canonical" href="{{ page.original_url }}">
     {% endif %}
 
     {% seo %}
+
+    <meta name="description" content="{{ page_description }}">
+    <meta property="og:description" content="{{ page_description }}">
+    <meta property="og:image" content="{{ page_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="{{ page_image_url }}">
+    <meta name="twitter:description" content="{{ page_description }}">
 
     {% include critical-css.html %}
 
@@ -22,4 +47,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inconsolata:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": {{ site.author.name | jsonify }},
+      "url": {{ site.author.url | jsonify }},
+      "image": {{ site.author.photo | absolute_url | jsonify }},
+      "jobTitle": {{ site.author.role | jsonify }},
+      "homeLocation": {{ site.author.location | jsonify }},
+      "sameAs": {{ site.author.same_as | jsonify }}
+    }
+    </script>
+    {% if page.layout == 'post' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ page_title | jsonify }},
+      "description": {{ page_description | jsonify }},
+      "image": {{ page_image_url | jsonify }},
+      "datePublished": {{ page.date_published | default: page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: page.date_published | default: page.date | date_to_xmlschema | jsonify }},
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ page.url | absolute_url | jsonify }}
+      },
+      "author": {
+        "@type": "Person",
+        "name": {{ site.author.name | jsonify }},
+        "url": {{ site.author.url | jsonify }},
+        "sameAs": {{ site.author.same_as | jsonify }}
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": {{ site.author.name | jsonify }},
+        "url": {{ site.author.url | jsonify }}
+      },
+      "url": {{ page.url | absolute_url | jsonify }}
+    }
+    </script>
+    {% endif %}
 </head>

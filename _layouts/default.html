@@ -7,19 +7,20 @@ layout: compress
 {% include head.html %}
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
         <div class="header-wrapper">
             <a class="site-title" href="{{ "/" | relative_url }}">{{ site.author.name }}</a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">
                 <span class="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
             </button>
-            <nav class="site-nav">
+            <nav class="site-nav" id="primary-navigation" aria-label="Primary">
                 <a class="nav-link" href="{{ "/archive" | relative_url }}">Articles</a>
-                <a class="nav-link" href="https://bazlur.com/conference/" target="_blank" rel="noopener">Talks</a>
+                <a class="nav-link" href="{{ "/conference/" | relative_url }}">Talks</a>
                 <a class="nav-link" href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener">Book</a>
                 <a class="nav-link" href="{{ "/about" | relative_url }}">About</a>
                 <a class="nav-link" href="https://bazlur.substack.com/" target="_blank" rel="noopener">Newsletter</a>
@@ -32,7 +33,7 @@ layout: compress
         </div>
     </header>
 
-    <main class="page-content" aria-label="Content">
+    <main class="page-content" id="main-content" aria-label="Content">
         {{ content }}
     </main>
 
@@ -40,11 +41,16 @@ layout: compress
         <div class="footer-content">
             <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</p>
             <p>
-                <a href="{{ "/feed.xml" | relative_url }}">RSS</a> &bull;
-                <a href="https://github.com/rokon12">GitHub</a> &bull;
-                <a href="https://www.linkedin.com/in/bazlur/">LinkedIn</a> &bull;
-                <a href="https://bsky.app/profile/bazlur.ca">Bluesky</a> &bull;
-                <a href="https://x.com/{{ site.twitter.username }}">X</a>
+                <a href="{{ "/feed.xml" | relative_url }}" aria-label="Subscribe via RSS feed">RSS</a> &bull;
+                <a href="https://github.com/rokon12" aria-label="Follow A N M Bazlur Rahman on GitHub">GitHub</a> &bull;
+                <a href="https://www.linkedin.com/in/bazlur/" aria-label="Connect with A N M Bazlur Rahman on LinkedIn">LinkedIn</a> &bull;
+                <a href="https://bsky.app/profile/bazlur.ca" aria-label="Follow A N M Bazlur Rahman on Bluesky">Bluesky</a> &bull;
+                <a href="https://x.com/{{ site.twitter.username }}" aria-label="Follow A N M Bazlur Rahman on X, formerly Twitter">X</a>
+            </p>
+            <p>
+                <a href="https://bazlur.substack.com/" target="_blank" rel="noopener">Subscribe to the newsletter</a> &bull;
+                <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener">Buy the book</a> &bull;
+                <a href="{{ "/conference/" | relative_url }}">Talks</a>
             </p>
         </div>
     </footer>

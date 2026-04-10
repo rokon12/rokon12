@@ -7,21 +7,34 @@ layout: default
     <div class="hero-inner">
         <div class="hero-text">
             <div class="hero-card">
+                <div class="hero-intro">
+                    <div class="hero-avatar-badge" aria-hidden="true">ANM</div>
+                    <div class="hero-intro-copy">
+                        <span class="hero-intro-label">Based in {{ site.author.location }}</span>
+                        <span class="hero-intro-meta">O'Reilly Author &middot; International Speaker &middot; InfoQ Editor</span>
+                    </div>
+                </div>
                 <h1>A N M Bazlur Rahman</h1>
-                <p class="hero-credential">Sr. Staff Software Engineer &middot; Java Champion &middot; Published Author &middot; InfoQ Editor</p>
+                <p class="hero-credential">Sr. Staff Software Engineer &middot; Founder, JUGBD &middot; Building practical Java systems at scale</p>
                 <p class="hero-tagline">Deep dives into Java concurrency, virtual threads, and modern JVM development.</p>
                 <p class="hero-description">Helping teams master modern Java, concurrent programming, building LLM applications in Java, and JVM performance through deep-dive content and expert talks.</p>
                 <div class="hero-buttons">
                     <div class="hero-buttons-row">
                         <a href="{{ "/archive" | relative_url }}" class="btn-primary">Latest Deep Dive Articles</a>
-                        <a href="https://bazlur.com/conference/" target="_blank" rel="noopener" class="btn-secondary">Watch My Talks</a>
+                        <a href="{{ "/conference/" | relative_url }}" class="btn-secondary">Talks &amp; Conferences</a>
                     </div>
                     <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="btn-book">Order "Modern Concurrency in Java" on O'Reilly &rarr;</a>
                 </div>
             </div>
         </div>
-        <div class="hero-book">
-            <img src="/assets/img/book-cover.png" alt="Modern Concurrency in Java - O'Reilly" class="book-cover">
+        <div class="hero-visual">
+            <figure class="hero-portrait-card">
+                <img src="{{ site.author.photo | relative_url }}" alt="{{ site.author.photo_alt }}" class="hero-portrait" width="420" height="420">
+                <figcaption>Speaking at Copenhagen Developers Festival</figcaption>
+            </figure>
+            <div class="hero-book-card">
+                <img src="{{ "/assets/img/book-cover.png" | relative_url }}" alt="Modern Concurrency in Java - O'Reilly" class="book-cover">
+            </div>
         </div>
     </div>
 </section>
@@ -30,8 +43,13 @@ layout: default
 
     <!-- About Teaser -->
     <section class="home-section home-about">
-        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> About</h2>
-        <p>I'm a software engineer based in Toronto with over a decade of experience building systems in Java. In 2022, I was recognized as a <strong>Java Champion</strong>. I'm authoring <em>Modern Concurrency in Java</em> for O'Reilly Media, serve as editor for the Java Queue at InfoQ, and founded the <a href="https://jugbd.org/" target="_blank" rel="noopener">Java User Group in Bangladesh</a>.</p>
+        <h2 class="section-header"><span class="section-header-icon" aria-hidden="true">&#9670;</span> About</h2>
+        <p>I'm a software engineer based in Toronto with over a decade of experience building systems in Java. I wrote <em>Modern Concurrency in Java</em> for O'Reilly Media, serve as editor for the Java Queue at InfoQ, and founded the <a href="https://jugbd.org/" target="_blank" rel="noopener">Java User Group in Bangladesh</a>.</p>
+        <div class="home-about-highlights" aria-label="Key accomplishments">
+            <span class="home-about-pill">15+ years on the JVM</span>
+            <span class="home-about-pill">50+ talks worldwide</span>
+            <span class="home-about-pill">The Coding Cafe newsletter</span>
+        </div>
         <div class="home-more">
             <a href="{{ "/about" | relative_url }}">More about me &rarr;</a>
         </div>
@@ -39,20 +57,20 @@ layout: default
 
     <!-- Featured Work -->
     <section class="home-section">
-        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Featured Work</h2>
+        <h2 class="section-header"><span class="section-header-icon" aria-hidden="true">&#9670;</span> Featured Work</h2>
         <div class="featured-work">
             <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener" class="work-card">
-                <div class="work-card-icon">&#128214;</div>
+                <div class="work-card-icon" aria-hidden="true">&#128214;</div>
                 <h3>Modern Concurrency in Java</h3>
                 <p>A deep dive into Virtual Threads, Structured Concurrency, and modern JVM concurrency patterns. Published by O'Reilly Media.</p>
             </a>
-            <a href="https://bazlur.com/conference/" target="_blank" rel="noopener" class="work-card">
-                <div class="work-card-icon">&#127908;</div>
+            <a href="{{ "/conference/" | relative_url }}" class="work-card">
+                <div class="work-card-icon" aria-hidden="true">&#127908;</div>
                 <h3>Conference Talks</h3>
                 <p>Talks at DevNexus, Devoxx, ConFoo, GeeCON, JNation, and international Java conferences on concurrency, virtual threads, and AI.</p>
             </a>
             <a href="https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/" target="_blank" rel="noopener" class="work-card">
-                <div class="work-card-icon">&#9997;</div>
+                <div class="work-card-icon" aria-hidden="true">&#9997;</div>
                 <h3>InfoQ Articles</h3>
                 <p>Technical writing and editorial work as Java Queue editor at InfoQ.</p>
             </a>
@@ -61,20 +79,43 @@ layout: default
 
     <!-- Latest Articles -->
     <section class="home-section">
-        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Latest Articles</h2>
+        <h2 class="section-header"><span class="section-header-icon" aria-hidden="true">&#9670;</span> Latest Articles</h2>
         <div class="post-list">
             {% for post in site.posts limit:8 %}
+            {% assign post_tags_downcase = post.tags | join: '|' | downcase %}
+            {% assign topic_label = 'Java' %}
+            {% if post_tags_downcase contains 'langchain4j' or post_tags_downcase contains ' ai' or post_tags_downcase contains 'llm' %}
+                {% assign topic_label = 'AI / LLMs' %}
+            {% elsif post_tags_downcase contains 'concurrency' or post_tags_downcase contains 'thread' or post_tags_downcase contains 'virtual thread' or post_tags_downcase contains 'structured concurrency' %}
+                {% assign topic_label = 'Concurrency' %}
+            {% elsif post_tags_downcase contains 'jvm' or post_tags_downcase contains 'jfr' %}
+                {% assign topic_label = 'JVM' %}
+            {% endif %}
+            {% assign words = post.content | strip_html | number_of_words %}
+            {% assign minutes = words | plus: 179 | divided_by: 180 %}
+            {% assign post_description_text = post.description | strip_html | strip_newlines | replace: '  ', ' ' | strip %}
+            {% assign post_excerpt_text = post.excerpt | strip_html | strip_newlines | replace: '  ', ' ' | strip %}
+            {% assign post_content_text = post.content | strip_html | strip_newlines | replace: '  ', ' ' | strip %}
+            {% if post_description_text != '' %}
+                {% assign post_preview = post_description_text %}
+            {% elsif post_excerpt_text != '' %}
+                {% assign post_preview = post_excerpt_text %}
+            {% else %}
+                {% assign post_preview = post_content_text %}
+            {% endif %}
+            {% assign post_preview = post_preview | remove_first: post.title | strip %}
+            {% assign post_preview = post_preview | truncate: 150 %}
             <article class="post-list-item">
                 <div class="post-list-meta">
                     <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%b %-d, %Y" }}</time>
                 </div>
                 <div class="post-list-content">
+                    <div class="post-list-summary-meta">
+                        <span class="post-topic-pill">{{ topic_label }}</span>
+                        <span class="post-list-reading-time">{{ minutes }} min read</span>
+                    </div>
                     <a href="{{ post.url | relative_url }}" class="post-list-link">{{ post.title | escape }}</a>
-                    {% if post.tags and post.tags.size > 0 %}
-                    <span class="post-list-tags-inline">
-                        {% for tag in post.tags limit: 2 %}{{ tag }}{% unless forloop.last %} &middot; {% endunless %}{% endfor %}
-                    </span>
-                    {% endif %}
+                    <p class="post-list-excerpt">{{ post_preview }}</p>
                 </div>
             </article>
             {% endfor %}
@@ -84,22 +125,33 @@ layout: default
         </div>
     </section>
 
-    <!-- Popular Articles -->
+    <!-- Recommended Reading -->
     <section class="home-section">
-        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Popular Articles</h2>
+        <h2 class="section-header"><span class="section-header-icon" aria-hidden="true">&#9670;</span> Recommended Reading</h2>
         <div class="popular-grid">
-            {% assign popular_count = 0 %}
-            {% for post in site.posts %}
-                {% if popular_count < 6 %}
-                    {% if post.url contains 'virtual-thread' or post.url contains 'structured-concurrency' or post.url contains 'langchain4j' or post.url contains 'java-thread-programming-part-1' or post.url contains 'compact-strings' %}
-                    <a href="{{ post.url | relative_url }}" class="popular-card">
-                        <span class="popular-card-title">{{ post.title | escape }}</span>
-                        {% if post.tags and post.tags.size > 0 %}
-                        <span class="popular-card-tag">{{ post.tags | first }}</span>
-                        {% endif %}
-                    </a>
-                    {% assign popular_count = popular_count | plus: 1 %}
-                    {% endif %}
+            {% assign recommended_slugs = "compact-strings-reclaim-25-of-java-heap-memory-lower-your-cloud-bills|your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput|how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution|what-is-a-semaphore-and-when-to-use-it|chat-with-your-knowledge-base-a-handson-java-langchain4j-guide|building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot" | split: "|" %}
+            {% for slug in recommended_slugs %}
+                {% assign post = site.posts | where_exp: "candidate", "candidate.slug == slug" | first %}
+                {% if post %}
+                {% assign recommended_label = 'Java' %}
+                {% case slug %}
+                    {% when 'compact-strings-reclaim-25-of-java-heap-memory-lower-your-cloud-bills' %}
+                        {% assign recommended_label = 'JVM Performance' %}
+                    {% when 'your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput' %}
+                        {% assign recommended_label = 'Virtual Threads' %}
+                    {% when 'how-to-diagnose-and-mitigate-pinning-in-javas-virtual-thread-execution' %}
+                        {% assign recommended_label = 'Concurrency' %}
+                    {% when 'what-is-a-semaphore-and-when-to-use-it' %}
+                        {% assign recommended_label = 'Concurrency' %}
+                    {% when 'chat-with-your-knowledge-base-a-handson-java-langchain4j-guide' %}
+                        {% assign recommended_label = 'AI / LLMs' %}
+                    {% when 'building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot' %}
+                        {% assign recommended_label = 'AI / LLMs' %}
+                {% endcase %}
+                <a href="{{ post.url | relative_url }}" class="popular-card">
+                    <span class="popular-card-title">{{ post.title | escape }}</span>
+                    <span class="popular-card-tag">{{ recommended_label }}</span>
+                </a>
                 {% endif %}
             {% endfor %}
         </div>
@@ -107,26 +159,42 @@ layout: default
 
     <!-- Upcoming Talks -->
     <section class="home-section">
-        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Talks &amp; Speaking</h2>
+        <h2 class="section-header"><span class="section-header-icon" aria-hidden="true">&#9670;</span> Talks &amp; Speaking</h2>
         <div class="talks-list">
             {% for talk in site.data.speaking limit: 4 %}
             {% if talk.isUpcoming %}
             <div class="talk-item">
-                <div class="talk-title">{{ talk.talkTitle }}</div>
+                {% assign talk_link = talk.eventUrl %}
+                {% if talk.links and talk.links.size > 0 %}
+                    {% assign talk_link = talk.links[0].url %}
+                {% endif %}
+                {% if talk.name == 'JNation 2026' and talk_link == 'https://jnation.pt/sessions/' %}
+                    {% assign talk_link = 'https://jnation.pt/' %}
+                {% endif %}
+                <div class="talk-title">
+                    <a href="{{ talk_link }}" target="_blank" rel="noopener">{{ talk.talkTitle }}</a>
+                </div>
                 <div class="talk-meta">{{ talk.name }} &middot; {{ talk.location }}</div>
             </div>
             {% endif %}
             {% endfor %}
         </div>
         <div class="home-more">
-            <a href="https://bazlur.com/conference/" target="_blank" rel="noopener">All talks &rarr;</a>
+            <a href="{{ "/conference/" | relative_url }}">All talks &rarr;</a>
         </div>
     </section>
 
     <!-- Newsletter -->
     <section class="home-section home-newsletter">
-        <h2 class="section-header"><span class="section-header-icon">&#9670;</span> Newsletter &mdash; The Coding Caf&eacute;</h2>
+        <h2 class="section-header"><span class="section-header-icon" aria-hidden="true">&#9670;</span> Newsletter &mdash; The Coding Caf&eacute;</h2>
         <p class="newsletter-pitch">A deep-dive newsletter on modern Java, concurrency, and building AI-powered systems. New issue every other week.</p>
+        <div class="newsletter-embed">
+            <iframe
+                src="https://bazlur.substack.com/embed"
+                class="newsletter-embed-frame"
+                title="Subscribe to The Coding Cafe newsletter"
+                loading="lazy"></iframe>
+        </div>
         {% if site.data.substack and site.data.substack.size > 0 %}
         <p class="newsletter-label">Recent issues:</p>
         <ul class="newsletter-recent">
