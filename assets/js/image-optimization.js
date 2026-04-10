@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Add lazy loading to all images
     const images = document.querySelectorAll('img');
+    const leadContentImage = document.querySelector('.post-content img');
     
     // Create Intersection Observer for lazy loading
     const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -42,8 +43,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Observe all images
     images.forEach(img => {
+        const isLeadContentImage = leadContentImage && img === leadContentImage;
+
+        if (isLeadContentImage || img.getAttribute('loading') === 'eager' || img.classList.contains('load-eager')) {
+            img.setAttribute('loading', 'eager');
+            img.fetchPriority = 'high';
+            img.decoding = 'async';
+            img.classList.add('loaded');
+            return;
+        }
+
         // Add loading="lazy" attribute for native lazy loading
-        img.setAttribute('loading', 'lazy');
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
         
         // Add blur placeholder effect
         if (!img.classList.contains('no-blur')) {

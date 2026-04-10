@@ -4,6 +4,8 @@ CSS: _sass/_share-buttons.scss
 JS:  assets/js/share.js
 {% endcomment %}
 
+{% assign share_text = page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 100 | escape %}
+
 <div class="share-buttons">
   <h3 class="share-title">Share this article</h3>
 
@@ -66,7 +68,7 @@ JS:  assets/js/share.js
   </div>
 
   <button class="share-button share-native"
-          onclick="nativeShare('{{ page.title | escape }}', '{{ page.excerpt | strip_html | truncate: 100 | escape }}', '{{ page.url | absolute_url }}')"
+          onclick="nativeShare('{{ page.title | escape }}', '{{ share_text }}', '{{ page.url | absolute_url }}')"
           aria-label="Share">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
       <circle cx="18" cy="5" r="3"></circle>

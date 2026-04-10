@@ -19,7 +19,7 @@ description: "About A N M Bazlur Rahman, Java Champion, O'Reilly author, interna
   </div>
   <figure class="about-hero-media">
     <img src="{{ site.author.photo | relative_url }}" alt="{{ site.author.photo_alt }}" class="about-headshot" width="640" height="640">
-    <figcaption>On stage at Copenhagen Developers Festival.</figcaption>
+    <figcaption>On stage at Montreal Developer Conference 2026 | ConFoo.ca</figcaption>
   </figure>
 </section>
 

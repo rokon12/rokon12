@@ -138,6 +138,28 @@
     });
   }
 
+  function initExternalPostLinks() {
+    var content = document.querySelector('.post-content');
+    if (!content) return;
+
+    content.querySelectorAll('a[href]').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) {
+        return;
+      }
+
+      try {
+        var url = new URL(href, window.location.origin);
+        if (url.origin !== window.location.origin) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      } catch (error) {
+        // Ignore malformed URLs in content.
+      }
+    });
+  }
+
   // Lazy loading fallback
   function initLazyLoading() {
     if ('loading' in HTMLImageElement.prototype) {
@@ -162,5 +184,6 @@
     initBackToTop();
     initReadingProgress();
     initHeadingAnchors();
+    initExternalPostLinks();
   });
 })();

@@ -3,7 +3,21 @@
   Falls back to recent posts if no tags match.
 {% endcomment %}
 
-{% if page.tags and page.tags.size > 0 %}
+{% if page.related_links and page.related_links.size > 0 %}
+  <div class="related-posts-section">
+    <h3 class="related-posts-header">{{ page.related_links_title | default: "Related Links" }}</h3>
+    <ul class="related-posts-list">
+      {% for link in page.related_links %}
+        <li>
+          <a href="{{ link.url }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a>
+          {% if link.meta %}
+            <time>{{ link.meta }}</time>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% elsif page.tags and page.tags.size > 0 %}
   {% assign related_posts = site.posts | where_exp: "post", "post.url != page.url" %}
   {% assign scored_posts = "" | split: "" %}
   {% assign max_posts_to_check = 30 %}

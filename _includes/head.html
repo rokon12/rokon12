@@ -21,10 +21,6 @@
     {% endif %}
     {% assign page_title = page.title | default: site.title %}
 
-    {% if page.original_url %}
-    <link rel="canonical" href="{{ page.original_url }}">
-    {% endif %}
-
     {% seo %}
 
     <meta name="description" content="{{ page_description }}">

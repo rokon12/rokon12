@@ -45,18 +45,23 @@ layout: default
                 {% if page.previous.url %}
                     <a class="prev" href="{{ page.previous.url | relative_url }}">
                         <span class="post-nav-label">&larr; Previous</span>
-                        <strong>{{ page.previous.title | truncate: 50 }}</strong>
+                        <strong>{{ page.previous.title }}</strong>
                     </a>
                 {% endif %}
+                <a class="post-nav-all" href="{{ '/archive' | relative_url }}">
+                    <span class="post-nav-label">&larr; All Articles</span>
+                    <strong>Browse the full archive</strong>
+                </a>
                 {% if page.next.url %}
                     <a class="next" href="{{ page.next.url | relative_url }}">
                         <span class="post-nav-label">Next &rarr;</span>
-                        <strong>{{ page.next.title | truncate: 50 }}</strong>
+                        <strong>{{ page.next.title }}</strong>
                     </a>
                 {% endif %}
             </div>
         </footer>
 
+        {% include share-buttons.html %}
         {% include related-posts.html %}
     </div>
 </article>
