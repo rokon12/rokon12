@@ -4525,10 +4525,11 @@ h4:hover .heading-anchor {
 }
 
 .book-cover {
-  max-width: 320px;
+  display: block;
   width: 100%;
+  max-width: 320px;
   height: auto;
-  border-radius: 6px;
+  border-radius: 18px;
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.1),
     0 8px 16px rgba(0, 0, 0, 0.06);
@@ -5150,28 +5151,98 @@ h4:hover .heading-anchor {
 
 .hero-book-card {
   display: grid;
-  justify-items: center;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+  align-items: start;
+  gap: 1.25rem;
+  padding: 1.25rem;
 }
 
 .hero-book-link {
   display: inline-block;
+  width: 100%;
+  max-width: 150px;
+  align-self: start;
   border-radius: 18px;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 18px 40px rgba(15, 27, 45, 0.14);
 
   &:hover {
     transform: translateY(-2px);
+    box-shadow: 0 24px 52px rgba(15, 27, 45, 0.18);
   }
 }
 
-.book-cover {
-  max-width: min(100%, 250px);
+.hero-book-content {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.hero-book-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $primary-color;
+}
+
+.hero-book-title {
+  margin: 0;
+  font-family: $font-serif;
+  font-size: clamp(1.45rem, calc(1.2rem + 0.8vw), 2rem);
+  line-height: 1.08;
+  color: $bg-dark;
+}
+
+.hero-book-copy {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.65;
+  color: $text-color;
+}
+
+.hero-book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.hero-book-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: rgba($primary-color, 0.08);
+  color: $primary-dark;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .hero-book-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .hero-book-link {
+    justify-self: center;
+  }
+
+  .hero-book-content {
+    justify-items: center;
+  }
+
+  .hero-book-cta {
+    justify-self: center;
+  }
 }
 
 .hero-book-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  justify-self: start;
   padding: 0.75rem 1rem;
   border-radius: 999px;
   border: 1px solid rgba($primary-color, 0.18);
