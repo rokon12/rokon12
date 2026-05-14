@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 533 Tightens Exception Handling in Java's Structured Concurrency for JDK 27 (2026-05-13)
+JEP 533, Structured Concurrency, has reached integrated status for JDK 27. It refines exception handling and type safety in its API, particularly focusing on exception flow with a new ExecutionException type. Changes include an updated Joiner interface and a new open overload for easier configuration. The steady evolution signals ongoing development as feedback shapes the API....
+[Read further^](https://www.infoq.com//news/2026/05/jep-533-jdk-27)
+
+
 ### Java Explores Carrier Classes to Extend Data-Oriented Programming beyond Records (2026-02-04)
 The OpenJDK Amber project has published a new design note proposing &ldquo;carrier classes&rdquo; and &ldquo;carrier interfaces&rdquo; to extend record-style data modeling to more Java types. The proposal preserves concise state descriptions, derived methods, and pattern matching, while relaxing structural constraints that limit records....
 [Read further^](https://www.infoq.com//news/2026/02/java-beyond-records)
@@ -89,11 +94,6 @@ JEP 502 introduces the Stable Values API in JDK 25, enhancing application startu
 [Read further^](https://www.infoq.com//news/2025/06/java25-stable-values-api-startup)
 
 
-### Spring AI 1.0 Released, Streamlines AI Application Development with Broad Model Support (2025-05-20)
-Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creation of AI-driven applications in Java. Seamlessly integrate with top AI models for chat, image generation, and more. With portable abstractions and support for Retrieval Augmented Generation, developers can build scalable, production-ready solutions while adhering to Spring standards....
-[Read further^](https://www.infoq.com//news/2025/05/spring-ai-1-0-streamlines-apps)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creat
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Wed, 13 May 2026 05:35:43 GMT*
+*This page was last updated on Thu, 14 May 2026 05:34:59 GMT*
