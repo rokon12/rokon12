@@ -1,5 +1,23 @@
 
-[
+[ {
+    "name": "JavaZone 2026",
+    "date": "2026",
+    "location": "NOVA Spektrum, Lillestrøm",
+    "locationIcon": "🇳🇴",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "AI Can't Debug This: A Virtual Thread Migration Workshop",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://2026.javazone.no/speaker/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://2026.javazone.no/speaker/",
+        "text": "Details"
+      }
+    ]
+  },
   {
     "name": "JNation 2026",
     "date": "2026",
@@ -9,7 +27,7 @@
     "type": "talk",
     "talkTitle": "Architecting Intelligent Enterprise Systems: From Scratch",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://jnation.pt/sessions/",
     "links": [
       {
@@ -25,7 +43,7 @@
     "location": "Coimbra, Portugal",
     "locationIcon": "🇵🇹",
     "role": "Speaker",
-    "type": "talk",
+    "type": "false",
     "talkTitle": "Old Dog, New Tricks: The Java 25 Reinvention",
     "talkIcon": "🎤",
     "isUpcoming": true,
