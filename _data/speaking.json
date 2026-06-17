@@ -43,10 +43,10 @@
     "location": "Coimbra, Portugal",
     "locationIcon": "🇵🇹",
     "role": "Speaker",
-    "type": "false",
+    "type": "talk",
     "talkTitle": "Old Dog, New Tricks: The Java 25 Reinvention",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://jnation.pt/sessions/",
     "links": [
       {
