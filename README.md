@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### Eliya 25 Brings a JVM-Level Diagnostic Profile to OpenJDK 25 LTS (2026-06-29)
+Asymm Systems has released Eliya 25.0.3, an OpenJDK 25 LTS distribution aimed at improving production diagnostics in Java environments. It consolidates several HotSpot features into an opt-in Production profile. Eliya is designed for teams needing reliable diagnostic data, especially in regulated settings. Future enhancements are planned for Phase 2....
+[Read further^](https://www.infoq.com//news/2026/06/eliya-jvm-diagnostic-profile)
+
+
 ### JEP 533 Tightens Exception Handling in Java's Structured Concurrency for JDK 27 (2026-05-13)
 JEP 533, Structured Concurrency, has reached integrated status for JDK 27. It refines exception handling and type safety in its API, particularly focusing on exception flow with a new ExecutionException type. Changes include an updated Joiner interface and a new open overload for easier configuration. The steady evolution signals ongoing development as feedback shapes the API....
 [Read further^](https://www.infoq.com//news/2026/05/jep-533-jdk-27)
@@ -89,11 +94,6 @@ Introducing the Embabel Agent Framework, a pioneering platform developed by Spri
 [Read further^](https://www.infoq.com//news/2025/06/introducing-embabel-ai-agent)
 
 
-### Java 25 Introduces Stable Values API for Deferred Immutability and Improved Application Startup (2025-06-02)
-JEP 502 introduces the Stable Values API in JDK 25, enhancing application startup performance by allowing deferred immutability. This feature enables thread-safe, at-most-once initialization of complex objects, combining the best of final fields with lazy initialization. It empowers developers to improve efficiency and reduce initialization pitfalls while leveraging JVM optimizations....
-[Read further^](https://www.infoq.com//news/2025/06/java25-stable-values-api-startup)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ JEP 502 introduces the Stable Values API in JDK 25, enhancing application startu
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 29 Jun 2026 06:23:56 GMT*
+*This page was last updated on Tue, 30 Jun 2026 05:56:38 GMT*
