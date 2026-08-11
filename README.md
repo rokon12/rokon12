@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### Project Valhalla's First Preview: JEP 401 Redefines == for Java Objects (2026-08-10)
+JEP 401, integrated into JDK 28, introduces value objects. These new class instances feature final fields, altered behavior for equality checks, and stricter construction and synchronization rules. It aims to enhance efficiency and reduce memory allocation costs. However, the preview is disabled by default and requires specific configuration at compile and run time....
+[Read further^](https://www.infoq.com//news/2026/08/jep401-value-objects-preview)
+
+
 ### Eliya 25 Brings a JVM-Level Diagnostic Profile to OpenJDK 25 LTS (2026-06-29)
 Asymm Systems has released Eliya 25.0.3, an OpenJDK 25 LTS distribution aimed at improving production diagnostics in Java environments. It consolidates several HotSpot features into an opt-in Production profile. Eliya is designed for teams needing reliable diagnostic data, especially in regulated settings. Future enhancements are planned for Phase 2....
 [Read further^](https://www.infoq.com//news/2026/06/eliya-jvm-diagnostic-profile)
@@ -89,11 +94,6 @@ Java 25 introduces Compact Object Headers (JEP 519), delivering up to 30% CPU sa
 [Read further^](https://www.infoq.com//news/2025/06/java-25-compact-object-headers)
 
 
-### Introducing Embabel: Advanced AI Agent Development for Java Applications (2025-06-05)
-Introducing the Embabel Agent Framework, a pioneering platform developed by Spring founder Rod Johnson, designed to revolutionize AI applications on the JVM. By integrating structured agent development and Goal-Oriented Action Planning, Embabel combines strong typing with dynamic planning, ensuring reliable, adaptable, and type-safe solutions for enterprise Java applications....
-[Read further^](https://www.infoq.com//news/2025/06/introducing-embabel-ai-agent)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ Introducing the Embabel Agent Framework, a pioneering platform developed by Spri
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 10 Aug 2026 03:30:35 GMT*
+*This page was last updated on Tue, 11 Aug 2026 03:23:19 GMT*
