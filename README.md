@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 540 Proposed to Target JDK 28 with a Simple JSON API (2026-08-17)
+JEP 540, Simple JSON API, has progressed to Target status for JDK 28. It introduces a compact API for parsing and generating JSON documents without external dependencies. Focused on core tasks, it provides an immutable value hierarchy. The API allows simple traversal and conversion while enforcing strict syntax rules. Feedback during incubation will shape its future development....
+[Read further^](https://www.infoq.com//news/2026/08/java-native-json-api)
+
+
 ### Project Valhalla's First Preview: JEP 401 Redefines == for Java Objects (2026-08-10)
 JEP 401, integrated into JDK 28, introduces value objects. These new class instances feature final fields, altered behavior for equality checks, and stricter construction and synchronization rules. It aims to enhance efficiency and reduce memory allocation costs. However, the preview is disabled by default and requires specific configuration at compile and run time....
 [Read further^](https://www.infoq.com//news/2026/08/jep401-value-objects-preview)
@@ -89,11 +94,6 @@ The University of Manchester's Beehive Lab has released GPULlama3.java, marking 
 [Read further^](https://www.infoq.com//news/2025/06/gpullama3-java-gpu-llm)
 
 
-### Java 25 Integrates Compact Object Headers with JEP 519 (2025-06-17)
-Java 25 introduces Compact Object Headers (JEP 519), delivering up to 30% CPU savings and reduced memory usage for applications with small objects. This user-friendly feature compresses object headers from 12 bytes to 8, requiring only a JVM flag to activate. Extensively validated by Amazon, it enhances performance, reduces GC pressure, and is ideal for modern cloud deployments....
-[Read further^](https://www.infoq.com//news/2025/06/java-25-compact-object-headers)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ Java 25 introduces Compact Object Headers (JEP 519), delivering up to 30% CPU sa
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 17 Aug 2026 02:47:05 GMT*
+*This page was last updated on Tue, 18 Aug 2026 02:42:23 GMT*
