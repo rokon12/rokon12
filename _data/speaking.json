@@ -1,5 +1,25 @@
 
 [ {
+    "name": "MCP Dev Summit Toronto 2026",
+    "date": "2026",
+    "location": "Toronto, Canada",
+    "locationIcon": "🇨🇦",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "The Wrong Reasons to Build an MCP Server",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://events.linuxfoundation.org/mcp-dev-summit-toronto/program/schedule-at-a-glance/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://events.linuxfoundation.org/mcp-dev-summit-toronto/",
+        "text": "Details"
+      }
+    ]
+  },
+     
+    {
     "name": "JavaZone 2026",
     "date": "2026",
     "location": "NOVA Spektrum, Lillestrøm",
