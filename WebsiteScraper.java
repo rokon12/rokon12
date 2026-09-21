@@ -22,6 +22,7 @@ import java.util.HashSet;
 
 public class WebsiteScraper {
     private static final String WEBSITE_URL = "https://bazlur.ca";
+    private static final String WORDPRESS_API_URL = "https://public-api.wordpress.com/wp/v2/sites/bazlur.ca/posts";
     private static final String OUTPUT_DIR = "_posts";
     private static final String RECORD_FILE = "record.json";
     private static final String PROGRESS_FILE = "scraper_progress.json";
@@ -33,7 +34,9 @@ public class WebsiteScraper {
     private static final int CONNECTION_TIMEOUT_MS = 120000; // 120 second
     private static final int MAX_FETCH_ATTEMPTS = 3;
     private static final long FETCH_RETRY_DELAY_MS = 2000;
+    private static final int WORDPRESS_API_PAGE_SIZE = 100;
     private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36";
+    private static final Map<String, Long> wordpressPostIds = new HashMap<>();
 
     private static class Progress {
         @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.CLASS)
@@ -170,16 +173,11 @@ public class WebsiteScraper {
         System.out.println("[" + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "] " + message);
     }
 
-    private static Document fetchDocument(String url, boolean bypassCache) throws IOException {
+    private static Document fetchDocument(String url) throws IOException {
         IOException lastError = null;
         for (int attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt++) {
-            String requestUrl = url;
-            if (bypassCache) {
-                requestUrl += (url.contains("?") ? "&" : "?") + "scraper_ts=" + System.currentTimeMillis();
-            }
-
             try {
-                return Jsoup.connect(requestUrl)
+                return Jsoup.connect(url)
                     .userAgent(USER_AGENT)
                     .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
                     .header("Cache-Control", "no-cache, no-store, max-age=0")
@@ -196,6 +194,133 @@ public class WebsiteScraper {
         }
 
         throw new IOException("Failed to fetch " + url + " after " + MAX_FETCH_ATTEMPTS + " attempts", lastError);
+    }
+
+    private static String fetchJson(String url) throws IOException {
+        IOException lastError = null;
+        for (int attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt++) {
+            try {
+                return Jsoup.connect(url)
+                    .userAgent(USER_AGENT)
+                    .header("Accept", "application/json")
+                    .header("Cache-Control", "no-cache")
+                    .ignoreContentType(true)
+                    .timeout(CONNECTION_TIMEOUT_MS)
+                    .execute()
+                    .body();
+            } catch (IOException e) {
+                lastError = e;
+                if (attempt < MAX_FETCH_ATTEMPTS) {
+                    log("API fetch attempt " + attempt + " failed for " + url + ": " + e.getMessage());
+                    sleep(FETCH_RETRY_DELAY_MS * attempt);
+                }
+            }
+        }
+
+        throw new IOException("Failed to fetch " + url + " after " + MAX_FETCH_ATTEMPTS + " attempts", lastError);
+    }
+
+    private static Document fetchWordPressIndex() throws IOException {
+        Document indexDocument = Jsoup.parse("<main></main>", WEBSITE_URL);
+        Element main = indexDocument.selectFirst("main");
+        int page = 1;
+
+        while (true) {
+            String apiUrl = WORDPRESS_API_URL + "?per_page=" + WORDPRESS_API_PAGE_SIZE
+                + "&page=" + page + "&_fields=id,link,title";
+            JsonNode posts = objectMapper.readTree(fetchJson(apiUrl));
+            if (!posts.isArray()) {
+                throw new IOException("WordPress API returned an unexpected response for page " + page);
+            }
+
+            for (JsonNode post : posts) {
+                long id = post.path("id").asLong(-1);
+                String link = post.path("link").asText();
+                String title = post.path("title").path("rendered").asText();
+                if (id < 0 || link.isEmpty() || title.isEmpty()) {
+                    continue;
+                }
+
+                wordpressPostIds.put(link, id);
+                Element article = main.appendElement("article");
+                article.appendElement("h2")
+                    .addClass("entry-title")
+                    .appendElement("a")
+                    .attr("href", link)
+                    .html(title);
+            }
+
+            if (posts.size() < WORDPRESS_API_PAGE_SIZE) {
+                break;
+            }
+            page++;
+        }
+
+        if (wordpressPostIds.isEmpty()) {
+            throw new IOException("WordPress API returned no posts");
+        }
+
+        log("Loaded " + wordpressPostIds.size() + " posts from the WordPress API");
+        return indexDocument;
+    }
+
+    private static Document fetchArticleDocument(String url) throws IOException {
+        Long postId = wordpressPostIds.get(url);
+        if (postId == null) {
+            return fetchDocument(url);
+        }
+
+        String apiUrl = WORDPRESS_API_URL + "/" + postId
+            + "?_embed=wp:term"
+            + "&_fields=id,link,title,date_gmt,content,jetpack_featured_media_url,_embedded,_links";
+        JsonNode post = objectMapper.readTree(fetchJson(apiUrl));
+        String title = post.path("title").path("rendered").asText();
+        String contentHtml = post.path("content").path("rendered").asText();
+        String publishDate = post.path("date_gmt").asText();
+        if (title.isEmpty() || contentHtml.isEmpty() || publishDate.isEmpty()) {
+            throw new IOException("WordPress API returned incomplete data for " + url);
+        }
+
+        Document articleDocument = Jsoup.parse("", url);
+        articleDocument.head().appendElement("meta")
+            .attr("property", "article:published_time")
+            .attr("content", publishDate + "Z");
+
+        Element article = articleDocument.body().appendElement("article");
+        Element header = article.appendElement("header").addClass("entry-header");
+        header.appendElement("h1").addClass("entry-title").html(title);
+        header.appendElement("time")
+            .addClass("entry-date published")
+            .attr("datetime", publishDate + "Z");
+
+        String featuredImage = post.path("jetpack_featured_media_url").asText();
+        if (!featuredImage.isEmpty()) {
+            article.appendElement("div")
+                .addClass("post-image")
+                .appendElement("img")
+                .attr("src", featuredImage);
+        }
+
+        article.appendElement("div").addClass("entry-content").html(contentHtml);
+
+        Element tagContainer = article.appendElement("footer")
+            .addClass("entry-meta")
+            .appendElement("span")
+            .addClass("tags-links");
+        JsonNode termGroups = post.path("_embedded").path("wp:term");
+        if (termGroups.isArray()) {
+            for (JsonNode termGroup : termGroups) {
+                for (JsonNode term : termGroup) {
+                    if ("post_tag".equals(term.path("taxonomy").asText())) {
+                        tagContainer.appendElement("a")
+                            .attr("href", term.path("link").asText())
+                            .text(term.path("name").asText());
+                    }
+                }
+            }
+        }
+
+        return articleDocument;
     }
 
     public static void main(String... args) {
@@ -223,14 +348,16 @@ public class WebsiteScraper {
                 log(String.format("Processing page %d/%d: %s", progress.currentPage, progress.totalPages, currentUrl));
                 sleep(REQUEST_DELAY_MS); // Rate limiting
                 Document doc;
-                try {
-                    doc = fetchDocument(currentUrl, WEBSITE_URL.equals(currentUrl));
-                } catch (IOException e) {
-                    if (WEBSITE_URL.equals(currentUrl)) {
-                        throw e;
+                if (WEBSITE_URL.equals(currentUrl)) {
+                    doc = fetchWordPressIndex();
+                    progress.pagesToProcess.removeIf(url -> url.contains("/page/"));
+                } else {
+                    try {
+                        doc = fetchDocument(currentUrl);
+                    } catch (IOException e) {
+                        log("Warning: Failed to fetch page " + currentUrl + ": " + e.getMessage());
+                        continue;
                     }
-                    log("Warning: Failed to fetch page " + currentUrl + ": " + e.getMessage());
-                    continue;
                 }
                 progress.processedUrls.add(currentUrl);
 
@@ -275,7 +402,7 @@ public class WebsiteScraper {
 
                         // Fetch full article content
                         sleep(REQUEST_DELAY_MS); // Rate limiting
-                        Document articleDoc = fetchDocument(url, false);
+                        Document articleDoc = fetchArticleDocument(url);
 
                         Element content = articleDoc.select("article").first();
                         if (content == null) {
