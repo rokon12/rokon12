@@ -31,6 +31,8 @@ public class WebsiteScraper {
     private static final FlexmarkHtmlConverter htmlToMarkdownConverter = FlexmarkHtmlConverter.builder().build();
     private static final int REQUEST_DELAY_MS = 1000; // Reduced delay for testing
     private static final int CONNECTION_TIMEOUT_MS = 120000; // 120 second
+    private static final int MAX_FETCH_ATTEMPTS = 3;
+    private static final long FETCH_RETRY_DELAY_MS = 2000;
     private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36";
 
     private static class Progress {
@@ -168,6 +170,34 @@ public class WebsiteScraper {
         System.out.println("[" + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "] " + message);
     }
 
+    private static Document fetchDocument(String url, boolean bypassCache) throws IOException {
+        IOException lastError = null;
+        for (int attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt++) {
+            String requestUrl = url;
+            if (bypassCache) {
+                requestUrl += (url.contains("?") ? "&" : "?") + "scraper_ts=" + System.currentTimeMillis();
+            }
+
+            try {
+                return Jsoup.connect(requestUrl)
+                    .userAgent(USER_AGENT)
+                    .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+                    .header("Cache-Control", "no-cache, no-store, max-age=0")
+                    .header("Pragma", "no-cache")
+                    .timeout(CONNECTION_TIMEOUT_MS)
+                    .get();
+            } catch (IOException e) {
+                lastError = e;
+                if (attempt < MAX_FETCH_ATTEMPTS) {
+                    log("Fetch attempt " + attempt + " failed for " + url + ": " + e.getMessage());
+                    sleep(FETCH_RETRY_DELAY_MS * attempt);
+                }
+            }
+        }
+
+        throw new IOException("Failed to fetch " + url + " after " + MAX_FETCH_ATTEMPTS + " attempts", lastError);
+    }
+
     public static void main(String... args) {
         try {
             log("Starting website content backup process");
@@ -194,11 +224,11 @@ public class WebsiteScraper {
                 sleep(REQUEST_DELAY_MS); // Rate limiting
                 Document doc;
                 try {
-                    doc = Jsoup.connect(currentUrl)
-                                  .userAgent(USER_AGENT)
-                                  .timeout(CONNECTION_TIMEOUT_MS)
-                                  .get();
+                    doc = fetchDocument(currentUrl, WEBSITE_URL.equals(currentUrl));
                 } catch (IOException e) {
+                    if (WEBSITE_URL.equals(currentUrl)) {
+                        throw e;
+                    }
                     log("Warning: Failed to fetch page " + currentUrl + ": " + e.getMessage());
                     continue;
                 }
@@ -227,7 +257,7 @@ public class WebsiteScraper {
                 for (Element article : articles) {
                     try {
                         Element titleElement = article.select("h1, h2").first();
-                        Element linkElement = article.select("a").first();
+                        Element linkElement = article.select("h1 a[href], h2 a[href]").first();
 
                         if (titleElement == null || linkElement == null) {
                             log("Warning: Skipping article due to missing title or link");
@@ -245,16 +275,18 @@ public class WebsiteScraper {
 
                         // Fetch full article content
                         sleep(REQUEST_DELAY_MS); // Rate limiting
-                        Document articleDoc = Jsoup.connect(url)
-                                                .userAgent(USER_AGENT)
-                                                .timeout(CONNECTION_TIMEOUT_MS)
-                                                .get();
+                        Document articleDoc = fetchDocument(url, false);
 
                         Element content = articleDoc.select("article").first();
                         if (content == null) {
                             log("Warning: Could not find article content for: " + title);
                             continue;
                         }
+
+                        Elements publicationDateElements = articleDoc.select(
+                            "meta[property='article:published_time'], meta[name='publish_date'], " +
+                            "meta[name='date'], article time.entry-date[datetime]");
+                        Elements articleTagLinks = content.select(".tags-links a[href*='/tag/']");
 
                         // Remove sharing, related content, and subscription section
                         content.select(".sharedaddy, .jp-relatedposts, .entry-meta, .entry-footer").remove();
@@ -374,7 +406,7 @@ public class WebsiteScraper {
                         String fileDate = null;
                         
                         // Try different date selectors
-                        Elements dateElements = content.select("time[datetime], .entry-date, .published, .post-date, meta[property='article:published_time']");
+                        Elements dateElements = publicationDateElements;
                         if (!dateElements.isEmpty()) {
                             publishDate = dateElements.first().attr("datetime");
                             if (publishDate == null || publishDate.isEmpty()) {
@@ -387,7 +419,7 @@ public class WebsiteScraper {
                         
                         // Also check the whole document for date meta tags
                         if (publishDate == null || publishDate.isEmpty()) {
-                            Elements metaDates = doc.select("meta[property='article:published_time'], meta[name='publish_date'], meta[name='date']");
+                            Elements metaDates = articleDoc.select("meta[property='article:published_time'], meta[name='publish_date'], meta[name='date']");
                             if (!metaDates.isEmpty()) {
                                 publishDate = metaDates.first().attr("content");
                             }
@@ -439,8 +471,7 @@ public class WebsiteScraper {
 
                         // Extract tags
                         List<String> tags = new ArrayList<>();
-                        Elements tagLinks = doc.select("a[href*='/tag/']");
-                        for (Element tagLink : tagLinks) {
+                        for (Element tagLink : articleTagLinks) {
                             String tagHref = tagLink.attr("href");
                             if (tagHref.contains("/tag/")) {
                                 String tag = tagHref.substring(tagHref.lastIndexOf("/tag/") + 5);
@@ -488,7 +519,7 @@ public class WebsiteScraper {
                             return;
                         }
                     } catch (Exception e) {
-                        log("Error processing article: " + e.getMessage());
+                        throw new IOException("Failed to process a new article from " + currentUrl, e);
                     }
                 }
             }
