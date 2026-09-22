@@ -6,6 +6,7 @@ date_published: '2023-06-12T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:12.202987'
 featured_image: '/images/chris.png'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
+categories: ["Career & Community"]
 ---
 
 ![](/images/chris.png)

@@ -6,6 +6,7 @@ date_published: '2022-04-12T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:30.971923'
 featured_image: '/images/top-10-java-language-features-1.png'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+categories: ["Java"]
 ---
 
 ![](/images/top-10-java-language-features-1.png)

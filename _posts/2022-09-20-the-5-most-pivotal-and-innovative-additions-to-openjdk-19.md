@@ -6,6 +6,7 @@ date_published: '2022-09-20T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:00.637146'
 featured_image: '/images/cafe-g56e2bcea6-1920.jpg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+categories: ["Java"]
 ---
 
 ![](/images/cafe-g56e2bcea6-1920.jpg)

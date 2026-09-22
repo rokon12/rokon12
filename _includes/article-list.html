@@ -2,8 +2,9 @@
     {% assign article_limit = include.limit | default: 999 %}
     {% for post in include.posts limit: article_limit %}
     {% assign published = post.date_published | default: post.date %}
-    <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+    {% assign primary_topic = post.categories | first | default: 'Other' %}
+    <li data-topic="{{ primary_topic | slugify }}" data-series="{{ post.series | escape }}"{% if post.series %} data-series-title="{{ site.data.series[post.series].title | escape }}"{% endif %}>
+        <a class="article-list-link" href="{{ post.url | relative_url }}"><span class="article-list-title">{{ post.title | escape }}</span> <span class="entry-meta">{{ primary_topic | escape }} · {% include reading-time.html post=post compact=true %}</span></a>
         <time datetime="{{ published | date_to_xmlschema }}">{{ published | date: '%b %-d' }}</time>
     </li>
     {% endfor %}

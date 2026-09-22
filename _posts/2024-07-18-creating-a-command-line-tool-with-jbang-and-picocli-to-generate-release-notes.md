@@ -6,6 +6,7 @@ date_published: '2024-07-18T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:13.942636'
 featured_image: '/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp'
 tags: [java programming, java 11, java 21, java cli, java code]
+categories: ["Tools"]
 ---
 
 ![](/images/dall-e-2024-07-18-21.31.00-a-clean-and-simple-illustration-featuring-a-command-line-interface-with-java-code-on-the-screen.-the-background-shows-small-minimalist-logos-of-jbang.webp)

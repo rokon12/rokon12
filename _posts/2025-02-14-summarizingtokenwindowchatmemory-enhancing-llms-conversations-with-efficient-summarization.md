@@ -6,6 +6,7 @@ date_published: '2025-02-14T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:08.175246'
 featured_image: '/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
+categories: ["AI & LLMs"]
 ---
 
 ![](/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg)

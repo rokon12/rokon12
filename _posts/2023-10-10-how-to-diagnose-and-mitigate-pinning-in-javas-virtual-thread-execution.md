@@ -6,6 +6,7 @@ date_published: '2023-10-10T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:25.498402'
 featured_image: '/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
+categories: ["Concurrency"]
 ---
 
 ![](/images/dall-e-2023-10-11-04.52.12-photo-of-a-virtual-thread-being-anchored-or-attached-to-its-carrier-thread-visualizing-the-concept-of-pinning.png)

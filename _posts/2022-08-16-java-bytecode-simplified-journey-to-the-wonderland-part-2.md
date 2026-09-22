@@ -6,6 +6,8 @@ date_published: '2022-08-16T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:03.567519'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+categories: ["JVM & Performance"]
+series: java-bytecode
 ---
 
 ![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)

@@ -1,0 +1,29 @@
+---
+layout: default
+title: Interviews
+permalink: /interviews/
+description: Conversations with A N M Bazlur Rahman about Modern Concurrency in Java, the Java ecosystem, and building AI-powered applications.
+---
+<div class="listing-page interviews-page">
+    <header class="page-head">
+        <h1>Interviews</h1>
+        <p>Author media and interview highlights: conversations about <em>Modern Concurrency in Java</em>, the Java ecosystem, and where AI fits in.</p>
+    </header>
+    <section class="interview-list" aria-label="Interview highlights">
+        {% for interview in site.data.interviews %}
+        <article class="interview" aria-labelledby="interview-{{ interview.youtube | escape }}">
+            <span class="interview-label">{{ interview.year }}<br>{{ interview.kind | escape }}</span>
+            <div class="interview-body">
+                <h2 id="interview-{{ interview.youtube | escape }}">{{ interview.title | escape }}</h2>
+                <span class="entry-meta">{{ interview.meta | escape }}</span>
+                <a class="interview-video" href="https://www.youtube.com/watch?v={{ interview.youtube | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Watch {{ interview.title | escape }} on YouTube (opens in a new tab)">
+                    <img src="https://i.ytimg.com/vi/{{ interview.youtube | escape }}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                    <span class="interview-watch">Watch on YouTube</span>
+                </a>
+                <p>{{ interview.summary | escape }}</p>
+                <a class="interview-more" href="https://www.youtube.com/watch?v={{ interview.youtube | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Watch the full conversation: {{ interview.title | escape }} (opens in a new tab)">Watch the full conversation →</a>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+</div>

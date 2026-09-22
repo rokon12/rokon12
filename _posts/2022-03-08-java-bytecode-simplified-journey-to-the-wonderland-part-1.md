@@ -6,6 +6,8 @@ date_published: '2022-03-08T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:40.016326'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+categories: ["JVM & Performance"]
+series: java-bytecode
 ---
 
 ![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)

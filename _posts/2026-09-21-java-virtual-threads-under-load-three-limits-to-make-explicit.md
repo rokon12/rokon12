@@ -51,7 +51,7 @@ Send a burst of 100 requests. First, accept everything. Then, repeat with an adm
 
 First, accept every request. Save as **UnboundedAdmission.java**:
 
-```
+```java
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -84,13 +84,13 @@ void main() throws Exception {
 
 Run it:
 
-```
+```bash
 java UnboundedAdmission.java
 ```
 
 Every request waits until a connection becomes available. Now add an admission semaphore so excess requests are rejected immediately. Save as **BoundedAdmission.java**:
 
-```
+```java
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -130,7 +130,7 @@ void main() throws Exception {
 
 Run it:
 
-```
+```bash
 java BoundedAdmission.java
 ```
 
@@ -154,7 +154,7 @@ Now use forty tasks. Each waits 80 ms and increments a shared completion counter
 
 First, put both the wait and the counter update inside the lock. Save as **WideLock.java**:
 
-```
+```java
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -186,13 +186,13 @@ void main() throws Exception {
 
 Run it:
 
-```
+```bash
 java WideLock.java
 ```
 
 Now move the wait outside the lock, keeping the counter update protected. Save as **NarrowLock.java**:
 
-```
+```java
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -224,7 +224,7 @@ void main() throws Exception {
 
 Run it:
 
-```
+```bash
 java NarrowLock.java
 ```
 
@@ -244,7 +244,7 @@ On JDK 25, synchronized is perfectly suitable for this demonstration, as JDK 24 
 
 Use one task that takes 1,800 ms. Its caller is willing to wait only 200 ms. First, let the caller time out without cancelling the task. Save as **TimeoutOnly.java**:
 
-```
+```java
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.*;
@@ -274,13 +274,13 @@ void main() throws Exception {
 
 Run it:
 
-```
+```bash
 java TimeoutOnly.java
 ```
 
 Now add task.cancel(true) to the timeout handler. Save as **TimeoutWithCancellation.java**:
 
-```
+```java
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.*;
@@ -311,7 +311,7 @@ void main() throws Exception {
 
 Run it:
 
-```
+```bash
 java TimeoutWithCancellation.java
 ```
 
@@ -335,7 +335,7 @@ But what if we could invert this control?
 
 With JDK's preview StructuredTaskScope API, we can tie the lifetime of the threads to the lexical scope itself, making cancellation an automatic architectural guarantee rather than manual boilerplate:
 
-```
+```java
 try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
     Subtask<String> task = scope.fork(() -> {
         Thread.sleep(Duration.ofMillis(1_800));

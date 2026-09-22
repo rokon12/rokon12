@@ -14,8 +14,8 @@
   white-space: nowrap;
   border: 0;
 }
-.home-intro { padding: 96px 0 64px; }
-.home-intro h1 { margin: 0 0 20px; font-size: 27px; line-height: 1.45; font-weight: 400; }
+.home-intro { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 24px; padding: 96px 0 56px; }
+.home-intro .book-row { grid-column: 2; }
 .book-row {
   display: flex;
   align-items: center;
@@ -24,10 +24,10 @@
   border-bottom: 1px solid var(--line);
   padding: 16px 0;
 }
-.book-row img { width: 40px; height: 52px; object-fit: cover; flex: none; }
+.book-row img { width: 40px; height: 52px; object-fit: cover; flex: none; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); }
 .book-copy { flex: 1; min-width: 0; }
-.book-copy strong { display: block; font-size: 18px; line-height: 1.4; font-weight: 500; }
-.book-copy small { display: block; margin-top: 3px; color: var(--ink3); font: 12px/1.6 var(--mono); }
+.book-copy strong { display: block; font-size: 19px; line-height: 1.2; font-weight: 500; }
+.book-copy small { display: block; margin-top: 2px; color: var(--ink3); font: 12px/1.3 var(--mono); }
 .book-action { white-space: nowrap; color: var(--link); font: 12px var(--mono); }
 .index-section { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 24px; margin: 0 0 40px; }
 .section-label { display: block; margin: 3px 0 0; color: var(--ink3); font: 400 12px/1.6 var(--mono); }
@@ -35,6 +35,13 @@
 .article-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-bottom: 14px; }
 .article-list li:last-child { margin-bottom: 0; }
 .article-list a, .talk-title { font-size: 20px; line-height: 1.4; }
+.article-list-link { display: flex; flex-direction: column; gap: 2px; }
+.article-list-title { text-wrap: pretty; }
+.editorial-page .article-list-link:hover { text-decoration: none; }
+.article-list-link:hover .article-list-title { text-decoration: underline; text-underline-offset: .18em; }
+.home-writing .article-list-title { font-size: 21px; line-height: 1.35; }
+.home-writing .article-list li { margin-bottom: 16px; }
+.home-writing .article-list li:last-child { margin-bottom: 0; }
 .article-list a, .talk-title, .search-results h2 { min-width: 0; overflow-wrap: anywhere; }
 .article-list time { flex: none; color: var(--ink3); font: 12px/1.6 var(--mono); white-space: nowrap; }
 .text-link, .page-links, .text-button { color: var(--link); font: 12px/1.6 var(--mono); }
@@ -44,10 +51,14 @@
 .talk-list li { display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
 .talk-list li:last-child { margin-bottom: 0; }
 .entry-meta { color: var(--ink3); font: 12px/1.65 var(--mono); }
+.home-writing .entry-meta { line-height: 1.3; }
 .entry-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 3px; color: var(--link); font: 12px/1.6 var(--mono); }
 .section-more { display: inline-block; margin-top: 24px; }
 .newsletter p { margin: 0 0 20px; font-size: 20px; line-height: 1.5; }
-.newsletter form { display: flex; gap: 16px; align-items: stretch; }
+.newsletter-issues { margin: 0 0 20px; padding: 0; list-style: none; }
+.newsletter-issues li + li { margin-top: 8px; }
+.newsletter-issues a { color: var(--ink2); font-size: 19px; line-height: 1.4; }
+.newsletter form { display: flex; gap: 12px; align-items: stretch; max-width: 420px; border-bottom: 1px solid var(--ink); }
 .newsletter input, .search-input {
   min-width: 0;
   box-sizing: border-box;
@@ -59,12 +70,19 @@
   color: var(--ink);
   font: 13px/1.6 var(--mono);
 }
-.newsletter input { flex: 1; width: 100%; }
+.newsletter input { flex: 1; width: 100%; border-bottom: 0; font: 18px/1.5 var(--serif); }
 .newsletter input::placeholder, .search-input::placeholder { color: var(--ink3); opacity: 1; }
 .newsletter button, .text-button { padding: 8px 0; border: 0; background: none; color: var(--link); cursor: pointer; font: 12px/1.6 var(--mono); }
 .newsletter button { white-space: nowrap; }
 input:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
 .newsletter-read { display: inline-block; margin-top: 16px; }
+.home-media { padding: 48px 0 56px; }
+.media-list { margin: 0; padding: 0; list-style: none; }
+.media-list li { display: flex; flex-direction: column; gap: 2px; }
+.media-list li + li { margin-top: 16px; }
+.media-list li > a { font-size: 21px; line-height: 1.35; text-wrap: pretty; }
+.home-media .entry-meta { line-height: 1.3; }
+.home-media .section-more { margin-top: 16px; }
 .listing-page, .standard-page { padding: 88px 0 64px; }
 .page-head { margin: 0 0 56px; }
 .page-head h1 { margin: 0 0 20px; font-size: 36px; line-height: 1.15; font-weight: 500; letter-spacing: -.015em; overflow-wrap: anywhere; }
@@ -111,16 +129,48 @@ input:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
 .search-results mark { background: transparent; color: inherit; text-decoration: underline; text-decoration-color: var(--link); text-underline-offset: .14em; }
 .search-filter { margin: 24px 0 0; color: var(--ink2); font-size: 19px; }
 .search-filter a { margin-left: 12px; }
+.archive-filters { margin-bottom: 40px; }
+.archive-filters .section-label { margin-top: 9px; }
+.topic-filters { display: flex; flex-wrap: wrap; gap: 2px 20px; }
+.topic-filters button {
+  min-height: 36px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink3);
+  cursor: pointer;
+  font: 13px/1.7 var(--mono);
+  text-align: left;
+}
+.topic-filters button:hover { color: var(--link); }
+.topic-filters button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+.archive-series-filter { margin: 16px 0 0; color: var(--ink2); font: 12px/1.7 var(--mono); }
+.archive-series-filter a, .archive-empty a { color: var(--link); }
+.archive-page [data-archive-year] { border-top: 1px solid var(--line); padding-top: 22px; }
+.archive-empty { font-size: 21px; line-height: 1.5; }
+.interviews-page { padding-bottom: 80px; }
+.interviews-page .page-head p { text-wrap: pretty; }
+.interview-list { display: flex; flex-direction: column; }
+.interview { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 24px; border-top: 1px solid var(--line); padding: 40px 0; }
+.interview-label { padding-top: 6px; color: var(--ink3); font: 13px/1.7 var(--mono); }
+.interview-body { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.interview h2 { margin: 0; font-size: 26px; line-height: 1.25; font-weight: 500; letter-spacing: -.01em; text-wrap: balance; }
+.interview .entry-meta { line-height: normal; }
+.interview-video { display: block; position: relative; aspect-ratio: 16 / 9; background: var(--code); overflow: hidden; }
+.interview-video img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); opacity: .9; }
+.interview-watch { position: absolute; left: 14px; bottom: 12px; padding: 6px 10px; color: #fff; background: rgba(17, 17, 17, .85); font: 12px var(--mono); }
+.interview p { margin: 0; color: var(--ink2); font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+.interview-more { align-self: flex-start; color: var(--link); font: 13px/1.6 var(--mono); }
 [hidden] { display: none !important; }
 @media (max-width: 560px) {
-  .home-intro { padding: 64px 0 48px; }
-  .home-intro h1 { font-size: 25px; }
+  .home-intro { grid-template-columns: minmax(0, 1fr); padding: 48px 0 40px; }
+  .home-intro .book-row { grid-column: 1; }
   .book-row { flex-wrap: wrap; gap: 12px; }
   .book-copy { flex-basis: calc(100% - 52px); }
   .book-action { margin-left: 52px; }
   .index-section { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .index-more > span { display: none; }
-  .article-list li { gap: 12px; }
+  .article-list li { flex-direction: column; gap: 4px; }
   .article-list a, .talk-title { font-size: 20px; }
   .article-list time { font-size: 11px; }
   .listing-page, .standard-page, .about-page { padding-top: 64px; }
@@ -128,7 +178,10 @@ input:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
   .page-head h1 { font-size: 34px; }
   .about-photo { margin-bottom: 36px; }
   .topic-list { grid-template-columns: minmax(0, 1fr); }
-  .newsletter form { flex-wrap: wrap; gap: 8px; }
-  .newsletter input { flex-basis: 100%; }
+  .newsletter form { gap: 8px; }
   .newsletter button { padding: 12px 0; }
+  .topic-filters { gap: 0 20px; }
+  .topic-filters button { min-height: 44px; }
+  .archive-filters .section-label { margin-top: 0; }
+  .interview { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }

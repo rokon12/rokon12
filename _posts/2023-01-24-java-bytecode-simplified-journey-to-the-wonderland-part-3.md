@@ -5,6 +5,8 @@ original_url: 'https://bazlur.ca/2023/01/24/java-bytecode-simplified-journey-to-
 date_published: '2023-01-24T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:53.436775'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
+categories: ["JVM & Performance"]
+series: java-bytecode
 ---
 
 Java Bytecode Simplified: Journey to the Wonderland (Part 3)

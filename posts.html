@@ -1,20 +1,36 @@
 ---
 layout: default
-title: Articles
+title: Archive
 permalink: /archive/
 description: Articles on Java concurrency, JVM internals, software engineering, and AI in Java.
 ---
-<div class="listing-page">
+{% assign oldest_post = site.posts | last %}
+{% assign archive_topics = site.posts | group_by_exp: 'post', "post.categories | first | default: 'Other'" | sort: 'name' %}
+<div class="listing-page archive-page" id="article-archive" data-start-year="{{ oldest_post.date | date: '%Y' }}">
     <header class="page-head">
-        <h1>Articles</h1>
-        <p>Notes on Java, concurrency, the JVM, and the craft of building software.</p>
-        <nav class="page-links" aria-label="Browse articles"><a href="{{ '/search/' | relative_url }}">Search</a><a href="{{ '/tags/' | relative_url }}">Browse by topic</a><a href="{{ '/feed.xml' | relative_url }}">RSS</a></nav>
+        <h1>Archive</h1>
+        <p><span id="archive-status" role="status" aria-live="polite" aria-atomic="true">{{ site.posts.size }} articles since {{ oldest_post.date | date: '%Y' }}.</span> Filter by topic, or <a href="{{ '/search/' | relative_url }}">search</a>.</p>
     </header>
+    <div class="index-section archive-filters" id="archive-filters" hidden>
+        <h2 class="section-label" id="archive-topic-label">Topic</h2>
+        <div>
+            <div class="topic-filters" role="group" aria-labelledby="archive-topic-label">
+                <button type="button" data-filter="" aria-pressed="true" aria-controls="archive-years">All</button>
+                {% for topic in archive_topics %}<button type="button" data-filter="{{ topic.name | slugify }}" aria-pressed="false" aria-controls="archive-years">{{ topic.name | escape }}</button>{% endfor %}
+            </div>
+            <p class="archive-series-filter" id="archive-series-filter" hidden></p>
+        </div>
+    </div>
+    <div id="archive-years">
     {% assign by_year = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
     {% for year in by_year %}
-    <section class="index-section">
+    <section class="index-section" data-archive-year>
         <h2 class="section-label" id="year-{{ year.name }}">{{ year.name }}</h2>
         {% include article-list.html posts=year.items %}
     </section>
     {% endfor %}
+    </div>
+    <p class="archive-empty" id="archive-empty" hidden>No articles match these filters. <a href="{{ '/archive/' | relative_url }}">Show all articles</a>.</p>
+    <noscript><p class="search-help">All articles are listed here by year. Enable JavaScript to filter them by topic.</p></noscript>
 </div>
+<script defer src="{{ '/assets/js/archive.js' | relative_url }}"></script>

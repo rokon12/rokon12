@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2025/04/06/building-formpilot-my-journey-creati
 date_published: '2025-04-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:01.007487'
 featured_image: '/images/chatgpt-image-apr-6-2025-06-10-38-pm.png'
+categories: ["AI & LLMs"]
 ---
 
 ![](/images/chatgpt-image-apr-6-2025-06-10-38-pm.png)

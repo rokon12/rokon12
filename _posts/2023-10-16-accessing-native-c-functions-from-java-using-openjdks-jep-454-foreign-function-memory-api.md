@@ -6,6 +6,7 @@ date_published: '2023-10-16T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:24.058783'
 featured_image: '/images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
+categories: ["JVM & Performance"]
 ---
 
 ![](/images/dall-e-2023-10-16-19.12.28-illustration-of-a-venn-diagram.-the-left-circle-represents-java-with-its-coffee-cup-logo-and-some-code-samples.-the-right-circle-represents-c-with-its.png)

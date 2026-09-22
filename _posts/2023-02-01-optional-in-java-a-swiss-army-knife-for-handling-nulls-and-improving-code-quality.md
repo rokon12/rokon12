@@ -6,6 +6,7 @@ date_published: '2023-02-01T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:51.355615'
 featured_image: '/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
+categories: ["Java"]
 ---
 
 ![](/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)

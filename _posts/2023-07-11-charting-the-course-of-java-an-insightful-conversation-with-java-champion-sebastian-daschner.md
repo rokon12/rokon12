@@ -6,6 +6,7 @@ date_published: '2023-07-11T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:57.533796'
 featured_image: '/images/sebastian-daschner.png'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
+categories: ["Career & Community"]
 ---
 
 ![](/images/sebastian-daschner.png)

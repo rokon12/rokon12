@@ -27,6 +27,7 @@ related_links:
     url: 'https://bazlur.substack.com/p/ai-output-gets-better-when-your-workflow'
     meta: 'Part 3'
     external: true
+categories: ["AI & LLMs"]
 ---
 
 <img src="/images/gemini-generated-image-o0rbuio0rbuio0rb-scaled.jpg"

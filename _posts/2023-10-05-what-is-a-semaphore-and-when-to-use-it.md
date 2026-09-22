@@ -6,6 +6,7 @@ date_published: '2023-10-05T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:26.968058'
 featured_image: '/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg'
 tags: [java concurrency, semaphore, virtual threads, thread programming, synchronization]
+categories: ["Concurrency"]
 ---
 
 ![](/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg)

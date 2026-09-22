@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2025/12/14/when-does-javas-foreign-function-mem
 date_published: '2025-12-14T00:00:00+00:00'
 date_scraped: '2025-12-16T00:44:18.812480691'
 featured_image: '/images/gemini-generated-image-rhmn5srhmn5srhmn-scaled.png'
+categories: ["JVM & Performance"]
 ---
 
 ![](/images/gemini-generated-image-rhmn5srhmn5srhmn-scaled.png)

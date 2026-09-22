@@ -6,6 +6,7 @@ date_published: '2024-06-01T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:16.845679'
 featured_image: '/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp'
 tags: [java programming, java 11, java 21, java cli, java code]
+categories: ["Java"]
 ---
 
 ![](/images/dall-e-2024-06-01-05.25.07-a-detailed-and-accurate-image-of-the-java-duke-mascot.-duke-is-a-triangular-character-with-a-white-body-black-arms-and-legs-and-a-red-nose.-the-ima.webp)

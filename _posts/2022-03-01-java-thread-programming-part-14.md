@@ -6,6 +6,8 @@ date_published: '2022-03-01T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:41.485821'
 featured_image: '/images/screen-shot-2022-02-26-at-10.05.20-am-493x510.png'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+categories: ["Concurrency"]
+series: java-thread-programming
 ---
 
 Java Thread Programming (Part 14)

@@ -6,6 +6,7 @@ date_published: '2022-06-08T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:16.820171'
 featured_image: '/images/jc-program-logo.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
+categories: ["Career & Community"]
 ---
 
 ![](/images/jc-program-logo.png)

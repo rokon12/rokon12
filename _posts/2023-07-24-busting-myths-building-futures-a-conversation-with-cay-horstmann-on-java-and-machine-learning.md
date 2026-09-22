@@ -6,6 +6,7 @@ date_published: '2023-07-24T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:54.548957'
 featured_image: '/images/simon-martinelli-1.png'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
+categories: ["Career & Community"]
 ---
 
 ![](/images/simon-martinelli-1.png)

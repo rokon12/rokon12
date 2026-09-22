@@ -6,6 +6,7 @@ date_published: '2023-05-15T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:23.772793'
 featured_image: '/images/michael-redlich.jpg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
+categories: ["Career & Community"]
 ---
 
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich

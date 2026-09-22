@@ -1,9 +1,11 @@
 <header class="article-header">
     <a class="article-brand" href="{{ '/' | relative_url }}">Bazlur Rahman</a>
     <nav aria-label="Primary">
-        <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}>Articles</a>
+        <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}>Archive</a>
         <a href="{{ '/conference/' | relative_url }}"{% if page.url == '/conference/' %} aria-current="page"{% endif %}>Talks</a>
+        <a href="{{ '/interviews/' | relative_url }}"{% if page.url == '/interviews/' %} aria-current="page"{% endif %}>Interviews</a>
         <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+        <a href="{{ '/search/' | relative_url }}"{% if page.url == '/search/' %} aria-current="page"{% endif %}>Search</a>
         <button class="theme-toggle" type="button" aria-label="Switch to dark theme">Dark</button>
     </nav>
 </header>

@@ -6,6 +6,8 @@ date_published: '2022-05-25T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:18.245527'
 featured_image: '/images/monolith-to-microservice.jpeg'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
+categories: ["Java"]
+series: monolith-to-microservices
 ---
 
 ![](/images/monolith-to-microservice.jpeg)

@@ -5,6 +5,8 @@ original_url: 'https://bazlur.ca/2021/11/23/java-thread-programming-part-7/'
 date_published: '2021-11-23T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:56.452773'
 tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
+categories: ["Concurrency"]
+series: java-thread-programming
 ---
 
 Java Thread Programming (Part 7)

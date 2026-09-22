@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2022/04/06/three-mistakes-junior-software-devel
 date_published: '2022-04-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:32.413795'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+categories: ["Career & Community"]
 ---
 
 Three Mistakes Junior Software Developers Make Preventing Getting Hired On Amazing Projects

@@ -6,6 +6,8 @@ date_published: '2021-10-12T00:00:00+00:00'
 date_scraped: '2025-08-05T22:26:06.21811'
 featured_image: '/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png'
 tags: [java threads, multithreading, socket programming, web server, concurrent programming]
+categories: ["Concurrency"]
+series: java-thread-programming
 ---
 
 ![](/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png)

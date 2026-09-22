@@ -6,6 +6,7 @@ date_published: '2023-03-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:46.931941'
 featured_image: '/images/img-20230202-wa0000.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
+categories: ["Personal"]
 ---
 
 ![](/images/img-20230202-wa0000.jpg)

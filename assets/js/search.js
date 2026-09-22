@@ -13,7 +13,7 @@
     articles = JSON.parse(document.getElementById('search-data').textContent).map(article => ({
       ...article,
       tags: article.tags || [],
-      text: (article.title + ' ' + (article.tags || []).join(' ') + ' ' + article.content).toLowerCase()
+      text: (article.title + ' ' + (article.categories || []).join(' ') + ' ' + (article.tags || []).join(' ') + ' ' + article.content).toLowerCase()
     }));
   } catch (error) {
     status.textContent = 'Search could not load. Please use the article archive or reload this page.';

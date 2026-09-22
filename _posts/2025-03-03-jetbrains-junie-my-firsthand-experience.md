@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2025/03/03/jetbrains-junie-my-firsthand-experie
 date_published: '2025-03-03T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:03.872096'
 featured_image: '/images/gemini-generated-image-aczqicaczqicaczq.jpeg'
+categories: ["AI & LLMs"]
 ---
 
 ![](/images/gemini-generated-image-aczqicaczqicaczq.jpeg)

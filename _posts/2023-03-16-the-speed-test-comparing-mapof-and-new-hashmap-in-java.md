@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2023/03/16/speed-test-comparing-map-of-new-hash
 date_published: '2023-03-16T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:42.605213'
 tags: [java collections, performance optimization, immutable collections, hashmap, benchmarking]
+categories: ["JVM & Performance"]
 ---
 
 The Speed Test: Comparing Map.of() and new HashMap\<\>() in Java

@@ -1,11 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
   normalizePostContentHeading();
   initializeArticleOpening();
+  initializeReadingProgress();
   initializeDesktopTocOffset();
   initializeDesktopTocBoundary();
   initializePostToc();
   initializeCodeCopyButtons();
 });
+
+function initializeReadingProgress() {
+  var progress = document.querySelector('.reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!progress || !content) return;
+  var pending = false;
+  function update() {
+    pending = false;
+    var end = content.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+    var fraction = Math.min(1, Math.max(0, window.scrollY / Math.max(1, end)));
+    progress.style.transform = 'scaleX(' + fraction + ')';
+  }
+  function schedule() {
+    if (!pending) { pending = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  if (window.ResizeObserver) new ResizeObserver(schedule).observe(content);
+  update();
+}
 
 function initializeArticleOpening() {
   if (!document.body.classList.contains('article-page')) return;

@@ -6,6 +6,7 @@ date_published: '2023-05-23T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:19.425751'
 featured_image: '/images/erik.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
+categories: ["Career & Community"]
 ---
 
 ![](/images/erik.jpeg)

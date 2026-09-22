@@ -5,6 +5,8 @@ original_url: 'https://bazlur.ca/2021/12/14/java-thread-programming-part-9/'
 date_published: '2021-12-14T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:52.564575'
 tags: [java threads, synchronized collections, thread safety, concurrent collections, atomic operations]
+categories: ["Concurrency"]
+series: java-thread-programming
 ---
 
 Java Thread Programming (Part 9)

@@ -6,6 +6,7 @@ date_published: '2025-01-07T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:09.617954'
 featured_image: '/images/img-2263-effects-scaled.jpg'
 tags: [java programming, java 11, java 21, java cli, java code]
+categories: ["Personal"]
 ---
 
 ![](/images/img-2263-effects-scaled.jpg)

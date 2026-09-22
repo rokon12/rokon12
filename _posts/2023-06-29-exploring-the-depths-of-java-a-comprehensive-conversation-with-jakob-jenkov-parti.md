@@ -6,6 +6,7 @@ date_published: '2023-06-29T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:04.964847'
 featured_image: '/images/jekov.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
+categories: ["Career & Community"]
 ---
 
 Exploring the Depths of Java: A Comprehensive Conversation with Jakob Jenkov, Part-I

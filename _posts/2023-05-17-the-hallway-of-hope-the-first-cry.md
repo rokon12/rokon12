@@ -6,6 +6,7 @@ date_published: '2023-05-17T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:20.879399'
 featured_image: '/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
+categories: ["Personal"]
 ---
 
 ![](/images/f9d50b3a-8f19-4104-9cd7-66f4776bb71f.jpeg)

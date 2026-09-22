@@ -1,6 +1,7 @@
 
 [ {
     "name": "MCP Dev Summit Toronto 2026",
+    "featured": true,
     "date": "2026",
     "location": "Toronto, Canada",
     "locationIcon": "🇨🇦",
@@ -40,6 +41,7 @@
   },
   {
     "name": "Tamilnadu JUG — Faculty Enablement Series on Modern Java",
+    "featured": true,
     "date": "2026",
     "eventDate": "2026-09-19",
     "role": "Speaker",
@@ -973,4 +975,3 @@
     "links": []
   }
 ]
-

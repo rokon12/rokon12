@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2026/01/04/structured-concurrency-in-java-26-ap
 date_published: '2026-01-04T00:00:00+00:00'
 date_scraped: '2026-01-05T00:50:56.967329881'
 featured_image: '/images/chatgpt-image-jan-4-2026-08-08-50-am.png'
+categories: ["Concurrency"]
 ---
 
 ![](/images/chatgpt-image-jan-4-2026-08-08-50-am.png)

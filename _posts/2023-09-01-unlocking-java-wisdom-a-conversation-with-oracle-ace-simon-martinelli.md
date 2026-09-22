@@ -6,6 +6,7 @@ date_published: '2023-09-01T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:39.371144'
 featured_image: '/images/simon-martinelli.png'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
+categories: ["Career & Community"]
 ---
 
 ![](/images/simon-martinelli.png)

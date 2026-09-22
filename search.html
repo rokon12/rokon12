@@ -31,9 +31,10 @@ description: Search the article archive by title, topic, or phrase.
     "date": {{ published | date: '%B %-d, %Y' | jsonify }},
     "datetime": {{ published | date_to_xmlschema | jsonify }},
     "tags": {{ post.tags | jsonify }},
+    "categories": {{ post.categories | jsonify }},
     "content": {{ post.content | markdownify | strip_html | normalize_whitespace | jsonify }}
 }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]{% endcapture %}
 <script type="application/json" id="search-data">{{ search_json | replace: '<', '\u003c' }}</script>
-<script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/search.js' | relative_url }}?v=2"></script>

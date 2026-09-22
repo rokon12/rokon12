@@ -6,6 +6,7 @@ date_published: '2022-05-10T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:24.019358'
 featured_image: '/images/idea-overview-5-1-2x.webp'
 tags: [incubator modules, structured concurrency, virtual threads, java tooling, project loom]
+categories: ["Tools"]
 ---
 
 ![](/images/idea-overview-5-1-2x.webp)

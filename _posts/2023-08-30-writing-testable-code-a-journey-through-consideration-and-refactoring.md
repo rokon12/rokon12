@@ -6,6 +6,7 @@ date_published: '2023-08-30T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:42.232527'
 featured_image: '/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg'
 tags: [testing best practices, junit 5, test driven development, refactoring, code quality]
+categories: ["Java"]
 ---
 
 ![](/images/8a588ade-2fff-41d7-9407-1b10f524271d.jpeg)

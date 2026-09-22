@@ -6,6 +6,7 @@ date_published: '2023-08-17T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:46.744527'
 featured_image: '/images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
+categories: ["Java"]
 ---
 
 ![](/images/cd03deb1-489d-4867-9b5b-2ffde99a3e20.jpeg)

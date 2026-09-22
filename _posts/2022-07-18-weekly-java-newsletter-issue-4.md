@@ -6,6 +6,7 @@ date_published: '2022-07-18T13:42:49Z'
 date_scraped: '2026-09-21T21:43:05.128328448'
 featured_image: '/images/java-newsletters-1.png'
 tags: [concurrency, java, newsletter, project loom, structured concurrency, virtual thread]
+categories: ["Java"]
 ---
 
 Weekly Java Newsletter -- Issue #4

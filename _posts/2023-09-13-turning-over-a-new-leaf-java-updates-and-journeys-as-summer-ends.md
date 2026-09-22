@@ -6,6 +6,7 @@ date_published: '2023-09-13T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:36.500762'
 featured_image: '/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
+categories: ["Career & Community"]
 ---
 
 ![](/images/4c0e8e25-b0da-401c-9fa9-125711f1490e.png)

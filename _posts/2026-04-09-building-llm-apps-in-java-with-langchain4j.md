@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2026/04/09/building-llm-apps-in-java-with-langc
 date_published: '2026-04-09T00:00:00+00:00'
 date_scraped: '2026-04-10T01:08:23.311229146'
 featured_image: '/images/americas-bazlur-rahman-1-scaled.jpg'
+categories: ["AI & LLMs"]
 ---
 
 ![](/images/americas-bazlur-rahman-1-scaled.jpg)

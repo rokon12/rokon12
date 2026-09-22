@@ -6,6 +6,7 @@ date_published: '2023-03-12T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:45.47413'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
+categories: ["Career & Community"]
 ---
 
 ![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)

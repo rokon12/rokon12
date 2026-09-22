@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2023/01/11/why-many-developers-dont-write-or-gi
 date_published: '2023-01-11T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:56.353769'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+categories: ["Career & Community"]
 ---
 
 Why Many Developers Don't Write or Give Talks and How to Overcome Challenges

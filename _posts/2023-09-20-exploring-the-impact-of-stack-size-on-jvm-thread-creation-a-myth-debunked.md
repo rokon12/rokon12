@@ -6,6 +6,7 @@ date_published: '2023-09-20T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:35.066921'
 featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
+categories: ["JVM & Performance"]
 ---
 
 ![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)

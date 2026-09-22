@@ -6,6 +6,7 @@ date_published: '2024-09-11T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:12.502018'
 featured_image: '/images/53987206804-87983e572b-k-1.jpg'
 tags: [java programming, java 11, java 21, java cli, java code]
+categories: ["Personal"]
 ---
 
 ![](/images/53987206804-87983e572b-k-1.jpg)

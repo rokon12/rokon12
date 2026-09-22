@@ -6,6 +6,8 @@ date_published: '2021-11-02T00:00:00+00:00'
 date_scraped: '2025-08-05T22:26:01.372883'
 featured_image: '/images/threading-432x510.png'
 tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
+categories: ["Concurrency"]
+series: java-thread-programming
 ---
 
 Java Thread Programming (Part 5)

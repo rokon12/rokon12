@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2025/05/25/speaking-at-geecon-2025-krakow-exper
 date_published: '2025-05-25T00:00:00+00:00'
 date_scraped: '2025-08-05T22:22:51.601159'
 featured_image: '/images/dscf8739-scaled.jpg'
+categories: ["Career & Community"]
 ---
 
 ![](/images/dscf8739-scaled.jpg)

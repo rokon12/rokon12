@@ -6,6 +6,7 @@ date_published: '2022-05-08T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:26.515257'
 featured_image: '/images/idea-overview-5-1-2x.webp'
 tags: [intellij idea, preview features, virtual threads, project loom, java tooling]
+categories: ["Tools"]
 ---
 
 ![](/images/idea-overview-5-1-2x.webp)

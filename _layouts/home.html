@@ -22,19 +22,19 @@ layout: default
 </div>
 {% else %}
 <section class="home-intro" aria-label="Introduction">
-    <h1>I'm a software engineer in Toronto. I write about Java concurrency, JVM internals, and building LLM applications on the JVM. Java Champion, Oracle ACE Pro, editor of the Java Queue at InfoQ, founder of JUGBD.</h1>
+    <h1 class="visually-hidden">Articles and talks by A N M Bazlur Rahman</h1>
     <a class="book-row" href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/">
         <img src="{{ '/assets/img/book-cover-small.jpg' | relative_url }}" alt="" width="40" height="52">
-        <span class="book-copy"><strong>Modern Concurrency in Java</strong><small>O'Reilly Media · Virtual threads, structured concurrency, and beyond</small></span>
+        <span class="book-copy"><strong><em>Modern Concurrency in Java</em></strong><small>O'Reilly Media · Virtual threads, structured concurrency, scoped values</small></span>
         <span class="book-action">Read →</span>
     </a>
 </section>
 <section class="year-list home-writing" aria-label="Recent articles">
     {% assign by_year = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
-    {% for year in by_year limit: 3 %}
+    {% for year in by_year limit: 2 %}
     <section class="index-section">
         <h2 class="section-label">{{ year.name }}</h2>
-        {% include article-list.html posts=year.items limit=6 %}
+        {% include article-list.html posts=year.items limit=4 %}
     </section>
     {% endfor %}
     <div class="index-section index-more"><span></span><a class="text-link" href="{{ '/archive/' | relative_url }}">All {{ site.posts.size }} articles →</a></div>
@@ -42,15 +42,38 @@ layout: default
 <section class="index-section ruled-section" aria-labelledby="home-talks-label">
     <h2 class="section-label" id="home-talks-label">Talks</h2>
     <div>
-        {% assign recent_talks = site.data.speaking | slice: 0, 2 %}
-        {% include talk-list.html talks=recent_talks show_year=true %}
+        {% assign featured_talks = site.data.speaking | where: 'featured', true | slice: 0, 2 %}
+        {% include talk-list.html talks=featured_talks show_year=true show_status=true %}
         <a class="text-link section-more" href="{{ '/conference/' | relative_url }}">All talks →</a>
     </div>
 </section>
+{% if site.data.interviews.size > 0 %}
+<section class="index-section ruled-section home-media" aria-labelledby="home-media-label">
+    <h2 class="section-label" id="home-media-label">Media</h2>
+    <div>
+        <ul class="media-list">
+            {% for interview in site.data.interviews limit: 3 %}
+            <li>
+                <a href="https://www.youtube.com/watch?v={{ interview.youtube | escape }}" target="_blank" rel="noopener noreferrer">{{ interview.title | escape }}<span class="visually-hidden"> (opens in a new tab)</span></a>
+                <span class="entry-meta">{{ interview.meta | escape }} · Video</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <a class="text-link section-more" href="{{ '/interviews/' | relative_url }}">All interviews →</a>
+    </div>
+</section>
+{% endif %}
 <section class="index-section ruled-section newsletter" aria-labelledby="newsletter-label">
     <h2 class="section-label" id="newsletter-label">Letter</h2>
     <div>
         <p><em>The Coding Café</em> is my newsletter on modern Java, concurrency, and building AI-powered systems.</p>
+        {% if site.data.substack.size > 0 %}
+        <ul class="newsletter-issues" aria-label="Recent newsletter issues">
+            {% for issue in site.data.substack limit: 3 %}
+            <li><a href="{{ issue.url | escape }}">{{ issue.title | escape }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <form action="https://bazlur.substack.com/subscribe" method="get">
             <label class="visually-hidden" for="newsletter-email">Email address</label>
             <input id="newsletter-email" type="email" name="email" placeholder="Email address" autocomplete="email" required>

@@ -1,5 +1,114 @@
 # Site design verification
 
+## Interviews addition — September 22, 2026
+
+final result: passed
+
+Preview: http://127.0.0.1:4176/interviews/
+
+### Source and evidence
+
+Source visual truth: `/Users/bazlur/Downloads/design_handoff_bazlur_jekyll 3/design/Interviews.dc.html` and the Media section of `design/Home.dc.html`. Implementation follows `HANDOFF-interviews.md`, retaining the site's previously approved accessible metadata colors and private contact preference.
+
+References were rendered with their supplied inline styles and data loops, using temporary scripts in `/private/tmp/bazlur-interviews-qa/`; the missing handoff `support.js` was not shipped. All screenshot paths below are relative to `/private/tmp/bazlur-interviews-qa/screenshots/`.
+
+- Paired desktop comparison in the same image input: `reference-desktop.jpg` and `interviews-desktop.jpg`. Both use a 1440 × 1000 CSS viewport, light theme, page opening, and identical browser capture scaling to 1425 × 990 pixels. No separate resizing was applied.
+- Complete page inspection: `interviews-full.jpg`, 1425 × 2926 pixels, covering all three interviews and thumbnails.
+- Focused Media comparison: `home-media-reference-crop.jpg`, `home-media-implementation-crop.jpg`, and the revised `home-media-final-crop.jpg`. These capture the 680px content region at the same desktop viewport. Different heights reflect the full supplied interview titles used in production, versus shorter teaser titles in the HTML mock.
+- Mobile evidence: `interviews-mobile.jpg`, `interviews-mobile-dark.jpg`, and `interviews-320.jpg`. The light 390px capture is scrolled; the dark and 320px captures include the navigation.
+
+### Fidelity and iteration
+
+Fonts and typography match the reference: EB Garamond 36px page title, 26px/1.25 interview headings, 20px/1.5 summaries, and Fira Mono labels and metadata. The 680px layout uses the 72px label rail, 24px gap, 40px entry padding and 16px content gaps. Videos retain the real supplied YouTube thumbnails, 16:9 crop, grayscale/contrast treatment, square edges and dark watch label.
+
+The first Interviews comparison found no actionable P0/P1/P2 differences. A separate Media comparison found extra metadata leading and space before the archive link. These were tightened to 1.3 line height and 16px top margin, then rebuilt and compared again in `home-media-final-crop.jpg`. No actionable P0/P1/P2 differences remain.
+
+Intentional adaptations: the press/podcast contact sentence was removed at the user’s request; metadata uses the previously approved higher-contrast tokens; the watch label uses plain text; existing footer destinations remain. Homepage titles and metadata come from the same YAML records as the Interviews page, as specified by the Jekyll handoff, rather than duplicating the mock's shorter teaser copy. On narrow screens, the six navigation controls form two balanced rows with 44px tap heights; the interview rail collapses into one column.
+
+### Verification and limits
+
+- Jekyll build and Shiki processing passed in the isolated preview directory. `git diff --check` passed.
+- All three YAML entries exactly match the handoff. Verified the titles, complete summaries, thumbnail URLs and six watch links in generated HTML.
+- Homepage renders three Media previews between Talks and Letter. Both the header and “All interviews” link reach `/interviews/`, with the correct active navigation state.
+- The first watch link opened the expected YouTube URL in a new tab. All three thumbnails loaded successfully. Full playback was not tested; external video availability remains controlled by YouTube.
+- All external video links use `noopener noreferrer` and accessible new-tab announcements. No embedded player or email link was introduced.
+- Checked 320px, 390px, 600px and desktop layouts: no document overflow, clear mobile navigation, readable headings and working light/dark controls. Restored light theme and reset the viewport override.
+- The new route has a canonical URL and sitemap entry. Six main routes have the Interviews header link, one H1 and unique IDs. Final browser error/warning log was empty.
+- Regression checks preserve 123 post bodies and canonical URLs, 54 talks, five series, the eight homepage articles, three newsletter previews, About email privacy, and all 13 highlighted blocks in the latest article.
+
+- [x] Shared interview data, dedicated page, homepage Media section and navigation.
+- [x] Desktop/reference comparisons and responsive checks.
+- [x] Build and core interactions verified; local preview retained.
+
+No commit or push performed.
+
+---
+
+## Second handoff implementation — September 22, 2026
+
+final result: passed
+
+Preview: http://127.0.0.1:4176/
+
+### Source and comparison evidence
+
+Source visual truth: `/Users/bazlur/Downloads/design_handoff_bazlur_jekyll 2/design/Home.dc.html`, with the supplied Archive and Article layouts as supporting references. The Home file depends on a missing `support.js`; a temporary renderer expanded only its supplied data loops, preserving its original inline layout, CSS and copy. The rendering script is `/private/tmp/bazlur-handoff-2-implementation/render-reference.mjs`, and the rendered reference is `/private/tmp/bazlur-handoff-2-review/reference-site/home-visual-reference.html`.
+
+All new evidence is in `/private/tmp/bazlur-handoff-2-implementation/`. Screenshot paths below are relative to its `screenshots/` directory.
+
+Reference and implementation were presented together in the same comparison input at a 1440 × 1000 CSS viewport, light theme, page opening. Both viewport captures are 1425 × 990 raster pixels; the browser applies the same output scaling to both, so no independent resizing was used. Full-page captures use the same CSS viewport and equal 1425px raster width, with different heights because the real talk details and newsletter links add content.
+
+- First comparison: `home-reference.jpg` and `home-desktop.jpg`.
+- Revised comparison: `home-reference.jpg` and `home-desktop-v2.jpg`.
+- Full-page comparison: `home-full-reference.jpg` (1425 × 1724) and `home-full-final.jpg` (1425 × 1863).
+- Focused lower-page and form inspection: `home-newsletter.jpg`, `newsletter-320-final.jpg`.
+- Archive and series: `archive-desktop.jpg`, `archive-mobile-dark.jpg`, `series-desktop.jpg`.
+- Responsive/light/dark: `home-mobile.jpg`, `home-mobile-dark.jpg`, `home-320-final.jpg`.
+
+The opening captures are legible enough to compare the fonts, metadata, title wrapping and book row directly. The full-page source capture blurred the small book image, so image fidelity was judged from the clear opening capture instead. Browser extension controls visible on some article screenshots are outside the site.
+
+### Findings and fixes
+
+- [Resolved P2] Excessive metadata and book-copy line height made the first homepage pass taller than the reference. Tightened book-title/caption leading and homepage metadata leading; added the reference's subtle book-cover shadow. The second paired comparison confirms the intended rhythm and matching title wrapping.
+- [Resolved P2] At 320px, the theme control wrapped to a third header row. A narrow-screen 12px navigation size and 12px gaps keep all five controls on the second row, retaining 44px tap heights. `home-320-final.jpg` verifies the correction.
+- [Resolved P2] Article tables squeezed column headings into fragments on a narrow screen. Tables now retain a 480px minimum width inside their existing keyboard-focusable horizontal scrolling region. `article-table-320-before.jpg` and `article-table-320-after.jpg` show the correction; document width stays within the viewport.
+- [Resolved delivery issue] Previously cached local pages and CSS could show the old design. Versioned changed assets and retired the existing cache-first service worker. Retirement deletes only caches named `bazlur-blog-*`, claims existing clients, unregisters, and leaves requests to the network. A focused lifecycle simulation verified that unrelated caches remain untouched. Final browser verification used a fresh local origin with caching disabled.
+
+### Fidelity review and intentional adaptations
+
+- **Typography:** EB Garamond for editorial text and Fira Mono for navigation/metadata; 680px column, 21px homepage article titles, italic 19px book title. The approved article retains its 21px body and 52px desktop title, with its existing mobile scale and italic title clause.
+- **Layout:** The book row aligns with the article column after the 72px year rail and 24px gap. The homepage uses four articles from each of the latest two years, then selected talks and the newsletter. Mobile collapses the rail and stacks article dates below metadata.
+- **Colors:** Paper, ink, rules and oxblood links follow the handoff. Metadata is intentionally darker for readability: light contrast 4.99:1 and dark contrast 6.45:1 against the page background, replacing the source's faint values.
+- **Assets:** The existing optimized real book artwork and About portrait remain. No substitutes or generated imagery were introduced.
+- **Content:** Real primary topics replace generic sample labels. Archive counts and its 2017 start year come from the actual posts. Featured talks are the upcoming MCP session and the September 19 Tamilnadu talk. The newsletter uses the existing three feed entries and makes no unverified publishing-frequency promise. The existing footer destinations and newsletter archive link remain.
+
+No actionable P0/P1/P2 visual findings remain in this scope.
+
+### Verification
+
+- Final Jekyll build and Shiki processing passed in an isolated destination; existing tracked `_site` changes were not overwritten.
+- All 123 post bodies are byte-for-byte unchanged from the pre-implementation backup, which already contains the pending code-fence fix. All 123 canonical article URLs remain valid.
+- Seven primary topics cover the archive: AI & LLMs 8; Career & Community 39; Concurrency 27; JVM & Performance 11; Java 23; Personal 10; Tools 5.
+- Five real series have 25 articles in total. Checked all generated series destinations and browser navigation from Part 15 to Part 14 and to the 15-part archive.
+- Browser checks passed for topic filtering, live counts, URL reload, browser Back, empty topic/series intersections, recovery to all articles, and invalid parameters. Search includes category text while preserving its existing tag behavior.
+- Checked 54 main, legacy-tag, pagination and utility pages for one H1, duplicate IDs and missing local link/asset targets. All 54 talk records remain rendered. About retains Oracle ACE Pro and no email link.
+- Six main routes passed 320px viewport checks; homepage and archive were also inspected at 390px in both themes. Dark mode persists after reload, and light mode was restored. Keyboard focus is a visible 2px outline.
+- Newsletter required-email validation passed. No subscription was submitted; provider-side completion is not tested.
+- Latest article has 13 colored code blocks. Code-copy feedback works; reading progress moves from zero with scrolling. Article fonts and code containment remain correct.
+- JavaScript syntax checks and `git diff --check` passed. No application console errors or warnings; one warning came from the installed Grammarly extension.
+
+The service-worker upgrade has a simulated lifecycle check, not a production upgrade test; deployment has not occurred. The old worker's offline cache is intentionally retired, consistent with the editorial layout no longer registering a worker.
+
+### Implementation checklist
+
+- [x] Homepage, shared navigation and newsletter previews.
+- [x] Primary topics, archive filtering and series navigation.
+- [x] Reading progress, accessible contrast and responsive table/header fixes.
+- [x] Final build, browser interactions and paired design comparison.
+- [x] Local preview retained for review; no commit or push performed.
+
+---
+
 final result: passed
 
 ## About-page rendering correction

@@ -6,6 +6,8 @@ date_published: '2017-10-15T00:00:00+00:00'
 date_scraped: '2025-08-05T22:26:15.526857'
 featured_image: '/images/interviews.jpeg'
 tags: [core java, multi threading, thread, java, code reading skills]
+categories: ["Career & Community"]
+series: legacy-code-whisperer
 ---
 
 ![](/images/interviews.jpeg)
