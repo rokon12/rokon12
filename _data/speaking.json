@@ -28,13 +28,31 @@
     "type": "talk",
     "talkTitle": "AI Can't Debug This: A Virtual Thread Migration Workshop",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://2026.javazone.no/speaker/",
     "links": [
       {
         "type": "event",
         "url": "https://2026.javazone.no/speaker/",
         "text": "Details"
+      }
+    ]
+  },
+  {
+    "name": "Tamilnadu JUG — Faculty Enablement Series on Modern Java",
+    "date": "2026",
+    "eventDate": "2026-09-19",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Virtual Threads: Simple Code, Serious Scale",
+    "talkIcon": "🎤",
+    "isUpcoming": false,
+    "eventUrl": "https://www.linkedin.com/posts/tamil-jug_java-javachampion-java-activity-7492781273556439040-Qw96",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://www.linkedin.com/posts/tamil-jug_java-javachampion-java-activity-7492781273556439040-Qw96",
+        "text": "Announcement"
       }
     ]
   },
