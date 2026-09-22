@@ -1,13 +1,13 @@
 # Site settings
 title: A N M Bazlur Rahman
-description: Java Champion, O'Reilly author, speaker, and Sr. Staff Software Engineer writing about Java concurrency, JVM internals, AI in Java, and software architecture.
+description: Java Champion, Oracle ACE Pro, O'Reilly author, speaker, and Sr. Staff Software Engineer writing about Java concurrency, JVM internals, AI in Java, and software architecture.
 author:
   name: A N M Bazlur Rahman
   email: bazlur@jugbd.org
   url: https://bazlur.com
   photo: /images/author_photo.jpg
   photo_alt: A N M Bazlur Rahman speaking at Copenhagen Developers Festival
-  role: Sr. Staff Software Engineer, Java Champion, Author, and Speaker
+  role: Sr. Staff Software Engineer, Java Champion, Oracle ACE Pro, Author, and Speaker
   location: Toronto, Canada
   same_as:
     - https://github.com/rokon12
@@ -75,6 +75,7 @@ defaults:
 
 # Exclude files
 exclude:
+  - design-qa.md
   - Gemfile
   - Gemfile.lock
   - README.md

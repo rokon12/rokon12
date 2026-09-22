@@ -1,48 +1,13 @@
 ---
 layout: default
-title: "Page Not Found"
+title: Page not found
 permalink: /404.html
 ---
-
-<div class="error-page">
-    <div class="error-container">
-        <div class="error-content">
-            <div class="error-code">404</div>
-            <h1 class="error-title">Oops! Page Not Found</h1>
-            <p class="error-description">
-                The page you're looking for seems to have wandered off. 
-                Don't worry, even the best developers get lost sometimes!
-            </p>
-            
-            <div class="error-actions">
-                <a href="{{ '/' | relative_url }}" class="btn btn-primary">
-                    <span class="btn-icon">🏠</span>
-                    Go Home
-                </a>
-                <a href="{{ '/archive/' | relative_url }}" class="btn btn-secondary">
-                    <span class="btn-icon">📚</span>
-                    Browse Archive
-                </a>
-            </div>
-            
-            <div class="error-suggestions">
-                <h3>Here's what you can do:</h3>
-                <ul>
-                    <li>Check if the URL is spelled correctly</li>
-                    <li>Go back to the <a href="{{ '/' | relative_url }}">homepage</a></li>
-                    <li>Browse our <a href="{{ '/archive/' | relative_url }}">article archive</a></li>
-                    <li>Explore articles by <a href="{{ '/tags/' | relative_url }}">tags</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="error-visual">
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-                <div class="shape shape-4"></div>
-            </div>
-        </div>
-    </div>
+<div class="standard-page">
+    <header class="page-head">
+        <span class="section-label">404</span>
+        <h1>This page has wandered off.</h1>
+        <p>The link may have changed. Try the article archive, or search for what you were reading.</p>
+        <nav class="page-links" aria-label="Find your way"><a href="{{ '/archive/' | relative_url }}">Browse articles →</a><a href="{{ '/search/' | relative_url }}">Search</a><a href="{{ '/' | relative_url }}">Home</a></nav>
+    </header>
 </div>

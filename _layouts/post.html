@@ -1,67 +1,30 @@
 ---
-layout: default
+layout: article
 ---
+{% assign published = page.date_published | default: page.date %}
+{% assign category = page.categories | first | default: page.tags.first %}
+<article class="post h-entry" itemscope itemtype="https://schema.org/BlogPosting">
+    <header class="post-header">
+        <p class="post-meta">
+            {% if category %}<span>{{ category | capitalize | escape }}</span> &middot; {% endif %}<time class="dt-published" datetime="{{ published | date_to_xmlschema }}" itemprop="datePublished">{{ published | date: '%B %-d, %Y' }}</time> &middot; <span>{% include reading-time.html compact=true %}</span>
+        </p>
+        <h1 class="post-title p-name" itemprop="name headline">{% if page.title_emphasis and page.title contains page.title_emphasis %}{{ page.title | remove: page.title_emphasis | escape }}<em>{{ page.title_emphasis | escape }}</em>{% else %}{{ page.title | escape }}{% endif %}</h1>
+        {% if page.subtitle %}<p class="post-lede">{{ page.subtitle | escape }}</p>{% endif %}
+    </header>
 
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="post-header">
-        <div class="wrapper">
-            <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-            <p class="post-meta">
-                <time class="dt-published" datetime="{{ page.date_published | date_to_xmlschema }}" itemprop="datePublished">
-                    {{ page.date_published | date: "%B %-d, %Y" }}
-                </time>
-                &bull; <span class="reading-time">{% include reading-time.html %}</span>
-            </p>
+    <div class="post-content e-content" itemprop="articleBody">
+        {{ content }}
+    </div>
 
-            {% if page.tags and page.tags.size > 0 %}
-            <div class="post-tags-header">
-                {% for tag in page.tags %}
-                    <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="post-tag-badge">{{ tag }}</a>
-                {% endfor %}
-            </div>
-            {% endif %}
+    <aside class="article-author" aria-label="About the author">
+        <img src="{{ '/images/author_photo-small.webp' | relative_url }}" alt="{{ site.author.name | escape }}" width="56" height="56" loading="lazy">
+        <div>
+            <p><strong>{{ site.author.name }}</strong> is a Java Champion, Oracle ACE Pro, and the author of <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/"><em>Modern Concurrency in Java</em></a> (O'Reilly). He edits the Java Queue at InfoQ and writes <a href="https://bazlur.substack.com/"><em>The Coding Caf&eacute;</em></a>.</p>
+            <nav aria-label="Author links"><a href="{{ '/about/' | relative_url }}">About</a><a href="https://bsky.app/profile/bazlur.ca">Bluesky</a><a href="https://www.linkedin.com/in/bazlur/">LinkedIn</a></nav>
         </div>
-    </div>
-
-    <div class="wrapper post-wrapper-with-toc">
-        <aside class="toc-sidebar">
-            {% include toc.html variant="desktop" %}
-        </aside>
-
-        <div class="post-container">
-            {% include toc.html variant="mobile" %}
-
-            <div class="post-content e-content" itemprop="articleBody">
-                {{ content }}
-            </div>
-        </div>
-    </div>
-
-    <div class="wrapper">
-        {% include author-bio.html %}
-
-        <footer class="post-footer">
-            <div class="post-nav">
-                {% if page.previous.url %}
-                    <a class="prev" href="{{ page.previous.url | relative_url }}">
-                        <span class="post-nav-label">&larr; Previous</span>
-                        <strong>{{ page.previous.title }}</strong>
-                    </a>
-                {% endif %}
-                <a class="post-nav-all" href="{{ '/archive' | relative_url }}">
-                    <span class="post-nav-label">&larr; All Articles</span>
-                    <strong>Browse the full archive</strong>
-                </a>
-                {% if page.next.url %}
-                    <a class="next" href="{{ page.next.url | relative_url }}">
-                        <span class="post-nav-label">Next &rarr;</span>
-                        <strong>{{ page.next.title }}</strong>
-                    </a>
-                {% endif %}
-            </div>
-        </footer>
-
-        {% include share-buttons.html %}
-        {% include related-posts.html %}
-    </div>
+    </aside>
+    <nav class="article-post-nav" aria-label="Article navigation">
+        {% if page.previous.url %}<a href="{{ page.previous.url | relative_url }}"><small>&larr; Previous</small><span>{{ page.previous.title | escape }}</span></a>{% endif %}
+        {% if page.next.url %}<a class="next" href="{{ page.next.url | relative_url }}"><small>Next &rarr;</small><span>{{ page.next.title | escape }}</span></a>{% endif %}
+    </nav>
 </article>

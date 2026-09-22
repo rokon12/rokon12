@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { codeToHtml } from 'shiki';
 
-const siteDir = path.resolve(process.cwd(), '_site');
+const siteDir = path.resolve(process.cwd(), process.argv[2] || '_site');
 const htmlFiles = await collectHtmlFiles(siteDir);
 
 for (const filePath of htmlFiles) {
@@ -58,12 +58,12 @@ async function renderHighlightedBlock(encodedCode, language) {
   try {
     highlighted = await codeToHtml(code, {
       lang: normalizeLanguage(language),
-      theme: 'catppuccin-latte'
+      themes: { light: 'catppuccin-latte', dark: 'catppuccin-mocha' }
     });
   } catch {
     highlighted = await codeToHtml(code, {
       lang: 'text',
-      theme: 'catppuccin-latte'
+      themes: { light: 'catppuccin-latte', dark: 'catppuccin-mocha' }
     });
   }
 

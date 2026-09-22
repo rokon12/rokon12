@@ -1,0 +1,10 @@
+<ul class="article-list">
+    {% assign article_limit = include.limit | default: 999 %}
+    {% for post in include.posts limit: article_limit %}
+    {% assign published = post.date_published | default: post.date %}
+    <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        <time datetime="{{ published | date_to_xmlschema }}">{{ published | date: '%b %-d' }}</time>
+    </li>
+    {% endfor %}
+</ul>

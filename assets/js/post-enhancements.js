@@ -1,10 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
   normalizePostContentHeading();
+  initializeArticleOpening();
   initializeDesktopTocOffset();
   initializeDesktopTocBoundary();
   initializePostToc();
   initializeCodeCopyButtons();
 });
+
+function initializeArticleOpening() {
+  if (!document.body.classList.contains('article-page')) return;
+  var paragraphs = document.querySelectorAll('.post-content > p');
+  var opening = Array.prototype.find.call(paragraphs, function (paragraph) {
+    return paragraph.textContent.trim() && !paragraph.querySelector('img');
+  });
+  if (opening) opening.classList.add('article-opening');
+
+  document.querySelectorAll('.post-content table').forEach(function (table) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'article-table';
+    wrapper.tabIndex = 0;
+    wrapper.setAttribute('role', 'region');
+    wrapper.setAttribute('aria-label', 'Scrollable table');
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+}
 
 function normalizePostContentHeading() {
   var article = document.querySelector('.post-content');

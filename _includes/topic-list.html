@@ -1,0 +1,7 @@
+<ul class="topic-list">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+    {% assign tag_page = site.pages | where: 'tag', tag[0] | first %}
+    <li><a href="{% if tag_page %}{{ tag_page.url | relative_url }}{% else %}{{ '/search/' | relative_url }}?tag={{ tag[0] | url_encode }}{% endif %}"><span>{{ tag[0] | escape }}</span><span class="topic-count">{{ tag[1].size }}<span class="visually-hidden"> article{% if tag[1].size != 1 %}s{% endif %}</span></span></a></li>
+    {% endfor %}
+</ul>

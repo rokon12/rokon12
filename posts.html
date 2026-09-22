@@ -1,29 +1,20 @@
 ---
 layout: default
-title: Writing
+title: Articles
 permalink: /archive/
+description: Articles on Java concurrency, JVM internals, software engineering, and AI in Java.
 ---
-
-<div class="wrapper">
-    <div class="archive-header">
-        <h1>Writing</h1>
-    </div>
-
-    <div class="archive-timeline">
-        {% assign postsByYear = site.posts | sort: 'date_published' | reverse | group_by_exp: 'post', 'post.date_published | date: "%Y"' %}
-        
-        {% for year in postsByYear %}
-        <section class="year-section">
-            <h2>{{ year.name }}</h2>
-            <ul class="archive-post-list">
-                {% for post in year.items %}
-                <li class="archive-post-item">
-                    <time datetime="{{ post.date_published }}">{{ post.date_published | date: "%b %d" }}</time>
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
-        {% endfor %}
-    </div>
+<div class="listing-page">
+    <header class="page-head">
+        <h1>Articles</h1>
+        <p>Notes on Java, concurrency, the JVM, and the craft of building software.</p>
+        <nav class="page-links" aria-label="Browse articles"><a href="{{ '/search/' | relative_url }}">Search</a><a href="{{ '/tags/' | relative_url }}">Browse by topic</a><a href="{{ '/feed.xml' | relative_url }}">RSS</a></nav>
+    </header>
+    {% assign by_year = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+    {% for year in by_year %}
+    <section class="index-section">
+        <h2 class="section-label" id="year-{{ year.name }}">{{ year.name }}</h2>
+        {% include article-list.html posts=year.items %}
+    </section>
+    {% endfor %}
 </div>

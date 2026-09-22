@@ -1,0 +1,13 @@
+<ul class="talk-list">
+    {% for talk in include.talks %}
+    <li>
+        <span class="talk-title">{% if talk.eventUrl %}<a href="{{ talk.eventUrl | escape }}">{{ talk.talkTitle | default: talk.name | escape }}</a>{% else %}{{ talk.talkTitle | default: talk.name | escape }}{% endif %}</span>
+        <span class="entry-meta">{{ talk.name | escape }} · {{ talk.location | escape }}{% if include.show_year %} · {{ talk.date | escape }}{% endif %}</span>
+        {% if talk.links.size > 0 %}
+        <span class="entry-links">
+            {% for link in talk.links %}<a href="{{ link.url | escape }}">{{ link.text | escape }}</a>{% endfor %}
+        </span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

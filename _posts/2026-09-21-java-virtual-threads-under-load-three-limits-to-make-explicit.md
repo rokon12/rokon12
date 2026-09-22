@@ -1,6 +1,9 @@
 ---
 layout: post
 title: 'Java Virtual Threads Under Load: Three Limits to Make Explicit'
+title_emphasis: 'Three Limits to Make Explicit'
+subtitle: 'Virtual threads remove the thread-count ceiling. They do not remove the others. Here are the three limits that will find you in production if you do not name them first.'
+categories: [Concurrency]
 original_url: 'https://bazlur.ca/2026/09/21/java-virtual-threads-under-load/'
 date_published: '2026-09-21T04:56:21Z'
 date_scraped: '2026-09-21T21:42:57.913078377'
@@ -8,10 +11,6 @@ featured_image: '/images/gemini-generated-image-f6qsoyf6qsoyf6qs-1-scaled.jpeg'
 tags: [concurrency, java, jdk 25, openjdk, project loom, structured concurrency, thread programming, virtual threads 2]
 ---
 
-Java Virtual Threads Under Load: Three Limits to Make Explicit
-==============================================================
-
-![](/images/gemini-generated-image-f6qsoyf6qsoyf6qs-1-scaled.jpeg)  
 Virtual threads let us keep ordinary blocking code while many more requests wait concurrently. Under load, however, that brings three critical questions into focus:
 
 * **How much work do we admit?** Cheap threads can still build an expensive queue.

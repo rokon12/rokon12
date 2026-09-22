@@ -1,10 +1,7 @@
 ---
 layout: default
 ---
-
-<div class="wrapper page-wrapper{% if page.url == '/about/' %} page-wrapper--wide{% endif %}">
-    <h1 class="page-title">{{ page.title | escape }}</h1>
-    <div class="page-content-body">
-        {{ content }}
-    </div>
-</div>
+<article class="standard-page">
+    <header class="page-head"><h1>{{ page.title | escape }}</h1></header>
+    <div class="page-prose">{{ content }}</div>
+</article>

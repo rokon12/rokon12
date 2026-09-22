@@ -30,19 +30,25 @@
     <meta property="twitter:image" content="{{ page_image_url }}">
     <meta name="twitter:description" content="{{ page_description }}">
 
-    {% include critical-css.html %}
-
-    <link rel="preload" href="{{ "/assets/css/main.css" | relative_url }}?v=3" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}?v=3"></noscript>
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('bazlur-theme'); } catch (error) {}
+        var dark = theme === 'dark' || (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      })();
+    </script>
+    <link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}?v=1">
+    {% unless page.layout == 'post' %}<link rel="stylesheet" href="{{ '/assets/css/pages.css' | relative_url }}?v=1">{% endunless %}
 
     <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
 
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inconsolata:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Fira+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
 
     <script type="application/ld+json">
     {

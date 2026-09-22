@@ -1,0 +1,9 @@
+<header class="article-header">
+    <a class="article-brand" href="{{ '/' | relative_url }}">Bazlur Rahman</a>
+    <nav aria-label="Primary">
+        <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}>Articles</a>
+        <a href="{{ '/conference/' | relative_url }}"{% if page.url == '/conference/' %} aria-current="page"{% endif %}>Talks</a>
+        <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+        <button class="theme-toggle" type="button" aria-label="Switch to dark theme">Dark</button>
+    </nav>
+</header>

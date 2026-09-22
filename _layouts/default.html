@@ -2,69 +2,16 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 {% include head.html %}
-
-<body>
+<body class="{% if page.layout == 'post' %}article-page{% else %}editorial-page{% endif %}">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header">
-        <div class="header-wrapper">
-            <a class="site-title" href="{{ "/" | relative_url }}">{{ site.author.name }}</a>
-            <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">
-                <span class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-            </button>
-            <nav class="site-nav" id="primary-navigation" aria-label="Primary">
-                <a class="nav-link" href="{{ "/archive" | relative_url }}">Articles</a>
-                <a class="nav-link" href="{{ "/conference/" | relative_url }}">Talks</a>
-                <a class="nav-link" href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener">Book</a>
-                <a class="nav-link" href="{{ "/about" | relative_url }}">About</a>
-                <a class="nav-link" href="https://bazlur.substack.com/" target="_blank" rel="noopener">Newsletter</a>
-                <a class="nav-link nav-icon" href="{{ "/search" | relative_url }}" aria-label="Search">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-                    </svg>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="page-content" id="main-content" aria-label="Content">
-        {{ content }}
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</p>
-            <p>
-                <a href="{{ "/feed.xml" | relative_url }}" aria-label="Subscribe via RSS feed">RSS</a> &bull;
-                <a href="https://github.com/rokon12" aria-label="Follow A N M Bazlur Rahman on GitHub">GitHub</a> &bull;
-                <a href="https://www.linkedin.com/in/bazlur/" aria-label="Connect with A N M Bazlur Rahman on LinkedIn">LinkedIn</a> &bull;
-                <a href="https://bsky.app/profile/bazlur.ca" aria-label="Follow A N M Bazlur Rahman on Bluesky">Bluesky</a> &bull;
-                <a href="https://x.com/{{ site.twitter.username }}" aria-label="Follow A N M Bazlur Rahman on X, formerly Twitter">X</a>
-            </p>
-            <p>
-                <a href="https://bazlur.substack.com/" target="_blank" rel="noopener">Subscribe to the newsletter</a> &bull;
-                <a href="https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/" target="_blank" rel="noopener">Buy the book</a> &bull;
-                <a href="{{ "/conference/" | relative_url }}">Talks</a>
-            </p>
-        </div>
-    </footer>
-
-    {% if page.layout == 'post' %}
-    <div class="reading-progress" id="reading-progress"></div>
-    {% endif %}
-
-    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-
-    {% include scripts.html %}
+    <div class="article-wrap">
+        {% include site-header.html %}
+        <main id="main-content">{{ content }}</main>
+        {% include site-footer.html %}
+    </div>
+    <script defer src="{{ '/assets/js/article-theme.js' | relative_url }}"></script>
+    {% if page.layout == 'post' %}<script defer src="{{ '/assets/js/post-enhancements.js' | relative_url }}"></script>{% endif %}
 </body>
 </html>
