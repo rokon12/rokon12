@@ -2,6 +2,14 @@
 
 final result: passed
 
+## About-page rendering correction
+
+The initial About-page check missed a lower-page rendering error. The mixed Markdown/HTML source escaped the closing prose wrapper and the Now, Focus, and Contact sections into visible text. The earlier top-of-page comparison did not establish that these sections were rendered correctly.
+
+Converted the page to `about.html` with explicit HTML paragraphs and links, preserving `/about/`, all biography text, credentials, and contact destinations. A fresh Jekyll build and Shiki processing passed. The generated page now has five biography paragraphs, three actual sections with Now/Focus/Contact headings, and ten list items; a text-content check found no visible HTML tags. Desktop screenshots confirm the section rules, lists, and contact links render correctly; the 320px viewport has no horizontal overflow.
+
+Evidence: `/private/tmp/bazlur-about-fix/before.jpg`, `after-desktop.jpg`, `after-contact.jpg`, and `after-mobile.jpg`. This correction supersedes the initial About-page pass.
+
 ## Site-wide follow-up — September 21, 2026
 
 The approved article design now supplies the shared header, footer, fonts, palette, and theme behavior. The homepage, Talks, About, archive, search, topics, existing tag pages, pagination, Categories, About this site, 404, and offline pages use the editorial design.
