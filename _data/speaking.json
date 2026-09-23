@@ -1,5 +1,23 @@
 
 [ {
+    "name": "Garden State Java User Group",
+    "date": "2026",
+    "eventDate": "2026-11-10",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "You Enabled Virtual Threads. Now What Breaks?",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://gsjug.org/meetings/2026/nov2026.html",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://gsjug.org/meetings/2026/nov2026.html",
+        "text": "Details"
+      }
+    ]
+  },
+  {
     "name": "MCP Dev Summit Toronto 2026",
     "featured": true,
     "date": "2026",
