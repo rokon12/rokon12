@@ -1,0 +1,45 @@
+# Titles and links verified against O'Reilly and the author's Rokomari catalogue.
+- id: modern-concurrency-in-java
+  title: Modern Concurrency in Java
+  subtitle: Virtual Threads, Structured Concurrency, and Beyond
+  language: en
+  publisher: O'Reilly Media
+  year: 2025
+  cover: /assets/img/modern-concurrency-cover.jpg
+  url: https://learning.oreilly.com/library/view/modern-concurrency-in/9781098165406/
+  code_url: https://github.com/Modern-Concurrency-in-Java/modern-concurrency-java-book
+  description: >-
+    A practical guide to how concurrency works in modern Java. Follow the path
+    from threads and executors to virtual threads, structured concurrency, and
+    scoped values, with examples you can run and explore.
+
+- id: java-programming
+  title: জাভা প্রোগ্রামিং
+  english_title: Java Programming
+  edition: Second edition
+  language: bn
+  url: https://www.rokomari.com/book/129165/java-programming
+
+- id: java-programming-exercise
+  title: জাভা প্রোগ্রামিং এক্সারসাইজ
+  english_title: Java Programming Exercise
+  language: bn
+  url: https://www.rokomari.com/book/284127/java-programming-exercise
+
+- id: java-thread-programming
+  title: জাভা থ্রেড প্রোগ্রামিং
+  english_title: Java Thread Programming
+  language: bn
+  url: https://www.rokomari.com/book/159071/java-thread-programming
+
+- id: advanced-java-programming
+  title: অ্যাডভান্সড জাভা প্রোগ্রামিং
+  english_title: Advanced Java Programming
+  language: bn
+  url: https://www.rokomari.com/book/179965/advanced-java-programing
+
+- id: java-web-programming
+  title: জাভা ওয়েব প্রোগ্রামিং
+  english_title: Java Web Programming
+  language: bn
+  url: https://www.rokomari.com/book/200057/java-web-programming

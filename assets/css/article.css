@@ -257,7 +257,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
   .article-header nav a, .article-header .theme-toggle { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (max-width: 440px) {
-  .article-header nav { display: grid; grid-template-columns: repeat(3, max-content); column-gap: 24px; }
+  .article-header nav { display: grid; grid-template-columns: repeat(4, max-content); column-gap: 16px; }
 }
 @media (max-width: 560px) {
   .post { padding-top: 64px; }
