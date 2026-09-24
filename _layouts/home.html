@@ -42,8 +42,8 @@ layout: default
 <section class="index-section ruled-section" aria-labelledby="home-talks-label">
     <h2 class="section-label" id="home-talks-label">Talks</h2>
     <div>
-        {% assign featured_talks = site.data.speaking | where: 'featured', true | slice: 0, 2 %}
-        {% include talk-list.html talks=featured_talks show_year=true show_status=true %}
+        {% assign upcoming_talks = site.data.speaking | where: 'isUpcoming', true %}
+        {% include talk-list.html talks=upcoming_talks show_year=true show_status=true %}
         <a class="text-link section-more" href="{{ '/conference/' | relative_url }}">All talks →</a>
     </div>
 </section>

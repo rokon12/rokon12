@@ -4,24 +4,48 @@ title: Talks
 permalink: /conference/
 description: Conference talks and workshops by A N M Bazlur Rahman on Java concurrency, JVM performance, and AI-powered systems.
 ---
-<div class="listing-page talks-page">
-    <header class="page-head">
+{% assign upcoming = site.data.speaking | where: 'isUpcoming', true %}
+{% assign past = site.data.speaking | where: 'isUpcoming', false %}
+{% assign past_years = past | group_by: 'date' | sort: 'name' | reverse %}
+{% assign talks = upcoming %}
+{% for year in past_years %}{% assign talks = talks | concat: year.items %}{% endfor %}
+<div class="talks-ledger">
+    <header class="ledger-head">
+        <div>
         <h1>Talks</h1>
-        <p>Fifty-plus sessions on concurrency, virtual threads, JVM performance, and building AI systems in Java. For speaking invitations, <a href="mailto:{{ site.author.email }}">write to me</a>.</p>
+        <p>Every session since 2021, in one ledger. Invitations: <a href="mailto:{{ site.author.email | escape }}">write to me</a>.</p>
+        </div>
+        <label class="ledger-filter" for="talk-filter" hidden>
+            Filter
+            <input id="talk-filter" type="search" placeholder="loom, ConFoo, Toronto…" autocomplete="off" aria-controls="ledger-body" aria-describedby="ledger-count">
+        </label>
     </header>
-    {% assign upcoming = site.data.speaking | where: 'isUpcoming', true %}
-    {% if upcoming.size > 0 %}
-    <section class="index-section">
-        <h2 class="section-label">Upcoming</h2>
-        {% include talk-list.html talks=upcoming show_year=true %}
-    </section>
-    {% endif %}
-    {% assign past = site.data.speaking | where: 'isUpcoming', false | sort: 'date' | reverse %}
-    {% assign by_year = past | group_by: 'date' %}
-    {% for year in by_year %}
-    <section class="index-section">
-        <h2 class="section-label">{{ year.name }}</h2>
-        {% include talk-list.html talks=year.items %}
-    </section>
-    {% endfor %}
+    <div class="ledger-scroll" role="region" aria-label="All talks; scroll horizontally on small screens" tabindex="0">
+        <table class="ledger">
+            <caption class="visually-hidden">Conference talks and workshops, with upcoming sessions first.</caption>
+            <thead>
+                <tr><th class="y" scope="col">Year</th><th scope="col">Talk</th><th scope="col">Event</th><th scope="col">Place</th><th class="r" scope="col"><abbr title="Recording">Rec.</abbr></th></tr>
+            </thead>
+            <tbody id="ledger-body">
+                {% assign previous_year = '' %}
+                {% for talk in talks %}
+                {% if talk.isUpcoming %}{% assign year_label = 'Next' %}{% else %}{% assign year_label = talk.date %}{% endif %}
+                {% assign recording = talk.links | where: 'type', 'video' | first %}
+                {% assign talk_url = talk.eventUrl | default: recording.url %}
+                {% capture search_text %}{{ talk.talkTitle }} {{ talk.name }} {{ talk.ledgerName }} {{ talk.location }} {{ talk.ledgerPlace }} {{ talk.date }} {% if talk.isUpcoming %}upcoming next{% endif %}{% endcapture %}
+                <tr data-year="{{ year_label | escape }}" data-search="{{ search_text | normalize_whitespace | downcase | escape }}">
+                    <td class="y{% if talk.isUpcoming %} next{% endif %}"><span class="ledger-year-label" aria-hidden="true">{% if year_label != previous_year %}{{ year_label }}{% endif %}</span><span class="visually-hidden">{% if talk.isUpcoming %}Upcoming, {% endif %}{{ talk.date }}</span></td>
+                    <td class="t">{% if talk_url and talk_url != '' %}<a href="{{ talk_url | escape }}">{{ talk.talkTitle | escape }}</a>{% else %}{{ talk.talkTitle | escape }}{% endif %}</td>
+                    <td class="e">{{ talk.ledgerName | default: talk.name | escape }}</td>
+                    <td class="p">{{ talk.ledgerPlace | default: talk.location | default: '—' | escape }}</td>
+                    <td class="r">{% if recording %}<a class="recording-link" href="{{ recording.url | escape }}" aria-label="Watch {{ talk.talkTitle | escape }} at {{ talk.name | escape }} ({{ talk.date }})"><span class="recording-icon" aria-hidden="true"></span></a>{% endif %}</td>
+                </tr>
+                {% assign previous_year = year_label %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p class="ledger-empty" id="ledger-empty" hidden>No sessions match this filter. Try another title, event, place, or year.</p>
+    <p class="ledger-count" id="ledger-count" role="status" aria-live="polite" aria-atomic="true">{{ talks.size }} of {{ talks.size }} sessions</p>
 </div>
+<script src="{{ '/assets/js/talk-filter.js' | relative_url }}" defer></script>

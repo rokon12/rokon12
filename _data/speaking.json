@@ -1,6 +1,8 @@
 
 [ {
     "name": "Garden State Java User Group",
+    "location": "New Jersey, USA",
+    "ledgerName": "Garden State JUG",
     "date": "2026",
     "eventDate": "2026-11-10",
     "role": "Speaker",
@@ -19,6 +21,7 @@
   },
   {
     "name": "MCP Dev Summit Toronto 2026",
+    "ledgerName": "MCP Dev Summit Toronto",
     "featured": true,
     "date": "2026",
     "location": "Toronto, Canada",
@@ -40,6 +43,7 @@
      
     {
     "name": "JavaZone 2026",
+    "ledgerPlace": "Lillestrøm, Norway",
     "date": "2026",
     "location": "NOVA Spektrum, Lillestrøm",
     "locationIcon": "🇳🇴",
@@ -59,6 +63,8 @@
   },
   {
     "name": "Tamilnadu JUG — Faculty Enablement Series on Modern Java",
+    "ledgerName": "Tamilnadu JUG",
+    "location": "Online",
     "featured": true,
     "date": "2026",
     "eventDate": "2026-09-19",
@@ -154,6 +160,7 @@
   },
  {
     "name": "Confoo",
+    "ledgerName": "ConFoo 2026",
     "date": "2026",
     "location": "Montreal, Canada",
     "locationIcon": "🇨🇦",
@@ -173,6 +180,7 @@
   },
  {
   "name": "Confoo",
+    "ledgerName": "ConFoo 2026",
   "date": "2026",
   "location": "Montreal, Canada",
   "locationIcon": "🇨🇦",
@@ -803,6 +811,7 @@
   },
   {
     "name": "Garden State Java User Group",
+    "ledgerName": "Garden State JUG",
     "date": "2022",
     "location": "New Jersey, USA",
     "locationIcon": "🇺🇸",

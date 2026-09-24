@@ -1,3 +1,57 @@
+# Talks ledger — September 24, 2026
+
+final result: passed
+
+Preview: http://127.0.0.1:4182/conference/
+
+## Source and comparison evidence
+
+Source visual truth: `/Users/bazlur/Downloads/design_handoff_bazlur_jekyll 4/design/Talks v2.dc.html`, interpreted with `HANDOFF-talks.md`. The mock's missing `support.js` was replaced only in a temporary reference renderer by expanding its own data and bindings; its layout and inline styles were preserved. Rendered reference: `/private/tmp/bazlur-talks-reference/index.html`.
+
+The source and revised implementation were presented together in the same browser comparison input at a 1440 × 1000 CSS viewport, light theme, unfiltered opening state, DPR 1. The browser applies identical capture scaling to both: 1425 × 990 raster pixels. No independent resizing was used.
+
+Evidence under `/private/tmp/bazlur-talks-qa/`:
+- `reference-desktop.jpg` and `talks-desktop.jpg`: paired desktop comparison. Typography, rules, controls, column alignment and individual rows are readable at this size, so an additional crop was not necessary.
+- `talks-full.jpg`: complete implementation capture.
+- `talks-mobile.jpg` and `talks-mobile-dark.jpg`: 390 × 844 CSS viewport, both themes; captures are 375 × 812 pixels.
+- `talks-320.jpg`: narrow viewport, 320 × 740 CSS pixels.
+
+## Findings and iteration
+
+No actionable P0/P1/P2 visual differences remain. An initial implementation review found the longer MCP event label wrapping to two lines. The supplied shorter display label now keeps that upcoming row compact; the final paired capture verifies the correction. Stable year grouping also preserves the existing record order within each year instead of letting equal-year sorting rearrange sessions.
+
+Intentional adaptations: the written handoff specifies a 680px header/footer and 960px ledger, although the mock widens its header too. The implementation follows the written handoff and retains Books in the existing navigation. All 55 existing sessions, full titles, exact event dates, event URLs and nine distinct recording URLs remain in the existing `speaking.json` data source. Within each year, existing session order is preserved rather than adopting the mock's reordered and sometimes shortened content. Short display names and supplied locations are added only where needed. The existing “write to me” email link label is retained. The homepage now lists upcoming sessions, as requested in the handoff.
+
+## Fidelity surfaces
+
+- Fonts: EB Garamond at 36px/500 for the heading, 21px intro, 19px/1.3 talk titles and 17px event text. Fira Mono 12px is used for labels, years, places and counts. Existing font loading and fallbacks remain.
+- Layout: 960px table, 56px year column, 48px recording column, 12px row padding, 88px opening gap, 40px gap before the table and 300px filter column follow the reference. Below 640px the heading/filter stack and the table scrolls inside its own region.
+- Colors: existing paper, ink, oxblood links, dividers and hover background match the handoff palette. Previously approved higher-contrast metadata colors are intentionally retained in both themes.
+- Assets: there are no raster assets in the target. The recording control uses the official Heroicons solid play asset, stored locally with its MIT license and tinted with the existing link color.
+- Copy: intro, column labels, filter placeholder and session count follow the handoff. Full talk details remain intact. Missing event URLs render plain text, avoiding the mock's placeholder links. An explicit empty state and screen-reader year labels improve filtering accessibility.
+
+## Verification
+
+- Isolated Jekyll build and Shiki/image processing passed; tracked `_site` files were not modified by this work.
+- SEO checks passed for 124 articles and 183 sitemap URLs; all four responsive-image tests passed. JavaScript syntax and `git diff --check` passed.
+- Static checks confirmed 55 rows, all original titles and field values, nine recording URLs, two upcoming sessions, no placeholder links and no speaker-kit page in the build.
+- Browser filtering: `loom` 7 results, case/whitespace-insensitive `conFOO` 6, `Toronto` 4, `2026` 11, and visible place alias `Norway` 1. Year labels move to each first visible group row. An unmatched query shows the empty message and zero count; Backspace and native Escape clearing restore all 55 rows.
+- Keyboard focus is visible, the table region accepts horizontal arrow-key scrolling, and 320px/390px layouts have no document overflow. The full table remains available through horizontal scrolling.
+- Dark mode works, light mode was restored, viewport override reset, and the preview remains open.
+- Homepage shows both upcoming talks and its “All talks” link opens the new table. Browser error/warning logs are empty.
+- External recording URLs were preserved and checked in rendered markup; playback on third-party sites was not retested.
+
+## Implementation checklist
+
+- [x] Remove the unpublished speaker-kit draft.
+- [x] Implement the handoff's table, filter, year groups, recording controls and counts.
+- [x] Preserve all sessions and update homepage upcoming previews.
+- [x] Complete desktop comparison, mobile/dark checks and build/SEO validation.
+
+No commit or push performed.
+
+---
+
 # Site design verification
 
 ## Interviews addition — September 22, 2026
