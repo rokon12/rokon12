@@ -477,3 +477,6 @@ I'd consider a duality view when the tables are already well designed and severa
 - The schema relies on composite primary keys, which the view doesn't support.
 
 Before allowing writes, I'd require an etag and the complete document. Without the etag, my stale SHIPPED document overwrote a newer cancellation. Leaving out `items` deleted every line. Sending a document back means replacing all of it.
+
+I used an AI assistant to help build the example, run the tests and edit this article. The code, results and traces are all in the [companion repository](https://github.com/rokon12/order-duality).
+{: .note}
