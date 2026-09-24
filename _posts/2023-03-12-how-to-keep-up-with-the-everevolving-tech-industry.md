@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:45.47413'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 categories: ["Career & Community"]
+redirect_from: ["/backup/how-to-keep-up-with-the-everevolving-tech-industry.html", "/2023/03/12/how-to-keep-up-with-the-ever-evolving-tech-industry/"]
 ---
 
 ![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)

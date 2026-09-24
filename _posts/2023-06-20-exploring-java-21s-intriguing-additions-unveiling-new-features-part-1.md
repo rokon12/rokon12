@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:07.885536'
 featured_image: '/images/erik.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 categories: ["Java"]
+redirect_from: ["/backup/exploring-java-21s-intriguing-additions-unveiling-new-features-part-1.html"]
 ---
 
 ![](/images/erik.jpeg)

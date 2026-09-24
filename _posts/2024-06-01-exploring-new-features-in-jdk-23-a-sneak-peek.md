@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:18.2978'
 featured_image: '/images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["Java"]
+redirect_from: ["/backup/exploring-new-features-in-jdk-23-a-sneak-peek.html"]
 ---
 
 ![](/images/dall-e-2024-05-31-04.10.40-an-elegant-and-simple-illustration-of-a-java-developer-working-on-a-computer-with-a-screen-displaying-a-jdk-23-code-example.-the-background-is-minimal.webp)

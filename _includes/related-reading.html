@@ -1,0 +1,16 @@
+{% assign guide = site.data.guides | where: 'category', category | first %}
+{% if guide %}
+<section class="related-reading" aria-labelledby="related-reading-title">
+    <h2 id="related-reading-title">More on {{ guide.title | escape }}</h2>
+    <ul>
+    {% assign related_count = 0 %}
+    {% for item in guide.reading %}
+        {% if item.url != page.url and related_count < 3 %}
+        {% assign related = site.posts | where: 'url', item.url | first %}
+        {% if related %}<li><a href="{{ related.url | relative_url }}">{{ related.title | escape }}</a></li>{% assign related_count = related_count | plus: 1 %}{% endif %}
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <a href="{{ '/topics/' | append: guide.slug | append: '/' | relative_url }}">Follow the reading guide →</a>
+</section>
+{% endif %}

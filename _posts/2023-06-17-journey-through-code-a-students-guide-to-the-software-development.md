@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:09.321223'
 featured_image: '/images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 categories: ["Career & Community"]
+redirect_from: ["/backup/journey-through-code-a-students-guide-to-the-software-development.html"]
 ---
 
 ![](/images/1476e63e-153e-4186-b0a5-22add5e40990.jpeg)

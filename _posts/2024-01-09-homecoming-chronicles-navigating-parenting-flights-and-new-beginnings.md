@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:21.191854'
 featured_image: '/images/1704519735509.png'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["Personal"]
+redirect_from: ["/backup/homecoming-chronicles-navigating-parenting-flights-and-new-beginnings.html"]
 ---
 
 ![](/images/1704519735509.png)

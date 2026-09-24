@@ -6,6 +6,7 @@ date_published: '2022-04-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:32.413795'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
 categories: ["Career & Community"]
+redirect_from: ["/backup/three-mistakes-junior-software-developers-make-preventing-getting-hired-on-amazing-projects.html"]
 ---
 
 Three Mistakes Junior Software Developers Make Preventing Getting Hired On Amazing Projects

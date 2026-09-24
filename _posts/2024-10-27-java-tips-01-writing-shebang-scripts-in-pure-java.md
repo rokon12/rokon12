@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:11.063152'
 featured_image: '/images/dall-e-2024-10-27-02.06.37-a-feature-photo-illustrating-the-concept-of-writing-a-java-cli-shebang-script.-the-image-shows-a-terminal-window-with-java-code-being-executed-in-a-sh.webp'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["Tools"]
+redirect_from: ["/backup/java-tips-01-writing-shebang-scripts-in-pure-java.html"]
 ---
 
 ![](/images/dall-e-2024-10-27-02.06.37-a-feature-photo-illustrating-the-concept-of-writing-a-java-cli-shebang-script.-the-image-shows-a-terminal-window-with-java-code-being-executed-in-a-sh.webp)

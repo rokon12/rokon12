@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:32.72586'
 featured_image: '/images/screen-shot-2023-04-10-at-6.11.44-am.png'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/my-committer-profile-and-interview-with-the-eclipse-foundation.html", "/2023/04/10/my-committer-profile-interview-with-the-eclipse-foundation/"]
 ---
 
 ![](/images/screen-shot-2023-04-10-at-6.11.44-am.png)

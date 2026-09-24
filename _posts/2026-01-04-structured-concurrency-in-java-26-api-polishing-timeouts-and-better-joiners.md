@@ -6,6 +6,8 @@ date_published: '2026-01-04T00:00:00+00:00'
 date_scraped: '2026-01-05T00:50:56.967329881'
 featured_image: '/images/chatgpt-image-jan-4-2026-08-08-50-am.png'
 categories: ["Concurrency"]
+seo_title: "Structured Concurrency in Java 26: Timeouts and Joiners"
+description: "Explore the Java 26 structured concurrency preview, including task lifetimes, timeout handling, and joiners for coordinating related work."
 ---
 
 ![](/images/chatgpt-image-jan-4-2026-08-08-50-am.png)

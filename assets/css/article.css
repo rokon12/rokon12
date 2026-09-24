@@ -157,6 +157,13 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 .post-content ul, .post-content ol { padding-left: 24px; }
 .post-content li { margin-bottom: 8px; text-wrap: pretty; }
 .post-content img { display: block; max-width: 100%; height: auto; }
+.post-content picture { display: block; }
+.related-reading { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+.related-reading h2 { margin: 0 0 16px; font-size: 24px; font-weight: 400; font-style: italic; }
+.related-reading ul { margin: 0 0 18px; padding-left: 20px; font-size: 19px; line-height: 1.5; }
+.related-reading li + li { margin-top: 8px; }
+.related-reading a { color: var(--link); }
+.related-reading > a { font: 12px/1.6 var(--mono); }
 .post-content figure { margin-left: 0; margin-right: 0; }
 .post-content iframe, .post-content video { max-width: 100%; }
 .post-content hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }

@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:21.151727'
 featured_image: '/images/jc-program-logo.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 categories: ["Career & Community"]
+redirect_from: ["/backup/im-now-officially-a-java-champion.html"]
 ---
 
 ![](/images/jc-program-logo.png)

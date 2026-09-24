@@ -3,21 +3,22 @@ layout: article
 ---
 {% assign published = page.date_published | default: page.date %}
 {% assign category = page.categories | first | default: page.tags.first %}
-<article class="post h-entry" itemscope itemtype="https://schema.org/BlogPosting">
+<article class="post h-entry">
     <header class="post-header">
         <p class="post-meta">
-            {% if category %}<span>{{ category | escape }}</span> &middot; {% endif %}<time class="dt-published" datetime="{{ published | date_to_xmlschema }}" itemprop="datePublished">{{ published | date: '%B %-d, %Y' }}</time> &middot; <span>{% include reading-time.html post=page compact=true %}</span>
+            {% if category %}<span>{{ category | escape }}</span> &middot; {% endif %}<time class="dt-published" datetime="{{ published | date_to_xmlschema }}">{{ published | date: '%B %-d, %Y' }}</time> &middot; <span>{% include reading-time.html post=page compact=true %}</span>
         </p>
-        <h1 class="post-title p-name" itemprop="name headline">{% if page.title_emphasis and page.title contains page.title_emphasis %}{{ page.title | remove: page.title_emphasis | escape }}<em>{{ page.title_emphasis | escape }}</em>{% else %}{{ page.title | escape }}{% endif %}</h1>
+        <h1 class="post-title p-name">{% if page.title_emphasis and page.title contains page.title_emphasis %}{{ page.title | remove: page.title_emphasis | escape }}<em>{{ page.title_emphasis | escape }}</em>{% else %}{{ page.title | escape }}{% endif %}</h1>
         {% if page.subtitle %}<p class="post-lede">{{ page.subtitle | escape }}</p>{% endif %}
     </header>
 
     {% if page.series %}{% include series-note.html %}{% endif %}
     <div class="reading-progress" aria-hidden="true"></div>
-    <div class="post-content e-content" itemprop="articleBody">
+    <div class="post-content e-content">
         {{ content }}
     </div>
 
+    {% include related-reading.html %}
     <aside class="article-author" aria-label="About the author">
         <img src="{{ '/images/author_photo-small.webp' | relative_url }}" alt="{{ site.author.name | escape }}" width="56" height="56" loading="lazy">
         <div>

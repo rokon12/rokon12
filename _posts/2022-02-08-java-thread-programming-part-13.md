@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:45.407054'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-13.html"]
 ---
 
 Java Thread Programming (Part 13)

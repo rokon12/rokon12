@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:16.553262'
 featured_image: '/images/pxl-20230503-140737421-scaled.jpg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 categories: ["Career & Community"]
+redirect_from: ["/backup/java-threads-reimagined-a-reflection-on-jconf-toronto-2023-and-the-dawn-of-a-new-era-of-concurrency.html"]
 ---
 
 ![](/images/pxl-20230503-140737421-scaled.jpg)

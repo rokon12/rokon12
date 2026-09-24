@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:34.46606'
 featured_image: '/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png'
 tags: [java concurrency, thread ordering, volatile keyword, completablefuture, lock free programming]
 categories: ["Concurrency"]
+redirect_from: ["/backup/5-things-you-probably-didnt-know-about-java-concurrency.html"]
 ---
 
 ![](/images/dall-e-2023-10-11-03.34.35-photo-representation-of-a-hello-world-java-program-with-the-main-thread-emphasized-and-other-threads-branching-off-from-it.-background-shows-a-web-s.png)

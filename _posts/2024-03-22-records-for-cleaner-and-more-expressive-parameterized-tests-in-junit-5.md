@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:19.76441'
 featured_image: '/images/gemini-generated-image-2.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["Tools"]
+redirect_from: ["/backup/records-for-cleaner-and-more-expressive-parameterized-tests-in-junit-5.html"]
 ---
 
 ![](/images/gemini-generated-image-2.jpeg)

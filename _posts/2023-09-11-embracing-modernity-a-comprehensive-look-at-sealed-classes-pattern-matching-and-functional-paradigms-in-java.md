@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:37.927734'
 featured_image: '/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 categories: ["Java"]
+redirect_from: ["/backup/embracing-modernity-a-comprehensive-look-at-sealed-classes-pattern-matching-and-functional-paradigms-in-java.html"]
 ---
 
 ![](/images/23752bb0-5ca9-4418-9e6d-db51dded2e4e.jpeg)

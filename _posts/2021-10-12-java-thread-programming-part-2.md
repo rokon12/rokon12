@@ -8,6 +8,7 @@ featured_image: '/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-c
 tags: [java threads, multithreading, socket programming, web server, concurrent programming]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-2.html"]
 ---
 
 ![](/images/dall-e-2023-10-11-03.24.55-stylized-illustration-of-a-cloud-representing-cloud-bills-with-two-jars-beneath-it-labeled-java-8-and-java-11.-the-java-8-jar-is-filled-up-to-10.png)

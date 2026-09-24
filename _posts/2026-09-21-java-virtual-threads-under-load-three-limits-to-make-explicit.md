@@ -9,6 +9,9 @@ date_published: '2026-09-21T04:56:21Z'
 date_scraped: '2026-09-21T21:42:57.913078377'
 featured_image: '/images/gemini-generated-image-f6qsoyf6qsoyf6qs-1-scaled.jpeg'
 tags: [concurrency, java, jdk 25, openjdk, project loom, structured concurrency, thread programming, virtual threads 2]
+redirect_from: ["/2026/09/21/java-virtual-threads-under-load/"]
+seo_title: "Java Virtual Threads Under Load: Three Production Limits"
+description: "Learn how admission limits, lock scope, and task cancellation affect Java virtual threads under load, with runnable examples for each production concern."
 ---
 
 Virtual threads let us keep ordinary blocking code while many more requests wait concurrently. Under load, however, that brings three critical questions into focus:

@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:53.436775'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 categories: ["JVM & Performance"]
 series: java-bytecode
+redirect_from: ["/backup/java-bytecode-simplified-journey-to-the-wonderland-part-3.html"]
 ---
 
 Java Bytecode Simplified: Journey to the Wonderland (Part 3)

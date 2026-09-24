@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:38.596446'
 featured_image: '/images/6.png'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 categories: ["Career & Community"]
+redirect_from: ["/backup/navigating-the-challenges-of-modern-software-development-an-exclusive-interview-with-shai-almog.html"]
 ---
 
 ![](/images/6.png)

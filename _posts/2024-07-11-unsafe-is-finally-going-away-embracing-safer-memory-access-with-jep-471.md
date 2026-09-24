@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:15.395951'
 featured_image: '/images/gemini-generated-image-9cppb89cppb89cpp.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["JVM & Performance"]
+redirect_from: ["/backup/unsafe-is-finally-going-away-embracing-safer-memory-access-with-jep-471.html"]
 ---
 
 ![](/images/gemini-generated-image-9cppb89cppb89cpp.jpeg)

@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:28.416371'
 featured_image: '/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 categories: ["Concurrency"]
+redirect_from: ["/backup/what-is-cyclicbarrier-and-when-to-use-it-in-java.html"]
 ---
 
 ![](/images/7c64ca58-0810-4373-973a-a27c44ece1bb.jpeg)

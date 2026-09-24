@@ -1,6 +1,8 @@
 <ul class="topic-list">
     {% assign topics = site.posts | group_by_exp: 'post', "post.categories | first | default: 'Other'" | sort: 'name' %}
     {% for topic in topics %}
-    <li><a href="{{ '/archive/' | relative_url }}?topic={{ topic.name | slugify }}"><span>{{ topic.name | escape }}</span><span class="topic-count">{{ topic.items.size }}<span class="visually-hidden"> article{% if topic.items.size != 1 %}s{% endif %}</span></span></a></li>
+    {% assign guide = site.data.guides | where: 'category', topic.name | first %}
+    {% capture topic_url %}{% if guide %}/topics/{{ guide.slug }}/{% else %}/archive/?topic={{ topic.name | slugify }}{% endif %}{% endcapture %}
+    <li><a href="{{ topic_url | relative_url }}"><span>{{ topic.name | escape }}</span><span class="topic-count">{{ topic.items.size }}<span class="visually-hidden"> article{% if topic.items.size != 1 %}s{% endif %}</span></span></a></li>
     {% endfor %}
 </ul>

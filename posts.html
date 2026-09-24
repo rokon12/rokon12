@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Archive
+redirect_from: ["/backup/", "/backup/index.html"]
 permalink: /archive/
 description: Articles on Java concurrency, JVM internals, software engineering, and AI in Java.
 ---
@@ -10,6 +11,7 @@ description: Articles on Java concurrency, JVM internals, software engineering, 
     <header class="page-head">
         <h1>Archive</h1>
         <p><span id="archive-status" role="status" aria-live="polite" aria-atomic="true">{{ site.posts.size }} articles since {{ oldest_post.date | date: '%Y' }}.</span> Filter by topic, or <a href="{{ '/search/' | relative_url }}">search</a>.</p>
+        <nav class="page-links" aria-label="Reading guides"><a href="{{ '/tags/' | relative_url }}">Topic guides →</a></nav>
     </header>
     <div class="index-section archive-filters" id="archive-filters" hidden>
         <h2 class="section-label" id="archive-topic-label">Topic</h2>

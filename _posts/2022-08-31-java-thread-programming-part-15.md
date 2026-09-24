@@ -8,6 +8,7 @@ featured_image: '/images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg'
 tags: [java threads, callable future, asynchronous programming, executorservice, java 19]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-15.html"]
 ---
 
 ![](/images/bozhin-karaivanov-k6cc1d-k-g-unsplash-scaled.jpg)

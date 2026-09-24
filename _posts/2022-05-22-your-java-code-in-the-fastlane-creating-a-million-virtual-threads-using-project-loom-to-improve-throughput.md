@@ -6,6 +6,7 @@ date_published: '2022-05-22T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:19.709672'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 categories: ["Concurrency"]
+redirect_from: ["/backup/your-java-code-in-the-fastlane-creating-a-million-virtual-threads-using-project-loom-to-improve-throughput.html"]
 ---
 
 Your Java Code in the Fastlane: Creating a Million Virtual Threads Using Project Loom to Improve Throughput

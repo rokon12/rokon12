@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:59.208737'
 featured_image: '/images/devoxxma.jpeg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 categories: ["Personal"]
+redirect_from: ["/backup/tour-de-morocco.html"]
 ---
 
 ![](/images/devoxxma.jpeg)

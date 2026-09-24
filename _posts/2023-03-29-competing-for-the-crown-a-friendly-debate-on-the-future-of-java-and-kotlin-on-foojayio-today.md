@@ -6,6 +6,7 @@ date_published: '2023-03-29T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:35.681015'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/competing-for-the-crown-a-friendly-debate-on-the-future-of-java-and-kotlin-on-foojayio-today.html", "/2023/03/29/competing-for-the-crown-a-friendly-debate-on-the-future-of-java-and-kotlin-on-foojay-io-today/"]
 ---
 
 Competing for the Crown: A Friendly Debate on the Future of Java and Kotlin on Foojay.io Today

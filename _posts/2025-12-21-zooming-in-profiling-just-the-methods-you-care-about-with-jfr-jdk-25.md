@@ -6,6 +6,8 @@ date_published: '2025-12-21T00:00:00+00:00'
 date_scraped: '2025-12-21T10:42:46.048859059'
 featured_image: '/images/chatgpt-image-dec-21-2025-05-33-08-am.png'
 categories: ["JVM & Performance"]
+seo_title: "Targeted Method Profiling with Java Flight Recorder"
+description: "Profile selected Java methods with JFR Method Trace and Method Timing events, using programmatic recordings to inspect call paths and durations."
 ---
 
 ![](/images/chatgpt-image-dec-21-2025-05-33-08-am.png)

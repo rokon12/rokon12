@@ -2,33 +2,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% assign raw_page_description = page.description %}
-    {% if raw_page_description == nil or raw_page_description == '' %}
-      {% assign raw_page_description = page.excerpt | strip_html | strip_newlines %}
-    {% endif %}
-    {% if raw_page_description == nil or raw_page_description == '' %}
-      {% assign raw_page_description = page.content | strip_html | strip_newlines %}
-    {% endif %}
-    {% if raw_page_description == nil or raw_page_description == '' %}
-      {% assign raw_page_description = site.description %}
-    {% endif %}
-    {% assign page_description = raw_page_description | replace: '  ', ' ' | truncate: 180 %}
+    {% assign page_title = page.seo_title | default: page.title | default: site.title %}
+    {% if page.layout == 'tag' %}{% capture page_title %}{{ page.tag | capitalize }} articles{% endcapture %}{% endif %}
+    {% if paginator.page > 1 %}{% capture page_title %}Articles — Page {{ paginator.page }}{% endcapture %}{% endif %}
+    {% assign raw_page_description = page.description | default: page.subtitle | default: page.excerpt %}
+    {% assign page_description = raw_page_description | markdownify | strip_html | normalize_whitespace %}
+    {% if page_description == '' %}{% assign page_description = page.content | markdownify | strip_html | normalize_whitespace %}{% endif %}
+    {% if page_description == '' %}{% assign page_description = site.description %}{% endif %}
+    {% if page.layout == 'tag' %}{% capture page_description %}Articles about {{ page.tag }} by A N M Bazlur Rahman. Explore explanations, code examples, and practical experience from the archive.{% endcapture %}{% endif %}
+    {% if paginator.page > 1 %}{% capture page_description %}Browse page {{ paginator.page }} of articles by A N M Bazlur Rahman on Java, concurrency, JVM internals, and AI applications.{% endcapture %}{% endif %}
+    {% assign page_description = page_description | truncate: 180 %}
     {% assign page_image = page.featured_image | default: page.image | default: site.default_social_image %}
-    {% if page_image contains '://' %}
-      {% assign page_image_url = page_image %}
-    {% else %}
-      {% assign page_image_url = page_image | absolute_url %}
-    {% endif %}
-    {% assign page_title = page.title | default: site.title %}
+    {% assign page_image_url = page_image | absolute_url %}
+    {% assign canonical_url = page.canonical_url | default: page.url | replace: '/index.html', '/' | absolute_url %}
+    {% assign published = page.date_published | default: page.date %}
+    {% assign modified = page.last_modified_at | default: published %}
 
-    {% seo %}
-
-    <meta name="description" content="{{ page_description }}">
-    <meta property="og:description" content="{{ page_description }}">
-    <meta property="og:image" content="{{ page_image_url }}">
+    <title>{{ page_title | escape }}{% unless page_title == site.title %} | {{ site.title | escape }}{% endunless %}</title>
+    <link rel="canonical" href="{{ canonical_url | escape }}">
+    <meta name="description" content="{{ page_description | escape }}">
+    <meta name="robots" content="{% if page.noindex %}noindex, follow{% else %}index, follow, max-image-preview:large{% endif %}">
+    {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification | escape }}">{% endif %}
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta property="og:url" content="{{ canonical_url | escape }}">
+    <meta property="og:description" content="{{ page_description | escape }}">
+    <meta property="og:image" content="{{ page_image_url | escape }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:image" content="{{ page_image_url }}">
-    <meta name="twitter:description" content="{{ page_description }}">
+    <meta name="twitter:site" content="@{{ site.twitter.username | escape }}">
+    <meta name="twitter:title" content="{{ page_title | escape }}">
+    <meta name="twitter:image" content="{{ page_image_url | escape }}">
+    <meta name="twitter:description" content="{{ page_description | escape }}">
+    {% if page.layout == 'post' %}
+    <meta property="article:published_time" content="{{ published | date_to_xmlschema }}">
+    <meta property="article:modified_time" content="{{ modified | date_to_xmlschema }}">
+    {% endif %}
 
     <script>
       (function () {
@@ -38,8 +47,8 @@
         document.documentElement.dataset.theme = dark ? 'dark' : 'light';
       })();
     </script>
-    <link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}?v=3">
-    {% unless page.layout == 'post' %}<link rel="stylesheet" href="{{ '/assets/css/pages.css' | relative_url }}?v=3">{% endunless %}
+    <link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}?v=4">
+    {% unless page.layout == 'post' %}<link rel="stylesheet" href="{{ '/assets/css/pages.css' | relative_url }}?v=4">{% endunless %}
 
     <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
 
@@ -54,9 +63,10 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": {{ "/about/#person" | absolute_url | jsonify }},
       "name": {{ site.author.name | jsonify }},
       "url": {{ site.author.url | jsonify }},
-      "image": {{ site.author.photo | absolute_url | jsonify }},
+      "image": {{ site.default_social_image | absolute_url | jsonify }},
       "jobTitle": {{ site.author.role | jsonify }},
       "homeLocation": {{ site.author.location | jsonify }},
       "sameAs": {{ site.author.same_as | jsonify }}
@@ -67,14 +77,14 @@
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": {{ page_title | jsonify }},
+      "headline": {{ page.title | jsonify }},
       "description": {{ page_description | jsonify }},
       "image": {{ page_image_url | jsonify }},
-      "datePublished": {{ page.date_published | default: page.date | date_to_xmlschema | jsonify }},
-      "dateModified": {{ page.last_modified_at | default: page.date_published | default: page.date | date_to_xmlschema | jsonify }},
+      "datePublished": {{ published | date_to_xmlschema | jsonify }},
+      "dateModified": {{ modified | date_to_xmlschema | jsonify }},
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": {{ page.url | absolute_url | jsonify }}
+        "@id": {{ canonical_url | jsonify }}
       },
       "author": {
         "@type": "Person",
@@ -87,7 +97,18 @@
         "name": {{ site.author.name | jsonify }},
         "url": {{ site.author.url | jsonify }}
       },
-      "url": {{ page.url | absolute_url | jsonify }}
+      "url": {{ canonical_url | jsonify }}
+    }
+    </script>
+    {% elsif page.url == '/' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": {{ '/#website' | absolute_url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "alternateName": "Bazlur Rahman",
+      "url": {{ '/' | absolute_url | jsonify }}
     }
     </script>
     {% endif %}

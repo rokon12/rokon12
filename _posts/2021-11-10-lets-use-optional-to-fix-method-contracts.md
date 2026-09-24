@@ -6,6 +6,7 @@ date_published: '2021-11-10T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:59.956493'
 tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
 categories: ["Java"]
+redirect_from: ["/backup/lets-use-optional-to-fix-method-contracts.html"]
 ---
 
 Let's Use Optional to Fix Method Contracts

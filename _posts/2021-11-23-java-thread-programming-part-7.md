@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:56.452773'
 tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-7.html"]
 ---
 
 Java Thread Programming (Part 7)

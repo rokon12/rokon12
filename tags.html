@@ -10,5 +10,13 @@ description: Browse the article archive by topic, from Java concurrency to AI-po
         <p>Follow a thread through the archive.</p>
         <nav class="page-links" aria-label="Browse articles"><a href="{{ '/archive/' | relative_url }}">All articles</a><a href="{{ '/search/' | relative_url }}">Search</a></nav>
     </header>
+    <section class="index-section" aria-labelledby="topic-guides">
+        <h2 class="section-label" id="topic-guides">Guides</h2>
+        <ul class="reading-guides">
+            {% for guide in site.data.guides %}
+            <li><a href="{{ '/topics/' | append: guide.slug | append: '/' | relative_url }}">{{ guide.title | escape }}</a><p>{{ guide.description | escape }}</p></li>
+            {% endfor %}
+        </ul>
+    </section>
     {% include topic-list.html %}
 </div>

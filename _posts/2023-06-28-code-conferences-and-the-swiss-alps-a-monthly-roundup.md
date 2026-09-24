@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:06.445471'
 featured_image: '/images/1687906864391.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 categories: ["Career & Community"]
+redirect_from: ["/backup/code-conferences-and-the-swiss-alps-a-monthly-roundup.html"]
 ---
 
 ![](/images/1687906864391.jpeg)

@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:51.592233'
 featured_image: '/images/dummies-373x510.png'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 categories: ["Java"]
+redirect_from: ["/backup/book-review-openjdk-migration-for-dummies.html"]
 ---
 
 Book Review: "OpenJDK Migration for Dummies"

@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:22.327279'
 featured_image: '/images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/announcing-java-unscripted-an-asynchronous-exploration-of-excellence.html"]
 ---
 
 ![](/images/ca3a69fe-9a17-4917-b8b8-07bdf6c9e4b6.jpeg)

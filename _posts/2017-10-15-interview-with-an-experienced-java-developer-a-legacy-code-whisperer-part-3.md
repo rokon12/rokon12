@@ -8,6 +8,7 @@ featured_image: '/images/interviews.jpeg'
 tags: [core java, multi threading, thread, java, code reading skills]
 categories: ["Career & Community"]
 series: legacy-code-whisperer
+redirect_from: ["/backup/interview-with-an-experienced-java-developer-a-legacy-code-whisperer-part-3.html"]
 ---
 
 ![](/images/interviews.jpeg)

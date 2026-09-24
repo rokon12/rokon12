@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { codeToHtml } from 'shiki';
+import { responsiveImages } from './responsive-images.mjs';
 
 const siteDir = path.resolve(process.cwd(), process.argv[2] || '_site');
 const htmlFiles = await collectHtmlFiles(siteDir);
@@ -8,7 +9,8 @@ const htmlFiles = await collectHtmlFiles(siteDir);
 for (const filePath of htmlFiles) {
   const source = await fs.readFile(filePath, 'utf8');
   const withoutDuplicateHeading = removeDuplicatePostHeading(source);
-  const rendered = await replaceCodeBlocks(withoutDuplicateHeading);
+  const highlighted = await replaceCodeBlocks(withoutDuplicateHeading);
+  const rendered = await responsiveImages(highlighted, siteDir);
 
   if (rendered !== source) {
     await fs.writeFile(filePath, rendered);
@@ -93,7 +95,7 @@ function normalizeLanguage(language) {
 
 function removeDuplicatePostHeading(html) {
   return html.replace(
-    /(<div class="post-content e-content" itemprop="articleBody">[\s\S]*?)(<h1\b[^>]*>[\s\S]*?<\/h1>)/,
+    /(<div class="post-content e-content"(?: itemprop="articleBody")?>[\s\S]*?)(<h1\b[^>]*>[\s\S]*?<\/h1>)/,
     '$1'
   );
 }

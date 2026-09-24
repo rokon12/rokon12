@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:26.515257'
 featured_image: '/images/idea-overview-5-1-2x.webp'
 tags: [intellij idea, preview features, virtual threads, project loom, java tooling]
 categories: ["Tools"]
+redirect_from: ["/backup/how-to-enable-java-preview-features-and-run-code-from-intellij-idea.html", "/2022/05/08/how-to-run-project-loom-from-intellij-idea/"]
 ---
 
 ![](/images/idea-overview-5-1-2x.webp)

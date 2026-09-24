@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% assign guide = site.data.guides | where: 'slug', page.guide | first %}
+<div class="listing-page topic-page">
+    <header class="page-head">
+        <a class="text-link back-link" href="{{ '/tags/' | relative_url }}">← All topics</a>
+        <h1>{{ guide.title | escape }}</h1>
+        <p>{{ guide.intro | escape }}</p>
+    </header>
+    <section class="index-section" aria-labelledby="reading-path">
+        <h2 class="section-label" id="reading-path">Start here</h2>
+        <ol class="reading-path">
+            {% for item in guide.reading %}
+            {% assign post = site.posts | where: 'url', item.url | first %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><p>{{ item.note | escape }}</p></li>
+            {% endfor %}
+        </ol>
+    </section>
+    <section class="index-section ruled-section" aria-labelledby="topic-archive">
+        <h2 class="section-label" id="topic-archive">Explore</h2>
+        <ul class="article-list">
+        {% for post in site.posts %}
+            {% assign include_post = false %}
+            {% assign lower_title = post.title | downcase %}
+            {% if guide.category and post.categories contains guide.category %}{% assign include_post = true %}{% endif %}
+            {% if guide.match_title and lower_title contains guide.match_title %}{% assign include_post = true %}{% endif %}
+            {% if include_post %}<li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y' }}</time></li>{% endif %}
+        {% endfor %}
+        </ul>
+    </section>
+</div>

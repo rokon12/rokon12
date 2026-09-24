@@ -114,6 +114,13 @@ input:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
 .topic-list a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 20px; line-height: 1.4; }
 .topic-list a > span:first-child { overflow-wrap: anywhere; }
 .topic-count { color: var(--ink3); font: 12px var(--mono); }
+.reading-guides { margin: 0; padding: 0; list-style: none; }
+.reading-guides li + li { margin-top: 24px; }
+.reading-guides a, .reading-path a { color: var(--link); font-size: 22px; line-height: 1.35; }
+.reading-guides p, .reading-path p { margin: 6px 0 0; color: var(--ink2); font-size: 19px; line-height: 1.5; }
+.reading-path { margin: 0; padding-left: 24px; }
+.reading-path li { padding-left: 6px; }
+.reading-path li + li { margin-top: 24px; }
 .search-page .page-head { margin-bottom: 32px; }
 .search-page { overflow-wrap: anywhere; }
 .search-label { display: block; color: var(--ink2); font: 12px/1.6 var(--mono); }

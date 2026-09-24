@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:26:12.555302'
 tags: [core java, multi threading, thread, java, code reading skills]
 categories: ["Career & Community"]
 series: coding-and-collaboration
+redirect_from: ["/backup/coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired-part-2.html", "/2017/11/21/interview-with-bruno-souza-coding-and-collaboration-skills-a-junior-developer-should-have-to-get-hired/"]
 ---
 
 Coding and collaboration skills a junior developer should have to get hired -- Part 2

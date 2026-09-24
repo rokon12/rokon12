@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:49.814322'
 featured_image: '/images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg'
 tags: [sealed classes, java 15, design patterns, type safety, inheritance control]
 categories: ["Java"]
+redirect_from: ["/backup/java-sealed-classes-in-action-building-robust-and-secure-applications.html"]
 ---
 
 ![](/images/sippakorn-yamkasikorn-eyyx5sdusno-unsplash-scaled.jpg)

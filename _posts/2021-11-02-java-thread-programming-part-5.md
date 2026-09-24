@@ -8,6 +8,7 @@ featured_image: '/images/threading-432x510.png'
 tags: [learning thread programming, thread programming, thread safety, thread lifecycle, core java]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-5.html"]
 ---
 
 Java Thread Programming (Part 5)

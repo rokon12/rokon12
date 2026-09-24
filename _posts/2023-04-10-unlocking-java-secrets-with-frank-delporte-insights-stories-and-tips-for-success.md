@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:31.299307'
 featured_image: '/images/5.png'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/unlocking-java-secrets-with-frank-delporte-insights-stories-and-tips-for-success.html"]
 ---
 
 ![](/images/5.png)

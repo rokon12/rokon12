@@ -6,6 +6,9 @@ date_published: '2025-04-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:01.007487'
 featured_image: '/images/chatgpt-image-apr-6-2025-06-10-38-pm.png'
 categories: ["AI & LLMs"]
+redirect_from: ["/2025/04/06/building-formpilot-my-journey-creating-an-ai-powered-form-filler-with-rag-langchain4j-and-ollama/"]
+seo_title: "FormPilot: Java, LangChain4j and Ollama for Form Filling"
+description: "Explore an experimental AI form filler built with a Chrome extension, Spring Boot, LangChain4j, Ollama, and retrieval-augmented generation."
 ---
 
 ![](/images/chatgpt-image-apr-6-2025-06-10-38-pm.png)
@@ -648,9 +651,8 @@ A demo form is included in this project to help you test the Smart Form Filler e
 1. Create the demo form and open it in your browser: file:///path/to/FormPilot/demo/demo-form.html
 2. Alternatively, you can serve the demo form using a simple HTTP server:
 
+```bash
 # If you have Python installed
-
-```java
 python -m http.server
 ```
 
@@ -761,4 +763,3 @@ If you're interested in exploring the code further or contributing, you can find
 Feel free to fork it, experiment, and adapt it. I'd love to hear your feedback and suggestions!
 
 Happy (and smarter) form filling!  
-

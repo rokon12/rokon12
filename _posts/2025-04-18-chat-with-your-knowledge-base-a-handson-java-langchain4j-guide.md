@@ -6,6 +6,9 @@ date_published: '2025-04-18T00:00:00+00:00'
 date_scraped: '2025-08-05T22:22:59.55067'
 featured_image: '/images/chatgpt-image-apr-18-2025-02-34-23-am.png'
 categories: ["AI & LLMs"]
+redirect_from: ["/2025/04/18/chat-with-your-knowledge-base-a-hands-on-java-langchain4j-guide/"]
+seo_title: "Build a Java RAG Application with LangChain4j"
+description: "Build an experimental Java knowledge-base assistant with LangChain4j, from loading documents and retrieving relevant context to generating answers."
 ---
 
 ![](/images/chatgpt-image-apr-18-2025-02-34-23-am.png)

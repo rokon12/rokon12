@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:23.772793'
 featured_image: '/images/michael-redlich.jpg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/discovering-the-secrets-to-success-an-exclusive-interview-with-java-champion-michael-p-redlich.html"]
 ---
 
 Discovering the Secrets to Success: An Exclusive Interview with Java Champion Michael P. Redlich

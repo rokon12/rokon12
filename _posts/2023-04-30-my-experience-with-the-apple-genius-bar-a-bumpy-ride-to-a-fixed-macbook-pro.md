@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:29.279574'
 featured_image: '/images/r121.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Personal"]
+redirect_from: ["/backup/my-experience-with-the-apple-genius-bar-a-bumpy-ride-to-a-fixed-macbook-pro.html"]
 ---
 
 ![](/images/r121.jpeg)

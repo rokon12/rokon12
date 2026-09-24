@@ -6,6 +6,7 @@ date_published: '2023-07-19T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:56.049474'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 categories: ["Java"]
+redirect_from: ["/backup/dive-into-the-openjdk-top-10-reads-on-foojayio.html", "/2023/07/19/dive-into-the-openjdk-top-10-reads-on-foojay-io/"]
 ---
 
 Dive into the OpenJDK: Top 10 Reads on Foojay.io

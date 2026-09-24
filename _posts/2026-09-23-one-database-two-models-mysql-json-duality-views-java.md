@@ -9,6 +9,7 @@ description: "A hands-on look at MySQL JSON Duality Views: reading relational da
 excerpt: "A hands-on look at MySQL JSON Duality Views: reading relational data as JSON in Java, writing documents back safely, and giving a local AI assistant read-only tools."
 featured_image: "/images/mysql-json-duality-views-java-ai.jpeg"
 image: "/images/mysql-json-duality-views-java-ai.jpeg"
+seo_title: "MySQL JSON Duality Views in Java: Reads, Writes and AI"
 ---
 
 <figure>
@@ -383,7 +384,7 @@ I only compared reads. An ORM is still the better tool when entities carry real 
 
 ## Giving the documents to an AI assistant
 
-I gave a local language model two read-only tools.
+I gave a local language model two read-only tools. The [LangChain4j store-assistant walkthrough](/2026/04/09/building-llm-apps-in-java-with-langchain4j/) covers how tools and retrieved context fit into a larger Java application.
 
 ```java
 String getOrder(long orderId)

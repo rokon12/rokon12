@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:07.971426'
 featured_image: '/images/java-newsletters-1.png'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
 categories: ["Java"]
+redirect_from: ["/backup/weekly-java-newsletter-issue-3.html"]
 ---
 
 ![](/images/java-newsletters-1.png)

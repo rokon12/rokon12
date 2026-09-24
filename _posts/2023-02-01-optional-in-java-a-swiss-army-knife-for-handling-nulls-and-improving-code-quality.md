@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:51.355615'
 featured_image: '/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 categories: ["Java"]
+redirect_from: ["/backup/optional-in-java-a-swiss-army-knife-for-handling-nulls-and-improving-code-quality.html"]
 ---
 
 ![](/images/denise-jans-j1cttvpj8k-unsplash-scaled.jpg)

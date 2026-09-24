@@ -6,6 +6,8 @@ date_published: '2025-06-21T00:00:00+00:00'
 date_scraped: '2025-08-05T22:22:50.145646'
 featured_image: '/images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png'
 categories: ["AI & LLMs"]
+seo_title: "LangChain4j Guardrails with Spring Boot"
+description: "Validate LLM inputs and outputs with LangChain4j guardrails in Spring Boot, using practical examples and a companion Java project."
 ---
 
 ![](/images/u6131494527-1.-shield-ai-brain-concept-a-modern-minimalist-c6366e07-45bb-4d60-8f31-a4380e8e1bd8-0.png)

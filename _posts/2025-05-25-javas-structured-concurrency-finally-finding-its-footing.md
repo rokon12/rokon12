@@ -6,6 +6,8 @@ date_published: '2025-05-25T00:00:00+00:00'
 date_scraped: '2025-08-05T22:22:53.093429'
 featured_image: '/images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png'
 categories: ["Concurrency"]
+seo_title: "Java Structured Concurrency: Understanding the JEP 505 Changes"
+description: "Walk through JEP 505’s structured concurrency changes, task coordination, cancellation, and how the revised API works with virtual threads."
 ---
 
 ![](/images/u6131494527-an-image-showcasing-a-strong-modern-architectural-add760f3-7c45-4096-bb86-40dfac334ca1-2.png)

@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:46.931941'
 featured_image: '/images/img-20230202-wa0000.jpg'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 categories: ["Personal"]
+redirect_from: ["/backup/welcoming-our-little-princess-the-story-of-rushda-rahman.html"]
 ---
 
 ![](/images/img-20230202-wa0000.jpg)

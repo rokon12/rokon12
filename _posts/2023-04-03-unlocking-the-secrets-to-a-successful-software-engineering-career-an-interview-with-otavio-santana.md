@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:34.176988'
 featured_image: '/images/4.png'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/unlocking-the-secrets-to-a-successful-software-engineering-career-an-interview-with-otavio-santana.html"]
 ---
 
 ![](/images/4.png)

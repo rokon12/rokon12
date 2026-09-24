@@ -6,6 +6,9 @@ date_published: '2023-05-09T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:27.855563'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Concurrency"]
+redirect_from: ["/backup/unleashing-the-power-of-lightweight-concurrency-a-comprehensive-guide-to-java-virtual-threads-part-1.html"]
+seo_title: "Java Virtual Threads: A Practical Introduction"
+description: "Learn how Java virtual threads work, how they differ from platform threads, and how lightweight concurrency changes blocking application code."
 ---
 
 Unleashing the Power of Lightweight Concurrency: A Comprehensive Guide to Java Virtual Threads (Part 1)

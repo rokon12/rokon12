@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:12.202987'
 featured_image: '/images/chris.png'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 categories: ["Career & Community"]
+redirect_from: ["/backup/breaking-the-code-how-chris-newland-is-changing-the-game-in-jvm-performance.html"]
 ---
 
 ![](/images/chris.png)

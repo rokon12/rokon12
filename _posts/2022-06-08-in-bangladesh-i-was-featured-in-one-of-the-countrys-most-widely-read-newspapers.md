@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:16.820171'
 featured_image: '/images/jc-program-logo.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 categories: ["Career & Community"]
+redirect_from: ["/backup/in-bangladesh-i-was-featured-in-one-of-the-countrys-most-widely-read-newspapers.html"]
 ---
 
 ![](/images/jc-program-logo.png)

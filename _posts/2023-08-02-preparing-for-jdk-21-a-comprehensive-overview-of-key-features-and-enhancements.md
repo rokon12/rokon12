@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:53.080064'
 featured_image: '/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg'
 tags: [java 21, virtual threads, pattern matching, string templates, jdk enhancements]
 categories: ["Java"]
+redirect_from: ["/backup/preparing-for-jdk-21-a-comprehensive-overview-of-key-features-and-enhancements.html"]
 ---
 
 ![](/images/1bf5f13e-70f0-43d9-a177-f38300ec841e.jpeg)

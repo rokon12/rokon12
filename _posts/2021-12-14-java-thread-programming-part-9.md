@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:52.564575'
 tags: [java threads, synchronized collections, thread safety, concurrent collections, atomic operations]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-9.html"]
 ---
 
 Java Thread Programming (Part 9)

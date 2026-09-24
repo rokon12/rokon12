@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:19.425751'
 featured_image: '/images/erik.jpeg'
 tags: [openjdk, java unscripted, java champion, java 21, virtual thread]
 categories: ["Career & Community"]
+redirect_from: ["/backup/decoding-success-an-industry-experts-guide-to-thriving-in-software-development-and-security.html"]
 ---
 
 ![](/images/erik.jpeg)

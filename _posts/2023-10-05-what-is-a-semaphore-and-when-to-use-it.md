@@ -7,6 +7,9 @@ date_scraped: '2025-08-05T22:23:26.968058'
 featured_image: '/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg'
 tags: [java concurrency, semaphore, virtual threads, thread programming, synchronization]
 categories: ["Concurrency"]
+redirect_from: ["/backup/what-is-a-semaphore-and-when-to-use-it.html"]
+seo_title: "Java Semaphores: Limiting Concurrent Access"
+description: "Learn how Java semaphores control access to limited resources, with examples of permits, blocking, and managing concurrent work."
 ---
 
 ![](/images/b8ae274c-6229-4645-9a20-ef9412595531.jpeg)

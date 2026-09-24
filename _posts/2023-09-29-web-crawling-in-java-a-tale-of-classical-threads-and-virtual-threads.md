@@ -7,6 +7,9 @@ date_scraped: '2025-08-05T22:23:32.565881'
 featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 categories: ["Concurrency"]
+redirect_from: ["/backup/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads.html"]
+seo_title: "Web Crawling in Java with Platform and Virtual Threads"
+description: "Compare platform and virtual threads through a Java web crawler, exploring blocking I/O, concurrent requests, and implementation tradeoffs."
 ---
 
 ![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)

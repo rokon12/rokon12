@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:09.617954'
 featured_image: '/images/img-2263-effects-scaled.jpg'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["Personal"]
+redirect_from: ["/backup/a-journey-of-the-heart-visiting-madinah-and-makkah.html"]
 ---
 
 ![](/images/img-2263-effects-scaled.jpg)

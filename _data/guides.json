@@ -1,0 +1,73 @@
+[
+  {
+    "slug": "java-concurrency",
+    "title": "Java concurrency",
+    "category": "Concurrency",
+    "description": "A reading path through Java threads, resource limits, and structured concurrency, with runnable examples and deeper explanations.",
+    "intro": "Start with how threads execute work, then move to controlling access to shared resources. The later articles cover virtual threads under load and structured concurrency. Check each article’s Java version when using a preview API.",
+    "reading": [
+      {
+        "url": "/2021/10/07/java-thread-programming-part-1/",
+        "note": "Start with thread fundamentals."
+      },
+      {
+        "url": "/2023/10/05/what-is-a-semaphore-and-when-to-use-it/",
+        "note": "Use permits to control concurrent access."
+      },
+      {
+        "url": "/2026/09/21/java-virtual-threads-under-load-three-limits-to-make-explicit/",
+        "note": "Understand admission limits, locks, and cancellation under load."
+      },
+      {
+        "url": "/2026/01/04/structured-concurrency-in-java-26-api-polishing-timeouts-and-better-joiners/",
+        "note": "Coordinate related tasks with structured concurrency."
+      }
+    ]
+  },
+  {
+    "slug": "virtual-threads",
+    "title": "Java virtual threads",
+    "match_title": "virtual thread",
+    "description": "Learn Java virtual threads through an introduction, a web crawler, and production load examples covering resource limits, locking, and cancellation.",
+    "intro": "Virtual threads make blocking code practical at higher concurrency, while databases and downstream services still have limits. Read the introduction first, try the web crawler, and then examine what happens under load. The older examples reflect the Java releases available when they were written.",
+    "reading": [
+      {
+        "url": "/2023/05/09/unleashing-the-power-of-lightweight-concurrency-a-comprehensive-guide-to-java-virtual-threads-part-1/",
+        "note": "Understand the execution model and APIs."
+      },
+      {
+        "url": "/2023/09/29/web-crawling-in-java-a-tale-of-classical-threads-and-virtual-threads/",
+        "note": "Apply virtual threads to a web crawler."
+      },
+      {
+        "url": "/2026/09/21/java-virtual-threads-under-load-three-limits-to-make-explicit/",
+        "note": "Make resource limits and cancellation explicit."
+      }
+    ]
+  },
+  {
+    "slug": "ai-in-java",
+    "title": "AI in Java",
+    "category": "AI & LLMs",
+    "description": "Build Java AI applications with LangChain4j, RAG, tools, guardrails, and MySQL JSON Duality Views. Follow a curated path through practical examples.",
+    "intro": "Follow an application from its first language-model call to retrieval, validation, and access to business data. These articles include companion projects and discuss the limits of their examples. Start with the store assistant, then explore the pieces you need.",
+    "reading": [
+      {
+        "url": "/2026/04/09/building-llm-apps-in-java-with-langchain4j/",
+        "note": "Follow a store assistant from prompting to grounded answers."
+      },
+      {
+        "url": "/2025/04/18/chat-with-your-knowledge-base-a-handson-java-langchain4j-guide/",
+        "note": "Retrieve context from a knowledge base."
+      },
+      {
+        "url": "/2025/06/21/building-robust-ai-applications-with-langchain4j-guardrails-and-spring-boot/",
+        "note": "Validate inputs and outputs with guardrails."
+      },
+      {
+        "url": "/2026/09/23/one-database-two-models-mysql-json-duality-views-java/",
+        "note": "Expose relational business data through scoped Java tools."
+      }
+    ]
+  }
+]

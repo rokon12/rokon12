@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bundle exec jekyll build && node scripts/render-code-blocks.mjs"
+    "build": "bundle exec jekyll build && node scripts/render-code-blocks.mjs",
+    "check:seo": "node --test tests/responsive-images.test.mjs && bundle exec ruby -rbundler/setup scripts/check-seo.rb"
   },
   "dependencies": {
     "shiki": "^3.13.0"

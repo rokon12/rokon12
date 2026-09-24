@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:57.533796'
 featured_image: '/images/sebastian-daschner.png'
 tags: [virtual threads 2, openjdk, spring boot, java language features, object oriented programming]
 categories: ["Career & Community"]
+redirect_from: ["/backup/charting-the-course-of-java-an-insightful-conversation-with-java-champion-sebastian-daschner.html"]
 ---
 
 ![](/images/sebastian-daschner.png)

@@ -16,7 +16,7 @@ author:
     - https://bsky.app/profile/bazlur.ca
     - https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/
     - https://foojay.io/today/author/bazlur-rahman/
-default_social_image: /assets/img/default-og.jpg
+default_social_image: /images/author_photo-large.jpg
 
 # URL settings
 url: "https://bazlur.com"
@@ -44,7 +44,7 @@ theme: null
 # Plugins (GitHub Pages compatible)
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
+  - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-relative-links
@@ -71,11 +71,35 @@ defaults:
   - scope:
       path: ""
     values:
-      image: "/assets/img/default-og.jpg"
+      image: "/images/author_photo-large.jpg"
 
 # Exclude files
 exclude:
   - design-qa.md
+  - docs
+  - backup
+  - archive-backup.zip
+  - scripts
+  - tests
+  - node_modules
+  - package.json
+  - package-lock.json
+  - netlify.toml
+  - WebsiteScraper.java
+  - fix_frontmatter.sh
+  - update.main.kts
+  - scraper_progress.json
+  - record.json
+  - keep_posts.txt
+  - rokon12.iml
+  - speaking.json
+  - template.md
+  - image-optimization-test.html
+  - responsive-test.html
+  - test-related-posts.html
+  - test-conference-tabs.html
+  - test-tabs.html
+  - verify-tabs.js
   - Gemfile
   - Gemfile.lock
   - README.md
@@ -123,3 +147,7 @@ compress_html:
 assets:
   compression: true
   gzip: true
+
+# Redirect pages stay outside the sitemap. Old paths are declared on their targets.
+redirect_from:
+  json: false

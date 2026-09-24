@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:13.663196'
 featured_image: '/images/nicols.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
 categories: ["Career & Community"]
+redirect_from: ["/backup/cracking-code-and-conventions-an-exclusive-interview-with-nicolas-frnkel.html", "/2023/06/05/cracking-code-and-conventions-an-exclusive-interview-with-nicolas-frankel/"]
 ---
 
 ![](/images/nicols.jpeg)

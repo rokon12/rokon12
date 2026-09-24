@@ -8,6 +8,9 @@ featured_image: '/images/dall-e-2023-10-11-03.21.06-illustration-of-a-cross-sect
 tags: [core java, multi threading, thread, java, code reading skills]
 categories: ["Concurrency"]
 series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-1.html"]
+seo_title: "Java Thread Programming: Getting Started"
+description: "Begin a Java thread programming series covering thread fundamentals and the concepts needed to understand concurrent execution."
 ---
 
 ![](/images/dall-e-2023-10-11-03.21.06-illustration-of-a-cross-section-view-of-a-multi-core-processor.-each-core-is-labeled-and-depicted-as-a-circular-unit.-sprouting-from-each-core-are-mul.png)

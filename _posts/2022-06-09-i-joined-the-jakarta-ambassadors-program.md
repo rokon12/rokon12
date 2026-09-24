@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:25:15.361547'
 featured_image: '/images/jakartaee-ambassadors-e1577035229941.png'
 tags: [jakarta ee, jakarta ee 10, java champion, virtual thread, structured concurrency]
 categories: ["Career & Community"]
+redirect_from: ["/backup/i-joined-the-jakarta-ambassadors-program.html"]
 ---
 
 ![](/images/jakartaee-ambassadors-e1577035229941.png)

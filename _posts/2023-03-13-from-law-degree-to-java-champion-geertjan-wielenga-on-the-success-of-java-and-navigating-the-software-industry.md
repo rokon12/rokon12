@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:24:44.052667'
 featured_image: '/images/wielenga-1024x576-1.png'
 tags: [openjdk, java expert, programming journey, javaassist, javagent]
 categories: ["Career & Community"]
+redirect_from: ["/backup/from-law-degree-to-java-champion-geertjan-wielenga-on-the-success-of-java-and-navigating-the-software-industry.html"]
 ---
 
 ![](/images/wielenga-1024x576-1.png)

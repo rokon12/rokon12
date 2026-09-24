@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:12.502018'
 featured_image: '/images/53987206804-87983e572b-k-1.jpg'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["Personal"]
+redirect_from: ["/backup/family-castles-and-code-exploring-europes-old-cities.html"]
 ---
 
 ![](/images/53987206804-87983e572b-k-1.jpg)

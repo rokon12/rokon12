@@ -7,6 +7,7 @@ date_scraped: '2025-08-05T22:23:35.066921'
 featured_image: '/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg'
 tags: [virtual threads 2, learning thread programming, openjdk, c programming, carrier threads]
 categories: ["JVM & Performance"]
+redirect_from: ["/backup/exploring-the-impact-of-stack-size-on-jvm-thread-creation-a-myth-debunked.html"]
 ---
 
 ![](/images/jeremy-thomas-fo7bkvgetgq-unsplash-scaled.jpg)

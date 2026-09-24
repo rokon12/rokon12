@@ -6,6 +6,8 @@ date_published: '2025-02-21T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:05.304654'
 featured_image: '/images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp'
 categories: ["JVM & Performance"]
+seo_title: "Build a JVM in C: Parsing Java Class Files"
+description: "Start building a small JVM in C by reading Java class files, parsing their binary structure, and exploring the bytecode behind Java programs."
 ---
 
 ![](/images/dall-e-2025-02-21-00.27.42-a-close-up-shot-of-a-computer-terminal-displaying-a-hex-dump-of-a-java-.class-file.-the-magic-number-0xcafebabe-is-prominently-visible-at-the-start-of.webp)

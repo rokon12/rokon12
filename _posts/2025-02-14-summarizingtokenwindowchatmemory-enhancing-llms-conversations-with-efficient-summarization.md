@@ -7,6 +7,9 @@ date_scraped: '2025-08-05T22:23:08.175246'
 featured_image: '/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg'
 tags: [java programming, java 11, java 21, java cli, java code]
 categories: ["AI & LLMs"]
+redirect_from: ["/backup/summarizingtokenwindowchatmemory-enhancing-llms-conversations-with-efficient-summarization.html"]
+seo_title: "Summarizing Chat Memory with LangChain4j"
+description: "Implement summarizing chat memory for Java LLM applications with LangChain4j, preserving conversation context while managing token limits."
 ---
 
 ![](/images/gemini-generated-image-6ad3g46ad3g46ad3.jpeg)
