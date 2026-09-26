@@ -3,7 +3,7 @@ layout: "post"
 title: "One Database, Two Models: Building AI-Friendly Java Applications with MySQL JSON Duality Views"
 title_emphasis: "Building AI-Friendly Java Applications with MySQL JSON Duality Views"
 date: "2026-09-23"
-last_modified_at: "2026-09-24"
+last_modified_at: "2026-09-25"
 categories: ["AI & LLMs"]
 tags: ["java", "mysql", "json duality views", "ai", "langchain4j", "spring boot"]
 description: "A hands-on look at MySQL JSON Duality Views: reading relational data as JSON in Java, writing documents back safely, and giving a local AI assistant read-only tools."
