@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 543 Finalizes Structured Concurrency in JDK 28, Ending Seven Preview Rounds (2026-10-19)
+JDK 28 finalizes structured concurrency through JEP 543, with no API changes from JDK 27. Teams on JDK 27 only need to drop --enable-preview and recompile. Code written for JDK 25 or 26 must adapt to the R_X exception type parameter, ExecutionException wrapping, and the abstract timeout() joiner callback....
+[Read further^](https://www.infoq.com//news/2026/10/jep-543-jdk-28)
+
+
 ### JEP 540 Proposed to Target JDK 28 with a Simple JSON API (2026-08-17)
 JEP 540, Simple JSON API, has progressed to Target status for JDK 28. It introduces a compact API for parsing and generating JSON documents without external dependencies. Focused on core tasks, it provides an immutable value hierarchy. The API allows simple traversal and conversion while enforcing strict syntax rules. Feedback during incubation will shape its future development....
 [Read further^](https://www.infoq.com//news/2026/08/java-native-json-api)
@@ -89,11 +94,6 @@ Introducing JUnit 6.0.0: a transformative update that unifies versions, elevates
 [Read further^](https://www.infoq.com//news/2025/10/junit6-java17-kotlin)
 
 
-### GPULlama3.java Brings GPU-Accelerated LLM Inference to Pure Java (2025-06-24)
-The University of Manchester's Beehive Lab has released GPULlama3.java, marking the first Java-native implementation of Llama3 with automatic GPU acceleration. This project leverages TornadoVM to enable GPU-accelerated large language model inference without requiring developers to write CUDA or native code, potentially transforming how Java developers approach AI apps in enterprise environments....
-[Read further^](https://www.infoq.com//news/2025/06/gpullama3-java-gpu-llm)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ The University of Manchester's Beehive Lab has released GPULlama3.java, marking 
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 19 Oct 2026 06:55:13 GMT*
+*This page was last updated on Tue, 20 Oct 2026 06:40:36 GMT*
