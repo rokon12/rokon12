@@ -1,5 +1,48 @@
 
-[ {
+[
+  {
+    "name": "JakartaOne Livestream 2026",
+    "ledgerName": "JakartaOne 2026",
+    "date": "2026",
+    "eventDate": "2026-12-01",
+    "location": "Online",
+    "locationIcon": "🌐",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Virtual Threads Removed the Thread Limit. What Breaks Next in Jakarta EE?",
+    "description": "Virtual threads changed the economics of concurrency in Java. Blocking a thread is now cheap enough that thread-per-request and thread-per-task designs can scale far beyond what traditional platform-thread pools allowed.\n\nBut removing the thread bottleneck does not create unlimited capacity. It moves the queue.\n\nA Jakarta EE application can now handle thousands of operations concurrently, even though it has only twenty database connections, because the downstream API has rate limits, memory is finite, transaction throughput is limited, and the various services cannot handle an unrestricted request rate. Initially, higher throughput might be achieved, but this will then be followed by a dramatic increase in tail latency, connection-pool starvation, and retry storms, causing the application to fail more quickly than before.\n\nDuring this session, we will migrate a working Jakarta EE service from platform threads to managed virtual threads and then run a load test; the bottleneck will shift from the executor to the database and downstream services, after which we will rebuild the application based on explicit concurrency budgets.\n\nAs we proceed, we'll look at bounded fan-out, admission control, Jakarta Concurrency's execution limits, bulkheads, timeouts, cancellation, and the metrics required to detect overload before the system collapses.\n\nYou will leave with a practical way to answer the question virtual threads do not answer:\n\nRather than asking “How many tasks can I start?” ask “How much concurrent work can the entire system safely carry out?”",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://jakartaone.jakarta.ee/jakartaone-livestream-2026/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://jakartaone.jakarta.ee/jakartaone-livestream-2026/",
+        "text": "Details"
+      }
+    ]
+  },
+  {
+    "name": "JChampions Conference 2027",
+    "date": "2027",
+    "location": "Online",
+    "locationIcon": "🌐",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "You Enabled Virtual Threads. Now What Breaks?",
+    "description": "Virtual threads make it easier to handle many requests at once. But what happens when those requests all need the same few database connections, wait for the same lock, or keep running after a timeout?\n\nIn this live-coding session, we’ll start with a brief introduction to virtual threads, then work through three before-and-after experiments on plain JDK 25. We’ll watch requests pile up behind a busy dependency, see a shared lock force concurrent tasks to run one at a time, and discover why a caller giving up does not mean its task has stopped.\n\nFor each problem, we’ll make an explicit design decision: reject excess requests before they join a growing queue, keep independent slow operations outside locks, and connect timeouts to cancellation and cleanup. We’ll examine what each change improves and what it cannot guarantee, including why requesting cancellation is not the same as confirming that work has stopped.",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://jchampionsconf.com/index.html",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://jchampionsconf.com/index.html",
+        "text": "Details"
+      }
+    ]
+  },
+  {
     "name": "Garden State Java User Group",
     "location": "New Jersey, USA",
     "ledgerName": "Garden State JUG",
@@ -9,7 +52,7 @@
     "type": "talk",
     "talkTitle": "You Enabled Virtual Threads. Now What Breaks?",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://gsjug.org/meetings/2026/nov2026.html",
     "links": [
       {
@@ -30,7 +73,7 @@
     "type": "talk",
     "talkTitle": "The Wrong Reasons to Build an MCP Server",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://events.linuxfoundation.org/mcp-dev-summit-toronto/program/schedule-at-a-glance/",
     "links": [
       {
