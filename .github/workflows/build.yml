@@ -21,6 +21,12 @@ jobs:
           git config --global user.name 'Bazlur Rahman'
           git config --global user.email 'bazlur@jugbd.org'
           git pull origin main --rebase
+      # Kotlin 1.7 cannot parse newer runner JDK versions such as Java 25.
+      - name: Set up Java 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
       - name: Install Kotlin
         run: sudo snap install --classic --channel=1.7/stable kotlin
       - name: Update README
