@@ -43,7 +43,8 @@ layout: default
     <h2 class="section-label" id="home-talks-label">Talks</h2>
     <div>
         {% assign upcoming_talks = site.data.speaking | where: 'isUpcoming', true %}
-        {% include talk-list.html talks=upcoming_talks show_year=true show_status=true %}
+        {% include sort-talks.html talks=upcoming_talks %}
+        {% include talk-list.html talks=sorted_talks show_year=true show_status=true %}
         <a class="text-link section-more" href="{{ '/conference/' | relative_url }}">All talks →</a>
     </div>
 </section>

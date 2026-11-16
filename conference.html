@@ -6,9 +6,10 @@ description: Conference talks and workshops by A N M Bazlur Rahman on Java concu
 ---
 {% assign upcoming = site.data.speaking | where: 'isUpcoming', true %}
 {% assign past = site.data.speaking | where: 'isUpcoming', false %}
-{% assign past_years = past | group_by: 'date' | sort: 'name' | reverse %}
-{% assign talks = upcoming %}
-{% for year in past_years %}{% assign talks = talks | concat: year.items %}{% endfor %}
+{% include sort-talks.html talks=upcoming %}
+{% assign talks = sorted_talks %}
+{% include sort-talks.html talks=past descending=true %}
+{% assign talks = talks | concat: sorted_talks %}
 <div class="talks-ledger">
     <header class="ledger-head">
         <div>

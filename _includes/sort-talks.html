@@ -1,0 +1,13 @@
+{%- comment -%}
+Sort by the full event date when known, otherwise by year. Grouping preserves
+the original order for talks whose dates are tied or known only to the year.
+The result is available to the caller as sorted_talks.
+{%- endcomment -%}
+{%- assign talk_date_groups = include.talks | group_by_exp: 'talk', 'talk.eventDate | default: talk.date' | sort: 'name' -%}
+{%- if include.descending -%}
+    {%- assign talk_date_groups = talk_date_groups | reverse -%}
+{%- endif -%}
+{%- assign sorted_talks = '' | split: ',' -%}
+{%- for talk_date_group in talk_date_groups -%}
+    {%- assign sorted_talks = sorted_talks | concat: talk_date_group.items -%}
+{%- endfor -%}
