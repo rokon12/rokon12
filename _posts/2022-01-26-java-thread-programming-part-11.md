@@ -6,6 +6,9 @@ date_published: '2022-01-26T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:48.266542'
 featured_image: '/images/thread-pool-700x370.png'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+categories: ["Concurrency"]
+series: java-thread-programming
+redirect_from: ["/backup/java-thread-programming-part-11.html"]
 ---
 
 Java Thread Programming (Part 11)

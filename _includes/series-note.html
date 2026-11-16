@@ -1,0 +1,16 @@
+{% assign series = site.data.series[page.series] %}
+{% assign parts = site.posts | where: 'series', page.series | sort: 'date' %}
+{% for part in parts %}
+    {% if part.url == page.url %}{% assign part_index = forloop.index0 %}{% break %}{% endif %}
+{% endfor %}
+{% if series and parts.size > 1 %}
+<aside class="series-note" aria-label="Article series">
+    <p>Part {{ part_index | plus: 1 }} of {{ parts.size }} in <a href="{{ '/archive/' | relative_url }}?series={{ page.series | url_encode }}"><em>{{ series.title | escape }}</em></a></p>
+    <nav aria-label="Series navigation">
+        {% if part_index > 0 %}{% assign previous_index = part_index | minus: 1 %}{% assign previous_part = parts[previous_index] %}<a href="{{ previous_part.url | relative_url }}">← Part {{ part_index }}</a>{% endif %}
+        <a href="{{ '/archive/' | relative_url }}?series={{ page.series | url_encode }}">All parts</a>
+        {% assign next_index = part_index | plus: 1 %}
+        {% if next_index < parts.size %}{% assign next_part = parts[next_index] %}<a href="{{ next_part.url | relative_url }}">Part {{ next_index | plus: 1 }} →</a>{% endif %}
+    </nav>
+</aside>
+{% endif %}

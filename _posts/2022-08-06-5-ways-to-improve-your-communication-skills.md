@@ -5,6 +5,8 @@ original_url: 'https://bazlur.ca/2022/08/06/5-ways-to-improve-your-communication
 date_published: '2022-08-06T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:05.073298'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+categories: ["Career & Community"]
+redirect_from: ["/backup/5-ways-to-improve-your-communication-skills.html"]
 ---
 
 5 ways to improve your communication skills

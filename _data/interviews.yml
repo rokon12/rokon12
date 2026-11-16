@@ -1,0 +1,22 @@
+# Interviews / author media, newest first. "youtube" is the video id; thumbnail is derived from it.
+- title: Discussing "Modern Concurrency in Java" on the GOTO Book Club
+  year: 2026
+  kind: Podcast
+  meta: GOTO Book Club · with Michael Redlich
+  youtube: 8G8jeAUYLAQ
+  summary: >-
+    I recently joined my friend and fellow Java Champion, Michael Redlich, on the GOTO Book Club to discuss my book, Modern Concurrency in Java (O'Reilly, 2025). We explored how Java concurrency has evolved, highlighting how virtual threads make IO-bound applications highly scalable and how structured concurrency makes managing concurrent tasks simpler and safer. We also touched on scoped values, the role of reactive programming, and how modern frameworks like Spring Boot and Quarkus are adopting virtual threads.
+- title: My Interview with FikaAI at DevNexus
+  year: 2026
+  kind: Interview
+  meta: FikaAI · DevNexus, Atlanta
+  youtube: RCNM-LLVMCM
+  summary: >-
+    At DevNexus, I had the pleasure of sitting down with FikaAI to discuss my journey in the Java ecosystem. I shared the story behind founding the Java User Group Bangladesh in 2013, which inspired my transition into writing technical blogs and books. A major focus of our chat was the integration of Java and AI. We talked about my upcoming Manning book, co-authored with Syed M Shaaf, on building smart applications with LLMs in Java, and how AI will soon power the background of everyday applications, shifting interfaces toward natural, conversational interactions.
+- title: "My Interview at JNation 2026: Modern Java, Concurrency, and the Developer Experience"
+  year: 2026
+  kind: Interview
+  meta: JNation · Coimbra, Portugal
+  youtube: a-nBv1-HqvA
+  summary: >-
+    During my first trip to JNation in beautiful Coimbra, Portugal, I gave an interview about my session, "Old Dog, New Tricks." We discussed how Java, even at 31 years old, is packed with modern features like virtual threads that eliminate the need to switch languages for extreme scalability. We also traced the historical roadmap of Java concurrency covered in my book. Finally, we touched on a critical point for developers today: as AI makes writing code cheaper and faster, a deep understanding of core concepts like concurrency is more valuable than ever for reviewing and maintaining systems.

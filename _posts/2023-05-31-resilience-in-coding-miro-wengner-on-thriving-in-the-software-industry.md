@@ -6,6 +6,8 @@ date_published: '2023-05-31T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:15.108778'
 featured_image: '/images/miro.jpeg'
 tags: [java concurrency, java programming, virtual threads 2, future of java, java evolution]
+categories: ["Career & Community"]
+redirect_from: ["/backup/resilience-in-coding-miro-wengner-on-thriving-in-the-software-industry.html"]
 ---
 
 ![](/images/miro.jpeg)

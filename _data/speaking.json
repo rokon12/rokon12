@@ -1,5 +1,87 @@
 
-[
+[ {
+    "name": "Garden State Java User Group",
+    "location": "New Jersey, USA",
+    "ledgerName": "Garden State JUG",
+    "date": "2026",
+    "eventDate": "2026-11-10",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "You Enabled Virtual Threads. Now What Breaks?",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://gsjug.org/meetings/2026/nov2026.html",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://gsjug.org/meetings/2026/nov2026.html",
+        "text": "Details"
+      }
+    ]
+  },
+  {
+    "name": "MCP Dev Summit Toronto 2026",
+    "ledgerName": "MCP Dev Summit Toronto",
+    "featured": true,
+    "date": "2026",
+    "location": "Toronto, Canada",
+    "locationIcon": "🇨🇦",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "The Wrong Reasons to Build an MCP Server",
+    "talkIcon": "🎤",
+    "isUpcoming": true,
+    "eventUrl": "https://events.linuxfoundation.org/mcp-dev-summit-toronto/program/schedule-at-a-glance/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://events.linuxfoundation.org/mcp-dev-summit-toronto/",
+        "text": "Details"
+      }
+    ]
+  },
+     
+    {
+    "name": "JavaZone 2026",
+    "ledgerPlace": "Lillestrøm, Norway",
+    "date": "2026",
+    "location": "NOVA Spektrum, Lillestrøm",
+    "locationIcon": "🇳🇴",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "AI Can't Debug This: A Virtual Thread Migration Workshop",
+    "talkIcon": "🎤",
+    "isUpcoming": false,
+    "eventUrl": "https://2026.javazone.no/speaker/",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://2026.javazone.no/speaker/",
+        "text": "Details"
+      }
+    ]
+  },
+  {
+    "name": "Tamilnadu JUG — Faculty Enablement Series on Modern Java",
+    "ledgerName": "Tamilnadu JUG",
+    "location": "Online",
+    "featured": true,
+    "date": "2026",
+    "eventDate": "2026-09-19",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Virtual Threads: Simple Code, Serious Scale",
+    "talkIcon": "🎤",
+    "isUpcoming": false,
+    "eventUrl": "https://www.linkedin.com/posts/tamil-jug_java-javachampion-java-activity-7492781273556439040-Qw96",
+    "links": [
+      {
+        "type": "event",
+        "url": "https://www.linkedin.com/posts/tamil-jug_java-javachampion-java-activity-7492781273556439040-Qw96",
+        "text": "Announcement"
+      }
+    ]
+  },
   {
     "name": "JNation 2026",
     "date": "2026",
@@ -9,7 +91,7 @@
     "type": "talk",
     "talkTitle": "Architecting Intelligent Enterprise Systems: From Scratch",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://jnation.pt/sessions/",
     "links": [
       {
@@ -28,13 +110,32 @@
     "type": "talk",
     "talkTitle": "Old Dog, New Tricks: The Java 25 Reinvention",
     "talkIcon": "🎤",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "eventUrl": "https://jnation.pt/sessions/",
     "links": [
       {
         "type": "event",
         "url": "https://jnation.pt/sessions/",
         "text": "Details"
+      }
+    ]
+  },
+    {
+    "name": "Microsoft JDConf 2026",
+    "date": "2026",
+    "location": "Online",
+    "locationIcon": "🌐",
+    "role": "Speaker",
+    "type": "talk",
+    "talkTitle": "Building LLM Apps in Java with LangChain4j",
+    "talkIcon": "🎤",
+    "isUpcoming": false,
+    "eventUrl": "https://jdconf.com/",
+    "links": [
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=cJ1odDNflEA&t=9775s",
+        "text": "Watch Recording"
       }
     ]
   },
@@ -59,6 +160,7 @@
   },
  {
     "name": "Confoo",
+    "ledgerName": "ConFoo 2026",
     "date": "2026",
     "location": "Montreal, Canada",
     "locationIcon": "🇨🇦",
@@ -78,6 +180,7 @@
   },
  {
   "name": "Confoo",
+    "ledgerName": "ConFoo 2026",
   "date": "2026",
   "location": "Montreal, Canada",
   "locationIcon": "🇨🇦",
@@ -110,7 +213,7 @@
       {
         "type": "video",
         "url": "https://www.youtube.com/watch?v=WKXm8gHLN28&t=1625s",
-        "text": "Details"
+        "text": "Watch Recording"
       }
     ]
   },
@@ -708,6 +811,7 @@
   },
   {
     "name": "Garden State Java User Group",
+    "ledgerName": "Garden State JUG",
     "date": "2022",
     "location": "New Jersey, USA",
     "locationIcon": "🇺🇸",
@@ -898,4 +1002,3 @@
     "links": []
   }
 ]
-

@@ -44,6 +44,31 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 543 Finalizes Structured Concurrency in JDK 28, Ending Seven Preview Rounds (2026-10-19)
+JDK 28 finalizes structured concurrency through JEP 543, with no API changes from JDK 27. Teams on JDK 27 only need to drop --enable-preview and recompile. Code written for JDK 25 or 26 must adapt to the R_X exception type parameter, ExecutionException wrapping, and the abstract timeout() joiner callback....
+[Read further^](https://www.infoq.com//news/2026/10/jep-543-jdk-28)
+
+
+### JEP 540 Proposed to Target JDK 28 with a Simple JSON API (2026-08-17)
+JEP 540, Simple JSON API, has progressed to Target status for JDK 28. It introduces a compact API for parsing and generating JSON documents without external dependencies. Focused on core tasks, it provides an immutable value hierarchy. The API allows simple traversal and conversion while enforcing strict syntax rules. Feedback during incubation will shape its future development....
+[Read further^](https://www.infoq.com//news/2026/08/java-native-json-api)
+
+
+### Project Valhalla's First Preview: JEP 401 Redefines == for Java Objects (2026-08-10)
+JEP 401, integrated into JDK 28, introduces value objects. These new class instances feature final fields, altered behavior for equality checks, and stricter construction and synchronization rules. It aims to enhance efficiency and reduce memory allocation costs. However, the preview is disabled by default and requires specific configuration at compile and run time....
+[Read further^](https://www.infoq.com//news/2026/08/jep401-value-objects-preview)
+
+
+### Eliya 25 Brings a JVM-Level Diagnostic Profile to OpenJDK 25 LTS (2026-06-29)
+Asymm Systems has released Eliya 25.0.3, an OpenJDK 25 LTS distribution aimed at improving production diagnostics in Java environments. It consolidates several HotSpot features into an opt-in Production profile. Eliya is designed for teams needing reliable diagnostic data, especially in regulated settings. Future enhancements are planned for Phase 2....
+[Read further^](https://www.infoq.com//news/2026/06/eliya-jvm-diagnostic-profile)
+
+
+### JEP 533 Tightens Exception Handling in Java's Structured Concurrency for JDK 27 (2026-05-13)
+JEP 533, Structured Concurrency, has reached integrated status for JDK 27. It refines exception handling and type safety in its API, particularly focusing on exception flow with a new ExecutionException type. Changes include an updated Joiner interface and a new open overload for easier configuration. The steady evolution signals ongoing development as feedback shapes the API....
+[Read further^](https://www.infoq.com//news/2026/05/jep-533-jdk-27)
+
+
 ### Java Explores Carrier Classes to Extend Data-Oriented Programming beyond Records (2026-02-04)
 The OpenJDK Amber project has published a new design note proposing &ldquo;carrier classes&rdquo; and &ldquo;carrier interfaces&rdquo; to extend record-style data modeling to more Java types. The proposal preserves concise state descriptions, derived methods, and pattern matching, while relaxing structural constraints that limit records....
 [Read further^](https://www.infoq.com//news/2026/02/java-beyond-records)
@@ -69,31 +94,6 @@ Introducing JUnit 6.0.0: a transformative update that unifies versions, elevates
 [Read further^](https://www.infoq.com//news/2025/10/junit6-java17-kotlin)
 
 
-### GPULlama3.java Brings GPU-Accelerated LLM Inference to Pure Java (2025-06-24)
-The University of Manchester's Beehive Lab has released GPULlama3.java, marking the first Java-native implementation of Llama3 with automatic GPU acceleration. This project leverages TornadoVM to enable GPU-accelerated large language model inference without requiring developers to write CUDA or native code, potentially transforming how Java developers approach AI apps in enterprise environments....
-[Read further^](https://www.infoq.com//news/2025/06/gpullama3-java-gpu-llm)
-
-
-### Java 25 Integrates Compact Object Headers with JEP 519 (2025-06-17)
-Java 25 introduces Compact Object Headers (JEP 519), delivering up to 30% CPU savings and reduced memory usage for applications with small objects. This user-friendly feature compresses object headers from 12 bytes to 8, requiring only a JVM flag to activate. Extensively validated by Amazon, it enhances performance, reduces GC pressure, and is ideal for modern cloud deployments....
-[Read further^](https://www.infoq.com//news/2025/06/java-25-compact-object-headers)
-
-
-### Introducing Embabel: Advanced AI Agent Development for Java Applications (2025-06-05)
-Introducing the Embabel Agent Framework, a pioneering platform developed by Spring founder Rod Johnson, designed to revolutionize AI applications on the JVM. By integrating structured agent development and Goal-Oriented Action Planning, Embabel combines strong typing with dynamic planning, ensuring reliable, adaptable, and type-safe solutions for enterprise Java applications....
-[Read further^](https://www.infoq.com//news/2025/06/introducing-embabel-ai-agent)
-
-
-### Java 25 Introduces Stable Values API for Deferred Immutability and Improved Application Startup (2025-06-02)
-JEP 502 introduces the Stable Values API in JDK 25, enhancing application startup performance by allowing deferred immutability. This feature enables thread-safe, at-most-once initialization of complex objects, combining the best of final fields with lazy initialization. It empowers developers to improve efficiency and reduce initialization pitfalls while leveraging JVM optimizations....
-[Read further^](https://www.infoq.com//news/2025/06/java25-stable-values-api-startup)
-
-
-### Spring AI 1.0 Released, Streamlines AI Application Development with Broad Model Support (2025-05-20)
-Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creation of AI-driven applications in Java. Seamlessly integrate with top AI models for chat, image generation, and more. With portable abstractions and support for Retrieval Augmented Generation, developers can build scalable, production-ready solutions while adhering to Spring standards....
-[Read further^](https://www.infoq.com//news/2025/05/spring-ai-1-0-streamlines-apps)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ Introducing Spring AI 1.0: a groundbreaking framework that streamlines the creat
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Fri, 10 Apr 2026 04:33:45 GMT*
+*This page was last updated on Tue, 20 Oct 2026 06:40:36 GMT*

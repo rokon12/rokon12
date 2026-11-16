@@ -5,6 +5,8 @@ original_url: 'https://bazlur.ca/2022/11/12/the-complete-glossary-of-my-name/'
 date_published: '2022-11-12T00:00:00+00:00'
 date_scraped: '2025-08-05T22:24:57.779568'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+categories: ["Personal"]
+redirect_from: ["/backup/the-complete-glossary-of-my-name.html"]
 ---
 
 The complete glossary of my name

@@ -6,6 +6,8 @@ date_published: '2022-07-07T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:09.440127'
 featured_image: '/images/klara-and-sun.jpeg'
 tags: [learning thread programming, thread programming, structured concurrency, virtual thread, java19]
+categories: ["Personal"]
+redirect_from: ["/backup/book-review-klara-and-the-sun.html"]
 ---
 
 ![](/images/klara-and-sun.jpeg)

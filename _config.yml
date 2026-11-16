@@ -1,13 +1,13 @@
 # Site settings
 title: A N M Bazlur Rahman
-description: Java Champion, O'Reilly author, speaker, and Sr. Staff Software Engineer writing about Java concurrency, JVM internals, AI in Java, and software architecture.
+description: Java Champion, Oracle ACE Pro, O'Reilly author, speaker, and Sr. Staff Software Engineer writing about Java concurrency, JVM internals, AI in Java, and software architecture.
 author:
   name: A N M Bazlur Rahman
   email: bazlur@jugbd.org
   url: https://bazlur.com
   photo: /images/author_photo.jpg
   photo_alt: A N M Bazlur Rahman speaking at Copenhagen Developers Festival
-  role: Sr. Staff Software Engineer, Java Champion, Author, and Speaker
+  role: Sr. Staff Software Engineer, Java Champion, Oracle ACE Pro, Author, and Speaker
   location: Toronto, Canada
   same_as:
     - https://github.com/rokon12
@@ -16,7 +16,7 @@ author:
     - https://bsky.app/profile/bazlur.ca
     - https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/
     - https://foojay.io/today/author/bazlur-rahman/
-default_social_image: /assets/img/default-og.jpg
+default_social_image: /images/author_photo-large.jpg
 
 # URL settings
 url: "https://bazlur.com"
@@ -44,7 +44,7 @@ theme: null
 # Plugins (GitHub Pages compatible)
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
+  - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-relative-links
@@ -71,10 +71,35 @@ defaults:
   - scope:
       path: ""
     values:
-      image: "/assets/img/default-og.jpg"
+      image: "/images/author_photo-large.jpg"
 
 # Exclude files
 exclude:
+  - design-qa.md
+  - docs
+  - backup
+  - archive-backup.zip
+  - scripts
+  - tests
+  - node_modules
+  - package.json
+  - package-lock.json
+  - netlify.toml
+  - WebsiteScraper.java
+  - fix_frontmatter.sh
+  - update.main.kts
+  - scraper_progress.json
+  - record.json
+  - keep_posts.txt
+  - rokon12.iml
+  - speaking.json
+  - template.md
+  - image-optimization-test.html
+  - responsive-test.html
+  - test-related-posts.html
+  - test-conference-tabs.html
+  - test-tabs.html
+  - verify-tabs.js
   - Gemfile
   - Gemfile.lock
   - README.md
@@ -122,3 +147,7 @@ compress_html:
 assets:
   compression: true
   gzip: true
+
+# Redirect pages stay outside the sitemap. Old paths are declared on their targets.
+redirect_from:
+  json: false

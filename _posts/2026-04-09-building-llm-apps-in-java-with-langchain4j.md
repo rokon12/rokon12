@@ -5,6 +5,9 @@ original_url: 'https://bazlur.ca/2026/04/09/building-llm-apps-in-java-with-langc
 date_published: '2026-04-09T00:00:00+00:00'
 date_scraped: '2026-04-10T01:08:23.311229146'
 featured_image: '/images/americas-bazlur-rahman-1-scaled.jpg'
+categories: ["AI & LLMs"]
+seo_title: "Building Java LLM Applications with LangChain4j"
+description: "Follow a Spring Boot store assistant from an unreliable chatbot to a grounded Java LLM application using LangChain4j, retrieval, tools, and validation."
 ---
 
 ![](/images/americas-bazlur-rahman-1-scaled.jpg)

@@ -5,6 +5,7 @@ original_url: 'https://bazlur.ca/2025/03/08/a-journey-to-devnexus-challenges-fri
 date_published: '2025-03-08T00:00:00+00:00'
 date_scraped: '2025-08-05T22:23:02.44544'
 featured_image: '/images/482058307-10232003967115777-7301803814855188745-n.jpg'
+categories: ["Career & Community"]
 ---
 
 ![](/images/482058307-10232003967115777-7301803814855188745-n.jpg)

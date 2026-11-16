@@ -1,41 +1,18 @@
 ---
 layout: default
 ---
-
-<div class="tag-page-header">
-    <div class="wrapper">
-        <div class="tag-hero">
-            <div class="tag-icon">
-                <span class="tag-symbol">#</span>
-            </div>
-            <h1 class="tag-title">{{ page.tag | capitalize }}</h1>
-            <p class="tag-description">
-                {% assign tag_posts = site.posts | where: "tags", page.tag %}
-                {{ tag_posts.size }} article{% if tag_posts.size != 1 %}s{% endif %} tagged with "{{ page.tag }}"
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="wrapper">
-    <section class="tag-posts">
-        {% assign tag_posts = site.posts | where: "tags", page.tag | sort: 'date_published' | reverse %}
-
-        {% if tag_posts.size > 0 %}
-            <div class="post-grid">
-                {% for post in tag_posts %}
-                    {% include post-card.html post=post %}
-                {% endfor %}
-            </div>
-        {% else %}
-            <div class="no-posts">
-                <p>No articles found for this tag.</p>
-                <a href="{{ '/tags/' | relative_url }}" class="btn-primary">Browse all tags</a>
-            </div>
-        {% endif %}
+{% assign tag_posts = site.tags[page.tag] %}
+<div class="listing-page">
+    <header class="page-head">
+        <a class="text-link back-link" href="{{ '/tags/' | relative_url }}">← All topics</a>
+        <h1>{{ page.tag | escape }}</h1>
+        <p>{{ tag_posts.size }} article{% if tag_posts.size != 1 %}s{% endif %} on this topic.</p>
+    </header>
+    {% assign by_year = tag_posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+    {% for year in by_year %}
+    <section class="index-section">
+        <h2 class="section-label">{{ year.name }}</h2>
+        {% include article-list.html posts=year.items %}
     </section>
-
-    <div class="tag-navigation">
-        <a href="{{ '/tags/' | relative_url }}" class="btn-secondary">&larr; All Tags</a>
-    </div>
+    {% endfor %}
 </div>

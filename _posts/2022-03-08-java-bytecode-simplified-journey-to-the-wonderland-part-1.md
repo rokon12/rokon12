@@ -6,6 +6,9 @@ date_published: '2022-03-08T00:00:00+00:00'
 date_scraped: '2025-08-05T22:25:40.016326'
 featured_image: '/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg'
 tags: [thread programming, learning thread programming, concurrency, thread, threadpool]
+categories: ["JVM & Performance"]
+series: java-bytecode
+redirect_from: ["/backup/java-bytecode-simplified-journey-to-the-wonderland-part-1.html"]
 ---
 
 ![](/images/kenny-eliason-uecskkdb1pg-unsplash-scaled.jpg)

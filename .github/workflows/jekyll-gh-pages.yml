@@ -54,6 +54,10 @@ jobs:
         run: bundle exec jekyll build
       - name: Render syntax-highlighted code blocks
         run: node scripts/render-code-blocks.mjs
+      - name: Check image processing and SEO output
+        run: |
+          node --test tests/responsive-images.test.mjs
+          bundle exec ruby -rbundler/setup scripts/check-seo.rb _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

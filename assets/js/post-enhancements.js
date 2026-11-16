@@ -1,10 +1,52 @@
 document.addEventListener('DOMContentLoaded', function () {
   normalizePostContentHeading();
+  initializeArticleOpening();
+  initializeReadingProgress();
   initializeDesktopTocOffset();
   initializeDesktopTocBoundary();
   initializePostToc();
   initializeCodeCopyButtons();
 });
+
+function initializeReadingProgress() {
+  var progress = document.querySelector('.reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!progress || !content) return;
+  var pending = false;
+  function update() {
+    pending = false;
+    var end = content.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+    var fraction = Math.min(1, Math.max(0, window.scrollY / Math.max(1, end)));
+    progress.style.transform = 'scaleX(' + fraction + ')';
+  }
+  function schedule() {
+    if (!pending) { pending = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  if (window.ResizeObserver) new ResizeObserver(schedule).observe(content);
+  update();
+}
+
+function initializeArticleOpening() {
+  if (!document.body.classList.contains('article-page')) return;
+  var paragraphs = document.querySelectorAll('.post-content > p');
+  var opening = Array.prototype.find.call(paragraphs, function (paragraph) {
+    return paragraph.textContent.trim() && !paragraph.querySelector('img');
+  });
+  if (opening) opening.classList.add('article-opening');
+
+  document.querySelectorAll('.post-content table').forEach(function (table) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'article-table';
+    wrapper.tabIndex = 0;
+    wrapper.setAttribute('role', 'region');
+    wrapper.setAttribute('aria-label', 'Scrollable table');
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+}
 
 function normalizePostContentHeading() {
   var article = document.querySelector('.post-content');
