@@ -5,6 +5,8 @@ date: "2026-11-22"
 categories: ["Concurrency"]
 tags: ["modern concurrency in java", "virtual threads", "structured concurrency", "korean edition", "sejong books", "books"]
 description: "The Korean edition of Modern Concurrency in Java is one of 345 academic titles in the 2026 Sejong Books program, which buys selected books for libraries across Korea."
+featured_image: "/images/modern-concurrency-in-java-korean-edition-cover.png"
+image: "/images/modern-concurrency-in-java-korean-edition-cover.png"
 excerpt: "The Korean edition of Modern Concurrency in Java is one of 345 academic titles in the 2026 Sejong Books program, which buys selected books for libraries across Korea."
 ---
 
@@ -13,13 +15,18 @@ On August 25, the Korea Publication Industry Promotion Agency (KPIPA) announced 
 OnlyBook (책만) published the book in Korea on February 27 as *모던 자바 동시성 프로그래밍*. Sejong Books considers first Korean editions published between May 2025 and the end of February 2026, so it made the window by a day.
 
 <figure>
-  <img src="/images/sejong-books-2026-selection-list.png" alt="Row 13 of KPIPA's 2026 Sejong Books academic list: 모던 자바 동시성 프로그래밍, ISBN 9791124309025, published by 책만, with A N M 바즐루어 라만 and 오명운 as authors." width="1568" height="97" loading="lazy" decoding="async">
-  <figcaption>The book on KPIPA's published list of selected academic titles (row 13).</figcaption>
+  <img src="/images/modern-concurrency-in-java-korean-edition-cover.png" alt="Cover of the Korean edition of Modern Concurrency in Java, 모던 자바 동시성 프로그래밍, with the 2026 Sejong Books seal." width="977" height="1232" fetchpriority="high" decoding="async">
+  <figcaption>The Korean edition, published by OnlyBook, with the 2026 Sejong Books seal.</figcaption>
 </figure>
 
 ## What the selection means
 
 Sejong Books is a government program. KPIPA buys each selected title at 90% of its list price and distributes the copies to public libraries and other institutions across Korea. For this book, that puts it on library shelves in places a Java developer might not otherwise run into it. Readers there can borrow it, work through the examples, and see what virtual threads and structured concurrency look like in real code.
+
+<figure>
+  <img src="/images/sejong-books-2026-selection-list.png" alt="Row 13 of KPIPA's 2026 Sejong Books academic list: 모던 자바 동시성 프로그래밍, ISBN 9791124309025, published by 책만, with A N M 바즐루어 라만 and 오명운 as authors." width="1568" height="97" loading="lazy" decoding="async">
+  <figcaption>The book on KPIPA's published list of selected academic titles (row 13).</figcaption>
+</figure>
 
 ## The translator
 
