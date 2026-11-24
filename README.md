@@ -44,6 +44,11 @@ Accessible through:  [https://bazlur.com/rokon12/](https://bazlur.com/rokon12/)
 ## <u>[InfoQ](https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/)</u>
 
 
+### JEP 545 Moves ZGC Memory Preparation off the Startup Path in JDK 28 (2026-11-23)
+JEP 545, Faster Startup and Warmup with ZGC, has been integrated into JDK 28, moving heap memory preparation onto concurrent worker threads. ZGC now pre-touches memory as it expands and upgrades small pages to large ones on Linux 6.1 and later, but the 2 MB initial heap behind the JEP's 38% startup and 90% warmup gains requires the adaptive heap sizing flag from JEP 546, which is off by default....
+[Read further^](https://www.infoq.com//news/2026/11/jep-545-jdk-28)
+
+
 ### JEP 543 Finalizes Structured Concurrency in JDK 28, Ending Seven Preview Rounds (2026-10-19)
 JDK 28 finalizes structured concurrency through JEP 543, with no API changes from JDK 27. Teams on JDK 27 only need to drop --enable-preview and recompile. Code written for JDK 25 or 26 must adapt to the R_X exception type parameter, ExecutionException wrapping, and the abstract timeout() joiner callback....
 [Read further^](https://www.infoq.com//news/2026/10/jep-543-jdk-28)
@@ -89,11 +94,6 @@ JEP 526 introduces Lazy Constants for JDK 26, enhancing developer ergonomics and
 [Read further^](https://www.infoq.com//news/2025/12/jep526-lazy-constants)
 
 
-### JUnit 6.0.0 Ships with Java 17 Baseline, Cancellation API, and Kotlin suspend Support (2025-10-20)
-Introducing JUnit 6.0.0: a transformative update that unifies versions, elevates minimum requirements to Java 17, and introduces streamlined support for Kotlin suspend tests. Enjoy enhanced testing performance with the new CancellationToken API, built-in JFR listeners, and upgraded CSV parsing using FastCSV. Embrace the future of testing&mdash;migrate today!...
-[Read further^](https://www.infoq.com//news/2025/10/junit6-java17-kotlin)
-
-
 ## <u>[Foojay.io](https://foojay.io/)</u>
 
 
@@ -107,4 +107,4 @@ Introducing JUnit 6.0.0: a transformative update that unifies versions, elevates
   <img align="center" src="https://github-readme-stats.vercel.app/api?username=rokon12&show_icons=true&include_all_commits=true&title_color=2aa889&text_color=99d1ce&icon_color=2bbc8a&bg_color=0c1014&" alt="Chandra's Technologies on GitHub" width="400"/></a>
 
 
-*This page was last updated on Mon, 23 Nov 2026 09:51:09 GMT*
+*This page was last updated on Tue, 24 Nov 2026 11:40:04 GMT*
